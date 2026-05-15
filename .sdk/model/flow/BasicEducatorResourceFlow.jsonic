@@ -1,0 +1,44 @@
+# BasicEducatorResourceFlow
+
+main: kit: flow: BasicEducatorResourceFlow:
+{
+  entity: "educator_resource",
+  kind: "basic",
+  name: "BasicEducatorResourceFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "educator_resource_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "educator_resource_ref01",
+        srcdatavar: "educator_resource_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "educator_resource01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-educator_resource_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEducatorResourceFlow"
+}

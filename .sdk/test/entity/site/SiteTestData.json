@@ -1,0 +1,77 @@
+{
+  "existing": {
+    "site": {
+      "SITE00": {
+        "api_link": "s96",
+        "api_model": "s97",
+        "artwork_id": "ARTWORK01",
+        "artwork_title": "s99",
+        "description": "s9a",
+        "exhibition_id": "EXHIBITION01",
+        "exhibition_title": "s9c",
+        "id": "SITE00",
+        "source_updated_at": "s9e",
+        "suggest_autocomplete_all": "s9f",
+        "suggest_autocomplete_boosted": "sa0",
+        "timestamp": "sa1",
+        "title": "sa2",
+        "updated_at": "sa3",
+        "web_url": "sa4"
+      },
+      "SITE01": {
+        "api_link": "s12c",
+        "api_model": "s12d",
+        "artwork_id": "ARTWORK01",
+        "artwork_title": "s12f",
+        "description": "s130",
+        "exhibition_id": "EXHIBITION01",
+        "exhibition_title": "s132",
+        "id": "SITE01",
+        "source_updated_at": "s134",
+        "suggest_autocomplete_all": "s135",
+        "suggest_autocomplete_boosted": "s136",
+        "timestamp": "s137",
+        "title": "s138",
+        "updated_at": "s139",
+        "web_url": "s13a"
+      },
+      "SITE02": {
+        "api_link": "s1c2",
+        "api_model": "s1c3",
+        "artwork_id": "ARTWORK01",
+        "artwork_title": "s1c5",
+        "description": "s1c6",
+        "exhibition_id": "EXHIBITION01",
+        "exhibition_title": "s1c8",
+        "id": "SITE02",
+        "source_updated_at": "s1ca",
+        "suggest_autocomplete_all": "s1cb",
+        "suggest_autocomplete_boosted": "s1cc",
+        "timestamp": "s1cd",
+        "title": "s1ce",
+        "updated_at": "s1cf",
+        "web_url": "s1d0"
+      }
+    }
+  },
+  "new": {
+    "site": {
+      "site_ref01": {
+        "api_link": "s258",
+        "api_model": "s259",
+        "artwork_id": "ARTWORK01",
+        "artwork_title": "s25b",
+        "description": "s25c",
+        "exhibition_id": "EXHIBITION01",
+        "exhibition_title": "s25e",
+        "source_updated_at": "s260",
+        "suggest_autocomplete_all": "s261",
+        "suggest_autocomplete_boosted": "s262",
+        "timestamp": "s263",
+        "title": "s264",
+        "updated_at": "s265",
+        "web_url": "s266"
+      }
+    }
+  }
+}

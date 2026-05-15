@@ -1,0 +1,44 @@
+# BasicGalleryFlow
+
+main: kit: flow: BasicGalleryFlow:
+{
+  entity: "gallery",
+  kind: "basic",
+  name: "BasicGalleryFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "gallery_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "gallery_ref01",
+        srcdatavar: "gallery_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "gallery01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-gallery_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGalleryFlow"
+}

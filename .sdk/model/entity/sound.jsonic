@@ -1,0 +1,219 @@
+# Entity: sound
+
+main: kit: entity: sound: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "alt_text"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "api_link"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "api_model"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "artwork_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "artwork_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "content"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "content_e_tag"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "credit_line"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "is_educational_resource"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_multimedia_resource"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_teacher_resource"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "lake_guid"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "source_updated_at"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_all"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_boosted"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "transcript"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "web_url"
+      req: false
+      type: "`$ANY`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "sound"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/mobile-sounds"
+          parts: [
+            "mobile-sounds"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/sounds"
+          parts: [
+            "sounds"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/mobile-sounds/{id}"
+          parts: [
+            "mobile-sounds"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/sounds/{id}"
+          parts: [
+            "sounds"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

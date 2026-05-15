@@ -1,0 +1,53 @@
+{
+  "existing": {
+    "search": {
+      "SEARCH00": {
+        "api_id": "API01",
+        "api_link": "s5b",
+        "api_model": "s5c",
+        "id": "SEARCH00",
+        "is_boosted": true,
+        "score": 95,
+        "thumbnail": "s60",
+        "timestamp": "s61",
+        "title": "s62"
+      },
+      "SEARCH01": {
+        "api_id": "API01",
+        "api_link": "sb5",
+        "api_model": "sb6",
+        "id": "SEARCH01",
+        "is_boosted": true,
+        "score": 185,
+        "thumbnail": "sba",
+        "timestamp": "sbb",
+        "title": "sbc"
+      },
+      "SEARCH02": {
+        "api_id": "API01",
+        "api_link": "s10f",
+        "api_model": "s110",
+        "id": "SEARCH02",
+        "is_boosted": true,
+        "score": 275,
+        "thumbnail": "s114",
+        "timestamp": "s115",
+        "title": "s116"
+      }
+    }
+  },
+  "new": {
+    "search": {
+      "search_ref01": {
+        "api_id": "API01",
+        "api_link": "s169",
+        "api_model": "s16a",
+        "is_boosted": true,
+        "score": 365,
+        "thumbnail": "s16e",
+        "timestamp": "s16f",
+        "title": "s170"
+      }
+    }
+  }
+}

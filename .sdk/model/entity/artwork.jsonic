@@ -1,0 +1,545 @@
+# Entity: artwork
+
+main: kit: entity: artwork: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "alt_artist_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "alt_classification_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "alt_image_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "alt_material_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "alt_style_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "alt_subject_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "alt_technique_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "alt_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "api_link"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "api_model"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "artist_display"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "artist_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "artist_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "artwork_type_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "artwork_type_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "boost_rank"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "catalog_based_search_keyword_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "catalogue_display"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "category_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "category_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "classification_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "classification_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "color"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "colorfulness"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "copyright_notices"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "credit_line"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "date_display"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "date_end"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "date_qualifier_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "date_qualifier_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "date_start"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "department_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "department_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "dimension"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "dimensions_detail"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "document_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "edition"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "exhibition_history"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "fiscal_year"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "fiscal_year_deaccession"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "gallery_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "gallery_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "has_advanced_imaging"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "has_educational_resource"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "has_multimedia_resource"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "has_not_been_viewed_much"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "image_embedding"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "image_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "inscription"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "internal_department_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "is_boosted"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_on_view"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_public_domain"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_zoomable"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "latitude"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "latlon"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "longitude"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "main_reference_number"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "material_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "material_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "max_zoom_window_size"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "medium_display"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "nomisma_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "on_loan_display"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "pageview"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "pageviews_recent"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "place_of_origin"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "provenance_text"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "publication_history"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "publishing_verification_level"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "section_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "section_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "short_description"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "site_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "sound_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "source_updated_at"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "style_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "style_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "subject_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "subject_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_all"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_boosted"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "technique_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "technique_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "term_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "text_embedding"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "text_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "theme_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "thumbnail"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "video_id"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "artwork"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/artworks"
+          parts: [
+            "artworks"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/artworks/{id}"
+          parts: [
+            "artworks"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

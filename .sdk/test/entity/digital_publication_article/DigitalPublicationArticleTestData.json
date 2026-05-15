@@ -1,0 +1,69 @@
+{
+  "existing": {
+    "digital_publication_article": {
+      "DIGITAL_PUBLICATION_ARTICLE00": {
+        "api_link": "s82",
+        "api_model": "s83",
+        "author_display": "s84",
+        "copy": "s85",
+        "digital_publication_id": "DIGITAL_PUBLICATION01",
+        "id": "DIGITAL_PUBLICATION_ARTICLE00",
+        "source_updated_at": "s88",
+        "suggest_autocomplete_all": "s89",
+        "suggest_autocomplete_boosted": "s8a",
+        "timestamp": "s8b",
+        "title": "s8c",
+        "updated_at": "s8d",
+        "web_url": "s8e"
+      },
+      "DIGITAL_PUBLICATION_ARTICLE01": {
+        "api_link": "s104",
+        "api_model": "s105",
+        "author_display": "s106",
+        "copy": "s107",
+        "digital_publication_id": "DIGITAL_PUBLICATION01",
+        "id": "DIGITAL_PUBLICATION_ARTICLE01",
+        "source_updated_at": "s10a",
+        "suggest_autocomplete_all": "s10b",
+        "suggest_autocomplete_boosted": "s10c",
+        "timestamp": "s10d",
+        "title": "s10e",
+        "updated_at": "s10f",
+        "web_url": "s110"
+      },
+      "DIGITAL_PUBLICATION_ARTICLE02": {
+        "api_link": "s186",
+        "api_model": "s187",
+        "author_display": "s188",
+        "copy": "s189",
+        "digital_publication_id": "DIGITAL_PUBLICATION01",
+        "id": "DIGITAL_PUBLICATION_ARTICLE02",
+        "source_updated_at": "s18c",
+        "suggest_autocomplete_all": "s18d",
+        "suggest_autocomplete_boosted": "s18e",
+        "timestamp": "s18f",
+        "title": "s190",
+        "updated_at": "s191",
+        "web_url": "s192"
+      }
+    }
+  },
+  "new": {
+    "digital_publication_article": {
+      "digital_publication_article_ref01": {
+        "api_link": "s208",
+        "api_model": "s209",
+        "author_display": "s20a",
+        "copy": "s20b",
+        "digital_publication_id": "DIGITAL_PUBLICATION01",
+        "source_updated_at": "s20e",
+        "suggest_autocomplete_all": "s20f",
+        "suggest_autocomplete_boosted": "s210",
+        "timestamp": "s211",
+        "title": "s212",
+        "updated_at": "s213",
+        "web_url": "s214"
+      }
+    }
+  }
+}

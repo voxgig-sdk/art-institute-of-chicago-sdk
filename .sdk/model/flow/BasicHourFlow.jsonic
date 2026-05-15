@@ -1,0 +1,44 @@
+# BasicHourFlow
+
+main: kit: flow: BasicHourFlow:
+{
+  entity: "hour",
+  kind: "basic",
+  name: "BasicHourFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "hour_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "hour_ref01",
+        srcdatavar: "hour_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "hour01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-hour_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicHourFlow"
+}

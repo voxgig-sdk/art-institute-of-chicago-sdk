@@ -1,0 +1,44 @@
+# BasicEventOccurrenceFlow
+
+main: kit: flow: BasicEventOccurrenceFlow:
+{
+  entity: "event_occurrence",
+  kind: "basic",
+  name: "BasicEventOccurrenceFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "event_occurrence_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "event_occurrence_ref01",
+        srcdatavar: "event_occurrence_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "event_occurrence01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-event_occurrence_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEventOccurrenceFlow"
+}

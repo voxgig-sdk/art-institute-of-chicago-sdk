@@ -1,0 +1,44 @@
+# BasicPublicationFlow
+
+main: kit: flow: BasicPublicationFlow:
+{
+  entity: "publication",
+  kind: "basic",
+  name: "BasicPublicationFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "publication_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "publication_ref01",
+        srcdatavar: "publication_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "publication01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-publication_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPublicationFlow"
+}

@@ -1,0 +1,300 @@
+# Entity: hour
+
+main: kit: entity: hour: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "additional_text"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "api_link"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "api_model"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "friday_is_closed"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "friday_member_close"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "friday_member_open"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "friday_public_close"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "friday_public_open"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "monday_is_closed"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "monday_member_close"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "monday_member_open"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "monday_public_close"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "monday_public_open"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "saturday_is_closed"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "saturday_member_close"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "saturday_member_open"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "saturday_public_close"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "saturday_public_open"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "source_updated_at"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_all"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_boosted"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "summary"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "sunday_is_closed"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "sunday_member_close"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "sunday_member_open"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "sunday_public_close"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "sunday_public_open"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "thursday_is_closed"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "thursday_member_close"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "thursday_member_open"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "thursday_public_close"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "thursday_public_open"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "tuesday_is_closed"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "tuesday_member_close"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "tuesday_member_open"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "tuesday_public_close"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "tuesday_public_open"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "wednesday_is_closed"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "wednesday_member_close"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "wednesday_member_open"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "wednesday_public_close"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "wednesday_public_open"
+      req: false
+      type: "`$ANY`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "hour"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/hours"
+          parts: [
+            "hours"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/hours/{id}"
+          parts: [
+            "hours"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

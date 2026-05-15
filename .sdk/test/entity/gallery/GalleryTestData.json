@@ -1,0 +1,81 @@
+{
+  "existing": {
+    "gallery": {
+      "GALLERY00": {
+        "api_link": "sa0",
+        "api_model": "sa1",
+        "floor": "sa2",
+        "id": "GALLERY00",
+        "is_closed": true,
+        "latitude": 165,
+        "latlon": "sa6",
+        "longitude": 167,
+        "number": "sa8",
+        "source_updated_at": "sa9",
+        "suggest_autocomplete_all": "saa",
+        "suggest_autocomplete_boosted": "sab",
+        "tgn_id": "TGN01",
+        "timestamp": "sad",
+        "title": "sae",
+        "updated_at": "saf"
+      },
+      "GALLERY01": {
+        "api_link": "s140",
+        "api_model": "s141",
+        "floor": "s142",
+        "id": "GALLERY01",
+        "is_closed": true,
+        "latitude": 325,
+        "latlon": "s146",
+        "longitude": 327,
+        "number": "s148",
+        "source_updated_at": "s149",
+        "suggest_autocomplete_all": "s14a",
+        "suggest_autocomplete_boosted": "s14b",
+        "tgn_id": "TGN01",
+        "timestamp": "s14d",
+        "title": "s14e",
+        "updated_at": "s14f"
+      },
+      "GALLERY02": {
+        "api_link": "s1e0",
+        "api_model": "s1e1",
+        "floor": "s1e2",
+        "id": "GALLERY02",
+        "is_closed": true,
+        "latitude": 485,
+        "latlon": "s1e6",
+        "longitude": 487,
+        "number": "s1e8",
+        "source_updated_at": "s1e9",
+        "suggest_autocomplete_all": "s1ea",
+        "suggest_autocomplete_boosted": "s1eb",
+        "tgn_id": "TGN01",
+        "timestamp": "s1ed",
+        "title": "s1ee",
+        "updated_at": "s1ef"
+      }
+    }
+  },
+  "new": {
+    "gallery": {
+      "gallery_ref01": {
+        "api_link": "s280",
+        "api_model": "s281",
+        "floor": "s282",
+        "is_closed": true,
+        "latitude": 645,
+        "latlon": "s286",
+        "longitude": 647,
+        "number": "s288",
+        "source_updated_at": "s289",
+        "suggest_autocomplete_all": "s28a",
+        "suggest_autocomplete_boosted": "s28b",
+        "tgn_id": "TGN01",
+        "timestamp": "s28d",
+        "title": "s28e",
+        "updated_at": "s28f"
+      }
+    }
+  }
+}

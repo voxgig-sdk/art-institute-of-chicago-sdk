@@ -1,0 +1,44 @@
+# BasicAgentRoleFlow
+
+main: kit: flow: BasicAgentRoleFlow:
+{
+  entity: "agent_role",
+  kind: "basic",
+  name: "BasicAgentRoleFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "agent_role_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "agent_role_ref01",
+        srcdatavar: "agent_role_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "agent_role01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-agent_role_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAgentRoleFlow"
+}

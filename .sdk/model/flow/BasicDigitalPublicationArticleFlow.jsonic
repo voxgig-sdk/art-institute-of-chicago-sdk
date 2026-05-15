@@ -1,0 +1,44 @@
+# BasicDigitalPublicationArticleFlow
+
+main: kit: flow: BasicDigitalPublicationArticleFlow:
+{
+  entity: "digital_publication_article",
+  kind: "basic",
+  name: "BasicDigitalPublicationArticleFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "digital_publication_article_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "digital_publication_article_ref01",
+        srcdatavar: "digital_publication_article_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "digital_publication_article01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-digital_publication_article_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDigitalPublicationArticleFlow"
+}

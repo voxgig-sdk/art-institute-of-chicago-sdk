@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "artwork_type": {
+      "ARTWORK_TYPE00": {
+        "aat_id": "AAT01",
+        "api_link": "s65",
+        "api_model": "s66",
+        "id": "ARTWORK_TYPE00",
+        "source_updated_at": "s68",
+        "suggest_autocomplete_all": "s69",
+        "suggest_autocomplete_boosted": "s6a",
+        "timestamp": "s6b",
+        "title": "s6c",
+        "updated_at": "s6d"
+      },
+      "ARTWORK_TYPE01": {
+        "aat_id": "AAT01",
+        "api_link": "sc9",
+        "api_model": "sca",
+        "id": "ARTWORK_TYPE01",
+        "source_updated_at": "scc",
+        "suggest_autocomplete_all": "scd",
+        "suggest_autocomplete_boosted": "sce",
+        "timestamp": "scf",
+        "title": "sd0",
+        "updated_at": "sd1"
+      },
+      "ARTWORK_TYPE02": {
+        "aat_id": "AAT01",
+        "api_link": "s12d",
+        "api_model": "s12e",
+        "id": "ARTWORK_TYPE02",
+        "source_updated_at": "s130",
+        "suggest_autocomplete_all": "s131",
+        "suggest_autocomplete_boosted": "s132",
+        "timestamp": "s133",
+        "title": "s134",
+        "updated_at": "s135"
+      }
+    }
+  },
+  "new": {
+    "artwork_type": {
+      "artwork_type_ref01": {
+        "aat_id": "AAT01",
+        "api_link": "s191",
+        "api_model": "s192",
+        "source_updated_at": "s194",
+        "suggest_autocomplete_all": "s195",
+        "suggest_autocomplete_boosted": "s196",
+        "timestamp": "s197",
+        "title": "s198",
+        "updated_at": "s199"
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+# BasicStaticPageFlow
+
+main: kit: flow: BasicStaticPageFlow:
+{
+  entity: "static_page",
+  kind: "basic",
+  name: "BasicStaticPageFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "static_page_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "static_page_ref01",
+        srcdatavar: "static_page_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "static_page01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-static_page_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicStaticPageFlow"
+}

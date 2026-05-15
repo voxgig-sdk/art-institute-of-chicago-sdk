@@ -1,0 +1,44 @@
+# BasicTextFlow
+
+main: kit: flow: BasicTextFlow:
+{
+  entity: "text",
+  kind: "basic",
+  name: "BasicTextFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "text_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "text_ref01",
+        srcdatavar: "text_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "text01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-text_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTextFlow"
+}

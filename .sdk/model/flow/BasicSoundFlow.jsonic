@@ -1,0 +1,44 @@
+# BasicSoundFlow
+
+main: kit: flow: BasicSoundFlow:
+{
+  entity: "sound",
+  kind: "basic",
+  name: "BasicSoundFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "sound_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "sound_ref01",
+        srcdatavar: "sound_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "sound01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-sound_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSoundFlow"
+}

@@ -1,0 +1,422 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 35
+  metrics: count: path: 103
+  metrics: count: method: 103
+
+  entity: agent: {
+    path: "/agents": {
+      op: list: method: *GET
+    }
+    path: "/agents/{id}": {
+      op: load: method: *GET
+    }
+    path: "/artists": {
+      op: list: method: *GET
+    }
+    path: "/artists/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: agent_role: {
+    path: "/agent-roles": {
+      op: list: method: *GET
+    }
+    path: "/agent-roles/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: agent_type: {
+    path: "/agent-types": {
+      op: list: method: *GET
+    }
+    path: "/agent-types/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: article: {
+    path: "/articles": {
+      op: list: method: *GET
+    }
+    path: "/articles/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: artwork: {
+    path: "/artworks": {
+      op: list: method: *GET
+    }
+    path: "/artworks/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: artwork_date_qualifier: {
+    path: "/artwork-date-qualifiers": {
+      op: list: method: *GET
+    }
+    path: "/artwork-date-qualifiers/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: artwork_place_qualifier: {
+    path: "/artwork-place-qualifiers": {
+      op: list: method: *GET
+    }
+    path: "/artwork-place-qualifiers/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: artwork_type: {
+    path: "/artwork-types": {
+      op: list: method: *GET
+    }
+    path: "/artwork-types/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: category_term: {
+    path: "/category-terms": {
+      op: list: method: *GET
+    }
+    path: "/category-terms/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: digital_publication: {
+    path: "/digital-publications": {
+      op: list: method: *GET
+    }
+    path: "/digital-publications/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: digital_publication_article: {
+    path: "/digital-publication-articles": {
+      op: list: method: *GET
+    }
+    path: "/digital-publication-articles/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: educator_resource: {
+    path: "/educator-resources": {
+      op: list: method: *GET
+    }
+    path: "/educator-resources/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: event: {
+    path: "/events": {
+      op: list: method: *GET
+    }
+    path: "/events/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: event_occurrence: {
+    path: "/event-occurrences": {
+      op: list: method: *GET
+    }
+    path: "/event-occurrences/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: event_program: {
+    path: "/event-programs": {
+      op: list: method: *GET
+    }
+    path: "/event-programs/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: exhibition: {
+    path: "/exhibitions": {
+      op: list: method: *GET
+    }
+    path: "/exhibitions/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: gallery: {
+    path: "/galleries": {
+      op: list: method: *GET
+    }
+    path: "/galleries/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: generic_page: {
+    path: "/generic-pages": {
+      op: list: method: *GET
+    }
+    path: "/generic-pages/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: highlight: {
+    path: "/highlights": {
+      op: list: method: *GET
+    }
+    path: "/highlights/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: hour: {
+    path: "/hours": {
+      op: list: method: *GET
+    }
+    path: "/hours/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: image: {
+    path: "/images": {
+      op: list: method: *GET
+    }
+    path: "/images/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: landing_page: {
+    path: "/landing-pages": {
+      op: list: method: *GET
+    }
+    path: "/landing-pages/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: place: {
+    path: "/places": {
+      op: list: method: *GET
+    }
+    path: "/places/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: press_release: {
+    path: "/press-releases": {
+      op: list: method: *GET
+    }
+    path: "/press-releases/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: printed_publication: {
+    path: "/printed-publications": {
+      op: list: method: *GET
+    }
+    path: "/printed-publications/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: product: {
+    path: "/products": {
+      op: list: method: *GET
+    }
+    path: "/products/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: publication: {
+    path: "/publications": {
+      op: list: method: *GET
+    }
+    path: "/publications/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: search: {
+    path: "/agents/search": {
+      op: list: method: *GET
+    }
+    path: "/articles/search": {
+      op: list: method: *GET
+    }
+    path: "/artworks/search": {
+      op: list: method: *GET
+    }
+    path: "/category-terms/search": {
+      op: list: method: *GET
+    }
+    path: "/digital-publication-articles/search": {
+      op: list: method: *GET
+    }
+    path: "/digital-publications/search": {
+      op: list: method: *GET
+    }
+    path: "/educator-resources/search": {
+      op: list: method: *GET
+    }
+    path: "/event-occurrences/search": {
+      op: list: method: *GET
+    }
+    path: "/event-programs/search": {
+      op: list: method: *GET
+    }
+    path: "/events/search": {
+      op: list: method: *GET
+    }
+    path: "/exhibitions/search": {
+      op: list: method: *GET
+    }
+    path: "/galleries/search": {
+      op: list: method: *GET
+    }
+    path: "/generic-pages/search": {
+      op: list: method: *GET
+    }
+    path: "/highlights/search": {
+      op: list: method: *GET
+    }
+    path: "/hours/search": {
+      op: list: method: *GET
+    }
+    path: "/images/search": {
+      op: list: method: *GET
+    }
+    path: "/landing-pages/search": {
+      op: list: method: *GET
+    }
+    path: "/mobile-sounds/search": {
+      op: list: method: *GET
+    }
+    path: "/places/search": {
+      op: list: method: *GET
+    }
+    path: "/press-releases/search": {
+      op: list: method: *GET
+    }
+    path: "/printed-publications/search": {
+      op: list: method: *GET
+    }
+    path: "/products/search": {
+      op: list: method: *GET
+    }
+    path: "/publications/search": {
+      op: list: method: *GET
+    }
+    path: "/search": {
+      op: list: method: *GET
+    }
+    path: "/sections/search": {
+      op: list: method: *GET
+    }
+    path: "/sites/search": {
+      op: list: method: *GET
+    }
+    path: "/sounds/search": {
+      op: list: method: *GET
+    }
+    path: "/static-pages/search": {
+      op: list: method: *GET
+    }
+    path: "/texts/search": {
+      op: list: method: *GET
+    }
+    path: "/tours/search": {
+      op: list: method: *GET
+    }
+    path: "/videos/search": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: section: {
+    path: "/sections": {
+      op: list: method: *GET
+    }
+    path: "/sections/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: site: {
+    path: "/sites": {
+      op: list: method: *GET
+    }
+    path: "/sites/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: sound: {
+    path: "/mobile-sounds": {
+      op: list: method: *GET
+    }
+    path: "/mobile-sounds/{id}": {
+      op: load: method: *GET
+    }
+    path: "/sounds": {
+      op: list: method: *GET
+    }
+    path: "/sounds/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: static_page: {
+    path: "/static-pages": {
+      op: list: method: *GET
+    }
+    path: "/static-pages/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: text: {
+    path: "/texts": {
+      op: list: method: *GET
+    }
+    path: "/texts/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: tour: {
+    path: "/tours": {
+      op: list: method: *GET
+    }
+    path: "/tours/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: video: {
+    path: "/videos": {
+      op: list: method: *GET
+    }
+    path: "/videos/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+}

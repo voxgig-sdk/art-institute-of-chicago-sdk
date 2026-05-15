@@ -1,0 +1,9557 @@
+
+import { BaseFeature } from './feature/base/BaseFeature'
+import { TestFeature } from './feature/test/TestFeature'
+
+
+
+const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
+   test: TestFeature
+
+}
+
+
+class Config {
+
+  makeFeature(this: any, fn: string) {
+    const fc = FEATURE_CLASS[fn]
+    const fi = new fc()
+    // TODO: errors etc
+    return fi
+  }
+
+
+  main = {
+    name: 'ProjectName',
+  }
+
+
+  feature = {
+     test:     {
+      "options": {
+        "active": false
+      }
+    }
+
+  }
+
+
+  options = {
+    base: 'api.artic.edu/api/v1',
+
+    auth: {
+      prefix: 'Bearer',
+    },
+
+    headers: {
+      "content-type": "application/json"
+    },
+
+    entity: {
+      
+      agent: {
+      },
+
+      agent_role: {
+      },
+
+      agent_type: {
+      },
+
+      article: {
+      },
+
+      artwork: {
+      },
+
+      artwork_date_qualifier: {
+      },
+
+      artwork_place_qualifier: {
+      },
+
+      artwork_type: {
+      },
+
+      category_term: {
+      },
+
+      digital_publication: {
+      },
+
+      digital_publication_article: {
+      },
+
+      educator_resource: {
+      },
+
+      event: {
+      },
+
+      event_occurrence: {
+      },
+
+      event_program: {
+      },
+
+      exhibition: {
+      },
+
+      gallery: {
+      },
+
+      generic_page: {
+      },
+
+      highlight: {
+      },
+
+      hour: {
+      },
+
+      image: {
+      },
+
+      landing_page: {
+      },
+
+      place: {
+      },
+
+      press_release: {
+      },
+
+      printed_publication: {
+      },
+
+      product: {
+      },
+
+      publication: {
+      },
+
+      search: {
+      },
+
+      section: {
+      },
+
+      site: {
+      },
+
+      sound: {
+      },
+
+      static_page: {
+      },
+
+      text: {
+      },
+
+      tour: {
+      },
+
+      video: {
+      },
+
+    }
+  }
+
+
+  entity = {
+    "agent": {
+      "fields": [
+        {
+          "name": "alt_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "birth_date",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "death_date",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "description",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "is_artist",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "sort_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "ulan_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 15
+        }
+      ],
+      "name": "agent",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/agents",
+              "parts": [
+                "agents"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            },
+            {
+              "method": "GET",
+              "orig": "/artists",
+              "parts": [
+                "artists"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 1
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/agents/{id}",
+              "parts": [
+                "agents",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            },
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/artists/{id}",
+              "parts": [
+                "artists",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 1
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "agent_role": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        }
+      ],
+      "name": "agent_role",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/agent-roles",
+              "parts": [
+                "agent-roles"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/agent-roles/{id}",
+              "parts": [
+                "agent-roles",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "agent_type": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        }
+      ],
+      "name": "agent_type",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/agent-types",
+              "parts": [
+                "agent-types"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/agent-types/{id}",
+              "parts": [
+                "agent-types",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "article": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "copy",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        }
+      ],
+      "name": "article",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/articles",
+              "parts": [
+                "articles"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/articles/{id}",
+              "parts": [
+                "articles",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "artwork": {
+      "fields": [
+        {
+          "name": "alt_artist_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "alt_classification_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "alt_image_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "alt_material_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "alt_style_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "alt_subject_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "alt_technique_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "alt_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "artist_display",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "artist_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "artist_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "artwork_type_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "artwork_type_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "boost_rank",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 15
+        },
+        {
+          "name": "catalog_based_search_keyword_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 16
+        },
+        {
+          "name": "catalogue_display",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 17
+        },
+        {
+          "name": "category_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 18
+        },
+        {
+          "name": "category_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 19
+        },
+        {
+          "name": "classification_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 20
+        },
+        {
+          "name": "classification_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 21
+        },
+        {
+          "name": "color",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 22
+        },
+        {
+          "name": "colorfulness",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 23
+        },
+        {
+          "name": "copyright_notices",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 24
+        },
+        {
+          "name": "credit_line",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 25
+        },
+        {
+          "name": "date_display",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 26
+        },
+        {
+          "name": "date_end",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 27
+        },
+        {
+          "name": "date_qualifier_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 28
+        },
+        {
+          "name": "date_qualifier_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 29
+        },
+        {
+          "name": "date_start",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 30
+        },
+        {
+          "name": "department_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 31
+        },
+        {
+          "name": "department_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 32
+        },
+        {
+          "name": "description",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 33
+        },
+        {
+          "name": "dimension",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 34
+        },
+        {
+          "name": "dimensions_detail",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 35
+        },
+        {
+          "name": "document_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 36
+        },
+        {
+          "name": "edition",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 37
+        },
+        {
+          "name": "exhibition_history",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 38
+        },
+        {
+          "name": "fiscal_year",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 39
+        },
+        {
+          "name": "fiscal_year_deaccession",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 40
+        },
+        {
+          "name": "gallery_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 41
+        },
+        {
+          "name": "gallery_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 42
+        },
+        {
+          "name": "has_advanced_imaging",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 43
+        },
+        {
+          "name": "has_educational_resource",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 44
+        },
+        {
+          "name": "has_multimedia_resource",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 45
+        },
+        {
+          "name": "has_not_been_viewed_much",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 46
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 47
+        },
+        {
+          "name": "image_embedding",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 48
+        },
+        {
+          "name": "image_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 49
+        },
+        {
+          "name": "inscription",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 50
+        },
+        {
+          "name": "internal_department_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 51
+        },
+        {
+          "name": "is_boosted",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 52
+        },
+        {
+          "name": "is_on_view",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 53
+        },
+        {
+          "name": "is_public_domain",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 54
+        },
+        {
+          "name": "is_zoomable",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 55
+        },
+        {
+          "name": "latitude",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 56
+        },
+        {
+          "name": "latlon",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 57
+        },
+        {
+          "name": "longitude",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 58
+        },
+        {
+          "name": "main_reference_number",
+          "req": false,
+          "type": "`$INTEGER`",
+          "active": true,
+          "index$": 59
+        },
+        {
+          "name": "material_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 60
+        },
+        {
+          "name": "material_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 61
+        },
+        {
+          "name": "max_zoom_window_size",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 62
+        },
+        {
+          "name": "medium_display",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 63
+        },
+        {
+          "name": "nomisma_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 64
+        },
+        {
+          "name": "on_loan_display",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 65
+        },
+        {
+          "name": "pageview",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 66
+        },
+        {
+          "name": "pageviews_recent",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 67
+        },
+        {
+          "name": "place_of_origin",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 68
+        },
+        {
+          "name": "provenance_text",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 69
+        },
+        {
+          "name": "publication_history",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 70
+        },
+        {
+          "name": "publishing_verification_level",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 71
+        },
+        {
+          "name": "section_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 72
+        },
+        {
+          "name": "section_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 73
+        },
+        {
+          "name": "short_description",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 74
+        },
+        {
+          "name": "site_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 75
+        },
+        {
+          "name": "sound_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 76
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 77
+        },
+        {
+          "name": "style_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 78
+        },
+        {
+          "name": "style_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 79
+        },
+        {
+          "name": "subject_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 80
+        },
+        {
+          "name": "subject_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 81
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 82
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 83
+        },
+        {
+          "name": "technique_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 84
+        },
+        {
+          "name": "technique_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 85
+        },
+        {
+          "name": "term_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 86
+        },
+        {
+          "name": "text_embedding",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 87
+        },
+        {
+          "name": "text_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 88
+        },
+        {
+          "name": "theme_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 89
+        },
+        {
+          "name": "thumbnail",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 90
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 91
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 92
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 93
+        },
+        {
+          "name": "video_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 94
+        }
+      ],
+      "name": "artwork",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/artworks",
+              "parts": [
+                "artworks"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/artworks/{id}",
+              "parts": [
+                "artworks",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "artwork_date_qualifier": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        }
+      ],
+      "name": "artwork_date_qualifier",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/artwork-date-qualifiers",
+              "parts": [
+                "artwork-date-qualifiers"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/artwork-date-qualifiers/{id}",
+              "parts": [
+                "artwork-date-qualifiers",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "artwork_place_qualifier": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        }
+      ],
+      "name": "artwork_place_qualifier",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/artwork-place-qualifiers",
+              "parts": [
+                "artwork-place-qualifiers"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/artwork-place-qualifiers/{id}",
+              "parts": [
+                "artwork-place-qualifiers",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "artwork_type": {
+      "fields": [
+        {
+          "name": "aat_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        }
+      ],
+      "name": "artwork_type",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/artwork-types",
+              "parts": [
+                "artwork-types"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/artwork-types/{id}",
+              "parts": [
+                "artwork-types",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "category_term": {
+      "fields": [
+        {
+          "name": "aat_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "parent_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "subtype",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        }
+      ],
+      "name": "category_term",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/category-terms",
+              "parts": [
+                "category-terms"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/category-terms/{id}",
+              "parts": [
+                "category-terms",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "digital_publication": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "copy",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "web_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        }
+      ],
+      "name": "digital_publication",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/digital-publications",
+              "parts": [
+                "digital-publications"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/digital-publications/{id}",
+              "parts": [
+                "digital-publications",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "digital_publication_article": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "author_display",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "copy",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "digital_publication_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "web_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 12
+        }
+      ],
+      "name": "digital_publication_article",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/digital-publication-articles",
+              "parts": [
+                "digital-publication-articles"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/digital-publication-articles/{id}",
+              "parts": [
+                "digital-publication-articles",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "educator_resource": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "copy",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "web_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        }
+      ],
+      "name": "educator_resource",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/educator-resources",
+              "parts": [
+                "educator-resources"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/educator-resources/{id}",
+              "parts": [
+                "educator-resources",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "event": {
+      "fields": [
+        {
+          "name": "alt_audience_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "alt_event_type_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "audience_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "buy_button_caption",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "buy_button_text",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "date_display",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "description",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "door_time",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "end_date",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "end_time",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "entrance",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "event_host_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "event_host_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "event_type_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 15
+        },
+        {
+          "name": "header_description",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 16
+        },
+        {
+          "name": "hero_caption",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 17
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 18
+        },
+        {
+          "name": "image_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 19
+        },
+        {
+          "name": "is_admission_required",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 20
+        },
+        {
+          "name": "is_after_hour",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 21
+        },
+        {
+          "name": "is_free",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 22
+        },
+        {
+          "name": "is_member_exclusive",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 23
+        },
+        {
+          "name": "is_private",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 24
+        },
+        {
+          "name": "is_registration_required",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 25
+        },
+        {
+          "name": "is_sales_button_hidden",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 26
+        },
+        {
+          "name": "is_sold_out",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 27
+        },
+        {
+          "name": "is_ticketed",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 28
+        },
+        {
+          "name": "is_virtual_event",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 29
+        },
+        {
+          "name": "join_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 30
+        },
+        {
+          "name": "layout_type",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 31
+        },
+        {
+          "name": "list_description",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 32
+        },
+        {
+          "name": "location",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 33
+        },
+        {
+          "name": "program_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 34
+        },
+        {
+          "name": "program_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 35
+        },
+        {
+          "name": "rsvp_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 36
+        },
+        {
+          "name": "search_tag",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 37
+        },
+        {
+          "name": "short_description",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 38
+        },
+        {
+          "name": "slug",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 39
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 40
+        },
+        {
+          "name": "start_date",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 41
+        },
+        {
+          "name": "start_time",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 42
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 43
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 44
+        },
+        {
+          "name": "survey_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 45
+        },
+        {
+          "name": "ticketed_event_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 46
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 47
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 48
+        },
+        {
+          "name": "title_display",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 49
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 50
+        },
+        {
+          "name": "virtual_event_passcode",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 51
+        },
+        {
+          "name": "virtual_event_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 52
+        }
+      ],
+      "name": "event",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/events",
+              "parts": [
+                "events"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/events/{id}",
+              "parts": [
+                "events",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "event_occurrence": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "button_caption",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "button_text",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "button_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "description",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "end_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "event_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "image_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "is_private",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "is_sales_button_hidden",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "is_ticketed",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "location",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "off_sale_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "on_sale_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 15
+        },
+        {
+          "name": "short_description",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 16
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 17
+        },
+        {
+          "name": "start_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 18
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 19
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 20
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 21
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 22
+        },
+        {
+          "name": "title_display",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 23
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 24
+        }
+      ],
+      "name": "event_occurrence",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/event-occurrences",
+              "parts": [
+                "event-occurrences"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/event-occurrences/{id}",
+              "parts": [
+                "event-occurrences",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "event_program": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "is_affiliate_group",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "is_event_host",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        }
+      ],
+      "name": "event_program",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/event-programs",
+              "parts": [
+                "event-programs"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/event-programs/{id}",
+              "parts": [
+                "event-programs",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "exhibition": {
+      "fields": [
+        {
+          "name": "aic_end_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "aic_start_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "alt_image_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "artist_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "artwork_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "artwork_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "document_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "gallery_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "gallery_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "image_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "image_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "is_featured",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "is_published",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 15
+        },
+        {
+          "name": "position",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 16
+        },
+        {
+          "name": "short_description",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 17
+        },
+        {
+          "name": "site_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 18
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 19
+        },
+        {
+          "name": "status",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 20
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 21
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 22
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 23
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 24
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 25
+        },
+        {
+          "name": "web_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 26
+        }
+      ],
+      "name": "exhibition",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/exhibitions",
+              "parts": [
+                "exhibitions"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/exhibitions/{id}",
+              "parts": [
+                "exhibitions",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "gallery": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "floor",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "is_closed",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "latitude",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "latlon",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "longitude",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "number",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "tgn_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 15
+        }
+      ],
+      "name": "gallery",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/galleries",
+              "parts": [
+                "galleries"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/galleries/{id}",
+              "parts": [
+                "galleries",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "generic_page": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "copy",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "search_tag",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "web_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 11
+        }
+      ],
+      "name": "generic_page",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/generic-pages",
+              "parts": [
+                "generic-pages"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/generic-pages/{id}",
+              "parts": [
+                "generic-pages",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "highlight": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "copy",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        }
+      ],
+      "name": "highlight",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/highlights",
+              "parts": [
+                "highlights"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/highlights/{id}",
+              "parts": [
+                "highlights",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "hour": {
+      "fields": [
+        {
+          "name": "additional_text",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "friday_is_closed",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "friday_member_close",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "friday_member_open",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "friday_public_close",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "friday_public_open",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "monday_is_closed",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "monday_member_close",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "monday_member_open",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "monday_public_close",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "monday_public_open",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "saturday_is_closed",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "saturday_member_close",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 15
+        },
+        {
+          "name": "saturday_member_open",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 16
+        },
+        {
+          "name": "saturday_public_close",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 17
+        },
+        {
+          "name": "saturday_public_open",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 18
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 19
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 20
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 21
+        },
+        {
+          "name": "summary",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 22
+        },
+        {
+          "name": "sunday_is_closed",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 23
+        },
+        {
+          "name": "sunday_member_close",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 24
+        },
+        {
+          "name": "sunday_member_open",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 25
+        },
+        {
+          "name": "sunday_public_close",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 26
+        },
+        {
+          "name": "sunday_public_open",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 27
+        },
+        {
+          "name": "thursday_is_closed",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 28
+        },
+        {
+          "name": "thursday_member_close",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 29
+        },
+        {
+          "name": "thursday_member_open",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 30
+        },
+        {
+          "name": "thursday_public_close",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 31
+        },
+        {
+          "name": "thursday_public_open",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 32
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 33
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 34
+        },
+        {
+          "name": "tuesday_is_closed",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 35
+        },
+        {
+          "name": "tuesday_member_close",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 36
+        },
+        {
+          "name": "tuesday_member_open",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 37
+        },
+        {
+          "name": "tuesday_public_close",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 38
+        },
+        {
+          "name": "tuesday_public_open",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 39
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 40
+        },
+        {
+          "name": "wednesday_is_closed",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 41
+        },
+        {
+          "name": "wednesday_member_close",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 42
+        },
+        {
+          "name": "wednesday_member_open",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 43
+        },
+        {
+          "name": "wednesday_public_close",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 44
+        },
+        {
+          "name": "wednesday_public_open",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 45
+        }
+      ],
+      "name": "hour",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/hours",
+              "parts": [
+                "hours"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/hours/{id}",
+              "parts": [
+                "hours",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "image": {
+      "fields": [
+        {
+          "name": "ahash",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "alt_text",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "artwork_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "artwork_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "color",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "colorfulness",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "content",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "content_e_tag",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "credit_line",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "fingerprint",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "height",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "iiif_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "is_educational_resource",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 15
+        },
+        {
+          "name": "is_multimedia_resource",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 16
+        },
+        {
+          "name": "is_teacher_resource",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 17
+        },
+        {
+          "name": "lake_guid",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 18
+        },
+        {
+          "name": "lqip",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 19
+        },
+        {
+          "name": "phash",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 20
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 21
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 22
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 23
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 24
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 25
+        },
+        {
+          "name": "type",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 26
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 27
+        },
+        {
+          "name": "width",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 28
+        }
+      ],
+      "name": "image",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/images",
+              "parts": [
+                "images"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/images/{id}",
+              "parts": [
+                "images",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "landing_page": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "copy",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "search_tag",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "web_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 11
+        }
+      ],
+      "name": "landing_page",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/landing-pages",
+              "parts": [
+                "landing-pages"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/landing-pages/{id}",
+              "parts": [
+                "landing-pages",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "place": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "latitude",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "longitude",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "tgn_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 11
+        }
+      ],
+      "name": "place",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/places",
+              "parts": [
+                "places"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/places/{id}",
+              "parts": [
+                "places",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "press_release": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "copy",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "web_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        }
+      ],
+      "name": "press_release",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/press-releases",
+              "parts": [
+                "press-releases"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/press-releases/{id}",
+              "parts": [
+                "press-releases",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "printed_publication": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "copy",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "web_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        }
+      ],
+      "name": "printed_publication",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/printed-publications",
+              "parts": [
+                "printed-publications"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/printed-publications/{id}",
+              "parts": [
+                "printed-publications",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "product": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "artist_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "artwork_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "description",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "exhibition_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "external_sku",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "image_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "max_compare_at_price",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "max_current_price",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "min_compare_at_price",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "min_current_price",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "price_display",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 15
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 16
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 17
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 18
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 19
+        },
+        {
+          "name": "web_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 20
+        }
+      ],
+      "name": "product",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/products",
+              "parts": [
+                "products"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/products/{id}",
+              "parts": [
+                "products",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "publication": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "section_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "web_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        }
+      ],
+      "name": "publication",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/publications",
+              "parts": [
+                "publications"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/publications/{id}",
+              "parts": [
+                "publications",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "search": {
+      "fields": [
+        {
+          "name": "api_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "is_boosted",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "score",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "thumbnail",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        }
+      ],
+      "name": "search",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/agents/search",
+              "parts": [
+                "agents",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/articles/search",
+              "parts": [
+                "articles",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 1
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/artworks/search",
+              "parts": [
+                "artworks",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 2
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/category-terms/search",
+              "parts": [
+                "category-terms",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 3
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/digital-publication-articles/search",
+              "parts": [
+                "digital-publication-articles",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 4
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/digital-publications/search",
+              "parts": [
+                "digital-publications",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 5
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/educator-resources/search",
+              "parts": [
+                "educator-resources",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 6
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/event-occurrences/search",
+              "parts": [
+                "event-occurrences",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 7
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/event-programs/search",
+              "parts": [
+                "event-programs",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 8
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/events/search",
+              "parts": [
+                "events",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 9
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/exhibitions/search",
+              "parts": [
+                "exhibitions",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 10
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/galleries/search",
+              "parts": [
+                "galleries",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 11
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/generic-pages/search",
+              "parts": [
+                "generic-pages",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 12
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/highlights/search",
+              "parts": [
+                "highlights",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 13
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/hours/search",
+              "parts": [
+                "hours",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 14
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/images/search",
+              "parts": [
+                "images",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 15
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/landing-pages/search",
+              "parts": [
+                "landing-pages",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 16
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/mobile-sounds/search",
+              "parts": [
+                "mobile-sounds",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 17
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/places/search",
+              "parts": [
+                "places",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 18
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/press-releases/search",
+              "parts": [
+                "press-releases",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 19
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/printed-publications/search",
+              "parts": [
+                "printed-publications",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 20
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/products/search",
+              "parts": [
+                "products",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 21
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/publications/search",
+              "parts": [
+                "publications",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 22
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/search",
+              "parts": [
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 23
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/sections/search",
+              "parts": [
+                "sections",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 24
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/sites/search",
+              "parts": [
+                "sites",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 25
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/sounds/search",
+              "parts": [
+                "sounds",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 26
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/static-pages/search",
+              "parts": [
+                "static-pages",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 27
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/texts/search",
+              "parts": [
+                "texts",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 28
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/tours/search",
+              "parts": [
+                "tours",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 29
+            },
+            {
+              "args": {
+                "query": [
+                  {
+                    "kind": "query",
+                    "name": "facet",
+                    "orig": "facet",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "from",
+                    "orig": "from",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "q",
+                    "orig": "q",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "query",
+                    "orig": "query",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "size",
+                    "orig": "size",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  },
+                  {
+                    "kind": "query",
+                    "name": "sort",
+                    "orig": "sort",
+                    "reqd": false,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/videos/search",
+              "parts": [
+                "videos",
+                "search"
+              ],
+              "select": {
+                "exist": [
+                  "facet",
+                  "from",
+                  "q",
+                  "query",
+                  "size",
+                  "sort"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 30
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "section": {
+      "fields": [
+        {
+          "name": "accession",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "artwork_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "content",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "generic_page_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "publication_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "publication_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "web_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 15
+        }
+      ],
+      "name": "section",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/sections",
+              "parts": [
+                "sections"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/sections/{id}",
+              "parts": [
+                "sections",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "site": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "artwork_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "artwork_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "description",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "exhibition_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "exhibition_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "web_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 14
+        }
+      ],
+      "name": "site",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/sites",
+              "parts": [
+                "sites"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/sites/{id}",
+              "parts": [
+                "sites",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "sound": {
+      "fields": [
+        {
+          "name": "alt_text",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "artwork_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "artwork_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "content",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "content_e_tag",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "credit_line",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "is_educational_resource",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "is_multimedia_resource",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "is_teacher_resource",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "lake_guid",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 15
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 16
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 17
+        },
+        {
+          "name": "transcript",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 18
+        },
+        {
+          "name": "type",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 19
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 20
+        },
+        {
+          "name": "web_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 21
+        }
+      ],
+      "name": "sound",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/mobile-sounds",
+              "parts": [
+                "mobile-sounds"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            },
+            {
+              "method": "GET",
+              "orig": "/sounds",
+              "parts": [
+                "sounds"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 1
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/mobile-sounds/{id}",
+              "parts": [
+                "mobile-sounds",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            },
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/sounds/{id}",
+              "parts": [
+                "sounds",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 1
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "static_page": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "web_url",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        }
+      ],
+      "name": "static_page",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/static-pages",
+              "parts": [
+                "static-pages"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/static-pages/{id}",
+              "parts": [
+                "static-pages",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "text": {
+      "fields": [
+        {
+          "name": "alt_text",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "artwork_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "artwork_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "content",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "content_e_tag",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "credit_line",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "is_educational_resource",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "is_multimedia_resource",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "is_teacher_resource",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "lake_guid",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 15
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 16
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 17
+        },
+        {
+          "name": "type",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 18
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 19
+        }
+      ],
+      "name": "text",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/texts",
+              "parts": [
+                "texts"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/texts/{id}",
+              "parts": [
+                "texts",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "tour": {
+      "fields": [
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "artist_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "artwork_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "description",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "image",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "intro",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "intro_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "intro_transcript",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 15
+        },
+        {
+          "name": "weight",
+          "req": false,
+          "type": "`$NUMBER`",
+          "active": true,
+          "index$": 16
+        }
+      ],
+      "name": "tour",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/tours",
+              "parts": [
+                "tours"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/tours/{id}",
+              "parts": [
+                "tours",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    },
+    "video": {
+      "fields": [
+        {
+          "name": "alt_text",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 0
+        },
+        {
+          "name": "api_link",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 1
+        },
+        {
+          "name": "api_model",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 2
+        },
+        {
+          "name": "artwork_id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 3
+        },
+        {
+          "name": "artwork_title",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 4
+        },
+        {
+          "name": "content",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 5
+        },
+        {
+          "name": "content_e_tag",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 6
+        },
+        {
+          "name": "credit_line",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 7
+        },
+        {
+          "name": "id",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 8
+        },
+        {
+          "name": "is_educational_resource",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 9
+        },
+        {
+          "name": "is_multimedia_resource",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 10
+        },
+        {
+          "name": "is_teacher_resource",
+          "req": false,
+          "type": "`$BOOLEAN`",
+          "active": true,
+          "index$": 11
+        },
+        {
+          "name": "lake_guid",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 12
+        },
+        {
+          "name": "source_updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 13
+        },
+        {
+          "name": "suggest_autocomplete_all",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 14
+        },
+        {
+          "name": "suggest_autocomplete_boosted",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 15
+        },
+        {
+          "name": "timestamp",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 16
+        },
+        {
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "active": true,
+          "index$": 17
+        },
+        {
+          "name": "type",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 18
+        },
+        {
+          "name": "updated_at",
+          "req": false,
+          "type": "`$ANY`",
+          "active": true,
+          "index$": 19
+        }
+      ],
+      "name": "video",
+      "op": {
+        "list": {
+          "name": "list",
+          "points": [
+            {
+              "method": "GET",
+              "orig": "/videos",
+              "parts": [
+                "videos"
+              ],
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "args": {},
+              "select": {},
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "list"
+        },
+        "load": {
+          "name": "load",
+          "points": [
+            {
+              "args": {
+                "params": [
+                  {
+                    "kind": "param",
+                    "name": "id",
+                    "orig": "id",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "active": true
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/videos/{id}",
+              "parts": [
+                "videos",
+                "{id}"
+              ],
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "active": true,
+              "index$": 0
+            }
+          ],
+          "input": "data",
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": []
+      }
+    }
+  }
+}
+
+
+const config = new Config()
+
+export {
+  config
+}
+

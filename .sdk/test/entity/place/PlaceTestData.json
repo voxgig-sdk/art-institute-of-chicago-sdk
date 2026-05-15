@@ -1,0 +1,65 @@
+{
+  "existing": {
+    "place": {
+      "PLACE00": {
+        "api_link": "s78",
+        "api_model": "s79",
+        "id": "PLACE00",
+        "latitude": 123,
+        "longitude": 124,
+        "source_updated_at": "s7d",
+        "suggest_autocomplete_all": "s7e",
+        "suggest_autocomplete_boosted": "s7f",
+        "tgn_id": "TGN01",
+        "timestamp": "s81",
+        "title": "s82",
+        "updated_at": "s83"
+      },
+      "PLACE01": {
+        "api_link": "sf0",
+        "api_model": "sf1",
+        "id": "PLACE01",
+        "latitude": 243,
+        "longitude": 244,
+        "source_updated_at": "sf5",
+        "suggest_autocomplete_all": "sf6",
+        "suggest_autocomplete_boosted": "sf7",
+        "tgn_id": "TGN01",
+        "timestamp": "sf9",
+        "title": "sfa",
+        "updated_at": "sfb"
+      },
+      "PLACE02": {
+        "api_link": "s168",
+        "api_model": "s169",
+        "id": "PLACE02",
+        "latitude": 363,
+        "longitude": 364,
+        "source_updated_at": "s16d",
+        "suggest_autocomplete_all": "s16e",
+        "suggest_autocomplete_boosted": "s16f",
+        "tgn_id": "TGN01",
+        "timestamp": "s171",
+        "title": "s172",
+        "updated_at": "s173"
+      }
+    }
+  },
+  "new": {
+    "place": {
+      "place_ref01": {
+        "api_link": "s1e0",
+        "api_model": "s1e1",
+        "latitude": 483,
+        "longitude": 484,
+        "source_updated_at": "s1e5",
+        "suggest_autocomplete_all": "s1e6",
+        "suggest_autocomplete_boosted": "s1e7",
+        "tgn_id": "TGN01",
+        "timestamp": "s1e9",
+        "title": "s1ea",
+        "updated_at": "s1eb"
+      }
+    }
+  }
+}

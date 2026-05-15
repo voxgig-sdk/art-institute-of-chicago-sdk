@@ -1,0 +1,97 @@
+{
+  "existing": {
+    "text": {
+      "TEXT00": {
+        "alt_text": "sc8",
+        "api_link": "sc9",
+        "api_model": "sca",
+        "artwork_id": "ARTWORK01",
+        "artwork_title": "scc",
+        "content": "scd",
+        "content_e_tag": "sce",
+        "credit_line": "scf",
+        "id": "TEXT00",
+        "is_educational_resource": false,
+        "is_multimedia_resource": true,
+        "is_teacher_resource": false,
+        "lake_guid": "sd4",
+        "source_updated_at": "sd5",
+        "suggest_autocomplete_all": "sd6",
+        "suggest_autocomplete_boosted": "sd7",
+        "timestamp": "sd8",
+        "title": "sd9",
+        "type": "sda",
+        "updated_at": "sdb"
+      },
+      "TEXT01": {
+        "alt_text": "s190",
+        "api_link": "s191",
+        "api_model": "s192",
+        "artwork_id": "ARTWORK01",
+        "artwork_title": "s194",
+        "content": "s195",
+        "content_e_tag": "s196",
+        "credit_line": "s197",
+        "id": "TEXT01",
+        "is_educational_resource": false,
+        "is_multimedia_resource": true,
+        "is_teacher_resource": false,
+        "lake_guid": "s19c",
+        "source_updated_at": "s19d",
+        "suggest_autocomplete_all": "s19e",
+        "suggest_autocomplete_boosted": "s19f",
+        "timestamp": "s1a0",
+        "title": "s1a1",
+        "type": "s1a2",
+        "updated_at": "s1a3"
+      },
+      "TEXT02": {
+        "alt_text": "s258",
+        "api_link": "s259",
+        "api_model": "s25a",
+        "artwork_id": "ARTWORK01",
+        "artwork_title": "s25c",
+        "content": "s25d",
+        "content_e_tag": "s25e",
+        "credit_line": "s25f",
+        "id": "TEXT02",
+        "is_educational_resource": false,
+        "is_multimedia_resource": true,
+        "is_teacher_resource": false,
+        "lake_guid": "s264",
+        "source_updated_at": "s265",
+        "suggest_autocomplete_all": "s266",
+        "suggest_autocomplete_boosted": "s267",
+        "timestamp": "s268",
+        "title": "s269",
+        "type": "s26a",
+        "updated_at": "s26b"
+      }
+    }
+  },
+  "new": {
+    "text": {
+      "text_ref01": {
+        "alt_text": "s320",
+        "api_link": "s321",
+        "api_model": "s322",
+        "artwork_id": "ARTWORK01",
+        "artwork_title": "s324",
+        "content": "s325",
+        "content_e_tag": "s326",
+        "credit_line": "s327",
+        "is_educational_resource": false,
+        "is_multimedia_resource": true,
+        "is_teacher_resource": false,
+        "lake_guid": "s32c",
+        "source_updated_at": "s32d",
+        "suggest_autocomplete_all": "s32e",
+        "suggest_autocomplete_boosted": "s32f",
+        "timestamp": "s330",
+        "title": "s331",
+        "type": "s332",
+        "updated_at": "s333"
+      }
+    }
+  }
+}

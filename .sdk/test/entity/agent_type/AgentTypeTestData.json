@@ -1,0 +1,53 @@
+{
+  "existing": {
+    "agent_type": {
+      "AGENT_TYPE00": {
+        "api_link": "s5a",
+        "api_model": "s5b",
+        "id": "AGENT_TYPE00",
+        "source_updated_at": "s5d",
+        "suggest_autocomplete_all": "s5e",
+        "suggest_autocomplete_boosted": "s5f",
+        "timestamp": "s60",
+        "title": "s61",
+        "updated_at": "s62"
+      },
+      "AGENT_TYPE01": {
+        "api_link": "sb4",
+        "api_model": "sb5",
+        "id": "AGENT_TYPE01",
+        "source_updated_at": "sb7",
+        "suggest_autocomplete_all": "sb8",
+        "suggest_autocomplete_boosted": "sb9",
+        "timestamp": "sba",
+        "title": "sbb",
+        "updated_at": "sbc"
+      },
+      "AGENT_TYPE02": {
+        "api_link": "s10e",
+        "api_model": "s10f",
+        "id": "AGENT_TYPE02",
+        "source_updated_at": "s111",
+        "suggest_autocomplete_all": "s112",
+        "suggest_autocomplete_boosted": "s113",
+        "timestamp": "s114",
+        "title": "s115",
+        "updated_at": "s116"
+      }
+    }
+  },
+  "new": {
+    "agent_type": {
+      "agent_type_ref01": {
+        "api_link": "s168",
+        "api_model": "s169",
+        "source_updated_at": "s16b",
+        "suggest_autocomplete_all": "s16c",
+        "suggest_autocomplete_boosted": "s16d",
+        "timestamp": "s16e",
+        "title": "s16f",
+        "updated_at": "s170"
+      }
+    }
+  }
+}

@@ -1,0 +1,125 @@
+# Entity: category_term
+
+main: kit: entity: category_term: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "aat_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "api_link"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "api_model"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "parent_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "source_updated_at"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "subtype"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_all"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      type: "`$ANY`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "category_term"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/category-terms"
+          parts: [
+            "category-terms"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/category-terms/{id}"
+          parts: [
+            "category-terms"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

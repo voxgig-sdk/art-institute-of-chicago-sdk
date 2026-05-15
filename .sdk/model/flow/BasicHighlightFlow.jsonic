@@ -1,0 +1,44 @@
+# BasicHighlightFlow
+
+main: kit: flow: BasicHighlightFlow:
+{
+  entity: "highlight",
+  kind: "basic",
+  name: "BasicHighlightFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "highlight_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "highlight_ref01",
+        srcdatavar: "highlight_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "highlight01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-highlight_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicHighlightFlow"
+}

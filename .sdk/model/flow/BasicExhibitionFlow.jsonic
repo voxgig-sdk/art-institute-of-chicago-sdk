@@ -1,0 +1,44 @@
+# BasicExhibitionFlow
+
+main: kit: flow: BasicExhibitionFlow:
+{
+  entity: "exhibition",
+  kind: "basic",
+  name: "BasicExhibitionFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "exhibition_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "exhibition_ref01",
+        srcdatavar: "exhibition_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "exhibition01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-exhibition_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicExhibitionFlow"
+}

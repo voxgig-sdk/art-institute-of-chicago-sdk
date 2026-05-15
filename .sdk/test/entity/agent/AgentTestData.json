@@ -1,0 +1,81 @@
+{
+  "existing": {
+    "agent": {
+      "AGENT00": {
+        "alt_title": "sa0",
+        "api_link": "sa1",
+        "api_model": "sa2",
+        "birth_date": "sa3",
+        "death_date": "sa4",
+        "description": "sa5",
+        "id": "AGENT00",
+        "is_artist": false,
+        "sort_title": "sa8",
+        "source_updated_at": "sa9",
+        "suggest_autocomplete_all": "saa",
+        "suggest_autocomplete_boosted": "sab",
+        "timestamp": "sac",
+        "title": "sad",
+        "ulan_id": "ULAN01",
+        "updated_at": "saf"
+      },
+      "AGENT01": {
+        "alt_title": "s140",
+        "api_link": "s141",
+        "api_model": "s142",
+        "birth_date": "s143",
+        "death_date": "s144",
+        "description": "s145",
+        "id": "AGENT01",
+        "is_artist": false,
+        "sort_title": "s148",
+        "source_updated_at": "s149",
+        "suggest_autocomplete_all": "s14a",
+        "suggest_autocomplete_boosted": "s14b",
+        "timestamp": "s14c",
+        "title": "s14d",
+        "ulan_id": "ULAN01",
+        "updated_at": "s14f"
+      },
+      "AGENT02": {
+        "alt_title": "s1e0",
+        "api_link": "s1e1",
+        "api_model": "s1e2",
+        "birth_date": "s1e3",
+        "death_date": "s1e4",
+        "description": "s1e5",
+        "id": "AGENT02",
+        "is_artist": false,
+        "sort_title": "s1e8",
+        "source_updated_at": "s1e9",
+        "suggest_autocomplete_all": "s1ea",
+        "suggest_autocomplete_boosted": "s1eb",
+        "timestamp": "s1ec",
+        "title": "s1ed",
+        "ulan_id": "ULAN01",
+        "updated_at": "s1ef"
+      }
+    }
+  },
+  "new": {
+    "agent": {
+      "agent_ref01": {
+        "alt_title": "s280",
+        "api_link": "s281",
+        "api_model": "s282",
+        "birth_date": "s283",
+        "death_date": "s284",
+        "description": "s285",
+        "is_artist": false,
+        "sort_title": "s288",
+        "source_updated_at": "s289",
+        "suggest_autocomplete_all": "s28a",
+        "suggest_autocomplete_boosted": "s28b",
+        "timestamp": "s28c",
+        "title": "s28d",
+        "ulan_id": "ULAN01",
+        "updated_at": "s28f"
+      }
+    }
+  }
+}

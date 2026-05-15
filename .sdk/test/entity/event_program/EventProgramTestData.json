@@ -1,0 +1,61 @@
+{
+  "existing": {
+    "event_program": {
+      "EVENT_PROGRAM00": {
+        "api_link": "s6e",
+        "api_model": "s6f",
+        "id": "EVENT_PROGRAM00",
+        "is_affiliate_group": false,
+        "is_event_host": true,
+        "source_updated_at": "s73",
+        "suggest_autocomplete_all": "s74",
+        "suggest_autocomplete_boosted": "s75",
+        "timestamp": "s76",
+        "title": "s77",
+        "updated_at": "s78"
+      },
+      "EVENT_PROGRAM01": {
+        "api_link": "sdc",
+        "api_model": "sdd",
+        "id": "EVENT_PROGRAM01",
+        "is_affiliate_group": false,
+        "is_event_host": true,
+        "source_updated_at": "se1",
+        "suggest_autocomplete_all": "se2",
+        "suggest_autocomplete_boosted": "se3",
+        "timestamp": "se4",
+        "title": "se5",
+        "updated_at": "se6"
+      },
+      "EVENT_PROGRAM02": {
+        "api_link": "s14a",
+        "api_model": "s14b",
+        "id": "EVENT_PROGRAM02",
+        "is_affiliate_group": false,
+        "is_event_host": true,
+        "source_updated_at": "s14f",
+        "suggest_autocomplete_all": "s150",
+        "suggest_autocomplete_boosted": "s151",
+        "timestamp": "s152",
+        "title": "s153",
+        "updated_at": "s154"
+      }
+    }
+  },
+  "new": {
+    "event_program": {
+      "event_program_ref01": {
+        "api_link": "s1b8",
+        "api_model": "s1b9",
+        "is_affiliate_group": false,
+        "is_event_host": true,
+        "source_updated_at": "s1bd",
+        "suggest_autocomplete_all": "s1be",
+        "suggest_autocomplete_boosted": "s1bf",
+        "timestamp": "s1c0",
+        "title": "s1c1",
+        "updated_at": "s1c2"
+      }
+    }
+  }
+}

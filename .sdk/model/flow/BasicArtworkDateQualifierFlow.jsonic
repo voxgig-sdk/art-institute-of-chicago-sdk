@@ -1,0 +1,44 @@
+# BasicArtworkDateQualifierFlow
+
+main: kit: flow: BasicArtworkDateQualifierFlow:
+{
+  entity: "artwork_date_qualifier",
+  kind: "basic",
+  name: "BasicArtworkDateQualifierFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "artwork_date_qualifier_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "artwork_date_qualifier_ref01",
+        srcdatavar: "artwork_date_qualifier_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "artwork_date_qualifier01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-artwork_date_qualifier_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicArtworkDateQualifierFlow"
+}

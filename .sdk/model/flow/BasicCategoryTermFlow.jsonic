@@ -1,0 +1,44 @@
+# BasicCategoryTermFlow
+
+main: kit: flow: BasicCategoryTermFlow:
+{
+  entity: "category_term",
+  kind: "basic",
+  name: "BasicCategoryTermFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "category_term_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "category_term_ref01",
+        srcdatavar: "category_term_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "category_term01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-category_term_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCategoryTermFlow"
+}

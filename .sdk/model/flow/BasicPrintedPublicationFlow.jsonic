@@ -1,0 +1,44 @@
+# BasicPrintedPublicationFlow
+
+main: kit: flow: BasicPrintedPublicationFlow:
+{
+  entity: "printed_publication",
+  kind: "basic",
+  name: "BasicPrintedPublicationFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "printed_publication_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "printed_publication_ref01",
+        srcdatavar: "printed_publication_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "printed_publication01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-printed_publication_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPrintedPublicationFlow"
+}

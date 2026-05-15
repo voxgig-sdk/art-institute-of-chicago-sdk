@@ -1,0 +1,44 @@
+# BasicArtworkFlow
+
+main: kit: flow: BasicArtworkFlow:
+{
+  entity: "artwork",
+  kind: "basic",
+  name: "BasicArtworkFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "artwork_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "artwork_ref01",
+        srcdatavar: "artwork_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "artwork01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-artwork_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicArtworkFlow"
+}

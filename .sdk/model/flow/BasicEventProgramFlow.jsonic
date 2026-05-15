@@ -1,0 +1,44 @@
+# BasicEventProgramFlow
+
+main: kit: flow: BasicEventProgramFlow:
+{
+  entity: "event_program",
+  kind: "basic",
+  name: "BasicEventProgramFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "event_program_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "event_program_ref01",
+        srcdatavar: "event_program_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "event_program01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-event_program_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEventProgramFlow"
+}

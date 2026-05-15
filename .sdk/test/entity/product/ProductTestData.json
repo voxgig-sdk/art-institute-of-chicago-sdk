@@ -1,0 +1,101 @@
+{
+  "existing": {
+    "product": {
+      "PRODUCT00": {
+        "api_link": "sd2",
+        "api_model": "sd3",
+        "artist_id": "ARTIST01",
+        "artwork_id": "ARTWORK01",
+        "description": "sd6",
+        "exhibition_id": "EXHIBITION01",
+        "external_sku": "sd8",
+        "id": "PRODUCT00",
+        "image_url": "sda",
+        "max_compare_at_price": "sdb",
+        "max_current_price": "sdc",
+        "min_compare_at_price": "sdd",
+        "min_current_price": "sde",
+        "price_display": "sdf",
+        "source_updated_at": "se0",
+        "suggest_autocomplete_all": "se1",
+        "suggest_autocomplete_boosted": "se2",
+        "timestamp": "se3",
+        "title": "se4",
+        "updated_at": "se5",
+        "web_url": "se6"
+      },
+      "PRODUCT01": {
+        "api_link": "s1a4",
+        "api_model": "s1a5",
+        "artist_id": "ARTIST01",
+        "artwork_id": "ARTWORK01",
+        "description": "s1a8",
+        "exhibition_id": "EXHIBITION01",
+        "external_sku": "s1aa",
+        "id": "PRODUCT01",
+        "image_url": "s1ac",
+        "max_compare_at_price": "s1ad",
+        "max_current_price": "s1ae",
+        "min_compare_at_price": "s1af",
+        "min_current_price": "s1b0",
+        "price_display": "s1b1",
+        "source_updated_at": "s1b2",
+        "suggest_autocomplete_all": "s1b3",
+        "suggest_autocomplete_boosted": "s1b4",
+        "timestamp": "s1b5",
+        "title": "s1b6",
+        "updated_at": "s1b7",
+        "web_url": "s1b8"
+      },
+      "PRODUCT02": {
+        "api_link": "s276",
+        "api_model": "s277",
+        "artist_id": "ARTIST01",
+        "artwork_id": "ARTWORK01",
+        "description": "s27a",
+        "exhibition_id": "EXHIBITION01",
+        "external_sku": "s27c",
+        "id": "PRODUCT02",
+        "image_url": "s27e",
+        "max_compare_at_price": "s27f",
+        "max_current_price": "s280",
+        "min_compare_at_price": "s281",
+        "min_current_price": "s282",
+        "price_display": "s283",
+        "source_updated_at": "s284",
+        "suggest_autocomplete_all": "s285",
+        "suggest_autocomplete_boosted": "s286",
+        "timestamp": "s287",
+        "title": "s288",
+        "updated_at": "s289",
+        "web_url": "s28a"
+      }
+    }
+  },
+  "new": {
+    "product": {
+      "product_ref01": {
+        "api_link": "s348",
+        "api_model": "s349",
+        "artist_id": "ARTIST01",
+        "artwork_id": "ARTWORK01",
+        "description": "s34c",
+        "exhibition_id": "EXHIBITION01",
+        "external_sku": "s34e",
+        "image_url": "s350",
+        "max_compare_at_price": "s351",
+        "max_current_price": "s352",
+        "min_compare_at_price": "s353",
+        "min_current_price": "s354",
+        "price_display": "s355",
+        "source_updated_at": "s356",
+        "suggest_autocomplete_all": "s357",
+        "suggest_autocomplete_boosted": "s358",
+        "timestamp": "s359",
+        "title": "s35a",
+        "updated_at": "s35b",
+        "web_url": "s35c"
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "existing": {
+    "tour": {
+      "TOUR00": {
+        "api_link": "saa",
+        "api_model": "sab",
+        "artist_title": "sac",
+        "artwork_title": "sad",
+        "description": "sae",
+        "id": "TOUR00",
+        "image": "sb0",
+        "intro": "sb1",
+        "intro_link": "sb2",
+        "intro_transcript": "sb3",
+        "source_updated_at": "sb4",
+        "suggest_autocomplete_all": "sb5",
+        "suggest_autocomplete_boosted": "sb6",
+        "timestamp": "sb7",
+        "title": "sb8",
+        "updated_at": "sb9",
+        "weight": 186
+      },
+      "TOUR01": {
+        "api_link": "s154",
+        "api_model": "s155",
+        "artist_title": "s156",
+        "artwork_title": "s157",
+        "description": "s158",
+        "id": "TOUR01",
+        "image": "s15a",
+        "intro": "s15b",
+        "intro_link": "s15c",
+        "intro_transcript": "s15d",
+        "source_updated_at": "s15e",
+        "suggest_autocomplete_all": "s15f",
+        "suggest_autocomplete_boosted": "s160",
+        "timestamp": "s161",
+        "title": "s162",
+        "updated_at": "s163",
+        "weight": 356
+      },
+      "TOUR02": {
+        "api_link": "s1fe",
+        "api_model": "s1ff",
+        "artist_title": "s200",
+        "artwork_title": "s201",
+        "description": "s202",
+        "id": "TOUR02",
+        "image": "s204",
+        "intro": "s205",
+        "intro_link": "s206",
+        "intro_transcript": "s207",
+        "source_updated_at": "s208",
+        "suggest_autocomplete_all": "s209",
+        "suggest_autocomplete_boosted": "s20a",
+        "timestamp": "s20b",
+        "title": "s20c",
+        "updated_at": "s20d",
+        "weight": 526
+      }
+    }
+  },
+  "new": {
+    "tour": {
+      "tour_ref01": {
+        "api_link": "s2a8",
+        "api_model": "s2a9",
+        "artist_title": "s2aa",
+        "artwork_title": "s2ab",
+        "description": "s2ac",
+        "image": "s2ae",
+        "intro": "s2af",
+        "intro_link": "s2b0",
+        "intro_transcript": "s2b1",
+        "source_updated_at": "s2b2",
+        "suggest_autocomplete_all": "s2b3",
+        "suggest_autocomplete_boosted": "s2b4",
+        "timestamp": "s2b5",
+        "title": "s2b6",
+        "updated_at": "s2b7",
+        "weight": 696
+      }
+    }
+  }
+}

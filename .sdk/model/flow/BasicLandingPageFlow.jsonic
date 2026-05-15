@@ -1,0 +1,44 @@
+# BasicLandingPageFlow
+
+main: kit: flow: BasicLandingPageFlow:
+{
+  entity: "landing_page",
+  kind: "basic",
+  name: "BasicLandingPageFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "landing_page_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "landing_page_ref01",
+        srcdatavar: "landing_page_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "landing_page01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-landing_page_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLandingPageFlow"
+}

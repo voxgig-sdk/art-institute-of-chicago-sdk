@@ -1,0 +1,61 @@
+{
+  "existing": {
+    "category_term": {
+      "CATEGORY_TERM00": {
+        "aat_id": "AAT01",
+        "api_link": "s6f",
+        "api_model": "s70",
+        "id": "CATEGORY_TERM00",
+        "parent_id": "PARENT01",
+        "source_updated_at": "s73",
+        "subtype": "s74",
+        "suggest_autocomplete_all": "s75",
+        "timestamp": "s76",
+        "title": "s77",
+        "updated_at": "s78"
+      },
+      "CATEGORY_TERM01": {
+        "aat_id": "AAT01",
+        "api_link": "sdd",
+        "api_model": "sde",
+        "id": "CATEGORY_TERM01",
+        "parent_id": "PARENT01",
+        "source_updated_at": "se1",
+        "subtype": "se2",
+        "suggest_autocomplete_all": "se3",
+        "timestamp": "se4",
+        "title": "se5",
+        "updated_at": "se6"
+      },
+      "CATEGORY_TERM02": {
+        "aat_id": "AAT01",
+        "api_link": "s14b",
+        "api_model": "s14c",
+        "id": "CATEGORY_TERM02",
+        "parent_id": "PARENT01",
+        "source_updated_at": "s14f",
+        "subtype": "s150",
+        "suggest_autocomplete_all": "s151",
+        "timestamp": "s152",
+        "title": "s153",
+        "updated_at": "s154"
+      }
+    }
+  },
+  "new": {
+    "category_term": {
+      "category_term_ref01": {
+        "aat_id": "AAT01",
+        "api_link": "s1b9",
+        "api_model": "s1ba",
+        "parent_id": "PARENT01",
+        "source_updated_at": "s1bd",
+        "subtype": "s1be",
+        "suggest_autocomplete_all": "s1bf",
+        "timestamp": "s1c0",
+        "title": "s1c1",
+        "updated_at": "s1c2"
+      }
+    }
+  }
+}

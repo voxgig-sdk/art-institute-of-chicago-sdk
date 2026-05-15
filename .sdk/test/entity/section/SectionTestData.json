@@ -1,0 +1,81 @@
+{
+  "existing": {
+    "section": {
+      "SECTION00": {
+        "accession": "sa0",
+        "api_link": "sa1",
+        "api_model": "sa2",
+        "artwork_id": "ARTWORK01",
+        "content": "sa4",
+        "generic_page_id": "GENERIC_PAGE01",
+        "id": "SECTION00",
+        "publication_id": "PUBLICATION01",
+        "publication_title": "sa8",
+        "source_updated_at": "sa9",
+        "suggest_autocomplete_all": "saa",
+        "suggest_autocomplete_boosted": "sab",
+        "timestamp": "sac",
+        "title": "sad",
+        "updated_at": "sae",
+        "web_url": "saf"
+      },
+      "SECTION01": {
+        "accession": "s140",
+        "api_link": "s141",
+        "api_model": "s142",
+        "artwork_id": "ARTWORK01",
+        "content": "s144",
+        "generic_page_id": "GENERIC_PAGE01",
+        "id": "SECTION01",
+        "publication_id": "PUBLICATION01",
+        "publication_title": "s148",
+        "source_updated_at": "s149",
+        "suggest_autocomplete_all": "s14a",
+        "suggest_autocomplete_boosted": "s14b",
+        "timestamp": "s14c",
+        "title": "s14d",
+        "updated_at": "s14e",
+        "web_url": "s14f"
+      },
+      "SECTION02": {
+        "accession": "s1e0",
+        "api_link": "s1e1",
+        "api_model": "s1e2",
+        "artwork_id": "ARTWORK01",
+        "content": "s1e4",
+        "generic_page_id": "GENERIC_PAGE01",
+        "id": "SECTION02",
+        "publication_id": "PUBLICATION01",
+        "publication_title": "s1e8",
+        "source_updated_at": "s1e9",
+        "suggest_autocomplete_all": "s1ea",
+        "suggest_autocomplete_boosted": "s1eb",
+        "timestamp": "s1ec",
+        "title": "s1ed",
+        "updated_at": "s1ee",
+        "web_url": "s1ef"
+      }
+    }
+  },
+  "new": {
+    "section": {
+      "section_ref01": {
+        "accession": "s280",
+        "api_link": "s281",
+        "api_model": "s282",
+        "artwork_id": "ARTWORK01",
+        "content": "s284",
+        "generic_page_id": "GENERIC_PAGE01",
+        "publication_id": "PUBLICATION01",
+        "publication_title": "s288",
+        "source_updated_at": "s289",
+        "suggest_autocomplete_all": "s28a",
+        "suggest_autocomplete_boosted": "s28b",
+        "timestamp": "s28c",
+        "title": "s28d",
+        "updated_at": "s28e",
+        "web_url": "s28f"
+      }
+    }
+  }
+}

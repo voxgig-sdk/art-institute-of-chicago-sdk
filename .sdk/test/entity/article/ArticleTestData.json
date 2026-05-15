@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "article": {
+      "ARTICLE00": {
+        "api_link": "s64",
+        "api_model": "s65",
+        "copy": "s66",
+        "id": "ARTICLE00",
+        "source_updated_at": "s68",
+        "suggest_autocomplete_all": "s69",
+        "suggest_autocomplete_boosted": "s6a",
+        "timestamp": "s6b",
+        "title": "s6c",
+        "updated_at": "s6d"
+      },
+      "ARTICLE01": {
+        "api_link": "sc8",
+        "api_model": "sc9",
+        "copy": "sca",
+        "id": "ARTICLE01",
+        "source_updated_at": "scc",
+        "suggest_autocomplete_all": "scd",
+        "suggest_autocomplete_boosted": "sce",
+        "timestamp": "scf",
+        "title": "sd0",
+        "updated_at": "sd1"
+      },
+      "ARTICLE02": {
+        "api_link": "s12c",
+        "api_model": "s12d",
+        "copy": "s12e",
+        "id": "ARTICLE02",
+        "source_updated_at": "s130",
+        "suggest_autocomplete_all": "s131",
+        "suggest_autocomplete_boosted": "s132",
+        "timestamp": "s133",
+        "title": "s134",
+        "updated_at": "s135"
+      }
+    }
+  },
+  "new": {
+    "article": {
+      "article_ref01": {
+        "api_link": "s190",
+        "api_model": "s191",
+        "copy": "s192",
+        "source_updated_at": "s194",
+        "suggest_autocomplete_all": "s195",
+        "suggest_autocomplete_boosted": "s196",
+        "timestamp": "s197",
+        "title": "s198",
+        "updated_at": "s199"
+      }
+    }
+  }
+}

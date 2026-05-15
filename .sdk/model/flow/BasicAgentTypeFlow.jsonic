@@ -1,0 +1,44 @@
+# BasicAgentTypeFlow
+
+main: kit: flow: BasicAgentTypeFlow:
+{
+  entity: "agent_type",
+  kind: "basic",
+  name: "BasicAgentTypeFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "agent_type_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "agent_type_ref01",
+        srcdatavar: "agent_type_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "agent_type01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-agent_type_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAgentTypeFlow"
+}

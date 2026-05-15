@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "static_page": {
+      "STATIC_PAGE00": {
+        "api_link": "s64",
+        "api_model": "s65",
+        "id": "STATIC_PAGE00",
+        "source_updated_at": "s67",
+        "suggest_autocomplete_all": "s68",
+        "suggest_autocomplete_boosted": "s69",
+        "timestamp": "s6a",
+        "title": "s6b",
+        "updated_at": "s6c",
+        "web_url": "s6d"
+      },
+      "STATIC_PAGE01": {
+        "api_link": "sc8",
+        "api_model": "sc9",
+        "id": "STATIC_PAGE01",
+        "source_updated_at": "scb",
+        "suggest_autocomplete_all": "scc",
+        "suggest_autocomplete_boosted": "scd",
+        "timestamp": "sce",
+        "title": "scf",
+        "updated_at": "sd0",
+        "web_url": "sd1"
+      },
+      "STATIC_PAGE02": {
+        "api_link": "s12c",
+        "api_model": "s12d",
+        "id": "STATIC_PAGE02",
+        "source_updated_at": "s12f",
+        "suggest_autocomplete_all": "s130",
+        "suggest_autocomplete_boosted": "s131",
+        "timestamp": "s132",
+        "title": "s133",
+        "updated_at": "s134",
+        "web_url": "s135"
+      }
+    }
+  },
+  "new": {
+    "static_page": {
+      "static_page_ref01": {
+        "api_link": "s190",
+        "api_model": "s191",
+        "source_updated_at": "s193",
+        "suggest_autocomplete_all": "s194",
+        "suggest_autocomplete_boosted": "s195",
+        "timestamp": "s196",
+        "title": "s197",
+        "updated_at": "s198",
+        "web_url": "s199"
+      }
+    }
+  }
+}
