@@ -13,7 +13,7 @@ func MakeConfig() map[string]any {
 			},
 		},
 		"options": map[string]any{
-			"base": "api.artic.edu/api/v1",
+			"base": "https://api.artic.edu/api/v1",
 			"auth": map[string]any{
 				"prefix": "Bearer",
 			},

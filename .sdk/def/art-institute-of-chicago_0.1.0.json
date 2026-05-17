@@ -11,7 +11,7 @@
   },
   "servers": [
     {
-      "url": "api.artic.edu\/api/v1"
+      "url": "https://api.artic.edu\/api/v1"
     }
   ],
   "paths": {

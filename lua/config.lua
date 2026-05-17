@@ -13,7 +13,7 @@ local function make_config()
       },
     },
     options = {
-      base = "api.artic.edu/api/v1",
+      base = "https://api.artic.edu/api/v1",
       auth = {
         prefix = "Bearer",
       },
