@@ -532,7 +532,7 @@ artwork = client.Artwork
 | `classification_title` | ``$ANY`` | No |  |
 | `color` | ``$ANY`` | No |  |
 | `colorfulness` | ``$ANY`` | No |  |
-| `copyright_notices` | ``$ANY`` | No |  |
+| `copyright_notice` | ``$ANY`` | No |  |
 | `credit_line` | ``$ANY`` | No |  |
 | `date_display` | ``$ANY`` | No |  |
 | `date_end` | ``$ANY`` | No |  |

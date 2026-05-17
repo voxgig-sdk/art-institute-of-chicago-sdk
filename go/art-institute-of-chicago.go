@@ -1,10 +1,10 @@
 package voxgigartinstituteofchicagosdk
 
 import (
-	"github.com/voxgig-sdk/art-institute-of-chicago-sdk/core"
-	"github.com/voxgig-sdk/art-institute-of-chicago-sdk/entity"
-	"github.com/voxgig-sdk/art-institute-of-chicago-sdk/feature"
-	_ "github.com/voxgig-sdk/art-institute-of-chicago-sdk/utility"
+	"github.com/voxgig-sdk/art-institute-of-chicago-sdk/go/core"
+	"github.com/voxgig-sdk/art-institute-of-chicago-sdk/go/entity"
+	"github.com/voxgig-sdk/art-institute-of-chicago-sdk/go/feature"
+	_ "github.com/voxgig-sdk/art-institute-of-chicago-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

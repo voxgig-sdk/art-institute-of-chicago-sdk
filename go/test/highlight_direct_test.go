@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/art-institute-of-chicago-sdk"
-	"github.com/voxgig-sdk/art-institute-of-chicago-sdk/core"
+	sdk "github.com/voxgig-sdk/art-institute-of-chicago-sdk/go"
+	"github.com/voxgig-sdk/art-institute-of-chicago-sdk/go/core"
 )
 
 func TestHighlightDirect(t *testing.T) {

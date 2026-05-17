@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/art-institute-of-chicago-sdk/core"
+import "github.com/voxgig-sdk/art-institute-of-chicago-sdk/go/core"
 
 func resultHeadersUtil(ctx *core.Context) *core.Result {
 	response := ctx.Response

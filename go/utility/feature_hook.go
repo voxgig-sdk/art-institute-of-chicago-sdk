@@ -3,7 +3,7 @@ package utility
 import (
 	"reflect"
 
-	"github.com/voxgig-sdk/art-institute-of-chicago-sdk/core"
+	"github.com/voxgig-sdk/art-institute-of-chicago-sdk/go/core"
 )
 
 func featureHookUtil(ctx *core.Context, name string) {

@@ -781,7 +781,7 @@
               "active": true
             },
             {
-              "name": "copyright_notices",
+              "name": "copyright_notice",
               "req": false,
               "type": "`$ANY`",
               "active": true
@@ -8955,6 +8955,9 @@
             },
             "rb": {
               "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
             }
           }
         }
@@ -10620,6 +10623,33 @@
         }
       },
       "target": {
+        "go-cli": {
+          "title": "Go CLI",
+          "ext": "go",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "art-institute-of-chicago"
+          },
+          "phase": {
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "deps": {},
+          "name": "go-cli",
+          "active": true
+        },
         "ts": {
           "title": "TypeScript",
           "ext": "ts",
@@ -10660,14 +10690,7 @@
             "name": "art-institute-of-chicago"
           },
           "srcfeature": false,
-          "deps": {
-            "github.com/voxgig/struct": {
-              "active": true,
-              "version": "v0.0.0",
-              "replace": "./utility/struct",
-              "kind": "prod"
-            }
-          },
+          "deps": {},
           "name": "go",
           "active": true
         },
@@ -10755,15 +10778,6 @@
     },
     "def": {
       "desc": ""
-    },
-    "api": {
-      "guide": {},
-      "entity": {}
     }
-  },
-  "name__orig": "art-institute-of-chicago",
-  "Name": "ArtInstituteOfChicago",
-  "name_": "art_institute_of_chicago",
-  "name-": "art-institute-of-chicago",
-  "NAME": "ART-INSTITUTE-OF-CHICAGO"
+  }
 }

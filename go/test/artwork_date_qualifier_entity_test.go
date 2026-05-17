@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/art-institute-of-chicago-sdk"
-	"github.com/voxgig-sdk/art-institute-of-chicago-sdk/core"
+	sdk "github.com/voxgig-sdk/art-institute-of-chicago-sdk/go"
+	"github.com/voxgig-sdk/art-institute-of-chicago-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/art-institute-of-chicago-sdk/go/utility/struct"
 )
 
 func TestArtworkDateQualifierEntity(t *testing.T) {

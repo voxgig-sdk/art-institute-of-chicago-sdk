@@ -357,7 +357,7 @@ API path: `/articles`
 | `classification_title` |  |
 | `color` |  |
 | `colorfulness` |  |
-| `copyright_notices` |  |
+| `copyright_notice` |  |
 | `credit_line` |  |
 | `date_display` |  |
 | `date_end` |  |
@@ -1417,7 +1417,7 @@ Create an instance: `const artwork = client.Artwork()`
 | `classification_title` | ``$ANY`` |  |
 | `color` | ``$ANY`` |  |
 | `colorfulness` | ``$ANY`` |  |
-| `copyright_notices` | ``$ANY`` |  |
+| `copyright_notice` | ``$ANY`` |  |
 | `credit_line` | ``$ANY`` |  |
 | `date_display` | ``$ANY`` |  |
 | `date_end` | ``$ANY`` |  |

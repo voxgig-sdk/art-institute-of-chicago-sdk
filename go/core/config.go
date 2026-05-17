@@ -864,7 +864,7 @@ func MakeConfig() map[string]any {
 						"index$": 23,
 					},
 					map[string]any{
-						"name": "copyright_notices",
+						"name": "copyright_notice",
 						"req": false,
 						"type": "`$ANY`",
 						"active": true,

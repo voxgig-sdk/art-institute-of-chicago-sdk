@@ -865,7 +865,7 @@ module ArtInstituteOfChicagoConfig
               "index$" => 23,
             },
             {
-              "name" => "copyright_notices",
+              "name" => "copyright_notice",
               "req" => false,
               "type" => "`$ANY`",
               "active" => true,

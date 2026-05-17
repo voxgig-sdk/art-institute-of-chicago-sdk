@@ -6,7 +6,7 @@ package sdktest
 import (
 	"fmt"
 
-	voxgigstruct "github.com/voxgig/struct"
+	voxgigstruct "github.com/voxgig-sdk/art-institute-of-chicago-sdk/go/utility/struct"
 
 	"encoding/json"
 	"errors"

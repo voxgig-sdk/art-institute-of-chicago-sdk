@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/art-institute-of-chicago-sdk/core"
+	"github.com/voxgig-sdk/art-institute-of-chicago-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/art-institute-of-chicago-sdk/go/utility/struct"
 )
 
 type PublicationEntity struct {
