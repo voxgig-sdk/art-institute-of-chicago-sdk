@@ -20,9 +20,7 @@ loading a specific record.
 <?php
 require_once 'artinstituteofchicago_sdk.php';
 
-$client = new ArtInstituteOfChicagoSDK([
-    "apikey" => getenv("ART-INSTITUTE-OF-CHICAGO_APIKEY"),
-]);
+$client = new ArtInstituteOfChicagoSDK([]);
 ```
 
 ### 2. List agents
@@ -127,7 +125,6 @@ Create a `.env.local` file at the project root:
 
 ```
 ART-INSTITUTE-OF-CHICAGO_TEST_LIVE=TRUE
-ART-INSTITUTE-OF-CHICAGO_APIKEY=<your-key>
 ```
 
 Then run:
@@ -150,7 +147,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

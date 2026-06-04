@@ -116,14 +116,12 @@ def place_direct_setup(mockres)
   env = Runner.env_override({
     "ARTINSTITUTEOFCHICAGO_TEST_PLACE_ENTID" => {},
     "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
-    "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
   })
 
   live = env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["ARTINSTITUTEOFCHICAGO_APIKEY"],
     }
     client = ArtInstituteOfChicagoSDK.new(merged_opts)
     return {

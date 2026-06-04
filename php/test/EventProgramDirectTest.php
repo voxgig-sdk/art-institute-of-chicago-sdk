@@ -123,14 +123,12 @@ function event_program_direct_setup($mockres)
     $env = Runner::env_override([
         "ARTINSTITUTEOFCHICAGO_TEST_EVENT_PROGRAM_ENTID" => [],
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $live = $env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
         ];
         $client = new ArtInstituteOfChicagoSDK($merged_opts);
         return [

@@ -135,7 +135,6 @@ func digital_publication_articleBasicSetup(extra map[string]any) *entityTestSetu
 		"ARTINSTITUTEOFCHICAGO_TEST_DIGITAL_PUBLICATION_ARTICLE_ENTID": idmap,
 		"ARTINSTITUTEOFCHICAGO_TEST_LIVE":      "FALSE",
 		"ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN":   "FALSE",
-		"ARTINSTITUTEOFCHICAGO_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["ARTINSTITUTEOFCHICAGO_TEST_DIGITAL_PUBLICATION_ARTICLE_ENTID"])
@@ -146,7 +145,6 @@ func digital_publication_articleBasicSetup(extra map[string]any) *entityTestSetu
 	if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["ARTINSTITUTEOFCHICAGO_APIKEY"],
 			},
 			extra,
 		})

@@ -16,7 +16,51 @@
         ],
         "termsOfService": "https://www.artic.edu/terms/terms-and-conditions",
         "title": "Art Institution of Chicago API",
-        "version": "1.14"
+        "version": "1.14",
+        "tagline": "Explore the Art Institute of Chicago's public collection — artworks, artists, exhibitions, galleries, and IIIF images",
+        "homepage": "https://api.artic.edu/docs/",
+        "docs_url": "https://api.artic.edu/docs/",
+        "license_short": "Mixed CC0 / CC-BY 4.0 depending on the resource; images via IIIF, public-domain works recommended",
+        "license_md": "- Most metadata is released under a Creative Commons Zero (CC0) 1.0 designation.\n- Artwork descriptions are licensed CC-BY 4.0; places data is CC-BY with attribution to the Getty Thesaurus of Geographic Names.\n- Images are served via the IIIF Image API 2.0; the docs recommend only using images of works tagged as public domain, and users remain responsible for individual copyright status.\n- Use is subject to the museum's [terms and conditions](https://www.artic.edu/terms/terms-and-conditions).",
+        "about_md": "The Art Institute of Chicago API is a read-only aggregator of public data from the [Art Institute of Chicago](https://www.artic.edu/), exposing the museum's collection, programming, and editorial content over a single JSON HTTP interface rooted at `https://api.artic.edu/api/v1`.\n\nWhat you get from the API:\n\n- Collection records — artworks, the agents (artists, makers, organisations) connected to them, the places and galleries where they live, and the controlled vocabularies that describe them.\n- Programming and editorial — exhibitions, events, tours, articles, press releases, digital and printed publications, educator resources, and static site pages.\n- Media — IIIF-backed images plus videos, sounds, and texts associated with the above.\n- Search — every resource type has its own `/search` endpoint, and a unified `/search` endpoint queries across the whole dataset with faceting, pagination, and sorting.\n\nNo authentication is required for basic use. Anonymous clients are throttled to roughly 60 requests per minute per IP; the docs ask that you send an `AIC-User-Agent` header identifying your project and a contact email, and direct higher-volume users to engineering@artic.edu. Most endpoints have CORS enabled and listings default to sorting by last-updated descending.",
+        "entity_desc": {
+          "agent": "A person or organisation (artist, maker, donor, etc.) related to collection records. Exposed at `/agents`, `/agents/{id}`, and `/agents/search`.",
+          "agent_role": "A controlled vocabulary describing how an agent relates to an artwork (e.g. artist, donor).",
+          "agent_type": "A classification of agents (individual, corporate body, and so on).",
+          "article": "Editorial articles published by the museum.",
+          "artwork": "An object in the museum's collection — paintings, sculptures, prints, and so on. Exposed at `/artworks`, `/artworks/{id}`, and `/artworks/search`.",
+          "artwork_date_qualifier": "Controlled vocabulary qualifying how an artwork's date is interpreted (circa, before, after, etc.).",
+          "artwork_place_qualifier": "Controlled vocabulary qualifying how an artwork's place relates to it (made in, found in, etc.).",
+          "artwork_type": "Classification of artworks by medium or form (painting, drawing, sculpture, etc.).",
+          "category_term": "Hierarchical category and classification terms used to tag collection records.",
+          "digital_publication": "A digital publication produced by the museum.",
+          "digital_publication_article": "An individual article within a digital publication.",
+          "educator_resource": "Teaching resources made available for educators.",
+          "event": "A scheduled public event at the museum.",
+          "event_occurrence": "A specific dated instance of a recurring event.",
+          "event_program": "A program grouping related events.",
+          "exhibition": "Past, current, and upcoming exhibitions. Exposed at `/exhibitions`, `/exhibitions/{id}`, and `/exhibitions/search`.",
+          "gallery": "Physical galleries within the museum building. Exposed at `/galleries`, `/galleries/{id}`, and `/galleries/search`.",
+          "generic_page": "Generic CMS-managed pages on the museum website.",
+          "highlight": "Curated highlight entries promoting selected content.",
+          "hour": "Opening-hours records for the museum.",
+          "image": "Media records for images, served through the IIIF Image API 2.0. Exposed at `/images`, `/images/{id}`, and `/images/search`.",
+          "landing_page": "Landing pages on the museum website.",
+          "place": "Geographic places associated with collection records; uses the Getty Thesaurus of Geographic Names.",
+          "press_release": "Museum press releases.",
+          "printed_publication": "Print publications such as books and catalogues produced by the museum.",
+          "product": "Products listed by the museum (for example shop items referenced in editorial content).",
+          "publication": "Publication records that may span print and digital formats.",
+          "search": "Unified cross-resource search endpoint at `/search`, plus per-resource `/{resource}/search` endpoints supporting facets, pagination, and sorting.",
+          "section": "Sections within larger publications or site structures.",
+          "site": "Site grouping used to scope content across artic.edu properties.",
+          "sound": "Audio media records associated with collection or editorial content.",
+          "static_page": "Static informational pages on the museum website.",
+          "text": "Text media records (essays, labels, and other written content).",
+          "tour": "Self-guided or curated tours through the collection.",
+          "video": "Video media records associated with collection or editorial content."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -24,7 +68,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "agent": {

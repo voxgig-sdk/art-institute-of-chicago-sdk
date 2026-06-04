@@ -23,12 +23,9 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from artinstituteofchicago_sdk import ArtInstituteOfChicagoSDK
 
-client = ArtInstituteOfChicagoSDK({
-    "apikey": os.environ.get("ART-INSTITUTE-OF-CHICAGO_APIKEY"),
-})
+client = ArtInstituteOfChicagoSDK({})
 ```
 
 ### 2. List agents
@@ -130,7 +127,6 @@ Create a `.env.local` file at the project root:
 
 ```
 ART-INSTITUTE-OF-CHICAGO_TEST_LIVE=TRUE
-ART-INSTITUTE-OF-CHICAGO_APIKEY=<your-key>
 ```
 
 Then run:
@@ -154,7 +150,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

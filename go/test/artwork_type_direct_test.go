@@ -194,14 +194,12 @@ func artwork_typeDirectSetup(mockres any) *artwork_typeDirectSetupResult {
 	env := envOverride(map[string]any{
 		"ARTINSTITUTEOFCHICAGO_TEST_ARTWORK_TYPE_ENTID": map[string]any{},
 		"ARTINSTITUTEOFCHICAGO_TEST_LIVE":    "FALSE",
-		"ARTINSTITUTEOFCHICAGO_APIKEY":       "NONE",
 	})
 
 	live := env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["ARTINSTITUTEOFCHICAGO_APIKEY"],
 		}
 		client := sdk.NewArtInstituteOfChicagoSDK(mergedOpts)
 
