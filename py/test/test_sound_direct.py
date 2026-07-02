@@ -109,12 +109,14 @@ def _sound_direct_setup(mockres):
     env = runner.env_override({
         "ARTINSTITUTEOFCHICAGO_TEST_SOUND_ENTID": {},
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
+        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     live = env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
         }
         client = ArtInstituteOfChicagoSDK(merged_opts)
         return {

@@ -136,12 +136,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'ARTINSTITUTEOFCHICAGO_TEST_PLACE_ENTID': {},
     'ARTINSTITUTEOFCHICAGO_TEST_LIVE': 'FALSE',
+    'ARTINSTITUTEOFCHICAGO_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.ARTINSTITUTEOFCHICAGO_TEST_LIVE
 
   if (live) {
     const client = new ArtInstituteOfChicagoSDK({
+      apikey: env.ARTINSTITUTEOFCHICAGO_APIKEY,
     })
 
     let idmap: any = env['ARTINSTITUTEOFCHICAGO_TEST_PLACE_ENTID']

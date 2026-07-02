@@ -194,12 +194,14 @@ func placeDirectSetup(mockres any) *placeDirectSetupResult {
 	env := envOverride(map[string]any{
 		"ARTINSTITUTEOFCHICAGO_TEST_PLACE_ENTID": map[string]any{},
 		"ARTINSTITUTEOFCHICAGO_TEST_LIVE":    "FALSE",
+		"ARTINSTITUTEOFCHICAGO_APIKEY":       "NONE",
 	})
 
 	live := env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["ARTINSTITUTEOFCHICAGO_APIKEY"],
 		}
 		client := sdk.NewArtInstituteOfChicagoSDK(mergedOpts)
 

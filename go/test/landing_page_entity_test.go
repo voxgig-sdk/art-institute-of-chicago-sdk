@@ -135,6 +135,7 @@ func landing_pageBasicSetup(extra map[string]any) *entityTestSetup {
 		"ARTINSTITUTEOFCHICAGO_TEST_LANDING_PAGE_ENTID": idmap,
 		"ARTINSTITUTEOFCHICAGO_TEST_LIVE":      "FALSE",
 		"ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN":   "FALSE",
+		"ARTINSTITUTEOFCHICAGO_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["ARTINSTITUTEOFCHICAGO_TEST_LANDING_PAGE_ENTID"])
@@ -145,6 +146,7 @@ func landing_pageBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["ARTINSTITUTEOFCHICAGO_APIKEY"],
 			},
 			extra,
 		})

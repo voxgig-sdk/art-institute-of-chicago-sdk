@@ -109,12 +109,14 @@ def _artwork_place_qualifier_direct_setup(mockres):
     env = runner.env_override({
         "ARTINSTITUTEOFCHICAGO_TEST_ARTWORK_PLACE_QUALIFIER_ENTID": {},
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
+        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     live = env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
         }
         client = ArtInstituteOfChicagoSDK(merged_opts)
         return {
