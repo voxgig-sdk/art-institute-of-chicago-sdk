@@ -8,12 +8,14 @@ source = {
   dir = "art-institute-of-chicago-sdk/lua"
 }
 description = {
-  summary = "ArtInstituteOfChicago SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Art Institution of Chicago public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/art-institute-of-chicago-sdk",
+  issues_url = "https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "art-institute-of-chicago" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

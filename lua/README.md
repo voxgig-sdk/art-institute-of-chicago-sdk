@@ -10,7 +10,7 @@ The Lua SDK for the ArtInstituteOfChicago API — an entity-oriented client usin
 
 ## Install
 ```bash
-luarocks install art-institute-of-chicago-sdk
+luarocks install voxgig-sdk-art-institute-of-chicago
 ```
 
 If the module is not yet published, add the source directory to

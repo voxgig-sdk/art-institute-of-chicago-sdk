@@ -10,13 +10,13 @@ The Ruby SDK for the ArtInstituteOfChicago API — an entity-oriented client usi
 
 ## Install
 ```bash
-gem install art-institute-of-chicago-sdk
+gem install voxgig-sdk-art-institute-of-chicago
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "art-institute-of-chicago-sdk"
+gem "voxgig-sdk-art-institute-of-chicago"
 ```
 
 Then run:

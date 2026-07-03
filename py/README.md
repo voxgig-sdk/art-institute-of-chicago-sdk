@@ -10,7 +10,7 @@ The Python SDK for the ArtInstituteOfChicago API — an entity-oriented client f
 
 ## Install
 ```bash
-pip install art-institute-of-chicago-sdk
+pip install voxgig-sdk-art-institute-of-chicago
 ```
 
 Or install from source:

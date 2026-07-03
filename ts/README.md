@@ -10,7 +10,7 @@ The TypeScript SDK for the ArtInstituteOfChicago API — a type-safe, entity-ori
 
 ## Install
 ```bash
-npm install art-institute-of-chicago
+npm install @voxgig-sdk/art-institute-of-chicago
 ```
 ## Tutorial: your first API call
 

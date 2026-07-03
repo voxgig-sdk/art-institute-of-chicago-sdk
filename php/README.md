@@ -10,7 +10,7 @@ The PHP SDK for the ArtInstituteOfChicago API — an entity-oriented client usin
 
 ## Install
 ```bash
-composer require voxgig/art-institute-of-chicago-sdk
+composer require voxgig-sdk/art-institute-of-chicago
 ```
 
 
