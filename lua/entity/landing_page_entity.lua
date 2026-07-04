@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch LandingPageLoadMatch
+---@param ctrl? table
+---@return LandingPage
+---@return string? err
 function LandingPageEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch LandingPageListMatch
+---@param ctrl? table
+---@return LandingPage[]
+---@return string? err
 function LandingPageEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

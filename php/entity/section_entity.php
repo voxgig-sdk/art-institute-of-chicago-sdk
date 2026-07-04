@@ -55,6 +55,9 @@ class SectionEntity
         return new SectionEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Section|array $args Section data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class SectionEntity
         }
     }
 
+    /**
+     * @return Section|array The current Section data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Section fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class SectionEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Section fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class SectionEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Section.
+     *
+     * @param SectionLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed SectionLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Section|array The loaded Section as an assoc-array at the
+     *   SDK boundary; throws ArtInstituteOfChicagoError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class SectionEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Section items matching the given filter.
+     *
+     * @param SectionListMatch|array|null $reqmatch Match filter (any subset
+     *   of Section fields) as an assoc-array; SectionListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Section[]|array A list of Section items as assoc-arrays at
+     *   the SDK boundary; throws ArtInstituteOfChicagoError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class SectionEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

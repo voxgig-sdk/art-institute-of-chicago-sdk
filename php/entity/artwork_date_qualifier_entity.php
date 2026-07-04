@@ -55,6 +55,9 @@ class ArtworkDateQualifierEntity
         return new ArtworkDateQualifierEntity($this->_client, $opts);
     }
 
+    /**
+     * @param ArtworkDateQualifier|array $args ArtworkDateQualifier data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class ArtworkDateQualifierEntity
         }
     }
 
+    /**
+     * @return ArtworkDateQualifier|array The current ArtworkDateQualifier data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of ArtworkDateQualifier fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class ArtworkDateQualifierEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of ArtworkDateQualifier fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class ArtworkDateQualifierEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single ArtworkDateQualifier.
+     *
+     * @param ArtworkDateQualifierLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed ArtworkDateQualifierLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return ArtworkDateQualifier|array The loaded ArtworkDateQualifier as an assoc-array at the
+     *   SDK boundary; throws ArtInstituteOfChicagoError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class ArtworkDateQualifierEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List ArtworkDateQualifier items matching the given filter.
+     *
+     * @param ArtworkDateQualifierListMatch|array|null $reqmatch Match filter (any subset
+     *   of ArtworkDateQualifier fields) as an assoc-array; ArtworkDateQualifierListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return ArtworkDateQualifier[]|array A list of ArtworkDateQualifier items as assoc-arrays at
+     *   the SDK boundary; throws ArtInstituteOfChicagoError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class ArtworkDateQualifierEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

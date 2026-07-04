@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch EventOccurrenceLoadMatch
+---@param ctrl? table
+---@return EventOccurrence
+---@return string? err
 function EventOccurrenceEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch EventOccurrenceListMatch
+---@param ctrl? table
+---@return EventOccurrence[]
+---@return string? err
 function EventOccurrenceEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

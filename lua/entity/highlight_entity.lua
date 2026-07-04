@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch HighlightLoadMatch
+---@param ctrl? table
+---@return Highlight
+---@return string? err
 function HighlightEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch HighlightListMatch
+---@param ctrl? table
+---@return Highlight[]
+---@return string? err
 function HighlightEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

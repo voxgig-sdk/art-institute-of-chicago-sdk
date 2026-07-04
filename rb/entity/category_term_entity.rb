@@ -45,6 +45,7 @@ class CategoryTermEntity
     end
   end
 
+  # @return [CategoryTerm, Hash] the current CategoryTerm data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class CategoryTermEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of CategoryTerm fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single CategoryTerm.
+  #
+  # @param reqmatch [CategoryTermLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [CategoryTerm, Hash] the loaded CategoryTerm; raises ArtInstituteOfChicagoError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class CategoryTermEntity
 
 
   
+  # List CategoryTerm items matching the given filter.
+  #
+  # @param reqmatch [CategoryTermListMatch, Hash, nil] match filter (any subset of CategoryTerm fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<CategoryTerm>, Array] the matching CategoryTerm items; raises ArtInstituteOfChicagoError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

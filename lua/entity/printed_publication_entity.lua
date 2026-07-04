@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch PrintedPublicationLoadMatch
+---@param ctrl? table
+---@return PrintedPublication
+---@return string? err
 function PrintedPublicationEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch PrintedPublicationListMatch
+---@param ctrl? table
+---@return PrintedPublication[]
+---@return string? err
 function PrintedPublicationEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

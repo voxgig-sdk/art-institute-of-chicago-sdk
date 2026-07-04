@@ -85,6 +85,27 @@ func (e *EducatorResourceEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an EducatorResource; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *EducatorResourceEntity) DataTyped(data ...EducatorResource) EducatorResource {
+	if len(data) > 0 {
+		return typedFrom[EducatorResource](e.Data(asMap(data[0])))
+	}
+	return typedFrom[EducatorResource](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through EducatorResource (all fields
+// optional at the wire level).
+func (e *EducatorResourceEntity) MatchTyped(match ...EducatorResource) EducatorResource {
+	if len(match) > 0 {
+		return typedFrom[EducatorResource](e.Match(asMap(match[0])))
+	}
+	return typedFrom[EducatorResource](e.Match())
+}
+
 
 func (e *EducatorResourceEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *EducatorResourceEntity) Load(reqmatch map[string]any, ctrl map[string]a
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// EducatorResourceLoadMatch and returns an EducatorResource. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *EducatorResourceEntity) LoadTyped(reqmatch EducatorResourceLoadMatch, ctrl map[string]any) (EducatorResource, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return EducatorResource{}, err
+	}
+	return typedFrom[EducatorResource](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *EducatorResourceEntity) List(reqmatch map[string]any, ctrl map[string]a
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// EducatorResourceListMatch and returns []EducatorResource. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *EducatorResourceEntity) ListTyped(reqmatch EducatorResourceListMatch, ctrl map[string]any) ([]EducatorResource, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[EducatorResource](res), nil
 }
 
 

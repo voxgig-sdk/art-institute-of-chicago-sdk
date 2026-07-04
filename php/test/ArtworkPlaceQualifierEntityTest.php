@@ -50,16 +50,14 @@ class ArtworkPlaceQualifierEntityTest extends TestCase
         $artwork_place_qualifier_ref01_ent = $client->ArtworkPlaceQualifier(null);
         $artwork_place_qualifier_ref01_match = [];
 
-        [$artwork_place_qualifier_ref01_list_result, $err] = $artwork_place_qualifier_ref01_ent->list($artwork_place_qualifier_ref01_match, null);
-        $this->assertNull($err);
+        $artwork_place_qualifier_ref01_list_result = $artwork_place_qualifier_ref01_ent->list($artwork_place_qualifier_ref01_match, null);
         $this->assertIsArray($artwork_place_qualifier_ref01_list_result);
 
         // LOAD
         $artwork_place_qualifier_ref01_match_dt0 = [
             "id" => $artwork_place_qualifier_ref01_data["id"],
         ];
-        [$artwork_place_qualifier_ref01_data_dt0_loaded, $err] = $artwork_place_qualifier_ref01_ent->load($artwork_place_qualifier_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $artwork_place_qualifier_ref01_data_dt0_loaded = $artwork_place_qualifier_ref01_ent->load($artwork_place_qualifier_ref01_match_dt0, null);
         $artwork_place_qualifier_ref01_data_dt0_load_result = Helpers::to_map($artwork_place_qualifier_ref01_data_dt0_loaded);
         $this->assertNotNull($artwork_place_qualifier_ref01_data_dt0_load_result);
         $this->assertEquals($artwork_place_qualifier_ref01_data_dt0_load_result["id"], $artwork_place_qualifier_ref01_data["id"]);
@@ -96,7 +94,6 @@ function artwork_place_qualifier_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_ARTWORK_PLACE_QUALIFIER_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function artwork_place_qualifier_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

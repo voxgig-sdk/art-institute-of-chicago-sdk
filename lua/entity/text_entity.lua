@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch TextLoadMatch
+---@param ctrl? table
+---@return Text
+---@return string? err
 function TextEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch TextListMatch
+---@param ctrl? table
+---@return Text[]
+---@return string? err
 function TextEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

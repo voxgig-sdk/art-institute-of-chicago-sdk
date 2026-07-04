@@ -50,16 +50,14 @@ class PressReleaseEntityTest extends TestCase
         $press_release_ref01_ent = $client->PressRelease(null);
         $press_release_ref01_match = [];
 
-        [$press_release_ref01_list_result, $err] = $press_release_ref01_ent->list($press_release_ref01_match, null);
-        $this->assertNull($err);
+        $press_release_ref01_list_result = $press_release_ref01_ent->list($press_release_ref01_match, null);
         $this->assertIsArray($press_release_ref01_list_result);
 
         // LOAD
         $press_release_ref01_match_dt0 = [
             "id" => $press_release_ref01_data["id"],
         ];
-        [$press_release_ref01_data_dt0_loaded, $err] = $press_release_ref01_ent->load($press_release_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $press_release_ref01_data_dt0_loaded = $press_release_ref01_ent->load($press_release_ref01_match_dt0, null);
         $press_release_ref01_data_dt0_load_result = Helpers::to_map($press_release_ref01_data_dt0_loaded);
         $this->assertNotNull($press_release_ref01_data_dt0_load_result);
         $this->assertEquals($press_release_ref01_data_dt0_load_result["id"], $press_release_ref01_data["id"]);
@@ -96,7 +94,6 @@ function press_release_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_PRESS_RELEASE_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function press_release_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch PressReleaseLoadMatch
+---@param ctrl? table
+---@return PressRelease
+---@return string? err
 function PressReleaseEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch PressReleaseListMatch
+---@param ctrl? table
+---@return PressRelease[]
+---@return string? err
 function PressReleaseEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

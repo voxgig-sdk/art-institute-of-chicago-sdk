@@ -45,6 +45,7 @@ class TextEntity
     end
   end
 
+  # @return [Text, Hash] the current Text data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class TextEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Text fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Text.
+  #
+  # @param reqmatch [TextLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Text, Hash] the loaded Text; raises ArtInstituteOfChicagoError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class TextEntity
 
 
   
+  # List Text items matching the given filter.
+  #
+  # @param reqmatch [TextListMatch, Hash, nil] match filter (any subset of Text fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Text>, Array] the matching Text items; raises ArtInstituteOfChicagoError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

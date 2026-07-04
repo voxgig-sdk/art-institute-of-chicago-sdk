@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch DigitalPublicationLoadMatch
+---@param ctrl? table
+---@return DigitalPublication
+---@return string? err
 function DigitalPublicationEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch DigitalPublicationListMatch
+---@param ctrl? table
+---@return DigitalPublication[]
+---@return string? err
 function DigitalPublicationEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

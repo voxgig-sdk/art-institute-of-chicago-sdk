@@ -50,16 +50,14 @@ class ArticleEntityTest extends TestCase
         $article_ref01_ent = $client->Article(null);
         $article_ref01_match = [];
 
-        [$article_ref01_list_result, $err] = $article_ref01_ent->list($article_ref01_match, null);
-        $this->assertNull($err);
+        $article_ref01_list_result = $article_ref01_ent->list($article_ref01_match, null);
         $this->assertIsArray($article_ref01_list_result);
 
         // LOAD
         $article_ref01_match_dt0 = [
             "id" => $article_ref01_data["id"],
         ];
-        [$article_ref01_data_dt0_loaded, $err] = $article_ref01_ent->load($article_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $article_ref01_data_dt0_loaded = $article_ref01_ent->load($article_ref01_match_dt0, null);
         $article_ref01_data_dt0_load_result = Helpers::to_map($article_ref01_data_dt0_loaded);
         $this->assertNotNull($article_ref01_data_dt0_load_result);
         $this->assertEquals($article_ref01_data_dt0_load_result["id"], $article_ref01_data["id"]);
@@ -96,7 +94,6 @@ function article_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_ARTICLE_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function article_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

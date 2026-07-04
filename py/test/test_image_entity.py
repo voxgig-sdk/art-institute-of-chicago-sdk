@@ -50,16 +50,14 @@ class TestImageEntity:
         image_ref01_ent = client.Image(None)
         image_ref01_match = {}
 
-        image_ref01_list_result, err = image_ref01_ent.list(image_ref01_match, None)
-        assert err is None
+        image_ref01_list_result = image_ref01_ent.list(image_ref01_match, None)
         assert isinstance(image_ref01_list_result, list)
 
         # LOAD
         image_ref01_match_dt0 = {
             "id": image_ref01_data["id"],
         }
-        image_ref01_data_dt0_loaded, err = image_ref01_ent.load(image_ref01_match_dt0, None)
-        assert err is None
+        image_ref01_data_dt0_loaded = image_ref01_ent.load(image_ref01_match_dt0, None)
         image_ref01_data_dt0_load_result = helpers.to_map(image_ref01_data_dt0_loaded)
         assert image_ref01_data_dt0_load_result is not None
         assert image_ref01_data_dt0_load_result["id"] == image_ref01_data["id"]
@@ -102,7 +100,6 @@ def _image_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_IMAGE_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _image_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

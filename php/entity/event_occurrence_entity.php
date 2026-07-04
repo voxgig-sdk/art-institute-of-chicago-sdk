@@ -55,6 +55,9 @@ class EventOccurrenceEntity
         return new EventOccurrenceEntity($this->_client, $opts);
     }
 
+    /**
+     * @param EventOccurrence|array $args EventOccurrence data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class EventOccurrenceEntity
         }
     }
 
+    /**
+     * @return EventOccurrence|array The current EventOccurrence data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of EventOccurrence fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class EventOccurrenceEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of EventOccurrence fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class EventOccurrenceEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single EventOccurrence.
+     *
+     * @param EventOccurrenceLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed EventOccurrenceLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return EventOccurrence|array The loaded EventOccurrence as an assoc-array at the
+     *   SDK boundary; throws ArtInstituteOfChicagoError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class EventOccurrenceEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List EventOccurrence items matching the given filter.
+     *
+     * @param EventOccurrenceListMatch|array|null $reqmatch Match filter (any subset
+     *   of EventOccurrence fields) as an assoc-array; EventOccurrenceListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return EventOccurrence[]|array A list of EventOccurrence items as assoc-arrays at
+     *   the SDK boundary; throws ArtInstituteOfChicagoError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class EventOccurrenceEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  CategoryTerm,
+  CategoryTermLoadMatch,
+  CategoryTermListMatch,
+} from '../ArtInstituteOfChicagoTypes'
 
 // TODO: needs Entity superclass
-class CategoryTermEntity extends ArtInstituteOfChicagoEntityBase {
+class CategoryTermEntity extends ArtInstituteOfChicagoEntityBase<CategoryTerm> {
 
   constructor(client: ArtInstituteOfChicagoSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class CategoryTermEntity extends ArtInstituteOfChicagoEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: CategoryTermLoadMatch, ctrl?: Control): Promise<CategoryTerm> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class CategoryTermEntity extends ArtInstituteOfChicagoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<CategoryTerm> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: CategoryTermListMatch, ctrl?: Control): Promise<CategoryTerm[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class CategoryTermEntity extends ArtInstituteOfChicagoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<CategoryTerm[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

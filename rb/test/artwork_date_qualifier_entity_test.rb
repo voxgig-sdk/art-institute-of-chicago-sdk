@@ -43,16 +43,14 @@ class ArtworkDateQualifierEntityTest < Minitest::Test
     artwork_date_qualifier_ref01_ent = client.ArtworkDateQualifier(nil)
     artwork_date_qualifier_ref01_match = {}
 
-    artwork_date_qualifier_ref01_list_result, err = artwork_date_qualifier_ref01_ent.list(artwork_date_qualifier_ref01_match, nil)
-    assert_nil err
+    artwork_date_qualifier_ref01_list_result = artwork_date_qualifier_ref01_ent.list(artwork_date_qualifier_ref01_match, nil)
     assert artwork_date_qualifier_ref01_list_result.is_a?(Array)
 
     # LOAD
     artwork_date_qualifier_ref01_match_dt0 = {
       "id" => artwork_date_qualifier_ref01_data["id"],
     }
-    artwork_date_qualifier_ref01_data_dt0_loaded, err = artwork_date_qualifier_ref01_ent.load(artwork_date_qualifier_ref01_match_dt0, nil)
-    assert_nil err
+    artwork_date_qualifier_ref01_data_dt0_loaded = artwork_date_qualifier_ref01_ent.load(artwork_date_qualifier_ref01_match_dt0, nil)
     artwork_date_qualifier_ref01_data_dt0_load_result = Helpers.to_map(artwork_date_qualifier_ref01_data_dt0_loaded)
     assert !artwork_date_qualifier_ref01_data_dt0_load_result.nil?
     assert_equal artwork_date_qualifier_ref01_data_dt0_load_result["id"], artwork_date_qualifier_ref01_data["id"]
@@ -93,7 +91,6 @@ def artwork_date_qualifier_basic_setup(extra)
     "ARTINSTITUTEOFCHICAGO_TEST_ARTWORK_DATE_QUALIFIER_ENTID" => idmap,
     "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
     "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-    "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def artwork_date_qualifier_basic_setup(extra)
   if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ARTINSTITUTEOFCHICAGO_APIKEY"],
       },
       extra || {},
     ])

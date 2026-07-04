@@ -43,16 +43,14 @@ class EducatorResourceEntityTest < Minitest::Test
     educator_resource_ref01_ent = client.EducatorResource(nil)
     educator_resource_ref01_match = {}
 
-    educator_resource_ref01_list_result, err = educator_resource_ref01_ent.list(educator_resource_ref01_match, nil)
-    assert_nil err
+    educator_resource_ref01_list_result = educator_resource_ref01_ent.list(educator_resource_ref01_match, nil)
     assert educator_resource_ref01_list_result.is_a?(Array)
 
     # LOAD
     educator_resource_ref01_match_dt0 = {
       "id" => educator_resource_ref01_data["id"],
     }
-    educator_resource_ref01_data_dt0_loaded, err = educator_resource_ref01_ent.load(educator_resource_ref01_match_dt0, nil)
-    assert_nil err
+    educator_resource_ref01_data_dt0_loaded = educator_resource_ref01_ent.load(educator_resource_ref01_match_dt0, nil)
     educator_resource_ref01_data_dt0_load_result = Helpers.to_map(educator_resource_ref01_data_dt0_loaded)
     assert !educator_resource_ref01_data_dt0_load_result.nil?
     assert_equal educator_resource_ref01_data_dt0_load_result["id"], educator_resource_ref01_data["id"]
@@ -93,7 +91,6 @@ def educator_resource_basic_setup(extra)
     "ARTINSTITUTEOFCHICAGO_TEST_EDUCATOR_RESOURCE_ENTID" => idmap,
     "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
     "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-    "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def educator_resource_basic_setup(extra)
   if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ARTINSTITUTEOFCHICAGO_APIKEY"],
       },
       extra || {},
     ])

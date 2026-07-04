@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch SiteLoadMatch
+---@param ctrl? table
+---@return Site
+---@return string? err
 function SiteEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch SiteListMatch
+---@param ctrl? table
+---@return Site[]
+---@return string? err
 function SiteEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

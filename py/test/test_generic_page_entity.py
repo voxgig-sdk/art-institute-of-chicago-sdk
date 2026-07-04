@@ -50,16 +50,14 @@ class TestGenericPageEntity:
         generic_page_ref01_ent = client.GenericPage(None)
         generic_page_ref01_match = {}
 
-        generic_page_ref01_list_result, err = generic_page_ref01_ent.list(generic_page_ref01_match, None)
-        assert err is None
+        generic_page_ref01_list_result = generic_page_ref01_ent.list(generic_page_ref01_match, None)
         assert isinstance(generic_page_ref01_list_result, list)
 
         # LOAD
         generic_page_ref01_match_dt0 = {
             "id": generic_page_ref01_data["id"],
         }
-        generic_page_ref01_data_dt0_loaded, err = generic_page_ref01_ent.load(generic_page_ref01_match_dt0, None)
-        assert err is None
+        generic_page_ref01_data_dt0_loaded = generic_page_ref01_ent.load(generic_page_ref01_match_dt0, None)
         generic_page_ref01_data_dt0_load_result = helpers.to_map(generic_page_ref01_data_dt0_loaded)
         assert generic_page_ref01_data_dt0_load_result is not None
         assert generic_page_ref01_data_dt0_load_result["id"] == generic_page_ref01_data["id"]
@@ -102,7 +100,6 @@ def _generic_page_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_GENERIC_PAGE_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _generic_page_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

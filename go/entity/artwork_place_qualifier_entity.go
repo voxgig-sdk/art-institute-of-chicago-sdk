@@ -85,6 +85,27 @@ func (e *ArtworkPlaceQualifierEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an ArtworkPlaceQualifier; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *ArtworkPlaceQualifierEntity) DataTyped(data ...ArtworkPlaceQualifier) ArtworkPlaceQualifier {
+	if len(data) > 0 {
+		return typedFrom[ArtworkPlaceQualifier](e.Data(asMap(data[0])))
+	}
+	return typedFrom[ArtworkPlaceQualifier](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through ArtworkPlaceQualifier (all fields
+// optional at the wire level).
+func (e *ArtworkPlaceQualifierEntity) MatchTyped(match ...ArtworkPlaceQualifier) ArtworkPlaceQualifier {
+	if len(match) > 0 {
+		return typedFrom[ArtworkPlaceQualifier](e.Match(asMap(match[0])))
+	}
+	return typedFrom[ArtworkPlaceQualifier](e.Match())
+}
+
 
 func (e *ArtworkPlaceQualifierEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *ArtworkPlaceQualifierEntity) Load(reqmatch map[string]any, ctrl map[str
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// ArtworkPlaceQualifierLoadMatch and returns an ArtworkPlaceQualifier. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *ArtworkPlaceQualifierEntity) LoadTyped(reqmatch ArtworkPlaceQualifierLoadMatch, ctrl map[string]any) (ArtworkPlaceQualifier, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return ArtworkPlaceQualifier{}, err
+	}
+	return typedFrom[ArtworkPlaceQualifier](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *ArtworkPlaceQualifierEntity) List(reqmatch map[string]any, ctrl map[str
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// ArtworkPlaceQualifierListMatch and returns []ArtworkPlaceQualifier. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *ArtworkPlaceQualifierEntity) ListTyped(reqmatch ArtworkPlaceQualifierListMatch, ctrl map[string]any) ([]ArtworkPlaceQualifier, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[ArtworkPlaceQualifier](res), nil
 }
 
 

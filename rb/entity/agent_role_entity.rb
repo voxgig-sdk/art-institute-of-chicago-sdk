@@ -45,6 +45,7 @@ class AgentRoleEntity
     end
   end
 
+  # @return [AgentRole, Hash] the current AgentRole data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class AgentRoleEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of AgentRole fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single AgentRole.
+  #
+  # @param reqmatch [AgentRoleLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [AgentRole, Hash] the loaded AgentRole; raises ArtInstituteOfChicagoError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class AgentRoleEntity
 
 
   
+  # List AgentRole items matching the given filter.
+  #
+  # @param reqmatch [AgentRoleListMatch, Hash, nil] match filter (any subset of AgentRole fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<AgentRole>, Array] the matching AgentRole items; raises ArtInstituteOfChicagoError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

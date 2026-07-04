@@ -50,16 +50,14 @@ class TestArtworkTypeEntity:
         artwork_type_ref01_ent = client.ArtworkType(None)
         artwork_type_ref01_match = {}
 
-        artwork_type_ref01_list_result, err = artwork_type_ref01_ent.list(artwork_type_ref01_match, None)
-        assert err is None
+        artwork_type_ref01_list_result = artwork_type_ref01_ent.list(artwork_type_ref01_match, None)
         assert isinstance(artwork_type_ref01_list_result, list)
 
         # LOAD
         artwork_type_ref01_match_dt0 = {
             "id": artwork_type_ref01_data["id"],
         }
-        artwork_type_ref01_data_dt0_loaded, err = artwork_type_ref01_ent.load(artwork_type_ref01_match_dt0, None)
-        assert err is None
+        artwork_type_ref01_data_dt0_loaded = artwork_type_ref01_ent.load(artwork_type_ref01_match_dt0, None)
         artwork_type_ref01_data_dt0_load_result = helpers.to_map(artwork_type_ref01_data_dt0_loaded)
         assert artwork_type_ref01_data_dt0_load_result is not None
         assert artwork_type_ref01_data_dt0_load_result["id"] == artwork_type_ref01_data["id"]
@@ -102,7 +100,6 @@ def _artwork_type_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_ARTWORK_TYPE_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _artwork_type_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

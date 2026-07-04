@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch SectionLoadMatch
+---@param ctrl? table
+---@return Section
+---@return string? err
 function SectionEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch SectionListMatch
+---@param ctrl? table
+---@return Section[]
+---@return string? err
 function SectionEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

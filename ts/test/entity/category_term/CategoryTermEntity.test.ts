@@ -120,7 +120,6 @@ function basicSetup(extra?: any) {
     'ART_INSTITUTE_OF_CHICAGO_TEST_CATEGORY_TERM_ENTID': idmap,
     'ART_INSTITUTE_OF_CHICAGO_TEST_LIVE': 'FALSE',
     'ART_INSTITUTE_OF_CHICAGO_TEST_EXPLAIN': 'FALSE',
-    'ART_INSTITUTE_OF_CHICAGO_APIKEY': 'NONE',
   })
 
   idmap = env['ART_INSTITUTE_OF_CHICAGO_TEST_CATEGORY_TERM_ENTID']
@@ -130,7 +129,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new ArtInstituteOfChicagoSDK(merge([
       {
-        apikey: env.ART_INSTITUTE_OF_CHICAGO_APIKEY,
       },
       extra
     ]))

@@ -85,6 +85,27 @@ func (e *EventOccurrenceEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an EventOccurrence; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *EventOccurrenceEntity) DataTyped(data ...EventOccurrence) EventOccurrence {
+	if len(data) > 0 {
+		return typedFrom[EventOccurrence](e.Data(asMap(data[0])))
+	}
+	return typedFrom[EventOccurrence](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through EventOccurrence (all fields
+// optional at the wire level).
+func (e *EventOccurrenceEntity) MatchTyped(match ...EventOccurrence) EventOccurrence {
+	if len(match) > 0 {
+		return typedFrom[EventOccurrence](e.Match(asMap(match[0])))
+	}
+	return typedFrom[EventOccurrence](e.Match())
+}
+
 
 func (e *EventOccurrenceEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *EventOccurrenceEntity) Load(reqmatch map[string]any, ctrl map[string]an
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// EventOccurrenceLoadMatch and returns an EventOccurrence. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *EventOccurrenceEntity) LoadTyped(reqmatch EventOccurrenceLoadMatch, ctrl map[string]any) (EventOccurrence, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return EventOccurrence{}, err
+	}
+	return typedFrom[EventOccurrence](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *EventOccurrenceEntity) List(reqmatch map[string]any, ctrl map[string]an
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// EventOccurrenceListMatch and returns []EventOccurrence. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *EventOccurrenceEntity) ListTyped(reqmatch EventOccurrenceListMatch, ctrl map[string]any) ([]EventOccurrence, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[EventOccurrence](res), nil
 }
 
 

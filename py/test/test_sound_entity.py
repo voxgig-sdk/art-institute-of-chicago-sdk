@@ -50,16 +50,14 @@ class TestSoundEntity:
         sound_ref01_ent = client.Sound(None)
         sound_ref01_match = {}
 
-        sound_ref01_list_result, err = sound_ref01_ent.list(sound_ref01_match, None)
-        assert err is None
+        sound_ref01_list_result = sound_ref01_ent.list(sound_ref01_match, None)
         assert isinstance(sound_ref01_list_result, list)
 
         # LOAD
         sound_ref01_match_dt0 = {
             "id": sound_ref01_data["id"],
         }
-        sound_ref01_data_dt0_loaded, err = sound_ref01_ent.load(sound_ref01_match_dt0, None)
-        assert err is None
+        sound_ref01_data_dt0_loaded = sound_ref01_ent.load(sound_ref01_match_dt0, None)
         sound_ref01_data_dt0_load_result = helpers.to_map(sound_ref01_data_dt0_loaded)
         assert sound_ref01_data_dt0_load_result is not None
         assert sound_ref01_data_dt0_load_result["id"] == sound_ref01_data["id"]
@@ -102,7 +100,6 @@ def _sound_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_SOUND_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _sound_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

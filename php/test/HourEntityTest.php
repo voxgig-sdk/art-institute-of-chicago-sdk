@@ -50,16 +50,14 @@ class HourEntityTest extends TestCase
         $hour_ref01_ent = $client->Hour(null);
         $hour_ref01_match = [];
 
-        [$hour_ref01_list_result, $err] = $hour_ref01_ent->list($hour_ref01_match, null);
-        $this->assertNull($err);
+        $hour_ref01_list_result = $hour_ref01_ent->list($hour_ref01_match, null);
         $this->assertIsArray($hour_ref01_list_result);
 
         // LOAD
         $hour_ref01_match_dt0 = [
             "id" => $hour_ref01_data["id"],
         ];
-        [$hour_ref01_data_dt0_loaded, $err] = $hour_ref01_ent->load($hour_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $hour_ref01_data_dt0_loaded = $hour_ref01_ent->load($hour_ref01_match_dt0, null);
         $hour_ref01_data_dt0_load_result = Helpers::to_map($hour_ref01_data_dt0_loaded);
         $this->assertNotNull($hour_ref01_data_dt0_load_result);
         $this->assertEquals($hour_ref01_data_dt0_load_result["id"], $hour_ref01_data["id"]);
@@ -96,7 +94,6 @@ function hour_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_HOUR_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function hour_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

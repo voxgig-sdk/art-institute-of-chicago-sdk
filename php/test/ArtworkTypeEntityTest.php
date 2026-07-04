@@ -50,16 +50,14 @@ class ArtworkTypeEntityTest extends TestCase
         $artwork_type_ref01_ent = $client->ArtworkType(null);
         $artwork_type_ref01_match = [];
 
-        [$artwork_type_ref01_list_result, $err] = $artwork_type_ref01_ent->list($artwork_type_ref01_match, null);
-        $this->assertNull($err);
+        $artwork_type_ref01_list_result = $artwork_type_ref01_ent->list($artwork_type_ref01_match, null);
         $this->assertIsArray($artwork_type_ref01_list_result);
 
         // LOAD
         $artwork_type_ref01_match_dt0 = [
             "id" => $artwork_type_ref01_data["id"],
         ];
-        [$artwork_type_ref01_data_dt0_loaded, $err] = $artwork_type_ref01_ent->load($artwork_type_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $artwork_type_ref01_data_dt0_loaded = $artwork_type_ref01_ent->load($artwork_type_ref01_match_dt0, null);
         $artwork_type_ref01_data_dt0_load_result = Helpers::to_map($artwork_type_ref01_data_dt0_loaded);
         $this->assertNotNull($artwork_type_ref01_data_dt0_load_result);
         $this->assertEquals($artwork_type_ref01_data_dt0_load_result["id"], $artwork_type_ref01_data["id"]);
@@ -96,7 +94,6 @@ function artwork_type_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_ARTWORK_TYPE_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function artwork_type_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

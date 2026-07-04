@@ -50,16 +50,14 @@ class ImageEntityTest extends TestCase
         $image_ref01_ent = $client->Image(null);
         $image_ref01_match = [];
 
-        [$image_ref01_list_result, $err] = $image_ref01_ent->list($image_ref01_match, null);
-        $this->assertNull($err);
+        $image_ref01_list_result = $image_ref01_ent->list($image_ref01_match, null);
         $this->assertIsArray($image_ref01_list_result);
 
         // LOAD
         $image_ref01_match_dt0 = [
             "id" => $image_ref01_data["id"],
         ];
-        [$image_ref01_data_dt0_loaded, $err] = $image_ref01_ent->load($image_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $image_ref01_data_dt0_loaded = $image_ref01_ent->load($image_ref01_match_dt0, null);
         $image_ref01_data_dt0_load_result = Helpers::to_map($image_ref01_data_dt0_loaded);
         $this->assertNotNull($image_ref01_data_dt0_load_result);
         $this->assertEquals($image_ref01_data_dt0_load_result["id"], $image_ref01_data["id"]);
@@ -96,7 +94,6 @@ function image_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_IMAGE_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function image_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

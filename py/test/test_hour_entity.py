@@ -50,16 +50,14 @@ class TestHourEntity:
         hour_ref01_ent = client.Hour(None)
         hour_ref01_match = {}
 
-        hour_ref01_list_result, err = hour_ref01_ent.list(hour_ref01_match, None)
-        assert err is None
+        hour_ref01_list_result = hour_ref01_ent.list(hour_ref01_match, None)
         assert isinstance(hour_ref01_list_result, list)
 
         # LOAD
         hour_ref01_match_dt0 = {
             "id": hour_ref01_data["id"],
         }
-        hour_ref01_data_dt0_loaded, err = hour_ref01_ent.load(hour_ref01_match_dt0, None)
-        assert err is None
+        hour_ref01_data_dt0_loaded = hour_ref01_ent.load(hour_ref01_match_dt0, None)
         hour_ref01_data_dt0_load_result = helpers.to_map(hour_ref01_data_dt0_loaded)
         assert hour_ref01_data_dt0_load_result is not None
         assert hour_ref01_data_dt0_load_result["id"] == hour_ref01_data["id"]
@@ -102,7 +100,6 @@ def _hour_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_HOUR_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _hour_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

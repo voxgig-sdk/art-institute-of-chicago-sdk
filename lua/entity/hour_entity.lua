@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch HourLoadMatch
+---@param ctrl? table
+---@return Hour
+---@return string? err
 function HourEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch HourListMatch
+---@param ctrl? table
+---@return Hour[]
+---@return string? err
 function HourEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

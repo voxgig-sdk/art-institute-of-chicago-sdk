@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch EventProgramLoadMatch
+---@param ctrl? table
+---@return EventProgram
+---@return string? err
 function EventProgramEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch EventProgramListMatch
+---@param ctrl? table
+---@return EventProgram[]
+---@return string? err
 function EventProgramEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

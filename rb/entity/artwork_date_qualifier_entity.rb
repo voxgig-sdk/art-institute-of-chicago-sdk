@@ -45,6 +45,7 @@ class ArtworkDateQualifierEntity
     end
   end
 
+  # @return [ArtworkDateQualifier, Hash] the current ArtworkDateQualifier data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class ArtworkDateQualifierEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of ArtworkDateQualifier fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single ArtworkDateQualifier.
+  #
+  # @param reqmatch [ArtworkDateQualifierLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [ArtworkDateQualifier, Hash] the loaded ArtworkDateQualifier; raises ArtInstituteOfChicagoError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class ArtworkDateQualifierEntity
 
 
   
+  # List ArtworkDateQualifier items matching the given filter.
+  #
+  # @param reqmatch [ArtworkDateQualifierListMatch, Hash, nil] match filter (any subset of ArtworkDateQualifier fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<ArtworkDateQualifier>, Array] the matching ArtworkDateQualifier items; raises ArtInstituteOfChicagoError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Section,
+  SectionLoadMatch,
+  SectionListMatch,
+} from '../ArtInstituteOfChicagoTypes'
 
 // TODO: needs Entity superclass
-class SectionEntity extends ArtInstituteOfChicagoEntityBase {
+class SectionEntity extends ArtInstituteOfChicagoEntityBase<Section> {
 
   constructor(client: ArtInstituteOfChicagoSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class SectionEntity extends ArtInstituteOfChicagoEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: SectionLoadMatch, ctrl?: Control): Promise<Section> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class SectionEntity extends ArtInstituteOfChicagoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Section> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: SectionListMatch, ctrl?: Control): Promise<Section[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class SectionEntity extends ArtInstituteOfChicagoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Section[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

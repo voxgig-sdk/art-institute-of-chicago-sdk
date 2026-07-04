@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Publication,
+  PublicationLoadMatch,
+  PublicationListMatch,
+} from '../ArtInstituteOfChicagoTypes'
 
 // TODO: needs Entity superclass
-class PublicationEntity extends ArtInstituteOfChicagoEntityBase {
+class PublicationEntity extends ArtInstituteOfChicagoEntityBase<Publication> {
 
   constructor(client: ArtInstituteOfChicagoSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class PublicationEntity extends ArtInstituteOfChicagoEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: PublicationLoadMatch, ctrl?: Control): Promise<Publication> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class PublicationEntity extends ArtInstituteOfChicagoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Publication> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: PublicationListMatch, ctrl?: Control): Promise<Publication[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class PublicationEntity extends ArtInstituteOfChicagoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Publication[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

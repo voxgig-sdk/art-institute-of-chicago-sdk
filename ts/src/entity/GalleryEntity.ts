@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Gallery,
+  GalleryLoadMatch,
+  GalleryListMatch,
+} from '../ArtInstituteOfChicagoTypes'
 
 // TODO: needs Entity superclass
-class GalleryEntity extends ArtInstituteOfChicagoEntityBase {
+class GalleryEntity extends ArtInstituteOfChicagoEntityBase<Gallery> {
 
   constructor(client: ArtInstituteOfChicagoSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class GalleryEntity extends ArtInstituteOfChicagoEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: GalleryLoadMatch, ctrl?: Control): Promise<Gallery> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class GalleryEntity extends ArtInstituteOfChicagoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Gallery> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: GalleryListMatch, ctrl?: Control): Promise<Gallery[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class GalleryEntity extends ArtInstituteOfChicagoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Gallery[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

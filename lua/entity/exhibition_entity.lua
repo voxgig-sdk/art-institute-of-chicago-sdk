@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ExhibitionLoadMatch
+---@param ctrl? table
+---@return Exhibition
+---@return string? err
 function ExhibitionEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch ExhibitionListMatch
+---@param ctrl? table
+---@return Exhibition[]
+---@return string? err
 function ExhibitionEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

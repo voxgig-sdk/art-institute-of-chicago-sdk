@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch VideoLoadMatch
+---@param ctrl? table
+---@return Video
+---@return string? err
 function VideoEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch VideoListMatch
+---@param ctrl? table
+---@return Video[]
+---@return string? err
 function VideoEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -55,6 +55,9 @@ class ArtworkPlaceQualifierEntity
         return new ArtworkPlaceQualifierEntity($this->_client, $opts);
     }
 
+    /**
+     * @param ArtworkPlaceQualifier|array $args ArtworkPlaceQualifier data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class ArtworkPlaceQualifierEntity
         }
     }
 
+    /**
+     * @return ArtworkPlaceQualifier|array The current ArtworkPlaceQualifier data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of ArtworkPlaceQualifier fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class ArtworkPlaceQualifierEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of ArtworkPlaceQualifier fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class ArtworkPlaceQualifierEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single ArtworkPlaceQualifier.
+     *
+     * @param ArtworkPlaceQualifierLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed ArtworkPlaceQualifierLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return ArtworkPlaceQualifier|array The loaded ArtworkPlaceQualifier as an assoc-array at the
+     *   SDK boundary; throws ArtInstituteOfChicagoError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class ArtworkPlaceQualifierEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List ArtworkPlaceQualifier items matching the given filter.
+     *
+     * @param ArtworkPlaceQualifierListMatch|array|null $reqmatch Match filter (any subset
+     *   of ArtworkPlaceQualifier fields) as an assoc-array; ArtworkPlaceQualifierListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return ArtworkPlaceQualifier[]|array A list of ArtworkPlaceQualifier items as assoc-arrays at
+     *   the SDK boundary; throws ArtInstituteOfChicagoError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class ArtworkPlaceQualifierEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

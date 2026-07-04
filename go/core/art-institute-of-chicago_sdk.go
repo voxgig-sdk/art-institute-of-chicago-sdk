@@ -245,176 +245,281 @@ func (sdk *ArtInstituteOfChicagoSDK) Direct(fetchargs map[string]any) (map[strin
 }
 
 
+// Agent returns a Agent entity bound to this client.
+// Idiomatic usage: client.Agent(nil).List(nil, nil) or
+// client.Agent(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Agent(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewAgentEntityFunc(sdk, data)
 }
 
 
+// AgentRole returns a AgentRole entity bound to this client.
+// Idiomatic usage: client.AgentRole(nil).List(nil, nil) or
+// client.AgentRole(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) AgentRole(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewAgentRoleEntityFunc(sdk, data)
 }
 
 
+// AgentType returns a AgentType entity bound to this client.
+// Idiomatic usage: client.AgentType(nil).List(nil, nil) or
+// client.AgentType(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) AgentType(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewAgentTypeEntityFunc(sdk, data)
 }
 
 
+// Article returns a Article entity bound to this client.
+// Idiomatic usage: client.Article(nil).List(nil, nil) or
+// client.Article(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Article(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewArticleEntityFunc(sdk, data)
 }
 
 
+// Artwork returns a Artwork entity bound to this client.
+// Idiomatic usage: client.Artwork(nil).List(nil, nil) or
+// client.Artwork(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Artwork(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewArtworkEntityFunc(sdk, data)
 }
 
 
+// ArtworkDateQualifier returns a ArtworkDateQualifier entity bound to this client.
+// Idiomatic usage: client.ArtworkDateQualifier(nil).List(nil, nil) or
+// client.ArtworkDateQualifier(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) ArtworkDateQualifier(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewArtworkDateQualifierEntityFunc(sdk, data)
 }
 
 
+// ArtworkPlaceQualifier returns a ArtworkPlaceQualifier entity bound to this client.
+// Idiomatic usage: client.ArtworkPlaceQualifier(nil).List(nil, nil) or
+// client.ArtworkPlaceQualifier(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) ArtworkPlaceQualifier(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewArtworkPlaceQualifierEntityFunc(sdk, data)
 }
 
 
+// ArtworkType returns a ArtworkType entity bound to this client.
+// Idiomatic usage: client.ArtworkType(nil).List(nil, nil) or
+// client.ArtworkType(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) ArtworkType(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewArtworkTypeEntityFunc(sdk, data)
 }
 
 
+// CategoryTerm returns a CategoryTerm entity bound to this client.
+// Idiomatic usage: client.CategoryTerm(nil).List(nil, nil) or
+// client.CategoryTerm(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) CategoryTerm(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewCategoryTermEntityFunc(sdk, data)
 }
 
 
+// DigitalPublication returns a DigitalPublication entity bound to this client.
+// Idiomatic usage: client.DigitalPublication(nil).List(nil, nil) or
+// client.DigitalPublication(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) DigitalPublication(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewDigitalPublicationEntityFunc(sdk, data)
 }
 
 
+// DigitalPublicationArticle returns a DigitalPublicationArticle entity bound to this client.
+// Idiomatic usage: client.DigitalPublicationArticle(nil).List(nil, nil) or
+// client.DigitalPublicationArticle(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) DigitalPublicationArticle(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewDigitalPublicationArticleEntityFunc(sdk, data)
 }
 
 
+// EducatorResource returns a EducatorResource entity bound to this client.
+// Idiomatic usage: client.EducatorResource(nil).List(nil, nil) or
+// client.EducatorResource(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) EducatorResource(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewEducatorResourceEntityFunc(sdk, data)
 }
 
 
+// Event returns a Event entity bound to this client.
+// Idiomatic usage: client.Event(nil).List(nil, nil) or
+// client.Event(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Event(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewEventEntityFunc(sdk, data)
 }
 
 
+// EventOccurrence returns a EventOccurrence entity bound to this client.
+// Idiomatic usage: client.EventOccurrence(nil).List(nil, nil) or
+// client.EventOccurrence(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) EventOccurrence(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewEventOccurrenceEntityFunc(sdk, data)
 }
 
 
+// EventProgram returns a EventProgram entity bound to this client.
+// Idiomatic usage: client.EventProgram(nil).List(nil, nil) or
+// client.EventProgram(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) EventProgram(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewEventProgramEntityFunc(sdk, data)
 }
 
 
+// Exhibition returns a Exhibition entity bound to this client.
+// Idiomatic usage: client.Exhibition(nil).List(nil, nil) or
+// client.Exhibition(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Exhibition(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewExhibitionEntityFunc(sdk, data)
 }
 
 
+// Gallery returns a Gallery entity bound to this client.
+// Idiomatic usage: client.Gallery(nil).List(nil, nil) or
+// client.Gallery(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Gallery(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewGalleryEntityFunc(sdk, data)
 }
 
 
+// GenericPage returns a GenericPage entity bound to this client.
+// Idiomatic usage: client.GenericPage(nil).List(nil, nil) or
+// client.GenericPage(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) GenericPage(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewGenericPageEntityFunc(sdk, data)
 }
 
 
+// Highlight returns a Highlight entity bound to this client.
+// Idiomatic usage: client.Highlight(nil).List(nil, nil) or
+// client.Highlight(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Highlight(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewHighlightEntityFunc(sdk, data)
 }
 
 
+// Hour returns a Hour entity bound to this client.
+// Idiomatic usage: client.Hour(nil).List(nil, nil) or
+// client.Hour(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Hour(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewHourEntityFunc(sdk, data)
 }
 
 
+// Image returns a Image entity bound to this client.
+// Idiomatic usage: client.Image(nil).List(nil, nil) or
+// client.Image(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Image(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewImageEntityFunc(sdk, data)
 }
 
 
+// LandingPage returns a LandingPage entity bound to this client.
+// Idiomatic usage: client.LandingPage(nil).List(nil, nil) or
+// client.LandingPage(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) LandingPage(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewLandingPageEntityFunc(sdk, data)
 }
 
 
+// Place returns a Place entity bound to this client.
+// Idiomatic usage: client.Place(nil).List(nil, nil) or
+// client.Place(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Place(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewPlaceEntityFunc(sdk, data)
 }
 
 
+// PressRelease returns a PressRelease entity bound to this client.
+// Idiomatic usage: client.PressRelease(nil).List(nil, nil) or
+// client.PressRelease(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) PressRelease(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewPressReleaseEntityFunc(sdk, data)
 }
 
 
+// PrintedPublication returns a PrintedPublication entity bound to this client.
+// Idiomatic usage: client.PrintedPublication(nil).List(nil, nil) or
+// client.PrintedPublication(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) PrintedPublication(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewPrintedPublicationEntityFunc(sdk, data)
 }
 
 
+// Product returns a Product entity bound to this client.
+// Idiomatic usage: client.Product(nil).List(nil, nil) or
+// client.Product(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Product(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewProductEntityFunc(sdk, data)
 }
 
 
+// Publication returns a Publication entity bound to this client.
+// Idiomatic usage: client.Publication(nil).List(nil, nil) or
+// client.Publication(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Publication(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewPublicationEntityFunc(sdk, data)
 }
 
 
+// Search returns a Search entity bound to this client.
+// Idiomatic usage: client.Search(nil).List(nil, nil) or
+// client.Search(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Search(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewSearchEntityFunc(sdk, data)
 }
 
 
+// Section returns a Section entity bound to this client.
+// Idiomatic usage: client.Section(nil).List(nil, nil) or
+// client.Section(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Section(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewSectionEntityFunc(sdk, data)
 }
 
 
+// Site returns a Site entity bound to this client.
+// Idiomatic usage: client.Site(nil).List(nil, nil) or
+// client.Site(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Site(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewSiteEntityFunc(sdk, data)
 }
 
 
+// Sound returns a Sound entity bound to this client.
+// Idiomatic usage: client.Sound(nil).List(nil, nil) or
+// client.Sound(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Sound(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewSoundEntityFunc(sdk, data)
 }
 
 
+// StaticPage returns a StaticPage entity bound to this client.
+// Idiomatic usage: client.StaticPage(nil).List(nil, nil) or
+// client.StaticPage(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) StaticPage(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewStaticPageEntityFunc(sdk, data)
 }
 
 
+// Text returns a Text entity bound to this client.
+// Idiomatic usage: client.Text(nil).List(nil, nil) or
+// client.Text(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Text(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewTextEntityFunc(sdk, data)
 }
 
 
+// Tour returns a Tour entity bound to this client.
+// Idiomatic usage: client.Tour(nil).List(nil, nil) or
+// client.Tour(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Tour(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewTourEntityFunc(sdk, data)
 }
 
 
+// Video returns a Video entity bound to this client.
+// Idiomatic usage: client.Video(nil).List(nil, nil) or
+// client.Video(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ArtInstituteOfChicagoSDK) Video(data map[string]any) ArtInstituteOfChicagoEntity {
 	return NewVideoEntityFunc(sdk, data)
 }

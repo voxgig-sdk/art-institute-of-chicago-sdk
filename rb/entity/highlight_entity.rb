@@ -45,6 +45,7 @@ class HighlightEntity
     end
   end
 
+  # @return [Highlight, Hash] the current Highlight data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class HighlightEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Highlight fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Highlight.
+  #
+  # @param reqmatch [HighlightLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Highlight, Hash] the loaded Highlight; raises ArtInstituteOfChicagoError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class HighlightEntity
 
 
   
+  # List Highlight items matching the given filter.
+  #
+  # @param reqmatch [HighlightListMatch, Hash, nil] match filter (any subset of Highlight fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Highlight>, Array] the matching Highlight items; raises ArtInstituteOfChicagoError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

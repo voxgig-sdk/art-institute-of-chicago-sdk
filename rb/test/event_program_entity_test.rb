@@ -43,16 +43,14 @@ class EventProgramEntityTest < Minitest::Test
     event_program_ref01_ent = client.EventProgram(nil)
     event_program_ref01_match = {}
 
-    event_program_ref01_list_result, err = event_program_ref01_ent.list(event_program_ref01_match, nil)
-    assert_nil err
+    event_program_ref01_list_result = event_program_ref01_ent.list(event_program_ref01_match, nil)
     assert event_program_ref01_list_result.is_a?(Array)
 
     # LOAD
     event_program_ref01_match_dt0 = {
       "id" => event_program_ref01_data["id"],
     }
-    event_program_ref01_data_dt0_loaded, err = event_program_ref01_ent.load(event_program_ref01_match_dt0, nil)
-    assert_nil err
+    event_program_ref01_data_dt0_loaded = event_program_ref01_ent.load(event_program_ref01_match_dt0, nil)
     event_program_ref01_data_dt0_load_result = Helpers.to_map(event_program_ref01_data_dt0_loaded)
     assert !event_program_ref01_data_dt0_load_result.nil?
     assert_equal event_program_ref01_data_dt0_load_result["id"], event_program_ref01_data["id"]
@@ -93,7 +91,6 @@ def event_program_basic_setup(extra)
     "ARTINSTITUTEOFCHICAGO_TEST_EVENT_PROGRAM_ENTID" => idmap,
     "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
     "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-    "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def event_program_basic_setup(extra)
   if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ARTINSTITUTEOFCHICAGO_APIKEY"],
       },
       extra || {},
     ])

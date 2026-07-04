@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  PressRelease,
+  PressReleaseLoadMatch,
+  PressReleaseListMatch,
+} from '../ArtInstituteOfChicagoTypes'
 
 // TODO: needs Entity superclass
-class PressReleaseEntity extends ArtInstituteOfChicagoEntityBase {
+class PressReleaseEntity extends ArtInstituteOfChicagoEntityBase<PressRelease> {
 
   constructor(client: ArtInstituteOfChicagoSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class PressReleaseEntity extends ArtInstituteOfChicagoEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: PressReleaseLoadMatch, ctrl?: Control): Promise<PressRelease> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class PressReleaseEntity extends ArtInstituteOfChicagoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<PressRelease> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: PressReleaseListMatch, ctrl?: Control): Promise<PressRelease[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class PressReleaseEntity extends ArtInstituteOfChicagoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<PressRelease[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

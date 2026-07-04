@@ -43,16 +43,14 @@ class GalleryEntityTest < Minitest::Test
     gallery_ref01_ent = client.Gallery(nil)
     gallery_ref01_match = {}
 
-    gallery_ref01_list_result, err = gallery_ref01_ent.list(gallery_ref01_match, nil)
-    assert_nil err
+    gallery_ref01_list_result = gallery_ref01_ent.list(gallery_ref01_match, nil)
     assert gallery_ref01_list_result.is_a?(Array)
 
     # LOAD
     gallery_ref01_match_dt0 = {
       "id" => gallery_ref01_data["id"],
     }
-    gallery_ref01_data_dt0_loaded, err = gallery_ref01_ent.load(gallery_ref01_match_dt0, nil)
-    assert_nil err
+    gallery_ref01_data_dt0_loaded = gallery_ref01_ent.load(gallery_ref01_match_dt0, nil)
     gallery_ref01_data_dt0_load_result = Helpers.to_map(gallery_ref01_data_dt0_loaded)
     assert !gallery_ref01_data_dt0_load_result.nil?
     assert_equal gallery_ref01_data_dt0_load_result["id"], gallery_ref01_data["id"]
@@ -93,7 +91,6 @@ def gallery_basic_setup(extra)
     "ARTINSTITUTEOFCHICAGO_TEST_GALLERY_ENTID" => idmap,
     "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
     "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-    "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def gallery_basic_setup(extra)
   if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ARTINSTITUTEOFCHICAGO_APIKEY"],
       },
       extra || {},
     ])

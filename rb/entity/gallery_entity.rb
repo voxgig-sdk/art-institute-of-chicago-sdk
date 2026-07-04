@@ -45,6 +45,7 @@ class GalleryEntity
     end
   end
 
+  # @return [Gallery, Hash] the current Gallery data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class GalleryEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Gallery fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Gallery.
+  #
+  # @param reqmatch [GalleryLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Gallery, Hash] the loaded Gallery; raises ArtInstituteOfChicagoError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class GalleryEntity
 
 
   
+  # List Gallery items matching the given filter.
+  #
+  # @param reqmatch [GalleryListMatch, Hash, nil] match filter (any subset of Gallery fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Gallery>, Array] the matching Gallery items; raises ArtInstituteOfChicagoError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

@@ -194,14 +194,12 @@ func agent_typeDirectSetup(mockres any) *agent_typeDirectSetupResult {
 	env := envOverride(map[string]any{
 		"ARTINSTITUTEOFCHICAGO_TEST_AGENT_TYPE_ENTID": map[string]any{},
 		"ARTINSTITUTEOFCHICAGO_TEST_LIVE":    "FALSE",
-		"ARTINSTITUTEOFCHICAGO_APIKEY":       "NONE",
 	})
 
 	live := env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["ARTINSTITUTEOFCHICAGO_APIKEY"],
 		}
 		client := sdk.NewArtInstituteOfChicagoSDK(mergedOpts)
 

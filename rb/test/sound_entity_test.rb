@@ -43,16 +43,14 @@ class SoundEntityTest < Minitest::Test
     sound_ref01_ent = client.Sound(nil)
     sound_ref01_match = {}
 
-    sound_ref01_list_result, err = sound_ref01_ent.list(sound_ref01_match, nil)
-    assert_nil err
+    sound_ref01_list_result = sound_ref01_ent.list(sound_ref01_match, nil)
     assert sound_ref01_list_result.is_a?(Array)
 
     # LOAD
     sound_ref01_match_dt0 = {
       "id" => sound_ref01_data["id"],
     }
-    sound_ref01_data_dt0_loaded, err = sound_ref01_ent.load(sound_ref01_match_dt0, nil)
-    assert_nil err
+    sound_ref01_data_dt0_loaded = sound_ref01_ent.load(sound_ref01_match_dt0, nil)
     sound_ref01_data_dt0_load_result = Helpers.to_map(sound_ref01_data_dt0_loaded)
     assert !sound_ref01_data_dt0_load_result.nil?
     assert_equal sound_ref01_data_dt0_load_result["id"], sound_ref01_data["id"]
@@ -93,7 +91,6 @@ def sound_basic_setup(extra)
     "ARTINSTITUTEOFCHICAGO_TEST_SOUND_ENTID" => idmap,
     "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
     "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-    "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def sound_basic_setup(extra)
   if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ARTINSTITUTEOFCHICAGO_APIKEY"],
       },
       extra || {},
     ])

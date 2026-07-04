@@ -50,16 +50,14 @@ class TestLandingPageEntity:
         landing_page_ref01_ent = client.LandingPage(None)
         landing_page_ref01_match = {}
 
-        landing_page_ref01_list_result, err = landing_page_ref01_ent.list(landing_page_ref01_match, None)
-        assert err is None
+        landing_page_ref01_list_result = landing_page_ref01_ent.list(landing_page_ref01_match, None)
         assert isinstance(landing_page_ref01_list_result, list)
 
         # LOAD
         landing_page_ref01_match_dt0 = {
             "id": landing_page_ref01_data["id"],
         }
-        landing_page_ref01_data_dt0_loaded, err = landing_page_ref01_ent.load(landing_page_ref01_match_dt0, None)
-        assert err is None
+        landing_page_ref01_data_dt0_loaded = landing_page_ref01_ent.load(landing_page_ref01_match_dt0, None)
         landing_page_ref01_data_dt0_load_result = helpers.to_map(landing_page_ref01_data_dt0_loaded)
         assert landing_page_ref01_data_dt0_load_result is not None
         assert landing_page_ref01_data_dt0_load_result["id"] == landing_page_ref01_data["id"]
@@ -102,7 +100,6 @@ def _landing_page_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_LANDING_PAGE_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _landing_page_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

@@ -50,16 +50,14 @@ class TestEventProgramEntity:
         event_program_ref01_ent = client.EventProgram(None)
         event_program_ref01_match = {}
 
-        event_program_ref01_list_result, err = event_program_ref01_ent.list(event_program_ref01_match, None)
-        assert err is None
+        event_program_ref01_list_result = event_program_ref01_ent.list(event_program_ref01_match, None)
         assert isinstance(event_program_ref01_list_result, list)
 
         # LOAD
         event_program_ref01_match_dt0 = {
             "id": event_program_ref01_data["id"],
         }
-        event_program_ref01_data_dt0_loaded, err = event_program_ref01_ent.load(event_program_ref01_match_dt0, None)
-        assert err is None
+        event_program_ref01_data_dt0_loaded = event_program_ref01_ent.load(event_program_ref01_match_dt0, None)
         event_program_ref01_data_dt0_load_result = helpers.to_map(event_program_ref01_data_dt0_loaded)
         assert event_program_ref01_data_dt0_load_result is not None
         assert event_program_ref01_data_dt0_load_result["id"] == event_program_ref01_data["id"]
@@ -102,7 +100,6 @@ def _event_program_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_EVENT_PROGRAM_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _event_program_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

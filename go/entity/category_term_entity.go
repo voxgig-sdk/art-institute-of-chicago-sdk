@@ -85,6 +85,27 @@ func (e *CategoryTermEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an CategoryTerm; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *CategoryTermEntity) DataTyped(data ...CategoryTerm) CategoryTerm {
+	if len(data) > 0 {
+		return typedFrom[CategoryTerm](e.Data(asMap(data[0])))
+	}
+	return typedFrom[CategoryTerm](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through CategoryTerm (all fields
+// optional at the wire level).
+func (e *CategoryTermEntity) MatchTyped(match ...CategoryTerm) CategoryTerm {
+	if len(match) > 0 {
+		return typedFrom[CategoryTerm](e.Match(asMap(match[0])))
+	}
+	return typedFrom[CategoryTerm](e.Match())
+}
+
 
 func (e *CategoryTermEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *CategoryTermEntity) Load(reqmatch map[string]any, ctrl map[string]any) 
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// CategoryTermLoadMatch and returns an CategoryTerm. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *CategoryTermEntity) LoadTyped(reqmatch CategoryTermLoadMatch, ctrl map[string]any) (CategoryTerm, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return CategoryTerm{}, err
+	}
+	return typedFrom[CategoryTerm](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *CategoryTermEntity) List(reqmatch map[string]any, ctrl map[string]any) 
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// CategoryTermListMatch and returns []CategoryTerm. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *CategoryTermEntity) ListTyped(reqmatch CategoryTermListMatch, ctrl map[string]any) ([]CategoryTerm, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[CategoryTerm](res), nil
 }
 
 

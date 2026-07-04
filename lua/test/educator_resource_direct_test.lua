@@ -117,14 +117,12 @@ function educator_resource_direct_setup(mockres)
   local env = runner.env_override({
     ["ARTINSTITUTEOFCHICAGO_TEST_EDUCATOR_RESOURCE_ENTID"] = {},
     ["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] = "FALSE",
-    ["ARTINSTITUTEOFCHICAGO_APIKEY"] = "NONE",
   })
 
   local live = env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["ARTINSTITUTEOFCHICAGO_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

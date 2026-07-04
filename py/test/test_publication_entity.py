@@ -50,16 +50,14 @@ class TestPublicationEntity:
         publication_ref01_ent = client.Publication(None)
         publication_ref01_match = {}
 
-        publication_ref01_list_result, err = publication_ref01_ent.list(publication_ref01_match, None)
-        assert err is None
+        publication_ref01_list_result = publication_ref01_ent.list(publication_ref01_match, None)
         assert isinstance(publication_ref01_list_result, list)
 
         # LOAD
         publication_ref01_match_dt0 = {
             "id": publication_ref01_data["id"],
         }
-        publication_ref01_data_dt0_loaded, err = publication_ref01_ent.load(publication_ref01_match_dt0, None)
-        assert err is None
+        publication_ref01_data_dt0_loaded = publication_ref01_ent.load(publication_ref01_match_dt0, None)
         publication_ref01_data_dt0_load_result = helpers.to_map(publication_ref01_data_dt0_loaded)
         assert publication_ref01_data_dt0_load_result is not None
         assert publication_ref01_data_dt0_load_result["id"] == publication_ref01_data["id"]
@@ -102,7 +100,6 @@ def _publication_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_PUBLICATION_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _publication_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

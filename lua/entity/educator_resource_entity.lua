@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch EducatorResourceLoadMatch
+---@param ctrl? table
+---@return EducatorResource
+---@return string? err
 function EducatorResourceEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch EducatorResourceListMatch
+---@param ctrl? table
+---@return EducatorResource[]
+---@return string? err
 function EducatorResourceEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

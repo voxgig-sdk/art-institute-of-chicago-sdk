@@ -50,16 +50,14 @@ class EducatorResourceEntityTest extends TestCase
         $educator_resource_ref01_ent = $client->EducatorResource(null);
         $educator_resource_ref01_match = [];
 
-        [$educator_resource_ref01_list_result, $err] = $educator_resource_ref01_ent->list($educator_resource_ref01_match, null);
-        $this->assertNull($err);
+        $educator_resource_ref01_list_result = $educator_resource_ref01_ent->list($educator_resource_ref01_match, null);
         $this->assertIsArray($educator_resource_ref01_list_result);
 
         // LOAD
         $educator_resource_ref01_match_dt0 = [
             "id" => $educator_resource_ref01_data["id"],
         ];
-        [$educator_resource_ref01_data_dt0_loaded, $err] = $educator_resource_ref01_ent->load($educator_resource_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $educator_resource_ref01_data_dt0_loaded = $educator_resource_ref01_ent->load($educator_resource_ref01_match_dt0, null);
         $educator_resource_ref01_data_dt0_load_result = Helpers::to_map($educator_resource_ref01_data_dt0_loaded);
         $this->assertNotNull($educator_resource_ref01_data_dt0_load_result);
         $this->assertEquals($educator_resource_ref01_data_dt0_load_result["id"], $educator_resource_ref01_data["id"]);
@@ -96,7 +94,6 @@ function educator_resource_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_EDUCATOR_RESOURCE_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function educator_resource_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

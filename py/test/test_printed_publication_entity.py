@@ -50,16 +50,14 @@ class TestPrintedPublicationEntity:
         printed_publication_ref01_ent = client.PrintedPublication(None)
         printed_publication_ref01_match = {}
 
-        printed_publication_ref01_list_result, err = printed_publication_ref01_ent.list(printed_publication_ref01_match, None)
-        assert err is None
+        printed_publication_ref01_list_result = printed_publication_ref01_ent.list(printed_publication_ref01_match, None)
         assert isinstance(printed_publication_ref01_list_result, list)
 
         # LOAD
         printed_publication_ref01_match_dt0 = {
             "id": printed_publication_ref01_data["id"],
         }
-        printed_publication_ref01_data_dt0_loaded, err = printed_publication_ref01_ent.load(printed_publication_ref01_match_dt0, None)
-        assert err is None
+        printed_publication_ref01_data_dt0_loaded = printed_publication_ref01_ent.load(printed_publication_ref01_match_dt0, None)
         printed_publication_ref01_data_dt0_load_result = helpers.to_map(printed_publication_ref01_data_dt0_loaded)
         assert printed_publication_ref01_data_dt0_load_result is not None
         assert printed_publication_ref01_data_dt0_load_result["id"] == printed_publication_ref01_data["id"]
@@ -102,7 +100,6 @@ def _printed_publication_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_PRINTED_PUBLICATION_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _printed_publication_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch GalleryLoadMatch
+---@param ctrl? table
+---@return Gallery
+---@return string? err
 function GalleryEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch GalleryListMatch
+---@param ctrl? table
+---@return Gallery[]
+---@return string? err
 function GalleryEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

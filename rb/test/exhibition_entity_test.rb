@@ -43,16 +43,14 @@ class ExhibitionEntityTest < Minitest::Test
     exhibition_ref01_ent = client.Exhibition(nil)
     exhibition_ref01_match = {}
 
-    exhibition_ref01_list_result, err = exhibition_ref01_ent.list(exhibition_ref01_match, nil)
-    assert_nil err
+    exhibition_ref01_list_result = exhibition_ref01_ent.list(exhibition_ref01_match, nil)
     assert exhibition_ref01_list_result.is_a?(Array)
 
     # LOAD
     exhibition_ref01_match_dt0 = {
       "id" => exhibition_ref01_data["id"],
     }
-    exhibition_ref01_data_dt0_loaded, err = exhibition_ref01_ent.load(exhibition_ref01_match_dt0, nil)
-    assert_nil err
+    exhibition_ref01_data_dt0_loaded = exhibition_ref01_ent.load(exhibition_ref01_match_dt0, nil)
     exhibition_ref01_data_dt0_load_result = Helpers.to_map(exhibition_ref01_data_dt0_loaded)
     assert !exhibition_ref01_data_dt0_load_result.nil?
     assert_equal exhibition_ref01_data_dt0_load_result["id"], exhibition_ref01_data["id"]
@@ -93,7 +91,6 @@ def exhibition_basic_setup(extra)
     "ARTINSTITUTEOFCHICAGO_TEST_EXHIBITION_ENTID" => idmap,
     "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
     "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-    "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def exhibition_basic_setup(extra)
   if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ARTINSTITUTEOFCHICAGO_APIKEY"],
       },
       extra || {},
     ])

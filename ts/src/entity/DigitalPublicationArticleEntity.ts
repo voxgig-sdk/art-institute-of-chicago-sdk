@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  DigitalPublicationArticle,
+  DigitalPublicationArticleLoadMatch,
+  DigitalPublicationArticleListMatch,
+} from '../ArtInstituteOfChicagoTypes'
 
 // TODO: needs Entity superclass
-class DigitalPublicationArticleEntity extends ArtInstituteOfChicagoEntityBase {
+class DigitalPublicationArticleEntity extends ArtInstituteOfChicagoEntityBase<DigitalPublicationArticle> {
 
   constructor(client: ArtInstituteOfChicagoSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class DigitalPublicationArticleEntity extends ArtInstituteOfChicagoEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: DigitalPublicationArticleLoadMatch, ctrl?: Control): Promise<DigitalPublicationArticle> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class DigitalPublicationArticleEntity extends ArtInstituteOfChicagoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<DigitalPublicationArticle> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: DigitalPublicationArticleListMatch, ctrl?: Control): Promise<DigitalPublicationArticle[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class DigitalPublicationArticleEntity extends ArtInstituteOfChicagoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<DigitalPublicationArticle[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

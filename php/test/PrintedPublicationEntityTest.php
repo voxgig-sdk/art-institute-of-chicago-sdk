@@ -50,16 +50,14 @@ class PrintedPublicationEntityTest extends TestCase
         $printed_publication_ref01_ent = $client->PrintedPublication(null);
         $printed_publication_ref01_match = [];
 
-        [$printed_publication_ref01_list_result, $err] = $printed_publication_ref01_ent->list($printed_publication_ref01_match, null);
-        $this->assertNull($err);
+        $printed_publication_ref01_list_result = $printed_publication_ref01_ent->list($printed_publication_ref01_match, null);
         $this->assertIsArray($printed_publication_ref01_list_result);
 
         // LOAD
         $printed_publication_ref01_match_dt0 = [
             "id" => $printed_publication_ref01_data["id"],
         ];
-        [$printed_publication_ref01_data_dt0_loaded, $err] = $printed_publication_ref01_ent->load($printed_publication_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $printed_publication_ref01_data_dt0_loaded = $printed_publication_ref01_ent->load($printed_publication_ref01_match_dt0, null);
         $printed_publication_ref01_data_dt0_load_result = Helpers::to_map($printed_publication_ref01_data_dt0_loaded);
         $this->assertNotNull($printed_publication_ref01_data_dt0_load_result);
         $this->assertEquals($printed_publication_ref01_data_dt0_load_result["id"], $printed_publication_ref01_data["id"]);
@@ -96,7 +94,6 @@ function printed_publication_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_PRINTED_PUBLICATION_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function printed_publication_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

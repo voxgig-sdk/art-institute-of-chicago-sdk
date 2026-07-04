@@ -50,16 +50,14 @@ class TestPressReleaseEntity:
         press_release_ref01_ent = client.PressRelease(None)
         press_release_ref01_match = {}
 
-        press_release_ref01_list_result, err = press_release_ref01_ent.list(press_release_ref01_match, None)
-        assert err is None
+        press_release_ref01_list_result = press_release_ref01_ent.list(press_release_ref01_match, None)
         assert isinstance(press_release_ref01_list_result, list)
 
         # LOAD
         press_release_ref01_match_dt0 = {
             "id": press_release_ref01_data["id"],
         }
-        press_release_ref01_data_dt0_loaded, err = press_release_ref01_ent.load(press_release_ref01_match_dt0, None)
-        assert err is None
+        press_release_ref01_data_dt0_loaded = press_release_ref01_ent.load(press_release_ref01_match_dt0, None)
         press_release_ref01_data_dt0_load_result = helpers.to_map(press_release_ref01_data_dt0_loaded)
         assert press_release_ref01_data_dt0_load_result is not None
         assert press_release_ref01_data_dt0_load_result["id"] == press_release_ref01_data["id"]
@@ -102,7 +100,6 @@ def _press_release_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_PRESS_RELEASE_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _press_release_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

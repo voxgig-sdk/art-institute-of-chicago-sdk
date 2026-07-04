@@ -50,16 +50,14 @@ class DigitalPublicationEntityTest extends TestCase
         $digital_publication_ref01_ent = $client->DigitalPublication(null);
         $digital_publication_ref01_match = [];
 
-        [$digital_publication_ref01_list_result, $err] = $digital_publication_ref01_ent->list($digital_publication_ref01_match, null);
-        $this->assertNull($err);
+        $digital_publication_ref01_list_result = $digital_publication_ref01_ent->list($digital_publication_ref01_match, null);
         $this->assertIsArray($digital_publication_ref01_list_result);
 
         // LOAD
         $digital_publication_ref01_match_dt0 = [
             "id" => $digital_publication_ref01_data["id"],
         ];
-        [$digital_publication_ref01_data_dt0_loaded, $err] = $digital_publication_ref01_ent->load($digital_publication_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $digital_publication_ref01_data_dt0_loaded = $digital_publication_ref01_ent->load($digital_publication_ref01_match_dt0, null);
         $digital_publication_ref01_data_dt0_load_result = Helpers::to_map($digital_publication_ref01_data_dt0_loaded);
         $this->assertNotNull($digital_publication_ref01_data_dt0_load_result);
         $this->assertEquals($digital_publication_ref01_data_dt0_load_result["id"], $digital_publication_ref01_data["id"]);
@@ -96,7 +94,6 @@ function digital_publication_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_DIGITAL_PUBLICATION_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function digital_publication_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

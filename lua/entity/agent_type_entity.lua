@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch AgentTypeLoadMatch
+---@param ctrl? table
+---@return AgentType
+---@return string? err
 function AgentTypeEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch AgentTypeListMatch
+---@param ctrl? table
+---@return AgentType[]
+---@return string? err
 function AgentTypeEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

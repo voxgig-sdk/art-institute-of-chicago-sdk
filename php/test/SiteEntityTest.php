@@ -50,16 +50,14 @@ class SiteEntityTest extends TestCase
         $site_ref01_ent = $client->Site(null);
         $site_ref01_match = [];
 
-        [$site_ref01_list_result, $err] = $site_ref01_ent->list($site_ref01_match, null);
-        $this->assertNull($err);
+        $site_ref01_list_result = $site_ref01_ent->list($site_ref01_match, null);
         $this->assertIsArray($site_ref01_list_result);
 
         // LOAD
         $site_ref01_match_dt0 = [
             "id" => $site_ref01_data["id"],
         ];
-        [$site_ref01_data_dt0_loaded, $err] = $site_ref01_ent->load($site_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $site_ref01_data_dt0_loaded = $site_ref01_ent->load($site_ref01_match_dt0, null);
         $site_ref01_data_dt0_load_result = Helpers::to_map($site_ref01_data_dt0_loaded);
         $this->assertNotNull($site_ref01_data_dt0_load_result);
         $this->assertEquals($site_ref01_data_dt0_load_result["id"], $site_ref01_data["id"]);
@@ -96,7 +94,6 @@ function site_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_SITE_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function site_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

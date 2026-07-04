@@ -85,6 +85,27 @@ func (e *DigitalPublicationArticleEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an DigitalPublicationArticle; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *DigitalPublicationArticleEntity) DataTyped(data ...DigitalPublicationArticle) DigitalPublicationArticle {
+	if len(data) > 0 {
+		return typedFrom[DigitalPublicationArticle](e.Data(asMap(data[0])))
+	}
+	return typedFrom[DigitalPublicationArticle](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through DigitalPublicationArticle (all fields
+// optional at the wire level).
+func (e *DigitalPublicationArticleEntity) MatchTyped(match ...DigitalPublicationArticle) DigitalPublicationArticle {
+	if len(match) > 0 {
+		return typedFrom[DigitalPublicationArticle](e.Match(asMap(match[0])))
+	}
+	return typedFrom[DigitalPublicationArticle](e.Match())
+}
+
 
 func (e *DigitalPublicationArticleEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *DigitalPublicationArticleEntity) Load(reqmatch map[string]any, ctrl map
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// DigitalPublicationArticleLoadMatch and returns an DigitalPublicationArticle. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *DigitalPublicationArticleEntity) LoadTyped(reqmatch DigitalPublicationArticleLoadMatch, ctrl map[string]any) (DigitalPublicationArticle, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return DigitalPublicationArticle{}, err
+	}
+	return typedFrom[DigitalPublicationArticle](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *DigitalPublicationArticleEntity) List(reqmatch map[string]any, ctrl map
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// DigitalPublicationArticleListMatch and returns []DigitalPublicationArticle. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *DigitalPublicationArticleEntity) ListTyped(reqmatch DigitalPublicationArticleListMatch, ctrl map[string]any) ([]DigitalPublicationArticle, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[DigitalPublicationArticle](res), nil
 }
 
 

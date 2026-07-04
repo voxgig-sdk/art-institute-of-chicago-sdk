@@ -1,0 +1,902 @@
+-- Typed models for the ArtInstituteOfChicago SDK (LuaLS annotations).
+--
+-- GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
+-- params (op.<name>.points[].args.params[]). Field/param types come from the
+-- canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
+-- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
+-- edit by hand.
+
+---@class Agent
+---@field alt_title? any
+---@field api_link? any
+---@field api_model? any
+---@field birth_date? any
+---@field death_date? any
+---@field description? string
+---@field id? string
+---@field is_artist? boolean
+---@field sort_title? any
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field ulan_id? string
+---@field updated_at? any
+
+---@class AgentLoadMatch
+---@field id string
+
+---@class AgentListMatch
+
+---@class AgentRole
+---@field api_link? any
+---@field api_model? any
+---@field id? string
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+
+---@class AgentRoleLoadMatch
+---@field id string
+
+---@class AgentRoleListMatch
+
+---@class AgentType
+---@field api_link? any
+---@field api_model? any
+---@field id? string
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+
+---@class AgentTypeLoadMatch
+---@field id string
+
+---@class AgentTypeListMatch
+
+---@class Article
+---@field api_link? any
+---@field api_model? any
+---@field copy? any
+---@field id? string
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+
+---@class ArticleLoadMatch
+---@field id string
+
+---@class ArticleListMatch
+
+---@class Artwork
+---@field alt_artist_id? string
+---@field alt_classification_id? string
+---@field alt_image_id? string
+---@field alt_material_id? string
+---@field alt_style_id? string
+---@field alt_subject_id? string
+---@field alt_technique_id? string
+---@field alt_title? any
+---@field api_link? any
+---@field api_model? any
+---@field artist_display? any
+---@field artist_id? string
+---@field artist_title? any
+---@field artwork_type_id? string
+---@field artwork_type_title? any
+---@field boost_rank? any
+---@field catalog_based_search_keyword_title? any
+---@field catalogue_display? any
+---@field category_id? string
+---@field category_title? any
+---@field classification_id? string
+---@field classification_title? any
+---@field color? any
+---@field colorfulness? any
+---@field copyright_notice? any
+---@field credit_line? any
+---@field date_display? any
+---@field date_end? any
+---@field date_qualifier_id? string
+---@field date_qualifier_title? any
+---@field date_start? any
+---@field department_id? string
+---@field department_title? any
+---@field description? string
+---@field dimension? any
+---@field dimensions_detail? any
+---@field document_id? string
+---@field edition? any
+---@field exhibition_history? any
+---@field fiscal_year? any
+---@field fiscal_year_deaccession? any
+---@field gallery_id? string
+---@field gallery_title? any
+---@field has_advanced_imaging? boolean
+---@field has_educational_resource? boolean
+---@field has_multimedia_resource? boolean
+---@field has_not_been_viewed_much? boolean
+---@field id? string
+---@field image_embedding? any
+---@field image_id? string
+---@field inscription? any
+---@field internal_department_id? string
+---@field is_boosted? boolean
+---@field is_on_view? boolean
+---@field is_public_domain? boolean
+---@field is_zoomable? boolean
+---@field latitude? number
+---@field latlon? any
+---@field longitude? number
+---@field main_reference_number? number
+---@field material_id? string
+---@field material_title? any
+---@field max_zoom_window_size? any
+---@field medium_display? any
+---@field nomisma_id? string
+---@field on_loan_display? any
+---@field pageview? any
+---@field pageviews_recent? any
+---@field place_of_origin? any
+---@field provenance_text? any
+---@field publication_history? any
+---@field publishing_verification_level? any
+---@field section_id? string
+---@field section_title? any
+---@field short_description? any
+---@field site_id? string
+---@field sound_id? string
+---@field source_updated_at? any
+---@field style_id? string
+---@field style_title? any
+---@field subject_id? string
+---@field subject_title? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field technique_id? string
+---@field technique_title? any
+---@field term_title? any
+---@field text_embedding? any
+---@field text_id? string
+---@field theme_title? any
+---@field thumbnail? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+---@field video_id? string
+
+---@class ArtworkLoadMatch
+---@field id string
+
+---@class ArtworkListMatch
+
+---@class ArtworkDateQualifier
+---@field api_link? any
+---@field api_model? any
+---@field id? string
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+
+---@class ArtworkDateQualifierLoadMatch
+---@field id string
+
+---@class ArtworkDateQualifierListMatch
+
+---@class ArtworkPlaceQualifier
+---@field api_link? any
+---@field api_model? any
+---@field id? string
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+
+---@class ArtworkPlaceQualifierLoadMatch
+---@field id string
+
+---@class ArtworkPlaceQualifierListMatch
+
+---@class ArtworkType
+---@field aat_id? string
+---@field api_link? any
+---@field api_model? any
+---@field id? string
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+
+---@class ArtworkTypeLoadMatch
+---@field id string
+
+---@class ArtworkTypeListMatch
+
+---@class CategoryTerm
+---@field aat_id? string
+---@field api_link? any
+---@field api_model? any
+---@field id? string
+---@field parent_id? string
+---@field source_updated_at? any
+---@field subtype? any
+---@field suggest_autocomplete_all? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+
+---@class CategoryTermLoadMatch
+---@field id string
+
+---@class CategoryTermListMatch
+
+---@class DigitalPublication
+---@field api_link? any
+---@field api_model? any
+---@field copy? any
+---@field id? string
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+---@field web_url? any
+
+---@class DigitalPublicationLoadMatch
+---@field id string
+
+---@class DigitalPublicationListMatch
+
+---@class DigitalPublicationArticle
+---@field api_link? any
+---@field api_model? any
+---@field author_display? any
+---@field copy? any
+---@field digital_publication_id? string
+---@field id? string
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+---@field web_url? any
+
+---@class DigitalPublicationArticleLoadMatch
+---@field id string
+
+---@class DigitalPublicationArticleListMatch
+
+---@class EducatorResource
+---@field api_link? any
+---@field api_model? any
+---@field copy? any
+---@field id? string
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+---@field web_url? any
+
+---@class EducatorResourceLoadMatch
+---@field id string
+
+---@class EducatorResourceListMatch
+
+---@class Event
+---@field alt_audience_id? string
+---@field alt_event_type_id? string
+---@field api_link? any
+---@field api_model? any
+---@field audience_id? string
+---@field buy_button_caption? any
+---@field buy_button_text? any
+---@field date_display? any
+---@field description? string
+---@field door_time? any
+---@field end_date? any
+---@field end_time? any
+---@field entrance? any
+---@field event_host_id? string
+---@field event_host_title? any
+---@field event_type_id? string
+---@field header_description? any
+---@field hero_caption? any
+---@field id? string
+---@field image_url? any
+---@field is_admission_required? boolean
+---@field is_after_hour? boolean
+---@field is_free? boolean
+---@field is_member_exclusive? boolean
+---@field is_private? boolean
+---@field is_registration_required? boolean
+---@field is_sales_button_hidden? boolean
+---@field is_sold_out? boolean
+---@field is_ticketed? boolean
+---@field is_virtual_event? boolean
+---@field join_url? any
+---@field layout_type? any
+---@field list_description? any
+---@field location? any
+---@field program_id? string
+---@field program_title? any
+---@field rsvp_link? any
+---@field search_tag? any
+---@field short_description? any
+---@field slug? string
+---@field source_updated_at? any
+---@field start_date? any
+---@field start_time? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field survey_url? any
+---@field ticketed_event_id? string
+---@field timestamp? any
+---@field title? string
+---@field title_display? any
+---@field updated_at? any
+---@field virtual_event_passcode? any
+---@field virtual_event_url? any
+
+---@class EventLoadMatch
+---@field id string
+
+---@class EventListMatch
+
+---@class EventOccurrence
+---@field api_link? any
+---@field api_model? any
+---@field button_caption? any
+---@field button_text? any
+---@field button_url? any
+---@field description? string
+---@field end_at? any
+---@field event_id? string
+---@field id? string
+---@field image_url? any
+---@field is_private? boolean
+---@field is_sales_button_hidden? boolean
+---@field is_ticketed? boolean
+---@field location? any
+---@field off_sale_at? any
+---@field on_sale_at? any
+---@field short_description? any
+---@field source_updated_at? any
+---@field start_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field title_display? any
+---@field updated_at? any
+
+---@class EventOccurrenceLoadMatch
+---@field id string
+
+---@class EventOccurrenceListMatch
+
+---@class EventProgram
+---@field api_link? any
+---@field api_model? any
+---@field id? string
+---@field is_affiliate_group? boolean
+---@field is_event_host? boolean
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+
+---@class EventProgramLoadMatch
+---@field id string
+
+---@class EventProgramListMatch
+
+---@class Exhibition
+---@field aic_end_at? any
+---@field aic_start_at? any
+---@field alt_image_id? string
+---@field api_link? any
+---@field api_model? any
+---@field artist_id? string
+---@field artwork_id? string
+---@field artwork_title? any
+---@field document_id? string
+---@field gallery_id? string
+---@field gallery_title? any
+---@field id? string
+---@field image_id? string
+---@field image_url? any
+---@field is_featured? boolean
+---@field is_published? boolean
+---@field position? any
+---@field short_description? any
+---@field site_id? string
+---@field source_updated_at? any
+---@field status? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+---@field web_url? any
+
+---@class ExhibitionLoadMatch
+---@field id string
+
+---@class ExhibitionListMatch
+
+---@class Gallery
+---@field api_link? any
+---@field api_model? any
+---@field floor? any
+---@field id? string
+---@field is_closed? boolean
+---@field latitude? number
+---@field latlon? any
+---@field longitude? number
+---@field number? any
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field tgn_id? string
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+
+---@class GalleryLoadMatch
+---@field id string
+
+---@class GalleryListMatch
+
+---@class GenericPage
+---@field api_link? any
+---@field api_model? any
+---@field copy? any
+---@field id? string
+---@field search_tag? any
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+---@field web_url? any
+
+---@class GenericPageLoadMatch
+---@field id string
+
+---@class GenericPageListMatch
+
+---@class Highlight
+---@field api_link? any
+---@field api_model? any
+---@field copy? any
+---@field id? string
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+
+---@class HighlightLoadMatch
+---@field id string
+
+---@class HighlightListMatch
+
+---@class Hour
+---@field additional_text? any
+---@field api_link? any
+---@field api_model? any
+---@field friday_is_closed? any
+---@field friday_member_close? any
+---@field friday_member_open? any
+---@field friday_public_close? any
+---@field friday_public_open? any
+---@field id? string
+---@field monday_is_closed? any
+---@field monday_member_close? any
+---@field monday_member_open? any
+---@field monday_public_close? any
+---@field monday_public_open? any
+---@field saturday_is_closed? any
+---@field saturday_member_close? any
+---@field saturday_member_open? any
+---@field saturday_public_close? any
+---@field saturday_public_open? any
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field summary? any
+---@field sunday_is_closed? any
+---@field sunday_member_close? any
+---@field sunday_member_open? any
+---@field sunday_public_close? any
+---@field sunday_public_open? any
+---@field thursday_is_closed? any
+---@field thursday_member_close? any
+---@field thursday_member_open? any
+---@field thursday_public_close? any
+---@field thursday_public_open? any
+---@field timestamp? any
+---@field title? string
+---@field tuesday_is_closed? any
+---@field tuesday_member_close? any
+---@field tuesday_member_open? any
+---@field tuesday_public_close? any
+---@field tuesday_public_open? any
+---@field updated_at? any
+---@field wednesday_is_closed? any
+---@field wednesday_member_close? any
+---@field wednesday_member_open? any
+---@field wednesday_public_close? any
+---@field wednesday_public_open? any
+
+---@class HourLoadMatch
+---@field id string
+
+---@class HourListMatch
+
+---@class Image
+---@field ahash? any
+---@field alt_text? any
+---@field api_link? any
+---@field api_model? any
+---@field artwork_id? string
+---@field artwork_title? any
+---@field color? any
+---@field colorfulness? any
+---@field content? any
+---@field content_e_tag? any
+---@field credit_line? any
+---@field fingerprint? any
+---@field height? number
+---@field id? string
+---@field iiif_url? any
+---@field is_educational_resource? boolean
+---@field is_multimedia_resource? boolean
+---@field is_teacher_resource? boolean
+---@field lake_guid? any
+---@field lqip? any
+---@field phash? any
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field type? any
+---@field updated_at? any
+---@field width? number
+
+---@class ImageLoadMatch
+---@field id string
+
+---@class ImageListMatch
+
+---@class LandingPage
+---@field api_link? any
+---@field api_model? any
+---@field copy? any
+---@field id? string
+---@field search_tag? any
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+---@field web_url? any
+
+---@class LandingPageLoadMatch
+---@field id string
+
+---@class LandingPageListMatch
+
+---@class Place
+---@field api_link? any
+---@field api_model? any
+---@field id? string
+---@field latitude? number
+---@field longitude? number
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field tgn_id? string
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+
+---@class PlaceLoadMatch
+---@field id string
+
+---@class PlaceListMatch
+
+---@class PressRelease
+---@field api_link? any
+---@field api_model? any
+---@field copy? any
+---@field id? string
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+---@field web_url? any
+
+---@class PressReleaseLoadMatch
+---@field id string
+
+---@class PressReleaseListMatch
+
+---@class PrintedPublication
+---@field api_link? any
+---@field api_model? any
+---@field copy? any
+---@field id? string
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+---@field web_url? any
+
+---@class PrintedPublicationLoadMatch
+---@field id string
+
+---@class PrintedPublicationListMatch
+
+---@class Product
+---@field api_link? any
+---@field api_model? any
+---@field artist_id? string
+---@field artwork_id? string
+---@field description? string
+---@field exhibition_id? string
+---@field external_sku? any
+---@field id? string
+---@field image_url? any
+---@field max_compare_at_price? any
+---@field max_current_price? any
+---@field min_compare_at_price? any
+---@field min_current_price? any
+---@field price_display? any
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+---@field web_url? any
+
+---@class ProductLoadMatch
+---@field id string
+
+---@class ProductListMatch
+
+---@class Publication
+---@field api_link? any
+---@field api_model? any
+---@field id? string
+---@field section_id? string
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+---@field web_url? any
+
+---@class PublicationLoadMatch
+---@field id string
+
+---@class PublicationListMatch
+
+---@class Search
+---@field api_id? string
+---@field api_link? any
+---@field api_model? any
+---@field id? string
+---@field is_boosted? boolean
+---@field score? number
+---@field thumbnail? any
+---@field timestamp? any
+---@field title? string
+
+---@class SearchListMatch
+
+---@class Section
+---@field accession? any
+---@field api_link? any
+---@field api_model? any
+---@field artwork_id? string
+---@field content? any
+---@field generic_page_id? string
+---@field id? string
+---@field publication_id? string
+---@field publication_title? any
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+---@field web_url? any
+
+---@class SectionLoadMatch
+---@field id string
+
+---@class SectionListMatch
+
+---@class Site
+---@field api_link? any
+---@field api_model? any
+---@field artwork_id? string
+---@field artwork_title? any
+---@field description? string
+---@field exhibition_id? string
+---@field exhibition_title? any
+---@field id? string
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+---@field web_url? any
+
+---@class SiteLoadMatch
+---@field id string
+
+---@class SiteListMatch
+
+---@class Sound
+---@field alt_text? any
+---@field api_link? any
+---@field api_model? any
+---@field artwork_id? string
+---@field artwork_title? any
+---@field content? any
+---@field content_e_tag? any
+---@field credit_line? any
+---@field id? string
+---@field is_educational_resource? boolean
+---@field is_multimedia_resource? boolean
+---@field is_teacher_resource? boolean
+---@field lake_guid? any
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field transcript? any
+---@field type? any
+---@field updated_at? any
+---@field web_url? any
+
+---@class SoundLoadMatch
+---@field id string
+
+---@class SoundListMatch
+
+---@class StaticPage
+---@field api_link? any
+---@field api_model? any
+---@field id? string
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+---@field web_url? any
+
+---@class StaticPageLoadMatch
+---@field id string
+
+---@class StaticPageListMatch
+
+---@class Text
+---@field alt_text? any
+---@field api_link? any
+---@field api_model? any
+---@field artwork_id? string
+---@field artwork_title? any
+---@field content? any
+---@field content_e_tag? any
+---@field credit_line? any
+---@field id? string
+---@field is_educational_resource? boolean
+---@field is_multimedia_resource? boolean
+---@field is_teacher_resource? boolean
+---@field lake_guid? any
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field type? any
+---@field updated_at? any
+
+---@class TextLoadMatch
+---@field id string
+
+---@class TextListMatch
+
+---@class Tour
+---@field api_link? any
+---@field api_model? any
+---@field artist_title? any
+---@field artwork_title? any
+---@field description? string
+---@field id? string
+---@field image? any
+---@field intro? any
+---@field intro_link? any
+---@field intro_transcript? any
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field updated_at? any
+---@field weight? number
+
+---@class TourLoadMatch
+---@field id string
+
+---@class TourListMatch
+
+---@class Video
+---@field alt_text? any
+---@field api_link? any
+---@field api_model? any
+---@field artwork_id? string
+---@field artwork_title? any
+---@field content? any
+---@field content_e_tag? any
+---@field credit_line? any
+---@field id? string
+---@field is_educational_resource? boolean
+---@field is_multimedia_resource? boolean
+---@field is_teacher_resource? boolean
+---@field lake_guid? any
+---@field source_updated_at? any
+---@field suggest_autocomplete_all? any
+---@field suggest_autocomplete_boosted? any
+---@field timestamp? any
+---@field title? string
+---@field type? any
+---@field updated_at? any
+
+---@class VideoLoadMatch
+---@field id string
+
+---@class VideoListMatch
+
+local M = {}
+
+return M

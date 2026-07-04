@@ -43,16 +43,14 @@ class PrintedPublicationEntityTest < Minitest::Test
     printed_publication_ref01_ent = client.PrintedPublication(nil)
     printed_publication_ref01_match = {}
 
-    printed_publication_ref01_list_result, err = printed_publication_ref01_ent.list(printed_publication_ref01_match, nil)
-    assert_nil err
+    printed_publication_ref01_list_result = printed_publication_ref01_ent.list(printed_publication_ref01_match, nil)
     assert printed_publication_ref01_list_result.is_a?(Array)
 
     # LOAD
     printed_publication_ref01_match_dt0 = {
       "id" => printed_publication_ref01_data["id"],
     }
-    printed_publication_ref01_data_dt0_loaded, err = printed_publication_ref01_ent.load(printed_publication_ref01_match_dt0, nil)
-    assert_nil err
+    printed_publication_ref01_data_dt0_loaded = printed_publication_ref01_ent.load(printed_publication_ref01_match_dt0, nil)
     printed_publication_ref01_data_dt0_load_result = Helpers.to_map(printed_publication_ref01_data_dt0_loaded)
     assert !printed_publication_ref01_data_dt0_load_result.nil?
     assert_equal printed_publication_ref01_data_dt0_load_result["id"], printed_publication_ref01_data["id"]
@@ -93,7 +91,6 @@ def printed_publication_basic_setup(extra)
     "ARTINSTITUTEOFCHICAGO_TEST_PRINTED_PUBLICATION_ENTID" => idmap,
     "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
     "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-    "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def printed_publication_basic_setup(extra)
   if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ARTINSTITUTEOFCHICAGO_APIKEY"],
       },
       extra || {},
     ])

@@ -50,16 +50,14 @@ class LandingPageEntityTest extends TestCase
         $landing_page_ref01_ent = $client->LandingPage(null);
         $landing_page_ref01_match = [];
 
-        [$landing_page_ref01_list_result, $err] = $landing_page_ref01_ent->list($landing_page_ref01_match, null);
-        $this->assertNull($err);
+        $landing_page_ref01_list_result = $landing_page_ref01_ent->list($landing_page_ref01_match, null);
         $this->assertIsArray($landing_page_ref01_list_result);
 
         // LOAD
         $landing_page_ref01_match_dt0 = [
             "id" => $landing_page_ref01_data["id"],
         ];
-        [$landing_page_ref01_data_dt0_loaded, $err] = $landing_page_ref01_ent->load($landing_page_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $landing_page_ref01_data_dt0_loaded = $landing_page_ref01_ent->load($landing_page_ref01_match_dt0, null);
         $landing_page_ref01_data_dt0_load_result = Helpers::to_map($landing_page_ref01_data_dt0_loaded);
         $this->assertNotNull($landing_page_ref01_data_dt0_load_result);
         $this->assertEquals($landing_page_ref01_data_dt0_load_result["id"], $landing_page_ref01_data["id"]);
@@ -96,7 +94,6 @@ function landing_page_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_LANDING_PAGE_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function landing_page_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

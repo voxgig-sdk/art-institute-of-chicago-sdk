@@ -45,6 +45,7 @@ class PressReleaseEntity
     end
   end
 
+  # @return [PressRelease, Hash] the current PressRelease data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class PressReleaseEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of PressRelease fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single PressRelease.
+  #
+  # @param reqmatch [PressReleaseLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [PressRelease, Hash] the loaded PressRelease; raises ArtInstituteOfChicagoError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class PressReleaseEntity
 
 
   
+  # List PressRelease items matching the given filter.
+  #
+  # @param reqmatch [PressReleaseListMatch, Hash, nil] match filter (any subset of PressRelease fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<PressRelease>, Array] the matching PressRelease items; raises ArtInstituteOfChicagoError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

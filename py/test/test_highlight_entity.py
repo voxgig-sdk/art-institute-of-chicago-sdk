@@ -50,16 +50,14 @@ class TestHighlightEntity:
         highlight_ref01_ent = client.Highlight(None)
         highlight_ref01_match = {}
 
-        highlight_ref01_list_result, err = highlight_ref01_ent.list(highlight_ref01_match, None)
-        assert err is None
+        highlight_ref01_list_result = highlight_ref01_ent.list(highlight_ref01_match, None)
         assert isinstance(highlight_ref01_list_result, list)
 
         # LOAD
         highlight_ref01_match_dt0 = {
             "id": highlight_ref01_data["id"],
         }
-        highlight_ref01_data_dt0_loaded, err = highlight_ref01_ent.load(highlight_ref01_match_dt0, None)
-        assert err is None
+        highlight_ref01_data_dt0_loaded = highlight_ref01_ent.load(highlight_ref01_match_dt0, None)
         highlight_ref01_data_dt0_load_result = helpers.to_map(highlight_ref01_data_dt0_loaded)
         assert highlight_ref01_data_dt0_load_result is not None
         assert highlight_ref01_data_dt0_load_result["id"] == highlight_ref01_data["id"]
@@ -102,7 +100,6 @@ def _highlight_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_HIGHLIGHT_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _highlight_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

@@ -50,16 +50,14 @@ class TestExhibitionEntity:
         exhibition_ref01_ent = client.Exhibition(None)
         exhibition_ref01_match = {}
 
-        exhibition_ref01_list_result, err = exhibition_ref01_ent.list(exhibition_ref01_match, None)
-        assert err is None
+        exhibition_ref01_list_result = exhibition_ref01_ent.list(exhibition_ref01_match, None)
         assert isinstance(exhibition_ref01_list_result, list)
 
         # LOAD
         exhibition_ref01_match_dt0 = {
             "id": exhibition_ref01_data["id"],
         }
-        exhibition_ref01_data_dt0_loaded, err = exhibition_ref01_ent.load(exhibition_ref01_match_dt0, None)
-        assert err is None
+        exhibition_ref01_data_dt0_loaded = exhibition_ref01_ent.load(exhibition_ref01_match_dt0, None)
         exhibition_ref01_data_dt0_load_result = helpers.to_map(exhibition_ref01_data_dt0_loaded)
         assert exhibition_ref01_data_dt0_load_result is not None
         assert exhibition_ref01_data_dt0_load_result["id"] == exhibition_ref01_data["id"]
@@ -102,7 +100,6 @@ def _exhibition_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_EXHIBITION_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _exhibition_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

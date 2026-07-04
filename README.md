@@ -10,26 +10,24 @@ This is an unofficial SDK for the Art Institution of Chicago public API, generat
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/art-institute-of-chicago` | `npm install @voxgig-sdk/art-institute-of-chicago` |
-| Python | `voxgig-sdk-art-institute-of-chicago` | `pip install voxgig-sdk-art-institute-of-chicago` |
-| PHP | `voxgig-sdk/art-institute-of-chicago` | `composer require voxgig-sdk/art-institute-of-chicago` |
-| Golang | `github.com/voxgig-sdk/art-institute-of-chicago-sdk/go` | `go get github.com/voxgig-sdk/art-institute-of-chicago-sdk/go` |
-| Ruby | `voxgig-sdk-art-institute-of-chicago` | `gem install voxgig-sdk-art-institute-of-chicago` |
-| Lua | `voxgig-sdk-art-institute-of-chicago` | `luarocks install voxgig-sdk-art-institute-of-chicago` |
+| TypeScript | `@voxgig-sdk/art-institute-of-chicago` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases) |
+| Python | `voxgig-sdk-art-institute-of-chicago` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases) |
+| PHP | `voxgig-sdk/art-institute-of-chicago` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases) |
+| Golang | `github.com/voxgig-sdk/art-institute-of-chicago-sdk/go` | `go get github.com/voxgig-sdk/art-institute-of-chicago-sdk/go@latest` |
+| Ruby | `voxgig-sdk-art-institute-of-chicago` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases) |
+| Lua | `voxgig-sdk-art-institute-of-chicago` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases) |
 
 ## Quickstart
 
 ### TypeScript
 
 ```ts
-import { ArtInstituteOfChicagoSDK } from 'art-institute-of-chicago'
+import { ArtInstituteOfChicagoSDK } from '@voxgig-sdk/art-institute-of-chicago'
 
-const client = new ArtInstituteOfChicagoSDK({
-  apikey: process.env.ART-INSTITUTE-OF-CHICAGO_APIKEY,
-})
+const client = new ArtInstituteOfChicagoSDK()
 
 // List all agents
-const agents = await client.Agent().list()
+const agents = await client.agent.list()
 console.log(agents.data)
 ```
 
@@ -71,41 +69,41 @@ The API exposes 35 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Agent** |  | `/agents` |
-| **AgentRole** |  | `/agent-roles` |
-| **AgentType** |  | `/agent-types` |
-| **Article** |  | `/articles` |
-| **Artwork** |  | `/artworks` |
-| **ArtworkDateQualifier** |  | `/artwork-date-qualifiers` |
-| **ArtworkPlaceQualifier** |  | `/artwork-place-qualifiers` |
-| **ArtworkType** |  | `/artwork-types` |
-| **CategoryTerm** |  | `/category-terms` |
-| **DigitalPublication** |  | `/digital-publications` |
-| **DigitalPublicationArticle** |  | `/digital-publication-articles` |
-| **EducatorResource** |  | `/educator-resources` |
-| **Event** |  | `/events` |
-| **EventOccurrence** |  | `/event-occurrences` |
-| **EventProgram** |  | `/event-programs` |
-| **Exhibition** |  | `/exhibitions` |
-| **Gallery** |  | `/galleries` |
-| **GenericPage** |  | `/generic-pages` |
-| **Highlight** |  | `/highlights` |
-| **Hour** |  | `/hours` |
-| **Image** |  | `/images` |
-| **LandingPage** |  | `/landing-pages` |
-| **Place** |  | `/places` |
-| **PressRelease** |  | `/press-releases` |
-| **PrintedPublication** |  | `/printed-publications` |
-| **Product** |  | `/products` |
-| **Publication** |  | `/publications` |
-| **Search** |  | `/agents/search` |
-| **Section** |  | `/sections` |
-| **Site** |  | `/sites` |
-| **Sound** |  | `/mobile-sounds` |
-| **StaticPage** |  | `/static-pages` |
-| **Text** |  | `/texts` |
-| **Tour** |  | `/tours` |
-| **Video** |  | `/videos` |
+| **Agent** | The Agent entity (list, load). | `/agents` |
+| **AgentRole** | The AgentRole entity (list, load). | `/agent-roles` |
+| **AgentType** | The AgentType entity (list, load). | `/agent-types` |
+| **Article** | The Article entity (list, load). | `/articles` |
+| **Artwork** | The Artwork entity (list, load). | `/artworks` |
+| **ArtworkDateQualifier** | The ArtworkDateQualifier entity (list, load). | `/artwork-date-qualifiers` |
+| **ArtworkPlaceQualifier** | The ArtworkPlaceQualifier entity (list, load). | `/artwork-place-qualifiers` |
+| **ArtworkType** | The ArtworkType entity (list, load). | `/artwork-types` |
+| **CategoryTerm** | The CategoryTerm entity (list, load). | `/category-terms` |
+| **DigitalPublication** | The DigitalPublication entity (list, load). | `/digital-publications` |
+| **DigitalPublicationArticle** | The DigitalPublicationArticle entity (list, load). | `/digital-publication-articles` |
+| **EducatorResource** | The EducatorResource entity (list, load). | `/educator-resources` |
+| **Event** | The Event entity (list, load). | `/events` |
+| **EventOccurrence** | The EventOccurrence entity (list, load). | `/event-occurrences` |
+| **EventProgram** | The EventProgram entity (list, load). | `/event-programs` |
+| **Exhibition** | The Exhibition entity (list, load). | `/exhibitions` |
+| **Gallery** | The Gallery entity (list, load). | `/galleries` |
+| **GenericPage** | The GenericPage entity (list, load). | `/generic-pages` |
+| **Highlight** | The Highlight entity (list, load). | `/highlights` |
+| **Hour** | The Hour entity (list, load). | `/hours` |
+| **Image** | The Image entity (list, load). | `/images` |
+| **LandingPage** | The LandingPage entity (list, load). | `/landing-pages` |
+| **Place** | The Place entity (list, load). | `/places` |
+| **PressRelease** | The PressRelease entity (list, load). | `/press-releases` |
+| **PrintedPublication** | The PrintedPublication entity (list, load). | `/printed-publications` |
+| **Product** | The Product entity (list, load). | `/products` |
+| **Publication** | The Publication entity (list, load). | `/publications` |
+| **Search** | The Search entity (list). | `/agents/search` |
+| **Section** | The Section entity (list, load). | `/sections` |
+| **Site** | The Site entity (list, load). | `/sites` |
+| **Sound** | The Sound entity (list, load). | `/mobile-sounds` |
+| **StaticPage** | The StaticPage entity (list, load). | `/static-pages` |
+| **Text** | The Text entity (list, load). | `/texts` |
+| **Tour** | The Tour entity (list, load). | `/tours` |
+| **Video** | The Video entity (list, load). | `/videos` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -115,19 +113,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
-import os
 from artinstituteofchicago_sdk import ArtInstituteOfChicagoSDK
 
-client = ArtInstituteOfChicagoSDK({
-    "apikey": os.environ.get("ART-INSTITUTE-OF-CHICAGO_APIKEY"),
-})
+client = ArtInstituteOfChicagoSDK()
 
 # List all agents
-agents, err = client.Agent().list()
+agents = client.agent.list()
 print(agents)
 
 # Load a specific agent
-agent, err = client.Agent().load({"id": "example_id"})
+agent = client.agent.load({"id": "example_id"})
 print(agent)
 ```
 
@@ -137,16 +132,14 @@ print(agent)
 <?php
 require_once 'artinstituteofchicago_sdk.php';
 
-$client = new ArtInstituteOfChicagoSDK([
-    "apikey" => getenv("ART-INSTITUTE-OF-CHICAGO_APIKEY"),
-]);
+$client = new ArtInstituteOfChicagoSDK();
 
-// List all agents
-[$agents, $err] = $client->Agent()->list();
+// List all agents (throws on error)
+$agents = $client->agent()->list();
 print_r($agents);
 
 // Load a specific agent
-[$agent, $err] = $client->Agent()->load(["id" => "example_id"]);
+$agent = $client->agent()->load(["id" => "example_id"]);
 print_r($agent);
 ```
 
@@ -155,9 +148,7 @@ print_r($agent);
 ```go
 import sdk "github.com/voxgig-sdk/art-institute-of-chicago-sdk/go"
 
-client := sdk.NewArtInstituteOfChicagoSDK(map[string]any{
-    "apikey": os.Getenv("ART-INSTITUTE-OF-CHICAGO_APIKEY"),
-})
+client := sdk.New()
 
 // List all agents
 agents, err := client.Agent(nil).List(nil, nil)
@@ -169,16 +160,14 @@ fmt.Println(agents)
 ```ruby
 require_relative "ArtInstituteOfChicago_sdk"
 
-client = ArtInstituteOfChicagoSDK.new({
-  "apikey" => ENV["ART-INSTITUTE-OF-CHICAGO_APIKEY"],
-})
+client = ArtInstituteOfChicagoSDK.new
 
 # List all agents
-agents, err = client.Agent().list
+agents = client.agent.list
 puts agents
 
 # Load a specific agent
-agent, err = client.Agent().load({ "id" => "example_id" })
+agent = client.agent.load({ "id" => "example_id" })
 puts agent
 ```
 
@@ -187,16 +176,14 @@ puts agent
 ```lua
 local sdk = require("art-institute-of-chicago_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("ART-INSTITUTE-OF-CHICAGO_APIKEY"),
-})
+local client = sdk.new()
 
 -- List all agents
-local agents, err = client:Agent():list()
+local agents, err = client:agent():list()
 print(agents)
 
 -- Load a specific agent
-local agent, err = client:Agent():load({ id = "example_id" })
+local agent, err = client:agent():load({ id = "example_id" })
 print(agent)
 ```
 
@@ -209,7 +196,7 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = ArtInstituteOfChicagoSDK.test()
-const result = await client.Agent().load({ id: 'test01' })
+const result = await client.agent.load({ id: 'test01' })
 // result.ok === true, result.data contains mock data
 ```
 
@@ -217,14 +204,14 @@ const result = await client.Agent().load({ id: 'test01' })
 
 ```python
 client = ArtInstituteOfChicagoSDK.test()
-result, err = client.Agent().load({"id": "test01"})
+result = client.agent.load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
 $client = ArtInstituteOfChicagoSDK::test();
-[$result, $err] = $client->Agent()->load(["id" => "test01"]);
+$result = $client->agent()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -240,14 +227,14 @@ result, err := client.Agent(nil).Load(
 
 ```ruby
 client = ArtInstituteOfChicagoSDK.test
-result, err = client.Agent().load({ "id" => "test01" })
+result = client.agent.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Agent():load({ id = "test01" })
+local result, err = client:agent():load({ id = "test01" })
 ```
 
 ## How it works
@@ -300,7 +287,7 @@ console.log(result.data)
 
 **Python:**
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
@@ -309,7 +296,7 @@ result, err = client.direct({
 
 **PHP:**
 ```php
-[$result, $err] = $client->direct([
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
@@ -327,7 +314,7 @@ result, err := client.Direct(map[string]any{
 
 **Ruby:**
 ```ruby
-result, err = client.direct({
+result = client.direct({
   "path" => "/api/resource/{id}",
   "method" => "GET",
   "params" => { "id" => "example" },

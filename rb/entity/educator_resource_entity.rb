@@ -45,6 +45,7 @@ class EducatorResourceEntity
     end
   end
 
+  # @return [EducatorResource, Hash] the current EducatorResource data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class EducatorResourceEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of EducatorResource fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single EducatorResource.
+  #
+  # @param reqmatch [EducatorResourceLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [EducatorResource, Hash] the loaded EducatorResource; raises ArtInstituteOfChicagoError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class EducatorResourceEntity
 
 
   
+  # List EducatorResource items matching the given filter.
+  #
+  # @param reqmatch [EducatorResourceListMatch, Hash, nil] match filter (any subset of EducatorResource fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<EducatorResource>, Array] the matching EducatorResource items; raises ArtInstituteOfChicagoError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

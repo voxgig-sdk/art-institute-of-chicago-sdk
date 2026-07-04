@@ -43,16 +43,14 @@ class VideoEntityTest < Minitest::Test
     video_ref01_ent = client.Video(nil)
     video_ref01_match = {}
 
-    video_ref01_list_result, err = video_ref01_ent.list(video_ref01_match, nil)
-    assert_nil err
+    video_ref01_list_result = video_ref01_ent.list(video_ref01_match, nil)
     assert video_ref01_list_result.is_a?(Array)
 
     # LOAD
     video_ref01_match_dt0 = {
       "id" => video_ref01_data["id"],
     }
-    video_ref01_data_dt0_loaded, err = video_ref01_ent.load(video_ref01_match_dt0, nil)
-    assert_nil err
+    video_ref01_data_dt0_loaded = video_ref01_ent.load(video_ref01_match_dt0, nil)
     video_ref01_data_dt0_load_result = Helpers.to_map(video_ref01_data_dt0_loaded)
     assert !video_ref01_data_dt0_load_result.nil?
     assert_equal video_ref01_data_dt0_load_result["id"], video_ref01_data["id"]
@@ -93,7 +91,6 @@ def video_basic_setup(extra)
     "ARTINSTITUTEOFCHICAGO_TEST_VIDEO_ENTID" => idmap,
     "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
     "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-    "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def video_basic_setup(extra)
   if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ARTINSTITUTEOFCHICAGO_APIKEY"],
       },
       extra || {},
     ])

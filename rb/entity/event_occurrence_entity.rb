@@ -45,6 +45,7 @@ class EventOccurrenceEntity
     end
   end
 
+  # @return [EventOccurrence, Hash] the current EventOccurrence data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class EventOccurrenceEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of EventOccurrence fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single EventOccurrence.
+  #
+  # @param reqmatch [EventOccurrenceLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [EventOccurrence, Hash] the loaded EventOccurrence; raises ArtInstituteOfChicagoError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class EventOccurrenceEntity
 
 
   
+  # List EventOccurrence items matching the given filter.
+  #
+  # @param reqmatch [EventOccurrenceListMatch, Hash, nil] match filter (any subset of EventOccurrence fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<EventOccurrence>, Array] the matching EventOccurrence items; raises ArtInstituteOfChicagoError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

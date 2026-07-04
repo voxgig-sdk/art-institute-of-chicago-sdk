@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch GenericPageLoadMatch
+---@param ctrl? table
+---@return GenericPage
+---@return string? err
 function GenericPageEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch GenericPageListMatch
+---@param ctrl? table
+---@return GenericPage[]
+---@return string? err
 function GenericPageEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

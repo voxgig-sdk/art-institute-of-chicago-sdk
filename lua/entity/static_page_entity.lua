@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch StaticPageLoadMatch
+---@param ctrl? table
+---@return StaticPage
+---@return string? err
 function StaticPageEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch StaticPageListMatch
+---@param ctrl? table
+---@return StaticPage[]
+---@return string? err
 function StaticPageEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

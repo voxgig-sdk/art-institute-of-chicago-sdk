@@ -50,16 +50,14 @@ class VideoEntityTest extends TestCase
         $video_ref01_ent = $client->Video(null);
         $video_ref01_match = [];
 
-        [$video_ref01_list_result, $err] = $video_ref01_ent->list($video_ref01_match, null);
-        $this->assertNull($err);
+        $video_ref01_list_result = $video_ref01_ent->list($video_ref01_match, null);
         $this->assertIsArray($video_ref01_list_result);
 
         // LOAD
         $video_ref01_match_dt0 = [
             "id" => $video_ref01_data["id"],
         ];
-        [$video_ref01_data_dt0_loaded, $err] = $video_ref01_ent->load($video_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $video_ref01_data_dt0_loaded = $video_ref01_ent->load($video_ref01_match_dt0, null);
         $video_ref01_data_dt0_load_result = Helpers::to_map($video_ref01_data_dt0_loaded);
         $this->assertNotNull($video_ref01_data_dt0_load_result);
         $this->assertEquals($video_ref01_data_dt0_load_result["id"], $video_ref01_data["id"]);
@@ -96,7 +94,6 @@ function video_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_VIDEO_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function video_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

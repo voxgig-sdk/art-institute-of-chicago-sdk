@@ -50,16 +50,14 @@ class TourEntityTest extends TestCase
         $tour_ref01_ent = $client->Tour(null);
         $tour_ref01_match = [];
 
-        [$tour_ref01_list_result, $err] = $tour_ref01_ent->list($tour_ref01_match, null);
-        $this->assertNull($err);
+        $tour_ref01_list_result = $tour_ref01_ent->list($tour_ref01_match, null);
         $this->assertIsArray($tour_ref01_list_result);
 
         // LOAD
         $tour_ref01_match_dt0 = [
             "id" => $tour_ref01_data["id"],
         ];
-        [$tour_ref01_data_dt0_loaded, $err] = $tour_ref01_ent->load($tour_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $tour_ref01_data_dt0_loaded = $tour_ref01_ent->load($tour_ref01_match_dt0, null);
         $tour_ref01_data_dt0_load_result = Helpers::to_map($tour_ref01_data_dt0_loaded);
         $this->assertNotNull($tour_ref01_data_dt0_load_result);
         $this->assertEquals($tour_ref01_data_dt0_load_result["id"], $tour_ref01_data["id"]);
@@ -96,7 +94,6 @@ function tour_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_TOUR_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function tour_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

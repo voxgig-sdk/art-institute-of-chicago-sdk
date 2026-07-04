@@ -50,16 +50,14 @@ class StaticPageEntityTest extends TestCase
         $static_page_ref01_ent = $client->StaticPage(null);
         $static_page_ref01_match = [];
 
-        [$static_page_ref01_list_result, $err] = $static_page_ref01_ent->list($static_page_ref01_match, null);
-        $this->assertNull($err);
+        $static_page_ref01_list_result = $static_page_ref01_ent->list($static_page_ref01_match, null);
         $this->assertIsArray($static_page_ref01_list_result);
 
         // LOAD
         $static_page_ref01_match_dt0 = [
             "id" => $static_page_ref01_data["id"],
         ];
-        [$static_page_ref01_data_dt0_loaded, $err] = $static_page_ref01_ent->load($static_page_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $static_page_ref01_data_dt0_loaded = $static_page_ref01_ent->load($static_page_ref01_match_dt0, null);
         $static_page_ref01_data_dt0_load_result = Helpers::to_map($static_page_ref01_data_dt0_loaded);
         $this->assertNotNull($static_page_ref01_data_dt0_load_result);
         $this->assertEquals($static_page_ref01_data_dt0_load_result["id"], $static_page_ref01_data["id"]);
@@ -96,7 +94,6 @@ function static_page_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_STATIC_PAGE_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function static_page_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

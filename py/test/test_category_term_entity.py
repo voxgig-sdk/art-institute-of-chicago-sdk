@@ -50,16 +50,14 @@ class TestCategoryTermEntity:
         category_term_ref01_ent = client.CategoryTerm(None)
         category_term_ref01_match = {}
 
-        category_term_ref01_list_result, err = category_term_ref01_ent.list(category_term_ref01_match, None)
-        assert err is None
+        category_term_ref01_list_result = category_term_ref01_ent.list(category_term_ref01_match, None)
         assert isinstance(category_term_ref01_list_result, list)
 
         # LOAD
         category_term_ref01_match_dt0 = {
             "id": category_term_ref01_data["id"],
         }
-        category_term_ref01_data_dt0_loaded, err = category_term_ref01_ent.load(category_term_ref01_match_dt0, None)
-        assert err is None
+        category_term_ref01_data_dt0_loaded = category_term_ref01_ent.load(category_term_ref01_match_dt0, None)
         category_term_ref01_data_dt0_load_result = helpers.to_map(category_term_ref01_data_dt0_loaded)
         assert category_term_ref01_data_dt0_load_result is not None
         assert category_term_ref01_data_dt0_load_result["id"] == category_term_ref01_data["id"]
@@ -102,7 +100,6 @@ def _category_term_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_CATEGORY_TERM_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _category_term_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

@@ -45,6 +45,7 @@ class SiteEntity
     end
   end
 
+  # @return [Site, Hash] the current Site data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class SiteEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Site fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Site.
+  #
+  # @param reqmatch [SiteLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Site, Hash] the loaded Site; raises ArtInstituteOfChicagoError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class SiteEntity
 
 
   
+  # List Site items matching the given filter.
+  #
+  # @param reqmatch [SiteListMatch, Hash, nil] match filter (any subset of Site fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Site>, Array] the matching Site items; raises ArtInstituteOfChicagoError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

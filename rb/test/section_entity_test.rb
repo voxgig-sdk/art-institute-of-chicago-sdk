@@ -43,16 +43,14 @@ class SectionEntityTest < Minitest::Test
     section_ref01_ent = client.Section(nil)
     section_ref01_match = {}
 
-    section_ref01_list_result, err = section_ref01_ent.list(section_ref01_match, nil)
-    assert_nil err
+    section_ref01_list_result = section_ref01_ent.list(section_ref01_match, nil)
     assert section_ref01_list_result.is_a?(Array)
 
     # LOAD
     section_ref01_match_dt0 = {
       "id" => section_ref01_data["id"],
     }
-    section_ref01_data_dt0_loaded, err = section_ref01_ent.load(section_ref01_match_dt0, nil)
-    assert_nil err
+    section_ref01_data_dt0_loaded = section_ref01_ent.load(section_ref01_match_dt0, nil)
     section_ref01_data_dt0_load_result = Helpers.to_map(section_ref01_data_dt0_loaded)
     assert !section_ref01_data_dt0_load_result.nil?
     assert_equal section_ref01_data_dt0_load_result["id"], section_ref01_data["id"]
@@ -93,7 +91,6 @@ def section_basic_setup(extra)
     "ARTINSTITUTEOFCHICAGO_TEST_SECTION_ENTID" => idmap,
     "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
     "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-    "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def section_basic_setup(extra)
   if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ARTINSTITUTEOFCHICAGO_APIKEY"],
       },
       extra || {},
     ])

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch SoundLoadMatch
+---@param ctrl? table
+---@return Sound
+---@return string? err
 function SoundEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch SoundListMatch
+---@param ctrl? table
+---@return Sound[]
+---@return string? err
 function SoundEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

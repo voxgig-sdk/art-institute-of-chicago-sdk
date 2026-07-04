@@ -43,16 +43,14 @@ class PublicationEntityTest < Minitest::Test
     publication_ref01_ent = client.Publication(nil)
     publication_ref01_match = {}
 
-    publication_ref01_list_result, err = publication_ref01_ent.list(publication_ref01_match, nil)
-    assert_nil err
+    publication_ref01_list_result = publication_ref01_ent.list(publication_ref01_match, nil)
     assert publication_ref01_list_result.is_a?(Array)
 
     # LOAD
     publication_ref01_match_dt0 = {
       "id" => publication_ref01_data["id"],
     }
-    publication_ref01_data_dt0_loaded, err = publication_ref01_ent.load(publication_ref01_match_dt0, nil)
-    assert_nil err
+    publication_ref01_data_dt0_loaded = publication_ref01_ent.load(publication_ref01_match_dt0, nil)
     publication_ref01_data_dt0_load_result = Helpers.to_map(publication_ref01_data_dt0_loaded)
     assert !publication_ref01_data_dt0_load_result.nil?
     assert_equal publication_ref01_data_dt0_load_result["id"], publication_ref01_data["id"]
@@ -93,7 +91,6 @@ def publication_basic_setup(extra)
     "ARTINSTITUTEOFCHICAGO_TEST_PUBLICATION_ENTID" => idmap,
     "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
     "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-    "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def publication_basic_setup(extra)
   if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ARTINSTITUTEOFCHICAGO_APIKEY"],
       },
       extra || {},
     ])

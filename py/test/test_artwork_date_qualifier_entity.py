@@ -50,16 +50,14 @@ class TestArtworkDateQualifierEntity:
         artwork_date_qualifier_ref01_ent = client.ArtworkDateQualifier(None)
         artwork_date_qualifier_ref01_match = {}
 
-        artwork_date_qualifier_ref01_list_result, err = artwork_date_qualifier_ref01_ent.list(artwork_date_qualifier_ref01_match, None)
-        assert err is None
+        artwork_date_qualifier_ref01_list_result = artwork_date_qualifier_ref01_ent.list(artwork_date_qualifier_ref01_match, None)
         assert isinstance(artwork_date_qualifier_ref01_list_result, list)
 
         # LOAD
         artwork_date_qualifier_ref01_match_dt0 = {
             "id": artwork_date_qualifier_ref01_data["id"],
         }
-        artwork_date_qualifier_ref01_data_dt0_loaded, err = artwork_date_qualifier_ref01_ent.load(artwork_date_qualifier_ref01_match_dt0, None)
-        assert err is None
+        artwork_date_qualifier_ref01_data_dt0_loaded = artwork_date_qualifier_ref01_ent.load(artwork_date_qualifier_ref01_match_dt0, None)
         artwork_date_qualifier_ref01_data_dt0_load_result = helpers.to_map(artwork_date_qualifier_ref01_data_dt0_loaded)
         assert artwork_date_qualifier_ref01_data_dt0_load_result is not None
         assert artwork_date_qualifier_ref01_data_dt0_load_result["id"] == artwork_date_qualifier_ref01_data["id"]
@@ -102,7 +100,6 @@ def _artwork_date_qualifier_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_ARTWORK_DATE_QUALIFIER_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _artwork_date_qualifier_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

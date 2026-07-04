@@ -50,16 +50,14 @@ class TextEntityTest extends TestCase
         $text_ref01_ent = $client->Text(null);
         $text_ref01_match = [];
 
-        [$text_ref01_list_result, $err] = $text_ref01_ent->list($text_ref01_match, null);
-        $this->assertNull($err);
+        $text_ref01_list_result = $text_ref01_ent->list($text_ref01_match, null);
         $this->assertIsArray($text_ref01_list_result);
 
         // LOAD
         $text_ref01_match_dt0 = [
             "id" => $text_ref01_data["id"],
         ];
-        [$text_ref01_data_dt0_loaded, $err] = $text_ref01_ent->load($text_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $text_ref01_data_dt0_loaded = $text_ref01_ent->load($text_ref01_match_dt0, null);
         $text_ref01_data_dt0_load_result = Helpers::to_map($text_ref01_data_dt0_loaded);
         $this->assertNotNull($text_ref01_data_dt0_load_result);
         $this->assertEquals($text_ref01_data_dt0_load_result["id"], $text_ref01_data["id"]);
@@ -96,7 +94,6 @@ function text_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_TEXT_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function text_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

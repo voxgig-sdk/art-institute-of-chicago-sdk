@@ -43,16 +43,14 @@ class SiteEntityTest < Minitest::Test
     site_ref01_ent = client.Site(nil)
     site_ref01_match = {}
 
-    site_ref01_list_result, err = site_ref01_ent.list(site_ref01_match, nil)
-    assert_nil err
+    site_ref01_list_result = site_ref01_ent.list(site_ref01_match, nil)
     assert site_ref01_list_result.is_a?(Array)
 
     # LOAD
     site_ref01_match_dt0 = {
       "id" => site_ref01_data["id"],
     }
-    site_ref01_data_dt0_loaded, err = site_ref01_ent.load(site_ref01_match_dt0, nil)
-    assert_nil err
+    site_ref01_data_dt0_loaded = site_ref01_ent.load(site_ref01_match_dt0, nil)
     site_ref01_data_dt0_load_result = Helpers.to_map(site_ref01_data_dt0_loaded)
     assert !site_ref01_data_dt0_load_result.nil?
     assert_equal site_ref01_data_dt0_load_result["id"], site_ref01_data["id"]
@@ -93,7 +91,6 @@ def site_basic_setup(extra)
     "ARTINSTITUTEOFCHICAGO_TEST_SITE_ENTID" => idmap,
     "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
     "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-    "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def site_basic_setup(extra)
   if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ARTINSTITUTEOFCHICAGO_APIKEY"],
       },
       extra || {},
     ])

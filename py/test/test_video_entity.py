@@ -50,16 +50,14 @@ class TestVideoEntity:
         video_ref01_ent = client.Video(None)
         video_ref01_match = {}
 
-        video_ref01_list_result, err = video_ref01_ent.list(video_ref01_match, None)
-        assert err is None
+        video_ref01_list_result = video_ref01_ent.list(video_ref01_match, None)
         assert isinstance(video_ref01_list_result, list)
 
         # LOAD
         video_ref01_match_dt0 = {
             "id": video_ref01_data["id"],
         }
-        video_ref01_data_dt0_loaded, err = video_ref01_ent.load(video_ref01_match_dt0, None)
-        assert err is None
+        video_ref01_data_dt0_loaded = video_ref01_ent.load(video_ref01_match_dt0, None)
         video_ref01_data_dt0_load_result = helpers.to_map(video_ref01_data_dt0_loaded)
         assert video_ref01_data_dt0_load_result is not None
         assert video_ref01_data_dt0_load_result["id"] == video_ref01_data["id"]
@@ -102,7 +100,6 @@ def _video_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_VIDEO_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _video_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

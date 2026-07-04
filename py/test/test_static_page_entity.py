@@ -50,16 +50,14 @@ class TestStaticPageEntity:
         static_page_ref01_ent = client.StaticPage(None)
         static_page_ref01_match = {}
 
-        static_page_ref01_list_result, err = static_page_ref01_ent.list(static_page_ref01_match, None)
-        assert err is None
+        static_page_ref01_list_result = static_page_ref01_ent.list(static_page_ref01_match, None)
         assert isinstance(static_page_ref01_list_result, list)
 
         # LOAD
         static_page_ref01_match_dt0 = {
             "id": static_page_ref01_data["id"],
         }
-        static_page_ref01_data_dt0_loaded, err = static_page_ref01_ent.load(static_page_ref01_match_dt0, None)
-        assert err is None
+        static_page_ref01_data_dt0_loaded = static_page_ref01_ent.load(static_page_ref01_match_dt0, None)
         static_page_ref01_data_dt0_load_result = helpers.to_map(static_page_ref01_data_dt0_loaded)
         assert static_page_ref01_data_dt0_load_result is not None
         assert static_page_ref01_data_dt0_load_result["id"] == static_page_ref01_data["id"]
@@ -102,7 +100,6 @@ def _static_page_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_STATIC_PAGE_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _static_page_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

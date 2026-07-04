@@ -50,16 +50,14 @@ class GalleryEntityTest extends TestCase
         $gallery_ref01_ent = $client->Gallery(null);
         $gallery_ref01_match = [];
 
-        [$gallery_ref01_list_result, $err] = $gallery_ref01_ent->list($gallery_ref01_match, null);
-        $this->assertNull($err);
+        $gallery_ref01_list_result = $gallery_ref01_ent->list($gallery_ref01_match, null);
         $this->assertIsArray($gallery_ref01_list_result);
 
         // LOAD
         $gallery_ref01_match_dt0 = [
             "id" => $gallery_ref01_data["id"],
         ];
-        [$gallery_ref01_data_dt0_loaded, $err] = $gallery_ref01_ent->load($gallery_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $gallery_ref01_data_dt0_loaded = $gallery_ref01_ent->load($gallery_ref01_match_dt0, null);
         $gallery_ref01_data_dt0_load_result = Helpers::to_map($gallery_ref01_data_dt0_loaded);
         $this->assertNotNull($gallery_ref01_data_dt0_load_result);
         $this->assertEquals($gallery_ref01_data_dt0_load_result["id"], $gallery_ref01_data["id"]);
@@ -96,7 +94,6 @@ function gallery_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_GALLERY_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function gallery_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

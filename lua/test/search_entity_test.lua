@@ -92,7 +92,6 @@ function search_basic_setup(extra)
     ["ARTINSTITUTEOFCHICAGO_TEST_SEARCH_ENTID"] = idmap,
     ["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] = "FALSE",
     ["ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN"] = "FALSE",
-    ["ARTINSTITUTEOFCHICAGO_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function search_basic_setup(extra)
   if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["ARTINSTITUTEOFCHICAGO_APIKEY"],
       },
       extra or {},
     })

@@ -45,6 +45,7 @@ class DigitalPublicationArticleEntity
     end
   end
 
+  # @return [DigitalPublicationArticle, Hash] the current DigitalPublicationArticle data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class DigitalPublicationArticleEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of DigitalPublicationArticle fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single DigitalPublicationArticle.
+  #
+  # @param reqmatch [DigitalPublicationArticleLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [DigitalPublicationArticle, Hash] the loaded DigitalPublicationArticle; raises ArtInstituteOfChicagoError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class DigitalPublicationArticleEntity
 
 
   
+  # List DigitalPublicationArticle items matching the given filter.
+  #
+  # @param reqmatch [DigitalPublicationArticleListMatch, Hash, nil] match filter (any subset of DigitalPublicationArticle fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<DigitalPublicationArticle>, Array] the matching DigitalPublicationArticle items; raises ArtInstituteOfChicagoError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

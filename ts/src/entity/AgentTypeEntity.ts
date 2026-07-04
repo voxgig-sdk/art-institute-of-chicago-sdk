@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  AgentType,
+  AgentTypeLoadMatch,
+  AgentTypeListMatch,
+} from '../ArtInstituteOfChicagoTypes'
 
 // TODO: needs Entity superclass
-class AgentTypeEntity extends ArtInstituteOfChicagoEntityBase {
+class AgentTypeEntity extends ArtInstituteOfChicagoEntityBase<AgentType> {
 
   constructor(client: ArtInstituteOfChicagoSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class AgentTypeEntity extends ArtInstituteOfChicagoEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: AgentTypeLoadMatch, ctrl?: Control): Promise<AgentType> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class AgentTypeEntity extends ArtInstituteOfChicagoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<AgentType> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: AgentTypeListMatch, ctrl?: Control): Promise<AgentType[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class AgentTypeEntity extends ArtInstituteOfChicagoEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<AgentType[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

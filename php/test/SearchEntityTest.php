@@ -50,8 +50,7 @@ class SearchEntityTest extends TestCase
         $search_ref01_ent = $client->Search(null);
         $search_ref01_match = [];
 
-        [$search_ref01_list_result, $err] = $search_ref01_ent->list($search_ref01_match, null);
-        $this->assertNull($err);
+        $search_ref01_list_result = $search_ref01_ent->list($search_ref01_match, null);
         $this->assertIsArray($search_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function search_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_SEARCH_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function search_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

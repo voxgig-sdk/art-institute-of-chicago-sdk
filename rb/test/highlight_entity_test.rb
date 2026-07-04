@@ -43,16 +43,14 @@ class HighlightEntityTest < Minitest::Test
     highlight_ref01_ent = client.Highlight(nil)
     highlight_ref01_match = {}
 
-    highlight_ref01_list_result, err = highlight_ref01_ent.list(highlight_ref01_match, nil)
-    assert_nil err
+    highlight_ref01_list_result = highlight_ref01_ent.list(highlight_ref01_match, nil)
     assert highlight_ref01_list_result.is_a?(Array)
 
     # LOAD
     highlight_ref01_match_dt0 = {
       "id" => highlight_ref01_data["id"],
     }
-    highlight_ref01_data_dt0_loaded, err = highlight_ref01_ent.load(highlight_ref01_match_dt0, nil)
-    assert_nil err
+    highlight_ref01_data_dt0_loaded = highlight_ref01_ent.load(highlight_ref01_match_dt0, nil)
     highlight_ref01_data_dt0_load_result = Helpers.to_map(highlight_ref01_data_dt0_loaded)
     assert !highlight_ref01_data_dt0_load_result.nil?
     assert_equal highlight_ref01_data_dt0_load_result["id"], highlight_ref01_data["id"]
@@ -93,7 +91,6 @@ def highlight_basic_setup(extra)
     "ARTINSTITUTEOFCHICAGO_TEST_HIGHLIGHT_ENTID" => idmap,
     "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
     "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-    "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def highlight_basic_setup(extra)
   if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ARTINSTITUTEOFCHICAGO_APIKEY"],
       },
       extra || {},
     ])

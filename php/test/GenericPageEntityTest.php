@@ -50,16 +50,14 @@ class GenericPageEntityTest extends TestCase
         $generic_page_ref01_ent = $client->GenericPage(null);
         $generic_page_ref01_match = [];
 
-        [$generic_page_ref01_list_result, $err] = $generic_page_ref01_ent->list($generic_page_ref01_match, null);
-        $this->assertNull($err);
+        $generic_page_ref01_list_result = $generic_page_ref01_ent->list($generic_page_ref01_match, null);
         $this->assertIsArray($generic_page_ref01_list_result);
 
         // LOAD
         $generic_page_ref01_match_dt0 = [
             "id" => $generic_page_ref01_data["id"],
         ];
-        [$generic_page_ref01_data_dt0_loaded, $err] = $generic_page_ref01_ent->load($generic_page_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $generic_page_ref01_data_dt0_loaded = $generic_page_ref01_ent->load($generic_page_ref01_match_dt0, null);
         $generic_page_ref01_data_dt0_load_result = Helpers::to_map($generic_page_ref01_data_dt0_loaded);
         $this->assertNotNull($generic_page_ref01_data_dt0_load_result);
         $this->assertEquals($generic_page_ref01_data_dt0_load_result["id"], $generic_page_ref01_data["id"]);
@@ -96,7 +94,6 @@ function generic_page_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_GENERIC_PAGE_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function generic_page_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

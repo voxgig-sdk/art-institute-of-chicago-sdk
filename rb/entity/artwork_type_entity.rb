@@ -45,6 +45,7 @@ class ArtworkTypeEntity
     end
   end
 
+  # @return [ArtworkType, Hash] the current ArtworkType data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class ArtworkTypeEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of ArtworkType fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single ArtworkType.
+  #
+  # @param reqmatch [ArtworkTypeLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [ArtworkType, Hash] the loaded ArtworkType; raises ArtInstituteOfChicagoError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class ArtworkTypeEntity
 
 
   
+  # List ArtworkType items matching the given filter.
+  #
+  # @param reqmatch [ArtworkTypeListMatch, Hash, nil] match filter (any subset of ArtworkType fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<ArtworkType>, Array] the matching ArtworkType items; raises ArtInstituteOfChicagoError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

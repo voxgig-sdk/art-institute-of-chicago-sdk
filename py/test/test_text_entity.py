@@ -50,16 +50,14 @@ class TestTextEntity:
         text_ref01_ent = client.Text(None)
         text_ref01_match = {}
 
-        text_ref01_list_result, err = text_ref01_ent.list(text_ref01_match, None)
-        assert err is None
+        text_ref01_list_result = text_ref01_ent.list(text_ref01_match, None)
         assert isinstance(text_ref01_list_result, list)
 
         # LOAD
         text_ref01_match_dt0 = {
             "id": text_ref01_data["id"],
         }
-        text_ref01_data_dt0_loaded, err = text_ref01_ent.load(text_ref01_match_dt0, None)
-        assert err is None
+        text_ref01_data_dt0_loaded = text_ref01_ent.load(text_ref01_match_dt0, None)
         text_ref01_data_dt0_load_result = helpers.to_map(text_ref01_data_dt0_loaded)
         assert text_ref01_data_dt0_load_result is not None
         assert text_ref01_data_dt0_load_result["id"] == text_ref01_data["id"]
@@ -102,7 +100,6 @@ def _text_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_TEXT_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _text_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

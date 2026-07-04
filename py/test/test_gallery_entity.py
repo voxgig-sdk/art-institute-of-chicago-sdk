@@ -50,16 +50,14 @@ class TestGalleryEntity:
         gallery_ref01_ent = client.Gallery(None)
         gallery_ref01_match = {}
 
-        gallery_ref01_list_result, err = gallery_ref01_ent.list(gallery_ref01_match, None)
-        assert err is None
+        gallery_ref01_list_result = gallery_ref01_ent.list(gallery_ref01_match, None)
         assert isinstance(gallery_ref01_list_result, list)
 
         # LOAD
         gallery_ref01_match_dt0 = {
             "id": gallery_ref01_data["id"],
         }
-        gallery_ref01_data_dt0_loaded, err = gallery_ref01_ent.load(gallery_ref01_match_dt0, None)
-        assert err is None
+        gallery_ref01_data_dt0_loaded = gallery_ref01_ent.load(gallery_ref01_match_dt0, None)
         gallery_ref01_data_dt0_load_result = helpers.to_map(gallery_ref01_data_dt0_loaded)
         assert gallery_ref01_data_dt0_load_result is not None
         assert gallery_ref01_data_dt0_load_result["id"] == gallery_ref01_data["id"]
@@ -102,7 +100,6 @@ def _gallery_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_GALLERY_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _gallery_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

@@ -50,16 +50,14 @@ class AgentRoleEntityTest extends TestCase
         $agent_role_ref01_ent = $client->AgentRole(null);
         $agent_role_ref01_match = [];
 
-        [$agent_role_ref01_list_result, $err] = $agent_role_ref01_ent->list($agent_role_ref01_match, null);
-        $this->assertNull($err);
+        $agent_role_ref01_list_result = $agent_role_ref01_ent->list($agent_role_ref01_match, null);
         $this->assertIsArray($agent_role_ref01_list_result);
 
         // LOAD
         $agent_role_ref01_match_dt0 = [
             "id" => $agent_role_ref01_data["id"],
         ];
-        [$agent_role_ref01_data_dt0_loaded, $err] = $agent_role_ref01_ent->load($agent_role_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $agent_role_ref01_data_dt0_loaded = $agent_role_ref01_ent->load($agent_role_ref01_match_dt0, null);
         $agent_role_ref01_data_dt0_load_result = Helpers::to_map($agent_role_ref01_data_dt0_loaded);
         $this->assertNotNull($agent_role_ref01_data_dt0_load_result);
         $this->assertEquals($agent_role_ref01_data_dt0_load_result["id"], $agent_role_ref01_data["id"]);
@@ -96,7 +94,6 @@ function agent_role_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_AGENT_ROLE_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function agent_role_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

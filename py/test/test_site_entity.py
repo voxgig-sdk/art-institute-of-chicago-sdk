@@ -50,16 +50,14 @@ class TestSiteEntity:
         site_ref01_ent = client.Site(None)
         site_ref01_match = {}
 
-        site_ref01_list_result, err = site_ref01_ent.list(site_ref01_match, None)
-        assert err is None
+        site_ref01_list_result = site_ref01_ent.list(site_ref01_match, None)
         assert isinstance(site_ref01_list_result, list)
 
         # LOAD
         site_ref01_match_dt0 = {
             "id": site_ref01_data["id"],
         }
-        site_ref01_data_dt0_loaded, err = site_ref01_ent.load(site_ref01_match_dt0, None)
-        assert err is None
+        site_ref01_data_dt0_loaded = site_ref01_ent.load(site_ref01_match_dt0, None)
         site_ref01_data_dt0_load_result = helpers.to_map(site_ref01_data_dt0_loaded)
         assert site_ref01_data_dt0_load_result is not None
         assert site_ref01_data_dt0_load_result["id"] == site_ref01_data["id"]
@@ -102,7 +100,6 @@ def _site_basic_setup(extra):
         "ARTINSTITUTEOFCHICAGO_TEST_SITE_ENTID": idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN": "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _site_basic_setup(extra):
     if env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ARTINSTITUTEOFCHICAGO_APIKEY"),
             },
             extra or {},
         ])

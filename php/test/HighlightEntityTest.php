@@ -50,16 +50,14 @@ class HighlightEntityTest extends TestCase
         $highlight_ref01_ent = $client->Highlight(null);
         $highlight_ref01_match = [];
 
-        [$highlight_ref01_list_result, $err] = $highlight_ref01_ent->list($highlight_ref01_match, null);
-        $this->assertNull($err);
+        $highlight_ref01_list_result = $highlight_ref01_ent->list($highlight_ref01_match, null);
         $this->assertIsArray($highlight_ref01_list_result);
 
         // LOAD
         $highlight_ref01_match_dt0 = [
             "id" => $highlight_ref01_data["id"],
         ];
-        [$highlight_ref01_data_dt0_loaded, $err] = $highlight_ref01_ent->load($highlight_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $highlight_ref01_data_dt0_loaded = $highlight_ref01_ent->load($highlight_ref01_match_dt0, null);
         $highlight_ref01_data_dt0_load_result = Helpers::to_map($highlight_ref01_data_dt0_loaded);
         $this->assertNotNull($highlight_ref01_data_dt0_load_result);
         $this->assertEquals($highlight_ref01_data_dt0_load_result["id"], $highlight_ref01_data["id"]);
@@ -96,7 +94,6 @@ function highlight_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_HIGHLIGHT_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function highlight_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

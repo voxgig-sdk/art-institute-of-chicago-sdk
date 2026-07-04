@@ -50,16 +50,14 @@ class EventProgramEntityTest extends TestCase
         $event_program_ref01_ent = $client->EventProgram(null);
         $event_program_ref01_match = [];
 
-        [$event_program_ref01_list_result, $err] = $event_program_ref01_ent->list($event_program_ref01_match, null);
-        $this->assertNull($err);
+        $event_program_ref01_list_result = $event_program_ref01_ent->list($event_program_ref01_match, null);
         $this->assertIsArray($event_program_ref01_list_result);
 
         // LOAD
         $event_program_ref01_match_dt0 = [
             "id" => $event_program_ref01_data["id"],
         ];
-        [$event_program_ref01_data_dt0_loaded, $err] = $event_program_ref01_ent->load($event_program_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $event_program_ref01_data_dt0_loaded = $event_program_ref01_ent->load($event_program_ref01_match_dt0, null);
         $event_program_ref01_data_dt0_load_result = Helpers::to_map($event_program_ref01_data_dt0_loaded);
         $this->assertNotNull($event_program_ref01_data_dt0_load_result);
         $this->assertEquals($event_program_ref01_data_dt0_load_result["id"], $event_program_ref01_data["id"]);
@@ -96,7 +94,6 @@ function event_program_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_EVENT_PROGRAM_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function event_program_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

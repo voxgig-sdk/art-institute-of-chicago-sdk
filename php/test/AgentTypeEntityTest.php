@@ -50,16 +50,14 @@ class AgentTypeEntityTest extends TestCase
         $agent_type_ref01_ent = $client->AgentType(null);
         $agent_type_ref01_match = [];
 
-        [$agent_type_ref01_list_result, $err] = $agent_type_ref01_ent->list($agent_type_ref01_match, null);
-        $this->assertNull($err);
+        $agent_type_ref01_list_result = $agent_type_ref01_ent->list($agent_type_ref01_match, null);
         $this->assertIsArray($agent_type_ref01_list_result);
 
         // LOAD
         $agent_type_ref01_match_dt0 = [
             "id" => $agent_type_ref01_data["id"],
         ];
-        [$agent_type_ref01_data_dt0_loaded, $err] = $agent_type_ref01_ent->load($agent_type_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $agent_type_ref01_data_dt0_loaded = $agent_type_ref01_ent->load($agent_type_ref01_match_dt0, null);
         $agent_type_ref01_data_dt0_load_result = Helpers::to_map($agent_type_ref01_data_dt0_loaded);
         $this->assertNotNull($agent_type_ref01_data_dt0_load_result);
         $this->assertEquals($agent_type_ref01_data_dt0_load_result["id"], $agent_type_ref01_data["id"]);
@@ -96,7 +94,6 @@ function agent_type_basic_setup($extra)
         "ARTINSTITUTEOFCHICAGO_TEST_AGENT_TYPE_ENTID" => $idmap,
         "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
         "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function agent_type_basic_setup($extra)
     if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ARTINSTITUTEOFCHICAGO_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ArtworkTypeLoadMatch
+---@param ctrl? table
+---@return ArtworkType
+---@return string? err
 function ArtworkTypeEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch ArtworkTypeListMatch
+---@param ctrl? table
+---@return ArtworkType[]
+---@return string? err
 function ArtworkTypeEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

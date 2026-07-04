@@ -43,16 +43,14 @@ class GenericPageEntityTest < Minitest::Test
     generic_page_ref01_ent = client.GenericPage(nil)
     generic_page_ref01_match = {}
 
-    generic_page_ref01_list_result, err = generic_page_ref01_ent.list(generic_page_ref01_match, nil)
-    assert_nil err
+    generic_page_ref01_list_result = generic_page_ref01_ent.list(generic_page_ref01_match, nil)
     assert generic_page_ref01_list_result.is_a?(Array)
 
     # LOAD
     generic_page_ref01_match_dt0 = {
       "id" => generic_page_ref01_data["id"],
     }
-    generic_page_ref01_data_dt0_loaded, err = generic_page_ref01_ent.load(generic_page_ref01_match_dt0, nil)
-    assert_nil err
+    generic_page_ref01_data_dt0_loaded = generic_page_ref01_ent.load(generic_page_ref01_match_dt0, nil)
     generic_page_ref01_data_dt0_load_result = Helpers.to_map(generic_page_ref01_data_dt0_loaded)
     assert !generic_page_ref01_data_dt0_load_result.nil?
     assert_equal generic_page_ref01_data_dt0_load_result["id"], generic_page_ref01_data["id"]
@@ -93,7 +91,6 @@ def generic_page_basic_setup(extra)
     "ARTINSTITUTEOFCHICAGO_TEST_GENERIC_PAGE_ENTID" => idmap,
     "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
     "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-    "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def generic_page_basic_setup(extra)
   if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ARTINSTITUTEOFCHICAGO_APIKEY"],
       },
       extra || {},
     ])

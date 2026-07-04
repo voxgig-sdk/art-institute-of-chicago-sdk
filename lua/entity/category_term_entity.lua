@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch CategoryTermLoadMatch
+---@param ctrl? table
+---@return CategoryTerm
+---@return string? err
 function CategoryTermEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch CategoryTermListMatch
+---@param ctrl? table
+---@return CategoryTerm[]
+---@return string? err
 function CategoryTermEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

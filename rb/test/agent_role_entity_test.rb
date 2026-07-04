@@ -43,16 +43,14 @@ class AgentRoleEntityTest < Minitest::Test
     agent_role_ref01_ent = client.AgentRole(nil)
     agent_role_ref01_match = {}
 
-    agent_role_ref01_list_result, err = agent_role_ref01_ent.list(agent_role_ref01_match, nil)
-    assert_nil err
+    agent_role_ref01_list_result = agent_role_ref01_ent.list(agent_role_ref01_match, nil)
     assert agent_role_ref01_list_result.is_a?(Array)
 
     # LOAD
     agent_role_ref01_match_dt0 = {
       "id" => agent_role_ref01_data["id"],
     }
-    agent_role_ref01_data_dt0_loaded, err = agent_role_ref01_ent.load(agent_role_ref01_match_dt0, nil)
-    assert_nil err
+    agent_role_ref01_data_dt0_loaded = agent_role_ref01_ent.load(agent_role_ref01_match_dt0, nil)
     agent_role_ref01_data_dt0_load_result = Helpers.to_map(agent_role_ref01_data_dt0_loaded)
     assert !agent_role_ref01_data_dt0_load_result.nil?
     assert_equal agent_role_ref01_data_dt0_load_result["id"], agent_role_ref01_data["id"]
@@ -93,7 +91,6 @@ def agent_role_basic_setup(extra)
     "ARTINSTITUTEOFCHICAGO_TEST_AGENT_ROLE_ENTID" => idmap,
     "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
     "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
-    "ARTINSTITUTEOFCHICAGO_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def agent_role_basic_setup(extra)
   if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ARTINSTITUTEOFCHICAGO_APIKEY"],
       },
       extra || {},
     ])

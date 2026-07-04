@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ArtworkPlaceQualifierLoadMatch
+---@param ctrl? table
+---@return ArtworkPlaceQualifier
+---@return string? err
 function ArtworkPlaceQualifierEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch ArtworkPlaceQualifierListMatch
+---@param ctrl? table
+---@return ArtworkPlaceQualifier[]
+---@return string? err
 function ArtworkPlaceQualifierEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
