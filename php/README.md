@@ -29,18 +29,16 @@ require_once 'artinstituteofchicago_sdk.php';
 $client = new ArtInstituteOfChicagoSDK();
 ```
 
-### 2. List agents
+### 2. List agent records
 
 ```php
 try {
-    $result = $client->agent()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Agent records — iterate directly.
+    $agents = $client->Agent()->list();
+    foreach ($agents as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -49,9 +47,10 @@ try {
 
 ```php
 try {
-    $result = $client->agent()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Agent record (throws on error).
+    $agent = $client->Agent()->load(["id" => "example_id"]);
+    print_r($agent);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -97,13 +96,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = ArtInstituteOfChicagoSDK::test();
+$client = ArtInstituteOfChicagoSDK::test([
+    "entity" => ["agent" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->agent()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$agent = $client->Agent()->load(["id" => "test01"]);
+print_r($agent);
 ```
 
 ### Use a custom fetch function
@@ -182,27 +185,27 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Agent` | `($data): AgentEntity` | Create a Agent entity instance. |
-| `AgentRole` | `($data): AgentRoleEntity` | Create a AgentRole entity instance. |
-| `AgentType` | `($data): AgentTypeEntity` | Create a AgentType entity instance. |
-| `Article` | `($data): ArticleEntity` | Create a Article entity instance. |
-| `Artwork` | `($data): ArtworkEntity` | Create a Artwork entity instance. |
-| `ArtworkDateQualifier` | `($data): ArtworkDateQualifierEntity` | Create a ArtworkDateQualifier entity instance. |
-| `ArtworkPlaceQualifier` | `($data): ArtworkPlaceQualifierEntity` | Create a ArtworkPlaceQualifier entity instance. |
-| `ArtworkType` | `($data): ArtworkTypeEntity` | Create a ArtworkType entity instance. |
+| `Agent` | `($data): AgentEntity` | Create an Agent entity instance. |
+| `AgentRole` | `($data): AgentRoleEntity` | Create an AgentRole entity instance. |
+| `AgentType` | `($data): AgentTypeEntity` | Create an AgentType entity instance. |
+| `Article` | `($data): ArticleEntity` | Create an Article entity instance. |
+| `Artwork` | `($data): ArtworkEntity` | Create an Artwork entity instance. |
+| `ArtworkDateQualifier` | `($data): ArtworkDateQualifierEntity` | Create an ArtworkDateQualifier entity instance. |
+| `ArtworkPlaceQualifier` | `($data): ArtworkPlaceQualifierEntity` | Create an ArtworkPlaceQualifier entity instance. |
+| `ArtworkType` | `($data): ArtworkTypeEntity` | Create an ArtworkType entity instance. |
 | `CategoryTerm` | `($data): CategoryTermEntity` | Create a CategoryTerm entity instance. |
 | `DigitalPublication` | `($data): DigitalPublicationEntity` | Create a DigitalPublication entity instance. |
 | `DigitalPublicationArticle` | `($data): DigitalPublicationArticleEntity` | Create a DigitalPublicationArticle entity instance. |
-| `EducatorResource` | `($data): EducatorResourceEntity` | Create a EducatorResource entity instance. |
-| `Event` | `($data): EventEntity` | Create a Event entity instance. |
-| `EventOccurrence` | `($data): EventOccurrenceEntity` | Create a EventOccurrence entity instance. |
-| `EventProgram` | `($data): EventProgramEntity` | Create a EventProgram entity instance. |
-| `Exhibition` | `($data): ExhibitionEntity` | Create a Exhibition entity instance. |
+| `EducatorResource` | `($data): EducatorResourceEntity` | Create an EducatorResource entity instance. |
+| `Event` | `($data): EventEntity` | Create an Event entity instance. |
+| `EventOccurrence` | `($data): EventOccurrenceEntity` | Create an EventOccurrence entity instance. |
+| `EventProgram` | `($data): EventProgramEntity` | Create an EventProgram entity instance. |
+| `Exhibition` | `($data): ExhibitionEntity` | Create an Exhibition entity instance. |
 | `Gallery` | `($data): GalleryEntity` | Create a Gallery entity instance. |
 | `GenericPage` | `($data): GenericPageEntity` | Create a GenericPage entity instance. |
 | `Highlight` | `($data): HighlightEntity` | Create a Highlight entity instance. |
 | `Hour` | `($data): HourEntity` | Create a Hour entity instance. |
-| `Image` | `($data): ImageEntity` | Create a Image entity instance. |
+| `Image` | `($data): ImageEntity` | Create an Image entity instance. |
 | `LandingPage` | `($data): LandingPageEntity` | Create a LandingPage entity instance. |
 | `Place` | `($data): PlaceEntity` | Create a Place entity instance. |
 | `PressRelease` | `($data): PressReleaseEntity` | Create a PressRelease entity instance. |
@@ -1227,7 +1230,7 @@ API path: `/videos`
 
 ### Agent
 
-Create an instance: `const agent = client.agent`
+Create an instance: `$agent = $client->Agent();`
 
 #### Operations
 
@@ -1259,20 +1262,22 @@ Create an instance: `const agent = client.agent`
 
 #### Example: Load
 
-```ts
-const agent = await client.agent.load({ id: 'agent_id' })
+```php
+// load() returns the bare Agent record (throws on error).
+$agent = $client->Agent()->load(["id" => "agent_id"]);
 ```
 
 #### Example: List
 
-```ts
-const agents = await client.agent.list()
+```php
+// list() returns an array of Agent records (throws on error).
+$agents = $client->Agent()->list();
 ```
 
 
 ### AgentRole
 
-Create an instance: `const agent_role = client.agent_role`
+Create an instance: `$agent_role = $client->AgentRole();`
 
 #### Operations
 
@@ -1297,20 +1302,22 @@ Create an instance: `const agent_role = client.agent_role`
 
 #### Example: Load
 
-```ts
-const agent_role = await client.agent_role.load({ id: 'agent_role_id' })
+```php
+// load() returns the bare AgentRole record (throws on error).
+$agent_role = $client->AgentRole()->load(["id" => "agent_role_id"]);
 ```
 
 #### Example: List
 
-```ts
-const agent_roles = await client.agent_role.list()
+```php
+// list() returns an array of AgentRole records (throws on error).
+$agent_roles = $client->AgentRole()->list();
 ```
 
 
 ### AgentType
 
-Create an instance: `const agent_type = client.agent_type`
+Create an instance: `$agent_type = $client->AgentType();`
 
 #### Operations
 
@@ -1335,20 +1342,22 @@ Create an instance: `const agent_type = client.agent_type`
 
 #### Example: Load
 
-```ts
-const agent_type = await client.agent_type.load({ id: 'agent_type_id' })
+```php
+// load() returns the bare AgentType record (throws on error).
+$agent_type = $client->AgentType()->load(["id" => "agent_type_id"]);
 ```
 
 #### Example: List
 
-```ts
-const agent_types = await client.agent_type.list()
+```php
+// list() returns an array of AgentType records (throws on error).
+$agent_types = $client->AgentType()->list();
 ```
 
 
 ### Article
 
-Create an instance: `const article = client.article`
+Create an instance: `$article = $client->Article();`
 
 #### Operations
 
@@ -1374,20 +1383,22 @@ Create an instance: `const article = client.article`
 
 #### Example: Load
 
-```ts
-const article = await client.article.load({ id: 'article_id' })
+```php
+// load() returns the bare Article record (throws on error).
+$article = $client->Article()->load(["id" => "article_id"]);
 ```
 
 #### Example: List
 
-```ts
-const articles = await client.article.list()
+```php
+// list() returns an array of Article records (throws on error).
+$articles = $client->Article()->list();
 ```
 
 
 ### Artwork
 
-Create an instance: `const artwork = client.artwork`
+Create an instance: `$artwork = $client->Artwork();`
 
 #### Operations
 
@@ -1498,20 +1509,22 @@ Create an instance: `const artwork = client.artwork`
 
 #### Example: Load
 
-```ts
-const artwork = await client.artwork.load({ id: 'artwork_id' })
+```php
+// load() returns the bare Artwork record (throws on error).
+$artwork = $client->Artwork()->load(["id" => "artwork_id"]);
 ```
 
 #### Example: List
 
-```ts
-const artworks = await client.artwork.list()
+```php
+// list() returns an array of Artwork records (throws on error).
+$artworks = $client->Artwork()->list();
 ```
 
 
 ### ArtworkDateQualifier
 
-Create an instance: `const artwork_date_qualifier = client.artwork_date_qualifier`
+Create an instance: `$artwork_date_qualifier = $client->ArtworkDateQualifier();`
 
 #### Operations
 
@@ -1536,20 +1549,22 @@ Create an instance: `const artwork_date_qualifier = client.artwork_date_qualifie
 
 #### Example: Load
 
-```ts
-const artwork_date_qualifier = await client.artwork_date_qualifier.load({ id: 'artwork_date_qualifier_id' })
+```php
+// load() returns the bare ArtworkDateQualifier record (throws on error).
+$artwork_date_qualifier = $client->ArtworkDateQualifier()->load(["id" => "artwork_date_qualifier_id"]);
 ```
 
 #### Example: List
 
-```ts
-const artwork_date_qualifiers = await client.artwork_date_qualifier.list()
+```php
+// list() returns an array of ArtworkDateQualifier records (throws on error).
+$artwork_date_qualifiers = $client->ArtworkDateQualifier()->list();
 ```
 
 
 ### ArtworkPlaceQualifier
 
-Create an instance: `const artwork_place_qualifier = client.artwork_place_qualifier`
+Create an instance: `$artwork_place_qualifier = $client->ArtworkPlaceQualifier();`
 
 #### Operations
 
@@ -1574,20 +1589,22 @@ Create an instance: `const artwork_place_qualifier = client.artwork_place_qualif
 
 #### Example: Load
 
-```ts
-const artwork_place_qualifier = await client.artwork_place_qualifier.load({ id: 'artwork_place_qualifier_id' })
+```php
+// load() returns the bare ArtworkPlaceQualifier record (throws on error).
+$artwork_place_qualifier = $client->ArtworkPlaceQualifier()->load(["id" => "artwork_place_qualifier_id"]);
 ```
 
 #### Example: List
 
-```ts
-const artwork_place_qualifiers = await client.artwork_place_qualifier.list()
+```php
+// list() returns an array of ArtworkPlaceQualifier records (throws on error).
+$artwork_place_qualifiers = $client->ArtworkPlaceQualifier()->list();
 ```
 
 
 ### ArtworkType
 
-Create an instance: `const artwork_type = client.artwork_type`
+Create an instance: `$artwork_type = $client->ArtworkType();`
 
 #### Operations
 
@@ -1613,20 +1630,22 @@ Create an instance: `const artwork_type = client.artwork_type`
 
 #### Example: Load
 
-```ts
-const artwork_type = await client.artwork_type.load({ id: 'artwork_type_id' })
+```php
+// load() returns the bare ArtworkType record (throws on error).
+$artwork_type = $client->ArtworkType()->load(["id" => "artwork_type_id"]);
 ```
 
 #### Example: List
 
-```ts
-const artwork_types = await client.artwork_type.list()
+```php
+// list() returns an array of ArtworkType records (throws on error).
+$artwork_types = $client->ArtworkType()->list();
 ```
 
 
 ### CategoryTerm
 
-Create an instance: `const category_term = client.category_term`
+Create an instance: `$category_term = $client->CategoryTerm();`
 
 #### Operations
 
@@ -1653,20 +1672,22 @@ Create an instance: `const category_term = client.category_term`
 
 #### Example: Load
 
-```ts
-const category_term = await client.category_term.load({ id: 'category_term_id' })
+```php
+// load() returns the bare CategoryTerm record (throws on error).
+$category_term = $client->CategoryTerm()->load(["id" => "category_term_id"]);
 ```
 
 #### Example: List
 
-```ts
-const category_terms = await client.category_term.list()
+```php
+// list() returns an array of CategoryTerm records (throws on error).
+$category_terms = $client->CategoryTerm()->list();
 ```
 
 
 ### DigitalPublication
 
-Create an instance: `const digital_publication = client.digital_publication`
+Create an instance: `$digital_publication = $client->DigitalPublication();`
 
 #### Operations
 
@@ -1693,20 +1714,22 @@ Create an instance: `const digital_publication = client.digital_publication`
 
 #### Example: Load
 
-```ts
-const digital_publication = await client.digital_publication.load({ id: 'digital_publication_id' })
+```php
+// load() returns the bare DigitalPublication record (throws on error).
+$digital_publication = $client->DigitalPublication()->load(["id" => "digital_publication_id"]);
 ```
 
 #### Example: List
 
-```ts
-const digital_publications = await client.digital_publication.list()
+```php
+// list() returns an array of DigitalPublication records (throws on error).
+$digital_publications = $client->DigitalPublication()->list();
 ```
 
 
 ### DigitalPublicationArticle
 
-Create an instance: `const digital_publication_article = client.digital_publication_article`
+Create an instance: `$digital_publication_article = $client->DigitalPublicationArticle();`
 
 #### Operations
 
@@ -1735,20 +1758,22 @@ Create an instance: `const digital_publication_article = client.digital_publicat
 
 #### Example: Load
 
-```ts
-const digital_publication_article = await client.digital_publication_article.load({ id: 'digital_publication_article_id' })
+```php
+// load() returns the bare DigitalPublicationArticle record (throws on error).
+$digital_publication_article = $client->DigitalPublicationArticle()->load(["id" => "digital_publication_article_id"]);
 ```
 
 #### Example: List
 
-```ts
-const digital_publication_articles = await client.digital_publication_article.list()
+```php
+// list() returns an array of DigitalPublicationArticle records (throws on error).
+$digital_publication_articles = $client->DigitalPublicationArticle()->list();
 ```
 
 
 ### EducatorResource
 
-Create an instance: `const educator_resource = client.educator_resource`
+Create an instance: `$educator_resource = $client->EducatorResource();`
 
 #### Operations
 
@@ -1775,20 +1800,22 @@ Create an instance: `const educator_resource = client.educator_resource`
 
 #### Example: Load
 
-```ts
-const educator_resource = await client.educator_resource.load({ id: 'educator_resource_id' })
+```php
+// load() returns the bare EducatorResource record (throws on error).
+$educator_resource = $client->EducatorResource()->load(["id" => "educator_resource_id"]);
 ```
 
 #### Example: List
 
-```ts
-const educator_resources = await client.educator_resource.list()
+```php
+// list() returns an array of EducatorResource records (throws on error).
+$educator_resources = $client->EducatorResource()->list();
 ```
 
 
 ### Event
 
-Create an instance: `const event = client.event`
+Create an instance: `$event = $client->Event();`
 
 #### Operations
 
@@ -1857,20 +1884,22 @@ Create an instance: `const event = client.event`
 
 #### Example: Load
 
-```ts
-const event = await client.event.load({ id: 'event_id' })
+```php
+// load() returns the bare Event record (throws on error).
+$event = $client->Event()->load(["id" => "event_id"]);
 ```
 
 #### Example: List
 
-```ts
-const events = await client.event.list()
+```php
+// list() returns an array of Event records (throws on error).
+$events = $client->Event()->list();
 ```
 
 
 ### EventOccurrence
 
-Create an instance: `const event_occurrence = client.event_occurrence`
+Create an instance: `$event_occurrence = $client->EventOccurrence();`
 
 #### Operations
 
@@ -1911,20 +1940,22 @@ Create an instance: `const event_occurrence = client.event_occurrence`
 
 #### Example: Load
 
-```ts
-const event_occurrence = await client.event_occurrence.load({ id: 'event_occurrence_id' })
+```php
+// load() returns the bare EventOccurrence record (throws on error).
+$event_occurrence = $client->EventOccurrence()->load(["id" => "event_occurrence_id"]);
 ```
 
 #### Example: List
 
-```ts
-const event_occurrences = await client.event_occurrence.list()
+```php
+// list() returns an array of EventOccurrence records (throws on error).
+$event_occurrences = $client->EventOccurrence()->list();
 ```
 
 
 ### EventProgram
 
-Create an instance: `const event_program = client.event_program`
+Create an instance: `$event_program = $client->EventProgram();`
 
 #### Operations
 
@@ -1951,20 +1982,22 @@ Create an instance: `const event_program = client.event_program`
 
 #### Example: Load
 
-```ts
-const event_program = await client.event_program.load({ id: 'event_program_id' })
+```php
+// load() returns the bare EventProgram record (throws on error).
+$event_program = $client->EventProgram()->load(["id" => "event_program_id"]);
 ```
 
 #### Example: List
 
-```ts
-const event_programs = await client.event_program.list()
+```php
+// list() returns an array of EventProgram records (throws on error).
+$event_programs = $client->EventProgram()->list();
 ```
 
 
 ### Exhibition
 
-Create an instance: `const exhibition = client.exhibition`
+Create an instance: `$exhibition = $client->Exhibition();`
 
 #### Operations
 
@@ -2007,20 +2040,22 @@ Create an instance: `const exhibition = client.exhibition`
 
 #### Example: Load
 
-```ts
-const exhibition = await client.exhibition.load({ id: 'exhibition_id' })
+```php
+// load() returns the bare Exhibition record (throws on error).
+$exhibition = $client->Exhibition()->load(["id" => "exhibition_id"]);
 ```
 
 #### Example: List
 
-```ts
-const exhibitions = await client.exhibition.list()
+```php
+// list() returns an array of Exhibition records (throws on error).
+$exhibitions = $client->Exhibition()->list();
 ```
 
 
 ### Gallery
 
-Create an instance: `const gallery = client.gallery`
+Create an instance: `$gallery = $client->Gallery();`
 
 #### Operations
 
@@ -2052,20 +2087,22 @@ Create an instance: `const gallery = client.gallery`
 
 #### Example: Load
 
-```ts
-const gallery = await client.gallery.load({ id: 'gallery_id' })
+```php
+// load() returns the bare Gallery record (throws on error).
+$gallery = $client->Gallery()->load(["id" => "gallery_id"]);
 ```
 
 #### Example: List
 
-```ts
-const gallerys = await client.gallery.list()
+```php
+// list() returns an array of Gallery records (throws on error).
+$gallerys = $client->Gallery()->list();
 ```
 
 
 ### GenericPage
 
-Create an instance: `const generic_page = client.generic_page`
+Create an instance: `$generic_page = $client->GenericPage();`
 
 #### Operations
 
@@ -2093,20 +2130,22 @@ Create an instance: `const generic_page = client.generic_page`
 
 #### Example: Load
 
-```ts
-const generic_page = await client.generic_page.load({ id: 'generic_page_id' })
+```php
+// load() returns the bare GenericPage record (throws on error).
+$generic_page = $client->GenericPage()->load(["id" => "generic_page_id"]);
 ```
 
 #### Example: List
 
-```ts
-const generic_pages = await client.generic_page.list()
+```php
+// list() returns an array of GenericPage records (throws on error).
+$generic_pages = $client->GenericPage()->list();
 ```
 
 
 ### Highlight
 
-Create an instance: `const highlight = client.highlight`
+Create an instance: `$highlight = $client->Highlight();`
 
 #### Operations
 
@@ -2132,20 +2171,22 @@ Create an instance: `const highlight = client.highlight`
 
 #### Example: Load
 
-```ts
-const highlight = await client.highlight.load({ id: 'highlight_id' })
+```php
+// load() returns the bare Highlight record (throws on error).
+$highlight = $client->Highlight()->load(["id" => "highlight_id"]);
 ```
 
 #### Example: List
 
-```ts
-const highlights = await client.highlight.list()
+```php
+// list() returns an array of Highlight records (throws on error).
+$highlights = $client->Highlight()->list();
 ```
 
 
 ### Hour
 
-Create an instance: `const hour = client.hour`
+Create an instance: `$hour = $client->Hour();`
 
 #### Operations
 
@@ -2207,20 +2248,22 @@ Create an instance: `const hour = client.hour`
 
 #### Example: Load
 
-```ts
-const hour = await client.hour.load({ id: 'hour_id' })
+```php
+// load() returns the bare Hour record (throws on error).
+$hour = $client->Hour()->load(["id" => "hour_id"]);
 ```
 
 #### Example: List
 
-```ts
-const hours = await client.hour.list()
+```php
+// list() returns an array of Hour records (throws on error).
+$hours = $client->Hour()->list();
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `$image = $client->Image();`
 
 #### Operations
 
@@ -2265,20 +2308,22 @@ Create an instance: `const image = client.image`
 
 #### Example: Load
 
-```ts
-const image = await client.image.load({ id: 'image_id' })
+```php
+// load() returns the bare Image record (throws on error).
+$image = $client->Image()->load(["id" => "image_id"]);
 ```
 
 #### Example: List
 
-```ts
-const images = await client.image.list()
+```php
+// list() returns an array of Image records (throws on error).
+$images = $client->Image()->list();
 ```
 
 
 ### LandingPage
 
-Create an instance: `const landing_page = client.landing_page`
+Create an instance: `$landing_page = $client->LandingPage();`
 
 #### Operations
 
@@ -2306,20 +2351,22 @@ Create an instance: `const landing_page = client.landing_page`
 
 #### Example: Load
 
-```ts
-const landing_page = await client.landing_page.load({ id: 'landing_page_id' })
+```php
+// load() returns the bare LandingPage record (throws on error).
+$landing_page = $client->LandingPage()->load(["id" => "landing_page_id"]);
 ```
 
 #### Example: List
 
-```ts
-const landing_pages = await client.landing_page.list()
+```php
+// list() returns an array of LandingPage records (throws on error).
+$landing_pages = $client->LandingPage()->list();
 ```
 
 
 ### Place
 
-Create an instance: `const place = client.place`
+Create an instance: `$place = $client->Place();`
 
 #### Operations
 
@@ -2347,20 +2394,22 @@ Create an instance: `const place = client.place`
 
 #### Example: Load
 
-```ts
-const place = await client.place.load({ id: 'place_id' })
+```php
+// load() returns the bare Place record (throws on error).
+$place = $client->Place()->load(["id" => "place_id"]);
 ```
 
 #### Example: List
 
-```ts
-const places = await client.place.list()
+```php
+// list() returns an array of Place records (throws on error).
+$places = $client->Place()->list();
 ```
 
 
 ### PressRelease
 
-Create an instance: `const press_release = client.press_release`
+Create an instance: `$press_release = $client->PressRelease();`
 
 #### Operations
 
@@ -2387,20 +2436,22 @@ Create an instance: `const press_release = client.press_release`
 
 #### Example: Load
 
-```ts
-const press_release = await client.press_release.load({ id: 'press_release_id' })
+```php
+// load() returns the bare PressRelease record (throws on error).
+$press_release = $client->PressRelease()->load(["id" => "press_release_id"]);
 ```
 
 #### Example: List
 
-```ts
-const press_releases = await client.press_release.list()
+```php
+// list() returns an array of PressRelease records (throws on error).
+$press_releases = $client->PressRelease()->list();
 ```
 
 
 ### PrintedPublication
 
-Create an instance: `const printed_publication = client.printed_publication`
+Create an instance: `$printed_publication = $client->PrintedPublication();`
 
 #### Operations
 
@@ -2427,20 +2478,22 @@ Create an instance: `const printed_publication = client.printed_publication`
 
 #### Example: Load
 
-```ts
-const printed_publication = await client.printed_publication.load({ id: 'printed_publication_id' })
+```php
+// load() returns the bare PrintedPublication record (throws on error).
+$printed_publication = $client->PrintedPublication()->load(["id" => "printed_publication_id"]);
 ```
 
 #### Example: List
 
-```ts
-const printed_publications = await client.printed_publication.list()
+```php
+// list() returns an array of PrintedPublication records (throws on error).
+$printed_publications = $client->PrintedPublication()->list();
 ```
 
 
 ### Product
 
-Create an instance: `const product = client.product`
+Create an instance: `$product = $client->Product();`
 
 #### Operations
 
@@ -2477,20 +2530,22 @@ Create an instance: `const product = client.product`
 
 #### Example: Load
 
-```ts
-const product = await client.product.load({ id: 'product_id' })
+```php
+// load() returns the bare Product record (throws on error).
+$product = $client->Product()->load(["id" => "product_id"]);
 ```
 
 #### Example: List
 
-```ts
-const products = await client.product.list()
+```php
+// list() returns an array of Product records (throws on error).
+$products = $client->Product()->list();
 ```
 
 
 ### Publication
 
-Create an instance: `const publication = client.publication`
+Create an instance: `$publication = $client->Publication();`
 
 #### Operations
 
@@ -2517,20 +2572,22 @@ Create an instance: `const publication = client.publication`
 
 #### Example: Load
 
-```ts
-const publication = await client.publication.load({ id: 'publication_id' })
+```php
+// load() returns the bare Publication record (throws on error).
+$publication = $client->Publication()->load(["id" => "publication_id"]);
 ```
 
 #### Example: List
 
-```ts
-const publications = await client.publication.list()
+```php
+// list() returns an array of Publication records (throws on error).
+$publications = $client->Publication()->list();
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `$search = $client->Search();`
 
 #### Operations
 
@@ -2554,14 +2611,15 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```php
+// list() returns an array of Search records (throws on error).
+$searchs = $client->Search()->list();
 ```
 
 
 ### Section
 
-Create an instance: `const section = client.section`
+Create an instance: `$section = $client->Section();`
 
 #### Operations
 
@@ -2593,20 +2651,22 @@ Create an instance: `const section = client.section`
 
 #### Example: Load
 
-```ts
-const section = await client.section.load({ id: 'section_id' })
+```php
+// load() returns the bare Section record (throws on error).
+$section = $client->Section()->load(["id" => "section_id"]);
 ```
 
 #### Example: List
 
-```ts
-const sections = await client.section.list()
+```php
+// list() returns an array of Section records (throws on error).
+$sections = $client->Section()->list();
 ```
 
 
 ### Site
 
-Create an instance: `const site = client.site`
+Create an instance: `$site = $client->Site();`
 
 #### Operations
 
@@ -2637,20 +2697,22 @@ Create an instance: `const site = client.site`
 
 #### Example: Load
 
-```ts
-const site = await client.site.load({ id: 'site_id' })
+```php
+// load() returns the bare Site record (throws on error).
+$site = $client->Site()->load(["id" => "site_id"]);
 ```
 
 #### Example: List
 
-```ts
-const sites = await client.site.list()
+```php
+// list() returns an array of Site records (throws on error).
+$sites = $client->Site()->list();
 ```
 
 
 ### Sound
 
-Create an instance: `const sound = client.sound`
+Create an instance: `$sound = $client->Sound();`
 
 #### Operations
 
@@ -2688,20 +2750,22 @@ Create an instance: `const sound = client.sound`
 
 #### Example: Load
 
-```ts
-const sound = await client.sound.load({ id: 'sound_id' })
+```php
+// load() returns the bare Sound record (throws on error).
+$sound = $client->Sound()->load(["id" => "sound_id"]);
 ```
 
 #### Example: List
 
-```ts
-const sounds = await client.sound.list()
+```php
+// list() returns an array of Sound records (throws on error).
+$sounds = $client->Sound()->list();
 ```
 
 
 ### StaticPage
 
-Create an instance: `const static_page = client.static_page`
+Create an instance: `$static_page = $client->StaticPage();`
 
 #### Operations
 
@@ -2727,20 +2791,22 @@ Create an instance: `const static_page = client.static_page`
 
 #### Example: Load
 
-```ts
-const static_page = await client.static_page.load({ id: 'static_page_id' })
+```php
+// load() returns the bare StaticPage record (throws on error).
+$static_page = $client->StaticPage()->load(["id" => "static_page_id"]);
 ```
 
 #### Example: List
 
-```ts
-const static_pages = await client.static_page.list()
+```php
+// list() returns an array of StaticPage records (throws on error).
+$static_pages = $client->StaticPage()->list();
 ```
 
 
 ### Text
 
-Create an instance: `const text = client.text`
+Create an instance: `$text = $client->Text();`
 
 #### Operations
 
@@ -2776,20 +2842,22 @@ Create an instance: `const text = client.text`
 
 #### Example: Load
 
-```ts
-const text = await client.text.load({ id: 'text_id' })
+```php
+// load() returns the bare Text record (throws on error).
+$text = $client->Text()->load(["id" => "text_id"]);
 ```
 
 #### Example: List
 
-```ts
-const texts = await client.text.list()
+```php
+// list() returns an array of Text records (throws on error).
+$texts = $client->Text()->list();
 ```
 
 
 ### Tour
 
-Create an instance: `const tour = client.tour`
+Create an instance: `$tour = $client->Tour();`
 
 #### Operations
 
@@ -2822,20 +2890,22 @@ Create an instance: `const tour = client.tour`
 
 #### Example: Load
 
-```ts
-const tour = await client.tour.load({ id: 'tour_id' })
+```php
+// load() returns the bare Tour record (throws on error).
+$tour = $client->Tour()->load(["id" => "tour_id"]);
 ```
 
 #### Example: List
 
-```ts
-const tours = await client.tour.list()
+```php
+// list() returns an array of Tour records (throws on error).
+$tours = $client->Tour()->list();
 ```
 
 
 ### Video
 
-Create an instance: `const video = client.video`
+Create an instance: `$video = $client->Video();`
 
 #### Operations
 
@@ -2871,14 +2941,16 @@ Create an instance: `const video = client.video`
 
 #### Example: Load
 
-```ts
-const video = await client.video.load({ id: 'video_id' })
+```php
+// load() returns the bare Video record (throws on error).
+$video = $client->Video()->load(["id" => "video_id"]);
 ```
 
 #### Example: List
 
-```ts
-const videos = await client.video.list()
+```php
+// list() returns an array of Video records (throws on error).
+$videos = $client->Video()->list();
 ```
 
 
@@ -2953,7 +3025,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$agent = $client->agent();
+$agent = $client->Agent();
 $agent->load(["id" => "example_id"]);
 
 // $agent->dataGet() now returns the loaded agent data

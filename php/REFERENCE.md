@@ -221,7 +221,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## AgentEntity
 
 ```php
-$agent = $client->agent();
+$agent = $client->Agent();
 ```
 
 ### Fields
@@ -252,7 +252,7 @@ $agent = $client->agent();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->agent()->list([]);
+$results = $client->Agent()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -260,7 +260,7 @@ $results = $client->agent()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->agent()->load(["id" => "agent_id"]);
+$result = $client->Agent()->load(["id" => "agent_id"]);
 ```
 
 ### Common Methods
@@ -296,7 +296,7 @@ Return the entity name.
 ## AgentRoleEntity
 
 ```php
-$agent_role = $client->agent_role();
+$agent_role = $client->AgentRole();
 ```
 
 ### Fields
@@ -320,7 +320,7 @@ $agent_role = $client->agent_role();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->agent_role()->list([]);
+$results = $client->AgentRole()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -328,7 +328,7 @@ $results = $client->agent_role()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->agent_role()->load(["id" => "agent_role_id"]);
+$result = $client->AgentRole()->load(["id" => "agent_role_id"]);
 ```
 
 ### Common Methods
@@ -364,7 +364,7 @@ Return the entity name.
 ## AgentTypeEntity
 
 ```php
-$agent_type = $client->agent_type();
+$agent_type = $client->AgentType();
 ```
 
 ### Fields
@@ -388,7 +388,7 @@ $agent_type = $client->agent_type();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->agent_type()->list([]);
+$results = $client->AgentType()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -396,7 +396,7 @@ $results = $client->agent_type()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->agent_type()->load(["id" => "agent_type_id"]);
+$result = $client->AgentType()->load(["id" => "agent_type_id"]);
 ```
 
 ### Common Methods
@@ -432,7 +432,7 @@ Return the entity name.
 ## ArticleEntity
 
 ```php
-$article = $client->article();
+$article = $client->Article();
 ```
 
 ### Fields
@@ -457,7 +457,7 @@ $article = $client->article();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->article()->list([]);
+$results = $client->Article()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -465,7 +465,7 @@ $results = $client->article()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->article()->load(["id" => "article_id"]);
+$result = $client->Article()->load(["id" => "article_id"]);
 ```
 
 ### Common Methods
@@ -501,7 +501,7 @@ Return the entity name.
 ## ArtworkEntity
 
 ```php
-$artwork = $client->artwork();
+$artwork = $client->Artwork();
 ```
 
 ### Fields
@@ -611,7 +611,7 @@ $artwork = $client->artwork();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->artwork()->list([]);
+$results = $client->Artwork()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -619,7 +619,7 @@ $results = $client->artwork()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->artwork()->load(["id" => "artwork_id"]);
+$result = $client->Artwork()->load(["id" => "artwork_id"]);
 ```
 
 ### Common Methods
@@ -655,7 +655,7 @@ Return the entity name.
 ## ArtworkDateQualifierEntity
 
 ```php
-$artwork_date_qualifier = $client->artwork_date_qualifier();
+$artwork_date_qualifier = $client->ArtworkDateQualifier();
 ```
 
 ### Fields
@@ -679,7 +679,7 @@ $artwork_date_qualifier = $client->artwork_date_qualifier();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->artwork_date_qualifier()->list([]);
+$results = $client->ArtworkDateQualifier()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -687,7 +687,7 @@ $results = $client->artwork_date_qualifier()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->artwork_date_qualifier()->load(["id" => "artwork_date_qualifier_id"]);
+$result = $client->ArtworkDateQualifier()->load(["id" => "artwork_date_qualifier_id"]);
 ```
 
 ### Common Methods
@@ -723,7 +723,7 @@ Return the entity name.
 ## ArtworkPlaceQualifierEntity
 
 ```php
-$artwork_place_qualifier = $client->artwork_place_qualifier();
+$artwork_place_qualifier = $client->ArtworkPlaceQualifier();
 ```
 
 ### Fields
@@ -747,7 +747,7 @@ $artwork_place_qualifier = $client->artwork_place_qualifier();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->artwork_place_qualifier()->list([]);
+$results = $client->ArtworkPlaceQualifier()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -755,7 +755,7 @@ $results = $client->artwork_place_qualifier()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->artwork_place_qualifier()->load(["id" => "artwork_place_qualifier_id"]);
+$result = $client->ArtworkPlaceQualifier()->load(["id" => "artwork_place_qualifier_id"]);
 ```
 
 ### Common Methods
@@ -791,7 +791,7 @@ Return the entity name.
 ## ArtworkTypeEntity
 
 ```php
-$artwork_type = $client->artwork_type();
+$artwork_type = $client->ArtworkType();
 ```
 
 ### Fields
@@ -816,7 +816,7 @@ $artwork_type = $client->artwork_type();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->artwork_type()->list([]);
+$results = $client->ArtworkType()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -824,7 +824,7 @@ $results = $client->artwork_type()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->artwork_type()->load(["id" => "artwork_type_id"]);
+$result = $client->ArtworkType()->load(["id" => "artwork_type_id"]);
 ```
 
 ### Common Methods
@@ -860,7 +860,7 @@ Return the entity name.
 ## CategoryTermEntity
 
 ```php
-$category_term = $client->category_term();
+$category_term = $client->CategoryTerm();
 ```
 
 ### Fields
@@ -886,7 +886,7 @@ $category_term = $client->category_term();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->category_term()->list([]);
+$results = $client->CategoryTerm()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -894,7 +894,7 @@ $results = $client->category_term()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->category_term()->load(["id" => "category_term_id"]);
+$result = $client->CategoryTerm()->load(["id" => "category_term_id"]);
 ```
 
 ### Common Methods
@@ -930,7 +930,7 @@ Return the entity name.
 ## DigitalPublicationEntity
 
 ```php
-$digital_publication = $client->digital_publication();
+$digital_publication = $client->DigitalPublication();
 ```
 
 ### Fields
@@ -956,7 +956,7 @@ $digital_publication = $client->digital_publication();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->digital_publication()->list([]);
+$results = $client->DigitalPublication()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -964,7 +964,7 @@ $results = $client->digital_publication()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->digital_publication()->load(["id" => "digital_publication_id"]);
+$result = $client->DigitalPublication()->load(["id" => "digital_publication_id"]);
 ```
 
 ### Common Methods
@@ -1000,7 +1000,7 @@ Return the entity name.
 ## DigitalPublicationArticleEntity
 
 ```php
-$digital_publication_article = $client->digital_publication_article();
+$digital_publication_article = $client->DigitalPublicationArticle();
 ```
 
 ### Fields
@@ -1028,7 +1028,7 @@ $digital_publication_article = $client->digital_publication_article();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->digital_publication_article()->list([]);
+$results = $client->DigitalPublicationArticle()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -1036,7 +1036,7 @@ $results = $client->digital_publication_article()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->digital_publication_article()->load(["id" => "digital_publication_article_id"]);
+$result = $client->DigitalPublicationArticle()->load(["id" => "digital_publication_article_id"]);
 ```
 
 ### Common Methods
@@ -1072,7 +1072,7 @@ Return the entity name.
 ## EducatorResourceEntity
 
 ```php
-$educator_resource = $client->educator_resource();
+$educator_resource = $client->EducatorResource();
 ```
 
 ### Fields
@@ -1098,7 +1098,7 @@ $educator_resource = $client->educator_resource();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->educator_resource()->list([]);
+$results = $client->EducatorResource()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -1106,7 +1106,7 @@ $results = $client->educator_resource()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->educator_resource()->load(["id" => "educator_resource_id"]);
+$result = $client->EducatorResource()->load(["id" => "educator_resource_id"]);
 ```
 
 ### Common Methods
@@ -1142,7 +1142,7 @@ Return the entity name.
 ## EventEntity
 
 ```php
-$event = $client->event();
+$event = $client->Event();
 ```
 
 ### Fields
@@ -1210,7 +1210,7 @@ $event = $client->event();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->event()->list([]);
+$results = $client->Event()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -1218,7 +1218,7 @@ $results = $client->event()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->event()->load(["id" => "event_id"]);
+$result = $client->Event()->load(["id" => "event_id"]);
 ```
 
 ### Common Methods
@@ -1254,7 +1254,7 @@ Return the entity name.
 ## EventOccurrenceEntity
 
 ```php
-$event_occurrence = $client->event_occurrence();
+$event_occurrence = $client->EventOccurrence();
 ```
 
 ### Fields
@@ -1294,7 +1294,7 @@ $event_occurrence = $client->event_occurrence();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->event_occurrence()->list([]);
+$results = $client->EventOccurrence()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -1302,7 +1302,7 @@ $results = $client->event_occurrence()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->event_occurrence()->load(["id" => "event_occurrence_id"]);
+$result = $client->EventOccurrence()->load(["id" => "event_occurrence_id"]);
 ```
 
 ### Common Methods
@@ -1338,7 +1338,7 @@ Return the entity name.
 ## EventProgramEntity
 
 ```php
-$event_program = $client->event_program();
+$event_program = $client->EventProgram();
 ```
 
 ### Fields
@@ -1364,7 +1364,7 @@ $event_program = $client->event_program();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->event_program()->list([]);
+$results = $client->EventProgram()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -1372,7 +1372,7 @@ $results = $client->event_program()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->event_program()->load(["id" => "event_program_id"]);
+$result = $client->EventProgram()->load(["id" => "event_program_id"]);
 ```
 
 ### Common Methods
@@ -1408,7 +1408,7 @@ Return the entity name.
 ## ExhibitionEntity
 
 ```php
-$exhibition = $client->exhibition();
+$exhibition = $client->Exhibition();
 ```
 
 ### Fields
@@ -1450,7 +1450,7 @@ $exhibition = $client->exhibition();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->exhibition()->list([]);
+$results = $client->Exhibition()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -1458,7 +1458,7 @@ $results = $client->exhibition()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->exhibition()->load(["id" => "exhibition_id"]);
+$result = $client->Exhibition()->load(["id" => "exhibition_id"]);
 ```
 
 ### Common Methods
@@ -1494,7 +1494,7 @@ Return the entity name.
 ## GalleryEntity
 
 ```php
-$gallery = $client->gallery();
+$gallery = $client->Gallery();
 ```
 
 ### Fields
@@ -1525,7 +1525,7 @@ $gallery = $client->gallery();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->gallery()->list([]);
+$results = $client->Gallery()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -1533,7 +1533,7 @@ $results = $client->gallery()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->gallery()->load(["id" => "gallery_id"]);
+$result = $client->Gallery()->load(["id" => "gallery_id"]);
 ```
 
 ### Common Methods
@@ -1569,7 +1569,7 @@ Return the entity name.
 ## GenericPageEntity
 
 ```php
-$generic_page = $client->generic_page();
+$generic_page = $client->GenericPage();
 ```
 
 ### Fields
@@ -1596,7 +1596,7 @@ $generic_page = $client->generic_page();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->generic_page()->list([]);
+$results = $client->GenericPage()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -1604,7 +1604,7 @@ $results = $client->generic_page()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->generic_page()->load(["id" => "generic_page_id"]);
+$result = $client->GenericPage()->load(["id" => "generic_page_id"]);
 ```
 
 ### Common Methods
@@ -1640,7 +1640,7 @@ Return the entity name.
 ## HighlightEntity
 
 ```php
-$highlight = $client->highlight();
+$highlight = $client->Highlight();
 ```
 
 ### Fields
@@ -1665,7 +1665,7 @@ $highlight = $client->highlight();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->highlight()->list([]);
+$results = $client->Highlight()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -1673,7 +1673,7 @@ $results = $client->highlight()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->highlight()->load(["id" => "highlight_id"]);
+$result = $client->Highlight()->load(["id" => "highlight_id"]);
 ```
 
 ### Common Methods
@@ -1709,7 +1709,7 @@ Return the entity name.
 ## HourEntity
 
 ```php
-$hour = $client->hour();
+$hour = $client->Hour();
 ```
 
 ### Fields
@@ -1770,7 +1770,7 @@ $hour = $client->hour();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->hour()->list([]);
+$results = $client->Hour()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -1778,7 +1778,7 @@ $results = $client->hour()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->hour()->load(["id" => "hour_id"]);
+$result = $client->Hour()->load(["id" => "hour_id"]);
 ```
 
 ### Common Methods
@@ -1814,7 +1814,7 @@ Return the entity name.
 ## ImageEntity
 
 ```php
-$image = $client->image();
+$image = $client->Image();
 ```
 
 ### Fields
@@ -1858,7 +1858,7 @@ $image = $client->image();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->image()->list([]);
+$results = $client->Image()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -1866,7 +1866,7 @@ $results = $client->image()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->image()->load(["id" => "image_id"]);
+$result = $client->Image()->load(["id" => "image_id"]);
 ```
 
 ### Common Methods
@@ -1902,7 +1902,7 @@ Return the entity name.
 ## LandingPageEntity
 
 ```php
-$landing_page = $client->landing_page();
+$landing_page = $client->LandingPage();
 ```
 
 ### Fields
@@ -1929,7 +1929,7 @@ $landing_page = $client->landing_page();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->landing_page()->list([]);
+$results = $client->LandingPage()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -1937,7 +1937,7 @@ $results = $client->landing_page()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->landing_page()->load(["id" => "landing_page_id"]);
+$result = $client->LandingPage()->load(["id" => "landing_page_id"]);
 ```
 
 ### Common Methods
@@ -1973,7 +1973,7 @@ Return the entity name.
 ## PlaceEntity
 
 ```php
-$place = $client->place();
+$place = $client->Place();
 ```
 
 ### Fields
@@ -2000,7 +2000,7 @@ $place = $client->place();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->place()->list([]);
+$results = $client->Place()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -2008,7 +2008,7 @@ $results = $client->place()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->place()->load(["id" => "place_id"]);
+$result = $client->Place()->load(["id" => "place_id"]);
 ```
 
 ### Common Methods
@@ -2044,7 +2044,7 @@ Return the entity name.
 ## PressReleaseEntity
 
 ```php
-$press_release = $client->press_release();
+$press_release = $client->PressRelease();
 ```
 
 ### Fields
@@ -2070,7 +2070,7 @@ $press_release = $client->press_release();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->press_release()->list([]);
+$results = $client->PressRelease()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -2078,7 +2078,7 @@ $results = $client->press_release()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->press_release()->load(["id" => "press_release_id"]);
+$result = $client->PressRelease()->load(["id" => "press_release_id"]);
 ```
 
 ### Common Methods
@@ -2114,7 +2114,7 @@ Return the entity name.
 ## PrintedPublicationEntity
 
 ```php
-$printed_publication = $client->printed_publication();
+$printed_publication = $client->PrintedPublication();
 ```
 
 ### Fields
@@ -2140,7 +2140,7 @@ $printed_publication = $client->printed_publication();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->printed_publication()->list([]);
+$results = $client->PrintedPublication()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -2148,7 +2148,7 @@ $results = $client->printed_publication()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->printed_publication()->load(["id" => "printed_publication_id"]);
+$result = $client->PrintedPublication()->load(["id" => "printed_publication_id"]);
 ```
 
 ### Common Methods
@@ -2184,7 +2184,7 @@ Return the entity name.
 ## ProductEntity
 
 ```php
-$product = $client->product();
+$product = $client->Product();
 ```
 
 ### Fields
@@ -2220,7 +2220,7 @@ $product = $client->product();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->product()->list([]);
+$results = $client->Product()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -2228,7 +2228,7 @@ $results = $client->product()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->product()->load(["id" => "product_id"]);
+$result = $client->Product()->load(["id" => "product_id"]);
 ```
 
 ### Common Methods
@@ -2264,7 +2264,7 @@ Return the entity name.
 ## PublicationEntity
 
 ```php
-$publication = $client->publication();
+$publication = $client->Publication();
 ```
 
 ### Fields
@@ -2290,7 +2290,7 @@ $publication = $client->publication();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->publication()->list([]);
+$results = $client->Publication()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -2298,7 +2298,7 @@ $results = $client->publication()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->publication()->load(["id" => "publication_id"]);
+$result = $client->Publication()->load(["id" => "publication_id"]);
 ```
 
 ### Common Methods
@@ -2334,7 +2334,7 @@ Return the entity name.
 ## SearchEntity
 
 ```php
-$search = $client->search();
+$search = $client->Search();
 ```
 
 ### Fields
@@ -2358,7 +2358,7 @@ $search = $client->search();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->search()->list([]);
+$results = $client->Search()->list([]);
 ```
 
 ### Common Methods
@@ -2394,7 +2394,7 @@ Return the entity name.
 ## SectionEntity
 
 ```php
-$section = $client->section();
+$section = $client->Section();
 ```
 
 ### Fields
@@ -2425,7 +2425,7 @@ $section = $client->section();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->section()->list([]);
+$results = $client->Section()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -2433,7 +2433,7 @@ $results = $client->section()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->section()->load(["id" => "section_id"]);
+$result = $client->Section()->load(["id" => "section_id"]);
 ```
 
 ### Common Methods
@@ -2469,7 +2469,7 @@ Return the entity name.
 ## SiteEntity
 
 ```php
-$site = $client->site();
+$site = $client->Site();
 ```
 
 ### Fields
@@ -2499,7 +2499,7 @@ $site = $client->site();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->site()->list([]);
+$results = $client->Site()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -2507,7 +2507,7 @@ $results = $client->site()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->site()->load(["id" => "site_id"]);
+$result = $client->Site()->load(["id" => "site_id"]);
 ```
 
 ### Common Methods
@@ -2543,7 +2543,7 @@ Return the entity name.
 ## SoundEntity
 
 ```php
-$sound = $client->sound();
+$sound = $client->Sound();
 ```
 
 ### Fields
@@ -2580,7 +2580,7 @@ $sound = $client->sound();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->sound()->list([]);
+$results = $client->Sound()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -2588,7 +2588,7 @@ $results = $client->sound()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->sound()->load(["id" => "sound_id"]);
+$result = $client->Sound()->load(["id" => "sound_id"]);
 ```
 
 ### Common Methods
@@ -2624,7 +2624,7 @@ Return the entity name.
 ## StaticPageEntity
 
 ```php
-$static_page = $client->static_page();
+$static_page = $client->StaticPage();
 ```
 
 ### Fields
@@ -2649,7 +2649,7 @@ $static_page = $client->static_page();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->static_page()->list([]);
+$results = $client->StaticPage()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -2657,7 +2657,7 @@ $results = $client->static_page()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->static_page()->load(["id" => "static_page_id"]);
+$result = $client->StaticPage()->load(["id" => "static_page_id"]);
 ```
 
 ### Common Methods
@@ -2693,7 +2693,7 @@ Return the entity name.
 ## TextEntity
 
 ```php
-$text = $client->text();
+$text = $client->Text();
 ```
 
 ### Fields
@@ -2728,7 +2728,7 @@ $text = $client->text();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->text()->list([]);
+$results = $client->Text()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -2736,7 +2736,7 @@ $results = $client->text()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->text()->load(["id" => "text_id"]);
+$result = $client->Text()->load(["id" => "text_id"]);
 ```
 
 ### Common Methods
@@ -2772,7 +2772,7 @@ Return the entity name.
 ## TourEntity
 
 ```php
-$tour = $client->tour();
+$tour = $client->Tour();
 ```
 
 ### Fields
@@ -2804,7 +2804,7 @@ $tour = $client->tour();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->tour()->list([]);
+$results = $client->Tour()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -2812,7 +2812,7 @@ $results = $client->tour()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->tour()->load(["id" => "tour_id"]);
+$result = $client->Tour()->load(["id" => "tour_id"]);
 ```
 
 ### Common Methods
@@ -2848,7 +2848,7 @@ Return the entity name.
 ## VideoEntity
 
 ```php
-$video = $client->video();
+$video = $client->Video();
 ```
 
 ### Fields
@@ -2883,7 +2883,7 @@ $video = $client->video();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->video()->list([]);
+$results = $client->Video()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -2891,7 +2891,7 @@ $results = $client->video()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->video()->load(["id" => "video_id"]);
+$result = $client->Video()->load(["id" => "video_id"]);
 ```
 
 ### Common Methods

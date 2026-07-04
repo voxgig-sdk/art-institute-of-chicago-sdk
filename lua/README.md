@@ -31,26 +31,26 @@ local sdk = require("art-institute-of-chicago_sdk")
 local client = sdk.new()
 ```
 
-### 2. List agents
+### 2. List agent records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:agent():list()
+local agents, err = client:Agent():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(agents) do
+  print(item["id"], item["name"])
 end
 ```
 
 ### 3. Load an agent
 
 ```lua
-local result, err = client:agent():load({ id = "example_id" })
+local agent, err = client:Agent():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(agent)
 ```
 
 
@@ -96,8 +96,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:agent():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Agent():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -175,27 +175,27 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `Agent` | `(data) -> AgentEntity` | Create a Agent entity instance. |
-| `AgentRole` | `(data) -> AgentRoleEntity` | Create a AgentRole entity instance. |
-| `AgentType` | `(data) -> AgentTypeEntity` | Create a AgentType entity instance. |
-| `Article` | `(data) -> ArticleEntity` | Create a Article entity instance. |
-| `Artwork` | `(data) -> ArtworkEntity` | Create a Artwork entity instance. |
-| `ArtworkDateQualifier` | `(data) -> ArtworkDateQualifierEntity` | Create a ArtworkDateQualifier entity instance. |
-| `ArtworkPlaceQualifier` | `(data) -> ArtworkPlaceQualifierEntity` | Create a ArtworkPlaceQualifier entity instance. |
-| `ArtworkType` | `(data) -> ArtworkTypeEntity` | Create a ArtworkType entity instance. |
+| `Agent` | `(data) -> AgentEntity` | Create an Agent entity instance. |
+| `AgentRole` | `(data) -> AgentRoleEntity` | Create an AgentRole entity instance. |
+| `AgentType` | `(data) -> AgentTypeEntity` | Create an AgentType entity instance. |
+| `Article` | `(data) -> ArticleEntity` | Create an Article entity instance. |
+| `Artwork` | `(data) -> ArtworkEntity` | Create an Artwork entity instance. |
+| `ArtworkDateQualifier` | `(data) -> ArtworkDateQualifierEntity` | Create an ArtworkDateQualifier entity instance. |
+| `ArtworkPlaceQualifier` | `(data) -> ArtworkPlaceQualifierEntity` | Create an ArtworkPlaceQualifier entity instance. |
+| `ArtworkType` | `(data) -> ArtworkTypeEntity` | Create an ArtworkType entity instance. |
 | `CategoryTerm` | `(data) -> CategoryTermEntity` | Create a CategoryTerm entity instance. |
 | `DigitalPublication` | `(data) -> DigitalPublicationEntity` | Create a DigitalPublication entity instance. |
 | `DigitalPublicationArticle` | `(data) -> DigitalPublicationArticleEntity` | Create a DigitalPublicationArticle entity instance. |
-| `EducatorResource` | `(data) -> EducatorResourceEntity` | Create a EducatorResource entity instance. |
-| `Event` | `(data) -> EventEntity` | Create a Event entity instance. |
-| `EventOccurrence` | `(data) -> EventOccurrenceEntity` | Create a EventOccurrence entity instance. |
-| `EventProgram` | `(data) -> EventProgramEntity` | Create a EventProgram entity instance. |
-| `Exhibition` | `(data) -> ExhibitionEntity` | Create a Exhibition entity instance. |
+| `EducatorResource` | `(data) -> EducatorResourceEntity` | Create an EducatorResource entity instance. |
+| `Event` | `(data) -> EventEntity` | Create an Event entity instance. |
+| `EventOccurrence` | `(data) -> EventOccurrenceEntity` | Create an EventOccurrence entity instance. |
+| `EventProgram` | `(data) -> EventProgramEntity` | Create an EventProgram entity instance. |
+| `Exhibition` | `(data) -> ExhibitionEntity` | Create an Exhibition entity instance. |
 | `Gallery` | `(data) -> GalleryEntity` | Create a Gallery entity instance. |
 | `GenericPage` | `(data) -> GenericPageEntity` | Create a GenericPage entity instance. |
 | `Highlight` | `(data) -> HighlightEntity` | Create a Highlight entity instance. |
 | `Hour` | `(data) -> HourEntity` | Create a Hour entity instance. |
-| `Image` | `(data) -> ImageEntity` | Create a Image entity instance. |
+| `Image` | `(data) -> ImageEntity` | Create an Image entity instance. |
 | `LandingPage` | `(data) -> LandingPageEntity` | Create a LandingPage entity instance. |
 | `Place` | `(data) -> PlaceEntity` | Create a Place entity instance. |
 | `PressRelease` | `(data) -> PressReleaseEntity` | Create a PressRelease entity instance. |
@@ -231,17 +231,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local agent, err = client:Agent():load({ id = "example_id" })
+    if err then error(err) end
+    -- agent is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -1216,7 +1221,7 @@ API path: `/videos`
 
 ### Agent
 
-Create an instance: `const agent = client.agent`
+Create an instance: `local agent = client:Agent(nil)`
 
 #### Operations
 
@@ -1248,20 +1253,20 @@ Create an instance: `const agent = client.agent`
 
 #### Example: Load
 
-```ts
-const agent = await client.agent.load({ id: 'agent_id' })
+```lua
+local agent, err = client:Agent():load({ id = "agent_id" })
 ```
 
 #### Example: List
 
-```ts
-const agents = await client.agent.list()
+```lua
+local agents, err = client:Agent():list()
 ```
 
 
 ### AgentRole
 
-Create an instance: `const agent_role = client.agent_role`
+Create an instance: `local agent_role = client:AgentRole(nil)`
 
 #### Operations
 
@@ -1286,20 +1291,20 @@ Create an instance: `const agent_role = client.agent_role`
 
 #### Example: Load
 
-```ts
-const agent_role = await client.agent_role.load({ id: 'agent_role_id' })
+```lua
+local agent_role, err = client:AgentRole():load({ id = "agent_role_id" })
 ```
 
 #### Example: List
 
-```ts
-const agent_roles = await client.agent_role.list()
+```lua
+local agent_roles, err = client:AgentRole():list()
 ```
 
 
 ### AgentType
 
-Create an instance: `const agent_type = client.agent_type`
+Create an instance: `local agent_type = client:AgentType(nil)`
 
 #### Operations
 
@@ -1324,20 +1329,20 @@ Create an instance: `const agent_type = client.agent_type`
 
 #### Example: Load
 
-```ts
-const agent_type = await client.agent_type.load({ id: 'agent_type_id' })
+```lua
+local agent_type, err = client:AgentType():load({ id = "agent_type_id" })
 ```
 
 #### Example: List
 
-```ts
-const agent_types = await client.agent_type.list()
+```lua
+local agent_types, err = client:AgentType():list()
 ```
 
 
 ### Article
 
-Create an instance: `const article = client.article`
+Create an instance: `local article = client:Article(nil)`
 
 #### Operations
 
@@ -1363,20 +1368,20 @@ Create an instance: `const article = client.article`
 
 #### Example: Load
 
-```ts
-const article = await client.article.load({ id: 'article_id' })
+```lua
+local article, err = client:Article():load({ id = "article_id" })
 ```
 
 #### Example: List
 
-```ts
-const articles = await client.article.list()
+```lua
+local articles, err = client:Article():list()
 ```
 
 
 ### Artwork
 
-Create an instance: `const artwork = client.artwork`
+Create an instance: `local artwork = client:Artwork(nil)`
 
 #### Operations
 
@@ -1487,20 +1492,20 @@ Create an instance: `const artwork = client.artwork`
 
 #### Example: Load
 
-```ts
-const artwork = await client.artwork.load({ id: 'artwork_id' })
+```lua
+local artwork, err = client:Artwork():load({ id = "artwork_id" })
 ```
 
 #### Example: List
 
-```ts
-const artworks = await client.artwork.list()
+```lua
+local artworks, err = client:Artwork():list()
 ```
 
 
 ### ArtworkDateQualifier
 
-Create an instance: `const artwork_date_qualifier = client.artwork_date_qualifier`
+Create an instance: `local artwork_date_qualifier = client:ArtworkDateQualifier(nil)`
 
 #### Operations
 
@@ -1525,20 +1530,20 @@ Create an instance: `const artwork_date_qualifier = client.artwork_date_qualifie
 
 #### Example: Load
 
-```ts
-const artwork_date_qualifier = await client.artwork_date_qualifier.load({ id: 'artwork_date_qualifier_id' })
+```lua
+local artwork_date_qualifier, err = client:ArtworkDateQualifier():load({ id = "artwork_date_qualifier_id" })
 ```
 
 #### Example: List
 
-```ts
-const artwork_date_qualifiers = await client.artwork_date_qualifier.list()
+```lua
+local artwork_date_qualifiers, err = client:ArtworkDateQualifier():list()
 ```
 
 
 ### ArtworkPlaceQualifier
 
-Create an instance: `const artwork_place_qualifier = client.artwork_place_qualifier`
+Create an instance: `local artwork_place_qualifier = client:ArtworkPlaceQualifier(nil)`
 
 #### Operations
 
@@ -1563,20 +1568,20 @@ Create an instance: `const artwork_place_qualifier = client.artwork_place_qualif
 
 #### Example: Load
 
-```ts
-const artwork_place_qualifier = await client.artwork_place_qualifier.load({ id: 'artwork_place_qualifier_id' })
+```lua
+local artwork_place_qualifier, err = client:ArtworkPlaceQualifier():load({ id = "artwork_place_qualifier_id" })
 ```
 
 #### Example: List
 
-```ts
-const artwork_place_qualifiers = await client.artwork_place_qualifier.list()
+```lua
+local artwork_place_qualifiers, err = client:ArtworkPlaceQualifier():list()
 ```
 
 
 ### ArtworkType
 
-Create an instance: `const artwork_type = client.artwork_type`
+Create an instance: `local artwork_type = client:ArtworkType(nil)`
 
 #### Operations
 
@@ -1602,20 +1607,20 @@ Create an instance: `const artwork_type = client.artwork_type`
 
 #### Example: Load
 
-```ts
-const artwork_type = await client.artwork_type.load({ id: 'artwork_type_id' })
+```lua
+local artwork_type, err = client:ArtworkType():load({ id = "artwork_type_id" })
 ```
 
 #### Example: List
 
-```ts
-const artwork_types = await client.artwork_type.list()
+```lua
+local artwork_types, err = client:ArtworkType():list()
 ```
 
 
 ### CategoryTerm
 
-Create an instance: `const category_term = client.category_term`
+Create an instance: `local category_term = client:CategoryTerm(nil)`
 
 #### Operations
 
@@ -1642,20 +1647,20 @@ Create an instance: `const category_term = client.category_term`
 
 #### Example: Load
 
-```ts
-const category_term = await client.category_term.load({ id: 'category_term_id' })
+```lua
+local category_term, err = client:CategoryTerm():load({ id = "category_term_id" })
 ```
 
 #### Example: List
 
-```ts
-const category_terms = await client.category_term.list()
+```lua
+local category_terms, err = client:CategoryTerm():list()
 ```
 
 
 ### DigitalPublication
 
-Create an instance: `const digital_publication = client.digital_publication`
+Create an instance: `local digital_publication = client:DigitalPublication(nil)`
 
 #### Operations
 
@@ -1682,20 +1687,20 @@ Create an instance: `const digital_publication = client.digital_publication`
 
 #### Example: Load
 
-```ts
-const digital_publication = await client.digital_publication.load({ id: 'digital_publication_id' })
+```lua
+local digital_publication, err = client:DigitalPublication():load({ id = "digital_publication_id" })
 ```
 
 #### Example: List
 
-```ts
-const digital_publications = await client.digital_publication.list()
+```lua
+local digital_publications, err = client:DigitalPublication():list()
 ```
 
 
 ### DigitalPublicationArticle
 
-Create an instance: `const digital_publication_article = client.digital_publication_article`
+Create an instance: `local digital_publication_article = client:DigitalPublicationArticle(nil)`
 
 #### Operations
 
@@ -1724,20 +1729,20 @@ Create an instance: `const digital_publication_article = client.digital_publicat
 
 #### Example: Load
 
-```ts
-const digital_publication_article = await client.digital_publication_article.load({ id: 'digital_publication_article_id' })
+```lua
+local digital_publication_article, err = client:DigitalPublicationArticle():load({ id = "digital_publication_article_id" })
 ```
 
 #### Example: List
 
-```ts
-const digital_publication_articles = await client.digital_publication_article.list()
+```lua
+local digital_publication_articles, err = client:DigitalPublicationArticle():list()
 ```
 
 
 ### EducatorResource
 
-Create an instance: `const educator_resource = client.educator_resource`
+Create an instance: `local educator_resource = client:EducatorResource(nil)`
 
 #### Operations
 
@@ -1764,20 +1769,20 @@ Create an instance: `const educator_resource = client.educator_resource`
 
 #### Example: Load
 
-```ts
-const educator_resource = await client.educator_resource.load({ id: 'educator_resource_id' })
+```lua
+local educator_resource, err = client:EducatorResource():load({ id = "educator_resource_id" })
 ```
 
 #### Example: List
 
-```ts
-const educator_resources = await client.educator_resource.list()
+```lua
+local educator_resources, err = client:EducatorResource():list()
 ```
 
 
 ### Event
 
-Create an instance: `const event = client.event`
+Create an instance: `local event = client:Event(nil)`
 
 #### Operations
 
@@ -1846,20 +1851,20 @@ Create an instance: `const event = client.event`
 
 #### Example: Load
 
-```ts
-const event = await client.event.load({ id: 'event_id' })
+```lua
+local event, err = client:Event():load({ id = "event_id" })
 ```
 
 #### Example: List
 
-```ts
-const events = await client.event.list()
+```lua
+local events, err = client:Event():list()
 ```
 
 
 ### EventOccurrence
 
-Create an instance: `const event_occurrence = client.event_occurrence`
+Create an instance: `local event_occurrence = client:EventOccurrence(nil)`
 
 #### Operations
 
@@ -1900,20 +1905,20 @@ Create an instance: `const event_occurrence = client.event_occurrence`
 
 #### Example: Load
 
-```ts
-const event_occurrence = await client.event_occurrence.load({ id: 'event_occurrence_id' })
+```lua
+local event_occurrence, err = client:EventOccurrence():load({ id = "event_occurrence_id" })
 ```
 
 #### Example: List
 
-```ts
-const event_occurrences = await client.event_occurrence.list()
+```lua
+local event_occurrences, err = client:EventOccurrence():list()
 ```
 
 
 ### EventProgram
 
-Create an instance: `const event_program = client.event_program`
+Create an instance: `local event_program = client:EventProgram(nil)`
 
 #### Operations
 
@@ -1940,20 +1945,20 @@ Create an instance: `const event_program = client.event_program`
 
 #### Example: Load
 
-```ts
-const event_program = await client.event_program.load({ id: 'event_program_id' })
+```lua
+local event_program, err = client:EventProgram():load({ id = "event_program_id" })
 ```
 
 #### Example: List
 
-```ts
-const event_programs = await client.event_program.list()
+```lua
+local event_programs, err = client:EventProgram():list()
 ```
 
 
 ### Exhibition
 
-Create an instance: `const exhibition = client.exhibition`
+Create an instance: `local exhibition = client:Exhibition(nil)`
 
 #### Operations
 
@@ -1996,20 +2001,20 @@ Create an instance: `const exhibition = client.exhibition`
 
 #### Example: Load
 
-```ts
-const exhibition = await client.exhibition.load({ id: 'exhibition_id' })
+```lua
+local exhibition, err = client:Exhibition():load({ id = "exhibition_id" })
 ```
 
 #### Example: List
 
-```ts
-const exhibitions = await client.exhibition.list()
+```lua
+local exhibitions, err = client:Exhibition():list()
 ```
 
 
 ### Gallery
 
-Create an instance: `const gallery = client.gallery`
+Create an instance: `local gallery = client:Gallery(nil)`
 
 #### Operations
 
@@ -2041,20 +2046,20 @@ Create an instance: `const gallery = client.gallery`
 
 #### Example: Load
 
-```ts
-const gallery = await client.gallery.load({ id: 'gallery_id' })
+```lua
+local gallery, err = client:Gallery():load({ id = "gallery_id" })
 ```
 
 #### Example: List
 
-```ts
-const gallerys = await client.gallery.list()
+```lua
+local gallerys, err = client:Gallery():list()
 ```
 
 
 ### GenericPage
 
-Create an instance: `const generic_page = client.generic_page`
+Create an instance: `local generic_page = client:GenericPage(nil)`
 
 #### Operations
 
@@ -2082,20 +2087,20 @@ Create an instance: `const generic_page = client.generic_page`
 
 #### Example: Load
 
-```ts
-const generic_page = await client.generic_page.load({ id: 'generic_page_id' })
+```lua
+local generic_page, err = client:GenericPage():load({ id = "generic_page_id" })
 ```
 
 #### Example: List
 
-```ts
-const generic_pages = await client.generic_page.list()
+```lua
+local generic_pages, err = client:GenericPage():list()
 ```
 
 
 ### Highlight
 
-Create an instance: `const highlight = client.highlight`
+Create an instance: `local highlight = client:Highlight(nil)`
 
 #### Operations
 
@@ -2121,20 +2126,20 @@ Create an instance: `const highlight = client.highlight`
 
 #### Example: Load
 
-```ts
-const highlight = await client.highlight.load({ id: 'highlight_id' })
+```lua
+local highlight, err = client:Highlight():load({ id = "highlight_id" })
 ```
 
 #### Example: List
 
-```ts
-const highlights = await client.highlight.list()
+```lua
+local highlights, err = client:Highlight():list()
 ```
 
 
 ### Hour
 
-Create an instance: `const hour = client.hour`
+Create an instance: `local hour = client:Hour(nil)`
 
 #### Operations
 
@@ -2196,20 +2201,20 @@ Create an instance: `const hour = client.hour`
 
 #### Example: Load
 
-```ts
-const hour = await client.hour.load({ id: 'hour_id' })
+```lua
+local hour, err = client:Hour():load({ id = "hour_id" })
 ```
 
 #### Example: List
 
-```ts
-const hours = await client.hour.list()
+```lua
+local hours, err = client:Hour():list()
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `local image = client:Image(nil)`
 
 #### Operations
 
@@ -2254,20 +2259,20 @@ Create an instance: `const image = client.image`
 
 #### Example: Load
 
-```ts
-const image = await client.image.load({ id: 'image_id' })
+```lua
+local image, err = client:Image():load({ id = "image_id" })
 ```
 
 #### Example: List
 
-```ts
-const images = await client.image.list()
+```lua
+local images, err = client:Image():list()
 ```
 
 
 ### LandingPage
 
-Create an instance: `const landing_page = client.landing_page`
+Create an instance: `local landing_page = client:LandingPage(nil)`
 
 #### Operations
 
@@ -2295,20 +2300,20 @@ Create an instance: `const landing_page = client.landing_page`
 
 #### Example: Load
 
-```ts
-const landing_page = await client.landing_page.load({ id: 'landing_page_id' })
+```lua
+local landing_page, err = client:LandingPage():load({ id = "landing_page_id" })
 ```
 
 #### Example: List
 
-```ts
-const landing_pages = await client.landing_page.list()
+```lua
+local landing_pages, err = client:LandingPage():list()
 ```
 
 
 ### Place
 
-Create an instance: `const place = client.place`
+Create an instance: `local place = client:Place(nil)`
 
 #### Operations
 
@@ -2336,20 +2341,20 @@ Create an instance: `const place = client.place`
 
 #### Example: Load
 
-```ts
-const place = await client.place.load({ id: 'place_id' })
+```lua
+local place, err = client:Place():load({ id = "place_id" })
 ```
 
 #### Example: List
 
-```ts
-const places = await client.place.list()
+```lua
+local places, err = client:Place():list()
 ```
 
 
 ### PressRelease
 
-Create an instance: `const press_release = client.press_release`
+Create an instance: `local press_release = client:PressRelease(nil)`
 
 #### Operations
 
@@ -2376,20 +2381,20 @@ Create an instance: `const press_release = client.press_release`
 
 #### Example: Load
 
-```ts
-const press_release = await client.press_release.load({ id: 'press_release_id' })
+```lua
+local press_release, err = client:PressRelease():load({ id = "press_release_id" })
 ```
 
 #### Example: List
 
-```ts
-const press_releases = await client.press_release.list()
+```lua
+local press_releases, err = client:PressRelease():list()
 ```
 
 
 ### PrintedPublication
 
-Create an instance: `const printed_publication = client.printed_publication`
+Create an instance: `local printed_publication = client:PrintedPublication(nil)`
 
 #### Operations
 
@@ -2416,20 +2421,20 @@ Create an instance: `const printed_publication = client.printed_publication`
 
 #### Example: Load
 
-```ts
-const printed_publication = await client.printed_publication.load({ id: 'printed_publication_id' })
+```lua
+local printed_publication, err = client:PrintedPublication():load({ id = "printed_publication_id" })
 ```
 
 #### Example: List
 
-```ts
-const printed_publications = await client.printed_publication.list()
+```lua
+local printed_publications, err = client:PrintedPublication():list()
 ```
 
 
 ### Product
 
-Create an instance: `const product = client.product`
+Create an instance: `local product = client:Product(nil)`
 
 #### Operations
 
@@ -2466,20 +2471,20 @@ Create an instance: `const product = client.product`
 
 #### Example: Load
 
-```ts
-const product = await client.product.load({ id: 'product_id' })
+```lua
+local product, err = client:Product():load({ id = "product_id" })
 ```
 
 #### Example: List
 
-```ts
-const products = await client.product.list()
+```lua
+local products, err = client:Product():list()
 ```
 
 
 ### Publication
 
-Create an instance: `const publication = client.publication`
+Create an instance: `local publication = client:Publication(nil)`
 
 #### Operations
 
@@ -2506,20 +2511,20 @@ Create an instance: `const publication = client.publication`
 
 #### Example: Load
 
-```ts
-const publication = await client.publication.load({ id: 'publication_id' })
+```lua
+local publication, err = client:Publication():load({ id = "publication_id" })
 ```
 
 #### Example: List
 
-```ts
-const publications = await client.publication.list()
+```lua
+local publications, err = client:Publication():list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `local search = client:Search(nil)`
 
 #### Operations
 
@@ -2543,14 +2548,14 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```lua
+local searchs, err = client:Search():list()
 ```
 
 
 ### Section
 
-Create an instance: `const section = client.section`
+Create an instance: `local section = client:Section(nil)`
 
 #### Operations
 
@@ -2582,20 +2587,20 @@ Create an instance: `const section = client.section`
 
 #### Example: Load
 
-```ts
-const section = await client.section.load({ id: 'section_id' })
+```lua
+local section, err = client:Section():load({ id = "section_id" })
 ```
 
 #### Example: List
 
-```ts
-const sections = await client.section.list()
+```lua
+local sections, err = client:Section():list()
 ```
 
 
 ### Site
 
-Create an instance: `const site = client.site`
+Create an instance: `local site = client:Site(nil)`
 
 #### Operations
 
@@ -2626,20 +2631,20 @@ Create an instance: `const site = client.site`
 
 #### Example: Load
 
-```ts
-const site = await client.site.load({ id: 'site_id' })
+```lua
+local site, err = client:Site():load({ id = "site_id" })
 ```
 
 #### Example: List
 
-```ts
-const sites = await client.site.list()
+```lua
+local sites, err = client:Site():list()
 ```
 
 
 ### Sound
 
-Create an instance: `const sound = client.sound`
+Create an instance: `local sound = client:Sound(nil)`
 
 #### Operations
 
@@ -2677,20 +2682,20 @@ Create an instance: `const sound = client.sound`
 
 #### Example: Load
 
-```ts
-const sound = await client.sound.load({ id: 'sound_id' })
+```lua
+local sound, err = client:Sound():load({ id = "sound_id" })
 ```
 
 #### Example: List
 
-```ts
-const sounds = await client.sound.list()
+```lua
+local sounds, err = client:Sound():list()
 ```
 
 
 ### StaticPage
 
-Create an instance: `const static_page = client.static_page`
+Create an instance: `local static_page = client:StaticPage(nil)`
 
 #### Operations
 
@@ -2716,20 +2721,20 @@ Create an instance: `const static_page = client.static_page`
 
 #### Example: Load
 
-```ts
-const static_page = await client.static_page.load({ id: 'static_page_id' })
+```lua
+local static_page, err = client:StaticPage():load({ id = "static_page_id" })
 ```
 
 #### Example: List
 
-```ts
-const static_pages = await client.static_page.list()
+```lua
+local static_pages, err = client:StaticPage():list()
 ```
 
 
 ### Text
 
-Create an instance: `const text = client.text`
+Create an instance: `local text = client:Text(nil)`
 
 #### Operations
 
@@ -2765,20 +2770,20 @@ Create an instance: `const text = client.text`
 
 #### Example: Load
 
-```ts
-const text = await client.text.load({ id: 'text_id' })
+```lua
+local text, err = client:Text():load({ id = "text_id" })
 ```
 
 #### Example: List
 
-```ts
-const texts = await client.text.list()
+```lua
+local texts, err = client:Text():list()
 ```
 
 
 ### Tour
 
-Create an instance: `const tour = client.tour`
+Create an instance: `local tour = client:Tour(nil)`
 
 #### Operations
 
@@ -2811,20 +2816,20 @@ Create an instance: `const tour = client.tour`
 
 #### Example: Load
 
-```ts
-const tour = await client.tour.load({ id: 'tour_id' })
+```lua
+local tour, err = client:Tour():load({ id = "tour_id" })
 ```
 
 #### Example: List
 
-```ts
-const tours = await client.tour.list()
+```lua
+local tours, err = client:Tour():list()
 ```
 
 
 ### Video
 
-Create an instance: `const video = client.video`
+Create an instance: `local video = client:Video(nil)`
 
 #### Operations
 
@@ -2860,14 +2865,14 @@ Create an instance: `const video = client.video`
 
 #### Example: Load
 
-```ts
-const video = await client.video.load({ id: 'video_id' })
+```lua
+local video, err = client:Video():load({ id = "video_id" })
 ```
 
 #### Example: List
 
-```ts
-const videos = await client.video.list()
+```lua
+local videos, err = client:Video():list()
 ```
 
 
@@ -2942,7 +2947,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local agent = client:agent()
+local agent = client:Agent()
 agent:load({ id = "example_id" })
 
 -- agent:data_get() now returns the loaded agent data

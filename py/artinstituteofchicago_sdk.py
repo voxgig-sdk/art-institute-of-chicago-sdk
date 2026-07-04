@@ -220,569 +220,219 @@ class ArtInstituteOfChicagoSDK:
         }
 
 
-    @property
-    def agent(self):
-        """Idiomatic facade: client.agent.list() / client.agent.load({"id": ...})."""
-        from entity.agent_entity import AgentEntity
-        cached = getattr(self, "_agent", None)
-        if cached is None:
-            cached = AgentEntity(self, None)
-            self._agent = cached
-        return cached
-
-    def Agent(self, data=None):
-        # Deprecated: use client.agent instead.
+    def Agent(self, data=None) -> "AgentEntity":
+        """Entity factory: client.Agent().list({}) / client.Agent().load({"id": ...})."""
         from entity.agent_entity import AgentEntity
         return AgentEntity(self, data)
 
 
-    @property
-    def agent_role(self):
-        """Idiomatic facade: client.agent_role.list() / client.agent_role.load({"id": ...})."""
-        from entity.agent_role_entity import AgentRoleEntity
-        cached = getattr(self, "_agent_role", None)
-        if cached is None:
-            cached = AgentRoleEntity(self, None)
-            self._agent_role = cached
-        return cached
-
-    def AgentRole(self, data=None):
-        # Deprecated: use client.agent_role instead.
+    def AgentRole(self, data=None) -> "AgentRoleEntity":
+        """Entity factory: client.AgentRole().list({}) / client.AgentRole().load({"id": ...})."""
         from entity.agent_role_entity import AgentRoleEntity
         return AgentRoleEntity(self, data)
 
 
-    @property
-    def agent_type(self):
-        """Idiomatic facade: client.agent_type.list() / client.agent_type.load({"id": ...})."""
-        from entity.agent_type_entity import AgentTypeEntity
-        cached = getattr(self, "_agent_type", None)
-        if cached is None:
-            cached = AgentTypeEntity(self, None)
-            self._agent_type = cached
-        return cached
-
-    def AgentType(self, data=None):
-        # Deprecated: use client.agent_type instead.
+    def AgentType(self, data=None) -> "AgentTypeEntity":
+        """Entity factory: client.AgentType().list({}) / client.AgentType().load({"id": ...})."""
         from entity.agent_type_entity import AgentTypeEntity
         return AgentTypeEntity(self, data)
 
 
-    @property
-    def article(self):
-        """Idiomatic facade: client.article.list() / client.article.load({"id": ...})."""
-        from entity.article_entity import ArticleEntity
-        cached = getattr(self, "_article", None)
-        if cached is None:
-            cached = ArticleEntity(self, None)
-            self._article = cached
-        return cached
-
-    def Article(self, data=None):
-        # Deprecated: use client.article instead.
+    def Article(self, data=None) -> "ArticleEntity":
+        """Entity factory: client.Article().list({}) / client.Article().load({"id": ...})."""
         from entity.article_entity import ArticleEntity
         return ArticleEntity(self, data)
 
 
-    @property
-    def artwork(self):
-        """Idiomatic facade: client.artwork.list() / client.artwork.load({"id": ...})."""
-        from entity.artwork_entity import ArtworkEntity
-        cached = getattr(self, "_artwork", None)
-        if cached is None:
-            cached = ArtworkEntity(self, None)
-            self._artwork = cached
-        return cached
-
-    def Artwork(self, data=None):
-        # Deprecated: use client.artwork instead.
+    def Artwork(self, data=None) -> "ArtworkEntity":
+        """Entity factory: client.Artwork().list({}) / client.Artwork().load({"id": ...})."""
         from entity.artwork_entity import ArtworkEntity
         return ArtworkEntity(self, data)
 
 
-    @property
-    def artwork_date_qualifier(self):
-        """Idiomatic facade: client.artwork_date_qualifier.list() / client.artwork_date_qualifier.load({"id": ...})."""
-        from entity.artwork_date_qualifier_entity import ArtworkDateQualifierEntity
-        cached = getattr(self, "_artwork_date_qualifier", None)
-        if cached is None:
-            cached = ArtworkDateQualifierEntity(self, None)
-            self._artwork_date_qualifier = cached
-        return cached
-
-    def ArtworkDateQualifier(self, data=None):
-        # Deprecated: use client.artwork_date_qualifier instead.
+    def ArtworkDateQualifier(self, data=None) -> "ArtworkDateQualifierEntity":
+        """Entity factory: client.ArtworkDateQualifier().list({}) / client.ArtworkDateQualifier().load({"id": ...})."""
         from entity.artwork_date_qualifier_entity import ArtworkDateQualifierEntity
         return ArtworkDateQualifierEntity(self, data)
 
 
-    @property
-    def artwork_place_qualifier(self):
-        """Idiomatic facade: client.artwork_place_qualifier.list() / client.artwork_place_qualifier.load({"id": ...})."""
-        from entity.artwork_place_qualifier_entity import ArtworkPlaceQualifierEntity
-        cached = getattr(self, "_artwork_place_qualifier", None)
-        if cached is None:
-            cached = ArtworkPlaceQualifierEntity(self, None)
-            self._artwork_place_qualifier = cached
-        return cached
-
-    def ArtworkPlaceQualifier(self, data=None):
-        # Deprecated: use client.artwork_place_qualifier instead.
+    def ArtworkPlaceQualifier(self, data=None) -> "ArtworkPlaceQualifierEntity":
+        """Entity factory: client.ArtworkPlaceQualifier().list({}) / client.ArtworkPlaceQualifier().load({"id": ...})."""
         from entity.artwork_place_qualifier_entity import ArtworkPlaceQualifierEntity
         return ArtworkPlaceQualifierEntity(self, data)
 
 
-    @property
-    def artwork_type(self):
-        """Idiomatic facade: client.artwork_type.list() / client.artwork_type.load({"id": ...})."""
-        from entity.artwork_type_entity import ArtworkTypeEntity
-        cached = getattr(self, "_artwork_type", None)
-        if cached is None:
-            cached = ArtworkTypeEntity(self, None)
-            self._artwork_type = cached
-        return cached
-
-    def ArtworkType(self, data=None):
-        # Deprecated: use client.artwork_type instead.
+    def ArtworkType(self, data=None) -> "ArtworkTypeEntity":
+        """Entity factory: client.ArtworkType().list({}) / client.ArtworkType().load({"id": ...})."""
         from entity.artwork_type_entity import ArtworkTypeEntity
         return ArtworkTypeEntity(self, data)
 
 
-    @property
-    def category_term(self):
-        """Idiomatic facade: client.category_term.list() / client.category_term.load({"id": ...})."""
-        from entity.category_term_entity import CategoryTermEntity
-        cached = getattr(self, "_category_term", None)
-        if cached is None:
-            cached = CategoryTermEntity(self, None)
-            self._category_term = cached
-        return cached
-
-    def CategoryTerm(self, data=None):
-        # Deprecated: use client.category_term instead.
+    def CategoryTerm(self, data=None) -> "CategoryTermEntity":
+        """Entity factory: client.CategoryTerm().list({}) / client.CategoryTerm().load({"id": ...})."""
         from entity.category_term_entity import CategoryTermEntity
         return CategoryTermEntity(self, data)
 
 
-    @property
-    def digital_publication(self):
-        """Idiomatic facade: client.digital_publication.list() / client.digital_publication.load({"id": ...})."""
-        from entity.digital_publication_entity import DigitalPublicationEntity
-        cached = getattr(self, "_digital_publication", None)
-        if cached is None:
-            cached = DigitalPublicationEntity(self, None)
-            self._digital_publication = cached
-        return cached
-
-    def DigitalPublication(self, data=None):
-        # Deprecated: use client.digital_publication instead.
+    def DigitalPublication(self, data=None) -> "DigitalPublicationEntity":
+        """Entity factory: client.DigitalPublication().list({}) / client.DigitalPublication().load({"id": ...})."""
         from entity.digital_publication_entity import DigitalPublicationEntity
         return DigitalPublicationEntity(self, data)
 
 
-    @property
-    def digital_publication_article(self):
-        """Idiomatic facade: client.digital_publication_article.list() / client.digital_publication_article.load({"id": ...})."""
-        from entity.digital_publication_article_entity import DigitalPublicationArticleEntity
-        cached = getattr(self, "_digital_publication_article", None)
-        if cached is None:
-            cached = DigitalPublicationArticleEntity(self, None)
-            self._digital_publication_article = cached
-        return cached
-
-    def DigitalPublicationArticle(self, data=None):
-        # Deprecated: use client.digital_publication_article instead.
+    def DigitalPublicationArticle(self, data=None) -> "DigitalPublicationArticleEntity":
+        """Entity factory: client.DigitalPublicationArticle().list({}) / client.DigitalPublicationArticle().load({"id": ...})."""
         from entity.digital_publication_article_entity import DigitalPublicationArticleEntity
         return DigitalPublicationArticleEntity(self, data)
 
 
-    @property
-    def educator_resource(self):
-        """Idiomatic facade: client.educator_resource.list() / client.educator_resource.load({"id": ...})."""
-        from entity.educator_resource_entity import EducatorResourceEntity
-        cached = getattr(self, "_educator_resource", None)
-        if cached is None:
-            cached = EducatorResourceEntity(self, None)
-            self._educator_resource = cached
-        return cached
-
-    def EducatorResource(self, data=None):
-        # Deprecated: use client.educator_resource instead.
+    def EducatorResource(self, data=None) -> "EducatorResourceEntity":
+        """Entity factory: client.EducatorResource().list({}) / client.EducatorResource().load({"id": ...})."""
         from entity.educator_resource_entity import EducatorResourceEntity
         return EducatorResourceEntity(self, data)
 
 
-    @property
-    def event(self):
-        """Idiomatic facade: client.event.list() / client.event.load({"id": ...})."""
-        from entity.event_entity import EventEntity
-        cached = getattr(self, "_event", None)
-        if cached is None:
-            cached = EventEntity(self, None)
-            self._event = cached
-        return cached
-
-    def Event(self, data=None):
-        # Deprecated: use client.event instead.
+    def Event(self, data=None) -> "EventEntity":
+        """Entity factory: client.Event().list({}) / client.Event().load({"id": ...})."""
         from entity.event_entity import EventEntity
         return EventEntity(self, data)
 
 
-    @property
-    def event_occurrence(self):
-        """Idiomatic facade: client.event_occurrence.list() / client.event_occurrence.load({"id": ...})."""
-        from entity.event_occurrence_entity import EventOccurrenceEntity
-        cached = getattr(self, "_event_occurrence", None)
-        if cached is None:
-            cached = EventOccurrenceEntity(self, None)
-            self._event_occurrence = cached
-        return cached
-
-    def EventOccurrence(self, data=None):
-        # Deprecated: use client.event_occurrence instead.
+    def EventOccurrence(self, data=None) -> "EventOccurrenceEntity":
+        """Entity factory: client.EventOccurrence().list({}) / client.EventOccurrence().load({"id": ...})."""
         from entity.event_occurrence_entity import EventOccurrenceEntity
         return EventOccurrenceEntity(self, data)
 
 
-    @property
-    def event_program(self):
-        """Idiomatic facade: client.event_program.list() / client.event_program.load({"id": ...})."""
-        from entity.event_program_entity import EventProgramEntity
-        cached = getattr(self, "_event_program", None)
-        if cached is None:
-            cached = EventProgramEntity(self, None)
-            self._event_program = cached
-        return cached
-
-    def EventProgram(self, data=None):
-        # Deprecated: use client.event_program instead.
+    def EventProgram(self, data=None) -> "EventProgramEntity":
+        """Entity factory: client.EventProgram().list({}) / client.EventProgram().load({"id": ...})."""
         from entity.event_program_entity import EventProgramEntity
         return EventProgramEntity(self, data)
 
 
-    @property
-    def exhibition(self):
-        """Idiomatic facade: client.exhibition.list() / client.exhibition.load({"id": ...})."""
-        from entity.exhibition_entity import ExhibitionEntity
-        cached = getattr(self, "_exhibition", None)
-        if cached is None:
-            cached = ExhibitionEntity(self, None)
-            self._exhibition = cached
-        return cached
-
-    def Exhibition(self, data=None):
-        # Deprecated: use client.exhibition instead.
+    def Exhibition(self, data=None) -> "ExhibitionEntity":
+        """Entity factory: client.Exhibition().list({}) / client.Exhibition().load({"id": ...})."""
         from entity.exhibition_entity import ExhibitionEntity
         return ExhibitionEntity(self, data)
 
 
-    @property
-    def gallery(self):
-        """Idiomatic facade: client.gallery.list() / client.gallery.load({"id": ...})."""
-        from entity.gallery_entity import GalleryEntity
-        cached = getattr(self, "_gallery", None)
-        if cached is None:
-            cached = GalleryEntity(self, None)
-            self._gallery = cached
-        return cached
-
-    def Gallery(self, data=None):
-        # Deprecated: use client.gallery instead.
+    def Gallery(self, data=None) -> "GalleryEntity":
+        """Entity factory: client.Gallery().list({}) / client.Gallery().load({"id": ...})."""
         from entity.gallery_entity import GalleryEntity
         return GalleryEntity(self, data)
 
 
-    @property
-    def generic_page(self):
-        """Idiomatic facade: client.generic_page.list() / client.generic_page.load({"id": ...})."""
-        from entity.generic_page_entity import GenericPageEntity
-        cached = getattr(self, "_generic_page", None)
-        if cached is None:
-            cached = GenericPageEntity(self, None)
-            self._generic_page = cached
-        return cached
-
-    def GenericPage(self, data=None):
-        # Deprecated: use client.generic_page instead.
+    def GenericPage(self, data=None) -> "GenericPageEntity":
+        """Entity factory: client.GenericPage().list({}) / client.GenericPage().load({"id": ...})."""
         from entity.generic_page_entity import GenericPageEntity
         return GenericPageEntity(self, data)
 
 
-    @property
-    def highlight(self):
-        """Idiomatic facade: client.highlight.list() / client.highlight.load({"id": ...})."""
-        from entity.highlight_entity import HighlightEntity
-        cached = getattr(self, "_highlight", None)
-        if cached is None:
-            cached = HighlightEntity(self, None)
-            self._highlight = cached
-        return cached
-
-    def Highlight(self, data=None):
-        # Deprecated: use client.highlight instead.
+    def Highlight(self, data=None) -> "HighlightEntity":
+        """Entity factory: client.Highlight().list({}) / client.Highlight().load({"id": ...})."""
         from entity.highlight_entity import HighlightEntity
         return HighlightEntity(self, data)
 
 
-    @property
-    def hour(self):
-        """Idiomatic facade: client.hour.list() / client.hour.load({"id": ...})."""
-        from entity.hour_entity import HourEntity
-        cached = getattr(self, "_hour", None)
-        if cached is None:
-            cached = HourEntity(self, None)
-            self._hour = cached
-        return cached
-
-    def Hour(self, data=None):
-        # Deprecated: use client.hour instead.
+    def Hour(self, data=None) -> "HourEntity":
+        """Entity factory: client.Hour().list({}) / client.Hour().load({"id": ...})."""
         from entity.hour_entity import HourEntity
         return HourEntity(self, data)
 
 
-    @property
-    def image(self):
-        """Idiomatic facade: client.image.list() / client.image.load({"id": ...})."""
-        from entity.image_entity import ImageEntity
-        cached = getattr(self, "_image", None)
-        if cached is None:
-            cached = ImageEntity(self, None)
-            self._image = cached
-        return cached
-
-    def Image(self, data=None):
-        # Deprecated: use client.image instead.
+    def Image(self, data=None) -> "ImageEntity":
+        """Entity factory: client.Image().list({}) / client.Image().load({"id": ...})."""
         from entity.image_entity import ImageEntity
         return ImageEntity(self, data)
 
 
-    @property
-    def landing_page(self):
-        """Idiomatic facade: client.landing_page.list() / client.landing_page.load({"id": ...})."""
-        from entity.landing_page_entity import LandingPageEntity
-        cached = getattr(self, "_landing_page", None)
-        if cached is None:
-            cached = LandingPageEntity(self, None)
-            self._landing_page = cached
-        return cached
-
-    def LandingPage(self, data=None):
-        # Deprecated: use client.landing_page instead.
+    def LandingPage(self, data=None) -> "LandingPageEntity":
+        """Entity factory: client.LandingPage().list({}) / client.LandingPage().load({"id": ...})."""
         from entity.landing_page_entity import LandingPageEntity
         return LandingPageEntity(self, data)
 
 
-    @property
-    def place(self):
-        """Idiomatic facade: client.place.list() / client.place.load({"id": ...})."""
-        from entity.place_entity import PlaceEntity
-        cached = getattr(self, "_place", None)
-        if cached is None:
-            cached = PlaceEntity(self, None)
-            self._place = cached
-        return cached
-
-    def Place(self, data=None):
-        # Deprecated: use client.place instead.
+    def Place(self, data=None) -> "PlaceEntity":
+        """Entity factory: client.Place().list({}) / client.Place().load({"id": ...})."""
         from entity.place_entity import PlaceEntity
         return PlaceEntity(self, data)
 
 
-    @property
-    def press_release(self):
-        """Idiomatic facade: client.press_release.list() / client.press_release.load({"id": ...})."""
-        from entity.press_release_entity import PressReleaseEntity
-        cached = getattr(self, "_press_release", None)
-        if cached is None:
-            cached = PressReleaseEntity(self, None)
-            self._press_release = cached
-        return cached
-
-    def PressRelease(self, data=None):
-        # Deprecated: use client.press_release instead.
+    def PressRelease(self, data=None) -> "PressReleaseEntity":
+        """Entity factory: client.PressRelease().list({}) / client.PressRelease().load({"id": ...})."""
         from entity.press_release_entity import PressReleaseEntity
         return PressReleaseEntity(self, data)
 
 
-    @property
-    def printed_publication(self):
-        """Idiomatic facade: client.printed_publication.list() / client.printed_publication.load({"id": ...})."""
-        from entity.printed_publication_entity import PrintedPublicationEntity
-        cached = getattr(self, "_printed_publication", None)
-        if cached is None:
-            cached = PrintedPublicationEntity(self, None)
-            self._printed_publication = cached
-        return cached
-
-    def PrintedPublication(self, data=None):
-        # Deprecated: use client.printed_publication instead.
+    def PrintedPublication(self, data=None) -> "PrintedPublicationEntity":
+        """Entity factory: client.PrintedPublication().list({}) / client.PrintedPublication().load({"id": ...})."""
         from entity.printed_publication_entity import PrintedPublicationEntity
         return PrintedPublicationEntity(self, data)
 
 
-    @property
-    def product(self):
-        """Idiomatic facade: client.product.list() / client.product.load({"id": ...})."""
-        from entity.product_entity import ProductEntity
-        cached = getattr(self, "_product", None)
-        if cached is None:
-            cached = ProductEntity(self, None)
-            self._product = cached
-        return cached
-
-    def Product(self, data=None):
-        # Deprecated: use client.product instead.
+    def Product(self, data=None) -> "ProductEntity":
+        """Entity factory: client.Product().list({}) / client.Product().load({"id": ...})."""
         from entity.product_entity import ProductEntity
         return ProductEntity(self, data)
 
 
-    @property
-    def publication(self):
-        """Idiomatic facade: client.publication.list() / client.publication.load({"id": ...})."""
-        from entity.publication_entity import PublicationEntity
-        cached = getattr(self, "_publication", None)
-        if cached is None:
-            cached = PublicationEntity(self, None)
-            self._publication = cached
-        return cached
-
-    def Publication(self, data=None):
-        # Deprecated: use client.publication instead.
+    def Publication(self, data=None) -> "PublicationEntity":
+        """Entity factory: client.Publication().list({}) / client.Publication().load({"id": ...})."""
         from entity.publication_entity import PublicationEntity
         return PublicationEntity(self, data)
 
 
-    @property
-    def search(self):
-        """Idiomatic facade: client.search.list() / client.search.load({"id": ...})."""
-        from entity.search_entity import SearchEntity
-        cached = getattr(self, "_search", None)
-        if cached is None:
-            cached = SearchEntity(self, None)
-            self._search = cached
-        return cached
-
-    def Search(self, data=None):
-        # Deprecated: use client.search instead.
+    def Search(self, data=None) -> "SearchEntity":
+        """Entity factory: client.Search().list({}) / client.Search().load({"id": ...})."""
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 
 
-    @property
-    def section(self):
-        """Idiomatic facade: client.section.list() / client.section.load({"id": ...})."""
-        from entity.section_entity import SectionEntity
-        cached = getattr(self, "_section", None)
-        if cached is None:
-            cached = SectionEntity(self, None)
-            self._section = cached
-        return cached
-
-    def Section(self, data=None):
-        # Deprecated: use client.section instead.
+    def Section(self, data=None) -> "SectionEntity":
+        """Entity factory: client.Section().list({}) / client.Section().load({"id": ...})."""
         from entity.section_entity import SectionEntity
         return SectionEntity(self, data)
 
 
-    @property
-    def site(self):
-        """Idiomatic facade: client.site.list() / client.site.load({"id": ...})."""
-        from entity.site_entity import SiteEntity
-        cached = getattr(self, "_site", None)
-        if cached is None:
-            cached = SiteEntity(self, None)
-            self._site = cached
-        return cached
-
-    def Site(self, data=None):
-        # Deprecated: use client.site instead.
+    def Site(self, data=None) -> "SiteEntity":
+        """Entity factory: client.Site().list({}) / client.Site().load({"id": ...})."""
         from entity.site_entity import SiteEntity
         return SiteEntity(self, data)
 
 
-    @property
-    def sound(self):
-        """Idiomatic facade: client.sound.list() / client.sound.load({"id": ...})."""
-        from entity.sound_entity import SoundEntity
-        cached = getattr(self, "_sound", None)
-        if cached is None:
-            cached = SoundEntity(self, None)
-            self._sound = cached
-        return cached
-
-    def Sound(self, data=None):
-        # Deprecated: use client.sound instead.
+    def Sound(self, data=None) -> "SoundEntity":
+        """Entity factory: client.Sound().list({}) / client.Sound().load({"id": ...})."""
         from entity.sound_entity import SoundEntity
         return SoundEntity(self, data)
 
 
-    @property
-    def static_page(self):
-        """Idiomatic facade: client.static_page.list() / client.static_page.load({"id": ...})."""
-        from entity.static_page_entity import StaticPageEntity
-        cached = getattr(self, "_static_page", None)
-        if cached is None:
-            cached = StaticPageEntity(self, None)
-            self._static_page = cached
-        return cached
-
-    def StaticPage(self, data=None):
-        # Deprecated: use client.static_page instead.
+    def StaticPage(self, data=None) -> "StaticPageEntity":
+        """Entity factory: client.StaticPage().list({}) / client.StaticPage().load({"id": ...})."""
         from entity.static_page_entity import StaticPageEntity
         return StaticPageEntity(self, data)
 
 
-    @property
-    def text(self):
-        """Idiomatic facade: client.text.list() / client.text.load({"id": ...})."""
-        from entity.text_entity import TextEntity
-        cached = getattr(self, "_text", None)
-        if cached is None:
-            cached = TextEntity(self, None)
-            self._text = cached
-        return cached
-
-    def Text(self, data=None):
-        # Deprecated: use client.text instead.
+    def Text(self, data=None) -> "TextEntity":
+        """Entity factory: client.Text().list({}) / client.Text().load({"id": ...})."""
         from entity.text_entity import TextEntity
         return TextEntity(self, data)
 
 
-    @property
-    def tour(self):
-        """Idiomatic facade: client.tour.list() / client.tour.load({"id": ...})."""
-        from entity.tour_entity import TourEntity
-        cached = getattr(self, "_tour", None)
-        if cached is None:
-            cached = TourEntity(self, None)
-            self._tour = cached
-        return cached
-
-    def Tour(self, data=None):
-        # Deprecated: use client.tour instead.
+    def Tour(self, data=None) -> "TourEntity":
+        """Entity factory: client.Tour().list({}) / client.Tour().load({"id": ...})."""
         from entity.tour_entity import TourEntity
         return TourEntity(self, data)
 
 
-    @property
-    def video(self):
-        """Idiomatic facade: client.video.list() / client.video.load({"id": ...})."""
-        from entity.video_entity import VideoEntity
-        cached = getattr(self, "_video", None)
-        if cached is None:
-            cached = VideoEntity(self, None)
-            self._video = cached
-        return cached
-
-    def Video(self, data=None):
-        # Deprecated: use client.video instead.
+    def Video(self, data=None) -> "VideoEntity":
+        """Entity factory: client.Video().list({}) / client.Video().load({"id": ...})."""
         from entity.video_entity import VideoEntity
         return VideoEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "ArtInstituteOfChicagoSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -802,3 +452,43 @@ class ArtInstituteOfChicagoSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.agent_entity import AgentEntity
+    from entity.agent_role_entity import AgentRoleEntity
+    from entity.agent_type_entity import AgentTypeEntity
+    from entity.article_entity import ArticleEntity
+    from entity.artwork_entity import ArtworkEntity
+    from entity.artwork_date_qualifier_entity import ArtworkDateQualifierEntity
+    from entity.artwork_place_qualifier_entity import ArtworkPlaceQualifierEntity
+    from entity.artwork_type_entity import ArtworkTypeEntity
+    from entity.category_term_entity import CategoryTermEntity
+    from entity.digital_publication_entity import DigitalPublicationEntity
+    from entity.digital_publication_article_entity import DigitalPublicationArticleEntity
+    from entity.educator_resource_entity import EducatorResourceEntity
+    from entity.event_entity import EventEntity
+    from entity.event_occurrence_entity import EventOccurrenceEntity
+    from entity.event_program_entity import EventProgramEntity
+    from entity.exhibition_entity import ExhibitionEntity
+    from entity.gallery_entity import GalleryEntity
+    from entity.generic_page_entity import GenericPageEntity
+    from entity.highlight_entity import HighlightEntity
+    from entity.hour_entity import HourEntity
+    from entity.image_entity import ImageEntity
+    from entity.landing_page_entity import LandingPageEntity
+    from entity.place_entity import PlaceEntity
+    from entity.press_release_entity import PressReleaseEntity
+    from entity.printed_publication_entity import PrintedPublicationEntity
+    from entity.product_entity import ProductEntity
+    from entity.publication_entity import PublicationEntity
+    from entity.search_entity import SearchEntity
+    from entity.section_entity import SectionEntity
+    from entity.site_entity import SiteEntity
+    from entity.sound_entity import SoundEntity
+    from entity.static_page_entity import StaticPageEntity
+    from entity.text_entity import TextEntity
+    from entity.tour_entity import TourEntity
+    from entity.video_entity import VideoEntity

@@ -238,490 +238,245 @@ class ArtInstituteOfChicagoSDK {
 
 
 
-  _agent?: AgentEntity
-
-  // Idiomatic facade: `client.agent.list()` / `client.agent.load({ id })`.
-  get agent(): AgentEntity {
-    return (this._agent ??= new AgentEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.agent` instead. */
+  // Entity access: `client.Agent().list()` / `client.Agent().load({ id })`.
   Agent(data?: any) {
     const self = this
     return new AgentEntity(self,data)
   }
 
 
-  _agent_role?: AgentRoleEntity
-
-  // Idiomatic facade: `client.agent_role.list()` / `client.agent_role.load({ id })`.
-  get agent_role(): AgentRoleEntity {
-    return (this._agent_role ??= new AgentRoleEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.agent_role` instead. */
+  // Entity access: `client.AgentRole().list()` / `client.AgentRole().load({ id })`.
   AgentRole(data?: any) {
     const self = this
     return new AgentRoleEntity(self,data)
   }
 
 
-  _agent_type?: AgentTypeEntity
-
-  // Idiomatic facade: `client.agent_type.list()` / `client.agent_type.load({ id })`.
-  get agent_type(): AgentTypeEntity {
-    return (this._agent_type ??= new AgentTypeEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.agent_type` instead. */
+  // Entity access: `client.AgentType().list()` / `client.AgentType().load({ id })`.
   AgentType(data?: any) {
     const self = this
     return new AgentTypeEntity(self,data)
   }
 
 
-  _article?: ArticleEntity
-
-  // Idiomatic facade: `client.article.list()` / `client.article.load({ id })`.
-  get article(): ArticleEntity {
-    return (this._article ??= new ArticleEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.article` instead. */
+  // Entity access: `client.Article().list()` / `client.Article().load({ id })`.
   Article(data?: any) {
     const self = this
     return new ArticleEntity(self,data)
   }
 
 
-  _artwork?: ArtworkEntity
-
-  // Idiomatic facade: `client.artwork.list()` / `client.artwork.load({ id })`.
-  get artwork(): ArtworkEntity {
-    return (this._artwork ??= new ArtworkEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.artwork` instead. */
+  // Entity access: `client.Artwork().list()` / `client.Artwork().load({ id })`.
   Artwork(data?: any) {
     const self = this
     return new ArtworkEntity(self,data)
   }
 
 
-  _artwork_date_qualifier?: ArtworkDateQualifierEntity
-
-  // Idiomatic facade: `client.artwork_date_qualifier.list()` / `client.artwork_date_qualifier.load({ id })`.
-  get artwork_date_qualifier(): ArtworkDateQualifierEntity {
-    return (this._artwork_date_qualifier ??= new ArtworkDateQualifierEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.artwork_date_qualifier` instead. */
+  // Entity access: `client.ArtworkDateQualifier().list()` / `client.ArtworkDateQualifier().load({ id })`.
   ArtworkDateQualifier(data?: any) {
     const self = this
     return new ArtworkDateQualifierEntity(self,data)
   }
 
 
-  _artwork_place_qualifier?: ArtworkPlaceQualifierEntity
-
-  // Idiomatic facade: `client.artwork_place_qualifier.list()` / `client.artwork_place_qualifier.load({ id })`.
-  get artwork_place_qualifier(): ArtworkPlaceQualifierEntity {
-    return (this._artwork_place_qualifier ??= new ArtworkPlaceQualifierEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.artwork_place_qualifier` instead. */
+  // Entity access: `client.ArtworkPlaceQualifier().list()` / `client.ArtworkPlaceQualifier().load({ id })`.
   ArtworkPlaceQualifier(data?: any) {
     const self = this
     return new ArtworkPlaceQualifierEntity(self,data)
   }
 
 
-  _artwork_type?: ArtworkTypeEntity
-
-  // Idiomatic facade: `client.artwork_type.list()` / `client.artwork_type.load({ id })`.
-  get artwork_type(): ArtworkTypeEntity {
-    return (this._artwork_type ??= new ArtworkTypeEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.artwork_type` instead. */
+  // Entity access: `client.ArtworkType().list()` / `client.ArtworkType().load({ id })`.
   ArtworkType(data?: any) {
     const self = this
     return new ArtworkTypeEntity(self,data)
   }
 
 
-  _category_term?: CategoryTermEntity
-
-  // Idiomatic facade: `client.category_term.list()` / `client.category_term.load({ id })`.
-  get category_term(): CategoryTermEntity {
-    return (this._category_term ??= new CategoryTermEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.category_term` instead. */
+  // Entity access: `client.CategoryTerm().list()` / `client.CategoryTerm().load({ id })`.
   CategoryTerm(data?: any) {
     const self = this
     return new CategoryTermEntity(self,data)
   }
 
 
-  _digital_publication?: DigitalPublicationEntity
-
-  // Idiomatic facade: `client.digital_publication.list()` / `client.digital_publication.load({ id })`.
-  get digital_publication(): DigitalPublicationEntity {
-    return (this._digital_publication ??= new DigitalPublicationEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.digital_publication` instead. */
+  // Entity access: `client.DigitalPublication().list()` / `client.DigitalPublication().load({ id })`.
   DigitalPublication(data?: any) {
     const self = this
     return new DigitalPublicationEntity(self,data)
   }
 
 
-  _digital_publication_article?: DigitalPublicationArticleEntity
-
-  // Idiomatic facade: `client.digital_publication_article.list()` / `client.digital_publication_article.load({ id })`.
-  get digital_publication_article(): DigitalPublicationArticleEntity {
-    return (this._digital_publication_article ??= new DigitalPublicationArticleEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.digital_publication_article` instead. */
+  // Entity access: `client.DigitalPublicationArticle().list()` / `client.DigitalPublicationArticle().load({ id })`.
   DigitalPublicationArticle(data?: any) {
     const self = this
     return new DigitalPublicationArticleEntity(self,data)
   }
 
 
-  _educator_resource?: EducatorResourceEntity
-
-  // Idiomatic facade: `client.educator_resource.list()` / `client.educator_resource.load({ id })`.
-  get educator_resource(): EducatorResourceEntity {
-    return (this._educator_resource ??= new EducatorResourceEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.educator_resource` instead. */
+  // Entity access: `client.EducatorResource().list()` / `client.EducatorResource().load({ id })`.
   EducatorResource(data?: any) {
     const self = this
     return new EducatorResourceEntity(self,data)
   }
 
 
-  _event?: EventEntity
-
-  // Idiomatic facade: `client.event.list()` / `client.event.load({ id })`.
-  get event(): EventEntity {
-    return (this._event ??= new EventEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.event` instead. */
+  // Entity access: `client.Event().list()` / `client.Event().load({ id })`.
   Event(data?: any) {
     const self = this
     return new EventEntity(self,data)
   }
 
 
-  _event_occurrence?: EventOccurrenceEntity
-
-  // Idiomatic facade: `client.event_occurrence.list()` / `client.event_occurrence.load({ id })`.
-  get event_occurrence(): EventOccurrenceEntity {
-    return (this._event_occurrence ??= new EventOccurrenceEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.event_occurrence` instead. */
+  // Entity access: `client.EventOccurrence().list()` / `client.EventOccurrence().load({ id })`.
   EventOccurrence(data?: any) {
     const self = this
     return new EventOccurrenceEntity(self,data)
   }
 
 
-  _event_program?: EventProgramEntity
-
-  // Idiomatic facade: `client.event_program.list()` / `client.event_program.load({ id })`.
-  get event_program(): EventProgramEntity {
-    return (this._event_program ??= new EventProgramEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.event_program` instead. */
+  // Entity access: `client.EventProgram().list()` / `client.EventProgram().load({ id })`.
   EventProgram(data?: any) {
     const self = this
     return new EventProgramEntity(self,data)
   }
 
 
-  _exhibition?: ExhibitionEntity
-
-  // Idiomatic facade: `client.exhibition.list()` / `client.exhibition.load({ id })`.
-  get exhibition(): ExhibitionEntity {
-    return (this._exhibition ??= new ExhibitionEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.exhibition` instead. */
+  // Entity access: `client.Exhibition().list()` / `client.Exhibition().load({ id })`.
   Exhibition(data?: any) {
     const self = this
     return new ExhibitionEntity(self,data)
   }
 
 
-  _gallery?: GalleryEntity
-
-  // Idiomatic facade: `client.gallery.list()` / `client.gallery.load({ id })`.
-  get gallery(): GalleryEntity {
-    return (this._gallery ??= new GalleryEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.gallery` instead. */
+  // Entity access: `client.Gallery().list()` / `client.Gallery().load({ id })`.
   Gallery(data?: any) {
     const self = this
     return new GalleryEntity(self,data)
   }
 
 
-  _generic_page?: GenericPageEntity
-
-  // Idiomatic facade: `client.generic_page.list()` / `client.generic_page.load({ id })`.
-  get generic_page(): GenericPageEntity {
-    return (this._generic_page ??= new GenericPageEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.generic_page` instead. */
+  // Entity access: `client.GenericPage().list()` / `client.GenericPage().load({ id })`.
   GenericPage(data?: any) {
     const self = this
     return new GenericPageEntity(self,data)
   }
 
 
-  _highlight?: HighlightEntity
-
-  // Idiomatic facade: `client.highlight.list()` / `client.highlight.load({ id })`.
-  get highlight(): HighlightEntity {
-    return (this._highlight ??= new HighlightEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.highlight` instead. */
+  // Entity access: `client.Highlight().list()` / `client.Highlight().load({ id })`.
   Highlight(data?: any) {
     const self = this
     return new HighlightEntity(self,data)
   }
 
 
-  _hour?: HourEntity
-
-  // Idiomatic facade: `client.hour.list()` / `client.hour.load({ id })`.
-  get hour(): HourEntity {
-    return (this._hour ??= new HourEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.hour` instead. */
+  // Entity access: `client.Hour().list()` / `client.Hour().load({ id })`.
   Hour(data?: any) {
     const self = this
     return new HourEntity(self,data)
   }
 
 
-  _image?: ImageEntity
-
-  // Idiomatic facade: `client.image.list()` / `client.image.load({ id })`.
-  get image(): ImageEntity {
-    return (this._image ??= new ImageEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.image` instead. */
+  // Entity access: `client.Image().list()` / `client.Image().load({ id })`.
   Image(data?: any) {
     const self = this
     return new ImageEntity(self,data)
   }
 
 
-  _landing_page?: LandingPageEntity
-
-  // Idiomatic facade: `client.landing_page.list()` / `client.landing_page.load({ id })`.
-  get landing_page(): LandingPageEntity {
-    return (this._landing_page ??= new LandingPageEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.landing_page` instead. */
+  // Entity access: `client.LandingPage().list()` / `client.LandingPage().load({ id })`.
   LandingPage(data?: any) {
     const self = this
     return new LandingPageEntity(self,data)
   }
 
 
-  _place?: PlaceEntity
-
-  // Idiomatic facade: `client.place.list()` / `client.place.load({ id })`.
-  get place(): PlaceEntity {
-    return (this._place ??= new PlaceEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.place` instead. */
+  // Entity access: `client.Place().list()` / `client.Place().load({ id })`.
   Place(data?: any) {
     const self = this
     return new PlaceEntity(self,data)
   }
 
 
-  _press_release?: PressReleaseEntity
-
-  // Idiomatic facade: `client.press_release.list()` / `client.press_release.load({ id })`.
-  get press_release(): PressReleaseEntity {
-    return (this._press_release ??= new PressReleaseEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.press_release` instead. */
+  // Entity access: `client.PressRelease().list()` / `client.PressRelease().load({ id })`.
   PressRelease(data?: any) {
     const self = this
     return new PressReleaseEntity(self,data)
   }
 
 
-  _printed_publication?: PrintedPublicationEntity
-
-  // Idiomatic facade: `client.printed_publication.list()` / `client.printed_publication.load({ id })`.
-  get printed_publication(): PrintedPublicationEntity {
-    return (this._printed_publication ??= new PrintedPublicationEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.printed_publication` instead. */
+  // Entity access: `client.PrintedPublication().list()` / `client.PrintedPublication().load({ id })`.
   PrintedPublication(data?: any) {
     const self = this
     return new PrintedPublicationEntity(self,data)
   }
 
 
-  _product?: ProductEntity
-
-  // Idiomatic facade: `client.product.list()` / `client.product.load({ id })`.
-  get product(): ProductEntity {
-    return (this._product ??= new ProductEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.product` instead. */
+  // Entity access: `client.Product().list()` / `client.Product().load({ id })`.
   Product(data?: any) {
     const self = this
     return new ProductEntity(self,data)
   }
 
 
-  _publication?: PublicationEntity
-
-  // Idiomatic facade: `client.publication.list()` / `client.publication.load({ id })`.
-  get publication(): PublicationEntity {
-    return (this._publication ??= new PublicationEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.publication` instead. */
+  // Entity access: `client.Publication().list()` / `client.Publication().load({ id })`.
   Publication(data?: any) {
     const self = this
     return new PublicationEntity(self,data)
   }
 
 
-  _search?: SearchEntity
-
-  // Idiomatic facade: `client.search.list()` / `client.search.load({ id })`.
-  get search(): SearchEntity {
-    return (this._search ??= new SearchEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.search` instead. */
+  // Entity access: `client.Search().list()` / `client.Search().load({ id })`.
   Search(data?: any) {
     const self = this
     return new SearchEntity(self,data)
   }
 
 
-  _section?: SectionEntity
-
-  // Idiomatic facade: `client.section.list()` / `client.section.load({ id })`.
-  get section(): SectionEntity {
-    return (this._section ??= new SectionEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.section` instead. */
+  // Entity access: `client.Section().list()` / `client.Section().load({ id })`.
   Section(data?: any) {
     const self = this
     return new SectionEntity(self,data)
   }
 
 
-  _site?: SiteEntity
-
-  // Idiomatic facade: `client.site.list()` / `client.site.load({ id })`.
-  get site(): SiteEntity {
-    return (this._site ??= new SiteEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.site` instead. */
+  // Entity access: `client.Site().list()` / `client.Site().load({ id })`.
   Site(data?: any) {
     const self = this
     return new SiteEntity(self,data)
   }
 
 
-  _sound?: SoundEntity
-
-  // Idiomatic facade: `client.sound.list()` / `client.sound.load({ id })`.
-  get sound(): SoundEntity {
-    return (this._sound ??= new SoundEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.sound` instead. */
+  // Entity access: `client.Sound().list()` / `client.Sound().load({ id })`.
   Sound(data?: any) {
     const self = this
     return new SoundEntity(self,data)
   }
 
 
-  _static_page?: StaticPageEntity
-
-  // Idiomatic facade: `client.static_page.list()` / `client.static_page.load({ id })`.
-  get static_page(): StaticPageEntity {
-    return (this._static_page ??= new StaticPageEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.static_page` instead. */
+  // Entity access: `client.StaticPage().list()` / `client.StaticPage().load({ id })`.
   StaticPage(data?: any) {
     const self = this
     return new StaticPageEntity(self,data)
   }
 
 
-  _text?: TextEntity
-
-  // Idiomatic facade: `client.text.list()` / `client.text.load({ id })`.
-  get text(): TextEntity {
-    return (this._text ??= new TextEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.text` instead. */
+  // Entity access: `client.Text().list()` / `client.Text().load({ id })`.
   Text(data?: any) {
     const self = this
     return new TextEntity(self,data)
   }
 
 
-  _tour?: TourEntity
-
-  // Idiomatic facade: `client.tour.list()` / `client.tour.load({ id })`.
-  get tour(): TourEntity {
-    return (this._tour ??= new TourEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.tour` instead. */
+  // Entity access: `client.Tour().list()` / `client.Tour().load({ id })`.
   Tour(data?: any) {
     const self = this
     return new TourEntity(self,data)
   }
 
 
-  _video?: VideoEntity
-
-  // Idiomatic facade: `client.video.list()` / `client.video.load({ id })`.
-  get video(): VideoEntity {
-    return (this._video ??= new VideoEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.video` instead. */
+  // Entity access: `client.Video().list()` / `client.Video().load({ id })`.
   Video(data?: any) {
     const self = this
     return new VideoEntity(self,data)

@@ -26,9 +26,11 @@ import { ArtInstituteOfChicagoSDK } from '@voxgig-sdk/art-institute-of-chicago'
 
 const client = new ArtInstituteOfChicagoSDK()
 
-// List all agents
-const agents = await client.agent.list()
-console.log(agents.data)
+// List all agents (returns Agent[])
+const agents = await client.Agent().list()
+for (const agent of agents) {
+  console.log(agent)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -117,12 +119,13 @@ from artinstituteofchicago_sdk import ArtInstituteOfChicagoSDK
 
 client = ArtInstituteOfChicagoSDK()
 
-# List all agents
-agents = client.agent.list()
-print(agents)
+# List all agents (returns a list, raises on error)
+agents = client.Agent().list({})
+for agent in agents:
+    print(agent)
 
-# Load a specific agent
-agent = client.agent.load({"id": "example_id"})
+# Load a specific agent (returns the record, raises on error)
+agent = client.Agent().load({"id": "example_id"})
 print(agent)
 ```
 
@@ -134,12 +137,12 @@ require_once 'artinstituteofchicago_sdk.php';
 
 $client = new ArtInstituteOfChicagoSDK();
 
-// List all agents (throws on error)
-$agents = $client->agent()->list();
+// List all agents (returns an array; throws on error)
+$agents = $client->Agent()->list();
 print_r($agents);
 
-// Load a specific agent
-$agent = $client->agent()->load(["id" => "example_id"]);
+// Load a specific agent (returns the bare record; throws on error)
+$agent = $client->Agent()->load(["id" => "example_id"]);
 print_r($agent);
 ```
 
@@ -162,12 +165,12 @@ require_relative "ArtInstituteOfChicago_sdk"
 
 client = ArtInstituteOfChicagoSDK.new
 
-# List all agents
-agents = client.agent.list
+# List all agents (returns an Array; raises on error)
+agents = client.Agent.list
 puts agents
 
-# Load a specific agent
-agent = client.agent.load({ "id" => "example_id" })
+# Load a specific agent (returns the bare record; raises on error)
+agent = client.Agent.load({ "id" => "example_id" })
 puts agent
 ```
 
@@ -179,11 +182,11 @@ local sdk = require("art-institute-of-chicago_sdk")
 local client = sdk.new()
 
 -- List all agents
-local agents, err = client:agent():list()
+local agents, err = client:Agent():list()
 print(agents)
 
 -- Load a specific agent
-local agent, err = client:agent():load({ id = "example_id" })
+local agent, err = client:Agent():load({ id = "example_id" })
 print(agent)
 ```
 
@@ -196,22 +199,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = ArtInstituteOfChicagoSDK.test()
-const result = await client.agent.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const agent = await client.Agent().load({ id: 'test01' })
+// agent is a bare Agent populated with mock data
+console.log(agent)
 ```
 
 ### Python
 
 ```python
 client = ArtInstituteOfChicagoSDK.test()
-result = client.agent.load({"id": "test01"})
+agent = client.Agent().load({"id": "test01"})
+print(agent)
 ```
 
 ### PHP
 
 ```php
-$client = ArtInstituteOfChicagoSDK::test();
-$result = $client->agent()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = ArtInstituteOfChicagoSDK::test([
+    "entity" => ["agent" => ["test01" => ["id" => "test01"]]],
+]);
+$agent = $client->Agent()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -226,15 +234,18 @@ result, err := client.Agent(nil).Load(
 ### Ruby
 
 ```ruby
-client = ArtInstituteOfChicagoSDK.test
-result = client.agent.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = ArtInstituteOfChicagoSDK.test({
+  "entity" => { "agent" => { "test01" => { "id" => "test01" } } },
+})
+agent = client.Agent.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:agent():load({ id = "test01" })
+local result, err = client:Agent():load({ id = "test01" })
 ```
 
 ## How it works
@@ -282,6 +293,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

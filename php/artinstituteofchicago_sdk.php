@@ -233,10 +233,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_agent = null;
 
-    // Idiomatic facade: $client->agent()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Agent() (PHP method
-    // names are case-insensitive).
-    public function agent($data = null)
+    // Canonical facade: $client->Agent()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->agent()
+    // resolves here too.
+    public function Agent($data = null)
     {
         require_once __DIR__ . '/entity/agent_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_agent_role = null;
 
-    // Idiomatic facade: $client->agent_role()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias AgentRole() (PHP method
-    // names are case-insensitive).
-    public function agent_role($data = null)
+    // Canonical facade: $client->AgentRole()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->agent_role()
+    // resolves here too.
+    public function AgentRole($data = null)
     {
         require_once __DIR__ . '/entity/agent_role_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_agent_type = null;
 
-    // Idiomatic facade: $client->agent_type()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias AgentType() (PHP method
-    // names are case-insensitive).
-    public function agent_type($data = null)
+    // Canonical facade: $client->AgentType()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->agent_type()
+    // resolves here too.
+    public function AgentType($data = null)
     {
         require_once __DIR__ . '/entity/agent_type_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_article = null;
 
-    // Idiomatic facade: $client->article()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Article() (PHP method
-    // names are case-insensitive).
-    public function article($data = null)
+    // Canonical facade: $client->Article()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->article()
+    // resolves here too.
+    public function Article($data = null)
     {
         require_once __DIR__ . '/entity/article_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_artwork = null;
 
-    // Idiomatic facade: $client->artwork()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Artwork() (PHP method
-    // names are case-insensitive).
-    public function artwork($data = null)
+    // Canonical facade: $client->Artwork()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->artwork()
+    // resolves here too.
+    public function Artwork($data = null)
     {
         require_once __DIR__ . '/entity/artwork_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_artwork_date_qualifier = null;
 
-    // Idiomatic facade: $client->artwork_date_qualifier()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias ArtworkDateQualifier() (PHP method
-    // names are case-insensitive).
-    public function artwork_date_qualifier($data = null)
+    // Canonical facade: $client->ArtworkDateQualifier()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->artwork_date_qualifier()
+    // resolves here too.
+    public function ArtworkDateQualifier($data = null)
     {
         require_once __DIR__ . '/entity/artwork_date_qualifier_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_artwork_place_qualifier = null;
 
-    // Idiomatic facade: $client->artwork_place_qualifier()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias ArtworkPlaceQualifier() (PHP method
-    // names are case-insensitive).
-    public function artwork_place_qualifier($data = null)
+    // Canonical facade: $client->ArtworkPlaceQualifier()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->artwork_place_qualifier()
+    // resolves here too.
+    public function ArtworkPlaceQualifier($data = null)
     {
         require_once __DIR__ . '/entity/artwork_place_qualifier_entity.php';
         if ($data === null) {
@@ -359,10 +359,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_artwork_type = null;
 
-    // Idiomatic facade: $client->artwork_type()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias ArtworkType() (PHP method
-    // names are case-insensitive).
-    public function artwork_type($data = null)
+    // Canonical facade: $client->ArtworkType()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->artwork_type()
+    // resolves here too.
+    public function ArtworkType($data = null)
     {
         require_once __DIR__ . '/entity/artwork_type_entity.php';
         if ($data === null) {
@@ -377,10 +377,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_category_term = null;
 
-    // Idiomatic facade: $client->category_term()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CategoryTerm() (PHP method
-    // names are case-insensitive).
-    public function category_term($data = null)
+    // Canonical facade: $client->CategoryTerm()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->category_term()
+    // resolves here too.
+    public function CategoryTerm($data = null)
     {
         require_once __DIR__ . '/entity/category_term_entity.php';
         if ($data === null) {
@@ -395,10 +395,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_digital_publication = null;
 
-    // Idiomatic facade: $client->digital_publication()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias DigitalPublication() (PHP method
-    // names are case-insensitive).
-    public function digital_publication($data = null)
+    // Canonical facade: $client->DigitalPublication()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->digital_publication()
+    // resolves here too.
+    public function DigitalPublication($data = null)
     {
         require_once __DIR__ . '/entity/digital_publication_entity.php';
         if ($data === null) {
@@ -413,10 +413,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_digital_publication_article = null;
 
-    // Idiomatic facade: $client->digital_publication_article()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias DigitalPublicationArticle() (PHP method
-    // names are case-insensitive).
-    public function digital_publication_article($data = null)
+    // Canonical facade: $client->DigitalPublicationArticle()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->digital_publication_article()
+    // resolves here too.
+    public function DigitalPublicationArticle($data = null)
     {
         require_once __DIR__ . '/entity/digital_publication_article_entity.php';
         if ($data === null) {
@@ -431,10 +431,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_educator_resource = null;
 
-    // Idiomatic facade: $client->educator_resource()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias EducatorResource() (PHP method
-    // names are case-insensitive).
-    public function educator_resource($data = null)
+    // Canonical facade: $client->EducatorResource()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->educator_resource()
+    // resolves here too.
+    public function EducatorResource($data = null)
     {
         require_once __DIR__ . '/entity/educator_resource_entity.php';
         if ($data === null) {
@@ -449,10 +449,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_event = null;
 
-    // Idiomatic facade: $client->event()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Event() (PHP method
-    // names are case-insensitive).
-    public function event($data = null)
+    // Canonical facade: $client->Event()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->event()
+    // resolves here too.
+    public function Event($data = null)
     {
         require_once __DIR__ . '/entity/event_entity.php';
         if ($data === null) {
@@ -467,10 +467,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_event_occurrence = null;
 
-    // Idiomatic facade: $client->event_occurrence()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias EventOccurrence() (PHP method
-    // names are case-insensitive).
-    public function event_occurrence($data = null)
+    // Canonical facade: $client->EventOccurrence()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->event_occurrence()
+    // resolves here too.
+    public function EventOccurrence($data = null)
     {
         require_once __DIR__ . '/entity/event_occurrence_entity.php';
         if ($data === null) {
@@ -485,10 +485,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_event_program = null;
 
-    // Idiomatic facade: $client->event_program()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias EventProgram() (PHP method
-    // names are case-insensitive).
-    public function event_program($data = null)
+    // Canonical facade: $client->EventProgram()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->event_program()
+    // resolves here too.
+    public function EventProgram($data = null)
     {
         require_once __DIR__ . '/entity/event_program_entity.php';
         if ($data === null) {
@@ -503,10 +503,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_exhibition = null;
 
-    // Idiomatic facade: $client->exhibition()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Exhibition() (PHP method
-    // names are case-insensitive).
-    public function exhibition($data = null)
+    // Canonical facade: $client->Exhibition()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->exhibition()
+    // resolves here too.
+    public function Exhibition($data = null)
     {
         require_once __DIR__ . '/entity/exhibition_entity.php';
         if ($data === null) {
@@ -521,10 +521,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_gallery = null;
 
-    // Idiomatic facade: $client->gallery()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Gallery() (PHP method
-    // names are case-insensitive).
-    public function gallery($data = null)
+    // Canonical facade: $client->Gallery()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->gallery()
+    // resolves here too.
+    public function Gallery($data = null)
     {
         require_once __DIR__ . '/entity/gallery_entity.php';
         if ($data === null) {
@@ -539,10 +539,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_generic_page = null;
 
-    // Idiomatic facade: $client->generic_page()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GenericPage() (PHP method
-    // names are case-insensitive).
-    public function generic_page($data = null)
+    // Canonical facade: $client->GenericPage()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->generic_page()
+    // resolves here too.
+    public function GenericPage($data = null)
     {
         require_once __DIR__ . '/entity/generic_page_entity.php';
         if ($data === null) {
@@ -557,10 +557,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_highlight = null;
 
-    // Idiomatic facade: $client->highlight()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Highlight() (PHP method
-    // names are case-insensitive).
-    public function highlight($data = null)
+    // Canonical facade: $client->Highlight()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->highlight()
+    // resolves here too.
+    public function Highlight($data = null)
     {
         require_once __DIR__ . '/entity/highlight_entity.php';
         if ($data === null) {
@@ -575,10 +575,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_hour = null;
 
-    // Idiomatic facade: $client->hour()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Hour() (PHP method
-    // names are case-insensitive).
-    public function hour($data = null)
+    // Canonical facade: $client->Hour()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->hour()
+    // resolves here too.
+    public function Hour($data = null)
     {
         require_once __DIR__ . '/entity/hour_entity.php';
         if ($data === null) {
@@ -593,10 +593,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_image = null;
 
-    // Idiomatic facade: $client->image()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Image() (PHP method
-    // names are case-insensitive).
-    public function image($data = null)
+    // Canonical facade: $client->Image()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->image()
+    // resolves here too.
+    public function Image($data = null)
     {
         require_once __DIR__ . '/entity/image_entity.php';
         if ($data === null) {
@@ -611,10 +611,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_landing_page = null;
 
-    // Idiomatic facade: $client->landing_page()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias LandingPage() (PHP method
-    // names are case-insensitive).
-    public function landing_page($data = null)
+    // Canonical facade: $client->LandingPage()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->landing_page()
+    // resolves here too.
+    public function LandingPage($data = null)
     {
         require_once __DIR__ . '/entity/landing_page_entity.php';
         if ($data === null) {
@@ -629,10 +629,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_place = null;
 
-    // Idiomatic facade: $client->place()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Place() (PHP method
-    // names are case-insensitive).
-    public function place($data = null)
+    // Canonical facade: $client->Place()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->place()
+    // resolves here too.
+    public function Place($data = null)
     {
         require_once __DIR__ . '/entity/place_entity.php';
         if ($data === null) {
@@ -647,10 +647,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_press_release = null;
 
-    // Idiomatic facade: $client->press_release()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias PressRelease() (PHP method
-    // names are case-insensitive).
-    public function press_release($data = null)
+    // Canonical facade: $client->PressRelease()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->press_release()
+    // resolves here too.
+    public function PressRelease($data = null)
     {
         require_once __DIR__ . '/entity/press_release_entity.php';
         if ($data === null) {
@@ -665,10 +665,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_printed_publication = null;
 
-    // Idiomatic facade: $client->printed_publication()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias PrintedPublication() (PHP method
-    // names are case-insensitive).
-    public function printed_publication($data = null)
+    // Canonical facade: $client->PrintedPublication()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->printed_publication()
+    // resolves here too.
+    public function PrintedPublication($data = null)
     {
         require_once __DIR__ . '/entity/printed_publication_entity.php';
         if ($data === null) {
@@ -683,10 +683,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_product = null;
 
-    // Idiomatic facade: $client->product()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Product() (PHP method
-    // names are case-insensitive).
-    public function product($data = null)
+    // Canonical facade: $client->Product()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->product()
+    // resolves here too.
+    public function Product($data = null)
     {
         require_once __DIR__ . '/entity/product_entity.php';
         if ($data === null) {
@@ -701,10 +701,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_publication = null;
 
-    // Idiomatic facade: $client->publication()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Publication() (PHP method
-    // names are case-insensitive).
-    public function publication($data = null)
+    // Canonical facade: $client->Publication()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->publication()
+    // resolves here too.
+    public function Publication($data = null)
     {
         require_once __DIR__ . '/entity/publication_entity.php';
         if ($data === null) {
@@ -719,10 +719,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_search = null;
 
-    // Idiomatic facade: $client->search()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Search() (PHP method
-    // names are case-insensitive).
-    public function search($data = null)
+    // Canonical facade: $client->Search()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->search()
+    // resolves here too.
+    public function Search($data = null)
     {
         require_once __DIR__ . '/entity/search_entity.php';
         if ($data === null) {
@@ -737,10 +737,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_section = null;
 
-    // Idiomatic facade: $client->section()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Section() (PHP method
-    // names are case-insensitive).
-    public function section($data = null)
+    // Canonical facade: $client->Section()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->section()
+    // resolves here too.
+    public function Section($data = null)
     {
         require_once __DIR__ . '/entity/section_entity.php';
         if ($data === null) {
@@ -755,10 +755,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_site = null;
 
-    // Idiomatic facade: $client->site()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Site() (PHP method
-    // names are case-insensitive).
-    public function site($data = null)
+    // Canonical facade: $client->Site()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->site()
+    // resolves here too.
+    public function Site($data = null)
     {
         require_once __DIR__ . '/entity/site_entity.php';
         if ($data === null) {
@@ -773,10 +773,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_sound = null;
 
-    // Idiomatic facade: $client->sound()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Sound() (PHP method
-    // names are case-insensitive).
-    public function sound($data = null)
+    // Canonical facade: $client->Sound()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->sound()
+    // resolves here too.
+    public function Sound($data = null)
     {
         require_once __DIR__ . '/entity/sound_entity.php';
         if ($data === null) {
@@ -791,10 +791,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_static_page = null;
 
-    // Idiomatic facade: $client->static_page()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias StaticPage() (PHP method
-    // names are case-insensitive).
-    public function static_page($data = null)
+    // Canonical facade: $client->StaticPage()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->static_page()
+    // resolves here too.
+    public function StaticPage($data = null)
     {
         require_once __DIR__ . '/entity/static_page_entity.php';
         if ($data === null) {
@@ -809,10 +809,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_text = null;
 
-    // Idiomatic facade: $client->text()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Text() (PHP method
-    // names are case-insensitive).
-    public function text($data = null)
+    // Canonical facade: $client->Text()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->text()
+    // resolves here too.
+    public function Text($data = null)
     {
         require_once __DIR__ . '/entity/text_entity.php';
         if ($data === null) {
@@ -827,10 +827,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_tour = null;
 
-    // Idiomatic facade: $client->tour()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Tour() (PHP method
-    // names are case-insensitive).
-    public function tour($data = null)
+    // Canonical facade: $client->Tour()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->tour()
+    // resolves here too.
+    public function Tour($data = null)
     {
         require_once __DIR__ . '/entity/tour_entity.php';
         if ($data === null) {
@@ -845,10 +845,10 @@ class ArtInstituteOfChicagoSDK
 
     private $_video = null;
 
-    // Idiomatic facade: $client->video()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Video() (PHP method
-    // names are case-insensitive).
-    public function video($data = null)
+    // Canonical facade: $client->Video()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->video()
+    // resolves here too.
+    public function Video($data = null)
     {
         require_once __DIR__ . '/entity/video_entity.php';
         if ($data === null) {

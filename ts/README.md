@@ -28,25 +28,28 @@ import { ArtInstituteOfChicagoSDK } from '@voxgig-sdk/art-institute-of-chicago'
 const client = new ArtInstituteOfChicagoSDK()
 ```
 
-### 2. List agents
+### 2. List agent records
+
+`list()` resolves to an array of Agent objects — iterate it directly:
 
 ```ts
-const result = await client.agent.list()
+const agents = await client.Agent().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const agent of agents) {
+  console.log(agent)
 }
 ```
 
 ### 3. Load an agent
 
-```ts
-const result = await client.agent.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const agent = await client.Agent().load({ id: 'example_id' })
+  console.log(agent)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -64,6 +67,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -92,9 +98,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = ArtInstituteOfChicagoSDK.test()
 
-const result = await client.agent.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const agent = await client.Agent().load({ id: 'test01' })
+// agent is a bare entity populated with mock response data
+console.log(agent)
 ```
 
 You can also use the instance method:
@@ -109,7 +115,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.agent
+const entity = client.Agent()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -187,27 +193,27 @@ new ArtInstituteOfChicagoSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `Agent(data?)` | `AgentEntity` | Create a Agent entity instance. |
-| `AgentRole(data?)` | `AgentRoleEntity` | Create a AgentRole entity instance. |
-| `AgentType(data?)` | `AgentTypeEntity` | Create a AgentType entity instance. |
-| `Article(data?)` | `ArticleEntity` | Create a Article entity instance. |
-| `Artwork(data?)` | `ArtworkEntity` | Create a Artwork entity instance. |
-| `ArtworkDateQualifier(data?)` | `ArtworkDateQualifierEntity` | Create a ArtworkDateQualifier entity instance. |
-| `ArtworkPlaceQualifier(data?)` | `ArtworkPlaceQualifierEntity` | Create a ArtworkPlaceQualifier entity instance. |
-| `ArtworkType(data?)` | `ArtworkTypeEntity` | Create a ArtworkType entity instance. |
+| `Agent(data?)` | `AgentEntity` | Create an Agent entity instance. |
+| `AgentRole(data?)` | `AgentRoleEntity` | Create an AgentRole entity instance. |
+| `AgentType(data?)` | `AgentTypeEntity` | Create an AgentType entity instance. |
+| `Article(data?)` | `ArticleEntity` | Create an Article entity instance. |
+| `Artwork(data?)` | `ArtworkEntity` | Create an Artwork entity instance. |
+| `ArtworkDateQualifier(data?)` | `ArtworkDateQualifierEntity` | Create an ArtworkDateQualifier entity instance. |
+| `ArtworkPlaceQualifier(data?)` | `ArtworkPlaceQualifierEntity` | Create an ArtworkPlaceQualifier entity instance. |
+| `ArtworkType(data?)` | `ArtworkTypeEntity` | Create an ArtworkType entity instance. |
 | `CategoryTerm(data?)` | `CategoryTermEntity` | Create a CategoryTerm entity instance. |
 | `DigitalPublication(data?)` | `DigitalPublicationEntity` | Create a DigitalPublication entity instance. |
 | `DigitalPublicationArticle(data?)` | `DigitalPublicationArticleEntity` | Create a DigitalPublicationArticle entity instance. |
-| `EducatorResource(data?)` | `EducatorResourceEntity` | Create a EducatorResource entity instance. |
-| `Event(data?)` | `EventEntity` | Create a Event entity instance. |
-| `EventOccurrence(data?)` | `EventOccurrenceEntity` | Create a EventOccurrence entity instance. |
-| `EventProgram(data?)` | `EventProgramEntity` | Create a EventProgram entity instance. |
-| `Exhibition(data?)` | `ExhibitionEntity` | Create a Exhibition entity instance. |
+| `EducatorResource(data?)` | `EducatorResourceEntity` | Create an EducatorResource entity instance. |
+| `Event(data?)` | `EventEntity` | Create an Event entity instance. |
+| `EventOccurrence(data?)` | `EventOccurrenceEntity` | Create an EventOccurrence entity instance. |
+| `EventProgram(data?)` | `EventProgramEntity` | Create an EventProgram entity instance. |
+| `Exhibition(data?)` | `ExhibitionEntity` | Create an Exhibition entity instance. |
 | `Gallery(data?)` | `GalleryEntity` | Create a Gallery entity instance. |
 | `GenericPage(data?)` | `GenericPageEntity` | Create a GenericPage entity instance. |
 | `Highlight(data?)` | `HighlightEntity` | Create a Highlight entity instance. |
 | `Hour(data?)` | `HourEntity` | Create a Hour entity instance. |
-| `Image(data?)` | `ImageEntity` | Create a Image entity instance. |
+| `Image(data?)` | `ImageEntity` | Create an Image entity instance. |
 | `LandingPage(data?)` | `LandingPageEntity` | Create a LandingPage entity instance. |
 | `Place(data?)` | `PlaceEntity` | Create a Place entity instance. |
 | `PressRelease(data?)` | `PressReleaseEntity` | Create a PressRelease entity instance. |
@@ -238,29 +244,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): ArtInstituteOfChicagoSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -1263,7 +1270,7 @@ API path: `/videos`
 
 ### Agent
 
-Create an instance: `const agent = client.agent`
+Create an instance: `const agent = client.Agent()`
 
 #### Operations
 
@@ -1296,19 +1303,19 @@ Create an instance: `const agent = client.agent`
 #### Example: Load
 
 ```ts
-const agent = await client.agent.load({ id: 'agent_id' })
+const agent = await client.Agent().load({ id: 'agent_id' })
 ```
 
 #### Example: List
 
 ```ts
-const agents = await client.agent.list()
+const agents = await client.Agent().list()
 ```
 
 
 ### AgentRole
 
-Create an instance: `const agent_role = client.agent_role`
+Create an instance: `const agent_role = client.AgentRole()`
 
 #### Operations
 
@@ -1334,19 +1341,19 @@ Create an instance: `const agent_role = client.agent_role`
 #### Example: Load
 
 ```ts
-const agent_role = await client.agent_role.load({ id: 'agent_role_id' })
+const agent_role = await client.AgentRole().load({ id: 'agent_role_id' })
 ```
 
 #### Example: List
 
 ```ts
-const agent_roles = await client.agent_role.list()
+const agent_roles = await client.AgentRole().list()
 ```
 
 
 ### AgentType
 
-Create an instance: `const agent_type = client.agent_type`
+Create an instance: `const agent_type = client.AgentType()`
 
 #### Operations
 
@@ -1372,19 +1379,19 @@ Create an instance: `const agent_type = client.agent_type`
 #### Example: Load
 
 ```ts
-const agent_type = await client.agent_type.load({ id: 'agent_type_id' })
+const agent_type = await client.AgentType().load({ id: 'agent_type_id' })
 ```
 
 #### Example: List
 
 ```ts
-const agent_types = await client.agent_type.list()
+const agent_types = await client.AgentType().list()
 ```
 
 
 ### Article
 
-Create an instance: `const article = client.article`
+Create an instance: `const article = client.Article()`
 
 #### Operations
 
@@ -1411,19 +1418,19 @@ Create an instance: `const article = client.article`
 #### Example: Load
 
 ```ts
-const article = await client.article.load({ id: 'article_id' })
+const article = await client.Article().load({ id: 'article_id' })
 ```
 
 #### Example: List
 
 ```ts
-const articles = await client.article.list()
+const articles = await client.Article().list()
 ```
 
 
 ### Artwork
 
-Create an instance: `const artwork = client.artwork`
+Create an instance: `const artwork = client.Artwork()`
 
 #### Operations
 
@@ -1535,19 +1542,19 @@ Create an instance: `const artwork = client.artwork`
 #### Example: Load
 
 ```ts
-const artwork = await client.artwork.load({ id: 'artwork_id' })
+const artwork = await client.Artwork().load({ id: 'artwork_id' })
 ```
 
 #### Example: List
 
 ```ts
-const artworks = await client.artwork.list()
+const artworks = await client.Artwork().list()
 ```
 
 
 ### ArtworkDateQualifier
 
-Create an instance: `const artwork_date_qualifier = client.artwork_date_qualifier`
+Create an instance: `const artwork_date_qualifier = client.ArtworkDateQualifier()`
 
 #### Operations
 
@@ -1573,19 +1580,19 @@ Create an instance: `const artwork_date_qualifier = client.artwork_date_qualifie
 #### Example: Load
 
 ```ts
-const artwork_date_qualifier = await client.artwork_date_qualifier.load({ id: 'artwork_date_qualifier_id' })
+const artwork_date_qualifier = await client.ArtworkDateQualifier().load({ id: 'artwork_date_qualifier_id' })
 ```
 
 #### Example: List
 
 ```ts
-const artwork_date_qualifiers = await client.artwork_date_qualifier.list()
+const artwork_date_qualifiers = await client.ArtworkDateQualifier().list()
 ```
 
 
 ### ArtworkPlaceQualifier
 
-Create an instance: `const artwork_place_qualifier = client.artwork_place_qualifier`
+Create an instance: `const artwork_place_qualifier = client.ArtworkPlaceQualifier()`
 
 #### Operations
 
@@ -1611,19 +1618,19 @@ Create an instance: `const artwork_place_qualifier = client.artwork_place_qualif
 #### Example: Load
 
 ```ts
-const artwork_place_qualifier = await client.artwork_place_qualifier.load({ id: 'artwork_place_qualifier_id' })
+const artwork_place_qualifier = await client.ArtworkPlaceQualifier().load({ id: 'artwork_place_qualifier_id' })
 ```
 
 #### Example: List
 
 ```ts
-const artwork_place_qualifiers = await client.artwork_place_qualifier.list()
+const artwork_place_qualifiers = await client.ArtworkPlaceQualifier().list()
 ```
 
 
 ### ArtworkType
 
-Create an instance: `const artwork_type = client.artwork_type`
+Create an instance: `const artwork_type = client.ArtworkType()`
 
 #### Operations
 
@@ -1650,19 +1657,19 @@ Create an instance: `const artwork_type = client.artwork_type`
 #### Example: Load
 
 ```ts
-const artwork_type = await client.artwork_type.load({ id: 'artwork_type_id' })
+const artwork_type = await client.ArtworkType().load({ id: 'artwork_type_id' })
 ```
 
 #### Example: List
 
 ```ts
-const artwork_types = await client.artwork_type.list()
+const artwork_types = await client.ArtworkType().list()
 ```
 
 
 ### CategoryTerm
 
-Create an instance: `const category_term = client.category_term`
+Create an instance: `const category_term = client.CategoryTerm()`
 
 #### Operations
 
@@ -1690,19 +1697,19 @@ Create an instance: `const category_term = client.category_term`
 #### Example: Load
 
 ```ts
-const category_term = await client.category_term.load({ id: 'category_term_id' })
+const category_term = await client.CategoryTerm().load({ id: 'category_term_id' })
 ```
 
 #### Example: List
 
 ```ts
-const category_terms = await client.category_term.list()
+const category_terms = await client.CategoryTerm().list()
 ```
 
 
 ### DigitalPublication
 
-Create an instance: `const digital_publication = client.digital_publication`
+Create an instance: `const digital_publication = client.DigitalPublication()`
 
 #### Operations
 
@@ -1730,19 +1737,19 @@ Create an instance: `const digital_publication = client.digital_publication`
 #### Example: Load
 
 ```ts
-const digital_publication = await client.digital_publication.load({ id: 'digital_publication_id' })
+const digital_publication = await client.DigitalPublication().load({ id: 'digital_publication_id' })
 ```
 
 #### Example: List
 
 ```ts
-const digital_publications = await client.digital_publication.list()
+const digital_publications = await client.DigitalPublication().list()
 ```
 
 
 ### DigitalPublicationArticle
 
-Create an instance: `const digital_publication_article = client.digital_publication_article`
+Create an instance: `const digital_publication_article = client.DigitalPublicationArticle()`
 
 #### Operations
 
@@ -1772,19 +1779,19 @@ Create an instance: `const digital_publication_article = client.digital_publicat
 #### Example: Load
 
 ```ts
-const digital_publication_article = await client.digital_publication_article.load({ id: 'digital_publication_article_id' })
+const digital_publication_article = await client.DigitalPublicationArticle().load({ id: 'digital_publication_article_id' })
 ```
 
 #### Example: List
 
 ```ts
-const digital_publication_articles = await client.digital_publication_article.list()
+const digital_publication_articles = await client.DigitalPublicationArticle().list()
 ```
 
 
 ### EducatorResource
 
-Create an instance: `const educator_resource = client.educator_resource`
+Create an instance: `const educator_resource = client.EducatorResource()`
 
 #### Operations
 
@@ -1812,19 +1819,19 @@ Create an instance: `const educator_resource = client.educator_resource`
 #### Example: Load
 
 ```ts
-const educator_resource = await client.educator_resource.load({ id: 'educator_resource_id' })
+const educator_resource = await client.EducatorResource().load({ id: 'educator_resource_id' })
 ```
 
 #### Example: List
 
 ```ts
-const educator_resources = await client.educator_resource.list()
+const educator_resources = await client.EducatorResource().list()
 ```
 
 
 ### Event
 
-Create an instance: `const event = client.event`
+Create an instance: `const event = client.Event()`
 
 #### Operations
 
@@ -1894,19 +1901,19 @@ Create an instance: `const event = client.event`
 #### Example: Load
 
 ```ts
-const event = await client.event.load({ id: 'event_id' })
+const event = await client.Event().load({ id: 'event_id' })
 ```
 
 #### Example: List
 
 ```ts
-const events = await client.event.list()
+const events = await client.Event().list()
 ```
 
 
 ### EventOccurrence
 
-Create an instance: `const event_occurrence = client.event_occurrence`
+Create an instance: `const event_occurrence = client.EventOccurrence()`
 
 #### Operations
 
@@ -1948,19 +1955,19 @@ Create an instance: `const event_occurrence = client.event_occurrence`
 #### Example: Load
 
 ```ts
-const event_occurrence = await client.event_occurrence.load({ id: 'event_occurrence_id' })
+const event_occurrence = await client.EventOccurrence().load({ id: 'event_occurrence_id' })
 ```
 
 #### Example: List
 
 ```ts
-const event_occurrences = await client.event_occurrence.list()
+const event_occurrences = await client.EventOccurrence().list()
 ```
 
 
 ### EventProgram
 
-Create an instance: `const event_program = client.event_program`
+Create an instance: `const event_program = client.EventProgram()`
 
 #### Operations
 
@@ -1988,19 +1995,19 @@ Create an instance: `const event_program = client.event_program`
 #### Example: Load
 
 ```ts
-const event_program = await client.event_program.load({ id: 'event_program_id' })
+const event_program = await client.EventProgram().load({ id: 'event_program_id' })
 ```
 
 #### Example: List
 
 ```ts
-const event_programs = await client.event_program.list()
+const event_programs = await client.EventProgram().list()
 ```
 
 
 ### Exhibition
 
-Create an instance: `const exhibition = client.exhibition`
+Create an instance: `const exhibition = client.Exhibition()`
 
 #### Operations
 
@@ -2044,19 +2051,19 @@ Create an instance: `const exhibition = client.exhibition`
 #### Example: Load
 
 ```ts
-const exhibition = await client.exhibition.load({ id: 'exhibition_id' })
+const exhibition = await client.Exhibition().load({ id: 'exhibition_id' })
 ```
 
 #### Example: List
 
 ```ts
-const exhibitions = await client.exhibition.list()
+const exhibitions = await client.Exhibition().list()
 ```
 
 
 ### Gallery
 
-Create an instance: `const gallery = client.gallery`
+Create an instance: `const gallery = client.Gallery()`
 
 #### Operations
 
@@ -2089,19 +2096,19 @@ Create an instance: `const gallery = client.gallery`
 #### Example: Load
 
 ```ts
-const gallery = await client.gallery.load({ id: 'gallery_id' })
+const gallery = await client.Gallery().load({ id: 'gallery_id' })
 ```
 
 #### Example: List
 
 ```ts
-const gallerys = await client.gallery.list()
+const gallerys = await client.Gallery().list()
 ```
 
 
 ### GenericPage
 
-Create an instance: `const generic_page = client.generic_page`
+Create an instance: `const generic_page = client.GenericPage()`
 
 #### Operations
 
@@ -2130,19 +2137,19 @@ Create an instance: `const generic_page = client.generic_page`
 #### Example: Load
 
 ```ts
-const generic_page = await client.generic_page.load({ id: 'generic_page_id' })
+const generic_page = await client.GenericPage().load({ id: 'generic_page_id' })
 ```
 
 #### Example: List
 
 ```ts
-const generic_pages = await client.generic_page.list()
+const generic_pages = await client.GenericPage().list()
 ```
 
 
 ### Highlight
 
-Create an instance: `const highlight = client.highlight`
+Create an instance: `const highlight = client.Highlight()`
 
 #### Operations
 
@@ -2169,19 +2176,19 @@ Create an instance: `const highlight = client.highlight`
 #### Example: Load
 
 ```ts
-const highlight = await client.highlight.load({ id: 'highlight_id' })
+const highlight = await client.Highlight().load({ id: 'highlight_id' })
 ```
 
 #### Example: List
 
 ```ts
-const highlights = await client.highlight.list()
+const highlights = await client.Highlight().list()
 ```
 
 
 ### Hour
 
-Create an instance: `const hour = client.hour`
+Create an instance: `const hour = client.Hour()`
 
 #### Operations
 
@@ -2244,19 +2251,19 @@ Create an instance: `const hour = client.hour`
 #### Example: Load
 
 ```ts
-const hour = await client.hour.load({ id: 'hour_id' })
+const hour = await client.Hour().load({ id: 'hour_id' })
 ```
 
 #### Example: List
 
 ```ts
-const hours = await client.hour.list()
+const hours = await client.Hour().list()
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `const image = client.Image()`
 
 #### Operations
 
@@ -2302,19 +2309,19 @@ Create an instance: `const image = client.image`
 #### Example: Load
 
 ```ts
-const image = await client.image.load({ id: 'image_id' })
+const image = await client.Image().load({ id: 'image_id' })
 ```
 
 #### Example: List
 
 ```ts
-const images = await client.image.list()
+const images = await client.Image().list()
 ```
 
 
 ### LandingPage
 
-Create an instance: `const landing_page = client.landing_page`
+Create an instance: `const landing_page = client.LandingPage()`
 
 #### Operations
 
@@ -2343,19 +2350,19 @@ Create an instance: `const landing_page = client.landing_page`
 #### Example: Load
 
 ```ts
-const landing_page = await client.landing_page.load({ id: 'landing_page_id' })
+const landing_page = await client.LandingPage().load({ id: 'landing_page_id' })
 ```
 
 #### Example: List
 
 ```ts
-const landing_pages = await client.landing_page.list()
+const landing_pages = await client.LandingPage().list()
 ```
 
 
 ### Place
 
-Create an instance: `const place = client.place`
+Create an instance: `const place = client.Place()`
 
 #### Operations
 
@@ -2384,19 +2391,19 @@ Create an instance: `const place = client.place`
 #### Example: Load
 
 ```ts
-const place = await client.place.load({ id: 'place_id' })
+const place = await client.Place().load({ id: 'place_id' })
 ```
 
 #### Example: List
 
 ```ts
-const places = await client.place.list()
+const places = await client.Place().list()
 ```
 
 
 ### PressRelease
 
-Create an instance: `const press_release = client.press_release`
+Create an instance: `const press_release = client.PressRelease()`
 
 #### Operations
 
@@ -2424,19 +2431,19 @@ Create an instance: `const press_release = client.press_release`
 #### Example: Load
 
 ```ts
-const press_release = await client.press_release.load({ id: 'press_release_id' })
+const press_release = await client.PressRelease().load({ id: 'press_release_id' })
 ```
 
 #### Example: List
 
 ```ts
-const press_releases = await client.press_release.list()
+const press_releases = await client.PressRelease().list()
 ```
 
 
 ### PrintedPublication
 
-Create an instance: `const printed_publication = client.printed_publication`
+Create an instance: `const printed_publication = client.PrintedPublication()`
 
 #### Operations
 
@@ -2464,19 +2471,19 @@ Create an instance: `const printed_publication = client.printed_publication`
 #### Example: Load
 
 ```ts
-const printed_publication = await client.printed_publication.load({ id: 'printed_publication_id' })
+const printed_publication = await client.PrintedPublication().load({ id: 'printed_publication_id' })
 ```
 
 #### Example: List
 
 ```ts
-const printed_publications = await client.printed_publication.list()
+const printed_publications = await client.PrintedPublication().list()
 ```
 
 
 ### Product
 
-Create an instance: `const product = client.product`
+Create an instance: `const product = client.Product()`
 
 #### Operations
 
@@ -2514,19 +2521,19 @@ Create an instance: `const product = client.product`
 #### Example: Load
 
 ```ts
-const product = await client.product.load({ id: 'product_id' })
+const product = await client.Product().load({ id: 'product_id' })
 ```
 
 #### Example: List
 
 ```ts
-const products = await client.product.list()
+const products = await client.Product().list()
 ```
 
 
 ### Publication
 
-Create an instance: `const publication = client.publication`
+Create an instance: `const publication = client.Publication()`
 
 #### Operations
 
@@ -2554,19 +2561,19 @@ Create an instance: `const publication = client.publication`
 #### Example: Load
 
 ```ts
-const publication = await client.publication.load({ id: 'publication_id' })
+const publication = await client.Publication().load({ id: 'publication_id' })
 ```
 
 #### Example: List
 
 ```ts
-const publications = await client.publication.list()
+const publications = await client.Publication().list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `const search = client.Search()`
 
 #### Operations
 
@@ -2591,13 +2598,13 @@ Create an instance: `const search = client.search`
 #### Example: List
 
 ```ts
-const searchs = await client.search.list()
+const searchs = await client.Search().list()
 ```
 
 
 ### Section
 
-Create an instance: `const section = client.section`
+Create an instance: `const section = client.Section()`
 
 #### Operations
 
@@ -2630,19 +2637,19 @@ Create an instance: `const section = client.section`
 #### Example: Load
 
 ```ts
-const section = await client.section.load({ id: 'section_id' })
+const section = await client.Section().load({ id: 'section_id' })
 ```
 
 #### Example: List
 
 ```ts
-const sections = await client.section.list()
+const sections = await client.Section().list()
 ```
 
 
 ### Site
 
-Create an instance: `const site = client.site`
+Create an instance: `const site = client.Site()`
 
 #### Operations
 
@@ -2674,19 +2681,19 @@ Create an instance: `const site = client.site`
 #### Example: Load
 
 ```ts
-const site = await client.site.load({ id: 'site_id' })
+const site = await client.Site().load({ id: 'site_id' })
 ```
 
 #### Example: List
 
 ```ts
-const sites = await client.site.list()
+const sites = await client.Site().list()
 ```
 
 
 ### Sound
 
-Create an instance: `const sound = client.sound`
+Create an instance: `const sound = client.Sound()`
 
 #### Operations
 
@@ -2725,19 +2732,19 @@ Create an instance: `const sound = client.sound`
 #### Example: Load
 
 ```ts
-const sound = await client.sound.load({ id: 'sound_id' })
+const sound = await client.Sound().load({ id: 'sound_id' })
 ```
 
 #### Example: List
 
 ```ts
-const sounds = await client.sound.list()
+const sounds = await client.Sound().list()
 ```
 
 
 ### StaticPage
 
-Create an instance: `const static_page = client.static_page`
+Create an instance: `const static_page = client.StaticPage()`
 
 #### Operations
 
@@ -2764,19 +2771,19 @@ Create an instance: `const static_page = client.static_page`
 #### Example: Load
 
 ```ts
-const static_page = await client.static_page.load({ id: 'static_page_id' })
+const static_page = await client.StaticPage().load({ id: 'static_page_id' })
 ```
 
 #### Example: List
 
 ```ts
-const static_pages = await client.static_page.list()
+const static_pages = await client.StaticPage().list()
 ```
 
 
 ### Text
 
-Create an instance: `const text = client.text`
+Create an instance: `const text = client.Text()`
 
 #### Operations
 
@@ -2813,19 +2820,19 @@ Create an instance: `const text = client.text`
 #### Example: Load
 
 ```ts
-const text = await client.text.load({ id: 'text_id' })
+const text = await client.Text().load({ id: 'text_id' })
 ```
 
 #### Example: List
 
 ```ts
-const texts = await client.text.list()
+const texts = await client.Text().list()
 ```
 
 
 ### Tour
 
-Create an instance: `const tour = client.tour`
+Create an instance: `const tour = client.Tour()`
 
 #### Operations
 
@@ -2859,19 +2866,19 @@ Create an instance: `const tour = client.tour`
 #### Example: Load
 
 ```ts
-const tour = await client.tour.load({ id: 'tour_id' })
+const tour = await client.Tour().load({ id: 'tour_id' })
 ```
 
 #### Example: List
 
 ```ts
-const tours = await client.tour.list()
+const tours = await client.Tour().list()
 ```
 
 
 ### Video
 
-Create an instance: `const video = client.video`
+Create an instance: `const video = client.Video()`
 
 #### Operations
 
@@ -2908,13 +2915,13 @@ Create an instance: `const video = client.video`
 #### Example: Load
 
 ```ts
-const video = await client.video.load({ id: 'video_id' })
+const video = await client.Video().load({ id: 'video_id' })
 ```
 
 #### Example: List
 
 ```ts
-const videos = await client.video.list()
+const videos = await client.Video().list()
 ```
 
 
@@ -2985,7 +2992,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const agent = client.agent
+const agent = client.Agent()
 await agent.load({ id: "example_id" })
 
 // agent.data() now returns the loaded agent data

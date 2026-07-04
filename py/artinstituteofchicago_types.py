@@ -4,1757 +4,1657 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Agent:
-    alt_title: Optional[Any] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    birth_date: Optional[Any] = None
-    death_date: Optional[Any] = None
-    description: Optional[str] = None
-    id: Optional[str] = None
-    is_artist: Optional[bool] = None
-    sort_title: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    ulan_id: Optional[str] = None
-    updated_at: Optional[Any] = None
+class Agent(TypedDict, total=False):
+    alt_title: Any
+    api_link: Any
+    api_model: Any
+    birth_date: Any
+    death_date: Any
+    description: str
+    id: str
+    is_artist: bool
+    sort_title: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    ulan_id: str
+    updated_at: Any
 
 
-@dataclass
-class AgentLoadMatch:
+class AgentLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class AgentListMatch:
-    alt_title: Optional[Any] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    birth_date: Optional[Any] = None
-    death_date: Optional[Any] = None
-    description: Optional[str] = None
-    id: Optional[str] = None
-    is_artist: Optional[bool] = None
-    sort_title: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    ulan_id: Optional[str] = None
-    updated_at: Optional[Any] = None
+class AgentListMatch(TypedDict, total=False):
+    alt_title: Any
+    api_link: Any
+    api_model: Any
+    birth_date: Any
+    death_date: Any
+    description: str
+    id: str
+    is_artist: bool
+    sort_title: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    ulan_id: str
+    updated_at: Any
 
 
-@dataclass
-class AgentRole:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class AgentRole(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class AgentRoleLoadMatch:
+class AgentRoleLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class AgentRoleListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class AgentRoleListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class AgentType:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class AgentType(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class AgentTypeLoadMatch:
+class AgentTypeLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class AgentTypeListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class AgentTypeListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class Article:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    copy: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class Article(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    copy: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class ArticleLoadMatch:
+class ArticleLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class ArticleListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    copy: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class ArticleListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    copy: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class Artwork:
-    alt_artist_id: Optional[str] = None
-    alt_classification_id: Optional[str] = None
-    alt_image_id: Optional[str] = None
-    alt_material_id: Optional[str] = None
-    alt_style_id: Optional[str] = None
-    alt_subject_id: Optional[str] = None
-    alt_technique_id: Optional[str] = None
-    alt_title: Optional[Any] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artist_display: Optional[Any] = None
-    artist_id: Optional[str] = None
-    artist_title: Optional[Any] = None
-    artwork_type_id: Optional[str] = None
-    artwork_type_title: Optional[Any] = None
-    boost_rank: Optional[Any] = None
-    catalog_based_search_keyword_title: Optional[Any] = None
-    catalogue_display: Optional[Any] = None
-    category_id: Optional[str] = None
-    category_title: Optional[Any] = None
-    classification_id: Optional[str] = None
-    classification_title: Optional[Any] = None
-    color: Optional[Any] = None
-    colorfulness: Optional[Any] = None
-    copyright_notice: Optional[Any] = None
-    credit_line: Optional[Any] = None
-    date_display: Optional[Any] = None
-    date_end: Optional[Any] = None
-    date_qualifier_id: Optional[str] = None
-    date_qualifier_title: Optional[Any] = None
-    date_start: Optional[Any] = None
-    department_id: Optional[str] = None
-    department_title: Optional[Any] = None
-    description: Optional[str] = None
-    dimension: Optional[Any] = None
-    dimensions_detail: Optional[Any] = None
-    document_id: Optional[str] = None
-    edition: Optional[Any] = None
-    exhibition_history: Optional[Any] = None
-    fiscal_year: Optional[Any] = None
-    fiscal_year_deaccession: Optional[Any] = None
-    gallery_id: Optional[str] = None
-    gallery_title: Optional[Any] = None
-    has_advanced_imaging: Optional[bool] = None
-    has_educational_resource: Optional[bool] = None
-    has_multimedia_resource: Optional[bool] = None
-    has_not_been_viewed_much: Optional[bool] = None
-    id: Optional[str] = None
-    image_embedding: Optional[Any] = None
-    image_id: Optional[str] = None
-    inscription: Optional[Any] = None
-    internal_department_id: Optional[str] = None
-    is_boosted: Optional[bool] = None
-    is_on_view: Optional[bool] = None
-    is_public_domain: Optional[bool] = None
-    is_zoomable: Optional[bool] = None
-    latitude: Optional[float] = None
-    latlon: Optional[Any] = None
-    longitude: Optional[float] = None
-    main_reference_number: Optional[int] = None
-    material_id: Optional[str] = None
-    material_title: Optional[Any] = None
-    max_zoom_window_size: Optional[Any] = None
-    medium_display: Optional[Any] = None
-    nomisma_id: Optional[str] = None
-    on_loan_display: Optional[Any] = None
-    pageview: Optional[Any] = None
-    pageviews_recent: Optional[Any] = None
-    place_of_origin: Optional[Any] = None
-    provenance_text: Optional[Any] = None
-    publication_history: Optional[Any] = None
-    publishing_verification_level: Optional[Any] = None
-    section_id: Optional[str] = None
-    section_title: Optional[Any] = None
-    short_description: Optional[Any] = None
-    site_id: Optional[str] = None
-    sound_id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    style_id: Optional[str] = None
-    style_title: Optional[Any] = None
-    subject_id: Optional[str] = None
-    subject_title: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    technique_id: Optional[str] = None
-    technique_title: Optional[Any] = None
-    term_title: Optional[Any] = None
-    text_embedding: Optional[Any] = None
-    text_id: Optional[str] = None
-    theme_title: Optional[Any] = None
-    thumbnail: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    video_id: Optional[str] = None
+class Artwork(TypedDict, total=False):
+    alt_artist_id: str
+    alt_classification_id: str
+    alt_image_id: str
+    alt_material_id: str
+    alt_style_id: str
+    alt_subject_id: str
+    alt_technique_id: str
+    alt_title: Any
+    api_link: Any
+    api_model: Any
+    artist_display: Any
+    artist_id: str
+    artist_title: Any
+    artwork_type_id: str
+    artwork_type_title: Any
+    boost_rank: Any
+    catalog_based_search_keyword_title: Any
+    catalogue_display: Any
+    category_id: str
+    category_title: Any
+    classification_id: str
+    classification_title: Any
+    color: Any
+    colorfulness: Any
+    copyright_notice: Any
+    credit_line: Any
+    date_display: Any
+    date_end: Any
+    date_qualifier_id: str
+    date_qualifier_title: Any
+    date_start: Any
+    department_id: str
+    department_title: Any
+    description: str
+    dimension: Any
+    dimensions_detail: Any
+    document_id: str
+    edition: Any
+    exhibition_history: Any
+    fiscal_year: Any
+    fiscal_year_deaccession: Any
+    gallery_id: str
+    gallery_title: Any
+    has_advanced_imaging: bool
+    has_educational_resource: bool
+    has_multimedia_resource: bool
+    has_not_been_viewed_much: bool
+    id: str
+    image_embedding: Any
+    image_id: str
+    inscription: Any
+    internal_department_id: str
+    is_boosted: bool
+    is_on_view: bool
+    is_public_domain: bool
+    is_zoomable: bool
+    latitude: float
+    latlon: Any
+    longitude: float
+    main_reference_number: int
+    material_id: str
+    material_title: Any
+    max_zoom_window_size: Any
+    medium_display: Any
+    nomisma_id: str
+    on_loan_display: Any
+    pageview: Any
+    pageviews_recent: Any
+    place_of_origin: Any
+    provenance_text: Any
+    publication_history: Any
+    publishing_verification_level: Any
+    section_id: str
+    section_title: Any
+    short_description: Any
+    site_id: str
+    sound_id: str
+    source_updated_at: Any
+    style_id: str
+    style_title: Any
+    subject_id: str
+    subject_title: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    technique_id: str
+    technique_title: Any
+    term_title: Any
+    text_embedding: Any
+    text_id: str
+    theme_title: Any
+    thumbnail: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    video_id: str
 
 
-@dataclass
-class ArtworkLoadMatch:
+class ArtworkLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class ArtworkListMatch:
-    alt_artist_id: Optional[str] = None
-    alt_classification_id: Optional[str] = None
-    alt_image_id: Optional[str] = None
-    alt_material_id: Optional[str] = None
-    alt_style_id: Optional[str] = None
-    alt_subject_id: Optional[str] = None
-    alt_technique_id: Optional[str] = None
-    alt_title: Optional[Any] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artist_display: Optional[Any] = None
-    artist_id: Optional[str] = None
-    artist_title: Optional[Any] = None
-    artwork_type_id: Optional[str] = None
-    artwork_type_title: Optional[Any] = None
-    boost_rank: Optional[Any] = None
-    catalog_based_search_keyword_title: Optional[Any] = None
-    catalogue_display: Optional[Any] = None
-    category_id: Optional[str] = None
-    category_title: Optional[Any] = None
-    classification_id: Optional[str] = None
-    classification_title: Optional[Any] = None
-    color: Optional[Any] = None
-    colorfulness: Optional[Any] = None
-    copyright_notice: Optional[Any] = None
-    credit_line: Optional[Any] = None
-    date_display: Optional[Any] = None
-    date_end: Optional[Any] = None
-    date_qualifier_id: Optional[str] = None
-    date_qualifier_title: Optional[Any] = None
-    date_start: Optional[Any] = None
-    department_id: Optional[str] = None
-    department_title: Optional[Any] = None
-    description: Optional[str] = None
-    dimension: Optional[Any] = None
-    dimensions_detail: Optional[Any] = None
-    document_id: Optional[str] = None
-    edition: Optional[Any] = None
-    exhibition_history: Optional[Any] = None
-    fiscal_year: Optional[Any] = None
-    fiscal_year_deaccession: Optional[Any] = None
-    gallery_id: Optional[str] = None
-    gallery_title: Optional[Any] = None
-    has_advanced_imaging: Optional[bool] = None
-    has_educational_resource: Optional[bool] = None
-    has_multimedia_resource: Optional[bool] = None
-    has_not_been_viewed_much: Optional[bool] = None
-    id: Optional[str] = None
-    image_embedding: Optional[Any] = None
-    image_id: Optional[str] = None
-    inscription: Optional[Any] = None
-    internal_department_id: Optional[str] = None
-    is_boosted: Optional[bool] = None
-    is_on_view: Optional[bool] = None
-    is_public_domain: Optional[bool] = None
-    is_zoomable: Optional[bool] = None
-    latitude: Optional[float] = None
-    latlon: Optional[Any] = None
-    longitude: Optional[float] = None
-    main_reference_number: Optional[int] = None
-    material_id: Optional[str] = None
-    material_title: Optional[Any] = None
-    max_zoom_window_size: Optional[Any] = None
-    medium_display: Optional[Any] = None
-    nomisma_id: Optional[str] = None
-    on_loan_display: Optional[Any] = None
-    pageview: Optional[Any] = None
-    pageviews_recent: Optional[Any] = None
-    place_of_origin: Optional[Any] = None
-    provenance_text: Optional[Any] = None
-    publication_history: Optional[Any] = None
-    publishing_verification_level: Optional[Any] = None
-    section_id: Optional[str] = None
-    section_title: Optional[Any] = None
-    short_description: Optional[Any] = None
-    site_id: Optional[str] = None
-    sound_id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    style_id: Optional[str] = None
-    style_title: Optional[Any] = None
-    subject_id: Optional[str] = None
-    subject_title: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    technique_id: Optional[str] = None
-    technique_title: Optional[Any] = None
-    term_title: Optional[Any] = None
-    text_embedding: Optional[Any] = None
-    text_id: Optional[str] = None
-    theme_title: Optional[Any] = None
-    thumbnail: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    video_id: Optional[str] = None
+class ArtworkListMatch(TypedDict, total=False):
+    alt_artist_id: str
+    alt_classification_id: str
+    alt_image_id: str
+    alt_material_id: str
+    alt_style_id: str
+    alt_subject_id: str
+    alt_technique_id: str
+    alt_title: Any
+    api_link: Any
+    api_model: Any
+    artist_display: Any
+    artist_id: str
+    artist_title: Any
+    artwork_type_id: str
+    artwork_type_title: Any
+    boost_rank: Any
+    catalog_based_search_keyword_title: Any
+    catalogue_display: Any
+    category_id: str
+    category_title: Any
+    classification_id: str
+    classification_title: Any
+    color: Any
+    colorfulness: Any
+    copyright_notice: Any
+    credit_line: Any
+    date_display: Any
+    date_end: Any
+    date_qualifier_id: str
+    date_qualifier_title: Any
+    date_start: Any
+    department_id: str
+    department_title: Any
+    description: str
+    dimension: Any
+    dimensions_detail: Any
+    document_id: str
+    edition: Any
+    exhibition_history: Any
+    fiscal_year: Any
+    fiscal_year_deaccession: Any
+    gallery_id: str
+    gallery_title: Any
+    has_advanced_imaging: bool
+    has_educational_resource: bool
+    has_multimedia_resource: bool
+    has_not_been_viewed_much: bool
+    id: str
+    image_embedding: Any
+    image_id: str
+    inscription: Any
+    internal_department_id: str
+    is_boosted: bool
+    is_on_view: bool
+    is_public_domain: bool
+    is_zoomable: bool
+    latitude: float
+    latlon: Any
+    longitude: float
+    main_reference_number: int
+    material_id: str
+    material_title: Any
+    max_zoom_window_size: Any
+    medium_display: Any
+    nomisma_id: str
+    on_loan_display: Any
+    pageview: Any
+    pageviews_recent: Any
+    place_of_origin: Any
+    provenance_text: Any
+    publication_history: Any
+    publishing_verification_level: Any
+    section_id: str
+    section_title: Any
+    short_description: Any
+    site_id: str
+    sound_id: str
+    source_updated_at: Any
+    style_id: str
+    style_title: Any
+    subject_id: str
+    subject_title: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    technique_id: str
+    technique_title: Any
+    term_title: Any
+    text_embedding: Any
+    text_id: str
+    theme_title: Any
+    thumbnail: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    video_id: str
 
 
-@dataclass
-class ArtworkDateQualifier:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class ArtworkDateQualifier(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class ArtworkDateQualifierLoadMatch:
+class ArtworkDateQualifierLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class ArtworkDateQualifierListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class ArtworkDateQualifierListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class ArtworkPlaceQualifier:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class ArtworkPlaceQualifier(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class ArtworkPlaceQualifierLoadMatch:
+class ArtworkPlaceQualifierLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class ArtworkPlaceQualifierListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class ArtworkPlaceQualifierListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class ArtworkType:
-    aat_id: Optional[str] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class ArtworkType(TypedDict, total=False):
+    aat_id: str
+    api_link: Any
+    api_model: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class ArtworkTypeLoadMatch:
+class ArtworkTypeLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class ArtworkTypeListMatch:
-    aat_id: Optional[str] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class ArtworkTypeListMatch(TypedDict, total=False):
+    aat_id: str
+    api_link: Any
+    api_model: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class CategoryTerm:
-    aat_id: Optional[str] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    parent_id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    subtype: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class CategoryTerm(TypedDict, total=False):
+    aat_id: str
+    api_link: Any
+    api_model: Any
+    id: str
+    parent_id: str
+    source_updated_at: Any
+    subtype: Any
+    suggest_autocomplete_all: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class CategoryTermLoadMatch:
+class CategoryTermLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class CategoryTermListMatch:
-    aat_id: Optional[str] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    parent_id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    subtype: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class CategoryTermListMatch(TypedDict, total=False):
+    aat_id: str
+    api_link: Any
+    api_model: Any
+    id: str
+    parent_id: str
+    source_updated_at: Any
+    subtype: Any
+    suggest_autocomplete_all: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class DigitalPublication:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    copy: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class DigitalPublication(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    copy: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class DigitalPublicationLoadMatch:
+class DigitalPublicationLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class DigitalPublicationListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    copy: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class DigitalPublicationListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    copy: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class DigitalPublicationArticle:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    author_display: Optional[Any] = None
-    copy: Optional[Any] = None
-    digital_publication_id: Optional[str] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class DigitalPublicationArticle(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    author_display: Any
+    copy: Any
+    digital_publication_id: str
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class DigitalPublicationArticleLoadMatch:
+class DigitalPublicationArticleLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class DigitalPublicationArticleListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    author_display: Optional[Any] = None
-    copy: Optional[Any] = None
-    digital_publication_id: Optional[str] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class DigitalPublicationArticleListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    author_display: Any
+    copy: Any
+    digital_publication_id: str
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class EducatorResource:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    copy: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class EducatorResource(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    copy: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class EducatorResourceLoadMatch:
+class EducatorResourceLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class EducatorResourceListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    copy: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class EducatorResourceListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    copy: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class Event:
-    alt_audience_id: Optional[str] = None
-    alt_event_type_id: Optional[str] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    audience_id: Optional[str] = None
-    buy_button_caption: Optional[Any] = None
-    buy_button_text: Optional[Any] = None
-    date_display: Optional[Any] = None
-    description: Optional[str] = None
-    door_time: Optional[Any] = None
-    end_date: Optional[Any] = None
-    end_time: Optional[Any] = None
-    entrance: Optional[Any] = None
-    event_host_id: Optional[str] = None
-    event_host_title: Optional[Any] = None
-    event_type_id: Optional[str] = None
-    header_description: Optional[Any] = None
-    hero_caption: Optional[Any] = None
-    id: Optional[str] = None
-    image_url: Optional[Any] = None
-    is_admission_required: Optional[bool] = None
-    is_after_hour: Optional[bool] = None
-    is_free: Optional[bool] = None
-    is_member_exclusive: Optional[bool] = None
-    is_private: Optional[bool] = None
-    is_registration_required: Optional[bool] = None
-    is_sales_button_hidden: Optional[bool] = None
-    is_sold_out: Optional[bool] = None
-    is_ticketed: Optional[bool] = None
-    is_virtual_event: Optional[bool] = None
-    join_url: Optional[Any] = None
-    layout_type: Optional[Any] = None
-    list_description: Optional[Any] = None
-    location: Optional[Any] = None
-    program_id: Optional[str] = None
-    program_title: Optional[Any] = None
-    rsvp_link: Optional[Any] = None
-    search_tag: Optional[Any] = None
-    short_description: Optional[Any] = None
-    slug: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    start_date: Optional[Any] = None
-    start_time: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    survey_url: Optional[Any] = None
-    ticketed_event_id: Optional[str] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    title_display: Optional[Any] = None
-    updated_at: Optional[Any] = None
-    virtual_event_passcode: Optional[Any] = None
-    virtual_event_url: Optional[Any] = None
+class Event(TypedDict, total=False):
+    alt_audience_id: str
+    alt_event_type_id: str
+    api_link: Any
+    api_model: Any
+    audience_id: str
+    buy_button_caption: Any
+    buy_button_text: Any
+    date_display: Any
+    description: str
+    door_time: Any
+    end_date: Any
+    end_time: Any
+    entrance: Any
+    event_host_id: str
+    event_host_title: Any
+    event_type_id: str
+    header_description: Any
+    hero_caption: Any
+    id: str
+    image_url: Any
+    is_admission_required: bool
+    is_after_hour: bool
+    is_free: bool
+    is_member_exclusive: bool
+    is_private: bool
+    is_registration_required: bool
+    is_sales_button_hidden: bool
+    is_sold_out: bool
+    is_ticketed: bool
+    is_virtual_event: bool
+    join_url: Any
+    layout_type: Any
+    list_description: Any
+    location: Any
+    program_id: str
+    program_title: Any
+    rsvp_link: Any
+    search_tag: Any
+    short_description: Any
+    slug: str
+    source_updated_at: Any
+    start_date: Any
+    start_time: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    survey_url: Any
+    ticketed_event_id: str
+    timestamp: Any
+    title: str
+    title_display: Any
+    updated_at: Any
+    virtual_event_passcode: Any
+    virtual_event_url: Any
 
 
-@dataclass
-class EventLoadMatch:
+class EventLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class EventListMatch:
-    alt_audience_id: Optional[str] = None
-    alt_event_type_id: Optional[str] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    audience_id: Optional[str] = None
-    buy_button_caption: Optional[Any] = None
-    buy_button_text: Optional[Any] = None
-    date_display: Optional[Any] = None
-    description: Optional[str] = None
-    door_time: Optional[Any] = None
-    end_date: Optional[Any] = None
-    end_time: Optional[Any] = None
-    entrance: Optional[Any] = None
-    event_host_id: Optional[str] = None
-    event_host_title: Optional[Any] = None
-    event_type_id: Optional[str] = None
-    header_description: Optional[Any] = None
-    hero_caption: Optional[Any] = None
-    id: Optional[str] = None
-    image_url: Optional[Any] = None
-    is_admission_required: Optional[bool] = None
-    is_after_hour: Optional[bool] = None
-    is_free: Optional[bool] = None
-    is_member_exclusive: Optional[bool] = None
-    is_private: Optional[bool] = None
-    is_registration_required: Optional[bool] = None
-    is_sales_button_hidden: Optional[bool] = None
-    is_sold_out: Optional[bool] = None
-    is_ticketed: Optional[bool] = None
-    is_virtual_event: Optional[bool] = None
-    join_url: Optional[Any] = None
-    layout_type: Optional[Any] = None
-    list_description: Optional[Any] = None
-    location: Optional[Any] = None
-    program_id: Optional[str] = None
-    program_title: Optional[Any] = None
-    rsvp_link: Optional[Any] = None
-    search_tag: Optional[Any] = None
-    short_description: Optional[Any] = None
-    slug: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    start_date: Optional[Any] = None
-    start_time: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    survey_url: Optional[Any] = None
-    ticketed_event_id: Optional[str] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    title_display: Optional[Any] = None
-    updated_at: Optional[Any] = None
-    virtual_event_passcode: Optional[Any] = None
-    virtual_event_url: Optional[Any] = None
+class EventListMatch(TypedDict, total=False):
+    alt_audience_id: str
+    alt_event_type_id: str
+    api_link: Any
+    api_model: Any
+    audience_id: str
+    buy_button_caption: Any
+    buy_button_text: Any
+    date_display: Any
+    description: str
+    door_time: Any
+    end_date: Any
+    end_time: Any
+    entrance: Any
+    event_host_id: str
+    event_host_title: Any
+    event_type_id: str
+    header_description: Any
+    hero_caption: Any
+    id: str
+    image_url: Any
+    is_admission_required: bool
+    is_after_hour: bool
+    is_free: bool
+    is_member_exclusive: bool
+    is_private: bool
+    is_registration_required: bool
+    is_sales_button_hidden: bool
+    is_sold_out: bool
+    is_ticketed: bool
+    is_virtual_event: bool
+    join_url: Any
+    layout_type: Any
+    list_description: Any
+    location: Any
+    program_id: str
+    program_title: Any
+    rsvp_link: Any
+    search_tag: Any
+    short_description: Any
+    slug: str
+    source_updated_at: Any
+    start_date: Any
+    start_time: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    survey_url: Any
+    ticketed_event_id: str
+    timestamp: Any
+    title: str
+    title_display: Any
+    updated_at: Any
+    virtual_event_passcode: Any
+    virtual_event_url: Any
 
 
-@dataclass
-class EventOccurrence:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    button_caption: Optional[Any] = None
-    button_text: Optional[Any] = None
-    button_url: Optional[Any] = None
-    description: Optional[str] = None
-    end_at: Optional[Any] = None
-    event_id: Optional[str] = None
-    id: Optional[str] = None
-    image_url: Optional[Any] = None
-    is_private: Optional[bool] = None
-    is_sales_button_hidden: Optional[bool] = None
-    is_ticketed: Optional[bool] = None
-    location: Optional[Any] = None
-    off_sale_at: Optional[Any] = None
-    on_sale_at: Optional[Any] = None
-    short_description: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    start_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    title_display: Optional[Any] = None
-    updated_at: Optional[Any] = None
+class EventOccurrence(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    button_caption: Any
+    button_text: Any
+    button_url: Any
+    description: str
+    end_at: Any
+    event_id: str
+    id: str
+    image_url: Any
+    is_private: bool
+    is_sales_button_hidden: bool
+    is_ticketed: bool
+    location: Any
+    off_sale_at: Any
+    on_sale_at: Any
+    short_description: Any
+    source_updated_at: Any
+    start_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    title_display: Any
+    updated_at: Any
 
 
-@dataclass
-class EventOccurrenceLoadMatch:
+class EventOccurrenceLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class EventOccurrenceListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    button_caption: Optional[Any] = None
-    button_text: Optional[Any] = None
-    button_url: Optional[Any] = None
-    description: Optional[str] = None
-    end_at: Optional[Any] = None
-    event_id: Optional[str] = None
-    id: Optional[str] = None
-    image_url: Optional[Any] = None
-    is_private: Optional[bool] = None
-    is_sales_button_hidden: Optional[bool] = None
-    is_ticketed: Optional[bool] = None
-    location: Optional[Any] = None
-    off_sale_at: Optional[Any] = None
-    on_sale_at: Optional[Any] = None
-    short_description: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    start_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    title_display: Optional[Any] = None
-    updated_at: Optional[Any] = None
+class EventOccurrenceListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    button_caption: Any
+    button_text: Any
+    button_url: Any
+    description: str
+    end_at: Any
+    event_id: str
+    id: str
+    image_url: Any
+    is_private: bool
+    is_sales_button_hidden: bool
+    is_ticketed: bool
+    location: Any
+    off_sale_at: Any
+    on_sale_at: Any
+    short_description: Any
+    source_updated_at: Any
+    start_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    title_display: Any
+    updated_at: Any
 
 
-@dataclass
-class EventProgram:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    is_affiliate_group: Optional[bool] = None
-    is_event_host: Optional[bool] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class EventProgram(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    id: str
+    is_affiliate_group: bool
+    is_event_host: bool
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class EventProgramLoadMatch:
+class EventProgramLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class EventProgramListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    is_affiliate_group: Optional[bool] = None
-    is_event_host: Optional[bool] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class EventProgramListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    id: str
+    is_affiliate_group: bool
+    is_event_host: bool
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class Exhibition:
-    aic_end_at: Optional[Any] = None
-    aic_start_at: Optional[Any] = None
-    alt_image_id: Optional[str] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artist_id: Optional[str] = None
-    artwork_id: Optional[str] = None
-    artwork_title: Optional[Any] = None
-    document_id: Optional[str] = None
-    gallery_id: Optional[str] = None
-    gallery_title: Optional[Any] = None
-    id: Optional[str] = None
-    image_id: Optional[str] = None
-    image_url: Optional[Any] = None
-    is_featured: Optional[bool] = None
-    is_published: Optional[bool] = None
-    position: Optional[Any] = None
-    short_description: Optional[Any] = None
-    site_id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    status: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class Exhibition(TypedDict, total=False):
+    aic_end_at: Any
+    aic_start_at: Any
+    alt_image_id: str
+    api_link: Any
+    api_model: Any
+    artist_id: str
+    artwork_id: str
+    artwork_title: Any
+    document_id: str
+    gallery_id: str
+    gallery_title: Any
+    id: str
+    image_id: str
+    image_url: Any
+    is_featured: bool
+    is_published: bool
+    position: Any
+    short_description: Any
+    site_id: str
+    source_updated_at: Any
+    status: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class ExhibitionLoadMatch:
+class ExhibitionLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class ExhibitionListMatch:
-    aic_end_at: Optional[Any] = None
-    aic_start_at: Optional[Any] = None
-    alt_image_id: Optional[str] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artist_id: Optional[str] = None
-    artwork_id: Optional[str] = None
-    artwork_title: Optional[Any] = None
-    document_id: Optional[str] = None
-    gallery_id: Optional[str] = None
-    gallery_title: Optional[Any] = None
-    id: Optional[str] = None
-    image_id: Optional[str] = None
-    image_url: Optional[Any] = None
-    is_featured: Optional[bool] = None
-    is_published: Optional[bool] = None
-    position: Optional[Any] = None
-    short_description: Optional[Any] = None
-    site_id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    status: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class ExhibitionListMatch(TypedDict, total=False):
+    aic_end_at: Any
+    aic_start_at: Any
+    alt_image_id: str
+    api_link: Any
+    api_model: Any
+    artist_id: str
+    artwork_id: str
+    artwork_title: Any
+    document_id: str
+    gallery_id: str
+    gallery_title: Any
+    id: str
+    image_id: str
+    image_url: Any
+    is_featured: bool
+    is_published: bool
+    position: Any
+    short_description: Any
+    site_id: str
+    source_updated_at: Any
+    status: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class Gallery:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    floor: Optional[Any] = None
-    id: Optional[str] = None
-    is_closed: Optional[bool] = None
-    latitude: Optional[float] = None
-    latlon: Optional[Any] = None
-    longitude: Optional[float] = None
-    number: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    tgn_id: Optional[str] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class Gallery(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    floor: Any
+    id: str
+    is_closed: bool
+    latitude: float
+    latlon: Any
+    longitude: float
+    number: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    tgn_id: str
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class GalleryLoadMatch:
+class GalleryLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class GalleryListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    floor: Optional[Any] = None
-    id: Optional[str] = None
-    is_closed: Optional[bool] = None
-    latitude: Optional[float] = None
-    latlon: Optional[Any] = None
-    longitude: Optional[float] = None
-    number: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    tgn_id: Optional[str] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class GalleryListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    floor: Any
+    id: str
+    is_closed: bool
+    latitude: float
+    latlon: Any
+    longitude: float
+    number: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    tgn_id: str
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class GenericPage:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    copy: Optional[Any] = None
-    id: Optional[str] = None
-    search_tag: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class GenericPage(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    copy: Any
+    id: str
+    search_tag: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class GenericPageLoadMatch:
+class GenericPageLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class GenericPageListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    copy: Optional[Any] = None
-    id: Optional[str] = None
-    search_tag: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class GenericPageListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    copy: Any
+    id: str
+    search_tag: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class Highlight:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    copy: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class Highlight(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    copy: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class HighlightLoadMatch:
+class HighlightLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class HighlightListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    copy: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class HighlightListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    copy: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class Hour:
-    additional_text: Optional[Any] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    friday_is_closed: Optional[Any] = None
-    friday_member_close: Optional[Any] = None
-    friday_member_open: Optional[Any] = None
-    friday_public_close: Optional[Any] = None
-    friday_public_open: Optional[Any] = None
-    id: Optional[str] = None
-    monday_is_closed: Optional[Any] = None
-    monday_member_close: Optional[Any] = None
-    monday_member_open: Optional[Any] = None
-    monday_public_close: Optional[Any] = None
-    monday_public_open: Optional[Any] = None
-    saturday_is_closed: Optional[Any] = None
-    saturday_member_close: Optional[Any] = None
-    saturday_member_open: Optional[Any] = None
-    saturday_public_close: Optional[Any] = None
-    saturday_public_open: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    summary: Optional[Any] = None
-    sunday_is_closed: Optional[Any] = None
-    sunday_member_close: Optional[Any] = None
-    sunday_member_open: Optional[Any] = None
-    sunday_public_close: Optional[Any] = None
-    sunday_public_open: Optional[Any] = None
-    thursday_is_closed: Optional[Any] = None
-    thursday_member_close: Optional[Any] = None
-    thursday_member_open: Optional[Any] = None
-    thursday_public_close: Optional[Any] = None
-    thursday_public_open: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    tuesday_is_closed: Optional[Any] = None
-    tuesday_member_close: Optional[Any] = None
-    tuesday_member_open: Optional[Any] = None
-    tuesday_public_close: Optional[Any] = None
-    tuesday_public_open: Optional[Any] = None
-    updated_at: Optional[Any] = None
-    wednesday_is_closed: Optional[Any] = None
-    wednesday_member_close: Optional[Any] = None
-    wednesday_member_open: Optional[Any] = None
-    wednesday_public_close: Optional[Any] = None
-    wednesday_public_open: Optional[Any] = None
+class Hour(TypedDict, total=False):
+    additional_text: Any
+    api_link: Any
+    api_model: Any
+    friday_is_closed: Any
+    friday_member_close: Any
+    friday_member_open: Any
+    friday_public_close: Any
+    friday_public_open: Any
+    id: str
+    monday_is_closed: Any
+    monday_member_close: Any
+    monday_member_open: Any
+    monday_public_close: Any
+    monday_public_open: Any
+    saturday_is_closed: Any
+    saturday_member_close: Any
+    saturday_member_open: Any
+    saturday_public_close: Any
+    saturday_public_open: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    summary: Any
+    sunday_is_closed: Any
+    sunday_member_close: Any
+    sunday_member_open: Any
+    sunday_public_close: Any
+    sunday_public_open: Any
+    thursday_is_closed: Any
+    thursday_member_close: Any
+    thursday_member_open: Any
+    thursday_public_close: Any
+    thursday_public_open: Any
+    timestamp: Any
+    title: str
+    tuesday_is_closed: Any
+    tuesday_member_close: Any
+    tuesday_member_open: Any
+    tuesday_public_close: Any
+    tuesday_public_open: Any
+    updated_at: Any
+    wednesday_is_closed: Any
+    wednesday_member_close: Any
+    wednesday_member_open: Any
+    wednesday_public_close: Any
+    wednesday_public_open: Any
 
 
-@dataclass
-class HourLoadMatch:
+class HourLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class HourListMatch:
-    additional_text: Optional[Any] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    friday_is_closed: Optional[Any] = None
-    friday_member_close: Optional[Any] = None
-    friday_member_open: Optional[Any] = None
-    friday_public_close: Optional[Any] = None
-    friday_public_open: Optional[Any] = None
-    id: Optional[str] = None
-    monday_is_closed: Optional[Any] = None
-    monday_member_close: Optional[Any] = None
-    monday_member_open: Optional[Any] = None
-    monday_public_close: Optional[Any] = None
-    monday_public_open: Optional[Any] = None
-    saturday_is_closed: Optional[Any] = None
-    saturday_member_close: Optional[Any] = None
-    saturday_member_open: Optional[Any] = None
-    saturday_public_close: Optional[Any] = None
-    saturday_public_open: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    summary: Optional[Any] = None
-    sunday_is_closed: Optional[Any] = None
-    sunday_member_close: Optional[Any] = None
-    sunday_member_open: Optional[Any] = None
-    sunday_public_close: Optional[Any] = None
-    sunday_public_open: Optional[Any] = None
-    thursday_is_closed: Optional[Any] = None
-    thursday_member_close: Optional[Any] = None
-    thursday_member_open: Optional[Any] = None
-    thursday_public_close: Optional[Any] = None
-    thursday_public_open: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    tuesday_is_closed: Optional[Any] = None
-    tuesday_member_close: Optional[Any] = None
-    tuesday_member_open: Optional[Any] = None
-    tuesday_public_close: Optional[Any] = None
-    tuesday_public_open: Optional[Any] = None
-    updated_at: Optional[Any] = None
-    wednesday_is_closed: Optional[Any] = None
-    wednesday_member_close: Optional[Any] = None
-    wednesday_member_open: Optional[Any] = None
-    wednesday_public_close: Optional[Any] = None
-    wednesday_public_open: Optional[Any] = None
+class HourListMatch(TypedDict, total=False):
+    additional_text: Any
+    api_link: Any
+    api_model: Any
+    friday_is_closed: Any
+    friday_member_close: Any
+    friday_member_open: Any
+    friday_public_close: Any
+    friday_public_open: Any
+    id: str
+    monday_is_closed: Any
+    monday_member_close: Any
+    monday_member_open: Any
+    monday_public_close: Any
+    monday_public_open: Any
+    saturday_is_closed: Any
+    saturday_member_close: Any
+    saturday_member_open: Any
+    saturday_public_close: Any
+    saturday_public_open: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    summary: Any
+    sunday_is_closed: Any
+    sunday_member_close: Any
+    sunday_member_open: Any
+    sunday_public_close: Any
+    sunday_public_open: Any
+    thursday_is_closed: Any
+    thursday_member_close: Any
+    thursday_member_open: Any
+    thursday_public_close: Any
+    thursday_public_open: Any
+    timestamp: Any
+    title: str
+    tuesday_is_closed: Any
+    tuesday_member_close: Any
+    tuesday_member_open: Any
+    tuesday_public_close: Any
+    tuesday_public_open: Any
+    updated_at: Any
+    wednesday_is_closed: Any
+    wednesday_member_close: Any
+    wednesday_member_open: Any
+    wednesday_public_close: Any
+    wednesday_public_open: Any
 
 
-@dataclass
-class Image:
-    ahash: Optional[Any] = None
-    alt_text: Optional[Any] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artwork_id: Optional[str] = None
-    artwork_title: Optional[Any] = None
-    color: Optional[Any] = None
-    colorfulness: Optional[Any] = None
-    content: Optional[Any] = None
-    content_e_tag: Optional[Any] = None
-    credit_line: Optional[Any] = None
-    fingerprint: Optional[Any] = None
-    height: Optional[float] = None
-    id: Optional[str] = None
-    iiif_url: Optional[Any] = None
-    is_educational_resource: Optional[bool] = None
-    is_multimedia_resource: Optional[bool] = None
-    is_teacher_resource: Optional[bool] = None
-    lake_guid: Optional[Any] = None
-    lqip: Optional[Any] = None
-    phash: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    type: Optional[Any] = None
-    updated_at: Optional[Any] = None
-    width: Optional[float] = None
+class Image(TypedDict, total=False):
+    ahash: Any
+    alt_text: Any
+    api_link: Any
+    api_model: Any
+    artwork_id: str
+    artwork_title: Any
+    color: Any
+    colorfulness: Any
+    content: Any
+    content_e_tag: Any
+    credit_line: Any
+    fingerprint: Any
+    height: float
+    id: str
+    iiif_url: Any
+    is_educational_resource: bool
+    is_multimedia_resource: bool
+    is_teacher_resource: bool
+    lake_guid: Any
+    lqip: Any
+    phash: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    type: Any
+    updated_at: Any
+    width: float
 
 
-@dataclass
-class ImageLoadMatch:
+class ImageLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class ImageListMatch:
-    ahash: Optional[Any] = None
-    alt_text: Optional[Any] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artwork_id: Optional[str] = None
-    artwork_title: Optional[Any] = None
-    color: Optional[Any] = None
-    colorfulness: Optional[Any] = None
-    content: Optional[Any] = None
-    content_e_tag: Optional[Any] = None
-    credit_line: Optional[Any] = None
-    fingerprint: Optional[Any] = None
-    height: Optional[float] = None
-    id: Optional[str] = None
-    iiif_url: Optional[Any] = None
-    is_educational_resource: Optional[bool] = None
-    is_multimedia_resource: Optional[bool] = None
-    is_teacher_resource: Optional[bool] = None
-    lake_guid: Optional[Any] = None
-    lqip: Optional[Any] = None
-    phash: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    type: Optional[Any] = None
-    updated_at: Optional[Any] = None
-    width: Optional[float] = None
+class ImageListMatch(TypedDict, total=False):
+    ahash: Any
+    alt_text: Any
+    api_link: Any
+    api_model: Any
+    artwork_id: str
+    artwork_title: Any
+    color: Any
+    colorfulness: Any
+    content: Any
+    content_e_tag: Any
+    credit_line: Any
+    fingerprint: Any
+    height: float
+    id: str
+    iiif_url: Any
+    is_educational_resource: bool
+    is_multimedia_resource: bool
+    is_teacher_resource: bool
+    lake_guid: Any
+    lqip: Any
+    phash: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    type: Any
+    updated_at: Any
+    width: float
 
 
-@dataclass
-class LandingPage:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    copy: Optional[Any] = None
-    id: Optional[str] = None
-    search_tag: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class LandingPage(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    copy: Any
+    id: str
+    search_tag: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class LandingPageLoadMatch:
+class LandingPageLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class LandingPageListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    copy: Optional[Any] = None
-    id: Optional[str] = None
-    search_tag: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class LandingPageListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    copy: Any
+    id: str
+    search_tag: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class Place:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    tgn_id: Optional[str] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class Place(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    id: str
+    latitude: float
+    longitude: float
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    tgn_id: str
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class PlaceLoadMatch:
+class PlaceLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class PlaceListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    tgn_id: Optional[str] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
+class PlaceListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    id: str
+    latitude: float
+    longitude: float
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    tgn_id: str
+    timestamp: Any
+    title: str
+    updated_at: Any
 
 
-@dataclass
-class PressRelease:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    copy: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class PressRelease(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    copy: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class PressReleaseLoadMatch:
+class PressReleaseLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class PressReleaseListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    copy: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class PressReleaseListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    copy: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class PrintedPublication:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    copy: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class PrintedPublication(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    copy: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class PrintedPublicationLoadMatch:
+class PrintedPublicationLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class PrintedPublicationListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    copy: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class PrintedPublicationListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    copy: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class Product:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artist_id: Optional[str] = None
-    artwork_id: Optional[str] = None
-    description: Optional[str] = None
-    exhibition_id: Optional[str] = None
-    external_sku: Optional[Any] = None
-    id: Optional[str] = None
-    image_url: Optional[Any] = None
-    max_compare_at_price: Optional[Any] = None
-    max_current_price: Optional[Any] = None
-    min_compare_at_price: Optional[Any] = None
-    min_current_price: Optional[Any] = None
-    price_display: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class Product(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    artist_id: str
+    artwork_id: str
+    description: str
+    exhibition_id: str
+    external_sku: Any
+    id: str
+    image_url: Any
+    max_compare_at_price: Any
+    max_current_price: Any
+    min_compare_at_price: Any
+    min_current_price: Any
+    price_display: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class ProductLoadMatch:
+class ProductLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class ProductListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artist_id: Optional[str] = None
-    artwork_id: Optional[str] = None
-    description: Optional[str] = None
-    exhibition_id: Optional[str] = None
-    external_sku: Optional[Any] = None
-    id: Optional[str] = None
-    image_url: Optional[Any] = None
-    max_compare_at_price: Optional[Any] = None
-    max_current_price: Optional[Any] = None
-    min_compare_at_price: Optional[Any] = None
-    min_current_price: Optional[Any] = None
-    price_display: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class ProductListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    artist_id: str
+    artwork_id: str
+    description: str
+    exhibition_id: str
+    external_sku: Any
+    id: str
+    image_url: Any
+    max_compare_at_price: Any
+    max_current_price: Any
+    min_compare_at_price: Any
+    min_current_price: Any
+    price_display: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class Publication:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    section_id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class Publication(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    id: str
+    section_id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class PublicationLoadMatch:
+class PublicationLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class PublicationListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    section_id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class PublicationListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    id: str
+    section_id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class Search:
-    api_id: Optional[str] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    is_boosted: Optional[bool] = None
-    score: Optional[float] = None
-    thumbnail: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
+class Search(TypedDict, total=False):
+    api_id: str
+    api_link: Any
+    api_model: Any
+    id: str
+    is_boosted: bool
+    score: float
+    thumbnail: Any
+    timestamp: Any
+    title: str
 
 
-@dataclass
-class SearchListMatch:
-    api_id: Optional[str] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    is_boosted: Optional[bool] = None
-    score: Optional[float] = None
-    thumbnail: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
+class SearchListMatch(TypedDict, total=False):
+    api_id: str
+    api_link: Any
+    api_model: Any
+    id: str
+    is_boosted: bool
+    score: float
+    thumbnail: Any
+    timestamp: Any
+    title: str
 
 
-@dataclass
-class Section:
-    accession: Optional[Any] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artwork_id: Optional[str] = None
-    content: Optional[Any] = None
-    generic_page_id: Optional[str] = None
-    id: Optional[str] = None
-    publication_id: Optional[str] = None
-    publication_title: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class Section(TypedDict, total=False):
+    accession: Any
+    api_link: Any
+    api_model: Any
+    artwork_id: str
+    content: Any
+    generic_page_id: str
+    id: str
+    publication_id: str
+    publication_title: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class SectionLoadMatch:
+class SectionLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class SectionListMatch:
-    accession: Optional[Any] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artwork_id: Optional[str] = None
-    content: Optional[Any] = None
-    generic_page_id: Optional[str] = None
-    id: Optional[str] = None
-    publication_id: Optional[str] = None
-    publication_title: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class SectionListMatch(TypedDict, total=False):
+    accession: Any
+    api_link: Any
+    api_model: Any
+    artwork_id: str
+    content: Any
+    generic_page_id: str
+    id: str
+    publication_id: str
+    publication_title: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class Site:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artwork_id: Optional[str] = None
-    artwork_title: Optional[Any] = None
-    description: Optional[str] = None
-    exhibition_id: Optional[str] = None
-    exhibition_title: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class Site(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    artwork_id: str
+    artwork_title: Any
+    description: str
+    exhibition_id: str
+    exhibition_title: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class SiteLoadMatch:
+class SiteLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class SiteListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artwork_id: Optional[str] = None
-    artwork_title: Optional[Any] = None
-    description: Optional[str] = None
-    exhibition_id: Optional[str] = None
-    exhibition_title: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class SiteListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    artwork_id: str
+    artwork_title: Any
+    description: str
+    exhibition_id: str
+    exhibition_title: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class Sound:
-    alt_text: Optional[Any] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artwork_id: Optional[str] = None
-    artwork_title: Optional[Any] = None
-    content: Optional[Any] = None
-    content_e_tag: Optional[Any] = None
-    credit_line: Optional[Any] = None
-    id: Optional[str] = None
-    is_educational_resource: Optional[bool] = None
-    is_multimedia_resource: Optional[bool] = None
-    is_teacher_resource: Optional[bool] = None
-    lake_guid: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    transcript: Optional[Any] = None
-    type: Optional[Any] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class Sound(TypedDict, total=False):
+    alt_text: Any
+    api_link: Any
+    api_model: Any
+    artwork_id: str
+    artwork_title: Any
+    content: Any
+    content_e_tag: Any
+    credit_line: Any
+    id: str
+    is_educational_resource: bool
+    is_multimedia_resource: bool
+    is_teacher_resource: bool
+    lake_guid: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    transcript: Any
+    type: Any
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class SoundLoadMatch:
+class SoundLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class SoundListMatch:
-    alt_text: Optional[Any] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artwork_id: Optional[str] = None
-    artwork_title: Optional[Any] = None
-    content: Optional[Any] = None
-    content_e_tag: Optional[Any] = None
-    credit_line: Optional[Any] = None
-    id: Optional[str] = None
-    is_educational_resource: Optional[bool] = None
-    is_multimedia_resource: Optional[bool] = None
-    is_teacher_resource: Optional[bool] = None
-    lake_guid: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    transcript: Optional[Any] = None
-    type: Optional[Any] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class SoundListMatch(TypedDict, total=False):
+    alt_text: Any
+    api_link: Any
+    api_model: Any
+    artwork_id: str
+    artwork_title: Any
+    content: Any
+    content_e_tag: Any
+    credit_line: Any
+    id: str
+    is_educational_resource: bool
+    is_multimedia_resource: bool
+    is_teacher_resource: bool
+    lake_guid: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    transcript: Any
+    type: Any
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class StaticPage:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class StaticPage(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class StaticPageLoadMatch:
+class StaticPageLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class StaticPageListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    id: Optional[str] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    web_url: Optional[Any] = None
+class StaticPageListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    id: str
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    web_url: Any
 
 
-@dataclass
-class Text:
-    alt_text: Optional[Any] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artwork_id: Optional[str] = None
-    artwork_title: Optional[Any] = None
-    content: Optional[Any] = None
-    content_e_tag: Optional[Any] = None
-    credit_line: Optional[Any] = None
-    id: Optional[str] = None
-    is_educational_resource: Optional[bool] = None
-    is_multimedia_resource: Optional[bool] = None
-    is_teacher_resource: Optional[bool] = None
-    lake_guid: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    type: Optional[Any] = None
-    updated_at: Optional[Any] = None
+class Text(TypedDict, total=False):
+    alt_text: Any
+    api_link: Any
+    api_model: Any
+    artwork_id: str
+    artwork_title: Any
+    content: Any
+    content_e_tag: Any
+    credit_line: Any
+    id: str
+    is_educational_resource: bool
+    is_multimedia_resource: bool
+    is_teacher_resource: bool
+    lake_guid: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    type: Any
+    updated_at: Any
 
 
-@dataclass
-class TextLoadMatch:
+class TextLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class TextListMatch:
-    alt_text: Optional[Any] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artwork_id: Optional[str] = None
-    artwork_title: Optional[Any] = None
-    content: Optional[Any] = None
-    content_e_tag: Optional[Any] = None
-    credit_line: Optional[Any] = None
-    id: Optional[str] = None
-    is_educational_resource: Optional[bool] = None
-    is_multimedia_resource: Optional[bool] = None
-    is_teacher_resource: Optional[bool] = None
-    lake_guid: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    type: Optional[Any] = None
-    updated_at: Optional[Any] = None
+class TextListMatch(TypedDict, total=False):
+    alt_text: Any
+    api_link: Any
+    api_model: Any
+    artwork_id: str
+    artwork_title: Any
+    content: Any
+    content_e_tag: Any
+    credit_line: Any
+    id: str
+    is_educational_resource: bool
+    is_multimedia_resource: bool
+    is_teacher_resource: bool
+    lake_guid: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    type: Any
+    updated_at: Any
 
 
-@dataclass
-class Tour:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artist_title: Optional[Any] = None
-    artwork_title: Optional[Any] = None
-    description: Optional[str] = None
-    id: Optional[str] = None
-    image: Optional[Any] = None
-    intro: Optional[Any] = None
-    intro_link: Optional[Any] = None
-    intro_transcript: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    weight: Optional[float] = None
+class Tour(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    artist_title: Any
+    artwork_title: Any
+    description: str
+    id: str
+    image: Any
+    intro: Any
+    intro_link: Any
+    intro_transcript: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    weight: float
 
 
-@dataclass
-class TourLoadMatch:
+class TourLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class TourListMatch:
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artist_title: Optional[Any] = None
-    artwork_title: Optional[Any] = None
-    description: Optional[str] = None
-    id: Optional[str] = None
-    image: Optional[Any] = None
-    intro: Optional[Any] = None
-    intro_link: Optional[Any] = None
-    intro_transcript: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    updated_at: Optional[Any] = None
-    weight: Optional[float] = None
+class TourListMatch(TypedDict, total=False):
+    api_link: Any
+    api_model: Any
+    artist_title: Any
+    artwork_title: Any
+    description: str
+    id: str
+    image: Any
+    intro: Any
+    intro_link: Any
+    intro_transcript: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    updated_at: Any
+    weight: float
 
 
-@dataclass
-class Video:
-    alt_text: Optional[Any] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artwork_id: Optional[str] = None
-    artwork_title: Optional[Any] = None
-    content: Optional[Any] = None
-    content_e_tag: Optional[Any] = None
-    credit_line: Optional[Any] = None
-    id: Optional[str] = None
-    is_educational_resource: Optional[bool] = None
-    is_multimedia_resource: Optional[bool] = None
-    is_teacher_resource: Optional[bool] = None
-    lake_guid: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    type: Optional[Any] = None
-    updated_at: Optional[Any] = None
+class Video(TypedDict, total=False):
+    alt_text: Any
+    api_link: Any
+    api_model: Any
+    artwork_id: str
+    artwork_title: Any
+    content: Any
+    content_e_tag: Any
+    credit_line: Any
+    id: str
+    is_educational_resource: bool
+    is_multimedia_resource: bool
+    is_teacher_resource: bool
+    lake_guid: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    type: Any
+    updated_at: Any
 
 
-@dataclass
-class VideoLoadMatch:
+class VideoLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class VideoListMatch:
-    alt_text: Optional[Any] = None
-    api_link: Optional[Any] = None
-    api_model: Optional[Any] = None
-    artwork_id: Optional[str] = None
-    artwork_title: Optional[Any] = None
-    content: Optional[Any] = None
-    content_e_tag: Optional[Any] = None
-    credit_line: Optional[Any] = None
-    id: Optional[str] = None
-    is_educational_resource: Optional[bool] = None
-    is_multimedia_resource: Optional[bool] = None
-    is_teacher_resource: Optional[bool] = None
-    lake_guid: Optional[Any] = None
-    source_updated_at: Optional[Any] = None
-    suggest_autocomplete_all: Optional[Any] = None
-    suggest_autocomplete_boosted: Optional[Any] = None
-    timestamp: Optional[Any] = None
-    title: Optional[str] = None
-    type: Optional[Any] = None
-    updated_at: Optional[Any] = None
-
+class VideoListMatch(TypedDict, total=False):
+    alt_text: Any
+    api_link: Any
+    api_model: Any
+    artwork_id: str
+    artwork_title: Any
+    content: Any
+    content_e_tag: Any
+    credit_line: Any
+    id: str
+    is_educational_resource: bool
+    is_multimedia_resource: bool
+    is_teacher_resource: bool
+    lake_guid: Any
+    source_updated_at: Any
+    suggest_autocomplete_all: Any
+    suggest_autocomplete_boosted: Any
+    timestamp: Any
+    title: str
+    type: Any
+    updated_at: Any

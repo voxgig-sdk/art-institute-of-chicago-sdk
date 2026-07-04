@@ -28,16 +28,14 @@ require_relative "ArtInstituteOfChicago_sdk"
 client = ArtInstituteOfChicagoSDK.new
 ```
 
-### 2. List agents
+### 2. List agent records
 
 ```ruby
 begin
-  result = client.agent.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Agent records — iterate directly.
+  agents = client.Agent.list
+  agents.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,8 +46,9 @@ end
 
 ```ruby
 begin
-  result = client.agent.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Agent record (raises on error).
+  agent = client.Agent.load({ "id" => "example_id" })
+  puts agent
 rescue => err
   warn "load failed: #{err}"
 end
@@ -96,13 +95,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = ArtInstituteOfChicagoSDK.test
+client = ArtInstituteOfChicagoSDK.test({
+  "entity" => { "agent" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.agent.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+agent = client.Agent.load({ "id" => "test01" })
+puts agent
 ```
 
 ### Use a custom fetch function
@@ -178,27 +181,27 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Agent` | `(data) -> AgentEntity` | Create a Agent entity instance. |
-| `AgentRole` | `(data) -> AgentRoleEntity` | Create a AgentRole entity instance. |
-| `AgentType` | `(data) -> AgentTypeEntity` | Create a AgentType entity instance. |
-| `Article` | `(data) -> ArticleEntity` | Create a Article entity instance. |
-| `Artwork` | `(data) -> ArtworkEntity` | Create a Artwork entity instance. |
-| `ArtworkDateQualifier` | `(data) -> ArtworkDateQualifierEntity` | Create a ArtworkDateQualifier entity instance. |
-| `ArtworkPlaceQualifier` | `(data) -> ArtworkPlaceQualifierEntity` | Create a ArtworkPlaceQualifier entity instance. |
-| `ArtworkType` | `(data) -> ArtworkTypeEntity` | Create a ArtworkType entity instance. |
+| `Agent` | `(data) -> AgentEntity` | Create an Agent entity instance. |
+| `AgentRole` | `(data) -> AgentRoleEntity` | Create an AgentRole entity instance. |
+| `AgentType` | `(data) -> AgentTypeEntity` | Create an AgentType entity instance. |
+| `Article` | `(data) -> ArticleEntity` | Create an Article entity instance. |
+| `Artwork` | `(data) -> ArtworkEntity` | Create an Artwork entity instance. |
+| `ArtworkDateQualifier` | `(data) -> ArtworkDateQualifierEntity` | Create an ArtworkDateQualifier entity instance. |
+| `ArtworkPlaceQualifier` | `(data) -> ArtworkPlaceQualifierEntity` | Create an ArtworkPlaceQualifier entity instance. |
+| `ArtworkType` | `(data) -> ArtworkTypeEntity` | Create an ArtworkType entity instance. |
 | `CategoryTerm` | `(data) -> CategoryTermEntity` | Create a CategoryTerm entity instance. |
 | `DigitalPublication` | `(data) -> DigitalPublicationEntity` | Create a DigitalPublication entity instance. |
 | `DigitalPublicationArticle` | `(data) -> DigitalPublicationArticleEntity` | Create a DigitalPublicationArticle entity instance. |
-| `EducatorResource` | `(data) -> EducatorResourceEntity` | Create a EducatorResource entity instance. |
-| `Event` | `(data) -> EventEntity` | Create a Event entity instance. |
-| `EventOccurrence` | `(data) -> EventOccurrenceEntity` | Create a EventOccurrence entity instance. |
-| `EventProgram` | `(data) -> EventProgramEntity` | Create a EventProgram entity instance. |
-| `Exhibition` | `(data) -> ExhibitionEntity` | Create a Exhibition entity instance. |
+| `EducatorResource` | `(data) -> EducatorResourceEntity` | Create an EducatorResource entity instance. |
+| `Event` | `(data) -> EventEntity` | Create an Event entity instance. |
+| `EventOccurrence` | `(data) -> EventOccurrenceEntity` | Create an EventOccurrence entity instance. |
+| `EventProgram` | `(data) -> EventProgramEntity` | Create an EventProgram entity instance. |
+| `Exhibition` | `(data) -> ExhibitionEntity` | Create an Exhibition entity instance. |
 | `Gallery` | `(data) -> GalleryEntity` | Create a Gallery entity instance. |
 | `GenericPage` | `(data) -> GenericPageEntity` | Create a GenericPage entity instance. |
 | `Highlight` | `(data) -> HighlightEntity` | Create a Highlight entity instance. |
 | `Hour` | `(data) -> HourEntity` | Create a Hour entity instance. |
-| `Image` | `(data) -> ImageEntity` | Create a Image entity instance. |
+| `Image` | `(data) -> ImageEntity` | Create an Image entity instance. |
 | `LandingPage` | `(data) -> LandingPageEntity` | Create a LandingPage entity instance. |
 | `Place` | `(data) -> PlaceEntity` | Create a Place entity instance. |
 | `PressRelease` | `(data) -> PressReleaseEntity` | Create a PressRelease entity instance. |
@@ -1222,7 +1225,7 @@ API path: `/videos`
 
 ### Agent
 
-Create an instance: `const agent = client.agent`
+Create an instance: `agent = client.Agent`
 
 #### Operations
 
@@ -1254,20 +1257,22 @@ Create an instance: `const agent = client.agent`
 
 #### Example: Load
 
-```ts
-const agent = await client.agent.load({ id: 'agent_id' })
+```ruby
+# load returns the bare Agent record (raises on error).
+agent = client.Agent.load({ "id" => "agent_id" })
 ```
 
 #### Example: List
 
-```ts
-const agents = await client.agent.list()
+```ruby
+# list returns an Array of Agent records (raises on error).
+agents = client.Agent.list
 ```
 
 
 ### AgentRole
 
-Create an instance: `const agent_role = client.agent_role`
+Create an instance: `agent_role = client.AgentRole`
 
 #### Operations
 
@@ -1292,20 +1297,22 @@ Create an instance: `const agent_role = client.agent_role`
 
 #### Example: Load
 
-```ts
-const agent_role = await client.agent_role.load({ id: 'agent_role_id' })
+```ruby
+# load returns the bare AgentRole record (raises on error).
+agent_role = client.AgentRole.load({ "id" => "agent_role_id" })
 ```
 
 #### Example: List
 
-```ts
-const agent_roles = await client.agent_role.list()
+```ruby
+# list returns an Array of AgentRole records (raises on error).
+agent_roles = client.AgentRole.list
 ```
 
 
 ### AgentType
 
-Create an instance: `const agent_type = client.agent_type`
+Create an instance: `agent_type = client.AgentType`
 
 #### Operations
 
@@ -1330,20 +1337,22 @@ Create an instance: `const agent_type = client.agent_type`
 
 #### Example: Load
 
-```ts
-const agent_type = await client.agent_type.load({ id: 'agent_type_id' })
+```ruby
+# load returns the bare AgentType record (raises on error).
+agent_type = client.AgentType.load({ "id" => "agent_type_id" })
 ```
 
 #### Example: List
 
-```ts
-const agent_types = await client.agent_type.list()
+```ruby
+# list returns an Array of AgentType records (raises on error).
+agent_types = client.AgentType.list
 ```
 
 
 ### Article
 
-Create an instance: `const article = client.article`
+Create an instance: `article = client.Article`
 
 #### Operations
 
@@ -1369,20 +1378,22 @@ Create an instance: `const article = client.article`
 
 #### Example: Load
 
-```ts
-const article = await client.article.load({ id: 'article_id' })
+```ruby
+# load returns the bare Article record (raises on error).
+article = client.Article.load({ "id" => "article_id" })
 ```
 
 #### Example: List
 
-```ts
-const articles = await client.article.list()
+```ruby
+# list returns an Array of Article records (raises on error).
+articles = client.Article.list
 ```
 
 
 ### Artwork
 
-Create an instance: `const artwork = client.artwork`
+Create an instance: `artwork = client.Artwork`
 
 #### Operations
 
@@ -1493,20 +1504,22 @@ Create an instance: `const artwork = client.artwork`
 
 #### Example: Load
 
-```ts
-const artwork = await client.artwork.load({ id: 'artwork_id' })
+```ruby
+# load returns the bare Artwork record (raises on error).
+artwork = client.Artwork.load({ "id" => "artwork_id" })
 ```
 
 #### Example: List
 
-```ts
-const artworks = await client.artwork.list()
+```ruby
+# list returns an Array of Artwork records (raises on error).
+artworks = client.Artwork.list
 ```
 
 
 ### ArtworkDateQualifier
 
-Create an instance: `const artwork_date_qualifier = client.artwork_date_qualifier`
+Create an instance: `artwork_date_qualifier = client.ArtworkDateQualifier`
 
 #### Operations
 
@@ -1531,20 +1544,22 @@ Create an instance: `const artwork_date_qualifier = client.artwork_date_qualifie
 
 #### Example: Load
 
-```ts
-const artwork_date_qualifier = await client.artwork_date_qualifier.load({ id: 'artwork_date_qualifier_id' })
+```ruby
+# load returns the bare ArtworkDateQualifier record (raises on error).
+artwork_date_qualifier = client.ArtworkDateQualifier.load({ "id" => "artwork_date_qualifier_id" })
 ```
 
 #### Example: List
 
-```ts
-const artwork_date_qualifiers = await client.artwork_date_qualifier.list()
+```ruby
+# list returns an Array of ArtworkDateQualifier records (raises on error).
+artwork_date_qualifiers = client.ArtworkDateQualifier.list
 ```
 
 
 ### ArtworkPlaceQualifier
 
-Create an instance: `const artwork_place_qualifier = client.artwork_place_qualifier`
+Create an instance: `artwork_place_qualifier = client.ArtworkPlaceQualifier`
 
 #### Operations
 
@@ -1569,20 +1584,22 @@ Create an instance: `const artwork_place_qualifier = client.artwork_place_qualif
 
 #### Example: Load
 
-```ts
-const artwork_place_qualifier = await client.artwork_place_qualifier.load({ id: 'artwork_place_qualifier_id' })
+```ruby
+# load returns the bare ArtworkPlaceQualifier record (raises on error).
+artwork_place_qualifier = client.ArtworkPlaceQualifier.load({ "id" => "artwork_place_qualifier_id" })
 ```
 
 #### Example: List
 
-```ts
-const artwork_place_qualifiers = await client.artwork_place_qualifier.list()
+```ruby
+# list returns an Array of ArtworkPlaceQualifier records (raises on error).
+artwork_place_qualifiers = client.ArtworkPlaceQualifier.list
 ```
 
 
 ### ArtworkType
 
-Create an instance: `const artwork_type = client.artwork_type`
+Create an instance: `artwork_type = client.ArtworkType`
 
 #### Operations
 
@@ -1608,20 +1625,22 @@ Create an instance: `const artwork_type = client.artwork_type`
 
 #### Example: Load
 
-```ts
-const artwork_type = await client.artwork_type.load({ id: 'artwork_type_id' })
+```ruby
+# load returns the bare ArtworkType record (raises on error).
+artwork_type = client.ArtworkType.load({ "id" => "artwork_type_id" })
 ```
 
 #### Example: List
 
-```ts
-const artwork_types = await client.artwork_type.list()
+```ruby
+# list returns an Array of ArtworkType records (raises on error).
+artwork_types = client.ArtworkType.list
 ```
 
 
 ### CategoryTerm
 
-Create an instance: `const category_term = client.category_term`
+Create an instance: `category_term = client.CategoryTerm`
 
 #### Operations
 
@@ -1648,20 +1667,22 @@ Create an instance: `const category_term = client.category_term`
 
 #### Example: Load
 
-```ts
-const category_term = await client.category_term.load({ id: 'category_term_id' })
+```ruby
+# load returns the bare CategoryTerm record (raises on error).
+category_term = client.CategoryTerm.load({ "id" => "category_term_id" })
 ```
 
 #### Example: List
 
-```ts
-const category_terms = await client.category_term.list()
+```ruby
+# list returns an Array of CategoryTerm records (raises on error).
+category_terms = client.CategoryTerm.list
 ```
 
 
 ### DigitalPublication
 
-Create an instance: `const digital_publication = client.digital_publication`
+Create an instance: `digital_publication = client.DigitalPublication`
 
 #### Operations
 
@@ -1688,20 +1709,22 @@ Create an instance: `const digital_publication = client.digital_publication`
 
 #### Example: Load
 
-```ts
-const digital_publication = await client.digital_publication.load({ id: 'digital_publication_id' })
+```ruby
+# load returns the bare DigitalPublication record (raises on error).
+digital_publication = client.DigitalPublication.load({ "id" => "digital_publication_id" })
 ```
 
 #### Example: List
 
-```ts
-const digital_publications = await client.digital_publication.list()
+```ruby
+# list returns an Array of DigitalPublication records (raises on error).
+digital_publications = client.DigitalPublication.list
 ```
 
 
 ### DigitalPublicationArticle
 
-Create an instance: `const digital_publication_article = client.digital_publication_article`
+Create an instance: `digital_publication_article = client.DigitalPublicationArticle`
 
 #### Operations
 
@@ -1730,20 +1753,22 @@ Create an instance: `const digital_publication_article = client.digital_publicat
 
 #### Example: Load
 
-```ts
-const digital_publication_article = await client.digital_publication_article.load({ id: 'digital_publication_article_id' })
+```ruby
+# load returns the bare DigitalPublicationArticle record (raises on error).
+digital_publication_article = client.DigitalPublicationArticle.load({ "id" => "digital_publication_article_id" })
 ```
 
 #### Example: List
 
-```ts
-const digital_publication_articles = await client.digital_publication_article.list()
+```ruby
+# list returns an Array of DigitalPublicationArticle records (raises on error).
+digital_publication_articles = client.DigitalPublicationArticle.list
 ```
 
 
 ### EducatorResource
 
-Create an instance: `const educator_resource = client.educator_resource`
+Create an instance: `educator_resource = client.EducatorResource`
 
 #### Operations
 
@@ -1770,20 +1795,22 @@ Create an instance: `const educator_resource = client.educator_resource`
 
 #### Example: Load
 
-```ts
-const educator_resource = await client.educator_resource.load({ id: 'educator_resource_id' })
+```ruby
+# load returns the bare EducatorResource record (raises on error).
+educator_resource = client.EducatorResource.load({ "id" => "educator_resource_id" })
 ```
 
 #### Example: List
 
-```ts
-const educator_resources = await client.educator_resource.list()
+```ruby
+# list returns an Array of EducatorResource records (raises on error).
+educator_resources = client.EducatorResource.list
 ```
 
 
 ### Event
 
-Create an instance: `const event = client.event`
+Create an instance: `event = client.Event`
 
 #### Operations
 
@@ -1852,20 +1879,22 @@ Create an instance: `const event = client.event`
 
 #### Example: Load
 
-```ts
-const event = await client.event.load({ id: 'event_id' })
+```ruby
+# load returns the bare Event record (raises on error).
+event = client.Event.load({ "id" => "event_id" })
 ```
 
 #### Example: List
 
-```ts
-const events = await client.event.list()
+```ruby
+# list returns an Array of Event records (raises on error).
+events = client.Event.list
 ```
 
 
 ### EventOccurrence
 
-Create an instance: `const event_occurrence = client.event_occurrence`
+Create an instance: `event_occurrence = client.EventOccurrence`
 
 #### Operations
 
@@ -1906,20 +1935,22 @@ Create an instance: `const event_occurrence = client.event_occurrence`
 
 #### Example: Load
 
-```ts
-const event_occurrence = await client.event_occurrence.load({ id: 'event_occurrence_id' })
+```ruby
+# load returns the bare EventOccurrence record (raises on error).
+event_occurrence = client.EventOccurrence.load({ "id" => "event_occurrence_id" })
 ```
 
 #### Example: List
 
-```ts
-const event_occurrences = await client.event_occurrence.list()
+```ruby
+# list returns an Array of EventOccurrence records (raises on error).
+event_occurrences = client.EventOccurrence.list
 ```
 
 
 ### EventProgram
 
-Create an instance: `const event_program = client.event_program`
+Create an instance: `event_program = client.EventProgram`
 
 #### Operations
 
@@ -1946,20 +1977,22 @@ Create an instance: `const event_program = client.event_program`
 
 #### Example: Load
 
-```ts
-const event_program = await client.event_program.load({ id: 'event_program_id' })
+```ruby
+# load returns the bare EventProgram record (raises on error).
+event_program = client.EventProgram.load({ "id" => "event_program_id" })
 ```
 
 #### Example: List
 
-```ts
-const event_programs = await client.event_program.list()
+```ruby
+# list returns an Array of EventProgram records (raises on error).
+event_programs = client.EventProgram.list
 ```
 
 
 ### Exhibition
 
-Create an instance: `const exhibition = client.exhibition`
+Create an instance: `exhibition = client.Exhibition`
 
 #### Operations
 
@@ -2002,20 +2035,22 @@ Create an instance: `const exhibition = client.exhibition`
 
 #### Example: Load
 
-```ts
-const exhibition = await client.exhibition.load({ id: 'exhibition_id' })
+```ruby
+# load returns the bare Exhibition record (raises on error).
+exhibition = client.Exhibition.load({ "id" => "exhibition_id" })
 ```
 
 #### Example: List
 
-```ts
-const exhibitions = await client.exhibition.list()
+```ruby
+# list returns an Array of Exhibition records (raises on error).
+exhibitions = client.Exhibition.list
 ```
 
 
 ### Gallery
 
-Create an instance: `const gallery = client.gallery`
+Create an instance: `gallery = client.Gallery`
 
 #### Operations
 
@@ -2047,20 +2082,22 @@ Create an instance: `const gallery = client.gallery`
 
 #### Example: Load
 
-```ts
-const gallery = await client.gallery.load({ id: 'gallery_id' })
+```ruby
+# load returns the bare Gallery record (raises on error).
+gallery = client.Gallery.load({ "id" => "gallery_id" })
 ```
 
 #### Example: List
 
-```ts
-const gallerys = await client.gallery.list()
+```ruby
+# list returns an Array of Gallery records (raises on error).
+gallerys = client.Gallery.list
 ```
 
 
 ### GenericPage
 
-Create an instance: `const generic_page = client.generic_page`
+Create an instance: `generic_page = client.GenericPage`
 
 #### Operations
 
@@ -2088,20 +2125,22 @@ Create an instance: `const generic_page = client.generic_page`
 
 #### Example: Load
 
-```ts
-const generic_page = await client.generic_page.load({ id: 'generic_page_id' })
+```ruby
+# load returns the bare GenericPage record (raises on error).
+generic_page = client.GenericPage.load({ "id" => "generic_page_id" })
 ```
 
 #### Example: List
 
-```ts
-const generic_pages = await client.generic_page.list()
+```ruby
+# list returns an Array of GenericPage records (raises on error).
+generic_pages = client.GenericPage.list
 ```
 
 
 ### Highlight
 
-Create an instance: `const highlight = client.highlight`
+Create an instance: `highlight = client.Highlight`
 
 #### Operations
 
@@ -2127,20 +2166,22 @@ Create an instance: `const highlight = client.highlight`
 
 #### Example: Load
 
-```ts
-const highlight = await client.highlight.load({ id: 'highlight_id' })
+```ruby
+# load returns the bare Highlight record (raises on error).
+highlight = client.Highlight.load({ "id" => "highlight_id" })
 ```
 
 #### Example: List
 
-```ts
-const highlights = await client.highlight.list()
+```ruby
+# list returns an Array of Highlight records (raises on error).
+highlights = client.Highlight.list
 ```
 
 
 ### Hour
 
-Create an instance: `const hour = client.hour`
+Create an instance: `hour = client.Hour`
 
 #### Operations
 
@@ -2202,20 +2243,22 @@ Create an instance: `const hour = client.hour`
 
 #### Example: Load
 
-```ts
-const hour = await client.hour.load({ id: 'hour_id' })
+```ruby
+# load returns the bare Hour record (raises on error).
+hour = client.Hour.load({ "id" => "hour_id" })
 ```
 
 #### Example: List
 
-```ts
-const hours = await client.hour.list()
+```ruby
+# list returns an Array of Hour records (raises on error).
+hours = client.Hour.list
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `image = client.Image`
 
 #### Operations
 
@@ -2260,20 +2303,22 @@ Create an instance: `const image = client.image`
 
 #### Example: Load
 
-```ts
-const image = await client.image.load({ id: 'image_id' })
+```ruby
+# load returns the bare Image record (raises on error).
+image = client.Image.load({ "id" => "image_id" })
 ```
 
 #### Example: List
 
-```ts
-const images = await client.image.list()
+```ruby
+# list returns an Array of Image records (raises on error).
+images = client.Image.list
 ```
 
 
 ### LandingPage
 
-Create an instance: `const landing_page = client.landing_page`
+Create an instance: `landing_page = client.LandingPage`
 
 #### Operations
 
@@ -2301,20 +2346,22 @@ Create an instance: `const landing_page = client.landing_page`
 
 #### Example: Load
 
-```ts
-const landing_page = await client.landing_page.load({ id: 'landing_page_id' })
+```ruby
+# load returns the bare LandingPage record (raises on error).
+landing_page = client.LandingPage.load({ "id" => "landing_page_id" })
 ```
 
 #### Example: List
 
-```ts
-const landing_pages = await client.landing_page.list()
+```ruby
+# list returns an Array of LandingPage records (raises on error).
+landing_pages = client.LandingPage.list
 ```
 
 
 ### Place
 
-Create an instance: `const place = client.place`
+Create an instance: `place = client.Place`
 
 #### Operations
 
@@ -2342,20 +2389,22 @@ Create an instance: `const place = client.place`
 
 #### Example: Load
 
-```ts
-const place = await client.place.load({ id: 'place_id' })
+```ruby
+# load returns the bare Place record (raises on error).
+place = client.Place.load({ "id" => "place_id" })
 ```
 
 #### Example: List
 
-```ts
-const places = await client.place.list()
+```ruby
+# list returns an Array of Place records (raises on error).
+places = client.Place.list
 ```
 
 
 ### PressRelease
 
-Create an instance: `const press_release = client.press_release`
+Create an instance: `press_release = client.PressRelease`
 
 #### Operations
 
@@ -2382,20 +2431,22 @@ Create an instance: `const press_release = client.press_release`
 
 #### Example: Load
 
-```ts
-const press_release = await client.press_release.load({ id: 'press_release_id' })
+```ruby
+# load returns the bare PressRelease record (raises on error).
+press_release = client.PressRelease.load({ "id" => "press_release_id" })
 ```
 
 #### Example: List
 
-```ts
-const press_releases = await client.press_release.list()
+```ruby
+# list returns an Array of PressRelease records (raises on error).
+press_releases = client.PressRelease.list
 ```
 
 
 ### PrintedPublication
 
-Create an instance: `const printed_publication = client.printed_publication`
+Create an instance: `printed_publication = client.PrintedPublication`
 
 #### Operations
 
@@ -2422,20 +2473,22 @@ Create an instance: `const printed_publication = client.printed_publication`
 
 #### Example: Load
 
-```ts
-const printed_publication = await client.printed_publication.load({ id: 'printed_publication_id' })
+```ruby
+# load returns the bare PrintedPublication record (raises on error).
+printed_publication = client.PrintedPublication.load({ "id" => "printed_publication_id" })
 ```
 
 #### Example: List
 
-```ts
-const printed_publications = await client.printed_publication.list()
+```ruby
+# list returns an Array of PrintedPublication records (raises on error).
+printed_publications = client.PrintedPublication.list
 ```
 
 
 ### Product
 
-Create an instance: `const product = client.product`
+Create an instance: `product = client.Product`
 
 #### Operations
 
@@ -2472,20 +2525,22 @@ Create an instance: `const product = client.product`
 
 #### Example: Load
 
-```ts
-const product = await client.product.load({ id: 'product_id' })
+```ruby
+# load returns the bare Product record (raises on error).
+product = client.Product.load({ "id" => "product_id" })
 ```
 
 #### Example: List
 
-```ts
-const products = await client.product.list()
+```ruby
+# list returns an Array of Product records (raises on error).
+products = client.Product.list
 ```
 
 
 ### Publication
 
-Create an instance: `const publication = client.publication`
+Create an instance: `publication = client.Publication`
 
 #### Operations
 
@@ -2512,20 +2567,22 @@ Create an instance: `const publication = client.publication`
 
 #### Example: Load
 
-```ts
-const publication = await client.publication.load({ id: 'publication_id' })
+```ruby
+# load returns the bare Publication record (raises on error).
+publication = client.Publication.load({ "id" => "publication_id" })
 ```
 
 #### Example: List
 
-```ts
-const publications = await client.publication.list()
+```ruby
+# list returns an Array of Publication records (raises on error).
+publications = client.Publication.list
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `search = client.Search`
 
 #### Operations
 
@@ -2549,14 +2606,15 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```ruby
+# list returns an Array of Search records (raises on error).
+searchs = client.Search.list
 ```
 
 
 ### Section
 
-Create an instance: `const section = client.section`
+Create an instance: `section = client.Section`
 
 #### Operations
 
@@ -2588,20 +2646,22 @@ Create an instance: `const section = client.section`
 
 #### Example: Load
 
-```ts
-const section = await client.section.load({ id: 'section_id' })
+```ruby
+# load returns the bare Section record (raises on error).
+section = client.Section.load({ "id" => "section_id" })
 ```
 
 #### Example: List
 
-```ts
-const sections = await client.section.list()
+```ruby
+# list returns an Array of Section records (raises on error).
+sections = client.Section.list
 ```
 
 
 ### Site
 
-Create an instance: `const site = client.site`
+Create an instance: `site = client.Site`
 
 #### Operations
 
@@ -2632,20 +2692,22 @@ Create an instance: `const site = client.site`
 
 #### Example: Load
 
-```ts
-const site = await client.site.load({ id: 'site_id' })
+```ruby
+# load returns the bare Site record (raises on error).
+site = client.Site.load({ "id" => "site_id" })
 ```
 
 #### Example: List
 
-```ts
-const sites = await client.site.list()
+```ruby
+# list returns an Array of Site records (raises on error).
+sites = client.Site.list
 ```
 
 
 ### Sound
 
-Create an instance: `const sound = client.sound`
+Create an instance: `sound = client.Sound`
 
 #### Operations
 
@@ -2683,20 +2745,22 @@ Create an instance: `const sound = client.sound`
 
 #### Example: Load
 
-```ts
-const sound = await client.sound.load({ id: 'sound_id' })
+```ruby
+# load returns the bare Sound record (raises on error).
+sound = client.Sound.load({ "id" => "sound_id" })
 ```
 
 #### Example: List
 
-```ts
-const sounds = await client.sound.list()
+```ruby
+# list returns an Array of Sound records (raises on error).
+sounds = client.Sound.list
 ```
 
 
 ### StaticPage
 
-Create an instance: `const static_page = client.static_page`
+Create an instance: `static_page = client.StaticPage`
 
 #### Operations
 
@@ -2722,20 +2786,22 @@ Create an instance: `const static_page = client.static_page`
 
 #### Example: Load
 
-```ts
-const static_page = await client.static_page.load({ id: 'static_page_id' })
+```ruby
+# load returns the bare StaticPage record (raises on error).
+static_page = client.StaticPage.load({ "id" => "static_page_id" })
 ```
 
 #### Example: List
 
-```ts
-const static_pages = await client.static_page.list()
+```ruby
+# list returns an Array of StaticPage records (raises on error).
+static_pages = client.StaticPage.list
 ```
 
 
 ### Text
 
-Create an instance: `const text = client.text`
+Create an instance: `text = client.Text`
 
 #### Operations
 
@@ -2771,20 +2837,22 @@ Create an instance: `const text = client.text`
 
 #### Example: Load
 
-```ts
-const text = await client.text.load({ id: 'text_id' })
+```ruby
+# load returns the bare Text record (raises on error).
+text = client.Text.load({ "id" => "text_id" })
 ```
 
 #### Example: List
 
-```ts
-const texts = await client.text.list()
+```ruby
+# list returns an Array of Text records (raises on error).
+texts = client.Text.list
 ```
 
 
 ### Tour
 
-Create an instance: `const tour = client.tour`
+Create an instance: `tour = client.Tour`
 
 #### Operations
 
@@ -2817,20 +2885,22 @@ Create an instance: `const tour = client.tour`
 
 #### Example: Load
 
-```ts
-const tour = await client.tour.load({ id: 'tour_id' })
+```ruby
+# load returns the bare Tour record (raises on error).
+tour = client.Tour.load({ "id" => "tour_id" })
 ```
 
 #### Example: List
 
-```ts
-const tours = await client.tour.list()
+```ruby
+# list returns an Array of Tour records (raises on error).
+tours = client.Tour.list
 ```
 
 
 ### Video
 
-Create an instance: `const video = client.video`
+Create an instance: `video = client.Video`
 
 #### Operations
 
@@ -2866,14 +2936,16 @@ Create an instance: `const video = client.video`
 
 #### Example: Load
 
-```ts
-const video = await client.video.load({ id: 'video_id' })
+```ruby
+# load returns the bare Video record (raises on error).
+video = client.Video.load({ "id" => "video_id" })
 ```
 
 #### Example: List
 
-```ts
-const videos = await client.video.list()
+```ruby
+# list returns an Array of Video records (raises on error).
+videos = client.Video.list
 ```
 
 
@@ -2948,7 +3020,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-agent = client.agent
+agent = client.Agent
 agent.load({ "id" => "example_id" })
 
 # agent.data_get now returns the loaded agent data

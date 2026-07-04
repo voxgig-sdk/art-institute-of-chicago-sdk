@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:agent():list() / client:agent():load({ id = ... })
-function ArtInstituteOfChicagoSDK:agent(data)
+-- Idiomatic facade: client:Agent():list() / client:Agent():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Agent(data)
   local EntityMod = require("entity.agent_entity")
   if data == nil then
     if self._agent == nil then
@@ -256,15 +257,10 @@ function ArtInstituteOfChicagoSDK:agent(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:agent() instead.
-function ArtInstituteOfChicagoSDK:Agent(data)
-  local EntityMod = require("entity.agent_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:agent_role():list() / client:agent_role():load({ id = ... })
-function ArtInstituteOfChicagoSDK:agent_role(data)
+-- Idiomatic facade: client:AgentRole():list() / client:AgentRole():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:AgentRole(data)
   local EntityMod = require("entity.agent_role_entity")
   if data == nil then
     if self._agent_role == nil then
@@ -275,15 +271,10 @@ function ArtInstituteOfChicagoSDK:agent_role(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:agent_role() instead.
-function ArtInstituteOfChicagoSDK:AgentRole(data)
-  local EntityMod = require("entity.agent_role_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:agent_type():list() / client:agent_type():load({ id = ... })
-function ArtInstituteOfChicagoSDK:agent_type(data)
+-- Idiomatic facade: client:AgentType():list() / client:AgentType():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:AgentType(data)
   local EntityMod = require("entity.agent_type_entity")
   if data == nil then
     if self._agent_type == nil then
@@ -294,15 +285,10 @@ function ArtInstituteOfChicagoSDK:agent_type(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:agent_type() instead.
-function ArtInstituteOfChicagoSDK:AgentType(data)
-  local EntityMod = require("entity.agent_type_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:article():list() / client:article():load({ id = ... })
-function ArtInstituteOfChicagoSDK:article(data)
+-- Idiomatic facade: client:Article():list() / client:Article():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Article(data)
   local EntityMod = require("entity.article_entity")
   if data == nil then
     if self._article == nil then
@@ -313,15 +299,10 @@ function ArtInstituteOfChicagoSDK:article(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:article() instead.
-function ArtInstituteOfChicagoSDK:Article(data)
-  local EntityMod = require("entity.article_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:artwork():list() / client:artwork():load({ id = ... })
-function ArtInstituteOfChicagoSDK:artwork(data)
+-- Idiomatic facade: client:Artwork():list() / client:Artwork():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Artwork(data)
   local EntityMod = require("entity.artwork_entity")
   if data == nil then
     if self._artwork == nil then
@@ -332,15 +313,10 @@ function ArtInstituteOfChicagoSDK:artwork(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:artwork() instead.
-function ArtInstituteOfChicagoSDK:Artwork(data)
-  local EntityMod = require("entity.artwork_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:artwork_date_qualifier():list() / client:artwork_date_qualifier():load({ id = ... })
-function ArtInstituteOfChicagoSDK:artwork_date_qualifier(data)
+-- Idiomatic facade: client:ArtworkDateQualifier():list() / client:ArtworkDateQualifier():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:ArtworkDateQualifier(data)
   local EntityMod = require("entity.artwork_date_qualifier_entity")
   if data == nil then
     if self._artwork_date_qualifier == nil then
@@ -351,15 +327,10 @@ function ArtInstituteOfChicagoSDK:artwork_date_qualifier(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:artwork_date_qualifier() instead.
-function ArtInstituteOfChicagoSDK:ArtworkDateQualifier(data)
-  local EntityMod = require("entity.artwork_date_qualifier_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:artwork_place_qualifier():list() / client:artwork_place_qualifier():load({ id = ... })
-function ArtInstituteOfChicagoSDK:artwork_place_qualifier(data)
+-- Idiomatic facade: client:ArtworkPlaceQualifier():list() / client:ArtworkPlaceQualifier():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:ArtworkPlaceQualifier(data)
   local EntityMod = require("entity.artwork_place_qualifier_entity")
   if data == nil then
     if self._artwork_place_qualifier == nil then
@@ -370,15 +341,10 @@ function ArtInstituteOfChicagoSDK:artwork_place_qualifier(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:artwork_place_qualifier() instead.
-function ArtInstituteOfChicagoSDK:ArtworkPlaceQualifier(data)
-  local EntityMod = require("entity.artwork_place_qualifier_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:artwork_type():list() / client:artwork_type():load({ id = ... })
-function ArtInstituteOfChicagoSDK:artwork_type(data)
+-- Idiomatic facade: client:ArtworkType():list() / client:ArtworkType():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:ArtworkType(data)
   local EntityMod = require("entity.artwork_type_entity")
   if data == nil then
     if self._artwork_type == nil then
@@ -389,15 +355,10 @@ function ArtInstituteOfChicagoSDK:artwork_type(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:artwork_type() instead.
-function ArtInstituteOfChicagoSDK:ArtworkType(data)
-  local EntityMod = require("entity.artwork_type_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:category_term():list() / client:category_term():load({ id = ... })
-function ArtInstituteOfChicagoSDK:category_term(data)
+-- Idiomatic facade: client:CategoryTerm():list() / client:CategoryTerm():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:CategoryTerm(data)
   local EntityMod = require("entity.category_term_entity")
   if data == nil then
     if self._category_term == nil then
@@ -408,15 +369,10 @@ function ArtInstituteOfChicagoSDK:category_term(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:category_term() instead.
-function ArtInstituteOfChicagoSDK:CategoryTerm(data)
-  local EntityMod = require("entity.category_term_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:digital_publication():list() / client:digital_publication():load({ id = ... })
-function ArtInstituteOfChicagoSDK:digital_publication(data)
+-- Idiomatic facade: client:DigitalPublication():list() / client:DigitalPublication():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:DigitalPublication(data)
   local EntityMod = require("entity.digital_publication_entity")
   if data == nil then
     if self._digital_publication == nil then
@@ -427,15 +383,10 @@ function ArtInstituteOfChicagoSDK:digital_publication(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:digital_publication() instead.
-function ArtInstituteOfChicagoSDK:DigitalPublication(data)
-  local EntityMod = require("entity.digital_publication_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:digital_publication_article():list() / client:digital_publication_article():load({ id = ... })
-function ArtInstituteOfChicagoSDK:digital_publication_article(data)
+-- Idiomatic facade: client:DigitalPublicationArticle():list() / client:DigitalPublicationArticle():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:DigitalPublicationArticle(data)
   local EntityMod = require("entity.digital_publication_article_entity")
   if data == nil then
     if self._digital_publication_article == nil then
@@ -446,15 +397,10 @@ function ArtInstituteOfChicagoSDK:digital_publication_article(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:digital_publication_article() instead.
-function ArtInstituteOfChicagoSDK:DigitalPublicationArticle(data)
-  local EntityMod = require("entity.digital_publication_article_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:educator_resource():list() / client:educator_resource():load({ id = ... })
-function ArtInstituteOfChicagoSDK:educator_resource(data)
+-- Idiomatic facade: client:EducatorResource():list() / client:EducatorResource():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:EducatorResource(data)
   local EntityMod = require("entity.educator_resource_entity")
   if data == nil then
     if self._educator_resource == nil then
@@ -465,15 +411,10 @@ function ArtInstituteOfChicagoSDK:educator_resource(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:educator_resource() instead.
-function ArtInstituteOfChicagoSDK:EducatorResource(data)
-  local EntityMod = require("entity.educator_resource_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:event():list() / client:event():load({ id = ... })
-function ArtInstituteOfChicagoSDK:event(data)
+-- Idiomatic facade: client:Event():list() / client:Event():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Event(data)
   local EntityMod = require("entity.event_entity")
   if data == nil then
     if self._event == nil then
@@ -484,15 +425,10 @@ function ArtInstituteOfChicagoSDK:event(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:event() instead.
-function ArtInstituteOfChicagoSDK:Event(data)
-  local EntityMod = require("entity.event_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:event_occurrence():list() / client:event_occurrence():load({ id = ... })
-function ArtInstituteOfChicagoSDK:event_occurrence(data)
+-- Idiomatic facade: client:EventOccurrence():list() / client:EventOccurrence():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:EventOccurrence(data)
   local EntityMod = require("entity.event_occurrence_entity")
   if data == nil then
     if self._event_occurrence == nil then
@@ -503,15 +439,10 @@ function ArtInstituteOfChicagoSDK:event_occurrence(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:event_occurrence() instead.
-function ArtInstituteOfChicagoSDK:EventOccurrence(data)
-  local EntityMod = require("entity.event_occurrence_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:event_program():list() / client:event_program():load({ id = ... })
-function ArtInstituteOfChicagoSDK:event_program(data)
+-- Idiomatic facade: client:EventProgram():list() / client:EventProgram():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:EventProgram(data)
   local EntityMod = require("entity.event_program_entity")
   if data == nil then
     if self._event_program == nil then
@@ -522,15 +453,10 @@ function ArtInstituteOfChicagoSDK:event_program(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:event_program() instead.
-function ArtInstituteOfChicagoSDK:EventProgram(data)
-  local EntityMod = require("entity.event_program_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:exhibition():list() / client:exhibition():load({ id = ... })
-function ArtInstituteOfChicagoSDK:exhibition(data)
+-- Idiomatic facade: client:Exhibition():list() / client:Exhibition():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Exhibition(data)
   local EntityMod = require("entity.exhibition_entity")
   if data == nil then
     if self._exhibition == nil then
@@ -541,15 +467,10 @@ function ArtInstituteOfChicagoSDK:exhibition(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:exhibition() instead.
-function ArtInstituteOfChicagoSDK:Exhibition(data)
-  local EntityMod = require("entity.exhibition_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:gallery():list() / client:gallery():load({ id = ... })
-function ArtInstituteOfChicagoSDK:gallery(data)
+-- Idiomatic facade: client:Gallery():list() / client:Gallery():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Gallery(data)
   local EntityMod = require("entity.gallery_entity")
   if data == nil then
     if self._gallery == nil then
@@ -560,15 +481,10 @@ function ArtInstituteOfChicagoSDK:gallery(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:gallery() instead.
-function ArtInstituteOfChicagoSDK:Gallery(data)
-  local EntityMod = require("entity.gallery_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:generic_page():list() / client:generic_page():load({ id = ... })
-function ArtInstituteOfChicagoSDK:generic_page(data)
+-- Idiomatic facade: client:GenericPage():list() / client:GenericPage():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:GenericPage(data)
   local EntityMod = require("entity.generic_page_entity")
   if data == nil then
     if self._generic_page == nil then
@@ -579,15 +495,10 @@ function ArtInstituteOfChicagoSDK:generic_page(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:generic_page() instead.
-function ArtInstituteOfChicagoSDK:GenericPage(data)
-  local EntityMod = require("entity.generic_page_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:highlight():list() / client:highlight():load({ id = ... })
-function ArtInstituteOfChicagoSDK:highlight(data)
+-- Idiomatic facade: client:Highlight():list() / client:Highlight():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Highlight(data)
   local EntityMod = require("entity.highlight_entity")
   if data == nil then
     if self._highlight == nil then
@@ -598,15 +509,10 @@ function ArtInstituteOfChicagoSDK:highlight(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:highlight() instead.
-function ArtInstituteOfChicagoSDK:Highlight(data)
-  local EntityMod = require("entity.highlight_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:hour():list() / client:hour():load({ id = ... })
-function ArtInstituteOfChicagoSDK:hour(data)
+-- Idiomatic facade: client:Hour():list() / client:Hour():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Hour(data)
   local EntityMod = require("entity.hour_entity")
   if data == nil then
     if self._hour == nil then
@@ -617,15 +523,10 @@ function ArtInstituteOfChicagoSDK:hour(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:hour() instead.
-function ArtInstituteOfChicagoSDK:Hour(data)
-  local EntityMod = require("entity.hour_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:image():list() / client:image():load({ id = ... })
-function ArtInstituteOfChicagoSDK:image(data)
+-- Idiomatic facade: client:Image():list() / client:Image():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Image(data)
   local EntityMod = require("entity.image_entity")
   if data == nil then
     if self._image == nil then
@@ -636,15 +537,10 @@ function ArtInstituteOfChicagoSDK:image(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:image() instead.
-function ArtInstituteOfChicagoSDK:Image(data)
-  local EntityMod = require("entity.image_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:landing_page():list() / client:landing_page():load({ id = ... })
-function ArtInstituteOfChicagoSDK:landing_page(data)
+-- Idiomatic facade: client:LandingPage():list() / client:LandingPage():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:LandingPage(data)
   local EntityMod = require("entity.landing_page_entity")
   if data == nil then
     if self._landing_page == nil then
@@ -655,15 +551,10 @@ function ArtInstituteOfChicagoSDK:landing_page(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:landing_page() instead.
-function ArtInstituteOfChicagoSDK:LandingPage(data)
-  local EntityMod = require("entity.landing_page_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:place():list() / client:place():load({ id = ... })
-function ArtInstituteOfChicagoSDK:place(data)
+-- Idiomatic facade: client:Place():list() / client:Place():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Place(data)
   local EntityMod = require("entity.place_entity")
   if data == nil then
     if self._place == nil then
@@ -674,15 +565,10 @@ function ArtInstituteOfChicagoSDK:place(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:place() instead.
-function ArtInstituteOfChicagoSDK:Place(data)
-  local EntityMod = require("entity.place_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:press_release():list() / client:press_release():load({ id = ... })
-function ArtInstituteOfChicagoSDK:press_release(data)
+-- Idiomatic facade: client:PressRelease():list() / client:PressRelease():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:PressRelease(data)
   local EntityMod = require("entity.press_release_entity")
   if data == nil then
     if self._press_release == nil then
@@ -693,15 +579,10 @@ function ArtInstituteOfChicagoSDK:press_release(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:press_release() instead.
-function ArtInstituteOfChicagoSDK:PressRelease(data)
-  local EntityMod = require("entity.press_release_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:printed_publication():list() / client:printed_publication():load({ id = ... })
-function ArtInstituteOfChicagoSDK:printed_publication(data)
+-- Idiomatic facade: client:PrintedPublication():list() / client:PrintedPublication():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:PrintedPublication(data)
   local EntityMod = require("entity.printed_publication_entity")
   if data == nil then
     if self._printed_publication == nil then
@@ -712,15 +593,10 @@ function ArtInstituteOfChicagoSDK:printed_publication(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:printed_publication() instead.
-function ArtInstituteOfChicagoSDK:PrintedPublication(data)
-  local EntityMod = require("entity.printed_publication_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:product():list() / client:product():load({ id = ... })
-function ArtInstituteOfChicagoSDK:product(data)
+-- Idiomatic facade: client:Product():list() / client:Product():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Product(data)
   local EntityMod = require("entity.product_entity")
   if data == nil then
     if self._product == nil then
@@ -731,15 +607,10 @@ function ArtInstituteOfChicagoSDK:product(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:product() instead.
-function ArtInstituteOfChicagoSDK:Product(data)
-  local EntityMod = require("entity.product_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:publication():list() / client:publication():load({ id = ... })
-function ArtInstituteOfChicagoSDK:publication(data)
+-- Idiomatic facade: client:Publication():list() / client:Publication():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Publication(data)
   local EntityMod = require("entity.publication_entity")
   if data == nil then
     if self._publication == nil then
@@ -750,15 +621,10 @@ function ArtInstituteOfChicagoSDK:publication(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:publication() instead.
-function ArtInstituteOfChicagoSDK:Publication(data)
-  local EntityMod = require("entity.publication_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:search():list() / client:search():load({ id = ... })
-function ArtInstituteOfChicagoSDK:search(data)
+-- Idiomatic facade: client:Search():list() / client:Search():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Search(data)
   local EntityMod = require("entity.search_entity")
   if data == nil then
     if self._search == nil then
@@ -769,15 +635,10 @@ function ArtInstituteOfChicagoSDK:search(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:search() instead.
-function ArtInstituteOfChicagoSDK:Search(data)
-  local EntityMod = require("entity.search_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:section():list() / client:section():load({ id = ... })
-function ArtInstituteOfChicagoSDK:section(data)
+-- Idiomatic facade: client:Section():list() / client:Section():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Section(data)
   local EntityMod = require("entity.section_entity")
   if data == nil then
     if self._section == nil then
@@ -788,15 +649,10 @@ function ArtInstituteOfChicagoSDK:section(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:section() instead.
-function ArtInstituteOfChicagoSDK:Section(data)
-  local EntityMod = require("entity.section_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:site():list() / client:site():load({ id = ... })
-function ArtInstituteOfChicagoSDK:site(data)
+-- Idiomatic facade: client:Site():list() / client:Site():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Site(data)
   local EntityMod = require("entity.site_entity")
   if data == nil then
     if self._site == nil then
@@ -807,15 +663,10 @@ function ArtInstituteOfChicagoSDK:site(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:site() instead.
-function ArtInstituteOfChicagoSDK:Site(data)
-  local EntityMod = require("entity.site_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:sound():list() / client:sound():load({ id = ... })
-function ArtInstituteOfChicagoSDK:sound(data)
+-- Idiomatic facade: client:Sound():list() / client:Sound():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Sound(data)
   local EntityMod = require("entity.sound_entity")
   if data == nil then
     if self._sound == nil then
@@ -826,15 +677,10 @@ function ArtInstituteOfChicagoSDK:sound(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:sound() instead.
-function ArtInstituteOfChicagoSDK:Sound(data)
-  local EntityMod = require("entity.sound_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:static_page():list() / client:static_page():load({ id = ... })
-function ArtInstituteOfChicagoSDK:static_page(data)
+-- Idiomatic facade: client:StaticPage():list() / client:StaticPage():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:StaticPage(data)
   local EntityMod = require("entity.static_page_entity")
   if data == nil then
     if self._static_page == nil then
@@ -845,15 +691,10 @@ function ArtInstituteOfChicagoSDK:static_page(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:static_page() instead.
-function ArtInstituteOfChicagoSDK:StaticPage(data)
-  local EntityMod = require("entity.static_page_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:text():list() / client:text():load({ id = ... })
-function ArtInstituteOfChicagoSDK:text(data)
+-- Idiomatic facade: client:Text():list() / client:Text():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Text(data)
   local EntityMod = require("entity.text_entity")
   if data == nil then
     if self._text == nil then
@@ -864,15 +705,10 @@ function ArtInstituteOfChicagoSDK:text(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:text() instead.
-function ArtInstituteOfChicagoSDK:Text(data)
-  local EntityMod = require("entity.text_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:tour():list() / client:tour():load({ id = ... })
-function ArtInstituteOfChicagoSDK:tour(data)
+-- Idiomatic facade: client:Tour():list() / client:Tour():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Tour(data)
   local EntityMod = require("entity.tour_entity")
   if data == nil then
     if self._tour == nil then
@@ -883,15 +719,10 @@ function ArtInstituteOfChicagoSDK:tour(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:tour() instead.
-function ArtInstituteOfChicagoSDK:Tour(data)
-  local EntityMod = require("entity.tour_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:video():list() / client:video():load({ id = ... })
-function ArtInstituteOfChicagoSDK:video(data)
+-- Idiomatic facade: client:Video():list() / client:Video():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ArtInstituteOfChicagoSDK:Video(data)
   local EntityMod = require("entity.video_entity")
   if data == nil then
     if self._video == nil then
@@ -899,12 +730,6 @@ function ArtInstituteOfChicagoSDK:video(data)
     end
     return self._video
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:video() instead.
-function ArtInstituteOfChicagoSDK:Video(data)
-  local EntityMod = require("entity.video_entity")
   return EntityMod.new(self, data)
 end
 
