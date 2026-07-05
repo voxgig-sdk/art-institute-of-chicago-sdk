@@ -39,7 +39,7 @@ class AgentLoadMatch
     public string $id;
 }
 
-/** Match filter for Agent#list (any subset of Agent fields). */
+/** Request payload for Agent#list. */
 class AgentListMatch
 {
     public mixed $alt_title = null;
@@ -80,7 +80,7 @@ class AgentRoleLoadMatch
     public string $id;
 }
 
-/** Match filter for AgentRole#list (any subset of AgentRole fields). */
+/** Request payload for AgentRole#list. */
 class AgentRoleListMatch
 {
     public mixed $api_link = null;
@@ -114,7 +114,7 @@ class AgentTypeLoadMatch
     public string $id;
 }
 
-/** Match filter for AgentType#list (any subset of AgentType fields). */
+/** Request payload for AgentType#list. */
 class AgentTypeListMatch
 {
     public mixed $api_link = null;
@@ -149,7 +149,7 @@ class ArticleLoadMatch
     public string $id;
 }
 
-/** Match filter for Article#list (any subset of Article fields). */
+/** Request payload for Article#list. */
 class ArticleListMatch
 {
     public mixed $api_link = null;
@@ -270,7 +270,7 @@ class ArtworkLoadMatch
     public string $id;
 }
 
-/** Match filter for Artwork#list (any subset of Artwork fields). */
+/** Request payload for Artwork#list. */
 class ArtworkListMatch
 {
     public ?string $alt_artist_id = null;
@@ -390,7 +390,7 @@ class ArtworkDateQualifierLoadMatch
     public string $id;
 }
 
-/** Match filter for ArtworkDateQualifier#list (any subset of ArtworkDateQualifier fields). */
+/** Request payload for ArtworkDateQualifier#list. */
 class ArtworkDateQualifierListMatch
 {
     public mixed $api_link = null;
@@ -424,7 +424,7 @@ class ArtworkPlaceQualifierLoadMatch
     public string $id;
 }
 
-/** Match filter for ArtworkPlaceQualifier#list (any subset of ArtworkPlaceQualifier fields). */
+/** Request payload for ArtworkPlaceQualifier#list. */
 class ArtworkPlaceQualifierListMatch
 {
     public mixed $api_link = null;
@@ -459,7 +459,7 @@ class ArtworkTypeLoadMatch
     public string $id;
 }
 
-/** Match filter for ArtworkType#list (any subset of ArtworkType fields). */
+/** Request payload for ArtworkType#list. */
 class ArtworkTypeListMatch
 {
     public ?string $aat_id = null;
@@ -496,7 +496,7 @@ class CategoryTermLoadMatch
     public string $id;
 }
 
-/** Match filter for CategoryTerm#list (any subset of CategoryTerm fields). */
+/** Request payload for CategoryTerm#list. */
 class CategoryTermListMatch
 {
     public ?string $aat_id = null;
@@ -534,7 +534,7 @@ class DigitalPublicationLoadMatch
     public string $id;
 }
 
-/** Match filter for DigitalPublication#list (any subset of DigitalPublication fields). */
+/** Request payload for DigitalPublication#list. */
 class DigitalPublicationListMatch
 {
     public mixed $api_link = null;
@@ -574,7 +574,7 @@ class DigitalPublicationArticleLoadMatch
     public string $id;
 }
 
-/** Match filter for DigitalPublicationArticle#list (any subset of DigitalPublicationArticle fields). */
+/** Request payload for DigitalPublicationArticle#list. */
 class DigitalPublicationArticleListMatch
 {
     public mixed $api_link = null;
@@ -614,7 +614,7 @@ class EducatorResourceLoadMatch
     public string $id;
 }
 
-/** Match filter for EducatorResource#list (any subset of EducatorResource fields). */
+/** Request payload for EducatorResource#list. */
 class EducatorResourceListMatch
 {
     public mixed $api_link = null;
@@ -694,7 +694,7 @@ class EventLoadMatch
     public string $id;
 }
 
-/** Match filter for Event#list (any subset of Event fields). */
+/** Request payload for Event#list. */
 class EventListMatch
 {
     public ?string $alt_audience_id = null;
@@ -788,7 +788,7 @@ class EventOccurrenceLoadMatch
     public string $id;
 }
 
-/** Match filter for EventOccurrence#list (any subset of EventOccurrence fields). */
+/** Request payload for EventOccurrence#list. */
 class EventOccurrenceListMatch
 {
     public mixed $api_link = null;
@@ -840,7 +840,7 @@ class EventProgramLoadMatch
     public string $id;
 }
 
-/** Match filter for EventProgram#list (any subset of EventProgram fields). */
+/** Request payload for EventProgram#list. */
 class EventProgramListMatch
 {
     public mixed $api_link = null;
@@ -894,7 +894,7 @@ class ExhibitionLoadMatch
     public string $id;
 }
 
-/** Match filter for Exhibition#list (any subset of Exhibition fields). */
+/** Request payload for Exhibition#list. */
 class ExhibitionListMatch
 {
     public mixed $aic_end_at = null;
@@ -953,7 +953,7 @@ class GalleryLoadMatch
     public string $id;
 }
 
-/** Match filter for Gallery#list (any subset of Gallery fields). */
+/** Request payload for Gallery#list. */
 class GalleryListMatch
 {
     public mixed $api_link = null;
@@ -997,7 +997,7 @@ class GenericPageLoadMatch
     public string $id;
 }
 
-/** Match filter for GenericPage#list (any subset of GenericPage fields). */
+/** Request payload for GenericPage#list. */
 class GenericPageListMatch
 {
     public mixed $api_link = null;
@@ -1035,7 +1035,7 @@ class HighlightLoadMatch
     public string $id;
 }
 
-/** Match filter for Highlight#list (any subset of Highlight fields). */
+/** Request payload for Highlight#list. */
 class HighlightListMatch
 {
     public mixed $api_link = null;
@@ -1107,7 +1107,7 @@ class HourLoadMatch
     public string $id;
 }
 
-/** Match filter for Hour#list (any subset of Hour fields). */
+/** Request payload for Hour#list. */
 class HourListMatch
 {
     public mixed $additional_text = null;
@@ -1198,7 +1198,7 @@ class ImageLoadMatch
     public string $id;
 }
 
-/** Match filter for Image#list (any subset of Image fields). */
+/** Request payload for Image#list. */
 class ImageListMatch
 {
     public mixed $ahash = null;
@@ -1255,7 +1255,7 @@ class LandingPageLoadMatch
     public string $id;
 }
 
-/** Match filter for LandingPage#list (any subset of LandingPage fields). */
+/** Request payload for LandingPage#list. */
 class LandingPageListMatch
 {
     public mixed $api_link = null;
@@ -1295,7 +1295,7 @@ class PlaceLoadMatch
     public string $id;
 }
 
-/** Match filter for Place#list (any subset of Place fields). */
+/** Request payload for Place#list. */
 class PlaceListMatch
 {
     public mixed $api_link = null;
@@ -1334,7 +1334,7 @@ class PressReleaseLoadMatch
     public string $id;
 }
 
-/** Match filter for PressRelease#list (any subset of PressRelease fields). */
+/** Request payload for PressRelease#list. */
 class PressReleaseListMatch
 {
     public mixed $api_link = null;
@@ -1372,7 +1372,7 @@ class PrintedPublicationLoadMatch
     public string $id;
 }
 
-/** Match filter for PrintedPublication#list (any subset of PrintedPublication fields). */
+/** Request payload for PrintedPublication#list. */
 class PrintedPublicationListMatch
 {
     public mixed $api_link = null;
@@ -1420,7 +1420,7 @@ class ProductLoadMatch
     public string $id;
 }
 
-/** Match filter for Product#list (any subset of Product fields). */
+/** Request payload for Product#list. */
 class ProductListMatch
 {
     public mixed $api_link = null;
@@ -1468,7 +1468,7 @@ class PublicationLoadMatch
     public string $id;
 }
 
-/** Match filter for Publication#list (any subset of Publication fields). */
+/** Request payload for Publication#list. */
 class PublicationListMatch
 {
     public mixed $api_link = null;
@@ -1498,7 +1498,7 @@ class Search
     public ?string $title = null;
 }
 
-/** Match filter for Search#list (any subset of Search fields). */
+/** Request payload for Search#list. */
 class SearchListMatch
 {
     public ?string $api_id = null;
@@ -1539,7 +1539,7 @@ class SectionLoadMatch
     public string $id;
 }
 
-/** Match filter for Section#list (any subset of Section fields). */
+/** Request payload for Section#list. */
 class SectionListMatch
 {
     public mixed $accession = null;
@@ -1586,7 +1586,7 @@ class SiteLoadMatch
     public string $id;
 }
 
-/** Match filter for Site#list (any subset of Site fields). */
+/** Request payload for Site#list. */
 class SiteListMatch
 {
     public mixed $api_link = null;
@@ -1639,7 +1639,7 @@ class SoundLoadMatch
     public string $id;
 }
 
-/** Match filter for Sound#list (any subset of Sound fields). */
+/** Request payload for Sound#list. */
 class SoundListMatch
 {
     public mixed $alt_text = null;
@@ -1687,7 +1687,7 @@ class StaticPageLoadMatch
     public string $id;
 }
 
-/** Match filter for StaticPage#list (any subset of StaticPage fields). */
+/** Request payload for StaticPage#list. */
 class StaticPageListMatch
 {
     public mixed $api_link = null;
@@ -1733,7 +1733,7 @@ class TextLoadMatch
     public string $id;
 }
 
-/** Match filter for Text#list (any subset of Text fields). */
+/** Request payload for Text#list. */
 class TextListMatch
 {
     public mixed $alt_text = null;
@@ -1786,7 +1786,7 @@ class TourLoadMatch
     public string $id;
 }
 
-/** Match filter for Tour#list (any subset of Tour fields). */
+/** Request payload for Tour#list. */
 class TourListMatch
 {
     public mixed $api_link = null;
@@ -1839,7 +1839,7 @@ class VideoLoadMatch
     public string $id;
 }
 
-/** Match filter for Video#list (any subset of Video fields). */
+/** Request payload for Video#list. */
 class VideoListMatch
 {
     public mixed $alt_text = null;

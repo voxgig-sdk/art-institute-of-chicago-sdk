@@ -221,211 +221,211 @@ class ArtInstituteOfChicagoSDK:
 
 
     def Agent(self, data=None) -> "AgentEntity":
-        """Entity factory: client.Agent().list({}) / client.Agent().load({"id": ...})."""
+        """Entity factory: client.Agent().list() / client.Agent().load({"id": ...})."""
         from entity.agent_entity import AgentEntity
         return AgentEntity(self, data)
 
 
     def AgentRole(self, data=None) -> "AgentRoleEntity":
-        """Entity factory: client.AgentRole().list({}) / client.AgentRole().load({"id": ...})."""
+        """Entity factory: client.AgentRole().list() / client.AgentRole().load({"id": ...})."""
         from entity.agent_role_entity import AgentRoleEntity
         return AgentRoleEntity(self, data)
 
 
     def AgentType(self, data=None) -> "AgentTypeEntity":
-        """Entity factory: client.AgentType().list({}) / client.AgentType().load({"id": ...})."""
+        """Entity factory: client.AgentType().list() / client.AgentType().load({"id": ...})."""
         from entity.agent_type_entity import AgentTypeEntity
         return AgentTypeEntity(self, data)
 
 
     def Article(self, data=None) -> "ArticleEntity":
-        """Entity factory: client.Article().list({}) / client.Article().load({"id": ...})."""
+        """Entity factory: client.Article().list() / client.Article().load({"id": ...})."""
         from entity.article_entity import ArticleEntity
         return ArticleEntity(self, data)
 
 
     def Artwork(self, data=None) -> "ArtworkEntity":
-        """Entity factory: client.Artwork().list({}) / client.Artwork().load({"id": ...})."""
+        """Entity factory: client.Artwork().list() / client.Artwork().load({"id": ...})."""
         from entity.artwork_entity import ArtworkEntity
         return ArtworkEntity(self, data)
 
 
     def ArtworkDateQualifier(self, data=None) -> "ArtworkDateQualifierEntity":
-        """Entity factory: client.ArtworkDateQualifier().list({}) / client.ArtworkDateQualifier().load({"id": ...})."""
+        """Entity factory: client.ArtworkDateQualifier().list() / client.ArtworkDateQualifier().load({"id": ...})."""
         from entity.artwork_date_qualifier_entity import ArtworkDateQualifierEntity
         return ArtworkDateQualifierEntity(self, data)
 
 
     def ArtworkPlaceQualifier(self, data=None) -> "ArtworkPlaceQualifierEntity":
-        """Entity factory: client.ArtworkPlaceQualifier().list({}) / client.ArtworkPlaceQualifier().load({"id": ...})."""
+        """Entity factory: client.ArtworkPlaceQualifier().list() / client.ArtworkPlaceQualifier().load({"id": ...})."""
         from entity.artwork_place_qualifier_entity import ArtworkPlaceQualifierEntity
         return ArtworkPlaceQualifierEntity(self, data)
 
 
     def ArtworkType(self, data=None) -> "ArtworkTypeEntity":
-        """Entity factory: client.ArtworkType().list({}) / client.ArtworkType().load({"id": ...})."""
+        """Entity factory: client.ArtworkType().list() / client.ArtworkType().load({"id": ...})."""
         from entity.artwork_type_entity import ArtworkTypeEntity
         return ArtworkTypeEntity(self, data)
 
 
     def CategoryTerm(self, data=None) -> "CategoryTermEntity":
-        """Entity factory: client.CategoryTerm().list({}) / client.CategoryTerm().load({"id": ...})."""
+        """Entity factory: client.CategoryTerm().list() / client.CategoryTerm().load({"id": ...})."""
         from entity.category_term_entity import CategoryTermEntity
         return CategoryTermEntity(self, data)
 
 
     def DigitalPublication(self, data=None) -> "DigitalPublicationEntity":
-        """Entity factory: client.DigitalPublication().list({}) / client.DigitalPublication().load({"id": ...})."""
+        """Entity factory: client.DigitalPublication().list() / client.DigitalPublication().load({"id": ...})."""
         from entity.digital_publication_entity import DigitalPublicationEntity
         return DigitalPublicationEntity(self, data)
 
 
     def DigitalPublicationArticle(self, data=None) -> "DigitalPublicationArticleEntity":
-        """Entity factory: client.DigitalPublicationArticle().list({}) / client.DigitalPublicationArticle().load({"id": ...})."""
+        """Entity factory: client.DigitalPublicationArticle().list() / client.DigitalPublicationArticle().load({"id": ...})."""
         from entity.digital_publication_article_entity import DigitalPublicationArticleEntity
         return DigitalPublicationArticleEntity(self, data)
 
 
     def EducatorResource(self, data=None) -> "EducatorResourceEntity":
-        """Entity factory: client.EducatorResource().list({}) / client.EducatorResource().load({"id": ...})."""
+        """Entity factory: client.EducatorResource().list() / client.EducatorResource().load({"id": ...})."""
         from entity.educator_resource_entity import EducatorResourceEntity
         return EducatorResourceEntity(self, data)
 
 
     def Event(self, data=None) -> "EventEntity":
-        """Entity factory: client.Event().list({}) / client.Event().load({"id": ...})."""
+        """Entity factory: client.Event().list() / client.Event().load({"id": ...})."""
         from entity.event_entity import EventEntity
         return EventEntity(self, data)
 
 
     def EventOccurrence(self, data=None) -> "EventOccurrenceEntity":
-        """Entity factory: client.EventOccurrence().list({}) / client.EventOccurrence().load({"id": ...})."""
+        """Entity factory: client.EventOccurrence().list() / client.EventOccurrence().load({"id": ...})."""
         from entity.event_occurrence_entity import EventOccurrenceEntity
         return EventOccurrenceEntity(self, data)
 
 
     def EventProgram(self, data=None) -> "EventProgramEntity":
-        """Entity factory: client.EventProgram().list({}) / client.EventProgram().load({"id": ...})."""
+        """Entity factory: client.EventProgram().list() / client.EventProgram().load({"id": ...})."""
         from entity.event_program_entity import EventProgramEntity
         return EventProgramEntity(self, data)
 
 
     def Exhibition(self, data=None) -> "ExhibitionEntity":
-        """Entity factory: client.Exhibition().list({}) / client.Exhibition().load({"id": ...})."""
+        """Entity factory: client.Exhibition().list() / client.Exhibition().load({"id": ...})."""
         from entity.exhibition_entity import ExhibitionEntity
         return ExhibitionEntity(self, data)
 
 
     def Gallery(self, data=None) -> "GalleryEntity":
-        """Entity factory: client.Gallery().list({}) / client.Gallery().load({"id": ...})."""
+        """Entity factory: client.Gallery().list() / client.Gallery().load({"id": ...})."""
         from entity.gallery_entity import GalleryEntity
         return GalleryEntity(self, data)
 
 
     def GenericPage(self, data=None) -> "GenericPageEntity":
-        """Entity factory: client.GenericPage().list({}) / client.GenericPage().load({"id": ...})."""
+        """Entity factory: client.GenericPage().list() / client.GenericPage().load({"id": ...})."""
         from entity.generic_page_entity import GenericPageEntity
         return GenericPageEntity(self, data)
 
 
     def Highlight(self, data=None) -> "HighlightEntity":
-        """Entity factory: client.Highlight().list({}) / client.Highlight().load({"id": ...})."""
+        """Entity factory: client.Highlight().list() / client.Highlight().load({"id": ...})."""
         from entity.highlight_entity import HighlightEntity
         return HighlightEntity(self, data)
 
 
     def Hour(self, data=None) -> "HourEntity":
-        """Entity factory: client.Hour().list({}) / client.Hour().load({"id": ...})."""
+        """Entity factory: client.Hour().list() / client.Hour().load({"id": ...})."""
         from entity.hour_entity import HourEntity
         return HourEntity(self, data)
 
 
     def Image(self, data=None) -> "ImageEntity":
-        """Entity factory: client.Image().list({}) / client.Image().load({"id": ...})."""
+        """Entity factory: client.Image().list() / client.Image().load({"id": ...})."""
         from entity.image_entity import ImageEntity
         return ImageEntity(self, data)
 
 
     def LandingPage(self, data=None) -> "LandingPageEntity":
-        """Entity factory: client.LandingPage().list({}) / client.LandingPage().load({"id": ...})."""
+        """Entity factory: client.LandingPage().list() / client.LandingPage().load({"id": ...})."""
         from entity.landing_page_entity import LandingPageEntity
         return LandingPageEntity(self, data)
 
 
     def Place(self, data=None) -> "PlaceEntity":
-        """Entity factory: client.Place().list({}) / client.Place().load({"id": ...})."""
+        """Entity factory: client.Place().list() / client.Place().load({"id": ...})."""
         from entity.place_entity import PlaceEntity
         return PlaceEntity(self, data)
 
 
     def PressRelease(self, data=None) -> "PressReleaseEntity":
-        """Entity factory: client.PressRelease().list({}) / client.PressRelease().load({"id": ...})."""
+        """Entity factory: client.PressRelease().list() / client.PressRelease().load({"id": ...})."""
         from entity.press_release_entity import PressReleaseEntity
         return PressReleaseEntity(self, data)
 
 
     def PrintedPublication(self, data=None) -> "PrintedPublicationEntity":
-        """Entity factory: client.PrintedPublication().list({}) / client.PrintedPublication().load({"id": ...})."""
+        """Entity factory: client.PrintedPublication().list() / client.PrintedPublication().load({"id": ...})."""
         from entity.printed_publication_entity import PrintedPublicationEntity
         return PrintedPublicationEntity(self, data)
 
 
     def Product(self, data=None) -> "ProductEntity":
-        """Entity factory: client.Product().list({}) / client.Product().load({"id": ...})."""
+        """Entity factory: client.Product().list() / client.Product().load({"id": ...})."""
         from entity.product_entity import ProductEntity
         return ProductEntity(self, data)
 
 
     def Publication(self, data=None) -> "PublicationEntity":
-        """Entity factory: client.Publication().list({}) / client.Publication().load({"id": ...})."""
+        """Entity factory: client.Publication().list() / client.Publication().load({"id": ...})."""
         from entity.publication_entity import PublicationEntity
         return PublicationEntity(self, data)
 
 
     def Search(self, data=None) -> "SearchEntity":
-        """Entity factory: client.Search().list({}) / client.Search().load({"id": ...})."""
+        """Entity factory: client.Search().list() / client.Search().load({"id": ...})."""
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 
 
     def Section(self, data=None) -> "SectionEntity":
-        """Entity factory: client.Section().list({}) / client.Section().load({"id": ...})."""
+        """Entity factory: client.Section().list() / client.Section().load({"id": ...})."""
         from entity.section_entity import SectionEntity
         return SectionEntity(self, data)
 
 
     def Site(self, data=None) -> "SiteEntity":
-        """Entity factory: client.Site().list({}) / client.Site().load({"id": ...})."""
+        """Entity factory: client.Site().list() / client.Site().load({"id": ...})."""
         from entity.site_entity import SiteEntity
         return SiteEntity(self, data)
 
 
     def Sound(self, data=None) -> "SoundEntity":
-        """Entity factory: client.Sound().list({}) / client.Sound().load({"id": ...})."""
+        """Entity factory: client.Sound().list() / client.Sound().load({"id": ...})."""
         from entity.sound_entity import SoundEntity
         return SoundEntity(self, data)
 
 
     def StaticPage(self, data=None) -> "StaticPageEntity":
-        """Entity factory: client.StaticPage().list({}) / client.StaticPage().load({"id": ...})."""
+        """Entity factory: client.StaticPage().list() / client.StaticPage().load({"id": ...})."""
         from entity.static_page_entity import StaticPageEntity
         return StaticPageEntity(self, data)
 
 
     def Text(self, data=None) -> "TextEntity":
-        """Entity factory: client.Text().list({}) / client.Text().load({"id": ...})."""
+        """Entity factory: client.Text().list() / client.Text().load({"id": ...})."""
         from entity.text_entity import TextEntity
         return TextEntity(self, data)
 
 
     def Tour(self, data=None) -> "TourEntity":
-        """Entity factory: client.Tour().list({}) / client.Tour().load({"id": ...})."""
+        """Entity factory: client.Tour().list() / client.Tour().load({"id": ...})."""
         from entity.tour_entity import TourEntity
         return TourEntity(self, data)
 
 
     def Video(self, data=None) -> "VideoEntity":
-        """Entity factory: client.Video().list({}) / client.Video().load({"id": ...})."""
+        """Entity factory: client.Video().list() / client.Video().load({"id": ...})."""
         from entity.video_entity import VideoEntity
         return VideoEntity(self, data)
 

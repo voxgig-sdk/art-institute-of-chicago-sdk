@@ -4,6 +4,8 @@
 
 The Ruby SDK for the ArtInstituteOfChicago API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Agent` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -35,7 +37,7 @@ begin
   # list returns an Array of Agent records — iterate directly.
   agents = client.Agent.list
   agents.each do |item|
-    puts "#{item["id"]} #{item["name"]}"
+    puts "#{item["id"]} #{item["alt_title"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -52,6 +54,33 @@ begin
 rescue => err
   warn "load failed: #{err}"
 end
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  agents = client.Agent.list()
+rescue => err
+  warn "list failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -72,7 +101,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -103,8 +134,8 @@ client = ArtInstituteOfChicagoSDK.test({
   "entity" => { "agent" => { "test01" => { "id" => "test01" } } },
 })
 
-# load returns the bare mock record (raises on error).
-agent = client.Agent.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+agent = client.Agent.list()
 puts agent
 ```
 
@@ -224,10 +255,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -1238,22 +1266,22 @@ Create an instance: `agent = client.Agent`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_title` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `birth_date` | ``$ANY`` |  |
-| `death_date` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `is_artist` | ``$BOOLEAN`` |  |
-| `sort_title` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `ulan_id` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `alt_title` | `Object` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `birth_date` | `Object` |  |
+| `death_date` | `Object` |  |
+| `description` | `String` |  |
+| `id` | `String` |  |
+| `is_artist` | `Boolean` |  |
+| `sort_title` | `Object` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `ulan_id` | `String` |  |
+| `updated_at` | `Object` |  |
 
 #### Example: Load
 
@@ -1285,15 +1313,15 @@ Create an instance: `agent_role = client.AgentRole`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
 
 #### Example: Load
 
@@ -1325,15 +1353,15 @@ Create an instance: `agent_type = client.AgentType`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
 
 #### Example: Load
 
@@ -1365,16 +1393,16 @@ Create an instance: `article = client.Article`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `copy` | `Object` |  |
+| `id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
 
 #### Example: Load
 
@@ -1406,101 +1434,101 @@ Create an instance: `artwork = client.Artwork`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_artist_id` | ``$STRING`` |  |
-| `alt_classification_id` | ``$STRING`` |  |
-| `alt_image_id` | ``$STRING`` |  |
-| `alt_material_id` | ``$STRING`` |  |
-| `alt_style_id` | ``$STRING`` |  |
-| `alt_subject_id` | ``$STRING`` |  |
-| `alt_technique_id` | ``$STRING`` |  |
-| `alt_title` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artist_display` | ``$ANY`` |  |
-| `artist_id` | ``$STRING`` |  |
-| `artist_title` | ``$ANY`` |  |
-| `artwork_type_id` | ``$STRING`` |  |
-| `artwork_type_title` | ``$ANY`` |  |
-| `boost_rank` | ``$ANY`` |  |
-| `catalog_based_search_keyword_title` | ``$ANY`` |  |
-| `catalogue_display` | ``$ANY`` |  |
-| `category_id` | ``$STRING`` |  |
-| `category_title` | ``$ANY`` |  |
-| `classification_id` | ``$STRING`` |  |
-| `classification_title` | ``$ANY`` |  |
-| `color` | ``$ANY`` |  |
-| `colorfulness` | ``$ANY`` |  |
-| `copyright_notice` | ``$ANY`` |  |
-| `credit_line` | ``$ANY`` |  |
-| `date_display` | ``$ANY`` |  |
-| `date_end` | ``$ANY`` |  |
-| `date_qualifier_id` | ``$STRING`` |  |
-| `date_qualifier_title` | ``$ANY`` |  |
-| `date_start` | ``$ANY`` |  |
-| `department_id` | ``$STRING`` |  |
-| `department_title` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `dimension` | ``$ANY`` |  |
-| `dimensions_detail` | ``$ANY`` |  |
-| `document_id` | ``$STRING`` |  |
-| `edition` | ``$ANY`` |  |
-| `exhibition_history` | ``$ANY`` |  |
-| `fiscal_year` | ``$ANY`` |  |
-| `fiscal_year_deaccession` | ``$ANY`` |  |
-| `gallery_id` | ``$STRING`` |  |
-| `gallery_title` | ``$ANY`` |  |
-| `has_advanced_imaging` | ``$BOOLEAN`` |  |
-| `has_educational_resource` | ``$BOOLEAN`` |  |
-| `has_multimedia_resource` | ``$BOOLEAN`` |  |
-| `has_not_been_viewed_much` | ``$BOOLEAN`` |  |
-| `id` | ``$STRING`` |  |
-| `image_embedding` | ``$ANY`` |  |
-| `image_id` | ``$STRING`` |  |
-| `inscription` | ``$ANY`` |  |
-| `internal_department_id` | ``$STRING`` |  |
-| `is_boosted` | ``$BOOLEAN`` |  |
-| `is_on_view` | ``$BOOLEAN`` |  |
-| `is_public_domain` | ``$BOOLEAN`` |  |
-| `is_zoomable` | ``$BOOLEAN`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `latlon` | ``$ANY`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `main_reference_number` | ``$INTEGER`` |  |
-| `material_id` | ``$STRING`` |  |
-| `material_title` | ``$ANY`` |  |
-| `max_zoom_window_size` | ``$ANY`` |  |
-| `medium_display` | ``$ANY`` |  |
-| `nomisma_id` | ``$STRING`` |  |
-| `on_loan_display` | ``$ANY`` |  |
-| `pageview` | ``$ANY`` |  |
-| `pageviews_recent` | ``$ANY`` |  |
-| `place_of_origin` | ``$ANY`` |  |
-| `provenance_text` | ``$ANY`` |  |
-| `publication_history` | ``$ANY`` |  |
-| `publishing_verification_level` | ``$ANY`` |  |
-| `section_id` | ``$STRING`` |  |
-| `section_title` | ``$ANY`` |  |
-| `short_description` | ``$ANY`` |  |
-| `site_id` | ``$STRING`` |  |
-| `sound_id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `style_id` | ``$STRING`` |  |
-| `style_title` | ``$ANY`` |  |
-| `subject_id` | ``$STRING`` |  |
-| `subject_title` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `technique_id` | ``$STRING`` |  |
-| `technique_title` | ``$ANY`` |  |
-| `term_title` | ``$ANY`` |  |
-| `text_embedding` | ``$ANY`` |  |
-| `text_id` | ``$STRING`` |  |
-| `theme_title` | ``$ANY`` |  |
-| `thumbnail` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `video_id` | ``$STRING`` |  |
+| `alt_artist_id` | `String` |  |
+| `alt_classification_id` | `String` |  |
+| `alt_image_id` | `String` |  |
+| `alt_material_id` | `String` |  |
+| `alt_style_id` | `String` |  |
+| `alt_subject_id` | `String` |  |
+| `alt_technique_id` | `String` |  |
+| `alt_title` | `Object` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `artist_display` | `Object` |  |
+| `artist_id` | `String` |  |
+| `artist_title` | `Object` |  |
+| `artwork_type_id` | `String` |  |
+| `artwork_type_title` | `Object` |  |
+| `boost_rank` | `Object` |  |
+| `catalog_based_search_keyword_title` | `Object` |  |
+| `catalogue_display` | `Object` |  |
+| `category_id` | `String` |  |
+| `category_title` | `Object` |  |
+| `classification_id` | `String` |  |
+| `classification_title` | `Object` |  |
+| `color` | `Object` |  |
+| `colorfulness` | `Object` |  |
+| `copyright_notice` | `Object` |  |
+| `credit_line` | `Object` |  |
+| `date_display` | `Object` |  |
+| `date_end` | `Object` |  |
+| `date_qualifier_id` | `String` |  |
+| `date_qualifier_title` | `Object` |  |
+| `date_start` | `Object` |  |
+| `department_id` | `String` |  |
+| `department_title` | `Object` |  |
+| `description` | `String` |  |
+| `dimension` | `Object` |  |
+| `dimensions_detail` | `Object` |  |
+| `document_id` | `String` |  |
+| `edition` | `Object` |  |
+| `exhibition_history` | `Object` |  |
+| `fiscal_year` | `Object` |  |
+| `fiscal_year_deaccession` | `Object` |  |
+| `gallery_id` | `String` |  |
+| `gallery_title` | `Object` |  |
+| `has_advanced_imaging` | `Boolean` |  |
+| `has_educational_resource` | `Boolean` |  |
+| `has_multimedia_resource` | `Boolean` |  |
+| `has_not_been_viewed_much` | `Boolean` |  |
+| `id` | `String` |  |
+| `image_embedding` | `Object` |  |
+| `image_id` | `String` |  |
+| `inscription` | `Object` |  |
+| `internal_department_id` | `String` |  |
+| `is_boosted` | `Boolean` |  |
+| `is_on_view` | `Boolean` |  |
+| `is_public_domain` | `Boolean` |  |
+| `is_zoomable` | `Boolean` |  |
+| `latitude` | `Float` |  |
+| `latlon` | `Object` |  |
+| `longitude` | `Float` |  |
+| `main_reference_number` | `Integer` |  |
+| `material_id` | `String` |  |
+| `material_title` | `Object` |  |
+| `max_zoom_window_size` | `Object` |  |
+| `medium_display` | `Object` |  |
+| `nomisma_id` | `String` |  |
+| `on_loan_display` | `Object` |  |
+| `pageview` | `Object` |  |
+| `pageviews_recent` | `Object` |  |
+| `place_of_origin` | `Object` |  |
+| `provenance_text` | `Object` |  |
+| `publication_history` | `Object` |  |
+| `publishing_verification_level` | `Object` |  |
+| `section_id` | `String` |  |
+| `section_title` | `Object` |  |
+| `short_description` | `Object` |  |
+| `site_id` | `String` |  |
+| `sound_id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `style_id` | `String` |  |
+| `style_title` | `Object` |  |
+| `subject_id` | `String` |  |
+| `subject_title` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `technique_id` | `String` |  |
+| `technique_title` | `Object` |  |
+| `term_title` | `Object` |  |
+| `text_embedding` | `Object` |  |
+| `text_id` | `String` |  |
+| `theme_title` | `Object` |  |
+| `thumbnail` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
+| `video_id` | `String` |  |
 
 #### Example: Load
 
@@ -1532,15 +1560,15 @@ Create an instance: `artwork_date_qualifier = client.ArtworkDateQualifier`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
 
 #### Example: Load
 
@@ -1572,15 +1600,15 @@ Create an instance: `artwork_place_qualifier = client.ArtworkPlaceQualifier`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
 
 #### Example: Load
 
@@ -1612,16 +1640,16 @@ Create an instance: `artwork_type = client.ArtworkType`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aat_id` | ``$STRING`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `aat_id` | `String` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
 
 #### Example: Load
 
@@ -1653,17 +1681,17 @@ Create an instance: `category_term = client.CategoryTerm`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aat_id` | ``$STRING`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `parent_id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `subtype` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `aat_id` | `String` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `id` | `String` |  |
+| `parent_id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `subtype` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
 
 #### Example: Load
 
@@ -1695,17 +1723,17 @@ Create an instance: `digital_publication = client.DigitalPublication`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `copy` | `Object` |  |
+| `id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
+| `web_url` | `Object` |  |
 
 #### Example: Load
 
@@ -1737,19 +1765,19 @@ Create an instance: `digital_publication_article = client.DigitalPublicationArti
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `author_display` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `digital_publication_id` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `author_display` | `Object` |  |
+| `copy` | `Object` |  |
+| `digital_publication_id` | `String` |  |
+| `id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
+| `web_url` | `Object` |  |
 
 #### Example: Load
 
@@ -1781,17 +1809,17 @@ Create an instance: `educator_resource = client.EducatorResource`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `copy` | `Object` |  |
+| `id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
+| `web_url` | `Object` |  |
 
 #### Example: Load
 
@@ -1823,59 +1851,59 @@ Create an instance: `event = client.Event`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_audience_id` | ``$STRING`` |  |
-| `alt_event_type_id` | ``$STRING`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `audience_id` | ``$STRING`` |  |
-| `buy_button_caption` | ``$ANY`` |  |
-| `buy_button_text` | ``$ANY`` |  |
-| `date_display` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `door_time` | ``$ANY`` |  |
-| `end_date` | ``$ANY`` |  |
-| `end_time` | ``$ANY`` |  |
-| `entrance` | ``$ANY`` |  |
-| `event_host_id` | ``$STRING`` |  |
-| `event_host_title` | ``$ANY`` |  |
-| `event_type_id` | ``$STRING`` |  |
-| `header_description` | ``$ANY`` |  |
-| `hero_caption` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `image_url` | ``$ANY`` |  |
-| `is_admission_required` | ``$BOOLEAN`` |  |
-| `is_after_hour` | ``$BOOLEAN`` |  |
-| `is_free` | ``$BOOLEAN`` |  |
-| `is_member_exclusive` | ``$BOOLEAN`` |  |
-| `is_private` | ``$BOOLEAN`` |  |
-| `is_registration_required` | ``$BOOLEAN`` |  |
-| `is_sales_button_hidden` | ``$BOOLEAN`` |  |
-| `is_sold_out` | ``$BOOLEAN`` |  |
-| `is_ticketed` | ``$BOOLEAN`` |  |
-| `is_virtual_event` | ``$BOOLEAN`` |  |
-| `join_url` | ``$ANY`` |  |
-| `layout_type` | ``$ANY`` |  |
-| `list_description` | ``$ANY`` |  |
-| `location` | ``$ANY`` |  |
-| `program_id` | ``$STRING`` |  |
-| `program_title` | ``$ANY`` |  |
-| `rsvp_link` | ``$ANY`` |  |
-| `search_tag` | ``$ANY`` |  |
-| `short_description` | ``$ANY`` |  |
-| `slug` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `start_date` | ``$ANY`` |  |
-| `start_time` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `survey_url` | ``$ANY`` |  |
-| `ticketed_event_id` | ``$STRING`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `title_display` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `virtual_event_passcode` | ``$ANY`` |  |
-| `virtual_event_url` | ``$ANY`` |  |
+| `alt_audience_id` | `String` |  |
+| `alt_event_type_id` | `String` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `audience_id` | `String` |  |
+| `buy_button_caption` | `Object` |  |
+| `buy_button_text` | `Object` |  |
+| `date_display` | `Object` |  |
+| `description` | `String` |  |
+| `door_time` | `Object` |  |
+| `end_date` | `Object` |  |
+| `end_time` | `Object` |  |
+| `entrance` | `Object` |  |
+| `event_host_id` | `String` |  |
+| `event_host_title` | `Object` |  |
+| `event_type_id` | `String` |  |
+| `header_description` | `Object` |  |
+| `hero_caption` | `Object` |  |
+| `id` | `String` |  |
+| `image_url` | `Object` |  |
+| `is_admission_required` | `Boolean` |  |
+| `is_after_hour` | `Boolean` |  |
+| `is_free` | `Boolean` |  |
+| `is_member_exclusive` | `Boolean` |  |
+| `is_private` | `Boolean` |  |
+| `is_registration_required` | `Boolean` |  |
+| `is_sales_button_hidden` | `Boolean` |  |
+| `is_sold_out` | `Boolean` |  |
+| `is_ticketed` | `Boolean` |  |
+| `is_virtual_event` | `Boolean` |  |
+| `join_url` | `Object` |  |
+| `layout_type` | `Object` |  |
+| `list_description` | `Object` |  |
+| `location` | `Object` |  |
+| `program_id` | `String` |  |
+| `program_title` | `Object` |  |
+| `rsvp_link` | `Object` |  |
+| `search_tag` | `Object` |  |
+| `short_description` | `Object` |  |
+| `slug` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `start_date` | `Object` |  |
+| `start_time` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `survey_url` | `Object` |  |
+| `ticketed_event_id` | `String` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `title_display` | `Object` |  |
+| `updated_at` | `Object` |  |
+| `virtual_event_passcode` | `Object` |  |
+| `virtual_event_url` | `Object` |  |
 
 #### Example: Load
 
@@ -1907,31 +1935,31 @@ Create an instance: `event_occurrence = client.EventOccurrence`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `button_caption` | ``$ANY`` |  |
-| `button_text` | ``$ANY`` |  |
-| `button_url` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `end_at` | ``$ANY`` |  |
-| `event_id` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `image_url` | ``$ANY`` |  |
-| `is_private` | ``$BOOLEAN`` |  |
-| `is_sales_button_hidden` | ``$BOOLEAN`` |  |
-| `is_ticketed` | ``$BOOLEAN`` |  |
-| `location` | ``$ANY`` |  |
-| `off_sale_at` | ``$ANY`` |  |
-| `on_sale_at` | ``$ANY`` |  |
-| `short_description` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `start_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `title_display` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `button_caption` | `Object` |  |
+| `button_text` | `Object` |  |
+| `button_url` | `Object` |  |
+| `description` | `String` |  |
+| `end_at` | `Object` |  |
+| `event_id` | `String` |  |
+| `id` | `String` |  |
+| `image_url` | `Object` |  |
+| `is_private` | `Boolean` |  |
+| `is_sales_button_hidden` | `Boolean` |  |
+| `is_ticketed` | `Boolean` |  |
+| `location` | `Object` |  |
+| `off_sale_at` | `Object` |  |
+| `on_sale_at` | `Object` |  |
+| `short_description` | `Object` |  |
+| `source_updated_at` | `Object` |  |
+| `start_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `title_display` | `Object` |  |
+| `updated_at` | `Object` |  |
 
 #### Example: Load
 
@@ -1963,17 +1991,17 @@ Create an instance: `event_program = client.EventProgram`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_affiliate_group` | ``$BOOLEAN`` |  |
-| `is_event_host` | ``$BOOLEAN`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `id` | `String` |  |
+| `is_affiliate_group` | `Boolean` |  |
+| `is_event_host` | `Boolean` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
 
 #### Example: Load
 
@@ -2005,33 +2033,33 @@ Create an instance: `exhibition = client.Exhibition`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aic_end_at` | ``$ANY`` |  |
-| `aic_start_at` | ``$ANY`` |  |
-| `alt_image_id` | ``$STRING`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artist_id` | ``$STRING`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `document_id` | ``$STRING`` |  |
-| `gallery_id` | ``$STRING`` |  |
-| `gallery_title` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `image_id` | ``$STRING`` |  |
-| `image_url` | ``$ANY`` |  |
-| `is_featured` | ``$BOOLEAN`` |  |
-| `is_published` | ``$BOOLEAN`` |  |
-| `position` | ``$ANY`` |  |
-| `short_description` | ``$ANY`` |  |
-| `site_id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `status` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `aic_end_at` | `Object` |  |
+| `aic_start_at` | `Object` |  |
+| `alt_image_id` | `String` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `artist_id` | `String` |  |
+| `artwork_id` | `String` |  |
+| `artwork_title` | `Object` |  |
+| `document_id` | `String` |  |
+| `gallery_id` | `String` |  |
+| `gallery_title` | `Object` |  |
+| `id` | `String` |  |
+| `image_id` | `String` |  |
+| `image_url` | `Object` |  |
+| `is_featured` | `Boolean` |  |
+| `is_published` | `Boolean` |  |
+| `position` | `Object` |  |
+| `short_description` | `Object` |  |
+| `site_id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `status` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
+| `web_url` | `Object` |  |
 
 #### Example: Load
 
@@ -2063,22 +2091,22 @@ Create an instance: `gallery = client.Gallery`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `floor` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_closed` | ``$BOOLEAN`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `latlon` | ``$ANY`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `number` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `tgn_id` | ``$STRING`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `floor` | `Object` |  |
+| `id` | `String` |  |
+| `is_closed` | `Boolean` |  |
+| `latitude` | `Float` |  |
+| `latlon` | `Object` |  |
+| `longitude` | `Float` |  |
+| `number` | `Object` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `tgn_id` | `String` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
 
 #### Example: Load
 
@@ -2110,18 +2138,18 @@ Create an instance: `generic_page = client.GenericPage`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `search_tag` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `copy` | `Object` |  |
+| `id` | `String` |  |
+| `search_tag` | `Object` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
+| `web_url` | `Object` |  |
 
 #### Example: Load
 
@@ -2153,16 +2181,16 @@ Create an instance: `highlight = client.Highlight`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `copy` | `Object` |  |
+| `id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
 
 #### Example: Load
 
@@ -2194,52 +2222,52 @@ Create an instance: `hour = client.Hour`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `additional_text` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `friday_is_closed` | ``$ANY`` |  |
-| `friday_member_close` | ``$ANY`` |  |
-| `friday_member_open` | ``$ANY`` |  |
-| `friday_public_close` | ``$ANY`` |  |
-| `friday_public_open` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `monday_is_closed` | ``$ANY`` |  |
-| `monday_member_close` | ``$ANY`` |  |
-| `monday_member_open` | ``$ANY`` |  |
-| `monday_public_close` | ``$ANY`` |  |
-| `monday_public_open` | ``$ANY`` |  |
-| `saturday_is_closed` | ``$ANY`` |  |
-| `saturday_member_close` | ``$ANY`` |  |
-| `saturday_member_open` | ``$ANY`` |  |
-| `saturday_public_close` | ``$ANY`` |  |
-| `saturday_public_open` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `summary` | ``$ANY`` |  |
-| `sunday_is_closed` | ``$ANY`` |  |
-| `sunday_member_close` | ``$ANY`` |  |
-| `sunday_member_open` | ``$ANY`` |  |
-| `sunday_public_close` | ``$ANY`` |  |
-| `sunday_public_open` | ``$ANY`` |  |
-| `thursday_is_closed` | ``$ANY`` |  |
-| `thursday_member_close` | ``$ANY`` |  |
-| `thursday_member_open` | ``$ANY`` |  |
-| `thursday_public_close` | ``$ANY`` |  |
-| `thursday_public_open` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `tuesday_is_closed` | ``$ANY`` |  |
-| `tuesday_member_close` | ``$ANY`` |  |
-| `tuesday_member_open` | ``$ANY`` |  |
-| `tuesday_public_close` | ``$ANY`` |  |
-| `tuesday_public_open` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `wednesday_is_closed` | ``$ANY`` |  |
-| `wednesday_member_close` | ``$ANY`` |  |
-| `wednesday_member_open` | ``$ANY`` |  |
-| `wednesday_public_close` | ``$ANY`` |  |
-| `wednesday_public_open` | ``$ANY`` |  |
+| `additional_text` | `Object` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `friday_is_closed` | `Object` |  |
+| `friday_member_close` | `Object` |  |
+| `friday_member_open` | `Object` |  |
+| `friday_public_close` | `Object` |  |
+| `friday_public_open` | `Object` |  |
+| `id` | `String` |  |
+| `monday_is_closed` | `Object` |  |
+| `monday_member_close` | `Object` |  |
+| `monday_member_open` | `Object` |  |
+| `monday_public_close` | `Object` |  |
+| `monday_public_open` | `Object` |  |
+| `saturday_is_closed` | `Object` |  |
+| `saturday_member_close` | `Object` |  |
+| `saturday_member_open` | `Object` |  |
+| `saturday_public_close` | `Object` |  |
+| `saturday_public_open` | `Object` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `summary` | `Object` |  |
+| `sunday_is_closed` | `Object` |  |
+| `sunday_member_close` | `Object` |  |
+| `sunday_member_open` | `Object` |  |
+| `sunday_public_close` | `Object` |  |
+| `sunday_public_open` | `Object` |  |
+| `thursday_is_closed` | `Object` |  |
+| `thursday_member_close` | `Object` |  |
+| `thursday_member_open` | `Object` |  |
+| `thursday_public_close` | `Object` |  |
+| `thursday_public_open` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `tuesday_is_closed` | `Object` |  |
+| `tuesday_member_close` | `Object` |  |
+| `tuesday_member_open` | `Object` |  |
+| `tuesday_public_close` | `Object` |  |
+| `tuesday_public_open` | `Object` |  |
+| `updated_at` | `Object` |  |
+| `wednesday_is_closed` | `Object` |  |
+| `wednesday_member_close` | `Object` |  |
+| `wednesday_member_open` | `Object` |  |
+| `wednesday_public_close` | `Object` |  |
+| `wednesday_public_open` | `Object` |  |
 
 #### Example: Load
 
@@ -2271,35 +2299,35 @@ Create an instance: `image = client.Image`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ahash` | ``$ANY`` |  |
-| `alt_text` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `color` | ``$ANY`` |  |
-| `colorfulness` | ``$ANY`` |  |
-| `content` | ``$ANY`` |  |
-| `content_e_tag` | ``$ANY`` |  |
-| `credit_line` | ``$ANY`` |  |
-| `fingerprint` | ``$ANY`` |  |
-| `height` | ``$NUMBER`` |  |
-| `id` | ``$STRING`` |  |
-| `iiif_url` | ``$ANY`` |  |
-| `is_educational_resource` | ``$BOOLEAN`` |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` |  |
-| `is_teacher_resource` | ``$BOOLEAN`` |  |
-| `lake_guid` | ``$ANY`` |  |
-| `lqip` | ``$ANY`` |  |
-| `phash` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `width` | ``$NUMBER`` |  |
+| `ahash` | `Object` |  |
+| `alt_text` | `Object` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `artwork_id` | `String` |  |
+| `artwork_title` | `Object` |  |
+| `color` | `Object` |  |
+| `colorfulness` | `Object` |  |
+| `content` | `Object` |  |
+| `content_e_tag` | `Object` |  |
+| `credit_line` | `Object` |  |
+| `fingerprint` | `Object` |  |
+| `height` | `Float` |  |
+| `id` | `String` |  |
+| `iiif_url` | `Object` |  |
+| `is_educational_resource` | `Boolean` |  |
+| `is_multimedia_resource` | `Boolean` |  |
+| `is_teacher_resource` | `Boolean` |  |
+| `lake_guid` | `Object` |  |
+| `lqip` | `Object` |  |
+| `phash` | `Object` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `type` | `Object` |  |
+| `updated_at` | `Object` |  |
+| `width` | `Float` |  |
 
 #### Example: Load
 
@@ -2331,18 +2359,18 @@ Create an instance: `landing_page = client.LandingPage`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `search_tag` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `copy` | `Object` |  |
+| `id` | `String` |  |
+| `search_tag` | `Object` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
+| `web_url` | `Object` |  |
 
 #### Example: Load
 
@@ -2374,18 +2402,18 @@ Create an instance: `place = client.Place`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `tgn_id` | ``$STRING`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `id` | `String` |  |
+| `latitude` | `Float` |  |
+| `longitude` | `Float` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `tgn_id` | `String` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
 
 #### Example: Load
 
@@ -2417,17 +2445,17 @@ Create an instance: `press_release = client.PressRelease`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `copy` | `Object` |  |
+| `id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
+| `web_url` | `Object` |  |
 
 #### Example: Load
 
@@ -2459,17 +2487,17 @@ Create an instance: `printed_publication = client.PrintedPublication`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `copy` | `Object` |  |
+| `id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
+| `web_url` | `Object` |  |
 
 #### Example: Load
 
@@ -2501,27 +2529,27 @@ Create an instance: `product = client.Product`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artist_id` | ``$STRING`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `exhibition_id` | ``$STRING`` |  |
-| `external_sku` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `image_url` | ``$ANY`` |  |
-| `max_compare_at_price` | ``$ANY`` |  |
-| `max_current_price` | ``$ANY`` |  |
-| `min_compare_at_price` | ``$ANY`` |  |
-| `min_current_price` | ``$ANY`` |  |
-| `price_display` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `artist_id` | `String` |  |
+| `artwork_id` | `String` |  |
+| `description` | `String` |  |
+| `exhibition_id` | `String` |  |
+| `external_sku` | `Object` |  |
+| `id` | `String` |  |
+| `image_url` | `Object` |  |
+| `max_compare_at_price` | `Object` |  |
+| `max_current_price` | `Object` |  |
+| `min_compare_at_price` | `Object` |  |
+| `min_current_price` | `Object` |  |
+| `price_display` | `Object` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
+| `web_url` | `Object` |  |
 
 #### Example: Load
 
@@ -2553,17 +2581,17 @@ Create an instance: `publication = client.Publication`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `section_id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `id` | `String` |  |
+| `section_id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
+| `web_url` | `Object` |  |
 
 #### Example: Load
 
@@ -2594,15 +2622,15 @@ Create an instance: `search = client.Search`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_id` | ``$STRING`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_boosted` | ``$BOOLEAN`` |  |
-| `score` | ``$NUMBER`` |  |
-| `thumbnail` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
+| `api_id` | `String` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `id` | `String` |  |
+| `is_boosted` | `Boolean` |  |
+| `score` | `Float` |  |
+| `thumbnail` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
 
 #### Example: List
 
@@ -2627,22 +2655,22 @@ Create an instance: `section = client.Section`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `accession` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `content` | ``$ANY`` |  |
-| `generic_page_id` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `publication_id` | ``$STRING`` |  |
-| `publication_title` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `accession` | `Object` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `artwork_id` | `String` |  |
+| `content` | `Object` |  |
+| `generic_page_id` | `String` |  |
+| `id` | `String` |  |
+| `publication_id` | `String` |  |
+| `publication_title` | `Object` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
+| `web_url` | `Object` |  |
 
 #### Example: Load
 
@@ -2674,21 +2702,21 @@ Create an instance: `site = client.Site`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `exhibition_id` | ``$STRING`` |  |
-| `exhibition_title` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `artwork_id` | `String` |  |
+| `artwork_title` | `Object` |  |
+| `description` | `String` |  |
+| `exhibition_id` | `String` |  |
+| `exhibition_title` | `Object` |  |
+| `id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
+| `web_url` | `Object` |  |
 
 #### Example: Load
 
@@ -2720,28 +2748,28 @@ Create an instance: `sound = client.Sound`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `content` | ``$ANY`` |  |
-| `content_e_tag` | ``$ANY`` |  |
-| `credit_line` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_educational_resource` | ``$BOOLEAN`` |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` |  |
-| `is_teacher_resource` | ``$BOOLEAN`` |  |
-| `lake_guid` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `transcript` | ``$ANY`` |  |
-| `type` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `alt_text` | `Object` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `artwork_id` | `String` |  |
+| `artwork_title` | `Object` |  |
+| `content` | `Object` |  |
+| `content_e_tag` | `Object` |  |
+| `credit_line` | `Object` |  |
+| `id` | `String` |  |
+| `is_educational_resource` | `Boolean` |  |
+| `is_multimedia_resource` | `Boolean` |  |
+| `is_teacher_resource` | `Boolean` |  |
+| `lake_guid` | `Object` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `transcript` | `Object` |  |
+| `type` | `Object` |  |
+| `updated_at` | `Object` |  |
+| `web_url` | `Object` |  |
 
 #### Example: Load
 
@@ -2773,16 +2801,16 @@ Create an instance: `static_page = client.StaticPage`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `id` | `String` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
+| `web_url` | `Object` |  |
 
 #### Example: Load
 
@@ -2814,26 +2842,26 @@ Create an instance: `text = client.Text`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `content` | ``$ANY`` |  |
-| `content_e_tag` | ``$ANY`` |  |
-| `credit_line` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_educational_resource` | ``$BOOLEAN`` |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` |  |
-| `is_teacher_resource` | ``$BOOLEAN`` |  |
-| `lake_guid` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `alt_text` | `Object` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `artwork_id` | `String` |  |
+| `artwork_title` | `Object` |  |
+| `content` | `Object` |  |
+| `content_e_tag` | `Object` |  |
+| `credit_line` | `Object` |  |
+| `id` | `String` |  |
+| `is_educational_resource` | `Boolean` |  |
+| `is_multimedia_resource` | `Boolean` |  |
+| `is_teacher_resource` | `Boolean` |  |
+| `lake_guid` | `Object` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `type` | `Object` |  |
+| `updated_at` | `Object` |  |
 
 #### Example: Load
 
@@ -2865,23 +2893,23 @@ Create an instance: `tour = client.Tour`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artist_title` | ``$ANY`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$ANY`` |  |
-| `intro` | ``$ANY`` |  |
-| `intro_link` | ``$ANY`` |  |
-| `intro_transcript` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `weight` | ``$NUMBER`` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `artist_title` | `Object` |  |
+| `artwork_title` | `Object` |  |
+| `description` | `String` |  |
+| `id` | `String` |  |
+| `image` | `Object` |  |
+| `intro` | `Object` |  |
+| `intro_link` | `Object` |  |
+| `intro_transcript` | `Object` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `updated_at` | `Object` |  |
+| `weight` | `Float` |  |
 
 #### Example: Load
 
@@ -2913,26 +2941,26 @@ Create an instance: `video = client.Video`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `content` | ``$ANY`` |  |
-| `content_e_tag` | ``$ANY`` |  |
-| `credit_line` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_educational_resource` | ``$BOOLEAN`` |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` |  |
-| `is_teacher_resource` | ``$BOOLEAN`` |  |
-| `lake_guid` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `alt_text` | `Object` |  |
+| `api_link` | `Object` |  |
+| `api_model` | `Object` |  |
+| `artwork_id` | `String` |  |
+| `artwork_title` | `Object` |  |
+| `content` | `Object` |  |
+| `content_e_tag` | `Object` |  |
+| `credit_line` | `Object` |  |
+| `id` | `String` |  |
+| `is_educational_resource` | `Boolean` |  |
+| `is_multimedia_resource` | `Boolean` |  |
+| `is_teacher_resource` | `Boolean` |  |
+| `lake_guid` | `Object` |  |
+| `source_updated_at` | `Object` |  |
+| `suggest_autocomplete_all` | `Object` |  |
+| `suggest_autocomplete_boosted` | `Object` |  |
+| `timestamp` | `Object` |  |
+| `title` | `String` |  |
+| `type` | `Object` |  |
+| `updated_at` | `Object` |  |
 
 #### Example: Load
 
@@ -2949,12 +2977,16 @@ videos = client.Video.list
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -2971,8 +3003,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -3016,14 +3049,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
 agent = client.Agent
-agent.load({ "id" => "example_id" })
+agent.list()
 
-# agent.data_get now returns the loaded agent data
+# agent.data_get now returns the agent data from the last list
 # agent.match_get returns the last match criteria
 ```
 

@@ -226,22 +226,22 @@ local agent = client:Agent(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_title` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `birth_date` | ``$ANY`` | No |  |
-| `death_date` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_artist` | ``$BOOLEAN`` | No |  |
-| `sort_title` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `ulan_id` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `alt_title` | `any` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `birth_date` | `any` | No |  |
+| `death_date` | `any` | No |  |
+| `description` | `string` | No |  |
+| `id` | `string` | No |  |
+| `is_artist` | `boolean` | No |  |
+| `sort_title` | `any` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `ulan_id` | `string` | No |  |
+| `updated_at` | `any` | No |  |
 
 ### Operations
 
@@ -301,15 +301,15 @@ local agent_role = client:AgentRole(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
 
 ### Operations
 
@@ -369,15 +369,15 @@ local agent_type = client:AgentType(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
 
 ### Operations
 
@@ -437,16 +437,16 @@ local article = client:Article(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `copy` | `any` | No |  |
+| `id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
 
 ### Operations
 
@@ -506,101 +506,101 @@ local artwork = client:Artwork(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_artist_id` | ``$STRING`` | No |  |
-| `alt_classification_id` | ``$STRING`` | No |  |
-| `alt_image_id` | ``$STRING`` | No |  |
-| `alt_material_id` | ``$STRING`` | No |  |
-| `alt_style_id` | ``$STRING`` | No |  |
-| `alt_subject_id` | ``$STRING`` | No |  |
-| `alt_technique_id` | ``$STRING`` | No |  |
-| `alt_title` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artist_display` | ``$ANY`` | No |  |
-| `artist_id` | ``$STRING`` | No |  |
-| `artist_title` | ``$ANY`` | No |  |
-| `artwork_type_id` | ``$STRING`` | No |  |
-| `artwork_type_title` | ``$ANY`` | No |  |
-| `boost_rank` | ``$ANY`` | No |  |
-| `catalog_based_search_keyword_title` | ``$ANY`` | No |  |
-| `catalogue_display` | ``$ANY`` | No |  |
-| `category_id` | ``$STRING`` | No |  |
-| `category_title` | ``$ANY`` | No |  |
-| `classification_id` | ``$STRING`` | No |  |
-| `classification_title` | ``$ANY`` | No |  |
-| `color` | ``$ANY`` | No |  |
-| `colorfulness` | ``$ANY`` | No |  |
-| `copyright_notice` | ``$ANY`` | No |  |
-| `credit_line` | ``$ANY`` | No |  |
-| `date_display` | ``$ANY`` | No |  |
-| `date_end` | ``$ANY`` | No |  |
-| `date_qualifier_id` | ``$STRING`` | No |  |
-| `date_qualifier_title` | ``$ANY`` | No |  |
-| `date_start` | ``$ANY`` | No |  |
-| `department_id` | ``$STRING`` | No |  |
-| `department_title` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `dimension` | ``$ANY`` | No |  |
-| `dimensions_detail` | ``$ANY`` | No |  |
-| `document_id` | ``$STRING`` | No |  |
-| `edition` | ``$ANY`` | No |  |
-| `exhibition_history` | ``$ANY`` | No |  |
-| `fiscal_year` | ``$ANY`` | No |  |
-| `fiscal_year_deaccession` | ``$ANY`` | No |  |
-| `gallery_id` | ``$STRING`` | No |  |
-| `gallery_title` | ``$ANY`` | No |  |
-| `has_advanced_imaging` | ``$BOOLEAN`` | No |  |
-| `has_educational_resource` | ``$BOOLEAN`` | No |  |
-| `has_multimedia_resource` | ``$BOOLEAN`` | No |  |
-| `has_not_been_viewed_much` | ``$BOOLEAN`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_embedding` | ``$ANY`` | No |  |
-| `image_id` | ``$STRING`` | No |  |
-| `inscription` | ``$ANY`` | No |  |
-| `internal_department_id` | ``$STRING`` | No |  |
-| `is_boosted` | ``$BOOLEAN`` | No |  |
-| `is_on_view` | ``$BOOLEAN`` | No |  |
-| `is_public_domain` | ``$BOOLEAN`` | No |  |
-| `is_zoomable` | ``$BOOLEAN`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `latlon` | ``$ANY`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `main_reference_number` | ``$INTEGER`` | No |  |
-| `material_id` | ``$STRING`` | No |  |
-| `material_title` | ``$ANY`` | No |  |
-| `max_zoom_window_size` | ``$ANY`` | No |  |
-| `medium_display` | ``$ANY`` | No |  |
-| `nomisma_id` | ``$STRING`` | No |  |
-| `on_loan_display` | ``$ANY`` | No |  |
-| `pageview` | ``$ANY`` | No |  |
-| `pageviews_recent` | ``$ANY`` | No |  |
-| `place_of_origin` | ``$ANY`` | No |  |
-| `provenance_text` | ``$ANY`` | No |  |
-| `publication_history` | ``$ANY`` | No |  |
-| `publishing_verification_level` | ``$ANY`` | No |  |
-| `section_id` | ``$STRING`` | No |  |
-| `section_title` | ``$ANY`` | No |  |
-| `short_description` | ``$ANY`` | No |  |
-| `site_id` | ``$STRING`` | No |  |
-| `sound_id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `style_id` | ``$STRING`` | No |  |
-| `style_title` | ``$ANY`` | No |  |
-| `subject_id` | ``$STRING`` | No |  |
-| `subject_title` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `technique_id` | ``$STRING`` | No |  |
-| `technique_title` | ``$ANY`` | No |  |
-| `term_title` | ``$ANY`` | No |  |
-| `text_embedding` | ``$ANY`` | No |  |
-| `text_id` | ``$STRING`` | No |  |
-| `theme_title` | ``$ANY`` | No |  |
-| `thumbnail` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `video_id` | ``$STRING`` | No |  |
+| `alt_artist_id` | `string` | No |  |
+| `alt_classification_id` | `string` | No |  |
+| `alt_image_id` | `string` | No |  |
+| `alt_material_id` | `string` | No |  |
+| `alt_style_id` | `string` | No |  |
+| `alt_subject_id` | `string` | No |  |
+| `alt_technique_id` | `string` | No |  |
+| `alt_title` | `any` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `artist_display` | `any` | No |  |
+| `artist_id` | `string` | No |  |
+| `artist_title` | `any` | No |  |
+| `artwork_type_id` | `string` | No |  |
+| `artwork_type_title` | `any` | No |  |
+| `boost_rank` | `any` | No |  |
+| `catalog_based_search_keyword_title` | `any` | No |  |
+| `catalogue_display` | `any` | No |  |
+| `category_id` | `string` | No |  |
+| `category_title` | `any` | No |  |
+| `classification_id` | `string` | No |  |
+| `classification_title` | `any` | No |  |
+| `color` | `any` | No |  |
+| `colorfulness` | `any` | No |  |
+| `copyright_notice` | `any` | No |  |
+| `credit_line` | `any` | No |  |
+| `date_display` | `any` | No |  |
+| `date_end` | `any` | No |  |
+| `date_qualifier_id` | `string` | No |  |
+| `date_qualifier_title` | `any` | No |  |
+| `date_start` | `any` | No |  |
+| `department_id` | `string` | No |  |
+| `department_title` | `any` | No |  |
+| `description` | `string` | No |  |
+| `dimension` | `any` | No |  |
+| `dimensions_detail` | `any` | No |  |
+| `document_id` | `string` | No |  |
+| `edition` | `any` | No |  |
+| `exhibition_history` | `any` | No |  |
+| `fiscal_year` | `any` | No |  |
+| `fiscal_year_deaccession` | `any` | No |  |
+| `gallery_id` | `string` | No |  |
+| `gallery_title` | `any` | No |  |
+| `has_advanced_imaging` | `boolean` | No |  |
+| `has_educational_resource` | `boolean` | No |  |
+| `has_multimedia_resource` | `boolean` | No |  |
+| `has_not_been_viewed_much` | `boolean` | No |  |
+| `id` | `string` | No |  |
+| `image_embedding` | `any` | No |  |
+| `image_id` | `string` | No |  |
+| `inscription` | `any` | No |  |
+| `internal_department_id` | `string` | No |  |
+| `is_boosted` | `boolean` | No |  |
+| `is_on_view` | `boolean` | No |  |
+| `is_public_domain` | `boolean` | No |  |
+| `is_zoomable` | `boolean` | No |  |
+| `latitude` | `number` | No |  |
+| `latlon` | `any` | No |  |
+| `longitude` | `number` | No |  |
+| `main_reference_number` | `number` | No |  |
+| `material_id` | `string` | No |  |
+| `material_title` | `any` | No |  |
+| `max_zoom_window_size` | `any` | No |  |
+| `medium_display` | `any` | No |  |
+| `nomisma_id` | `string` | No |  |
+| `on_loan_display` | `any` | No |  |
+| `pageview` | `any` | No |  |
+| `pageviews_recent` | `any` | No |  |
+| `place_of_origin` | `any` | No |  |
+| `provenance_text` | `any` | No |  |
+| `publication_history` | `any` | No |  |
+| `publishing_verification_level` | `any` | No |  |
+| `section_id` | `string` | No |  |
+| `section_title` | `any` | No |  |
+| `short_description` | `any` | No |  |
+| `site_id` | `string` | No |  |
+| `sound_id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `style_id` | `string` | No |  |
+| `style_title` | `any` | No |  |
+| `subject_id` | `string` | No |  |
+| `subject_title` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `technique_id` | `string` | No |  |
+| `technique_title` | `any` | No |  |
+| `term_title` | `any` | No |  |
+| `text_embedding` | `any` | No |  |
+| `text_id` | `string` | No |  |
+| `theme_title` | `any` | No |  |
+| `thumbnail` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
+| `video_id` | `string` | No |  |
 
 ### Operations
 
@@ -660,15 +660,15 @@ local artwork_date_qualifier = client:ArtworkDateQualifier(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
 
 ### Operations
 
@@ -728,15 +728,15 @@ local artwork_place_qualifier = client:ArtworkPlaceQualifier(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
 
 ### Operations
 
@@ -796,16 +796,16 @@ local artwork_type = client:ArtworkType(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aat_id` | ``$STRING`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `aat_id` | `string` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
 
 ### Operations
 
@@ -865,17 +865,17 @@ local category_term = client:CategoryTerm(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aat_id` | ``$STRING`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `parent_id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `subtype` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `aat_id` | `string` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `id` | `string` | No |  |
+| `parent_id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `subtype` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
 
 ### Operations
 
@@ -935,17 +935,17 @@ local digital_publication = client:DigitalPublication(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `copy` | `any` | No |  |
+| `id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
+| `web_url` | `any` | No |  |
 
 ### Operations
 
@@ -1005,19 +1005,19 @@ local digital_publication_article = client:DigitalPublicationArticle(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `author_display` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `digital_publication_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `author_display` | `any` | No |  |
+| `copy` | `any` | No |  |
+| `digital_publication_id` | `string` | No |  |
+| `id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
+| `web_url` | `any` | No |  |
 
 ### Operations
 
@@ -1077,17 +1077,17 @@ local educator_resource = client:EducatorResource(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `copy` | `any` | No |  |
+| `id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
+| `web_url` | `any` | No |  |
 
 ### Operations
 
@@ -1147,59 +1147,59 @@ local event = client:Event(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_audience_id` | ``$STRING`` | No |  |
-| `alt_event_type_id` | ``$STRING`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `audience_id` | ``$STRING`` | No |  |
-| `buy_button_caption` | ``$ANY`` | No |  |
-| `buy_button_text` | ``$ANY`` | No |  |
-| `date_display` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `door_time` | ``$ANY`` | No |  |
-| `end_date` | ``$ANY`` | No |  |
-| `end_time` | ``$ANY`` | No |  |
-| `entrance` | ``$ANY`` | No |  |
-| `event_host_id` | ``$STRING`` | No |  |
-| `event_host_title` | ``$ANY`` | No |  |
-| `event_type_id` | ``$STRING`` | No |  |
-| `header_description` | ``$ANY`` | No |  |
-| `hero_caption` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_url` | ``$ANY`` | No |  |
-| `is_admission_required` | ``$BOOLEAN`` | No |  |
-| `is_after_hour` | ``$BOOLEAN`` | No |  |
-| `is_free` | ``$BOOLEAN`` | No |  |
-| `is_member_exclusive` | ``$BOOLEAN`` | No |  |
-| `is_private` | ``$BOOLEAN`` | No |  |
-| `is_registration_required` | ``$BOOLEAN`` | No |  |
-| `is_sales_button_hidden` | ``$BOOLEAN`` | No |  |
-| `is_sold_out` | ``$BOOLEAN`` | No |  |
-| `is_ticketed` | ``$BOOLEAN`` | No |  |
-| `is_virtual_event` | ``$BOOLEAN`` | No |  |
-| `join_url` | ``$ANY`` | No |  |
-| `layout_type` | ``$ANY`` | No |  |
-| `list_description` | ``$ANY`` | No |  |
-| `location` | ``$ANY`` | No |  |
-| `program_id` | ``$STRING`` | No |  |
-| `program_title` | ``$ANY`` | No |  |
-| `rsvp_link` | ``$ANY`` | No |  |
-| `search_tag` | ``$ANY`` | No |  |
-| `short_description` | ``$ANY`` | No |  |
-| `slug` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `start_date` | ``$ANY`` | No |  |
-| `start_time` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `survey_url` | ``$ANY`` | No |  |
-| `ticketed_event_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `title_display` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `virtual_event_passcode` | ``$ANY`` | No |  |
-| `virtual_event_url` | ``$ANY`` | No |  |
+| `alt_audience_id` | `string` | No |  |
+| `alt_event_type_id` | `string` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `audience_id` | `string` | No |  |
+| `buy_button_caption` | `any` | No |  |
+| `buy_button_text` | `any` | No |  |
+| `date_display` | `any` | No |  |
+| `description` | `string` | No |  |
+| `door_time` | `any` | No |  |
+| `end_date` | `any` | No |  |
+| `end_time` | `any` | No |  |
+| `entrance` | `any` | No |  |
+| `event_host_id` | `string` | No |  |
+| `event_host_title` | `any` | No |  |
+| `event_type_id` | `string` | No |  |
+| `header_description` | `any` | No |  |
+| `hero_caption` | `any` | No |  |
+| `id` | `string` | No |  |
+| `image_url` | `any` | No |  |
+| `is_admission_required` | `boolean` | No |  |
+| `is_after_hour` | `boolean` | No |  |
+| `is_free` | `boolean` | No |  |
+| `is_member_exclusive` | `boolean` | No |  |
+| `is_private` | `boolean` | No |  |
+| `is_registration_required` | `boolean` | No |  |
+| `is_sales_button_hidden` | `boolean` | No |  |
+| `is_sold_out` | `boolean` | No |  |
+| `is_ticketed` | `boolean` | No |  |
+| `is_virtual_event` | `boolean` | No |  |
+| `join_url` | `any` | No |  |
+| `layout_type` | `any` | No |  |
+| `list_description` | `any` | No |  |
+| `location` | `any` | No |  |
+| `program_id` | `string` | No |  |
+| `program_title` | `any` | No |  |
+| `rsvp_link` | `any` | No |  |
+| `search_tag` | `any` | No |  |
+| `short_description` | `any` | No |  |
+| `slug` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `start_date` | `any` | No |  |
+| `start_time` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `survey_url` | `any` | No |  |
+| `ticketed_event_id` | `string` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `title_display` | `any` | No |  |
+| `updated_at` | `any` | No |  |
+| `virtual_event_passcode` | `any` | No |  |
+| `virtual_event_url` | `any` | No |  |
 
 ### Operations
 
@@ -1259,31 +1259,31 @@ local event_occurrence = client:EventOccurrence(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `button_caption` | ``$ANY`` | No |  |
-| `button_text` | ``$ANY`` | No |  |
-| `button_url` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `end_at` | ``$ANY`` | No |  |
-| `event_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_url` | ``$ANY`` | No |  |
-| `is_private` | ``$BOOLEAN`` | No |  |
-| `is_sales_button_hidden` | ``$BOOLEAN`` | No |  |
-| `is_ticketed` | ``$BOOLEAN`` | No |  |
-| `location` | ``$ANY`` | No |  |
-| `off_sale_at` | ``$ANY`` | No |  |
-| `on_sale_at` | ``$ANY`` | No |  |
-| `short_description` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `start_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `title_display` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `button_caption` | `any` | No |  |
+| `button_text` | `any` | No |  |
+| `button_url` | `any` | No |  |
+| `description` | `string` | No |  |
+| `end_at` | `any` | No |  |
+| `event_id` | `string` | No |  |
+| `id` | `string` | No |  |
+| `image_url` | `any` | No |  |
+| `is_private` | `boolean` | No |  |
+| `is_sales_button_hidden` | `boolean` | No |  |
+| `is_ticketed` | `boolean` | No |  |
+| `location` | `any` | No |  |
+| `off_sale_at` | `any` | No |  |
+| `on_sale_at` | `any` | No |  |
+| `short_description` | `any` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `start_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `title_display` | `any` | No |  |
+| `updated_at` | `any` | No |  |
 
 ### Operations
 
@@ -1343,17 +1343,17 @@ local event_program = client:EventProgram(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_affiliate_group` | ``$BOOLEAN`` | No |  |
-| `is_event_host` | ``$BOOLEAN`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `id` | `string` | No |  |
+| `is_affiliate_group` | `boolean` | No |  |
+| `is_event_host` | `boolean` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
 
 ### Operations
 
@@ -1413,33 +1413,33 @@ local exhibition = client:Exhibition(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aic_end_at` | ``$ANY`` | No |  |
-| `aic_start_at` | ``$ANY`` | No |  |
-| `alt_image_id` | ``$STRING`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artist_id` | ``$STRING`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `document_id` | ``$STRING`` | No |  |
-| `gallery_id` | ``$STRING`` | No |  |
-| `gallery_title` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_id` | ``$STRING`` | No |  |
-| `image_url` | ``$ANY`` | No |  |
-| `is_featured` | ``$BOOLEAN`` | No |  |
-| `is_published` | ``$BOOLEAN`` | No |  |
-| `position` | ``$ANY`` | No |  |
-| `short_description` | ``$ANY`` | No |  |
-| `site_id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `status` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `aic_end_at` | `any` | No |  |
+| `aic_start_at` | `any` | No |  |
+| `alt_image_id` | `string` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `artist_id` | `string` | No |  |
+| `artwork_id` | `string` | No |  |
+| `artwork_title` | `any` | No |  |
+| `document_id` | `string` | No |  |
+| `gallery_id` | `string` | No |  |
+| `gallery_title` | `any` | No |  |
+| `id` | `string` | No |  |
+| `image_id` | `string` | No |  |
+| `image_url` | `any` | No |  |
+| `is_featured` | `boolean` | No |  |
+| `is_published` | `boolean` | No |  |
+| `position` | `any` | No |  |
+| `short_description` | `any` | No |  |
+| `site_id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `status` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
+| `web_url` | `any` | No |  |
 
 ### Operations
 
@@ -1499,22 +1499,22 @@ local gallery = client:Gallery(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `floor` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_closed` | ``$BOOLEAN`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `latlon` | ``$ANY`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `number` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `tgn_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `floor` | `any` | No |  |
+| `id` | `string` | No |  |
+| `is_closed` | `boolean` | No |  |
+| `latitude` | `number` | No |  |
+| `latlon` | `any` | No |  |
+| `longitude` | `number` | No |  |
+| `number` | `any` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `tgn_id` | `string` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
 
 ### Operations
 
@@ -1574,18 +1574,18 @@ local generic_page = client:GenericPage(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `search_tag` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `copy` | `any` | No |  |
+| `id` | `string` | No |  |
+| `search_tag` | `any` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
+| `web_url` | `any` | No |  |
 
 ### Operations
 
@@ -1645,16 +1645,16 @@ local highlight = client:Highlight(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `copy` | `any` | No |  |
+| `id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
 
 ### Operations
 
@@ -1714,52 +1714,52 @@ local hour = client:Hour(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `additional_text` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `friday_is_closed` | ``$ANY`` | No |  |
-| `friday_member_close` | ``$ANY`` | No |  |
-| `friday_member_open` | ``$ANY`` | No |  |
-| `friday_public_close` | ``$ANY`` | No |  |
-| `friday_public_open` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `monday_is_closed` | ``$ANY`` | No |  |
-| `monday_member_close` | ``$ANY`` | No |  |
-| `monday_member_open` | ``$ANY`` | No |  |
-| `monday_public_close` | ``$ANY`` | No |  |
-| `monday_public_open` | ``$ANY`` | No |  |
-| `saturday_is_closed` | ``$ANY`` | No |  |
-| `saturday_member_close` | ``$ANY`` | No |  |
-| `saturday_member_open` | ``$ANY`` | No |  |
-| `saturday_public_close` | ``$ANY`` | No |  |
-| `saturday_public_open` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `summary` | ``$ANY`` | No |  |
-| `sunday_is_closed` | ``$ANY`` | No |  |
-| `sunday_member_close` | ``$ANY`` | No |  |
-| `sunday_member_open` | ``$ANY`` | No |  |
-| `sunday_public_close` | ``$ANY`` | No |  |
-| `sunday_public_open` | ``$ANY`` | No |  |
-| `thursday_is_closed` | ``$ANY`` | No |  |
-| `thursday_member_close` | ``$ANY`` | No |  |
-| `thursday_member_open` | ``$ANY`` | No |  |
-| `thursday_public_close` | ``$ANY`` | No |  |
-| `thursday_public_open` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `tuesday_is_closed` | ``$ANY`` | No |  |
-| `tuesday_member_close` | ``$ANY`` | No |  |
-| `tuesday_member_open` | ``$ANY`` | No |  |
-| `tuesday_public_close` | ``$ANY`` | No |  |
-| `tuesday_public_open` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `wednesday_is_closed` | ``$ANY`` | No |  |
-| `wednesday_member_close` | ``$ANY`` | No |  |
-| `wednesday_member_open` | ``$ANY`` | No |  |
-| `wednesday_public_close` | ``$ANY`` | No |  |
-| `wednesday_public_open` | ``$ANY`` | No |  |
+| `additional_text` | `any` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `friday_is_closed` | `any` | No |  |
+| `friday_member_close` | `any` | No |  |
+| `friday_member_open` | `any` | No |  |
+| `friday_public_close` | `any` | No |  |
+| `friday_public_open` | `any` | No |  |
+| `id` | `string` | No |  |
+| `monday_is_closed` | `any` | No |  |
+| `monday_member_close` | `any` | No |  |
+| `monday_member_open` | `any` | No |  |
+| `monday_public_close` | `any` | No |  |
+| `monday_public_open` | `any` | No |  |
+| `saturday_is_closed` | `any` | No |  |
+| `saturday_member_close` | `any` | No |  |
+| `saturday_member_open` | `any` | No |  |
+| `saturday_public_close` | `any` | No |  |
+| `saturday_public_open` | `any` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `summary` | `any` | No |  |
+| `sunday_is_closed` | `any` | No |  |
+| `sunday_member_close` | `any` | No |  |
+| `sunday_member_open` | `any` | No |  |
+| `sunday_public_close` | `any` | No |  |
+| `sunday_public_open` | `any` | No |  |
+| `thursday_is_closed` | `any` | No |  |
+| `thursday_member_close` | `any` | No |  |
+| `thursday_member_open` | `any` | No |  |
+| `thursday_public_close` | `any` | No |  |
+| `thursday_public_open` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `tuesday_is_closed` | `any` | No |  |
+| `tuesday_member_close` | `any` | No |  |
+| `tuesday_member_open` | `any` | No |  |
+| `tuesday_public_close` | `any` | No |  |
+| `tuesday_public_open` | `any` | No |  |
+| `updated_at` | `any` | No |  |
+| `wednesday_is_closed` | `any` | No |  |
+| `wednesday_member_close` | `any` | No |  |
+| `wednesday_member_open` | `any` | No |  |
+| `wednesday_public_close` | `any` | No |  |
+| `wednesday_public_open` | `any` | No |  |
 
 ### Operations
 
@@ -1819,35 +1819,35 @@ local image = client:Image(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ahash` | ``$ANY`` | No |  |
-| `alt_text` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `color` | ``$ANY`` | No |  |
-| `colorfulness` | ``$ANY`` | No |  |
-| `content` | ``$ANY`` | No |  |
-| `content_e_tag` | ``$ANY`` | No |  |
-| `credit_line` | ``$ANY`` | No |  |
-| `fingerprint` | ``$ANY`` | No |  |
-| `height` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `iiif_url` | ``$ANY`` | No |  |
-| `is_educational_resource` | ``$BOOLEAN`` | No |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` | No |  |
-| `is_teacher_resource` | ``$BOOLEAN`` | No |  |
-| `lake_guid` | ``$ANY`` | No |  |
-| `lqip` | ``$ANY`` | No |  |
-| `phash` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `width` | ``$NUMBER`` | No |  |
+| `ahash` | `any` | No |  |
+| `alt_text` | `any` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `artwork_id` | `string` | No |  |
+| `artwork_title` | `any` | No |  |
+| `color` | `any` | No |  |
+| `colorfulness` | `any` | No |  |
+| `content` | `any` | No |  |
+| `content_e_tag` | `any` | No |  |
+| `credit_line` | `any` | No |  |
+| `fingerprint` | `any` | No |  |
+| `height` | `number` | No |  |
+| `id` | `string` | No |  |
+| `iiif_url` | `any` | No |  |
+| `is_educational_resource` | `boolean` | No |  |
+| `is_multimedia_resource` | `boolean` | No |  |
+| `is_teacher_resource` | `boolean` | No |  |
+| `lake_guid` | `any` | No |  |
+| `lqip` | `any` | No |  |
+| `phash` | `any` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `type` | `any` | No |  |
+| `updated_at` | `any` | No |  |
+| `width` | `number` | No |  |
 
 ### Operations
 
@@ -1907,18 +1907,18 @@ local landing_page = client:LandingPage(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `search_tag` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `copy` | `any` | No |  |
+| `id` | `string` | No |  |
+| `search_tag` | `any` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
+| `web_url` | `any` | No |  |
 
 ### Operations
 
@@ -1978,18 +1978,18 @@ local place = client:Place(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `tgn_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `id` | `string` | No |  |
+| `latitude` | `number` | No |  |
+| `longitude` | `number` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `tgn_id` | `string` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
 
 ### Operations
 
@@ -2049,17 +2049,17 @@ local press_release = client:PressRelease(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `copy` | `any` | No |  |
+| `id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
+| `web_url` | `any` | No |  |
 
 ### Operations
 
@@ -2119,17 +2119,17 @@ local printed_publication = client:PrintedPublication(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `copy` | `any` | No |  |
+| `id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
+| `web_url` | `any` | No |  |
 
 ### Operations
 
@@ -2189,27 +2189,27 @@ local product = client:Product(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artist_id` | ``$STRING`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `exhibition_id` | ``$STRING`` | No |  |
-| `external_sku` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_url` | ``$ANY`` | No |  |
-| `max_compare_at_price` | ``$ANY`` | No |  |
-| `max_current_price` | ``$ANY`` | No |  |
-| `min_compare_at_price` | ``$ANY`` | No |  |
-| `min_current_price` | ``$ANY`` | No |  |
-| `price_display` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `artist_id` | `string` | No |  |
+| `artwork_id` | `string` | No |  |
+| `description` | `string` | No |  |
+| `exhibition_id` | `string` | No |  |
+| `external_sku` | `any` | No |  |
+| `id` | `string` | No |  |
+| `image_url` | `any` | No |  |
+| `max_compare_at_price` | `any` | No |  |
+| `max_current_price` | `any` | No |  |
+| `min_compare_at_price` | `any` | No |  |
+| `min_current_price` | `any` | No |  |
+| `price_display` | `any` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
+| `web_url` | `any` | No |  |
 
 ### Operations
 
@@ -2269,17 +2269,17 @@ local publication = client:Publication(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `section_id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `id` | `string` | No |  |
+| `section_id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
+| `web_url` | `any` | No |  |
 
 ### Operations
 
@@ -2339,15 +2339,15 @@ local search = client:Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_id` | ``$STRING`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_boosted` | ``$BOOLEAN`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `thumbnail` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `api_id` | `string` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `id` | `string` | No |  |
+| `is_boosted` | `boolean` | No |  |
+| `score` | `number` | No |  |
+| `thumbnail` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -2399,22 +2399,22 @@ local section = client:Section(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accession` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `content` | ``$ANY`` | No |  |
-| `generic_page_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `publication_id` | ``$STRING`` | No |  |
-| `publication_title` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `accession` | `any` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `artwork_id` | `string` | No |  |
+| `content` | `any` | No |  |
+| `generic_page_id` | `string` | No |  |
+| `id` | `string` | No |  |
+| `publication_id` | `string` | No |  |
+| `publication_title` | `any` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
+| `web_url` | `any` | No |  |
 
 ### Operations
 
@@ -2474,21 +2474,21 @@ local site = client:Site(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `exhibition_id` | ``$STRING`` | No |  |
-| `exhibition_title` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `artwork_id` | `string` | No |  |
+| `artwork_title` | `any` | No |  |
+| `description` | `string` | No |  |
+| `exhibition_id` | `string` | No |  |
+| `exhibition_title` | `any` | No |  |
+| `id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
+| `web_url` | `any` | No |  |
 
 ### Operations
 
@@ -2548,28 +2548,28 @@ local sound = client:Sound(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `content` | ``$ANY`` | No |  |
-| `content_e_tag` | ``$ANY`` | No |  |
-| `credit_line` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_educational_resource` | ``$BOOLEAN`` | No |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` | No |  |
-| `is_teacher_resource` | ``$BOOLEAN`` | No |  |
-| `lake_guid` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `transcript` | ``$ANY`` | No |  |
-| `type` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `alt_text` | `any` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `artwork_id` | `string` | No |  |
+| `artwork_title` | `any` | No |  |
+| `content` | `any` | No |  |
+| `content_e_tag` | `any` | No |  |
+| `credit_line` | `any` | No |  |
+| `id` | `string` | No |  |
+| `is_educational_resource` | `boolean` | No |  |
+| `is_multimedia_resource` | `boolean` | No |  |
+| `is_teacher_resource` | `boolean` | No |  |
+| `lake_guid` | `any` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `transcript` | `any` | No |  |
+| `type` | `any` | No |  |
+| `updated_at` | `any` | No |  |
+| `web_url` | `any` | No |  |
 
 ### Operations
 
@@ -2629,16 +2629,16 @@ local static_page = client:StaticPage(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `id` | `string` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
+| `web_url` | `any` | No |  |
 
 ### Operations
 
@@ -2698,26 +2698,26 @@ local text = client:Text(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `content` | ``$ANY`` | No |  |
-| `content_e_tag` | ``$ANY`` | No |  |
-| `credit_line` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_educational_resource` | ``$BOOLEAN`` | No |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` | No |  |
-| `is_teacher_resource` | ``$BOOLEAN`` | No |  |
-| `lake_guid` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `alt_text` | `any` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `artwork_id` | `string` | No |  |
+| `artwork_title` | `any` | No |  |
+| `content` | `any` | No |  |
+| `content_e_tag` | `any` | No |  |
+| `credit_line` | `any` | No |  |
+| `id` | `string` | No |  |
+| `is_educational_resource` | `boolean` | No |  |
+| `is_multimedia_resource` | `boolean` | No |  |
+| `is_teacher_resource` | `boolean` | No |  |
+| `lake_guid` | `any` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `type` | `any` | No |  |
+| `updated_at` | `any` | No |  |
 
 ### Operations
 
@@ -2777,23 +2777,23 @@ local tour = client:Tour(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artist_title` | ``$ANY`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image` | ``$ANY`` | No |  |
-| `intro` | ``$ANY`` | No |  |
-| `intro_link` | ``$ANY`` | No |  |
-| `intro_transcript` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `weight` | ``$NUMBER`` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `artist_title` | `any` | No |  |
+| `artwork_title` | `any` | No |  |
+| `description` | `string` | No |  |
+| `id` | `string` | No |  |
+| `image` | `any` | No |  |
+| `intro` | `any` | No |  |
+| `intro_link` | `any` | No |  |
+| `intro_transcript` | `any` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `updated_at` | `any` | No |  |
+| `weight` | `number` | No |  |
 
 ### Operations
 
@@ -2853,26 +2853,26 @@ local video = client:Video(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `content` | ``$ANY`` | No |  |
-| `content_e_tag` | ``$ANY`` | No |  |
-| `credit_line` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_educational_resource` | ``$BOOLEAN`` | No |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` | No |  |
-| `is_teacher_resource` | ``$BOOLEAN`` | No |  |
-| `lake_guid` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `alt_text` | `any` | No |  |
+| `api_link` | `any` | No |  |
+| `api_model` | `any` | No |  |
+| `artwork_id` | `string` | No |  |
+| `artwork_title` | `any` | No |  |
+| `content` | `any` | No |  |
+| `content_e_tag` | `any` | No |  |
+| `credit_line` | `any` | No |  |
+| `id` | `string` | No |  |
+| `is_educational_resource` | `boolean` | No |  |
+| `is_multimedia_resource` | `boolean` | No |  |
+| `is_teacher_resource` | `boolean` | No |  |
+| `lake_guid` | `any` | No |  |
+| `source_updated_at` | `any` | No |  |
+| `suggest_autocomplete_all` | `any` | No |  |
+| `suggest_autocomplete_boosted` | `any` | No |  |
+| `timestamp` | `any` | No |  |
+| `title` | `string` | No |  |
+| `type` | `any` | No |  |
+| `updated_at` | `any` | No |  |
 
 ### Operations
 

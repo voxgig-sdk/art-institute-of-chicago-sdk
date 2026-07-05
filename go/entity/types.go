@@ -33,8 +33,7 @@ type AgentLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// AgentListMatch mirrors the agent fields as an all-optional match
-// filter (Go analog of Partial<Agent>).
+// AgentListMatch is the typed request payload for Agent.ListTyped.
 type AgentListMatch struct {
 	AltTitle *any `json:"alt_title,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
@@ -72,8 +71,7 @@ type AgentRoleLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// AgentRoleListMatch mirrors the agent_role fields as an all-optional match
-// filter (Go analog of Partial<AgentRole>).
+// AgentRoleListMatch is the typed request payload for AgentRole.ListTyped.
 type AgentRoleListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -104,8 +102,7 @@ type AgentTypeLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// AgentTypeListMatch mirrors the agent_type fields as an all-optional match
-// filter (Go analog of Partial<AgentType>).
+// AgentTypeListMatch is the typed request payload for AgentType.ListTyped.
 type AgentTypeListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -137,8 +134,7 @@ type ArticleLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// ArticleListMatch mirrors the article fields as an all-optional match
-// filter (Go analog of Partial<Article>).
+// ArticleListMatch is the typed request payload for Article.ListTyped.
 type ArticleListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -256,8 +252,7 @@ type ArtworkLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// ArtworkListMatch mirrors the artwork fields as an all-optional match
-// filter (Go analog of Partial<Artwork>).
+// ArtworkListMatch is the typed request payload for Artwork.ListTyped.
 type ArtworkListMatch struct {
 	AltArtistId *string `json:"alt_artist_id,omitempty"`
 	AltClassificationId *string `json:"alt_classification_id,omitempty"`
@@ -374,8 +369,7 @@ type ArtworkDateQualifierLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// ArtworkDateQualifierListMatch mirrors the artwork_date_qualifier fields as an all-optional match
-// filter (Go analog of Partial<ArtworkDateQualifier>).
+// ArtworkDateQualifierListMatch is the typed request payload for ArtworkDateQualifier.ListTyped.
 type ArtworkDateQualifierListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -406,8 +400,7 @@ type ArtworkPlaceQualifierLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// ArtworkPlaceQualifierListMatch mirrors the artwork_place_qualifier fields as an all-optional match
-// filter (Go analog of Partial<ArtworkPlaceQualifier>).
+// ArtworkPlaceQualifierListMatch is the typed request payload for ArtworkPlaceQualifier.ListTyped.
 type ArtworkPlaceQualifierListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -439,8 +432,7 @@ type ArtworkTypeLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// ArtworkTypeListMatch mirrors the artwork_type fields as an all-optional match
-// filter (Go analog of Partial<ArtworkType>).
+// ArtworkTypeListMatch is the typed request payload for ArtworkType.ListTyped.
 type ArtworkTypeListMatch struct {
 	AatId *string `json:"aat_id,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
@@ -474,8 +466,7 @@ type CategoryTermLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// CategoryTermListMatch mirrors the category_term fields as an all-optional match
-// filter (Go analog of Partial<CategoryTerm>).
+// CategoryTermListMatch is the typed request payload for CategoryTerm.ListTyped.
 type CategoryTermListMatch struct {
 	AatId *string `json:"aat_id,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
@@ -510,8 +501,7 @@ type DigitalPublicationLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// DigitalPublicationListMatch mirrors the digital_publication fields as an all-optional match
-// filter (Go analog of Partial<DigitalPublication>).
+// DigitalPublicationListMatch is the typed request payload for DigitalPublication.ListTyped.
 type DigitalPublicationListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -548,8 +538,7 @@ type DigitalPublicationArticleLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// DigitalPublicationArticleListMatch mirrors the digital_publication_article fields as an all-optional match
-// filter (Go analog of Partial<DigitalPublicationArticle>).
+// DigitalPublicationArticleListMatch is the typed request payload for DigitalPublicationArticle.ListTyped.
 type DigitalPublicationArticleListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -586,8 +575,7 @@ type EducatorResourceLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// EducatorResourceListMatch mirrors the educator_resource fields as an all-optional match
-// filter (Go analog of Partial<EducatorResource>).
+// EducatorResourceListMatch is the typed request payload for EducatorResource.ListTyped.
 type EducatorResourceListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -664,8 +652,7 @@ type EventLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// EventListMatch mirrors the event fields as an all-optional match
-// filter (Go analog of Partial<Event>).
+// EventListMatch is the typed request payload for Event.ListTyped.
 type EventListMatch struct {
 	AltAudienceId *string `json:"alt_audience_id,omitempty"`
 	AltEventTypeId *string `json:"alt_event_type_id,omitempty"`
@@ -756,8 +743,7 @@ type EventOccurrenceLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// EventOccurrenceListMatch mirrors the event_occurrence fields as an all-optional match
-// filter (Go analog of Partial<EventOccurrence>).
+// EventOccurrenceListMatch is the typed request payload for EventOccurrence.ListTyped.
 type EventOccurrenceListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -806,8 +792,7 @@ type EventProgramLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// EventProgramListMatch mirrors the event_program fields as an all-optional match
-// filter (Go analog of Partial<EventProgram>).
+// EventProgramListMatch is the typed request payload for EventProgram.ListTyped.
 type EventProgramListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -858,8 +843,7 @@ type ExhibitionLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// ExhibitionListMatch mirrors the exhibition fields as an all-optional match
-// filter (Go analog of Partial<Exhibition>).
+// ExhibitionListMatch is the typed request payload for Exhibition.ListTyped.
 type ExhibitionListMatch struct {
 	AicEndAt *any `json:"aic_end_at,omitempty"`
 	AicStartAt *any `json:"aic_start_at,omitempty"`
@@ -915,8 +899,7 @@ type GalleryLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// GalleryListMatch mirrors the gallery fields as an all-optional match
-// filter (Go analog of Partial<Gallery>).
+// GalleryListMatch is the typed request payload for Gallery.ListTyped.
 type GalleryListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -957,8 +940,7 @@ type GenericPageLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// GenericPageListMatch mirrors the generic_page fields as an all-optional match
-// filter (Go analog of Partial<GenericPage>).
+// GenericPageListMatch is the typed request payload for GenericPage.ListTyped.
 type GenericPageListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -993,8 +975,7 @@ type HighlightLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// HighlightListMatch mirrors the highlight fields as an all-optional match
-// filter (Go analog of Partial<Highlight>).
+// HighlightListMatch is the typed request payload for Highlight.ListTyped.
 type HighlightListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -1063,8 +1044,7 @@ type HourLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// HourListMatch mirrors the hour fields as an all-optional match
-// filter (Go analog of Partial<Hour>).
+// HourListMatch is the typed request payload for Hour.ListTyped.
 type HourListMatch struct {
 	AdditionalText *any `json:"additional_text,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
@@ -1152,8 +1132,7 @@ type ImageLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// ImageListMatch mirrors the image fields as an all-optional match
-// filter (Go analog of Partial<Image>).
+// ImageListMatch is the typed request payload for Image.ListTyped.
 type ImageListMatch struct {
 	Ahash *any `json:"ahash,omitempty"`
 	AltText *any `json:"alt_text,omitempty"`
@@ -1207,8 +1186,7 @@ type LandingPageLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// LandingPageListMatch mirrors the landing_page fields as an all-optional match
-// filter (Go analog of Partial<LandingPage>).
+// LandingPageListMatch is the typed request payload for LandingPage.ListTyped.
 type LandingPageListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -1245,8 +1223,7 @@ type PlaceLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// PlaceListMatch mirrors the place fields as an all-optional match
-// filter (Go analog of Partial<Place>).
+// PlaceListMatch is the typed request payload for Place.ListTyped.
 type PlaceListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -1282,8 +1259,7 @@ type PressReleaseLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// PressReleaseListMatch mirrors the press_release fields as an all-optional match
-// filter (Go analog of Partial<PressRelease>).
+// PressReleaseListMatch is the typed request payload for PressRelease.ListTyped.
 type PressReleaseListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -1318,8 +1294,7 @@ type PrintedPublicationLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// PrintedPublicationListMatch mirrors the printed_publication fields as an all-optional match
-// filter (Go analog of Partial<PrintedPublication>).
+// PrintedPublicationListMatch is the typed request payload for PrintedPublication.ListTyped.
 type PrintedPublicationListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -1364,8 +1339,7 @@ type ProductLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// ProductListMatch mirrors the product fields as an all-optional match
-// filter (Go analog of Partial<Product>).
+// ProductListMatch is the typed request payload for Product.ListTyped.
 type ProductListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -1410,8 +1384,7 @@ type PublicationLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// PublicationListMatch mirrors the publication fields as an all-optional match
-// filter (Go analog of Partial<Publication>).
+// PublicationListMatch is the typed request payload for Publication.ListTyped.
 type PublicationListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -1439,8 +1412,7 @@ type Search struct {
 	Title *string `json:"title,omitempty"`
 }
 
-// SearchListMatch mirrors the search fields as an all-optional match
-// filter (Go analog of Partial<Search>).
+// SearchListMatch is the typed request payload for Search.ListTyped.
 type SearchListMatch struct {
 	ApiId *string `json:"api_id,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
@@ -1478,8 +1450,7 @@ type SectionLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// SectionListMatch mirrors the section fields as an all-optional match
-// filter (Go analog of Partial<Section>).
+// SectionListMatch is the typed request payload for Section.ListTyped.
 type SectionListMatch struct {
 	Accession *any `json:"accession,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
@@ -1523,8 +1494,7 @@ type SiteLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// SiteListMatch mirrors the site fields as an all-optional match
-// filter (Go analog of Partial<Site>).
+// SiteListMatch is the typed request payload for Site.ListTyped.
 type SiteListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -1574,8 +1544,7 @@ type SoundLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// SoundListMatch mirrors the sound fields as an all-optional match
-// filter (Go analog of Partial<Sound>).
+// SoundListMatch is the typed request payload for Sound.ListTyped.
 type SoundListMatch struct {
 	AltText *any `json:"alt_text,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
@@ -1620,8 +1589,7 @@ type StaticPageLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// StaticPageListMatch mirrors the static_page fields as an all-optional match
-// filter (Go analog of Partial<StaticPage>).
+// StaticPageListMatch is the typed request payload for StaticPage.ListTyped.
 type StaticPageListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -1664,8 +1632,7 @@ type TextLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// TextListMatch mirrors the text fields as an all-optional match
-// filter (Go analog of Partial<Text>).
+// TextListMatch is the typed request payload for Text.ListTyped.
 type TextListMatch struct {
 	AltText *any `json:"alt_text,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
@@ -1715,8 +1682,7 @@ type TourLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// TourListMatch mirrors the tour fields as an all-optional match
-// filter (Go analog of Partial<Tour>).
+// TourListMatch is the typed request payload for Tour.ListTyped.
 type TourListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
@@ -1766,8 +1732,7 @@ type VideoLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// VideoListMatch mirrors the video fields as an all-optional match
-// filter (Go analog of Partial<Video>).
+// VideoListMatch is the typed request payload for Video.ListTyped.
 type VideoListMatch struct {
 	AltText *any `json:"alt_text,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`

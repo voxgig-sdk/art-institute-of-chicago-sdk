@@ -65,8 +65,13 @@ class ArtworkPlaceQualifierEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: ArtworkPlaceQualifierLoadMatch, ctrl=None) -> ArtworkPlaceQualifier:
+    def load(self, reqmatch=None, ctrl=None) -> ArtworkPlaceQualifier:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.ArtworkPlaceQualifier().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class ArtworkPlaceQualifierEntity:
 
 
     
-    def list(self, reqmatch: ArtworkPlaceQualifierListMatch, ctrl=None) -> list[ArtworkPlaceQualifier]:
+    def list(self, reqmatch=None, ctrl=None) -> list[ArtworkPlaceQualifier]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.ArtworkPlaceQualifier().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

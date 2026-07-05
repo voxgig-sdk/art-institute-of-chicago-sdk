@@ -86,7 +86,7 @@ AgentLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Agent#list (any subset of Agent fields).
+# Request payload for Agent#list.
 #
 # @!attribute [rw] alt_title
 #   @return [Object, nil]
@@ -205,7 +205,7 @@ AgentRoleLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for AgentRole#list (any subset of AgentRole fields).
+# Request payload for AgentRole#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -296,7 +296,7 @@ AgentTypeLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for AgentType#list (any subset of AgentType fields).
+# Request payload for AgentType#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -391,7 +391,7 @@ ArticleLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Article#list (any subset of Article fields).
+# Request payload for Article#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -830,7 +830,7 @@ ArtworkLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Artwork#list (any subset of Artwork fields).
+# Request payload for Artwork#list.
 #
 # @!attribute [rw] alt_artist_id
 #   @return [String, nil]
@@ -1265,7 +1265,7 @@ ArtworkDateQualifierLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for ArtworkDateQualifier#list (any subset of ArtworkDateQualifier fields).
+# Request payload for ArtworkDateQualifier#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -1356,7 +1356,7 @@ ArtworkPlaceQualifierLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for ArtworkPlaceQualifier#list (any subset of ArtworkPlaceQualifier fields).
+# Request payload for ArtworkPlaceQualifier#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -1451,7 +1451,7 @@ ArtworkTypeLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for ArtworkType#list (any subset of ArtworkType fields).
+# Request payload for ArtworkType#list.
 #
 # @!attribute [rw] aat_id
 #   @return [String, nil]
@@ -1554,7 +1554,7 @@ CategoryTermLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for CategoryTerm#list (any subset of CategoryTerm fields).
+# Request payload for CategoryTerm#list.
 #
 # @!attribute [rw] aat_id
 #   @return [String, nil]
@@ -1661,7 +1661,7 @@ DigitalPublicationLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for DigitalPublication#list (any subset of DigitalPublication fields).
+# Request payload for DigitalPublication#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -1776,7 +1776,7 @@ DigitalPublicationArticleLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for DigitalPublicationArticle#list (any subset of DigitalPublicationArticle fields).
+# Request payload for DigitalPublicationArticle#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -1891,7 +1891,7 @@ EducatorResourceLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for EducatorResource#list (any subset of EducatorResource fields).
+# Request payload for EducatorResource#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -2166,7 +2166,7 @@ EventLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Event#list (any subset of Event fields).
+# Request payload for Event#list.
 #
 # @!attribute [rw] alt_audience_id
 #   @return [String, nil]
@@ -2497,7 +2497,7 @@ EventOccurrenceLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for EventOccurrence#list (any subset of EventOccurrence fields).
+# Request payload for EventOccurrence#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -2660,7 +2660,7 @@ EventProgramLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for EventProgram#list (any subset of EventProgram fields).
+# Request payload for EventProgram#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -2831,7 +2831,7 @@ ExhibitionLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Exhibition#list (any subset of Exhibition fields).
+# Request payload for Exhibition#list.
 #
 # @!attribute [rw] aic_end_at
 #   @return [Object, nil]
@@ -3022,7 +3022,7 @@ GalleryLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Gallery#list (any subset of Gallery fields).
+# Request payload for Gallery#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -3153,7 +3153,7 @@ GenericPageLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for GenericPage#list (any subset of GenericPage fields).
+# Request payload for GenericPage#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -3260,7 +3260,7 @@ HighlightLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Highlight#list (any subset of Highlight fields).
+# Request payload for Highlight#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -3503,7 +3503,7 @@ HourLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Hour#list (any subset of Hour fields).
+# Request payload for Hour#list.
 #
 # @!attribute [rw] additional_text
 #   @return [Object, nil]
@@ -3822,7 +3822,7 @@ ImageLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Image#list (any subset of Image fields).
+# Request payload for Image#list.
 #
 # @!attribute [rw] ahash
 #   @return [Object, nil]
@@ -4005,7 +4005,7 @@ LandingPageLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for LandingPage#list (any subset of LandingPage fields).
+# Request payload for LandingPage#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -4120,7 +4120,7 @@ PlaceLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Place#list (any subset of Place fields).
+# Request payload for Place#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -4231,7 +4231,7 @@ PressReleaseLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for PressRelease#list (any subset of PressRelease fields).
+# Request payload for PressRelease#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -4338,7 +4338,7 @@ PrintedPublicationLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for PrintedPublication#list (any subset of PrintedPublication fields).
+# Request payload for PrintedPublication#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -4485,7 +4485,7 @@ ProductLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Product#list (any subset of Product fields).
+# Request payload for Product#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -4632,7 +4632,7 @@ PublicationLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Publication#list (any subset of Publication fields).
+# Request payload for Publication#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -4722,7 +4722,7 @@ Search = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Search#list (any subset of Search fields).
+# Request payload for Search#list.
 #
 # @!attribute [rw] api_id
 #   @return [String, nil]
@@ -4841,7 +4841,7 @@ SectionLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Section#list (any subset of Section fields).
+# Request payload for Section#list.
 #
 # @!attribute [rw] accession
 #   @return [Object, nil]
@@ -4984,7 +4984,7 @@ SiteLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Site#list (any subset of Site fields).
+# Request payload for Site#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -5151,7 +5151,7 @@ SoundLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Sound#list (any subset of Sound fields).
+# Request payload for Sound#list.
 #
 # @!attribute [rw] alt_text
 #   @return [Object, nil]
@@ -5298,7 +5298,7 @@ StaticPageLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for StaticPage#list (any subset of StaticPage fields).
+# Request payload for StaticPage#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -5437,7 +5437,7 @@ TextLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Text#list (any subset of Text fields).
+# Request payload for Text#list.
 #
 # @!attribute [rw] alt_text
 #   @return [Object, nil]
@@ -5604,7 +5604,7 @@ TourLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Tour#list (any subset of Tour fields).
+# Request payload for Tour#list.
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -5771,7 +5771,7 @@ VideoLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Video#list (any subset of Video fields).
+# Request payload for Video#list.
 #
 # @!attribute [rw] alt_text
 #   @return [Object, nil]

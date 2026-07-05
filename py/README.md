@@ -4,6 +4,11 @@
 
 The Python SDK for the ArtInstituteOfChicago API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Agent()` — each
+carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,7 +43,7 @@ error — iterate it directly.
 
 ```python
 try:
-    agents = client.Agent().list({})
+    agents = client.Agent().list()
     for agent in agents:
         print(agent)
 except Exception as err:
@@ -55,6 +60,34 @@ try:
     print(agent)
 except Exception as err:
     print(f"load failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    agents = client.Agent().list()
+    print(agents)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -75,7 +108,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -101,7 +137,7 @@ Create a mock client for unit testing — no server required:
 client = ArtInstituteOfChicagoSDK.test()
 
 # Entity ops return the bare record and raise on error.
-agent = client.Agent().load({"id": "test01"})
+agent = client.Agent().list()
 # agent contains the mock response record
 ```
 
@@ -222,9 +258,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -1229,29 +1262,29 @@ Create an instance: `agent = client.Agent()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_title` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `birth_date` | ``$ANY`` |  |
-| `death_date` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `is_artist` | ``$BOOLEAN`` |  |
-| `sort_title` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `ulan_id` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `alt_title` | `Any` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `birth_date` | `Any` |  |
+| `death_date` | `Any` |  |
+| `description` | `str` |  |
+| `id` | `str` |  |
+| `is_artist` | `bool` |  |
+| `sort_title` | `Any` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `ulan_id` | `str` |  |
+| `updated_at` | `Any` |  |
 
 #### Example: Load
 
@@ -1262,7 +1295,7 @@ agent = client.Agent().load({"id": "agent_id"})
 #### Example: List
 
 ```python
-agents = client.Agent().list({})
+agents = client.Agent().list()
 ```
 
 
@@ -1274,22 +1307,22 @@ Create an instance: `agent_role = client.AgentRole()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
 
 #### Example: Load
 
@@ -1300,7 +1333,7 @@ agent_role = client.AgentRole().load({"id": "agent_role_id"})
 #### Example: List
 
 ```python
-agent_roles = client.AgentRole().list({})
+agent_roles = client.AgentRole().list()
 ```
 
 
@@ -1312,22 +1345,22 @@ Create an instance: `agent_type = client.AgentType()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
 
 #### Example: Load
 
@@ -1338,7 +1371,7 @@ agent_type = client.AgentType().load({"id": "agent_type_id"})
 #### Example: List
 
 ```python
-agent_types = client.AgentType().list({})
+agent_types = client.AgentType().list()
 ```
 
 
@@ -1350,23 +1383,23 @@ Create an instance: `article = client.Article()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `copy` | `Any` |  |
+| `id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
 
 #### Example: Load
 
@@ -1377,7 +1410,7 @@ article = client.Article().load({"id": "article_id"})
 #### Example: List
 
 ```python
-articles = client.Article().list({})
+articles = client.Article().list()
 ```
 
 
@@ -1389,108 +1422,108 @@ Create an instance: `artwork = client.Artwork()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_artist_id` | ``$STRING`` |  |
-| `alt_classification_id` | ``$STRING`` |  |
-| `alt_image_id` | ``$STRING`` |  |
-| `alt_material_id` | ``$STRING`` |  |
-| `alt_style_id` | ``$STRING`` |  |
-| `alt_subject_id` | ``$STRING`` |  |
-| `alt_technique_id` | ``$STRING`` |  |
-| `alt_title` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artist_display` | ``$ANY`` |  |
-| `artist_id` | ``$STRING`` |  |
-| `artist_title` | ``$ANY`` |  |
-| `artwork_type_id` | ``$STRING`` |  |
-| `artwork_type_title` | ``$ANY`` |  |
-| `boost_rank` | ``$ANY`` |  |
-| `catalog_based_search_keyword_title` | ``$ANY`` |  |
-| `catalogue_display` | ``$ANY`` |  |
-| `category_id` | ``$STRING`` |  |
-| `category_title` | ``$ANY`` |  |
-| `classification_id` | ``$STRING`` |  |
-| `classification_title` | ``$ANY`` |  |
-| `color` | ``$ANY`` |  |
-| `colorfulness` | ``$ANY`` |  |
-| `copyright_notice` | ``$ANY`` |  |
-| `credit_line` | ``$ANY`` |  |
-| `date_display` | ``$ANY`` |  |
-| `date_end` | ``$ANY`` |  |
-| `date_qualifier_id` | ``$STRING`` |  |
-| `date_qualifier_title` | ``$ANY`` |  |
-| `date_start` | ``$ANY`` |  |
-| `department_id` | ``$STRING`` |  |
-| `department_title` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `dimension` | ``$ANY`` |  |
-| `dimensions_detail` | ``$ANY`` |  |
-| `document_id` | ``$STRING`` |  |
-| `edition` | ``$ANY`` |  |
-| `exhibition_history` | ``$ANY`` |  |
-| `fiscal_year` | ``$ANY`` |  |
-| `fiscal_year_deaccession` | ``$ANY`` |  |
-| `gallery_id` | ``$STRING`` |  |
-| `gallery_title` | ``$ANY`` |  |
-| `has_advanced_imaging` | ``$BOOLEAN`` |  |
-| `has_educational_resource` | ``$BOOLEAN`` |  |
-| `has_multimedia_resource` | ``$BOOLEAN`` |  |
-| `has_not_been_viewed_much` | ``$BOOLEAN`` |  |
-| `id` | ``$STRING`` |  |
-| `image_embedding` | ``$ANY`` |  |
-| `image_id` | ``$STRING`` |  |
-| `inscription` | ``$ANY`` |  |
-| `internal_department_id` | ``$STRING`` |  |
-| `is_boosted` | ``$BOOLEAN`` |  |
-| `is_on_view` | ``$BOOLEAN`` |  |
-| `is_public_domain` | ``$BOOLEAN`` |  |
-| `is_zoomable` | ``$BOOLEAN`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `latlon` | ``$ANY`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `main_reference_number` | ``$INTEGER`` |  |
-| `material_id` | ``$STRING`` |  |
-| `material_title` | ``$ANY`` |  |
-| `max_zoom_window_size` | ``$ANY`` |  |
-| `medium_display` | ``$ANY`` |  |
-| `nomisma_id` | ``$STRING`` |  |
-| `on_loan_display` | ``$ANY`` |  |
-| `pageview` | ``$ANY`` |  |
-| `pageviews_recent` | ``$ANY`` |  |
-| `place_of_origin` | ``$ANY`` |  |
-| `provenance_text` | ``$ANY`` |  |
-| `publication_history` | ``$ANY`` |  |
-| `publishing_verification_level` | ``$ANY`` |  |
-| `section_id` | ``$STRING`` |  |
-| `section_title` | ``$ANY`` |  |
-| `short_description` | ``$ANY`` |  |
-| `site_id` | ``$STRING`` |  |
-| `sound_id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `style_id` | ``$STRING`` |  |
-| `style_title` | ``$ANY`` |  |
-| `subject_id` | ``$STRING`` |  |
-| `subject_title` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `technique_id` | ``$STRING`` |  |
-| `technique_title` | ``$ANY`` |  |
-| `term_title` | ``$ANY`` |  |
-| `text_embedding` | ``$ANY`` |  |
-| `text_id` | ``$STRING`` |  |
-| `theme_title` | ``$ANY`` |  |
-| `thumbnail` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `video_id` | ``$STRING`` |  |
+| `alt_artist_id` | `str` |  |
+| `alt_classification_id` | `str` |  |
+| `alt_image_id` | `str` |  |
+| `alt_material_id` | `str` |  |
+| `alt_style_id` | `str` |  |
+| `alt_subject_id` | `str` |  |
+| `alt_technique_id` | `str` |  |
+| `alt_title` | `Any` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `artist_display` | `Any` |  |
+| `artist_id` | `str` |  |
+| `artist_title` | `Any` |  |
+| `artwork_type_id` | `str` |  |
+| `artwork_type_title` | `Any` |  |
+| `boost_rank` | `Any` |  |
+| `catalog_based_search_keyword_title` | `Any` |  |
+| `catalogue_display` | `Any` |  |
+| `category_id` | `str` |  |
+| `category_title` | `Any` |  |
+| `classification_id` | `str` |  |
+| `classification_title` | `Any` |  |
+| `color` | `Any` |  |
+| `colorfulness` | `Any` |  |
+| `copyright_notice` | `Any` |  |
+| `credit_line` | `Any` |  |
+| `date_display` | `Any` |  |
+| `date_end` | `Any` |  |
+| `date_qualifier_id` | `str` |  |
+| `date_qualifier_title` | `Any` |  |
+| `date_start` | `Any` |  |
+| `department_id` | `str` |  |
+| `department_title` | `Any` |  |
+| `description` | `str` |  |
+| `dimension` | `Any` |  |
+| `dimensions_detail` | `Any` |  |
+| `document_id` | `str` |  |
+| `edition` | `Any` |  |
+| `exhibition_history` | `Any` |  |
+| `fiscal_year` | `Any` |  |
+| `fiscal_year_deaccession` | `Any` |  |
+| `gallery_id` | `str` |  |
+| `gallery_title` | `Any` |  |
+| `has_advanced_imaging` | `bool` |  |
+| `has_educational_resource` | `bool` |  |
+| `has_multimedia_resource` | `bool` |  |
+| `has_not_been_viewed_much` | `bool` |  |
+| `id` | `str` |  |
+| `image_embedding` | `Any` |  |
+| `image_id` | `str` |  |
+| `inscription` | `Any` |  |
+| `internal_department_id` | `str` |  |
+| `is_boosted` | `bool` |  |
+| `is_on_view` | `bool` |  |
+| `is_public_domain` | `bool` |  |
+| `is_zoomable` | `bool` |  |
+| `latitude` | `float` |  |
+| `latlon` | `Any` |  |
+| `longitude` | `float` |  |
+| `main_reference_number` | `int` |  |
+| `material_id` | `str` |  |
+| `material_title` | `Any` |  |
+| `max_zoom_window_size` | `Any` |  |
+| `medium_display` | `Any` |  |
+| `nomisma_id` | `str` |  |
+| `on_loan_display` | `Any` |  |
+| `pageview` | `Any` |  |
+| `pageviews_recent` | `Any` |  |
+| `place_of_origin` | `Any` |  |
+| `provenance_text` | `Any` |  |
+| `publication_history` | `Any` |  |
+| `publishing_verification_level` | `Any` |  |
+| `section_id` | `str` |  |
+| `section_title` | `Any` |  |
+| `short_description` | `Any` |  |
+| `site_id` | `str` |  |
+| `sound_id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `style_id` | `str` |  |
+| `style_title` | `Any` |  |
+| `subject_id` | `str` |  |
+| `subject_title` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `technique_id` | `str` |  |
+| `technique_title` | `Any` |  |
+| `term_title` | `Any` |  |
+| `text_embedding` | `Any` |  |
+| `text_id` | `str` |  |
+| `theme_title` | `Any` |  |
+| `thumbnail` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
+| `video_id` | `str` |  |
 
 #### Example: Load
 
@@ -1501,7 +1534,7 @@ artwork = client.Artwork().load({"id": "artwork_id"})
 #### Example: List
 
 ```python
-artworks = client.Artwork().list({})
+artworks = client.Artwork().list()
 ```
 
 
@@ -1513,22 +1546,22 @@ Create an instance: `artwork_date_qualifier = client.ArtworkDateQualifier()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
 
 #### Example: Load
 
@@ -1539,7 +1572,7 @@ artwork_date_qualifier = client.ArtworkDateQualifier().load({"id": "artwork_date
 #### Example: List
 
 ```python
-artwork_date_qualifiers = client.ArtworkDateQualifier().list({})
+artwork_date_qualifiers = client.ArtworkDateQualifier().list()
 ```
 
 
@@ -1551,22 +1584,22 @@ Create an instance: `artwork_place_qualifier = client.ArtworkPlaceQualifier()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
 
 #### Example: Load
 
@@ -1577,7 +1610,7 @@ artwork_place_qualifier = client.ArtworkPlaceQualifier().load({"id": "artwork_pl
 #### Example: List
 
 ```python
-artwork_place_qualifiers = client.ArtworkPlaceQualifier().list({})
+artwork_place_qualifiers = client.ArtworkPlaceQualifier().list()
 ```
 
 
@@ -1589,23 +1622,23 @@ Create an instance: `artwork_type = client.ArtworkType()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aat_id` | ``$STRING`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `aat_id` | `str` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
 
 #### Example: Load
 
@@ -1616,7 +1649,7 @@ artwork_type = client.ArtworkType().load({"id": "artwork_type_id"})
 #### Example: List
 
 ```python
-artwork_types = client.ArtworkType().list({})
+artwork_types = client.ArtworkType().list()
 ```
 
 
@@ -1628,24 +1661,24 @@ Create an instance: `category_term = client.CategoryTerm()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aat_id` | ``$STRING`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `parent_id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `subtype` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `aat_id` | `str` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `id` | `str` |  |
+| `parent_id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `subtype` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
 
 #### Example: Load
 
@@ -1656,7 +1689,7 @@ category_term = client.CategoryTerm().load({"id": "category_term_id"})
 #### Example: List
 
 ```python
-category_terms = client.CategoryTerm().list({})
+category_terms = client.CategoryTerm().list()
 ```
 
 
@@ -1668,24 +1701,24 @@ Create an instance: `digital_publication = client.DigitalPublication()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `copy` | `Any` |  |
+| `id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
+| `web_url` | `Any` |  |
 
 #### Example: Load
 
@@ -1696,7 +1729,7 @@ digital_publication = client.DigitalPublication().load({"id": "digital_publicati
 #### Example: List
 
 ```python
-digital_publications = client.DigitalPublication().list({})
+digital_publications = client.DigitalPublication().list()
 ```
 
 
@@ -1708,26 +1741,26 @@ Create an instance: `digital_publication_article = client.DigitalPublicationArti
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `author_display` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `digital_publication_id` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `author_display` | `Any` |  |
+| `copy` | `Any` |  |
+| `digital_publication_id` | `str` |  |
+| `id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
+| `web_url` | `Any` |  |
 
 #### Example: Load
 
@@ -1738,7 +1771,7 @@ digital_publication_article = client.DigitalPublicationArticle().load({"id": "di
 #### Example: List
 
 ```python
-digital_publication_articles = client.DigitalPublicationArticle().list({})
+digital_publication_articles = client.DigitalPublicationArticle().list()
 ```
 
 
@@ -1750,24 +1783,24 @@ Create an instance: `educator_resource = client.EducatorResource()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `copy` | `Any` |  |
+| `id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
+| `web_url` | `Any` |  |
 
 #### Example: Load
 
@@ -1778,7 +1811,7 @@ educator_resource = client.EducatorResource().load({"id": "educator_resource_id"
 #### Example: List
 
 ```python
-educator_resources = client.EducatorResource().list({})
+educator_resources = client.EducatorResource().list()
 ```
 
 
@@ -1790,66 +1823,66 @@ Create an instance: `event = client.Event()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_audience_id` | ``$STRING`` |  |
-| `alt_event_type_id` | ``$STRING`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `audience_id` | ``$STRING`` |  |
-| `buy_button_caption` | ``$ANY`` |  |
-| `buy_button_text` | ``$ANY`` |  |
-| `date_display` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `door_time` | ``$ANY`` |  |
-| `end_date` | ``$ANY`` |  |
-| `end_time` | ``$ANY`` |  |
-| `entrance` | ``$ANY`` |  |
-| `event_host_id` | ``$STRING`` |  |
-| `event_host_title` | ``$ANY`` |  |
-| `event_type_id` | ``$STRING`` |  |
-| `header_description` | ``$ANY`` |  |
-| `hero_caption` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `image_url` | ``$ANY`` |  |
-| `is_admission_required` | ``$BOOLEAN`` |  |
-| `is_after_hour` | ``$BOOLEAN`` |  |
-| `is_free` | ``$BOOLEAN`` |  |
-| `is_member_exclusive` | ``$BOOLEAN`` |  |
-| `is_private` | ``$BOOLEAN`` |  |
-| `is_registration_required` | ``$BOOLEAN`` |  |
-| `is_sales_button_hidden` | ``$BOOLEAN`` |  |
-| `is_sold_out` | ``$BOOLEAN`` |  |
-| `is_ticketed` | ``$BOOLEAN`` |  |
-| `is_virtual_event` | ``$BOOLEAN`` |  |
-| `join_url` | ``$ANY`` |  |
-| `layout_type` | ``$ANY`` |  |
-| `list_description` | ``$ANY`` |  |
-| `location` | ``$ANY`` |  |
-| `program_id` | ``$STRING`` |  |
-| `program_title` | ``$ANY`` |  |
-| `rsvp_link` | ``$ANY`` |  |
-| `search_tag` | ``$ANY`` |  |
-| `short_description` | ``$ANY`` |  |
-| `slug` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `start_date` | ``$ANY`` |  |
-| `start_time` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `survey_url` | ``$ANY`` |  |
-| `ticketed_event_id` | ``$STRING`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `title_display` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `virtual_event_passcode` | ``$ANY`` |  |
-| `virtual_event_url` | ``$ANY`` |  |
+| `alt_audience_id` | `str` |  |
+| `alt_event_type_id` | `str` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `audience_id` | `str` |  |
+| `buy_button_caption` | `Any` |  |
+| `buy_button_text` | `Any` |  |
+| `date_display` | `Any` |  |
+| `description` | `str` |  |
+| `door_time` | `Any` |  |
+| `end_date` | `Any` |  |
+| `end_time` | `Any` |  |
+| `entrance` | `Any` |  |
+| `event_host_id` | `str` |  |
+| `event_host_title` | `Any` |  |
+| `event_type_id` | `str` |  |
+| `header_description` | `Any` |  |
+| `hero_caption` | `Any` |  |
+| `id` | `str` |  |
+| `image_url` | `Any` |  |
+| `is_admission_required` | `bool` |  |
+| `is_after_hour` | `bool` |  |
+| `is_free` | `bool` |  |
+| `is_member_exclusive` | `bool` |  |
+| `is_private` | `bool` |  |
+| `is_registration_required` | `bool` |  |
+| `is_sales_button_hidden` | `bool` |  |
+| `is_sold_out` | `bool` |  |
+| `is_ticketed` | `bool` |  |
+| `is_virtual_event` | `bool` |  |
+| `join_url` | `Any` |  |
+| `layout_type` | `Any` |  |
+| `list_description` | `Any` |  |
+| `location` | `Any` |  |
+| `program_id` | `str` |  |
+| `program_title` | `Any` |  |
+| `rsvp_link` | `Any` |  |
+| `search_tag` | `Any` |  |
+| `short_description` | `Any` |  |
+| `slug` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `start_date` | `Any` |  |
+| `start_time` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `survey_url` | `Any` |  |
+| `ticketed_event_id` | `str` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `title_display` | `Any` |  |
+| `updated_at` | `Any` |  |
+| `virtual_event_passcode` | `Any` |  |
+| `virtual_event_url` | `Any` |  |
 
 #### Example: Load
 
@@ -1860,7 +1893,7 @@ event = client.Event().load({"id": "event_id"})
 #### Example: List
 
 ```python
-events = client.Event().list({})
+events = client.Event().list()
 ```
 
 
@@ -1872,38 +1905,38 @@ Create an instance: `event_occurrence = client.EventOccurrence()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `button_caption` | ``$ANY`` |  |
-| `button_text` | ``$ANY`` |  |
-| `button_url` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `end_at` | ``$ANY`` |  |
-| `event_id` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `image_url` | ``$ANY`` |  |
-| `is_private` | ``$BOOLEAN`` |  |
-| `is_sales_button_hidden` | ``$BOOLEAN`` |  |
-| `is_ticketed` | ``$BOOLEAN`` |  |
-| `location` | ``$ANY`` |  |
-| `off_sale_at` | ``$ANY`` |  |
-| `on_sale_at` | ``$ANY`` |  |
-| `short_description` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `start_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `title_display` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `button_caption` | `Any` |  |
+| `button_text` | `Any` |  |
+| `button_url` | `Any` |  |
+| `description` | `str` |  |
+| `end_at` | `Any` |  |
+| `event_id` | `str` |  |
+| `id` | `str` |  |
+| `image_url` | `Any` |  |
+| `is_private` | `bool` |  |
+| `is_sales_button_hidden` | `bool` |  |
+| `is_ticketed` | `bool` |  |
+| `location` | `Any` |  |
+| `off_sale_at` | `Any` |  |
+| `on_sale_at` | `Any` |  |
+| `short_description` | `Any` |  |
+| `source_updated_at` | `Any` |  |
+| `start_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `title_display` | `Any` |  |
+| `updated_at` | `Any` |  |
 
 #### Example: Load
 
@@ -1914,7 +1947,7 @@ event_occurrence = client.EventOccurrence().load({"id": "event_occurrence_id"})
 #### Example: List
 
 ```python
-event_occurrences = client.EventOccurrence().list({})
+event_occurrences = client.EventOccurrence().list()
 ```
 
 
@@ -1926,24 +1959,24 @@ Create an instance: `event_program = client.EventProgram()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_affiliate_group` | ``$BOOLEAN`` |  |
-| `is_event_host` | ``$BOOLEAN`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `id` | `str` |  |
+| `is_affiliate_group` | `bool` |  |
+| `is_event_host` | `bool` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
 
 #### Example: Load
 
@@ -1954,7 +1987,7 @@ event_program = client.EventProgram().load({"id": "event_program_id"})
 #### Example: List
 
 ```python
-event_programs = client.EventProgram().list({})
+event_programs = client.EventProgram().list()
 ```
 
 
@@ -1966,40 +1999,40 @@ Create an instance: `exhibition = client.Exhibition()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aic_end_at` | ``$ANY`` |  |
-| `aic_start_at` | ``$ANY`` |  |
-| `alt_image_id` | ``$STRING`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artist_id` | ``$STRING`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `document_id` | ``$STRING`` |  |
-| `gallery_id` | ``$STRING`` |  |
-| `gallery_title` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `image_id` | ``$STRING`` |  |
-| `image_url` | ``$ANY`` |  |
-| `is_featured` | ``$BOOLEAN`` |  |
-| `is_published` | ``$BOOLEAN`` |  |
-| `position` | ``$ANY`` |  |
-| `short_description` | ``$ANY`` |  |
-| `site_id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `status` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `aic_end_at` | `Any` |  |
+| `aic_start_at` | `Any` |  |
+| `alt_image_id` | `str` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `artist_id` | `str` |  |
+| `artwork_id` | `str` |  |
+| `artwork_title` | `Any` |  |
+| `document_id` | `str` |  |
+| `gallery_id` | `str` |  |
+| `gallery_title` | `Any` |  |
+| `id` | `str` |  |
+| `image_id` | `str` |  |
+| `image_url` | `Any` |  |
+| `is_featured` | `bool` |  |
+| `is_published` | `bool` |  |
+| `position` | `Any` |  |
+| `short_description` | `Any` |  |
+| `site_id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `status` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
+| `web_url` | `Any` |  |
 
 #### Example: Load
 
@@ -2010,7 +2043,7 @@ exhibition = client.Exhibition().load({"id": "exhibition_id"})
 #### Example: List
 
 ```python
-exhibitions = client.Exhibition().list({})
+exhibitions = client.Exhibition().list()
 ```
 
 
@@ -2022,29 +2055,29 @@ Create an instance: `gallery = client.Gallery()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `floor` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_closed` | ``$BOOLEAN`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `latlon` | ``$ANY`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `number` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `tgn_id` | ``$STRING`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `floor` | `Any` |  |
+| `id` | `str` |  |
+| `is_closed` | `bool` |  |
+| `latitude` | `float` |  |
+| `latlon` | `Any` |  |
+| `longitude` | `float` |  |
+| `number` | `Any` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `tgn_id` | `str` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
 
 #### Example: Load
 
@@ -2055,7 +2088,7 @@ gallery = client.Gallery().load({"id": "gallery_id"})
 #### Example: List
 
 ```python
-gallerys = client.Gallery().list({})
+gallerys = client.Gallery().list()
 ```
 
 
@@ -2067,25 +2100,25 @@ Create an instance: `generic_page = client.GenericPage()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `search_tag` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `copy` | `Any` |  |
+| `id` | `str` |  |
+| `search_tag` | `Any` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
+| `web_url` | `Any` |  |
 
 #### Example: Load
 
@@ -2096,7 +2129,7 @@ generic_page = client.GenericPage().load({"id": "generic_page_id"})
 #### Example: List
 
 ```python
-generic_pages = client.GenericPage().list({})
+generic_pages = client.GenericPage().list()
 ```
 
 
@@ -2108,23 +2141,23 @@ Create an instance: `highlight = client.Highlight()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `copy` | `Any` |  |
+| `id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
 
 #### Example: Load
 
@@ -2135,7 +2168,7 @@ highlight = client.Highlight().load({"id": "highlight_id"})
 #### Example: List
 
 ```python
-highlights = client.Highlight().list({})
+highlights = client.Highlight().list()
 ```
 
 
@@ -2147,59 +2180,59 @@ Create an instance: `hour = client.Hour()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `additional_text` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `friday_is_closed` | ``$ANY`` |  |
-| `friday_member_close` | ``$ANY`` |  |
-| `friday_member_open` | ``$ANY`` |  |
-| `friday_public_close` | ``$ANY`` |  |
-| `friday_public_open` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `monday_is_closed` | ``$ANY`` |  |
-| `monday_member_close` | ``$ANY`` |  |
-| `monday_member_open` | ``$ANY`` |  |
-| `monday_public_close` | ``$ANY`` |  |
-| `monday_public_open` | ``$ANY`` |  |
-| `saturday_is_closed` | ``$ANY`` |  |
-| `saturday_member_close` | ``$ANY`` |  |
-| `saturday_member_open` | ``$ANY`` |  |
-| `saturday_public_close` | ``$ANY`` |  |
-| `saturday_public_open` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `summary` | ``$ANY`` |  |
-| `sunday_is_closed` | ``$ANY`` |  |
-| `sunday_member_close` | ``$ANY`` |  |
-| `sunday_member_open` | ``$ANY`` |  |
-| `sunday_public_close` | ``$ANY`` |  |
-| `sunday_public_open` | ``$ANY`` |  |
-| `thursday_is_closed` | ``$ANY`` |  |
-| `thursday_member_close` | ``$ANY`` |  |
-| `thursday_member_open` | ``$ANY`` |  |
-| `thursday_public_close` | ``$ANY`` |  |
-| `thursday_public_open` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `tuesday_is_closed` | ``$ANY`` |  |
-| `tuesday_member_close` | ``$ANY`` |  |
-| `tuesday_member_open` | ``$ANY`` |  |
-| `tuesday_public_close` | ``$ANY`` |  |
-| `tuesday_public_open` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `wednesday_is_closed` | ``$ANY`` |  |
-| `wednesday_member_close` | ``$ANY`` |  |
-| `wednesday_member_open` | ``$ANY`` |  |
-| `wednesday_public_close` | ``$ANY`` |  |
-| `wednesday_public_open` | ``$ANY`` |  |
+| `additional_text` | `Any` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `friday_is_closed` | `Any` |  |
+| `friday_member_close` | `Any` |  |
+| `friday_member_open` | `Any` |  |
+| `friday_public_close` | `Any` |  |
+| `friday_public_open` | `Any` |  |
+| `id` | `str` |  |
+| `monday_is_closed` | `Any` |  |
+| `monday_member_close` | `Any` |  |
+| `monday_member_open` | `Any` |  |
+| `monday_public_close` | `Any` |  |
+| `monday_public_open` | `Any` |  |
+| `saturday_is_closed` | `Any` |  |
+| `saturday_member_close` | `Any` |  |
+| `saturday_member_open` | `Any` |  |
+| `saturday_public_close` | `Any` |  |
+| `saturday_public_open` | `Any` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `summary` | `Any` |  |
+| `sunday_is_closed` | `Any` |  |
+| `sunday_member_close` | `Any` |  |
+| `sunday_member_open` | `Any` |  |
+| `sunday_public_close` | `Any` |  |
+| `sunday_public_open` | `Any` |  |
+| `thursday_is_closed` | `Any` |  |
+| `thursday_member_close` | `Any` |  |
+| `thursday_member_open` | `Any` |  |
+| `thursday_public_close` | `Any` |  |
+| `thursday_public_open` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `tuesday_is_closed` | `Any` |  |
+| `tuesday_member_close` | `Any` |  |
+| `tuesday_member_open` | `Any` |  |
+| `tuesday_public_close` | `Any` |  |
+| `tuesday_public_open` | `Any` |  |
+| `updated_at` | `Any` |  |
+| `wednesday_is_closed` | `Any` |  |
+| `wednesday_member_close` | `Any` |  |
+| `wednesday_member_open` | `Any` |  |
+| `wednesday_public_close` | `Any` |  |
+| `wednesday_public_open` | `Any` |  |
 
 #### Example: Load
 
@@ -2210,7 +2243,7 @@ hour = client.Hour().load({"id": "hour_id"})
 #### Example: List
 
 ```python
-hours = client.Hour().list({})
+hours = client.Hour().list()
 ```
 
 
@@ -2222,42 +2255,42 @@ Create an instance: `image = client.Image()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ahash` | ``$ANY`` |  |
-| `alt_text` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `color` | ``$ANY`` |  |
-| `colorfulness` | ``$ANY`` |  |
-| `content` | ``$ANY`` |  |
-| `content_e_tag` | ``$ANY`` |  |
-| `credit_line` | ``$ANY`` |  |
-| `fingerprint` | ``$ANY`` |  |
-| `height` | ``$NUMBER`` |  |
-| `id` | ``$STRING`` |  |
-| `iiif_url` | ``$ANY`` |  |
-| `is_educational_resource` | ``$BOOLEAN`` |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` |  |
-| `is_teacher_resource` | ``$BOOLEAN`` |  |
-| `lake_guid` | ``$ANY`` |  |
-| `lqip` | ``$ANY`` |  |
-| `phash` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `width` | ``$NUMBER`` |  |
+| `ahash` | `Any` |  |
+| `alt_text` | `Any` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `artwork_id` | `str` |  |
+| `artwork_title` | `Any` |  |
+| `color` | `Any` |  |
+| `colorfulness` | `Any` |  |
+| `content` | `Any` |  |
+| `content_e_tag` | `Any` |  |
+| `credit_line` | `Any` |  |
+| `fingerprint` | `Any` |  |
+| `height` | `float` |  |
+| `id` | `str` |  |
+| `iiif_url` | `Any` |  |
+| `is_educational_resource` | `bool` |  |
+| `is_multimedia_resource` | `bool` |  |
+| `is_teacher_resource` | `bool` |  |
+| `lake_guid` | `Any` |  |
+| `lqip` | `Any` |  |
+| `phash` | `Any` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `type` | `Any` |  |
+| `updated_at` | `Any` |  |
+| `width` | `float` |  |
 
 #### Example: Load
 
@@ -2268,7 +2301,7 @@ image = client.Image().load({"id": "image_id"})
 #### Example: List
 
 ```python
-images = client.Image().list({})
+images = client.Image().list()
 ```
 
 
@@ -2280,25 +2313,25 @@ Create an instance: `landing_page = client.LandingPage()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `search_tag` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `copy` | `Any` |  |
+| `id` | `str` |  |
+| `search_tag` | `Any` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
+| `web_url` | `Any` |  |
 
 #### Example: Load
 
@@ -2309,7 +2342,7 @@ landing_page = client.LandingPage().load({"id": "landing_page_id"})
 #### Example: List
 
 ```python
-landing_pages = client.LandingPage().list({})
+landing_pages = client.LandingPage().list()
 ```
 
 
@@ -2321,25 +2354,25 @@ Create an instance: `place = client.Place()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `tgn_id` | ``$STRING`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `id` | `str` |  |
+| `latitude` | `float` |  |
+| `longitude` | `float` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `tgn_id` | `str` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
 
 #### Example: Load
 
@@ -2350,7 +2383,7 @@ place = client.Place().load({"id": "place_id"})
 #### Example: List
 
 ```python
-places = client.Place().list({})
+places = client.Place().list()
 ```
 
 
@@ -2362,24 +2395,24 @@ Create an instance: `press_release = client.PressRelease()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `copy` | `Any` |  |
+| `id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
+| `web_url` | `Any` |  |
 
 #### Example: Load
 
@@ -2390,7 +2423,7 @@ press_release = client.PressRelease().load({"id": "press_release_id"})
 #### Example: List
 
 ```python
-press_releases = client.PressRelease().list({})
+press_releases = client.PressRelease().list()
 ```
 
 
@@ -2402,24 +2435,24 @@ Create an instance: `printed_publication = client.PrintedPublication()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `copy` | `Any` |  |
+| `id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
+| `web_url` | `Any` |  |
 
 #### Example: Load
 
@@ -2430,7 +2463,7 @@ printed_publication = client.PrintedPublication().load({"id": "printed_publicati
 #### Example: List
 
 ```python
-printed_publications = client.PrintedPublication().list({})
+printed_publications = client.PrintedPublication().list()
 ```
 
 
@@ -2442,34 +2475,34 @@ Create an instance: `product = client.Product()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artist_id` | ``$STRING`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `exhibition_id` | ``$STRING`` |  |
-| `external_sku` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `image_url` | ``$ANY`` |  |
-| `max_compare_at_price` | ``$ANY`` |  |
-| `max_current_price` | ``$ANY`` |  |
-| `min_compare_at_price` | ``$ANY`` |  |
-| `min_current_price` | ``$ANY`` |  |
-| `price_display` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `artist_id` | `str` |  |
+| `artwork_id` | `str` |  |
+| `description` | `str` |  |
+| `exhibition_id` | `str` |  |
+| `external_sku` | `Any` |  |
+| `id` | `str` |  |
+| `image_url` | `Any` |  |
+| `max_compare_at_price` | `Any` |  |
+| `max_current_price` | `Any` |  |
+| `min_compare_at_price` | `Any` |  |
+| `min_current_price` | `Any` |  |
+| `price_display` | `Any` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
+| `web_url` | `Any` |  |
 
 #### Example: Load
 
@@ -2480,7 +2513,7 @@ product = client.Product().load({"id": "product_id"})
 #### Example: List
 
 ```python
-products = client.Product().list({})
+products = client.Product().list()
 ```
 
 
@@ -2492,24 +2525,24 @@ Create an instance: `publication = client.Publication()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `section_id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `id` | `str` |  |
+| `section_id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
+| `web_url` | `Any` |  |
 
 #### Example: Load
 
@@ -2520,7 +2553,7 @@ publication = client.Publication().load({"id": "publication_id"})
 #### Example: List
 
 ```python
-publications = client.Publication().list({})
+publications = client.Publication().list()
 ```
 
 
@@ -2532,26 +2565,26 @@ Create an instance: `search = client.Search()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_id` | ``$STRING`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_boosted` | ``$BOOLEAN`` |  |
-| `score` | ``$NUMBER`` |  |
-| `thumbnail` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
+| `api_id` | `str` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `id` | `str` |  |
+| `is_boosted` | `bool` |  |
+| `score` | `float` |  |
+| `thumbnail` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
 
 #### Example: List
 
 ```python
-searchs = client.Search().list({})
+searchs = client.Search().list()
 ```
 
 
@@ -2563,29 +2596,29 @@ Create an instance: `section = client.Section()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `accession` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `content` | ``$ANY`` |  |
-| `generic_page_id` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `publication_id` | ``$STRING`` |  |
-| `publication_title` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `accession` | `Any` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `artwork_id` | `str` |  |
+| `content` | `Any` |  |
+| `generic_page_id` | `str` |  |
+| `id` | `str` |  |
+| `publication_id` | `str` |  |
+| `publication_title` | `Any` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
+| `web_url` | `Any` |  |
 
 #### Example: Load
 
@@ -2596,7 +2629,7 @@ section = client.Section().load({"id": "section_id"})
 #### Example: List
 
 ```python
-sections = client.Section().list({})
+sections = client.Section().list()
 ```
 
 
@@ -2608,28 +2641,28 @@ Create an instance: `site = client.Site()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `exhibition_id` | ``$STRING`` |  |
-| `exhibition_title` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `artwork_id` | `str` |  |
+| `artwork_title` | `Any` |  |
+| `description` | `str` |  |
+| `exhibition_id` | `str` |  |
+| `exhibition_title` | `Any` |  |
+| `id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
+| `web_url` | `Any` |  |
 
 #### Example: Load
 
@@ -2640,7 +2673,7 @@ site = client.Site().load({"id": "site_id"})
 #### Example: List
 
 ```python
-sites = client.Site().list({})
+sites = client.Site().list()
 ```
 
 
@@ -2652,35 +2685,35 @@ Create an instance: `sound = client.Sound()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `content` | ``$ANY`` |  |
-| `content_e_tag` | ``$ANY`` |  |
-| `credit_line` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_educational_resource` | ``$BOOLEAN`` |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` |  |
-| `is_teacher_resource` | ``$BOOLEAN`` |  |
-| `lake_guid` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `transcript` | ``$ANY`` |  |
-| `type` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `alt_text` | `Any` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `artwork_id` | `str` |  |
+| `artwork_title` | `Any` |  |
+| `content` | `Any` |  |
+| `content_e_tag` | `Any` |  |
+| `credit_line` | `Any` |  |
+| `id` | `str` |  |
+| `is_educational_resource` | `bool` |  |
+| `is_multimedia_resource` | `bool` |  |
+| `is_teacher_resource` | `bool` |  |
+| `lake_guid` | `Any` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `transcript` | `Any` |  |
+| `type` | `Any` |  |
+| `updated_at` | `Any` |  |
+| `web_url` | `Any` |  |
 
 #### Example: Load
 
@@ -2691,7 +2724,7 @@ sound = client.Sound().load({"id": "sound_id"})
 #### Example: List
 
 ```python
-sounds = client.Sound().list({})
+sounds = client.Sound().list()
 ```
 
 
@@ -2703,23 +2736,23 @@ Create an instance: `static_page = client.StaticPage()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `id` | `str` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
+| `web_url` | `Any` |  |
 
 #### Example: Load
 
@@ -2730,7 +2763,7 @@ static_page = client.StaticPage().load({"id": "static_page_id"})
 #### Example: List
 
 ```python
-static_pages = client.StaticPage().list({})
+static_pages = client.StaticPage().list()
 ```
 
 
@@ -2742,33 +2775,33 @@ Create an instance: `text = client.Text()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `content` | ``$ANY`` |  |
-| `content_e_tag` | ``$ANY`` |  |
-| `credit_line` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_educational_resource` | ``$BOOLEAN`` |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` |  |
-| `is_teacher_resource` | ``$BOOLEAN`` |  |
-| `lake_guid` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `alt_text` | `Any` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `artwork_id` | `str` |  |
+| `artwork_title` | `Any` |  |
+| `content` | `Any` |  |
+| `content_e_tag` | `Any` |  |
+| `credit_line` | `Any` |  |
+| `id` | `str` |  |
+| `is_educational_resource` | `bool` |  |
+| `is_multimedia_resource` | `bool` |  |
+| `is_teacher_resource` | `bool` |  |
+| `lake_guid` | `Any` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `type` | `Any` |  |
+| `updated_at` | `Any` |  |
 
 #### Example: Load
 
@@ -2779,7 +2812,7 @@ text = client.Text().load({"id": "text_id"})
 #### Example: List
 
 ```python
-texts = client.Text().list({})
+texts = client.Text().list()
 ```
 
 
@@ -2791,30 +2824,30 @@ Create an instance: `tour = client.Tour()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artist_title` | ``$ANY`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$ANY`` |  |
-| `intro` | ``$ANY`` |  |
-| `intro_link` | ``$ANY`` |  |
-| `intro_transcript` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `weight` | ``$NUMBER`` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `artist_title` | `Any` |  |
+| `artwork_title` | `Any` |  |
+| `description` | `str` |  |
+| `id` | `str` |  |
+| `image` | `Any` |  |
+| `intro` | `Any` |  |
+| `intro_link` | `Any` |  |
+| `intro_transcript` | `Any` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `updated_at` | `Any` |  |
+| `weight` | `float` |  |
 
 #### Example: Load
 
@@ -2825,7 +2858,7 @@ tour = client.Tour().load({"id": "tour_id"})
 #### Example: List
 
 ```python
-tours = client.Tour().list({})
+tours = client.Tour().list()
 ```
 
 
@@ -2837,33 +2870,33 @@ Create an instance: `video = client.Video()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `content` | ``$ANY`` |  |
-| `content_e_tag` | ``$ANY`` |  |
-| `credit_line` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_educational_resource` | ``$BOOLEAN`` |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` |  |
-| `is_teacher_resource` | ``$BOOLEAN`` |  |
-| `lake_guid` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `alt_text` | `Any` |  |
+| `api_link` | `Any` |  |
+| `api_model` | `Any` |  |
+| `artwork_id` | `str` |  |
+| `artwork_title` | `Any` |  |
+| `content` | `Any` |  |
+| `content_e_tag` | `Any` |  |
+| `credit_line` | `Any` |  |
+| `id` | `str` |  |
+| `is_educational_resource` | `bool` |  |
+| `is_multimedia_resource` | `bool` |  |
+| `is_teacher_resource` | `bool` |  |
+| `lake_guid` | `Any` |  |
+| `source_updated_at` | `Any` |  |
+| `suggest_autocomplete_all` | `Any` |  |
+| `suggest_autocomplete_boosted` | `Any` |  |
+| `timestamp` | `Any` |  |
+| `title` | `str` |  |
+| `type` | `Any` |  |
+| `updated_at` | `Any` |  |
 
 #### Example: Load
 
@@ -2874,16 +2907,20 @@ video = client.Video().load({"id": "video_id"})
 #### Example: List
 
 ```python
-videos = client.Video().list({})
+videos = client.Video().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -2900,8 +2937,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -2944,14 +2982,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 agent = client.Agent()
-agent.load({"id": "example_id"})
+agent.list()
 
-# agent.data_get() now returns the loaded agent data
+# agent.data_get() now returns the agent data from the last list
 # agent.match_get() returns the last match criteria
 ```
 

@@ -4,6 +4,8 @@
 
 The PHP SDK for the ArtInstituteOfChicago API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Agent()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,7 +38,7 @@ try {
     // list() returns an array of Agent records — iterate directly.
     $agents = $client->Agent()->list();
     foreach ($agents as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo $item["id"] . " " . $item["alt_title"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -52,6 +54,37 @@ try {
     print_r($agent);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $agents = $client->Agent()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -75,7 +108,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -104,8 +140,8 @@ $client = ArtInstituteOfChicagoSDK::test([
     "entity" => ["agent" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// load() returns the bare mock record (throws on error).
-$agent = $client->Agent()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$agent = $client->Agent()->list();
 print_r($agent);
 ```
 
@@ -228,10 +264,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -1243,22 +1276,22 @@ Create an instance: `$agent = $client->Agent();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_title` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `birth_date` | ``$ANY`` |  |
-| `death_date` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `is_artist` | ``$BOOLEAN`` |  |
-| `sort_title` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `ulan_id` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `alt_title` | `mixed` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `birth_date` | `mixed` |  |
+| `death_date` | `mixed` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `is_artist` | `bool` |  |
+| `sort_title` | `mixed` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `ulan_id` | `string` |  |
+| `updated_at` | `mixed` |  |
 
 #### Example: Load
 
@@ -1290,15 +1323,15 @@ Create an instance: `$agent_role = $client->AgentRole();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
 
 #### Example: Load
 
@@ -1330,15 +1363,15 @@ Create an instance: `$agent_type = $client->AgentType();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
 
 #### Example: Load
 
@@ -1370,16 +1403,16 @@ Create an instance: `$article = $client->Article();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `copy` | `mixed` |  |
+| `id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
 
 #### Example: Load
 
@@ -1411,101 +1444,101 @@ Create an instance: `$artwork = $client->Artwork();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_artist_id` | ``$STRING`` |  |
-| `alt_classification_id` | ``$STRING`` |  |
-| `alt_image_id` | ``$STRING`` |  |
-| `alt_material_id` | ``$STRING`` |  |
-| `alt_style_id` | ``$STRING`` |  |
-| `alt_subject_id` | ``$STRING`` |  |
-| `alt_technique_id` | ``$STRING`` |  |
-| `alt_title` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artist_display` | ``$ANY`` |  |
-| `artist_id` | ``$STRING`` |  |
-| `artist_title` | ``$ANY`` |  |
-| `artwork_type_id` | ``$STRING`` |  |
-| `artwork_type_title` | ``$ANY`` |  |
-| `boost_rank` | ``$ANY`` |  |
-| `catalog_based_search_keyword_title` | ``$ANY`` |  |
-| `catalogue_display` | ``$ANY`` |  |
-| `category_id` | ``$STRING`` |  |
-| `category_title` | ``$ANY`` |  |
-| `classification_id` | ``$STRING`` |  |
-| `classification_title` | ``$ANY`` |  |
-| `color` | ``$ANY`` |  |
-| `colorfulness` | ``$ANY`` |  |
-| `copyright_notice` | ``$ANY`` |  |
-| `credit_line` | ``$ANY`` |  |
-| `date_display` | ``$ANY`` |  |
-| `date_end` | ``$ANY`` |  |
-| `date_qualifier_id` | ``$STRING`` |  |
-| `date_qualifier_title` | ``$ANY`` |  |
-| `date_start` | ``$ANY`` |  |
-| `department_id` | ``$STRING`` |  |
-| `department_title` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `dimension` | ``$ANY`` |  |
-| `dimensions_detail` | ``$ANY`` |  |
-| `document_id` | ``$STRING`` |  |
-| `edition` | ``$ANY`` |  |
-| `exhibition_history` | ``$ANY`` |  |
-| `fiscal_year` | ``$ANY`` |  |
-| `fiscal_year_deaccession` | ``$ANY`` |  |
-| `gallery_id` | ``$STRING`` |  |
-| `gallery_title` | ``$ANY`` |  |
-| `has_advanced_imaging` | ``$BOOLEAN`` |  |
-| `has_educational_resource` | ``$BOOLEAN`` |  |
-| `has_multimedia_resource` | ``$BOOLEAN`` |  |
-| `has_not_been_viewed_much` | ``$BOOLEAN`` |  |
-| `id` | ``$STRING`` |  |
-| `image_embedding` | ``$ANY`` |  |
-| `image_id` | ``$STRING`` |  |
-| `inscription` | ``$ANY`` |  |
-| `internal_department_id` | ``$STRING`` |  |
-| `is_boosted` | ``$BOOLEAN`` |  |
-| `is_on_view` | ``$BOOLEAN`` |  |
-| `is_public_domain` | ``$BOOLEAN`` |  |
-| `is_zoomable` | ``$BOOLEAN`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `latlon` | ``$ANY`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `main_reference_number` | ``$INTEGER`` |  |
-| `material_id` | ``$STRING`` |  |
-| `material_title` | ``$ANY`` |  |
-| `max_zoom_window_size` | ``$ANY`` |  |
-| `medium_display` | ``$ANY`` |  |
-| `nomisma_id` | ``$STRING`` |  |
-| `on_loan_display` | ``$ANY`` |  |
-| `pageview` | ``$ANY`` |  |
-| `pageviews_recent` | ``$ANY`` |  |
-| `place_of_origin` | ``$ANY`` |  |
-| `provenance_text` | ``$ANY`` |  |
-| `publication_history` | ``$ANY`` |  |
-| `publishing_verification_level` | ``$ANY`` |  |
-| `section_id` | ``$STRING`` |  |
-| `section_title` | ``$ANY`` |  |
-| `short_description` | ``$ANY`` |  |
-| `site_id` | ``$STRING`` |  |
-| `sound_id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `style_id` | ``$STRING`` |  |
-| `style_title` | ``$ANY`` |  |
-| `subject_id` | ``$STRING`` |  |
-| `subject_title` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `technique_id` | ``$STRING`` |  |
-| `technique_title` | ``$ANY`` |  |
-| `term_title` | ``$ANY`` |  |
-| `text_embedding` | ``$ANY`` |  |
-| `text_id` | ``$STRING`` |  |
-| `theme_title` | ``$ANY`` |  |
-| `thumbnail` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `video_id` | ``$STRING`` |  |
+| `alt_artist_id` | `string` |  |
+| `alt_classification_id` | `string` |  |
+| `alt_image_id` | `string` |  |
+| `alt_material_id` | `string` |  |
+| `alt_style_id` | `string` |  |
+| `alt_subject_id` | `string` |  |
+| `alt_technique_id` | `string` |  |
+| `alt_title` | `mixed` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `artist_display` | `mixed` |  |
+| `artist_id` | `string` |  |
+| `artist_title` | `mixed` |  |
+| `artwork_type_id` | `string` |  |
+| `artwork_type_title` | `mixed` |  |
+| `boost_rank` | `mixed` |  |
+| `catalog_based_search_keyword_title` | `mixed` |  |
+| `catalogue_display` | `mixed` |  |
+| `category_id` | `string` |  |
+| `category_title` | `mixed` |  |
+| `classification_id` | `string` |  |
+| `classification_title` | `mixed` |  |
+| `color` | `mixed` |  |
+| `colorfulness` | `mixed` |  |
+| `copyright_notice` | `mixed` |  |
+| `credit_line` | `mixed` |  |
+| `date_display` | `mixed` |  |
+| `date_end` | `mixed` |  |
+| `date_qualifier_id` | `string` |  |
+| `date_qualifier_title` | `mixed` |  |
+| `date_start` | `mixed` |  |
+| `department_id` | `string` |  |
+| `department_title` | `mixed` |  |
+| `description` | `string` |  |
+| `dimension` | `mixed` |  |
+| `dimensions_detail` | `mixed` |  |
+| `document_id` | `string` |  |
+| `edition` | `mixed` |  |
+| `exhibition_history` | `mixed` |  |
+| `fiscal_year` | `mixed` |  |
+| `fiscal_year_deaccession` | `mixed` |  |
+| `gallery_id` | `string` |  |
+| `gallery_title` | `mixed` |  |
+| `has_advanced_imaging` | `bool` |  |
+| `has_educational_resource` | `bool` |  |
+| `has_multimedia_resource` | `bool` |  |
+| `has_not_been_viewed_much` | `bool` |  |
+| `id` | `string` |  |
+| `image_embedding` | `mixed` |  |
+| `image_id` | `string` |  |
+| `inscription` | `mixed` |  |
+| `internal_department_id` | `string` |  |
+| `is_boosted` | `bool` |  |
+| `is_on_view` | `bool` |  |
+| `is_public_domain` | `bool` |  |
+| `is_zoomable` | `bool` |  |
+| `latitude` | `float` |  |
+| `latlon` | `mixed` |  |
+| `longitude` | `float` |  |
+| `main_reference_number` | `int` |  |
+| `material_id` | `string` |  |
+| `material_title` | `mixed` |  |
+| `max_zoom_window_size` | `mixed` |  |
+| `medium_display` | `mixed` |  |
+| `nomisma_id` | `string` |  |
+| `on_loan_display` | `mixed` |  |
+| `pageview` | `mixed` |  |
+| `pageviews_recent` | `mixed` |  |
+| `place_of_origin` | `mixed` |  |
+| `provenance_text` | `mixed` |  |
+| `publication_history` | `mixed` |  |
+| `publishing_verification_level` | `mixed` |  |
+| `section_id` | `string` |  |
+| `section_title` | `mixed` |  |
+| `short_description` | `mixed` |  |
+| `site_id` | `string` |  |
+| `sound_id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `style_id` | `string` |  |
+| `style_title` | `mixed` |  |
+| `subject_id` | `string` |  |
+| `subject_title` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `technique_id` | `string` |  |
+| `technique_title` | `mixed` |  |
+| `term_title` | `mixed` |  |
+| `text_embedding` | `mixed` |  |
+| `text_id` | `string` |  |
+| `theme_title` | `mixed` |  |
+| `thumbnail` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
+| `video_id` | `string` |  |
 
 #### Example: Load
 
@@ -1537,15 +1570,15 @@ Create an instance: `$artwork_date_qualifier = $client->ArtworkDateQualifier();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
 
 #### Example: Load
 
@@ -1577,15 +1610,15 @@ Create an instance: `$artwork_place_qualifier = $client->ArtworkPlaceQualifier()
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
 
 #### Example: Load
 
@@ -1617,16 +1650,16 @@ Create an instance: `$artwork_type = $client->ArtworkType();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aat_id` | ``$STRING`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `aat_id` | `string` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
 
 #### Example: Load
 
@@ -1658,17 +1691,17 @@ Create an instance: `$category_term = $client->CategoryTerm();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aat_id` | ``$STRING`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `parent_id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `subtype` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `aat_id` | `string` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `id` | `string` |  |
+| `parent_id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `subtype` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
 
 #### Example: Load
 
@@ -1700,17 +1733,17 @@ Create an instance: `$digital_publication = $client->DigitalPublication();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `copy` | `mixed` |  |
+| `id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
+| `web_url` | `mixed` |  |
 
 #### Example: Load
 
@@ -1742,19 +1775,19 @@ Create an instance: `$digital_publication_article = $client->DigitalPublicationA
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `author_display` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `digital_publication_id` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `author_display` | `mixed` |  |
+| `copy` | `mixed` |  |
+| `digital_publication_id` | `string` |  |
+| `id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
+| `web_url` | `mixed` |  |
 
 #### Example: Load
 
@@ -1786,17 +1819,17 @@ Create an instance: `$educator_resource = $client->EducatorResource();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `copy` | `mixed` |  |
+| `id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
+| `web_url` | `mixed` |  |
 
 #### Example: Load
 
@@ -1828,59 +1861,59 @@ Create an instance: `$event = $client->Event();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_audience_id` | ``$STRING`` |  |
-| `alt_event_type_id` | ``$STRING`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `audience_id` | ``$STRING`` |  |
-| `buy_button_caption` | ``$ANY`` |  |
-| `buy_button_text` | ``$ANY`` |  |
-| `date_display` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `door_time` | ``$ANY`` |  |
-| `end_date` | ``$ANY`` |  |
-| `end_time` | ``$ANY`` |  |
-| `entrance` | ``$ANY`` |  |
-| `event_host_id` | ``$STRING`` |  |
-| `event_host_title` | ``$ANY`` |  |
-| `event_type_id` | ``$STRING`` |  |
-| `header_description` | ``$ANY`` |  |
-| `hero_caption` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `image_url` | ``$ANY`` |  |
-| `is_admission_required` | ``$BOOLEAN`` |  |
-| `is_after_hour` | ``$BOOLEAN`` |  |
-| `is_free` | ``$BOOLEAN`` |  |
-| `is_member_exclusive` | ``$BOOLEAN`` |  |
-| `is_private` | ``$BOOLEAN`` |  |
-| `is_registration_required` | ``$BOOLEAN`` |  |
-| `is_sales_button_hidden` | ``$BOOLEAN`` |  |
-| `is_sold_out` | ``$BOOLEAN`` |  |
-| `is_ticketed` | ``$BOOLEAN`` |  |
-| `is_virtual_event` | ``$BOOLEAN`` |  |
-| `join_url` | ``$ANY`` |  |
-| `layout_type` | ``$ANY`` |  |
-| `list_description` | ``$ANY`` |  |
-| `location` | ``$ANY`` |  |
-| `program_id` | ``$STRING`` |  |
-| `program_title` | ``$ANY`` |  |
-| `rsvp_link` | ``$ANY`` |  |
-| `search_tag` | ``$ANY`` |  |
-| `short_description` | ``$ANY`` |  |
-| `slug` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `start_date` | ``$ANY`` |  |
-| `start_time` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `survey_url` | ``$ANY`` |  |
-| `ticketed_event_id` | ``$STRING`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `title_display` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `virtual_event_passcode` | ``$ANY`` |  |
-| `virtual_event_url` | ``$ANY`` |  |
+| `alt_audience_id` | `string` |  |
+| `alt_event_type_id` | `string` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `audience_id` | `string` |  |
+| `buy_button_caption` | `mixed` |  |
+| `buy_button_text` | `mixed` |  |
+| `date_display` | `mixed` |  |
+| `description` | `string` |  |
+| `door_time` | `mixed` |  |
+| `end_date` | `mixed` |  |
+| `end_time` | `mixed` |  |
+| `entrance` | `mixed` |  |
+| `event_host_id` | `string` |  |
+| `event_host_title` | `mixed` |  |
+| `event_type_id` | `string` |  |
+| `header_description` | `mixed` |  |
+| `hero_caption` | `mixed` |  |
+| `id` | `string` |  |
+| `image_url` | `mixed` |  |
+| `is_admission_required` | `bool` |  |
+| `is_after_hour` | `bool` |  |
+| `is_free` | `bool` |  |
+| `is_member_exclusive` | `bool` |  |
+| `is_private` | `bool` |  |
+| `is_registration_required` | `bool` |  |
+| `is_sales_button_hidden` | `bool` |  |
+| `is_sold_out` | `bool` |  |
+| `is_ticketed` | `bool` |  |
+| `is_virtual_event` | `bool` |  |
+| `join_url` | `mixed` |  |
+| `layout_type` | `mixed` |  |
+| `list_description` | `mixed` |  |
+| `location` | `mixed` |  |
+| `program_id` | `string` |  |
+| `program_title` | `mixed` |  |
+| `rsvp_link` | `mixed` |  |
+| `search_tag` | `mixed` |  |
+| `short_description` | `mixed` |  |
+| `slug` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `start_date` | `mixed` |  |
+| `start_time` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `survey_url` | `mixed` |  |
+| `ticketed_event_id` | `string` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `title_display` | `mixed` |  |
+| `updated_at` | `mixed` |  |
+| `virtual_event_passcode` | `mixed` |  |
+| `virtual_event_url` | `mixed` |  |
 
 #### Example: Load
 
@@ -1912,31 +1945,31 @@ Create an instance: `$event_occurrence = $client->EventOccurrence();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `button_caption` | ``$ANY`` |  |
-| `button_text` | ``$ANY`` |  |
-| `button_url` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `end_at` | ``$ANY`` |  |
-| `event_id` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `image_url` | ``$ANY`` |  |
-| `is_private` | ``$BOOLEAN`` |  |
-| `is_sales_button_hidden` | ``$BOOLEAN`` |  |
-| `is_ticketed` | ``$BOOLEAN`` |  |
-| `location` | ``$ANY`` |  |
-| `off_sale_at` | ``$ANY`` |  |
-| `on_sale_at` | ``$ANY`` |  |
-| `short_description` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `start_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `title_display` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `button_caption` | `mixed` |  |
+| `button_text` | `mixed` |  |
+| `button_url` | `mixed` |  |
+| `description` | `string` |  |
+| `end_at` | `mixed` |  |
+| `event_id` | `string` |  |
+| `id` | `string` |  |
+| `image_url` | `mixed` |  |
+| `is_private` | `bool` |  |
+| `is_sales_button_hidden` | `bool` |  |
+| `is_ticketed` | `bool` |  |
+| `location` | `mixed` |  |
+| `off_sale_at` | `mixed` |  |
+| `on_sale_at` | `mixed` |  |
+| `short_description` | `mixed` |  |
+| `source_updated_at` | `mixed` |  |
+| `start_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `title_display` | `mixed` |  |
+| `updated_at` | `mixed` |  |
 
 #### Example: Load
 
@@ -1968,17 +2001,17 @@ Create an instance: `$event_program = $client->EventProgram();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_affiliate_group` | ``$BOOLEAN`` |  |
-| `is_event_host` | ``$BOOLEAN`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `id` | `string` |  |
+| `is_affiliate_group` | `bool` |  |
+| `is_event_host` | `bool` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
 
 #### Example: Load
 
@@ -2010,33 +2043,33 @@ Create an instance: `$exhibition = $client->Exhibition();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aic_end_at` | ``$ANY`` |  |
-| `aic_start_at` | ``$ANY`` |  |
-| `alt_image_id` | ``$STRING`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artist_id` | ``$STRING`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `document_id` | ``$STRING`` |  |
-| `gallery_id` | ``$STRING`` |  |
-| `gallery_title` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `image_id` | ``$STRING`` |  |
-| `image_url` | ``$ANY`` |  |
-| `is_featured` | ``$BOOLEAN`` |  |
-| `is_published` | ``$BOOLEAN`` |  |
-| `position` | ``$ANY`` |  |
-| `short_description` | ``$ANY`` |  |
-| `site_id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `status` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `aic_end_at` | `mixed` |  |
+| `aic_start_at` | `mixed` |  |
+| `alt_image_id` | `string` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `artist_id` | `string` |  |
+| `artwork_id` | `string` |  |
+| `artwork_title` | `mixed` |  |
+| `document_id` | `string` |  |
+| `gallery_id` | `string` |  |
+| `gallery_title` | `mixed` |  |
+| `id` | `string` |  |
+| `image_id` | `string` |  |
+| `image_url` | `mixed` |  |
+| `is_featured` | `bool` |  |
+| `is_published` | `bool` |  |
+| `position` | `mixed` |  |
+| `short_description` | `mixed` |  |
+| `site_id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `status` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
+| `web_url` | `mixed` |  |
 
 #### Example: Load
 
@@ -2068,22 +2101,22 @@ Create an instance: `$gallery = $client->Gallery();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `floor` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_closed` | ``$BOOLEAN`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `latlon` | ``$ANY`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `number` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `tgn_id` | ``$STRING`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `floor` | `mixed` |  |
+| `id` | `string` |  |
+| `is_closed` | `bool` |  |
+| `latitude` | `float` |  |
+| `latlon` | `mixed` |  |
+| `longitude` | `float` |  |
+| `number` | `mixed` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `tgn_id` | `string` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
 
 #### Example: Load
 
@@ -2115,18 +2148,18 @@ Create an instance: `$generic_page = $client->GenericPage();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `search_tag` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `copy` | `mixed` |  |
+| `id` | `string` |  |
+| `search_tag` | `mixed` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
+| `web_url` | `mixed` |  |
 
 #### Example: Load
 
@@ -2158,16 +2191,16 @@ Create an instance: `$highlight = $client->Highlight();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `copy` | `mixed` |  |
+| `id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
 
 #### Example: Load
 
@@ -2199,52 +2232,52 @@ Create an instance: `$hour = $client->Hour();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `additional_text` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `friday_is_closed` | ``$ANY`` |  |
-| `friday_member_close` | ``$ANY`` |  |
-| `friday_member_open` | ``$ANY`` |  |
-| `friday_public_close` | ``$ANY`` |  |
-| `friday_public_open` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `monday_is_closed` | ``$ANY`` |  |
-| `monday_member_close` | ``$ANY`` |  |
-| `monday_member_open` | ``$ANY`` |  |
-| `monday_public_close` | ``$ANY`` |  |
-| `monday_public_open` | ``$ANY`` |  |
-| `saturday_is_closed` | ``$ANY`` |  |
-| `saturday_member_close` | ``$ANY`` |  |
-| `saturday_member_open` | ``$ANY`` |  |
-| `saturday_public_close` | ``$ANY`` |  |
-| `saturday_public_open` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `summary` | ``$ANY`` |  |
-| `sunday_is_closed` | ``$ANY`` |  |
-| `sunday_member_close` | ``$ANY`` |  |
-| `sunday_member_open` | ``$ANY`` |  |
-| `sunday_public_close` | ``$ANY`` |  |
-| `sunday_public_open` | ``$ANY`` |  |
-| `thursday_is_closed` | ``$ANY`` |  |
-| `thursday_member_close` | ``$ANY`` |  |
-| `thursday_member_open` | ``$ANY`` |  |
-| `thursday_public_close` | ``$ANY`` |  |
-| `thursday_public_open` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `tuesday_is_closed` | ``$ANY`` |  |
-| `tuesday_member_close` | ``$ANY`` |  |
-| `tuesday_member_open` | ``$ANY`` |  |
-| `tuesday_public_close` | ``$ANY`` |  |
-| `tuesday_public_open` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `wednesday_is_closed` | ``$ANY`` |  |
-| `wednesday_member_close` | ``$ANY`` |  |
-| `wednesday_member_open` | ``$ANY`` |  |
-| `wednesday_public_close` | ``$ANY`` |  |
-| `wednesday_public_open` | ``$ANY`` |  |
+| `additional_text` | `mixed` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `friday_is_closed` | `mixed` |  |
+| `friday_member_close` | `mixed` |  |
+| `friday_member_open` | `mixed` |  |
+| `friday_public_close` | `mixed` |  |
+| `friday_public_open` | `mixed` |  |
+| `id` | `string` |  |
+| `monday_is_closed` | `mixed` |  |
+| `monday_member_close` | `mixed` |  |
+| `monday_member_open` | `mixed` |  |
+| `monday_public_close` | `mixed` |  |
+| `monday_public_open` | `mixed` |  |
+| `saturday_is_closed` | `mixed` |  |
+| `saturday_member_close` | `mixed` |  |
+| `saturday_member_open` | `mixed` |  |
+| `saturday_public_close` | `mixed` |  |
+| `saturday_public_open` | `mixed` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `summary` | `mixed` |  |
+| `sunday_is_closed` | `mixed` |  |
+| `sunday_member_close` | `mixed` |  |
+| `sunday_member_open` | `mixed` |  |
+| `sunday_public_close` | `mixed` |  |
+| `sunday_public_open` | `mixed` |  |
+| `thursday_is_closed` | `mixed` |  |
+| `thursday_member_close` | `mixed` |  |
+| `thursday_member_open` | `mixed` |  |
+| `thursday_public_close` | `mixed` |  |
+| `thursday_public_open` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `tuesday_is_closed` | `mixed` |  |
+| `tuesday_member_close` | `mixed` |  |
+| `tuesday_member_open` | `mixed` |  |
+| `tuesday_public_close` | `mixed` |  |
+| `tuesday_public_open` | `mixed` |  |
+| `updated_at` | `mixed` |  |
+| `wednesday_is_closed` | `mixed` |  |
+| `wednesday_member_close` | `mixed` |  |
+| `wednesday_member_open` | `mixed` |  |
+| `wednesday_public_close` | `mixed` |  |
+| `wednesday_public_open` | `mixed` |  |
 
 #### Example: Load
 
@@ -2276,35 +2309,35 @@ Create an instance: `$image = $client->Image();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ahash` | ``$ANY`` |  |
-| `alt_text` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `color` | ``$ANY`` |  |
-| `colorfulness` | ``$ANY`` |  |
-| `content` | ``$ANY`` |  |
-| `content_e_tag` | ``$ANY`` |  |
-| `credit_line` | ``$ANY`` |  |
-| `fingerprint` | ``$ANY`` |  |
-| `height` | ``$NUMBER`` |  |
-| `id` | ``$STRING`` |  |
-| `iiif_url` | ``$ANY`` |  |
-| `is_educational_resource` | ``$BOOLEAN`` |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` |  |
-| `is_teacher_resource` | ``$BOOLEAN`` |  |
-| `lake_guid` | ``$ANY`` |  |
-| `lqip` | ``$ANY`` |  |
-| `phash` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `width` | ``$NUMBER`` |  |
+| `ahash` | `mixed` |  |
+| `alt_text` | `mixed` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `artwork_id` | `string` |  |
+| `artwork_title` | `mixed` |  |
+| `color` | `mixed` |  |
+| `colorfulness` | `mixed` |  |
+| `content` | `mixed` |  |
+| `content_e_tag` | `mixed` |  |
+| `credit_line` | `mixed` |  |
+| `fingerprint` | `mixed` |  |
+| `height` | `float` |  |
+| `id` | `string` |  |
+| `iiif_url` | `mixed` |  |
+| `is_educational_resource` | `bool` |  |
+| `is_multimedia_resource` | `bool` |  |
+| `is_teacher_resource` | `bool` |  |
+| `lake_guid` | `mixed` |  |
+| `lqip` | `mixed` |  |
+| `phash` | `mixed` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `type` | `mixed` |  |
+| `updated_at` | `mixed` |  |
+| `width` | `float` |  |
 
 #### Example: Load
 
@@ -2336,18 +2369,18 @@ Create an instance: `$landing_page = $client->LandingPage();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `search_tag` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `copy` | `mixed` |  |
+| `id` | `string` |  |
+| `search_tag` | `mixed` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
+| `web_url` | `mixed` |  |
 
 #### Example: Load
 
@@ -2379,18 +2412,18 @@ Create an instance: `$place = $client->Place();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `latitude` | ``$NUMBER`` |  |
-| `longitude` | ``$NUMBER`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `tgn_id` | ``$STRING`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `id` | `string` |  |
+| `latitude` | `float` |  |
+| `longitude` | `float` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `tgn_id` | `string` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
 
 #### Example: Load
 
@@ -2422,17 +2455,17 @@ Create an instance: `$press_release = $client->PressRelease();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `copy` | `mixed` |  |
+| `id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
+| `web_url` | `mixed` |  |
 
 #### Example: Load
 
@@ -2464,17 +2497,17 @@ Create an instance: `$printed_publication = $client->PrintedPublication();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `copy` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `copy` | `mixed` |  |
+| `id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
+| `web_url` | `mixed` |  |
 
 #### Example: Load
 
@@ -2506,27 +2539,27 @@ Create an instance: `$product = $client->Product();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artist_id` | ``$STRING`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `exhibition_id` | ``$STRING`` |  |
-| `external_sku` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `image_url` | ``$ANY`` |  |
-| `max_compare_at_price` | ``$ANY`` |  |
-| `max_current_price` | ``$ANY`` |  |
-| `min_compare_at_price` | ``$ANY`` |  |
-| `min_current_price` | ``$ANY`` |  |
-| `price_display` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `artist_id` | `string` |  |
+| `artwork_id` | `string` |  |
+| `description` | `string` |  |
+| `exhibition_id` | `string` |  |
+| `external_sku` | `mixed` |  |
+| `id` | `string` |  |
+| `image_url` | `mixed` |  |
+| `max_compare_at_price` | `mixed` |  |
+| `max_current_price` | `mixed` |  |
+| `min_compare_at_price` | `mixed` |  |
+| `min_current_price` | `mixed` |  |
+| `price_display` | `mixed` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
+| `web_url` | `mixed` |  |
 
 #### Example: Load
 
@@ -2558,17 +2591,17 @@ Create an instance: `$publication = $client->Publication();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `section_id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `id` | `string` |  |
+| `section_id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
+| `web_url` | `mixed` |  |
 
 #### Example: Load
 
@@ -2599,15 +2632,15 @@ Create an instance: `$search = $client->Search();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_id` | ``$STRING`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_boosted` | ``$BOOLEAN`` |  |
-| `score` | ``$NUMBER`` |  |
-| `thumbnail` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
+| `api_id` | `string` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `id` | `string` |  |
+| `is_boosted` | `bool` |  |
+| `score` | `float` |  |
+| `thumbnail` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
 
 #### Example: List
 
@@ -2632,22 +2665,22 @@ Create an instance: `$section = $client->Section();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `accession` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `content` | ``$ANY`` |  |
-| `generic_page_id` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `publication_id` | ``$STRING`` |  |
-| `publication_title` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `accession` | `mixed` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `artwork_id` | `string` |  |
+| `content` | `mixed` |  |
+| `generic_page_id` | `string` |  |
+| `id` | `string` |  |
+| `publication_id` | `string` |  |
+| `publication_title` | `mixed` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
+| `web_url` | `mixed` |  |
 
 #### Example: Load
 
@@ -2679,21 +2712,21 @@ Create an instance: `$site = $client->Site();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `exhibition_id` | ``$STRING`` |  |
-| `exhibition_title` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `artwork_id` | `string` |  |
+| `artwork_title` | `mixed` |  |
+| `description` | `string` |  |
+| `exhibition_id` | `string` |  |
+| `exhibition_title` | `mixed` |  |
+| `id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
+| `web_url` | `mixed` |  |
 
 #### Example: Load
 
@@ -2725,28 +2758,28 @@ Create an instance: `$sound = $client->Sound();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `content` | ``$ANY`` |  |
-| `content_e_tag` | ``$ANY`` |  |
-| `credit_line` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_educational_resource` | ``$BOOLEAN`` |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` |  |
-| `is_teacher_resource` | ``$BOOLEAN`` |  |
-| `lake_guid` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `transcript` | ``$ANY`` |  |
-| `type` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `alt_text` | `mixed` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `artwork_id` | `string` |  |
+| `artwork_title` | `mixed` |  |
+| `content` | `mixed` |  |
+| `content_e_tag` | `mixed` |  |
+| `credit_line` | `mixed` |  |
+| `id` | `string` |  |
+| `is_educational_resource` | `bool` |  |
+| `is_multimedia_resource` | `bool` |  |
+| `is_teacher_resource` | `bool` |  |
+| `lake_guid` | `mixed` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `transcript` | `mixed` |  |
+| `type` | `mixed` |  |
+| `updated_at` | `mixed` |  |
+| `web_url` | `mixed` |  |
 
 #### Example: Load
 
@@ -2778,16 +2811,16 @@ Create an instance: `$static_page = $client->StaticPage();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `web_url` | ``$ANY`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `id` | `string` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
+| `web_url` | `mixed` |  |
 
 #### Example: Load
 
@@ -2819,26 +2852,26 @@ Create an instance: `$text = $client->Text();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `content` | ``$ANY`` |  |
-| `content_e_tag` | ``$ANY`` |  |
-| `credit_line` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_educational_resource` | ``$BOOLEAN`` |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` |  |
-| `is_teacher_resource` | ``$BOOLEAN`` |  |
-| `lake_guid` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `alt_text` | `mixed` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `artwork_id` | `string` |  |
+| `artwork_title` | `mixed` |  |
+| `content` | `mixed` |  |
+| `content_e_tag` | `mixed` |  |
+| `credit_line` | `mixed` |  |
+| `id` | `string` |  |
+| `is_educational_resource` | `bool` |  |
+| `is_multimedia_resource` | `bool` |  |
+| `is_teacher_resource` | `bool` |  |
+| `lake_guid` | `mixed` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `type` | `mixed` |  |
+| `updated_at` | `mixed` |  |
 
 #### Example: Load
 
@@ -2870,23 +2903,23 @@ Create an instance: `$tour = $client->Tour();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artist_title` | ``$ANY`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$ANY`` |  |
-| `intro` | ``$ANY`` |  |
-| `intro_link` | ``$ANY`` |  |
-| `intro_transcript` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `updated_at` | ``$ANY`` |  |
-| `weight` | ``$NUMBER`` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `artist_title` | `mixed` |  |
+| `artwork_title` | `mixed` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `image` | `mixed` |  |
+| `intro` | `mixed` |  |
+| `intro_link` | `mixed` |  |
+| `intro_transcript` | `mixed` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `updated_at` | `mixed` |  |
+| `weight` | `float` |  |
 
 #### Example: Load
 
@@ -2918,26 +2951,26 @@ Create an instance: `$video = $client->Video();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | ``$ANY`` |  |
-| `api_link` | ``$ANY`` |  |
-| `api_model` | ``$ANY`` |  |
-| `artwork_id` | ``$STRING`` |  |
-| `artwork_title` | ``$ANY`` |  |
-| `content` | ``$ANY`` |  |
-| `content_e_tag` | ``$ANY`` |  |
-| `credit_line` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `is_educational_resource` | ``$BOOLEAN`` |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` |  |
-| `is_teacher_resource` | ``$BOOLEAN`` |  |
-| `lake_guid` | ``$ANY`` |  |
-| `source_updated_at` | ``$ANY`` |  |
-| `suggest_autocomplete_all` | ``$ANY`` |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` |  |
-| `timestamp` | ``$ANY`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$ANY`` |  |
-| `updated_at` | ``$ANY`` |  |
+| `alt_text` | `mixed` |  |
+| `api_link` | `mixed` |  |
+| `api_model` | `mixed` |  |
+| `artwork_id` | `string` |  |
+| `artwork_title` | `mixed` |  |
+| `content` | `mixed` |  |
+| `content_e_tag` | `mixed` |  |
+| `credit_line` | `mixed` |  |
+| `id` | `string` |  |
+| `is_educational_resource` | `bool` |  |
+| `is_multimedia_resource` | `bool` |  |
+| `is_teacher_resource` | `bool` |  |
+| `lake_guid` | `mixed` |  |
+| `source_updated_at` | `mixed` |  |
+| `suggest_autocomplete_all` | `mixed` |  |
+| `suggest_autocomplete_boosted` | `mixed` |  |
+| `timestamp` | `mixed` |  |
+| `title` | `string` |  |
+| `type` | `mixed` |  |
+| `updated_at` | `mixed` |  |
 
 #### Example: Load
 
@@ -2954,12 +2987,16 @@ $videos = $client->Video()->list();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -2976,8 +3013,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -3021,15 +3059,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $agent = $client->Agent();
-$agent->load(["id" => "example_id"]);
+$agent->list();
 
-// $agent->dataGet() now returns the loaded agent data
-// $agent->matchGet() returns the last match criteria
+// $agent->data_get() now returns the agent data from the last list
+// $agent->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

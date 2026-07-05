@@ -8,7 +8,7 @@ Complete API reference for the ArtInstituteOfChicago Python SDK.
 ### Constructor
 
 ```python
-from art-institute-of-chicago_sdk import ArtInstituteOfChicagoSDK
+from artinstituteofchicago_sdk import ArtInstituteOfChicagoSDK
 
 client = ArtInstituteOfChicagoSDK(options)
 ```
@@ -223,31 +223,31 @@ agent = client.Agent()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_title` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `birth_date` | ``$ANY`` | No |  |
-| `death_date` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_artist` | ``$BOOLEAN`` | No |  |
-| `sort_title` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `ulan_id` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `alt_title` | `Any` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `birth_date` | `Any` | No |  |
+| `death_date` | `Any` | No |  |
+| `description` | `str` | No |  |
+| `id` | `str` | No |  |
+| `is_artist` | `bool` | No |  |
+| `sort_title` | `Any` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `ulan_id` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Agent().list({})
+results = client.Agent().list()
 for agent in results:
     print(agent)
 ```
@@ -299,24 +299,24 @@ agent_role = client.AgentRole()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.AgentRole().list({})
+results = client.AgentRole().list()
 for agent_role in results:
     print(agent_role)
 ```
@@ -368,24 +368,24 @@ agent_type = client.AgentType()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.AgentType().list({})
+results = client.AgentType().list()
 for agent_type in results:
     print(agent_type)
 ```
@@ -437,25 +437,25 @@ article = client.Article()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `copy` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Article().list({})
+results = client.Article().list()
 for article in results:
     print(article)
 ```
@@ -507,110 +507,110 @@ artwork = client.Artwork()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_artist_id` | ``$STRING`` | No |  |
-| `alt_classification_id` | ``$STRING`` | No |  |
-| `alt_image_id` | ``$STRING`` | No |  |
-| `alt_material_id` | ``$STRING`` | No |  |
-| `alt_style_id` | ``$STRING`` | No |  |
-| `alt_subject_id` | ``$STRING`` | No |  |
-| `alt_technique_id` | ``$STRING`` | No |  |
-| `alt_title` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artist_display` | ``$ANY`` | No |  |
-| `artist_id` | ``$STRING`` | No |  |
-| `artist_title` | ``$ANY`` | No |  |
-| `artwork_type_id` | ``$STRING`` | No |  |
-| `artwork_type_title` | ``$ANY`` | No |  |
-| `boost_rank` | ``$ANY`` | No |  |
-| `catalog_based_search_keyword_title` | ``$ANY`` | No |  |
-| `catalogue_display` | ``$ANY`` | No |  |
-| `category_id` | ``$STRING`` | No |  |
-| `category_title` | ``$ANY`` | No |  |
-| `classification_id` | ``$STRING`` | No |  |
-| `classification_title` | ``$ANY`` | No |  |
-| `color` | ``$ANY`` | No |  |
-| `colorfulness` | ``$ANY`` | No |  |
-| `copyright_notice` | ``$ANY`` | No |  |
-| `credit_line` | ``$ANY`` | No |  |
-| `date_display` | ``$ANY`` | No |  |
-| `date_end` | ``$ANY`` | No |  |
-| `date_qualifier_id` | ``$STRING`` | No |  |
-| `date_qualifier_title` | ``$ANY`` | No |  |
-| `date_start` | ``$ANY`` | No |  |
-| `department_id` | ``$STRING`` | No |  |
-| `department_title` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `dimension` | ``$ANY`` | No |  |
-| `dimensions_detail` | ``$ANY`` | No |  |
-| `document_id` | ``$STRING`` | No |  |
-| `edition` | ``$ANY`` | No |  |
-| `exhibition_history` | ``$ANY`` | No |  |
-| `fiscal_year` | ``$ANY`` | No |  |
-| `fiscal_year_deaccession` | ``$ANY`` | No |  |
-| `gallery_id` | ``$STRING`` | No |  |
-| `gallery_title` | ``$ANY`` | No |  |
-| `has_advanced_imaging` | ``$BOOLEAN`` | No |  |
-| `has_educational_resource` | ``$BOOLEAN`` | No |  |
-| `has_multimedia_resource` | ``$BOOLEAN`` | No |  |
-| `has_not_been_viewed_much` | ``$BOOLEAN`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_embedding` | ``$ANY`` | No |  |
-| `image_id` | ``$STRING`` | No |  |
-| `inscription` | ``$ANY`` | No |  |
-| `internal_department_id` | ``$STRING`` | No |  |
-| `is_boosted` | ``$BOOLEAN`` | No |  |
-| `is_on_view` | ``$BOOLEAN`` | No |  |
-| `is_public_domain` | ``$BOOLEAN`` | No |  |
-| `is_zoomable` | ``$BOOLEAN`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `latlon` | ``$ANY`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `main_reference_number` | ``$INTEGER`` | No |  |
-| `material_id` | ``$STRING`` | No |  |
-| `material_title` | ``$ANY`` | No |  |
-| `max_zoom_window_size` | ``$ANY`` | No |  |
-| `medium_display` | ``$ANY`` | No |  |
-| `nomisma_id` | ``$STRING`` | No |  |
-| `on_loan_display` | ``$ANY`` | No |  |
-| `pageview` | ``$ANY`` | No |  |
-| `pageviews_recent` | ``$ANY`` | No |  |
-| `place_of_origin` | ``$ANY`` | No |  |
-| `provenance_text` | ``$ANY`` | No |  |
-| `publication_history` | ``$ANY`` | No |  |
-| `publishing_verification_level` | ``$ANY`` | No |  |
-| `section_id` | ``$STRING`` | No |  |
-| `section_title` | ``$ANY`` | No |  |
-| `short_description` | ``$ANY`` | No |  |
-| `site_id` | ``$STRING`` | No |  |
-| `sound_id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `style_id` | ``$STRING`` | No |  |
-| `style_title` | ``$ANY`` | No |  |
-| `subject_id` | ``$STRING`` | No |  |
-| `subject_title` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `technique_id` | ``$STRING`` | No |  |
-| `technique_title` | ``$ANY`` | No |  |
-| `term_title` | ``$ANY`` | No |  |
-| `text_embedding` | ``$ANY`` | No |  |
-| `text_id` | ``$STRING`` | No |  |
-| `theme_title` | ``$ANY`` | No |  |
-| `thumbnail` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `video_id` | ``$STRING`` | No |  |
+| `alt_artist_id` | `str` | No |  |
+| `alt_classification_id` | `str` | No |  |
+| `alt_image_id` | `str` | No |  |
+| `alt_material_id` | `str` | No |  |
+| `alt_style_id` | `str` | No |  |
+| `alt_subject_id` | `str` | No |  |
+| `alt_technique_id` | `str` | No |  |
+| `alt_title` | `Any` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `artist_display` | `Any` | No |  |
+| `artist_id` | `str` | No |  |
+| `artist_title` | `Any` | No |  |
+| `artwork_type_id` | `str` | No |  |
+| `artwork_type_title` | `Any` | No |  |
+| `boost_rank` | `Any` | No |  |
+| `catalog_based_search_keyword_title` | `Any` | No |  |
+| `catalogue_display` | `Any` | No |  |
+| `category_id` | `str` | No |  |
+| `category_title` | `Any` | No |  |
+| `classification_id` | `str` | No |  |
+| `classification_title` | `Any` | No |  |
+| `color` | `Any` | No |  |
+| `colorfulness` | `Any` | No |  |
+| `copyright_notice` | `Any` | No |  |
+| `credit_line` | `Any` | No |  |
+| `date_display` | `Any` | No |  |
+| `date_end` | `Any` | No |  |
+| `date_qualifier_id` | `str` | No |  |
+| `date_qualifier_title` | `Any` | No |  |
+| `date_start` | `Any` | No |  |
+| `department_id` | `str` | No |  |
+| `department_title` | `Any` | No |  |
+| `description` | `str` | No |  |
+| `dimension` | `Any` | No |  |
+| `dimensions_detail` | `Any` | No |  |
+| `document_id` | `str` | No |  |
+| `edition` | `Any` | No |  |
+| `exhibition_history` | `Any` | No |  |
+| `fiscal_year` | `Any` | No |  |
+| `fiscal_year_deaccession` | `Any` | No |  |
+| `gallery_id` | `str` | No |  |
+| `gallery_title` | `Any` | No |  |
+| `has_advanced_imaging` | `bool` | No |  |
+| `has_educational_resource` | `bool` | No |  |
+| `has_multimedia_resource` | `bool` | No |  |
+| `has_not_been_viewed_much` | `bool` | No |  |
+| `id` | `str` | No |  |
+| `image_embedding` | `Any` | No |  |
+| `image_id` | `str` | No |  |
+| `inscription` | `Any` | No |  |
+| `internal_department_id` | `str` | No |  |
+| `is_boosted` | `bool` | No |  |
+| `is_on_view` | `bool` | No |  |
+| `is_public_domain` | `bool` | No |  |
+| `is_zoomable` | `bool` | No |  |
+| `latitude` | `float` | No |  |
+| `latlon` | `Any` | No |  |
+| `longitude` | `float` | No |  |
+| `main_reference_number` | `int` | No |  |
+| `material_id` | `str` | No |  |
+| `material_title` | `Any` | No |  |
+| `max_zoom_window_size` | `Any` | No |  |
+| `medium_display` | `Any` | No |  |
+| `nomisma_id` | `str` | No |  |
+| `on_loan_display` | `Any` | No |  |
+| `pageview` | `Any` | No |  |
+| `pageviews_recent` | `Any` | No |  |
+| `place_of_origin` | `Any` | No |  |
+| `provenance_text` | `Any` | No |  |
+| `publication_history` | `Any` | No |  |
+| `publishing_verification_level` | `Any` | No |  |
+| `section_id` | `str` | No |  |
+| `section_title` | `Any` | No |  |
+| `short_description` | `Any` | No |  |
+| `site_id` | `str` | No |  |
+| `sound_id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `style_id` | `str` | No |  |
+| `style_title` | `Any` | No |  |
+| `subject_id` | `str` | No |  |
+| `subject_title` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `technique_id` | `str` | No |  |
+| `technique_title` | `Any` | No |  |
+| `term_title` | `Any` | No |  |
+| `text_embedding` | `Any` | No |  |
+| `text_id` | `str` | No |  |
+| `theme_title` | `Any` | No |  |
+| `thumbnail` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
+| `video_id` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Artwork().list({})
+results = client.Artwork().list()
 for artwork in results:
     print(artwork)
 ```
@@ -662,24 +662,24 @@ artwork_date_qualifier = client.ArtworkDateQualifier()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.ArtworkDateQualifier().list({})
+results = client.ArtworkDateQualifier().list()
 for artwork_date_qualifier in results:
     print(artwork_date_qualifier)
 ```
@@ -731,24 +731,24 @@ artwork_place_qualifier = client.ArtworkPlaceQualifier()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.ArtworkPlaceQualifier().list({})
+results = client.ArtworkPlaceQualifier().list()
 for artwork_place_qualifier in results:
     print(artwork_place_qualifier)
 ```
@@ -800,25 +800,25 @@ artwork_type = client.ArtworkType()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aat_id` | ``$STRING`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `aat_id` | `str` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.ArtworkType().list({})
+results = client.ArtworkType().list()
 for artwork_type in results:
     print(artwork_type)
 ```
@@ -870,26 +870,26 @@ category_term = client.CategoryTerm()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aat_id` | ``$STRING`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `parent_id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `subtype` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `aat_id` | `str` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `parent_id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `subtype` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CategoryTerm().list({})
+results = client.CategoryTerm().list()
 for category_term in results:
     print(category_term)
 ```
@@ -941,26 +941,26 @@ digital_publication = client.DigitalPublication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `copy` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
+| `web_url` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.DigitalPublication().list({})
+results = client.DigitalPublication().list()
 for digital_publication in results:
     print(digital_publication)
 ```
@@ -1012,28 +1012,28 @@ digital_publication_article = client.DigitalPublicationArticle()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `author_display` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `digital_publication_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `author_display` | `Any` | No |  |
+| `copy` | `Any` | No |  |
+| `digital_publication_id` | `str` | No |  |
+| `id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
+| `web_url` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.DigitalPublicationArticle().list({})
+results = client.DigitalPublicationArticle().list()
 for digital_publication_article in results:
     print(digital_publication_article)
 ```
@@ -1085,26 +1085,26 @@ educator_resource = client.EducatorResource()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `copy` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
+| `web_url` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.EducatorResource().list({})
+results = client.EducatorResource().list()
 for educator_resource in results:
     print(educator_resource)
 ```
@@ -1156,68 +1156,68 @@ event = client.Event()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_audience_id` | ``$STRING`` | No |  |
-| `alt_event_type_id` | ``$STRING`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `audience_id` | ``$STRING`` | No |  |
-| `buy_button_caption` | ``$ANY`` | No |  |
-| `buy_button_text` | ``$ANY`` | No |  |
-| `date_display` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `door_time` | ``$ANY`` | No |  |
-| `end_date` | ``$ANY`` | No |  |
-| `end_time` | ``$ANY`` | No |  |
-| `entrance` | ``$ANY`` | No |  |
-| `event_host_id` | ``$STRING`` | No |  |
-| `event_host_title` | ``$ANY`` | No |  |
-| `event_type_id` | ``$STRING`` | No |  |
-| `header_description` | ``$ANY`` | No |  |
-| `hero_caption` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_url` | ``$ANY`` | No |  |
-| `is_admission_required` | ``$BOOLEAN`` | No |  |
-| `is_after_hour` | ``$BOOLEAN`` | No |  |
-| `is_free` | ``$BOOLEAN`` | No |  |
-| `is_member_exclusive` | ``$BOOLEAN`` | No |  |
-| `is_private` | ``$BOOLEAN`` | No |  |
-| `is_registration_required` | ``$BOOLEAN`` | No |  |
-| `is_sales_button_hidden` | ``$BOOLEAN`` | No |  |
-| `is_sold_out` | ``$BOOLEAN`` | No |  |
-| `is_ticketed` | ``$BOOLEAN`` | No |  |
-| `is_virtual_event` | ``$BOOLEAN`` | No |  |
-| `join_url` | ``$ANY`` | No |  |
-| `layout_type` | ``$ANY`` | No |  |
-| `list_description` | ``$ANY`` | No |  |
-| `location` | ``$ANY`` | No |  |
-| `program_id` | ``$STRING`` | No |  |
-| `program_title` | ``$ANY`` | No |  |
-| `rsvp_link` | ``$ANY`` | No |  |
-| `search_tag` | ``$ANY`` | No |  |
-| `short_description` | ``$ANY`` | No |  |
-| `slug` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `start_date` | ``$ANY`` | No |  |
-| `start_time` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `survey_url` | ``$ANY`` | No |  |
-| `ticketed_event_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `title_display` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `virtual_event_passcode` | ``$ANY`` | No |  |
-| `virtual_event_url` | ``$ANY`` | No |  |
+| `alt_audience_id` | `str` | No |  |
+| `alt_event_type_id` | `str` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `audience_id` | `str` | No |  |
+| `buy_button_caption` | `Any` | No |  |
+| `buy_button_text` | `Any` | No |  |
+| `date_display` | `Any` | No |  |
+| `description` | `str` | No |  |
+| `door_time` | `Any` | No |  |
+| `end_date` | `Any` | No |  |
+| `end_time` | `Any` | No |  |
+| `entrance` | `Any` | No |  |
+| `event_host_id` | `str` | No |  |
+| `event_host_title` | `Any` | No |  |
+| `event_type_id` | `str` | No |  |
+| `header_description` | `Any` | No |  |
+| `hero_caption` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `image_url` | `Any` | No |  |
+| `is_admission_required` | `bool` | No |  |
+| `is_after_hour` | `bool` | No |  |
+| `is_free` | `bool` | No |  |
+| `is_member_exclusive` | `bool` | No |  |
+| `is_private` | `bool` | No |  |
+| `is_registration_required` | `bool` | No |  |
+| `is_sales_button_hidden` | `bool` | No |  |
+| `is_sold_out` | `bool` | No |  |
+| `is_ticketed` | `bool` | No |  |
+| `is_virtual_event` | `bool` | No |  |
+| `join_url` | `Any` | No |  |
+| `layout_type` | `Any` | No |  |
+| `list_description` | `Any` | No |  |
+| `location` | `Any` | No |  |
+| `program_id` | `str` | No |  |
+| `program_title` | `Any` | No |  |
+| `rsvp_link` | `Any` | No |  |
+| `search_tag` | `Any` | No |  |
+| `short_description` | `Any` | No |  |
+| `slug` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `start_date` | `Any` | No |  |
+| `start_time` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `survey_url` | `Any` | No |  |
+| `ticketed_event_id` | `str` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `title_display` | `Any` | No |  |
+| `updated_at` | `Any` | No |  |
+| `virtual_event_passcode` | `Any` | No |  |
+| `virtual_event_url` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Event().list({})
+results = client.Event().list()
 for event in results:
     print(event)
 ```
@@ -1269,40 +1269,40 @@ event_occurrence = client.EventOccurrence()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `button_caption` | ``$ANY`` | No |  |
-| `button_text` | ``$ANY`` | No |  |
-| `button_url` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `end_at` | ``$ANY`` | No |  |
-| `event_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_url` | ``$ANY`` | No |  |
-| `is_private` | ``$BOOLEAN`` | No |  |
-| `is_sales_button_hidden` | ``$BOOLEAN`` | No |  |
-| `is_ticketed` | ``$BOOLEAN`` | No |  |
-| `location` | ``$ANY`` | No |  |
-| `off_sale_at` | ``$ANY`` | No |  |
-| `on_sale_at` | ``$ANY`` | No |  |
-| `short_description` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `start_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `title_display` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `button_caption` | `Any` | No |  |
+| `button_text` | `Any` | No |  |
+| `button_url` | `Any` | No |  |
+| `description` | `str` | No |  |
+| `end_at` | `Any` | No |  |
+| `event_id` | `str` | No |  |
+| `id` | `str` | No |  |
+| `image_url` | `Any` | No |  |
+| `is_private` | `bool` | No |  |
+| `is_sales_button_hidden` | `bool` | No |  |
+| `is_ticketed` | `bool` | No |  |
+| `location` | `Any` | No |  |
+| `off_sale_at` | `Any` | No |  |
+| `on_sale_at` | `Any` | No |  |
+| `short_description` | `Any` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `start_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `title_display` | `Any` | No |  |
+| `updated_at` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.EventOccurrence().list({})
+results = client.EventOccurrence().list()
 for event_occurrence in results:
     print(event_occurrence)
 ```
@@ -1354,26 +1354,26 @@ event_program = client.EventProgram()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_affiliate_group` | ``$BOOLEAN`` | No |  |
-| `is_event_host` | ``$BOOLEAN`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `is_affiliate_group` | `bool` | No |  |
+| `is_event_host` | `bool` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.EventProgram().list({})
+results = client.EventProgram().list()
 for event_program in results:
     print(event_program)
 ```
@@ -1425,42 +1425,42 @@ exhibition = client.Exhibition()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aic_end_at` | ``$ANY`` | No |  |
-| `aic_start_at` | ``$ANY`` | No |  |
-| `alt_image_id` | ``$STRING`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artist_id` | ``$STRING`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `document_id` | ``$STRING`` | No |  |
-| `gallery_id` | ``$STRING`` | No |  |
-| `gallery_title` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_id` | ``$STRING`` | No |  |
-| `image_url` | ``$ANY`` | No |  |
-| `is_featured` | ``$BOOLEAN`` | No |  |
-| `is_published` | ``$BOOLEAN`` | No |  |
-| `position` | ``$ANY`` | No |  |
-| `short_description` | ``$ANY`` | No |  |
-| `site_id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `status` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `aic_end_at` | `Any` | No |  |
+| `aic_start_at` | `Any` | No |  |
+| `alt_image_id` | `str` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `artist_id` | `str` | No |  |
+| `artwork_id` | `str` | No |  |
+| `artwork_title` | `Any` | No |  |
+| `document_id` | `str` | No |  |
+| `gallery_id` | `str` | No |  |
+| `gallery_title` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `image_id` | `str` | No |  |
+| `image_url` | `Any` | No |  |
+| `is_featured` | `bool` | No |  |
+| `is_published` | `bool` | No |  |
+| `position` | `Any` | No |  |
+| `short_description` | `Any` | No |  |
+| `site_id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `status` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
+| `web_url` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Exhibition().list({})
+results = client.Exhibition().list()
 for exhibition in results:
     print(exhibition)
 ```
@@ -1512,31 +1512,31 @@ gallery = client.Gallery()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `floor` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_closed` | ``$BOOLEAN`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `latlon` | ``$ANY`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `number` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `tgn_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `floor` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `is_closed` | `bool` | No |  |
+| `latitude` | `float` | No |  |
+| `latlon` | `Any` | No |  |
+| `longitude` | `float` | No |  |
+| `number` | `Any` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `tgn_id` | `str` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Gallery().list({})
+results = client.Gallery().list()
 for gallery in results:
     print(gallery)
 ```
@@ -1588,27 +1588,27 @@ generic_page = client.GenericPage()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `search_tag` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `copy` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `search_tag` | `Any` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
+| `web_url` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.GenericPage().list({})
+results = client.GenericPage().list()
 for generic_page in results:
     print(generic_page)
 ```
@@ -1660,25 +1660,25 @@ highlight = client.Highlight()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `copy` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Highlight().list({})
+results = client.Highlight().list()
 for highlight in results:
     print(highlight)
 ```
@@ -1730,61 +1730,61 @@ hour = client.Hour()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `additional_text` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `friday_is_closed` | ``$ANY`` | No |  |
-| `friday_member_close` | ``$ANY`` | No |  |
-| `friday_member_open` | ``$ANY`` | No |  |
-| `friday_public_close` | ``$ANY`` | No |  |
-| `friday_public_open` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `monday_is_closed` | ``$ANY`` | No |  |
-| `monday_member_close` | ``$ANY`` | No |  |
-| `monday_member_open` | ``$ANY`` | No |  |
-| `monday_public_close` | ``$ANY`` | No |  |
-| `monday_public_open` | ``$ANY`` | No |  |
-| `saturday_is_closed` | ``$ANY`` | No |  |
-| `saturday_member_close` | ``$ANY`` | No |  |
-| `saturday_member_open` | ``$ANY`` | No |  |
-| `saturday_public_close` | ``$ANY`` | No |  |
-| `saturday_public_open` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `summary` | ``$ANY`` | No |  |
-| `sunday_is_closed` | ``$ANY`` | No |  |
-| `sunday_member_close` | ``$ANY`` | No |  |
-| `sunday_member_open` | ``$ANY`` | No |  |
-| `sunday_public_close` | ``$ANY`` | No |  |
-| `sunday_public_open` | ``$ANY`` | No |  |
-| `thursday_is_closed` | ``$ANY`` | No |  |
-| `thursday_member_close` | ``$ANY`` | No |  |
-| `thursday_member_open` | ``$ANY`` | No |  |
-| `thursday_public_close` | ``$ANY`` | No |  |
-| `thursday_public_open` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `tuesday_is_closed` | ``$ANY`` | No |  |
-| `tuesday_member_close` | ``$ANY`` | No |  |
-| `tuesday_member_open` | ``$ANY`` | No |  |
-| `tuesday_public_close` | ``$ANY`` | No |  |
-| `tuesday_public_open` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `wednesday_is_closed` | ``$ANY`` | No |  |
-| `wednesday_member_close` | ``$ANY`` | No |  |
-| `wednesday_member_open` | ``$ANY`` | No |  |
-| `wednesday_public_close` | ``$ANY`` | No |  |
-| `wednesday_public_open` | ``$ANY`` | No |  |
+| `additional_text` | `Any` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `friday_is_closed` | `Any` | No |  |
+| `friday_member_close` | `Any` | No |  |
+| `friday_member_open` | `Any` | No |  |
+| `friday_public_close` | `Any` | No |  |
+| `friday_public_open` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `monday_is_closed` | `Any` | No |  |
+| `monday_member_close` | `Any` | No |  |
+| `monday_member_open` | `Any` | No |  |
+| `monday_public_close` | `Any` | No |  |
+| `monday_public_open` | `Any` | No |  |
+| `saturday_is_closed` | `Any` | No |  |
+| `saturday_member_close` | `Any` | No |  |
+| `saturday_member_open` | `Any` | No |  |
+| `saturday_public_close` | `Any` | No |  |
+| `saturday_public_open` | `Any` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `summary` | `Any` | No |  |
+| `sunday_is_closed` | `Any` | No |  |
+| `sunday_member_close` | `Any` | No |  |
+| `sunday_member_open` | `Any` | No |  |
+| `sunday_public_close` | `Any` | No |  |
+| `sunday_public_open` | `Any` | No |  |
+| `thursday_is_closed` | `Any` | No |  |
+| `thursday_member_close` | `Any` | No |  |
+| `thursday_member_open` | `Any` | No |  |
+| `thursday_public_close` | `Any` | No |  |
+| `thursday_public_open` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `tuesday_is_closed` | `Any` | No |  |
+| `tuesday_member_close` | `Any` | No |  |
+| `tuesday_member_open` | `Any` | No |  |
+| `tuesday_public_close` | `Any` | No |  |
+| `tuesday_public_open` | `Any` | No |  |
+| `updated_at` | `Any` | No |  |
+| `wednesday_is_closed` | `Any` | No |  |
+| `wednesday_member_close` | `Any` | No |  |
+| `wednesday_member_open` | `Any` | No |  |
+| `wednesday_public_close` | `Any` | No |  |
+| `wednesday_public_open` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Hour().list({})
+results = client.Hour().list()
 for hour in results:
     print(hour)
 ```
@@ -1836,44 +1836,44 @@ image = client.Image()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ahash` | ``$ANY`` | No |  |
-| `alt_text` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `color` | ``$ANY`` | No |  |
-| `colorfulness` | ``$ANY`` | No |  |
-| `content` | ``$ANY`` | No |  |
-| `content_e_tag` | ``$ANY`` | No |  |
-| `credit_line` | ``$ANY`` | No |  |
-| `fingerprint` | ``$ANY`` | No |  |
-| `height` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `iiif_url` | ``$ANY`` | No |  |
-| `is_educational_resource` | ``$BOOLEAN`` | No |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` | No |  |
-| `is_teacher_resource` | ``$BOOLEAN`` | No |  |
-| `lake_guid` | ``$ANY`` | No |  |
-| `lqip` | ``$ANY`` | No |  |
-| `phash` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `width` | ``$NUMBER`` | No |  |
+| `ahash` | `Any` | No |  |
+| `alt_text` | `Any` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `artwork_id` | `str` | No |  |
+| `artwork_title` | `Any` | No |  |
+| `color` | `Any` | No |  |
+| `colorfulness` | `Any` | No |  |
+| `content` | `Any` | No |  |
+| `content_e_tag` | `Any` | No |  |
+| `credit_line` | `Any` | No |  |
+| `fingerprint` | `Any` | No |  |
+| `height` | `float` | No |  |
+| `id` | `str` | No |  |
+| `iiif_url` | `Any` | No |  |
+| `is_educational_resource` | `bool` | No |  |
+| `is_multimedia_resource` | `bool` | No |  |
+| `is_teacher_resource` | `bool` | No |  |
+| `lake_guid` | `Any` | No |  |
+| `lqip` | `Any` | No |  |
+| `phash` | `Any` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `type` | `Any` | No |  |
+| `updated_at` | `Any` | No |  |
+| `width` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Image().list({})
+results = client.Image().list()
 for image in results:
     print(image)
 ```
@@ -1925,27 +1925,27 @@ landing_page = client.LandingPage()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `search_tag` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `copy` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `search_tag` | `Any` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
+| `web_url` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.LandingPage().list({})
+results = client.LandingPage().list()
 for landing_page in results:
     print(landing_page)
 ```
@@ -1997,27 +1997,27 @@ place = client.Place()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `tgn_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `latitude` | `float` | No |  |
+| `longitude` | `float` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `tgn_id` | `str` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Place().list({})
+results = client.Place().list()
 for place in results:
     print(place)
 ```
@@ -2069,26 +2069,26 @@ press_release = client.PressRelease()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `copy` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
+| `web_url` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.PressRelease().list({})
+results = client.PressRelease().list()
 for press_release in results:
     print(press_release)
 ```
@@ -2140,26 +2140,26 @@ printed_publication = client.PrintedPublication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `copy` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
+| `web_url` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.PrintedPublication().list({})
+results = client.PrintedPublication().list()
 for printed_publication in results:
     print(printed_publication)
 ```
@@ -2211,36 +2211,36 @@ product = client.Product()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artist_id` | ``$STRING`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `exhibition_id` | ``$STRING`` | No |  |
-| `external_sku` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_url` | ``$ANY`` | No |  |
-| `max_compare_at_price` | ``$ANY`` | No |  |
-| `max_current_price` | ``$ANY`` | No |  |
-| `min_compare_at_price` | ``$ANY`` | No |  |
-| `min_current_price` | ``$ANY`` | No |  |
-| `price_display` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `artist_id` | `str` | No |  |
+| `artwork_id` | `str` | No |  |
+| `description` | `str` | No |  |
+| `exhibition_id` | `str` | No |  |
+| `external_sku` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `image_url` | `Any` | No |  |
+| `max_compare_at_price` | `Any` | No |  |
+| `max_current_price` | `Any` | No |  |
+| `min_compare_at_price` | `Any` | No |  |
+| `min_current_price` | `Any` | No |  |
+| `price_display` | `Any` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
+| `web_url` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Product().list({})
+results = client.Product().list()
 for product in results:
     print(product)
 ```
@@ -2292,26 +2292,26 @@ publication = client.Publication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `section_id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `section_id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
+| `web_url` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Publication().list({})
+results = client.Publication().list()
 for publication in results:
     print(publication)
 ```
@@ -2363,24 +2363,24 @@ search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_id` | ``$STRING`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_boosted` | ``$BOOLEAN`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `thumbnail` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `api_id` | `str` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `is_boosted` | `bool` | No |  |
+| `score` | `float` | No |  |
+| `thumbnail` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Search().list({})
+results = client.Search().list()
 for search in results:
     print(search)
 ```
@@ -2424,31 +2424,31 @@ section = client.Section()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accession` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `content` | ``$ANY`` | No |  |
-| `generic_page_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `publication_id` | ``$STRING`` | No |  |
-| `publication_title` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `accession` | `Any` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `artwork_id` | `str` | No |  |
+| `content` | `Any` | No |  |
+| `generic_page_id` | `str` | No |  |
+| `id` | `str` | No |  |
+| `publication_id` | `str` | No |  |
+| `publication_title` | `Any` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
+| `web_url` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Section().list({})
+results = client.Section().list()
 for section in results:
     print(section)
 ```
@@ -2500,30 +2500,30 @@ site = client.Site()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `exhibition_id` | ``$STRING`` | No |  |
-| `exhibition_title` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `artwork_id` | `str` | No |  |
+| `artwork_title` | `Any` | No |  |
+| `description` | `str` | No |  |
+| `exhibition_id` | `str` | No |  |
+| `exhibition_title` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
+| `web_url` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Site().list({})
+results = client.Site().list()
 for site in results:
     print(site)
 ```
@@ -2575,37 +2575,37 @@ sound = client.Sound()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `content` | ``$ANY`` | No |  |
-| `content_e_tag` | ``$ANY`` | No |  |
-| `credit_line` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_educational_resource` | ``$BOOLEAN`` | No |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` | No |  |
-| `is_teacher_resource` | ``$BOOLEAN`` | No |  |
-| `lake_guid` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `transcript` | ``$ANY`` | No |  |
-| `type` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `alt_text` | `Any` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `artwork_id` | `str` | No |  |
+| `artwork_title` | `Any` | No |  |
+| `content` | `Any` | No |  |
+| `content_e_tag` | `Any` | No |  |
+| `credit_line` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `is_educational_resource` | `bool` | No |  |
+| `is_multimedia_resource` | `bool` | No |  |
+| `is_teacher_resource` | `bool` | No |  |
+| `lake_guid` | `Any` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `transcript` | `Any` | No |  |
+| `type` | `Any` | No |  |
+| `updated_at` | `Any` | No |  |
+| `web_url` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Sound().list({})
+results = client.Sound().list()
 for sound in results:
     print(sound)
 ```
@@ -2657,25 +2657,25 @@ static_page = client.StaticPage()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
+| `web_url` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.StaticPage().list({})
+results = client.StaticPage().list()
 for static_page in results:
     print(static_page)
 ```
@@ -2727,35 +2727,35 @@ text = client.Text()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `content` | ``$ANY`` | No |  |
-| `content_e_tag` | ``$ANY`` | No |  |
-| `credit_line` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_educational_resource` | ``$BOOLEAN`` | No |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` | No |  |
-| `is_teacher_resource` | ``$BOOLEAN`` | No |  |
-| `lake_guid` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `alt_text` | `Any` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `artwork_id` | `str` | No |  |
+| `artwork_title` | `Any` | No |  |
+| `content` | `Any` | No |  |
+| `content_e_tag` | `Any` | No |  |
+| `credit_line` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `is_educational_resource` | `bool` | No |  |
+| `is_multimedia_resource` | `bool` | No |  |
+| `is_teacher_resource` | `bool` | No |  |
+| `lake_guid` | `Any` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `type` | `Any` | No |  |
+| `updated_at` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Text().list({})
+results = client.Text().list()
 for text in results:
     print(text)
 ```
@@ -2807,32 +2807,32 @@ tour = client.Tour()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artist_title` | ``$ANY`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image` | ``$ANY`` | No |  |
-| `intro` | ``$ANY`` | No |  |
-| `intro_link` | ``$ANY`` | No |  |
-| `intro_transcript` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `weight` | ``$NUMBER`` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `artist_title` | `Any` | No |  |
+| `artwork_title` | `Any` | No |  |
+| `description` | `str` | No |  |
+| `id` | `str` | No |  |
+| `image` | `Any` | No |  |
+| `intro` | `Any` | No |  |
+| `intro_link` | `Any` | No |  |
+| `intro_transcript` | `Any` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `updated_at` | `Any` | No |  |
+| `weight` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Tour().list({})
+results = client.Tour().list()
 for tour in results:
     print(tour)
 ```
@@ -2884,35 +2884,35 @@ video = client.Video()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `content` | ``$ANY`` | No |  |
-| `content_e_tag` | ``$ANY`` | No |  |
-| `credit_line` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_educational_resource` | ``$BOOLEAN`` | No |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` | No |  |
-| `is_teacher_resource` | ``$BOOLEAN`` | No |  |
-| `lake_guid` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `alt_text` | `Any` | No |  |
+| `api_link` | `Any` | No |  |
+| `api_model` | `Any` | No |  |
+| `artwork_id` | `str` | No |  |
+| `artwork_title` | `Any` | No |  |
+| `content` | `Any` | No |  |
+| `content_e_tag` | `Any` | No |  |
+| `credit_line` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `is_educational_resource` | `bool` | No |  |
+| `is_multimedia_resource` | `bool` | No |  |
+| `is_teacher_resource` | `bool` | No |  |
+| `lake_guid` | `Any` | No |  |
+| `source_updated_at` | `Any` | No |  |
+| `suggest_autocomplete_all` | `Any` | No |  |
+| `suggest_autocomplete_boosted` | `Any` | No |  |
+| `timestamp` | `Any` | No |  |
+| `title` | `str` | No |  |
+| `type` | `Any` | No |  |
+| `updated_at` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Video().list({})
+results = client.Video().list()
 for video in results:
     print(video)
 ```

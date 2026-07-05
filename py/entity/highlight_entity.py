@@ -65,8 +65,13 @@ class HighlightEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: HighlightLoadMatch, ctrl=None) -> Highlight:
+    def load(self, reqmatch=None, ctrl=None) -> Highlight:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Highlight().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class HighlightEntity:
 
 
     
-    def list(self, reqmatch: HighlightListMatch, ctrl=None) -> list[Highlight]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Highlight]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Highlight().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

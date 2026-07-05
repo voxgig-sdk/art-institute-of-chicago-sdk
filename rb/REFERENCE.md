@@ -8,7 +8,7 @@ Complete API reference for the ArtInstituteOfChicago Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'art-institute-of-chicago_sdk'
+require_relative 'ArtInstituteOfChicago_sdk'
 
 client = ArtInstituteOfChicagoSDK.new(options)
 ```
@@ -229,31 +229,31 @@ agent = client.Agent
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_title` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `birth_date` | ``$ANY`` | No |  |
-| `death_date` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_artist` | ``$BOOLEAN`` | No |  |
-| `sort_title` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `ulan_id` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `alt_title` | `Object` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `birth_date` | `Object` | No |  |
+| `death_date` | `Object` | No |  |
+| `description` | `String` | No |  |
+| `id` | `String` | No |  |
+| `is_artist` | `Boolean` | No |  |
+| `sort_title` | `Object` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `ulan_id` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Agent.list(nil)
+results = client.Agent.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -304,24 +304,24 @@ agent_role = client.AgentRole
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.AgentRole.list(nil)
+results = client.AgentRole.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -372,24 +372,24 @@ agent_type = client.AgentType
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.AgentType.list(nil)
+results = client.AgentType.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -440,25 +440,25 @@ article = client.Article
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `copy` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Article.list(nil)
+results = client.Article.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -509,110 +509,110 @@ artwork = client.Artwork
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_artist_id` | ``$STRING`` | No |  |
-| `alt_classification_id` | ``$STRING`` | No |  |
-| `alt_image_id` | ``$STRING`` | No |  |
-| `alt_material_id` | ``$STRING`` | No |  |
-| `alt_style_id` | ``$STRING`` | No |  |
-| `alt_subject_id` | ``$STRING`` | No |  |
-| `alt_technique_id` | ``$STRING`` | No |  |
-| `alt_title` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artist_display` | ``$ANY`` | No |  |
-| `artist_id` | ``$STRING`` | No |  |
-| `artist_title` | ``$ANY`` | No |  |
-| `artwork_type_id` | ``$STRING`` | No |  |
-| `artwork_type_title` | ``$ANY`` | No |  |
-| `boost_rank` | ``$ANY`` | No |  |
-| `catalog_based_search_keyword_title` | ``$ANY`` | No |  |
-| `catalogue_display` | ``$ANY`` | No |  |
-| `category_id` | ``$STRING`` | No |  |
-| `category_title` | ``$ANY`` | No |  |
-| `classification_id` | ``$STRING`` | No |  |
-| `classification_title` | ``$ANY`` | No |  |
-| `color` | ``$ANY`` | No |  |
-| `colorfulness` | ``$ANY`` | No |  |
-| `copyright_notice` | ``$ANY`` | No |  |
-| `credit_line` | ``$ANY`` | No |  |
-| `date_display` | ``$ANY`` | No |  |
-| `date_end` | ``$ANY`` | No |  |
-| `date_qualifier_id` | ``$STRING`` | No |  |
-| `date_qualifier_title` | ``$ANY`` | No |  |
-| `date_start` | ``$ANY`` | No |  |
-| `department_id` | ``$STRING`` | No |  |
-| `department_title` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `dimension` | ``$ANY`` | No |  |
-| `dimensions_detail` | ``$ANY`` | No |  |
-| `document_id` | ``$STRING`` | No |  |
-| `edition` | ``$ANY`` | No |  |
-| `exhibition_history` | ``$ANY`` | No |  |
-| `fiscal_year` | ``$ANY`` | No |  |
-| `fiscal_year_deaccession` | ``$ANY`` | No |  |
-| `gallery_id` | ``$STRING`` | No |  |
-| `gallery_title` | ``$ANY`` | No |  |
-| `has_advanced_imaging` | ``$BOOLEAN`` | No |  |
-| `has_educational_resource` | ``$BOOLEAN`` | No |  |
-| `has_multimedia_resource` | ``$BOOLEAN`` | No |  |
-| `has_not_been_viewed_much` | ``$BOOLEAN`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_embedding` | ``$ANY`` | No |  |
-| `image_id` | ``$STRING`` | No |  |
-| `inscription` | ``$ANY`` | No |  |
-| `internal_department_id` | ``$STRING`` | No |  |
-| `is_boosted` | ``$BOOLEAN`` | No |  |
-| `is_on_view` | ``$BOOLEAN`` | No |  |
-| `is_public_domain` | ``$BOOLEAN`` | No |  |
-| `is_zoomable` | ``$BOOLEAN`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `latlon` | ``$ANY`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `main_reference_number` | ``$INTEGER`` | No |  |
-| `material_id` | ``$STRING`` | No |  |
-| `material_title` | ``$ANY`` | No |  |
-| `max_zoom_window_size` | ``$ANY`` | No |  |
-| `medium_display` | ``$ANY`` | No |  |
-| `nomisma_id` | ``$STRING`` | No |  |
-| `on_loan_display` | ``$ANY`` | No |  |
-| `pageview` | ``$ANY`` | No |  |
-| `pageviews_recent` | ``$ANY`` | No |  |
-| `place_of_origin` | ``$ANY`` | No |  |
-| `provenance_text` | ``$ANY`` | No |  |
-| `publication_history` | ``$ANY`` | No |  |
-| `publishing_verification_level` | ``$ANY`` | No |  |
-| `section_id` | ``$STRING`` | No |  |
-| `section_title` | ``$ANY`` | No |  |
-| `short_description` | ``$ANY`` | No |  |
-| `site_id` | ``$STRING`` | No |  |
-| `sound_id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `style_id` | ``$STRING`` | No |  |
-| `style_title` | ``$ANY`` | No |  |
-| `subject_id` | ``$STRING`` | No |  |
-| `subject_title` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `technique_id` | ``$STRING`` | No |  |
-| `technique_title` | ``$ANY`` | No |  |
-| `term_title` | ``$ANY`` | No |  |
-| `text_embedding` | ``$ANY`` | No |  |
-| `text_id` | ``$STRING`` | No |  |
-| `theme_title` | ``$ANY`` | No |  |
-| `thumbnail` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `video_id` | ``$STRING`` | No |  |
+| `alt_artist_id` | `String` | No |  |
+| `alt_classification_id` | `String` | No |  |
+| `alt_image_id` | `String` | No |  |
+| `alt_material_id` | `String` | No |  |
+| `alt_style_id` | `String` | No |  |
+| `alt_subject_id` | `String` | No |  |
+| `alt_technique_id` | `String` | No |  |
+| `alt_title` | `Object` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `artist_display` | `Object` | No |  |
+| `artist_id` | `String` | No |  |
+| `artist_title` | `Object` | No |  |
+| `artwork_type_id` | `String` | No |  |
+| `artwork_type_title` | `Object` | No |  |
+| `boost_rank` | `Object` | No |  |
+| `catalog_based_search_keyword_title` | `Object` | No |  |
+| `catalogue_display` | `Object` | No |  |
+| `category_id` | `String` | No |  |
+| `category_title` | `Object` | No |  |
+| `classification_id` | `String` | No |  |
+| `classification_title` | `Object` | No |  |
+| `color` | `Object` | No |  |
+| `colorfulness` | `Object` | No |  |
+| `copyright_notice` | `Object` | No |  |
+| `credit_line` | `Object` | No |  |
+| `date_display` | `Object` | No |  |
+| `date_end` | `Object` | No |  |
+| `date_qualifier_id` | `String` | No |  |
+| `date_qualifier_title` | `Object` | No |  |
+| `date_start` | `Object` | No |  |
+| `department_id` | `String` | No |  |
+| `department_title` | `Object` | No |  |
+| `description` | `String` | No |  |
+| `dimension` | `Object` | No |  |
+| `dimensions_detail` | `Object` | No |  |
+| `document_id` | `String` | No |  |
+| `edition` | `Object` | No |  |
+| `exhibition_history` | `Object` | No |  |
+| `fiscal_year` | `Object` | No |  |
+| `fiscal_year_deaccession` | `Object` | No |  |
+| `gallery_id` | `String` | No |  |
+| `gallery_title` | `Object` | No |  |
+| `has_advanced_imaging` | `Boolean` | No |  |
+| `has_educational_resource` | `Boolean` | No |  |
+| `has_multimedia_resource` | `Boolean` | No |  |
+| `has_not_been_viewed_much` | `Boolean` | No |  |
+| `id` | `String` | No |  |
+| `image_embedding` | `Object` | No |  |
+| `image_id` | `String` | No |  |
+| `inscription` | `Object` | No |  |
+| `internal_department_id` | `String` | No |  |
+| `is_boosted` | `Boolean` | No |  |
+| `is_on_view` | `Boolean` | No |  |
+| `is_public_domain` | `Boolean` | No |  |
+| `is_zoomable` | `Boolean` | No |  |
+| `latitude` | `Float` | No |  |
+| `latlon` | `Object` | No |  |
+| `longitude` | `Float` | No |  |
+| `main_reference_number` | `Integer` | No |  |
+| `material_id` | `String` | No |  |
+| `material_title` | `Object` | No |  |
+| `max_zoom_window_size` | `Object` | No |  |
+| `medium_display` | `Object` | No |  |
+| `nomisma_id` | `String` | No |  |
+| `on_loan_display` | `Object` | No |  |
+| `pageview` | `Object` | No |  |
+| `pageviews_recent` | `Object` | No |  |
+| `place_of_origin` | `Object` | No |  |
+| `provenance_text` | `Object` | No |  |
+| `publication_history` | `Object` | No |  |
+| `publishing_verification_level` | `Object` | No |  |
+| `section_id` | `String` | No |  |
+| `section_title` | `Object` | No |  |
+| `short_description` | `Object` | No |  |
+| `site_id` | `String` | No |  |
+| `sound_id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `style_id` | `String` | No |  |
+| `style_title` | `Object` | No |  |
+| `subject_id` | `String` | No |  |
+| `subject_title` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `technique_id` | `String` | No |  |
+| `technique_title` | `Object` | No |  |
+| `term_title` | `Object` | No |  |
+| `text_embedding` | `Object` | No |  |
+| `text_id` | `String` | No |  |
+| `theme_title` | `Object` | No |  |
+| `thumbnail` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
+| `video_id` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Artwork.list(nil)
+results = client.Artwork.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -663,24 +663,24 @@ artwork_date_qualifier = client.ArtworkDateQualifier
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.ArtworkDateQualifier.list(nil)
+results = client.ArtworkDateQualifier.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -731,24 +731,24 @@ artwork_place_qualifier = client.ArtworkPlaceQualifier
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.ArtworkPlaceQualifier.list(nil)
+results = client.ArtworkPlaceQualifier.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -799,25 +799,25 @@ artwork_type = client.ArtworkType
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aat_id` | ``$STRING`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `aat_id` | `String` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.ArtworkType.list(nil)
+results = client.ArtworkType.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -868,26 +868,26 @@ category_term = client.CategoryTerm
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aat_id` | ``$STRING`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `parent_id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `subtype` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `aat_id` | `String` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `parent_id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `subtype` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.CategoryTerm.list(nil)
+results = client.CategoryTerm.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -938,26 +938,26 @@ digital_publication = client.DigitalPublication
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `copy` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
+| `web_url` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.DigitalPublication.list(nil)
+results = client.DigitalPublication.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -1008,28 +1008,28 @@ digital_publication_article = client.DigitalPublicationArticle
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `author_display` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `digital_publication_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `author_display` | `Object` | No |  |
+| `copy` | `Object` | No |  |
+| `digital_publication_id` | `String` | No |  |
+| `id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
+| `web_url` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.DigitalPublicationArticle.list(nil)
+results = client.DigitalPublicationArticle.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -1080,26 +1080,26 @@ educator_resource = client.EducatorResource
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `copy` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
+| `web_url` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.EducatorResource.list(nil)
+results = client.EducatorResource.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -1150,68 +1150,68 @@ event = client.Event
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_audience_id` | ``$STRING`` | No |  |
-| `alt_event_type_id` | ``$STRING`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `audience_id` | ``$STRING`` | No |  |
-| `buy_button_caption` | ``$ANY`` | No |  |
-| `buy_button_text` | ``$ANY`` | No |  |
-| `date_display` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `door_time` | ``$ANY`` | No |  |
-| `end_date` | ``$ANY`` | No |  |
-| `end_time` | ``$ANY`` | No |  |
-| `entrance` | ``$ANY`` | No |  |
-| `event_host_id` | ``$STRING`` | No |  |
-| `event_host_title` | ``$ANY`` | No |  |
-| `event_type_id` | ``$STRING`` | No |  |
-| `header_description` | ``$ANY`` | No |  |
-| `hero_caption` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_url` | ``$ANY`` | No |  |
-| `is_admission_required` | ``$BOOLEAN`` | No |  |
-| `is_after_hour` | ``$BOOLEAN`` | No |  |
-| `is_free` | ``$BOOLEAN`` | No |  |
-| `is_member_exclusive` | ``$BOOLEAN`` | No |  |
-| `is_private` | ``$BOOLEAN`` | No |  |
-| `is_registration_required` | ``$BOOLEAN`` | No |  |
-| `is_sales_button_hidden` | ``$BOOLEAN`` | No |  |
-| `is_sold_out` | ``$BOOLEAN`` | No |  |
-| `is_ticketed` | ``$BOOLEAN`` | No |  |
-| `is_virtual_event` | ``$BOOLEAN`` | No |  |
-| `join_url` | ``$ANY`` | No |  |
-| `layout_type` | ``$ANY`` | No |  |
-| `list_description` | ``$ANY`` | No |  |
-| `location` | ``$ANY`` | No |  |
-| `program_id` | ``$STRING`` | No |  |
-| `program_title` | ``$ANY`` | No |  |
-| `rsvp_link` | ``$ANY`` | No |  |
-| `search_tag` | ``$ANY`` | No |  |
-| `short_description` | ``$ANY`` | No |  |
-| `slug` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `start_date` | ``$ANY`` | No |  |
-| `start_time` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `survey_url` | ``$ANY`` | No |  |
-| `ticketed_event_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `title_display` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `virtual_event_passcode` | ``$ANY`` | No |  |
-| `virtual_event_url` | ``$ANY`` | No |  |
+| `alt_audience_id` | `String` | No |  |
+| `alt_event_type_id` | `String` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `audience_id` | `String` | No |  |
+| `buy_button_caption` | `Object` | No |  |
+| `buy_button_text` | `Object` | No |  |
+| `date_display` | `Object` | No |  |
+| `description` | `String` | No |  |
+| `door_time` | `Object` | No |  |
+| `end_date` | `Object` | No |  |
+| `end_time` | `Object` | No |  |
+| `entrance` | `Object` | No |  |
+| `event_host_id` | `String` | No |  |
+| `event_host_title` | `Object` | No |  |
+| `event_type_id` | `String` | No |  |
+| `header_description` | `Object` | No |  |
+| `hero_caption` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `image_url` | `Object` | No |  |
+| `is_admission_required` | `Boolean` | No |  |
+| `is_after_hour` | `Boolean` | No |  |
+| `is_free` | `Boolean` | No |  |
+| `is_member_exclusive` | `Boolean` | No |  |
+| `is_private` | `Boolean` | No |  |
+| `is_registration_required` | `Boolean` | No |  |
+| `is_sales_button_hidden` | `Boolean` | No |  |
+| `is_sold_out` | `Boolean` | No |  |
+| `is_ticketed` | `Boolean` | No |  |
+| `is_virtual_event` | `Boolean` | No |  |
+| `join_url` | `Object` | No |  |
+| `layout_type` | `Object` | No |  |
+| `list_description` | `Object` | No |  |
+| `location` | `Object` | No |  |
+| `program_id` | `String` | No |  |
+| `program_title` | `Object` | No |  |
+| `rsvp_link` | `Object` | No |  |
+| `search_tag` | `Object` | No |  |
+| `short_description` | `Object` | No |  |
+| `slug` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `start_date` | `Object` | No |  |
+| `start_time` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `survey_url` | `Object` | No |  |
+| `ticketed_event_id` | `String` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `title_display` | `Object` | No |  |
+| `updated_at` | `Object` | No |  |
+| `virtual_event_passcode` | `Object` | No |  |
+| `virtual_event_url` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Event.list(nil)
+results = client.Event.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -1262,40 +1262,40 @@ event_occurrence = client.EventOccurrence
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `button_caption` | ``$ANY`` | No |  |
-| `button_text` | ``$ANY`` | No |  |
-| `button_url` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `end_at` | ``$ANY`` | No |  |
-| `event_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_url` | ``$ANY`` | No |  |
-| `is_private` | ``$BOOLEAN`` | No |  |
-| `is_sales_button_hidden` | ``$BOOLEAN`` | No |  |
-| `is_ticketed` | ``$BOOLEAN`` | No |  |
-| `location` | ``$ANY`` | No |  |
-| `off_sale_at` | ``$ANY`` | No |  |
-| `on_sale_at` | ``$ANY`` | No |  |
-| `short_description` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `start_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `title_display` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `button_caption` | `Object` | No |  |
+| `button_text` | `Object` | No |  |
+| `button_url` | `Object` | No |  |
+| `description` | `String` | No |  |
+| `end_at` | `Object` | No |  |
+| `event_id` | `String` | No |  |
+| `id` | `String` | No |  |
+| `image_url` | `Object` | No |  |
+| `is_private` | `Boolean` | No |  |
+| `is_sales_button_hidden` | `Boolean` | No |  |
+| `is_ticketed` | `Boolean` | No |  |
+| `location` | `Object` | No |  |
+| `off_sale_at` | `Object` | No |  |
+| `on_sale_at` | `Object` | No |  |
+| `short_description` | `Object` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `start_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `title_display` | `Object` | No |  |
+| `updated_at` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.EventOccurrence.list(nil)
+results = client.EventOccurrence.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -1346,26 +1346,26 @@ event_program = client.EventProgram
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_affiliate_group` | ``$BOOLEAN`` | No |  |
-| `is_event_host` | ``$BOOLEAN`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `is_affiliate_group` | `Boolean` | No |  |
+| `is_event_host` | `Boolean` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.EventProgram.list(nil)
+results = client.EventProgram.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -1416,42 +1416,42 @@ exhibition = client.Exhibition
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aic_end_at` | ``$ANY`` | No |  |
-| `aic_start_at` | ``$ANY`` | No |  |
-| `alt_image_id` | ``$STRING`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artist_id` | ``$STRING`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `document_id` | ``$STRING`` | No |  |
-| `gallery_id` | ``$STRING`` | No |  |
-| `gallery_title` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_id` | ``$STRING`` | No |  |
-| `image_url` | ``$ANY`` | No |  |
-| `is_featured` | ``$BOOLEAN`` | No |  |
-| `is_published` | ``$BOOLEAN`` | No |  |
-| `position` | ``$ANY`` | No |  |
-| `short_description` | ``$ANY`` | No |  |
-| `site_id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `status` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `aic_end_at` | `Object` | No |  |
+| `aic_start_at` | `Object` | No |  |
+| `alt_image_id` | `String` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `artist_id` | `String` | No |  |
+| `artwork_id` | `String` | No |  |
+| `artwork_title` | `Object` | No |  |
+| `document_id` | `String` | No |  |
+| `gallery_id` | `String` | No |  |
+| `gallery_title` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `image_id` | `String` | No |  |
+| `image_url` | `Object` | No |  |
+| `is_featured` | `Boolean` | No |  |
+| `is_published` | `Boolean` | No |  |
+| `position` | `Object` | No |  |
+| `short_description` | `Object` | No |  |
+| `site_id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `status` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
+| `web_url` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Exhibition.list(nil)
+results = client.Exhibition.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -1502,31 +1502,31 @@ gallery = client.Gallery
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `floor` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_closed` | ``$BOOLEAN`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `latlon` | ``$ANY`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `number` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `tgn_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `floor` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `is_closed` | `Boolean` | No |  |
+| `latitude` | `Float` | No |  |
+| `latlon` | `Object` | No |  |
+| `longitude` | `Float` | No |  |
+| `number` | `Object` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `tgn_id` | `String` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Gallery.list(nil)
+results = client.Gallery.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -1577,27 +1577,27 @@ generic_page = client.GenericPage
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `search_tag` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `copy` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `search_tag` | `Object` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
+| `web_url` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.GenericPage.list(nil)
+results = client.GenericPage.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -1648,25 +1648,25 @@ highlight = client.Highlight
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `copy` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Highlight.list(nil)
+results = client.Highlight.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -1717,61 +1717,61 @@ hour = client.Hour
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `additional_text` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `friday_is_closed` | ``$ANY`` | No |  |
-| `friday_member_close` | ``$ANY`` | No |  |
-| `friday_member_open` | ``$ANY`` | No |  |
-| `friday_public_close` | ``$ANY`` | No |  |
-| `friday_public_open` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `monday_is_closed` | ``$ANY`` | No |  |
-| `monday_member_close` | ``$ANY`` | No |  |
-| `monday_member_open` | ``$ANY`` | No |  |
-| `monday_public_close` | ``$ANY`` | No |  |
-| `monday_public_open` | ``$ANY`` | No |  |
-| `saturday_is_closed` | ``$ANY`` | No |  |
-| `saturday_member_close` | ``$ANY`` | No |  |
-| `saturday_member_open` | ``$ANY`` | No |  |
-| `saturday_public_close` | ``$ANY`` | No |  |
-| `saturday_public_open` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `summary` | ``$ANY`` | No |  |
-| `sunday_is_closed` | ``$ANY`` | No |  |
-| `sunday_member_close` | ``$ANY`` | No |  |
-| `sunday_member_open` | ``$ANY`` | No |  |
-| `sunday_public_close` | ``$ANY`` | No |  |
-| `sunday_public_open` | ``$ANY`` | No |  |
-| `thursday_is_closed` | ``$ANY`` | No |  |
-| `thursday_member_close` | ``$ANY`` | No |  |
-| `thursday_member_open` | ``$ANY`` | No |  |
-| `thursday_public_close` | ``$ANY`` | No |  |
-| `thursday_public_open` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `tuesday_is_closed` | ``$ANY`` | No |  |
-| `tuesday_member_close` | ``$ANY`` | No |  |
-| `tuesday_member_open` | ``$ANY`` | No |  |
-| `tuesday_public_close` | ``$ANY`` | No |  |
-| `tuesday_public_open` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `wednesday_is_closed` | ``$ANY`` | No |  |
-| `wednesday_member_close` | ``$ANY`` | No |  |
-| `wednesday_member_open` | ``$ANY`` | No |  |
-| `wednesday_public_close` | ``$ANY`` | No |  |
-| `wednesday_public_open` | ``$ANY`` | No |  |
+| `additional_text` | `Object` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `friday_is_closed` | `Object` | No |  |
+| `friday_member_close` | `Object` | No |  |
+| `friday_member_open` | `Object` | No |  |
+| `friday_public_close` | `Object` | No |  |
+| `friday_public_open` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `monday_is_closed` | `Object` | No |  |
+| `monday_member_close` | `Object` | No |  |
+| `monday_member_open` | `Object` | No |  |
+| `monday_public_close` | `Object` | No |  |
+| `monday_public_open` | `Object` | No |  |
+| `saturday_is_closed` | `Object` | No |  |
+| `saturday_member_close` | `Object` | No |  |
+| `saturday_member_open` | `Object` | No |  |
+| `saturday_public_close` | `Object` | No |  |
+| `saturday_public_open` | `Object` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `summary` | `Object` | No |  |
+| `sunday_is_closed` | `Object` | No |  |
+| `sunday_member_close` | `Object` | No |  |
+| `sunday_member_open` | `Object` | No |  |
+| `sunday_public_close` | `Object` | No |  |
+| `sunday_public_open` | `Object` | No |  |
+| `thursday_is_closed` | `Object` | No |  |
+| `thursday_member_close` | `Object` | No |  |
+| `thursday_member_open` | `Object` | No |  |
+| `thursday_public_close` | `Object` | No |  |
+| `thursday_public_open` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `tuesday_is_closed` | `Object` | No |  |
+| `tuesday_member_close` | `Object` | No |  |
+| `tuesday_member_open` | `Object` | No |  |
+| `tuesday_public_close` | `Object` | No |  |
+| `tuesday_public_open` | `Object` | No |  |
+| `updated_at` | `Object` | No |  |
+| `wednesday_is_closed` | `Object` | No |  |
+| `wednesday_member_close` | `Object` | No |  |
+| `wednesday_member_open` | `Object` | No |  |
+| `wednesday_public_close` | `Object` | No |  |
+| `wednesday_public_open` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Hour.list(nil)
+results = client.Hour.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -1822,44 +1822,44 @@ image = client.Image
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ahash` | ``$ANY`` | No |  |
-| `alt_text` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `color` | ``$ANY`` | No |  |
-| `colorfulness` | ``$ANY`` | No |  |
-| `content` | ``$ANY`` | No |  |
-| `content_e_tag` | ``$ANY`` | No |  |
-| `credit_line` | ``$ANY`` | No |  |
-| `fingerprint` | ``$ANY`` | No |  |
-| `height` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `iiif_url` | ``$ANY`` | No |  |
-| `is_educational_resource` | ``$BOOLEAN`` | No |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` | No |  |
-| `is_teacher_resource` | ``$BOOLEAN`` | No |  |
-| `lake_guid` | ``$ANY`` | No |  |
-| `lqip` | ``$ANY`` | No |  |
-| `phash` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `width` | ``$NUMBER`` | No |  |
+| `ahash` | `Object` | No |  |
+| `alt_text` | `Object` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `artwork_id` | `String` | No |  |
+| `artwork_title` | `Object` | No |  |
+| `color` | `Object` | No |  |
+| `colorfulness` | `Object` | No |  |
+| `content` | `Object` | No |  |
+| `content_e_tag` | `Object` | No |  |
+| `credit_line` | `Object` | No |  |
+| `fingerprint` | `Object` | No |  |
+| `height` | `Float` | No |  |
+| `id` | `String` | No |  |
+| `iiif_url` | `Object` | No |  |
+| `is_educational_resource` | `Boolean` | No |  |
+| `is_multimedia_resource` | `Boolean` | No |  |
+| `is_teacher_resource` | `Boolean` | No |  |
+| `lake_guid` | `Object` | No |  |
+| `lqip` | `Object` | No |  |
+| `phash` | `Object` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `type` | `Object` | No |  |
+| `updated_at` | `Object` | No |  |
+| `width` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Image.list(nil)
+results = client.Image.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -1910,27 +1910,27 @@ landing_page = client.LandingPage
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `search_tag` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `copy` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `search_tag` | `Object` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
+| `web_url` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.LandingPage.list(nil)
+results = client.LandingPage.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -1981,27 +1981,27 @@ place = client.Place
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `tgn_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `latitude` | `Float` | No |  |
+| `longitude` | `Float` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `tgn_id` | `String` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Place.list(nil)
+results = client.Place.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -2052,26 +2052,26 @@ press_release = client.PressRelease
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `copy` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
+| `web_url` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.PressRelease.list(nil)
+results = client.PressRelease.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -2122,26 +2122,26 @@ printed_publication = client.PrintedPublication
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `copy` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `copy` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
+| `web_url` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.PrintedPublication.list(nil)
+results = client.PrintedPublication.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -2192,36 +2192,36 @@ product = client.Product
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artist_id` | ``$STRING`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `exhibition_id` | ``$STRING`` | No |  |
-| `external_sku` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_url` | ``$ANY`` | No |  |
-| `max_compare_at_price` | ``$ANY`` | No |  |
-| `max_current_price` | ``$ANY`` | No |  |
-| `min_compare_at_price` | ``$ANY`` | No |  |
-| `min_current_price` | ``$ANY`` | No |  |
-| `price_display` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `artist_id` | `String` | No |  |
+| `artwork_id` | `String` | No |  |
+| `description` | `String` | No |  |
+| `exhibition_id` | `String` | No |  |
+| `external_sku` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `image_url` | `Object` | No |  |
+| `max_compare_at_price` | `Object` | No |  |
+| `max_current_price` | `Object` | No |  |
+| `min_compare_at_price` | `Object` | No |  |
+| `min_current_price` | `Object` | No |  |
+| `price_display` | `Object` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
+| `web_url` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Product.list(nil)
+results = client.Product.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -2272,26 +2272,26 @@ publication = client.Publication
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `section_id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `section_id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
+| `web_url` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Publication.list(nil)
+results = client.Publication.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -2342,24 +2342,24 @@ search = client.Search
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_id` | ``$STRING`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_boosted` | ``$BOOLEAN`` | No |  |
-| `score` | ``$NUMBER`` | No |  |
-| `thumbnail` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `api_id` | `String` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `is_boosted` | `Boolean` | No |  |
+| `score` | `Float` | No |  |
+| `thumbnail` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Search.list(nil)
+results = client.Search.list
 ```
 
 ### Common Methods
@@ -2402,31 +2402,31 @@ section = client.Section
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accession` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `content` | ``$ANY`` | No |  |
-| `generic_page_id` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `publication_id` | ``$STRING`` | No |  |
-| `publication_title` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `accession` | `Object` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `artwork_id` | `String` | No |  |
+| `content` | `Object` | No |  |
+| `generic_page_id` | `String` | No |  |
+| `id` | `String` | No |  |
+| `publication_id` | `String` | No |  |
+| `publication_title` | `Object` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
+| `web_url` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Section.list(nil)
+results = client.Section.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -2477,30 +2477,30 @@ site = client.Site
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `exhibition_id` | ``$STRING`` | No |  |
-| `exhibition_title` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `artwork_id` | `String` | No |  |
+| `artwork_title` | `Object` | No |  |
+| `description` | `String` | No |  |
+| `exhibition_id` | `String` | No |  |
+| `exhibition_title` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
+| `web_url` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Site.list(nil)
+results = client.Site.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -2551,37 +2551,37 @@ sound = client.Sound
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `content` | ``$ANY`` | No |  |
-| `content_e_tag` | ``$ANY`` | No |  |
-| `credit_line` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_educational_resource` | ``$BOOLEAN`` | No |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` | No |  |
-| `is_teacher_resource` | ``$BOOLEAN`` | No |  |
-| `lake_guid` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `transcript` | ``$ANY`` | No |  |
-| `type` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `alt_text` | `Object` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `artwork_id` | `String` | No |  |
+| `artwork_title` | `Object` | No |  |
+| `content` | `Object` | No |  |
+| `content_e_tag` | `Object` | No |  |
+| `credit_line` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `is_educational_resource` | `Boolean` | No |  |
+| `is_multimedia_resource` | `Boolean` | No |  |
+| `is_teacher_resource` | `Boolean` | No |  |
+| `lake_guid` | `Object` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `transcript` | `Object` | No |  |
+| `type` | `Object` | No |  |
+| `updated_at` | `Object` | No |  |
+| `web_url` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Sound.list(nil)
+results = client.Sound.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -2632,25 +2632,25 @@ static_page = client.StaticPage
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `web_url` | ``$ANY`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
+| `web_url` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.StaticPage.list(nil)
+results = client.StaticPage.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -2701,35 +2701,35 @@ text = client.Text
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `content` | ``$ANY`` | No |  |
-| `content_e_tag` | ``$ANY`` | No |  |
-| `credit_line` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_educational_resource` | ``$BOOLEAN`` | No |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` | No |  |
-| `is_teacher_resource` | ``$BOOLEAN`` | No |  |
-| `lake_guid` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `alt_text` | `Object` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `artwork_id` | `String` | No |  |
+| `artwork_title` | `Object` | No |  |
+| `content` | `Object` | No |  |
+| `content_e_tag` | `Object` | No |  |
+| `credit_line` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `is_educational_resource` | `Boolean` | No |  |
+| `is_multimedia_resource` | `Boolean` | No |  |
+| `is_teacher_resource` | `Boolean` | No |  |
+| `lake_guid` | `Object` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `type` | `Object` | No |  |
+| `updated_at` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Text.list(nil)
+results = client.Text.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -2780,32 +2780,32 @@ tour = client.Tour
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artist_title` | ``$ANY`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image` | ``$ANY`` | No |  |
-| `intro` | ``$ANY`` | No |  |
-| `intro_link` | ``$ANY`` | No |  |
-| `intro_transcript` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
-| `weight` | ``$NUMBER`` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `artist_title` | `Object` | No |  |
+| `artwork_title` | `Object` | No |  |
+| `description` | `String` | No |  |
+| `id` | `String` | No |  |
+| `image` | `Object` | No |  |
+| `intro` | `Object` | No |  |
+| `intro_link` | `Object` | No |  |
+| `intro_transcript` | `Object` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `updated_at` | `Object` | No |  |
+| `weight` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Tour.list(nil)
+results = client.Tour.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -2856,35 +2856,35 @@ video = client.Video
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | ``$ANY`` | No |  |
-| `api_link` | ``$ANY`` | No |  |
-| `api_model` | ``$ANY`` | No |  |
-| `artwork_id` | ``$STRING`` | No |  |
-| `artwork_title` | ``$ANY`` | No |  |
-| `content` | ``$ANY`` | No |  |
-| `content_e_tag` | ``$ANY`` | No |  |
-| `credit_line` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_educational_resource` | ``$BOOLEAN`` | No |  |
-| `is_multimedia_resource` | ``$BOOLEAN`` | No |  |
-| `is_teacher_resource` | ``$BOOLEAN`` | No |  |
-| `lake_guid` | ``$ANY`` | No |  |
-| `source_updated_at` | ``$ANY`` | No |  |
-| `suggest_autocomplete_all` | ``$ANY`` | No |  |
-| `suggest_autocomplete_boosted` | ``$ANY`` | No |  |
-| `timestamp` | ``$ANY`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$ANY`` | No |  |
-| `updated_at` | ``$ANY`` | No |  |
+| `alt_text` | `Object` | No |  |
+| `api_link` | `Object` | No |  |
+| `api_model` | `Object` | No |  |
+| `artwork_id` | `String` | No |  |
+| `artwork_title` | `Object` | No |  |
+| `content` | `Object` | No |  |
+| `content_e_tag` | `Object` | No |  |
+| `credit_line` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `is_educational_resource` | `Boolean` | No |  |
+| `is_multimedia_resource` | `Boolean` | No |  |
+| `is_teacher_resource` | `Boolean` | No |  |
+| `lake_guid` | `Object` | No |  |
+| `source_updated_at` | `Object` | No |  |
+| `suggest_autocomplete_all` | `Object` | No |  |
+| `suggest_autocomplete_boosted` | `Object` | No |  |
+| `timestamp` | `Object` | No |  |
+| `title` | `String` | No |  |
+| `type` | `Object` | No |  |
+| `updated_at` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Video.list(nil)
+results = client.Video.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
