@@ -60,7 +60,7 @@ func main() {
     }
 
     // Load a single agent — the value is the loaded record.
-    agent, err := client.Agent(nil).Load(map[string]any{"id": "example"}, nil)
+    agent, err := client.Agent(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
@@ -1323,7 +1323,7 @@ fmt.Println(agents) // the array of records
 
 ### AgentRole
 
-Create an instance: `agent_role := client.AgentRole(nil)`
+Create an instance: `agentRole := client.AgentRole(nil)`
 
 #### Operations
 
@@ -1349,27 +1349,27 @@ Create an instance: `agent_role := client.AgentRole(nil)`
 #### Example: Load
 
 ```go
-agent_role, err := client.AgentRole(nil).Load(map[string]any{"id": "agent_role_id"}, nil)
+agentRole, err := client.AgentRole(nil).Load(map[string]any{"id": "agent_role_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(agent_role) // the loaded record
+fmt.Println(agentRole) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-agent_roles, err := client.AgentRole(nil).List(nil, nil)
+agentRoles, err := client.AgentRole(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(agent_roles) // the array of records
+fmt.Println(agentRoles) // the array of records
 ```
 
 
 ### AgentType
 
-Create an instance: `agent_type := client.AgentType(nil)`
+Create an instance: `agentType := client.AgentType(nil)`
 
 #### Operations
 
@@ -1395,21 +1395,21 @@ Create an instance: `agent_type := client.AgentType(nil)`
 #### Example: Load
 
 ```go
-agent_type, err := client.AgentType(nil).Load(map[string]any{"id": "agent_type_id"}, nil)
+agentType, err := client.AgentType(nil).Load(map[string]any{"id": "agent_type_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(agent_type) // the loaded record
+fmt.Println(agentType) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-agent_types, err := client.AgentType(nil).List(nil, nil)
+agentTypes, err := client.AgentType(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(agent_types) // the array of records
+fmt.Println(agentTypes) // the array of records
 ```
 
 
@@ -1594,7 +1594,7 @@ fmt.Println(artworks) // the array of records
 
 ### ArtworkDateQualifier
 
-Create an instance: `artwork_date_qualifier := client.ArtworkDateQualifier(nil)`
+Create an instance: `artworkDateQualifier := client.ArtworkDateQualifier(nil)`
 
 #### Operations
 
@@ -1620,27 +1620,27 @@ Create an instance: `artwork_date_qualifier := client.ArtworkDateQualifier(nil)`
 #### Example: Load
 
 ```go
-artwork_date_qualifier, err := client.ArtworkDateQualifier(nil).Load(map[string]any{"id": "artwork_date_qualifier_id"}, nil)
+artworkDateQualifier, err := client.ArtworkDateQualifier(nil).Load(map[string]any{"id": "artwork_date_qualifier_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(artwork_date_qualifier) // the loaded record
+fmt.Println(artworkDateQualifier) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-artwork_date_qualifiers, err := client.ArtworkDateQualifier(nil).List(nil, nil)
+artworkDateQualifiers, err := client.ArtworkDateQualifier(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(artwork_date_qualifiers) // the array of records
+fmt.Println(artworkDateQualifiers) // the array of records
 ```
 
 
 ### ArtworkPlaceQualifier
 
-Create an instance: `artwork_place_qualifier := client.ArtworkPlaceQualifier(nil)`
+Create an instance: `artworkPlaceQualifier := client.ArtworkPlaceQualifier(nil)`
 
 #### Operations
 
@@ -1666,27 +1666,27 @@ Create an instance: `artwork_place_qualifier := client.ArtworkPlaceQualifier(nil
 #### Example: Load
 
 ```go
-artwork_place_qualifier, err := client.ArtworkPlaceQualifier(nil).Load(map[string]any{"id": "artwork_place_qualifier_id"}, nil)
+artworkPlaceQualifier, err := client.ArtworkPlaceQualifier(nil).Load(map[string]any{"id": "artwork_place_qualifier_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(artwork_place_qualifier) // the loaded record
+fmt.Println(artworkPlaceQualifier) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-artwork_place_qualifiers, err := client.ArtworkPlaceQualifier(nil).List(nil, nil)
+artworkPlaceQualifiers, err := client.ArtworkPlaceQualifier(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(artwork_place_qualifiers) // the array of records
+fmt.Println(artworkPlaceQualifiers) // the array of records
 ```
 
 
 ### ArtworkType
 
-Create an instance: `artwork_type := client.ArtworkType(nil)`
+Create an instance: `artworkType := client.ArtworkType(nil)`
 
 #### Operations
 
@@ -1713,27 +1713,27 @@ Create an instance: `artwork_type := client.ArtworkType(nil)`
 #### Example: Load
 
 ```go
-artwork_type, err := client.ArtworkType(nil).Load(map[string]any{"id": "artwork_type_id"}, nil)
+artworkType, err := client.ArtworkType(nil).Load(map[string]any{"id": "artwork_type_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(artwork_type) // the loaded record
+fmt.Println(artworkType) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-artwork_types, err := client.ArtworkType(nil).List(nil, nil)
+artworkTypes, err := client.ArtworkType(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(artwork_types) // the array of records
+fmt.Println(artworkTypes) // the array of records
 ```
 
 
 ### CategoryTerm
 
-Create an instance: `category_term := client.CategoryTerm(nil)`
+Create an instance: `categoryTerm := client.CategoryTerm(nil)`
 
 #### Operations
 
@@ -1761,27 +1761,27 @@ Create an instance: `category_term := client.CategoryTerm(nil)`
 #### Example: Load
 
 ```go
-category_term, err := client.CategoryTerm(nil).Load(map[string]any{"id": "category_term_id"}, nil)
+categoryTerm, err := client.CategoryTerm(nil).Load(map[string]any{"id": "category_term_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(category_term) // the loaded record
+fmt.Println(categoryTerm) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-category_terms, err := client.CategoryTerm(nil).List(nil, nil)
+categoryTerms, err := client.CategoryTerm(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(category_terms) // the array of records
+fmt.Println(categoryTerms) // the array of records
 ```
 
 
 ### DigitalPublication
 
-Create an instance: `digital_publication := client.DigitalPublication(nil)`
+Create an instance: `digitalPublication := client.DigitalPublication(nil)`
 
 #### Operations
 
@@ -1809,27 +1809,27 @@ Create an instance: `digital_publication := client.DigitalPublication(nil)`
 #### Example: Load
 
 ```go
-digital_publication, err := client.DigitalPublication(nil).Load(map[string]any{"id": "digital_publication_id"}, nil)
+digitalPublication, err := client.DigitalPublication(nil).Load(map[string]any{"id": "digital_publication_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(digital_publication) // the loaded record
+fmt.Println(digitalPublication) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-digital_publications, err := client.DigitalPublication(nil).List(nil, nil)
+digitalPublications, err := client.DigitalPublication(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(digital_publications) // the array of records
+fmt.Println(digitalPublications) // the array of records
 ```
 
 
 ### DigitalPublicationArticle
 
-Create an instance: `digital_publication_article := client.DigitalPublicationArticle(nil)`
+Create an instance: `digitalPublicationArticle := client.DigitalPublicationArticle(nil)`
 
 #### Operations
 
@@ -1859,27 +1859,27 @@ Create an instance: `digital_publication_article := client.DigitalPublicationArt
 #### Example: Load
 
 ```go
-digital_publication_article, err := client.DigitalPublicationArticle(nil).Load(map[string]any{"id": "digital_publication_article_id"}, nil)
+digitalPublicationArticle, err := client.DigitalPublicationArticle(nil).Load(map[string]any{"id": "digital_publication_article_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(digital_publication_article) // the loaded record
+fmt.Println(digitalPublicationArticle) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-digital_publication_articles, err := client.DigitalPublicationArticle(nil).List(nil, nil)
+digitalPublicationArticles, err := client.DigitalPublicationArticle(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(digital_publication_articles) // the array of records
+fmt.Println(digitalPublicationArticles) // the array of records
 ```
 
 
 ### EducatorResource
 
-Create an instance: `educator_resource := client.EducatorResource(nil)`
+Create an instance: `educatorResource := client.EducatorResource(nil)`
 
 #### Operations
 
@@ -1907,21 +1907,21 @@ Create an instance: `educator_resource := client.EducatorResource(nil)`
 #### Example: Load
 
 ```go
-educator_resource, err := client.EducatorResource(nil).Load(map[string]any{"id": "educator_resource_id"}, nil)
+educatorResource, err := client.EducatorResource(nil).Load(map[string]any{"id": "educator_resource_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(educator_resource) // the loaded record
+fmt.Println(educatorResource) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-educator_resources, err := client.EducatorResource(nil).List(nil, nil)
+educatorResources, err := client.EducatorResource(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(educator_resources) // the array of records
+fmt.Println(educatorResources) // the array of records
 ```
 
 
@@ -2017,7 +2017,7 @@ fmt.Println(events) // the array of records
 
 ### EventOccurrence
 
-Create an instance: `event_occurrence := client.EventOccurrence(nil)`
+Create an instance: `eventOccurrence := client.EventOccurrence(nil)`
 
 #### Operations
 
@@ -2059,27 +2059,27 @@ Create an instance: `event_occurrence := client.EventOccurrence(nil)`
 #### Example: Load
 
 ```go
-event_occurrence, err := client.EventOccurrence(nil).Load(map[string]any{"id": "event_occurrence_id"}, nil)
+eventOccurrence, err := client.EventOccurrence(nil).Load(map[string]any{"id": "event_occurrence_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(event_occurrence) // the loaded record
+fmt.Println(eventOccurrence) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-event_occurrences, err := client.EventOccurrence(nil).List(nil, nil)
+eventOccurrences, err := client.EventOccurrence(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(event_occurrences) // the array of records
+fmt.Println(eventOccurrences) // the array of records
 ```
 
 
 ### EventProgram
 
-Create an instance: `event_program := client.EventProgram(nil)`
+Create an instance: `eventProgram := client.EventProgram(nil)`
 
 #### Operations
 
@@ -2107,21 +2107,21 @@ Create an instance: `event_program := client.EventProgram(nil)`
 #### Example: Load
 
 ```go
-event_program, err := client.EventProgram(nil).Load(map[string]any{"id": "event_program_id"}, nil)
+eventProgram, err := client.EventProgram(nil).Load(map[string]any{"id": "event_program_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(event_program) // the loaded record
+fmt.Println(eventProgram) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-event_programs, err := client.EventProgram(nil).List(nil, nil)
+eventPrograms, err := client.EventProgram(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(event_programs) // the array of records
+fmt.Println(eventPrograms) // the array of records
 ```
 
 
@@ -2244,7 +2244,7 @@ fmt.Println(gallerys) // the array of records
 
 ### GenericPage
 
-Create an instance: `generic_page := client.GenericPage(nil)`
+Create an instance: `genericPage := client.GenericPage(nil)`
 
 #### Operations
 
@@ -2273,21 +2273,21 @@ Create an instance: `generic_page := client.GenericPage(nil)`
 #### Example: Load
 
 ```go
-generic_page, err := client.GenericPage(nil).Load(map[string]any{"id": "generic_page_id"}, nil)
+genericPage, err := client.GenericPage(nil).Load(map[string]any{"id": "generic_page_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(generic_page) // the loaded record
+fmt.Println(genericPage) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-generic_pages, err := client.GenericPage(nil).List(nil, nil)
+genericPages, err := client.GenericPage(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(generic_pages) // the array of records
+fmt.Println(genericPages) // the array of records
 ```
 
 
@@ -2489,7 +2489,7 @@ fmt.Println(images) // the array of records
 
 ### LandingPage
 
-Create an instance: `landing_page := client.LandingPage(nil)`
+Create an instance: `landingPage := client.LandingPage(nil)`
 
 #### Operations
 
@@ -2518,21 +2518,21 @@ Create an instance: `landing_page := client.LandingPage(nil)`
 #### Example: Load
 
 ```go
-landing_page, err := client.LandingPage(nil).Load(map[string]any{"id": "landing_page_id"}, nil)
+landingPage, err := client.LandingPage(nil).Load(map[string]any{"id": "landing_page_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(landing_page) // the loaded record
+fmt.Println(landingPage) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-landing_pages, err := client.LandingPage(nil).List(nil, nil)
+landingPages, err := client.LandingPage(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(landing_pages) // the array of records
+fmt.Println(landingPages) // the array of records
 ```
 
 
@@ -2587,7 +2587,7 @@ fmt.Println(places) // the array of records
 
 ### PressRelease
 
-Create an instance: `press_release := client.PressRelease(nil)`
+Create an instance: `pressRelease := client.PressRelease(nil)`
 
 #### Operations
 
@@ -2615,27 +2615,27 @@ Create an instance: `press_release := client.PressRelease(nil)`
 #### Example: Load
 
 ```go
-press_release, err := client.PressRelease(nil).Load(map[string]any{"id": "press_release_id"}, nil)
+pressRelease, err := client.PressRelease(nil).Load(map[string]any{"id": "press_release_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(press_release) // the loaded record
+fmt.Println(pressRelease) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-press_releases, err := client.PressRelease(nil).List(nil, nil)
+pressReleases, err := client.PressRelease(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(press_releases) // the array of records
+fmt.Println(pressReleases) // the array of records
 ```
 
 
 ### PrintedPublication
 
-Create an instance: `printed_publication := client.PrintedPublication(nil)`
+Create an instance: `printedPublication := client.PrintedPublication(nil)`
 
 #### Operations
 
@@ -2663,21 +2663,21 @@ Create an instance: `printed_publication := client.PrintedPublication(nil)`
 #### Example: Load
 
 ```go
-printed_publication, err := client.PrintedPublication(nil).Load(map[string]any{"id": "printed_publication_id"}, nil)
+printedPublication, err := client.PrintedPublication(nil).Load(map[string]any{"id": "printed_publication_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(printed_publication) // the loaded record
+fmt.Println(printedPublication) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-printed_publications, err := client.PrintedPublication(nil).List(nil, nil)
+printedPublications, err := client.PrintedPublication(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(printed_publications) // the array of records
+fmt.Println(printedPublications) // the array of records
 ```
 
 
@@ -2988,7 +2988,7 @@ fmt.Println(sounds) // the array of records
 
 ### StaticPage
 
-Create an instance: `static_page := client.StaticPage(nil)`
+Create an instance: `staticPage := client.StaticPage(nil)`
 
 #### Operations
 
@@ -3015,21 +3015,21 @@ Create an instance: `static_page := client.StaticPage(nil)`
 #### Example: Load
 
 ```go
-static_page, err := client.StaticPage(nil).Load(map[string]any{"id": "static_page_id"}, nil)
+staticPage, err := client.StaticPage(nil).Load(map[string]any{"id": "static_page_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(static_page) // the loaded record
+fmt.Println(staticPage) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-static_pages, err := client.StaticPage(nil).List(nil, nil)
+staticPages, err := client.StaticPage(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(static_pages) // the array of records
+fmt.Println(staticPages) // the array of records
 ```
 
 
