@@ -16,8 +16,8 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 ## Entities, not endpoints
 
-This SDK exposes the API as a small set of **semantic entities** — Agent, AgentRole, AgentType, Article, Artwork, ArtworkDateQualifier, ArtworkPlaceQualifier, ArtworkType, CategoryTerm, DigitalPublication, DigitalPublicationArticle, EducatorResource, Event, EventOccurrence, EventProgram, Exhibition, Gallery, GenericPage, Highlight, Hour, Image, LandingPage, Place, PressRelease, PrintedPublication, Product, Publication, Search, Section, Site, Sound, StaticPage, Text, Tour and Video — that you
-call directly, instead of assembling URL paths and query strings. Entities are
+This SDK exposes the API as **35 semantic entities** that you
+call directly, instead of assembling URL paths and query strings. See the [Entities](#entities) table below for the full list. Entities are
 **Capitalised** to mark them as the primary surface, each with the operations they
 support (`list`, `load`):
 
