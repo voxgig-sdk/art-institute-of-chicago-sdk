@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- ArtInstituteOfChicago SDK exists test
 
 local sdk = require("art-institute-of-chicago_sdk")
 
