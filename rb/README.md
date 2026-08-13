@@ -37,7 +37,7 @@ begin
   # list returns an Array of Agent records — iterate directly.
   agents = client.Agent.list
   agents.each do |item|
-    puts "#{item["id"]} #{item["alt_title"]}"
+    puts "#{item["id"]} #{item["alt_titles"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,7 +48,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Agent record (raises on error).
+  # load returns the ENTITY — call data_get for the Agent record (raises on error).
   agent = client.Agent.load({ "id" => "example_id" })
   puts agent
 rescue => err
@@ -63,7 +63,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  agents = client.Agent.list()
+  publications = client.Publication.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -131,12 +131,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
 client = ArtInstituteOfChicagoSDK.test({
-  "entity" => { "agent" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "publication" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
-agent = client.Agent.list()
-puts agent
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+publication = client.Publication.list()
+puts publication
 ```
 
 ### Use a custom fetch function
@@ -286,7 +287,7 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `alt_title` |  |
+| `alt_titles` |  |
 | `api_link` |  |
 | `api_model` |  |
 | `birth_date` |  |
@@ -366,28 +367,32 @@ API path: `/articles`
 
 | Field | Description |
 | --- | --- |
-| `alt_artist_id` |  |
-| `alt_classification_id` |  |
-| `alt_image_id` |  |
-| `alt_material_id` |  |
-| `alt_style_id` |  |
-| `alt_subject_id` |  |
-| `alt_technique_id` |  |
-| `alt_title` |  |
+| `alt_artist_ids` |  |
+| `alt_classification_ids` |  |
+| `alt_image_ids` |  |
+| `alt_material_ids` |  |
+| `alt_style_ids` |  |
+| `alt_subject_ids` |  |
+| `alt_technique_ids` |  |
+| `alt_titles` |  |
 | `api_link` |  |
 | `api_model` |  |
 | `artist_display` |  |
 | `artist_id` |  |
+| `artist_ids` |  |
 | `artist_title` |  |
+| `artist_titles` |  |
 | `artwork_type_id` |  |
 | `artwork_type_title` |  |
 | `boost_rank` |  |
-| `catalog_based_search_keyword_title` |  |
+| `catalog_based_search_keyword_titles` |  |
 | `catalogue_display` |  |
-| `category_id` |  |
-| `category_title` |  |
+| `category_ids` |  |
+| `category_titles` |  |
 | `classification_id` |  |
+| `classification_ids` |  |
 | `classification_title` |  |
+| `classification_titles` |  |
 | `color` |  |
 | `colorfulness` |  |
 | `copyright_notice` |  |
@@ -400,9 +405,9 @@ API path: `/articles`
 | `department_id` |  |
 | `department_title` |  |
 | `description` |  |
-| `dimension` |  |
+| `dimensions` |  |
 | `dimensions_detail` |  |
-| `document_id` |  |
+| `document_ids` |  |
 | `edition` |  |
 | `exhibition_history` |  |
 | `fiscal_year` |  |
@@ -410,13 +415,13 @@ API path: `/articles`
 | `gallery_id` |  |
 | `gallery_title` |  |
 | `has_advanced_imaging` |  |
-| `has_educational_resource` |  |
-| `has_multimedia_resource` |  |
+| `has_educational_resources` |  |
+| `has_multimedia_resources` |  |
 | `has_not_been_viewed_much` |  |
 | `id` |  |
 | `image_embedding` |  |
 | `image_id` |  |
-| `inscription` |  |
+| `inscriptions` |  |
 | `internal_department_id` |  |
 | `is_boosted` |  |
 | `is_on_view` |  |
@@ -427,40 +432,45 @@ API path: `/articles`
 | `longitude` |  |
 | `main_reference_number` |  |
 | `material_id` |  |
-| `material_title` |  |
+| `material_ids` |  |
+| `material_titles` |  |
 | `max_zoom_window_size` |  |
 | `medium_display` |  |
 | `nomisma_id` |  |
 | `on_loan_display` |  |
-| `pageview` |  |
+| `pageviews` |  |
 | `pageviews_recent` |  |
 | `place_of_origin` |  |
 | `provenance_text` |  |
 | `publication_history` |  |
 | `publishing_verification_level` |  |
-| `section_id` |  |
-| `section_title` |  |
+| `section_ids` |  |
+| `section_titles` |  |
 | `short_description` |  |
-| `site_id` |  |
-| `sound_id` |  |
+| `site_ids` |  |
+| `sound_ids` |  |
 | `source_updated_at` |  |
 | `style_id` |  |
+| `style_ids` |  |
 | `style_title` |  |
+| `style_titles` |  |
 | `subject_id` |  |
-| `subject_title` |  |
+| `subject_ids` |  |
+| `subject_titles` |  |
 | `suggest_autocomplete_all` |  |
 | `suggest_autocomplete_boosted` |  |
 | `technique_id` |  |
-| `technique_title` |  |
-| `term_title` |  |
+| `technique_ids` |  |
+| `technique_titles` |  |
+| `term_titles` |  |
 | `text_embedding` |  |
-| `text_id` |  |
-| `theme_title` |  |
+| `text_ids` |  |
+| `theme_titles` |  |
 | `thumbnail` |  |
 | `timestamp` |  |
 | `title` |  |
 | `updated_at` |  |
-| `video_id` |  |
+| `video_ids` |  |
 
 Operations: List, Load.
 
@@ -607,8 +617,8 @@ API path: `/educator-resources`
 
 | Field | Description |
 | --- | --- |
-| `alt_audience_id` |  |
-| `alt_event_type_id` |  |
+| `alt_audience_ids` |  |
+| `alt_event_type_ids` |  |
 | `api_link` |  |
 | `api_model` |  |
 | `audience_id` |  |
@@ -628,7 +638,7 @@ API path: `/educator-resources`
 | `id` |  |
 | `image_url` |  |
 | `is_admission_required` |  |
-| `is_after_hour` |  |
+| `is_after_hours` |  |
 | `is_free` |  |
 | `is_member_exclusive` |  |
 | `is_private` |  |
@@ -641,10 +651,10 @@ API path: `/educator-resources`
 | `layout_type` |  |
 | `list_description` |  |
 | `location` |  |
-| `program_id` |  |
-| `program_title` |  |
+| `program_ids` |  |
+| `program_titles` |  |
 | `rsvp_link` |  |
-| `search_tag` |  |
+| `search_tags` |  |
 | `short_description` |  |
 | `slug` |  |
 | `source_updated_at` |  |
@@ -725,13 +735,13 @@ API path: `/event-programs`
 | --- | --- |
 | `aic_end_at` |  |
 | `aic_start_at` |  |
-| `alt_image_id` |  |
+| `alt_image_ids` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artist_id` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
-| `document_id` |  |
+| `artist_ids` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
+| `document_ids` |  |
 | `gallery_id` |  |
 | `gallery_title` |  |
 | `id` |  |
@@ -741,7 +751,7 @@ API path: `/event-programs`
 | `is_published` |  |
 | `position` |  |
 | `short_description` |  |
-| `site_id` |  |
+| `site_ids` |  |
 | `source_updated_at` |  |
 | `status` |  |
 | `suggest_autocomplete_all` |  |
@@ -788,7 +798,7 @@ API path: `/galleries`
 | `api_model` |  |
 | `copy` |  |
 | `id` |  |
-| `search_tag` |  |
+| `search_tags` |  |
 | `source_updated_at` |  |
 | `suggest_autocomplete_all` |  |
 | `suggest_autocomplete_boosted` |  |
@@ -883,8 +893,8 @@ API path: `/hours`
 | `alt_text` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `color` |  |
 | `colorfulness` |  |
 | `content` |  |
@@ -921,7 +931,7 @@ API path: `/images`
 | `api_model` |  |
 | `copy` |  |
 | `id` |  |
-| `search_tag` |  |
+| `search_tags` |  |
 | `source_updated_at` |  |
 | `suggest_autocomplete_all` |  |
 | `suggest_autocomplete_boosted` |  |
@@ -1001,10 +1011,10 @@ API path: `/printed-publications`
 | --- | --- |
 | `api_link` |  |
 | `api_model` |  |
-| `artist_id` |  |
-| `artwork_id` |  |
+| `artist_ids` |  |
+| `artwork_ids` |  |
 | `description` |  |
-| `exhibition_id` |  |
+| `exhibition_ids` |  |
 | `external_sku` |  |
 | `id` |  |
 | `image_url` |  |
@@ -1032,7 +1042,7 @@ API path: `/products`
 | `api_link` |  |
 | `api_model` |  |
 | `id` |  |
-| `section_id` |  |
+| `section_ids` |  |
 | `source_updated_at` |  |
 | `suggest_autocomplete_all` |  |
 | `suggest_autocomplete_boosted` |  |
@@ -1094,11 +1104,11 @@ API path: `/sections`
 | --- | --- |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `description` |  |
-| `exhibition_id` |  |
-| `exhibition_title` |  |
+| `exhibition_ids` |  |
+| `exhibition_titles` |  |
 | `id` |  |
 | `source_updated_at` |  |
 | `suggest_autocomplete_all` |  |
@@ -1119,8 +1129,8 @@ API path: `/sites`
 | `alt_text` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `content` |  |
 | `content_e_tag` |  |
 | `credit_line` |  |
@@ -1169,8 +1179,8 @@ API path: `/static-pages`
 | `alt_text` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `content` |  |
 | `content_e_tag` |  |
 | `credit_line` |  |
@@ -1197,8 +1207,8 @@ API path: `/texts`
 | --- | --- |
 | `api_link` |  |
 | `api_model` |  |
-| `artist_title` |  |
-| `artwork_title` |  |
+| `artist_titles` |  |
+| `artwork_titles` |  |
 | `description` |  |
 | `id` |  |
 | `image` |  |
@@ -1224,8 +1234,8 @@ API path: `/tours`
 | `alt_text` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `content` |  |
 | `content_e_tag` |  |
 | `credit_line` |  |
@@ -1266,7 +1276,7 @@ Create an instance: `agent = client.Agent`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_title` | `Object` |  |
+| `alt_titles` | `Object` |  |
 | `api_link` | `Object` |  |
 | `api_model` | `Object` |  |
 | `birth_date` | `Object` |  |
@@ -1286,7 +1296,7 @@ Create an instance: `agent = client.Agent`
 #### Example: Load
 
 ```ruby
-# load returns the bare Agent record (raises on error).
+# load returns the ENTITY — call data_get for the Agent record (raises on error).
 agent = client.Agent.load({ "id" => "agent_id" })
 ```
 
@@ -1326,7 +1336,7 @@ Create an instance: `agent_role = client.AgentRole`
 #### Example: Load
 
 ```ruby
-# load returns the bare AgentRole record (raises on error).
+# load returns the ENTITY — call data_get for the AgentRole record (raises on error).
 agent_role = client.AgentRole.load({ "id" => "agent_role_id" })
 ```
 
@@ -1366,7 +1376,7 @@ Create an instance: `agent_type = client.AgentType`
 #### Example: Load
 
 ```ruby
-# load returns the bare AgentType record (raises on error).
+# load returns the ENTITY — call data_get for the AgentType record (raises on error).
 agent_type = client.AgentType.load({ "id" => "agent_type_id" })
 ```
 
@@ -1407,7 +1417,7 @@ Create an instance: `article = client.Article`
 #### Example: Load
 
 ```ruby
-# load returns the bare Article record (raises on error).
+# load returns the ENTITY — call data_get for the Article record (raises on error).
 article = client.Article.load({ "id" => "article_id" })
 ```
 
@@ -1434,28 +1444,32 @@ Create an instance: `artwork = client.Artwork`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_artist_id` | `String` |  |
-| `alt_classification_id` | `String` |  |
-| `alt_image_id` | `String` |  |
-| `alt_material_id` | `String` |  |
-| `alt_style_id` | `String` |  |
-| `alt_subject_id` | `String` |  |
-| `alt_technique_id` | `String` |  |
-| `alt_title` | `Object` |  |
+| `alt_artist_ids` | `Object` |  |
+| `alt_classification_ids` | `Object` |  |
+| `alt_image_ids` | `Object` |  |
+| `alt_material_ids` | `Object` |  |
+| `alt_style_ids` | `Object` |  |
+| `alt_subject_ids` | `Object` |  |
+| `alt_technique_ids` | `Object` |  |
+| `alt_titles` | `Object` |  |
 | `api_link` | `Object` |  |
 | `api_model` | `Object` |  |
 | `artist_display` | `Object` |  |
 | `artist_id` | `String` |  |
+| `artist_ids` | `Object` |  |
 | `artist_title` | `Object` |  |
+| `artist_titles` | `Object` |  |
 | `artwork_type_id` | `String` |  |
 | `artwork_type_title` | `Object` |  |
 | `boost_rank` | `Object` |  |
-| `catalog_based_search_keyword_title` | `Object` |  |
+| `catalog_based_search_keyword_titles` | `Object` |  |
 | `catalogue_display` | `Object` |  |
-| `category_id` | `String` |  |
-| `category_title` | `Object` |  |
+| `category_ids` | `Object` |  |
+| `category_titles` | `Object` |  |
 | `classification_id` | `String` |  |
+| `classification_ids` | `Object` |  |
 | `classification_title` | `Object` |  |
+| `classification_titles` | `Object` |  |
 | `color` | `Object` |  |
 | `colorfulness` | `Object` |  |
 | `copyright_notice` | `Object` |  |
@@ -1468,9 +1482,9 @@ Create an instance: `artwork = client.Artwork`
 | `department_id` | `String` |  |
 | `department_title` | `Object` |  |
 | `description` | `String` |  |
-| `dimension` | `Object` |  |
+| `dimensions` | `Object` |  |
 | `dimensions_detail` | `Object` |  |
-| `document_id` | `String` |  |
+| `document_ids` | `Object` |  |
 | `edition` | `Object` |  |
 | `exhibition_history` | `Object` |  |
 | `fiscal_year` | `Object` |  |
@@ -1478,13 +1492,13 @@ Create an instance: `artwork = client.Artwork`
 | `gallery_id` | `String` |  |
 | `gallery_title` | `Object` |  |
 | `has_advanced_imaging` | `Boolean` |  |
-| `has_educational_resource` | `Boolean` |  |
-| `has_multimedia_resource` | `Boolean` |  |
+| `has_educational_resources` | `Boolean` |  |
+| `has_multimedia_resources` | `Boolean` |  |
 | `has_not_been_viewed_much` | `Boolean` |  |
 | `id` | `String` |  |
 | `image_embedding` | `Object` |  |
 | `image_id` | `String` |  |
-| `inscription` | `Object` |  |
+| `inscriptions` | `Object` |  |
 | `internal_department_id` | `String` |  |
 | `is_boosted` | `Boolean` |  |
 | `is_on_view` | `Boolean` |  |
@@ -1495,45 +1509,50 @@ Create an instance: `artwork = client.Artwork`
 | `longitude` | `Float` |  |
 | `main_reference_number` | `Integer` |  |
 | `material_id` | `String` |  |
-| `material_title` | `Object` |  |
+| `material_ids` | `Object` |  |
+| `material_titles` | `Object` |  |
 | `max_zoom_window_size` | `Object` |  |
 | `medium_display` | `Object` |  |
 | `nomisma_id` | `String` |  |
 | `on_loan_display` | `Object` |  |
-| `pageview` | `Object` |  |
+| `pageviews` | `Object` |  |
 | `pageviews_recent` | `Object` |  |
 | `place_of_origin` | `Object` |  |
 | `provenance_text` | `Object` |  |
 | `publication_history` | `Object` |  |
 | `publishing_verification_level` | `Object` |  |
-| `section_id` | `String` |  |
-| `section_title` | `Object` |  |
+| `section_ids` | `Object` |  |
+| `section_titles` | `Object` |  |
 | `short_description` | `Object` |  |
-| `site_id` | `String` |  |
-| `sound_id` | `String` |  |
+| `site_ids` | `Object` |  |
+| `sound_ids` | `Object` |  |
 | `source_updated_at` | `Object` |  |
 | `style_id` | `String` |  |
+| `style_ids` | `Object` |  |
 | `style_title` | `Object` |  |
+| `style_titles` | `Object` |  |
 | `subject_id` | `String` |  |
-| `subject_title` | `Object` |  |
+| `subject_ids` | `Object` |  |
+| `subject_titles` | `Object` |  |
 | `suggest_autocomplete_all` | `Object` |  |
 | `suggest_autocomplete_boosted` | `Object` |  |
 | `technique_id` | `String` |  |
-| `technique_title` | `Object` |  |
-| `term_title` | `Object` |  |
+| `technique_ids` | `Object` |  |
+| `technique_titles` | `Object` |  |
+| `term_titles` | `Object` |  |
 | `text_embedding` | `Object` |  |
-| `text_id` | `String` |  |
-| `theme_title` | `Object` |  |
+| `text_ids` | `Object` |  |
+| `theme_titles` | `Object` |  |
 | `thumbnail` | `Object` |  |
 | `timestamp` | `Object` |  |
 | `title` | `String` |  |
 | `updated_at` | `Object` |  |
-| `video_id` | `String` |  |
+| `video_ids` | `Object` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Artwork record (raises on error).
+# load returns the ENTITY — call data_get for the Artwork record (raises on error).
 artwork = client.Artwork.load({ "id" => "artwork_id" })
 ```
 
@@ -1573,7 +1592,7 @@ Create an instance: `artwork_date_qualifier = client.ArtworkDateQualifier`
 #### Example: Load
 
 ```ruby
-# load returns the bare ArtworkDateQualifier record (raises on error).
+# load returns the ENTITY — call data_get for the ArtworkDateQualifier record (raises on error).
 artwork_date_qualifier = client.ArtworkDateQualifier.load({ "id" => "artwork_date_qualifier_id" })
 ```
 
@@ -1613,7 +1632,7 @@ Create an instance: `artwork_place_qualifier = client.ArtworkPlaceQualifier`
 #### Example: Load
 
 ```ruby
-# load returns the bare ArtworkPlaceQualifier record (raises on error).
+# load returns the ENTITY — call data_get for the ArtworkPlaceQualifier record (raises on error).
 artwork_place_qualifier = client.ArtworkPlaceQualifier.load({ "id" => "artwork_place_qualifier_id" })
 ```
 
@@ -1654,7 +1673,7 @@ Create an instance: `artwork_type = client.ArtworkType`
 #### Example: Load
 
 ```ruby
-# load returns the bare ArtworkType record (raises on error).
+# load returns the ENTITY — call data_get for the ArtworkType record (raises on error).
 artwork_type = client.ArtworkType.load({ "id" => "artwork_type_id" })
 ```
 
@@ -1696,7 +1715,7 @@ Create an instance: `category_term = client.CategoryTerm`
 #### Example: Load
 
 ```ruby
-# load returns the bare CategoryTerm record (raises on error).
+# load returns the ENTITY — call data_get for the CategoryTerm record (raises on error).
 category_term = client.CategoryTerm.load({ "id" => "category_term_id" })
 ```
 
@@ -1738,7 +1757,7 @@ Create an instance: `digital_publication = client.DigitalPublication`
 #### Example: Load
 
 ```ruby
-# load returns the bare DigitalPublication record (raises on error).
+# load returns the ENTITY — call data_get for the DigitalPublication record (raises on error).
 digital_publication = client.DigitalPublication.load({ "id" => "digital_publication_id" })
 ```
 
@@ -1782,7 +1801,7 @@ Create an instance: `digital_publication_article = client.DigitalPublicationArti
 #### Example: Load
 
 ```ruby
-# load returns the bare DigitalPublicationArticle record (raises on error).
+# load returns the ENTITY — call data_get for the DigitalPublicationArticle record (raises on error).
 digital_publication_article = client.DigitalPublicationArticle.load({ "id" => "digital_publication_article_id" })
 ```
 
@@ -1824,7 +1843,7 @@ Create an instance: `educator_resource = client.EducatorResource`
 #### Example: Load
 
 ```ruby
-# load returns the bare EducatorResource record (raises on error).
+# load returns the ENTITY — call data_get for the EducatorResource record (raises on error).
 educator_resource = client.EducatorResource.load({ "id" => "educator_resource_id" })
 ```
 
@@ -1851,8 +1870,8 @@ Create an instance: `event = client.Event`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_audience_id` | `String` |  |
-| `alt_event_type_id` | `String` |  |
+| `alt_audience_ids` | `Object` |  |
+| `alt_event_type_ids` | `Object` |  |
 | `api_link` | `Object` |  |
 | `api_model` | `Object` |  |
 | `audience_id` | `String` |  |
@@ -1872,7 +1891,7 @@ Create an instance: `event = client.Event`
 | `id` | `String` |  |
 | `image_url` | `Object` |  |
 | `is_admission_required` | `Boolean` |  |
-| `is_after_hour` | `Boolean` |  |
+| `is_after_hours` | `Boolean` |  |
 | `is_free` | `Boolean` |  |
 | `is_member_exclusive` | `Boolean` |  |
 | `is_private` | `Boolean` |  |
@@ -1885,10 +1904,10 @@ Create an instance: `event = client.Event`
 | `layout_type` | `Object` |  |
 | `list_description` | `Object` |  |
 | `location` | `Object` |  |
-| `program_id` | `String` |  |
-| `program_title` | `Object` |  |
+| `program_ids` | `Object` |  |
+| `program_titles` | `Object` |  |
 | `rsvp_link` | `Object` |  |
-| `search_tag` | `Object` |  |
+| `search_tags` | `Object` |  |
 | `short_description` | `Object` |  |
 | `slug` | `String` |  |
 | `source_updated_at` | `Object` |  |
@@ -1908,7 +1927,7 @@ Create an instance: `event = client.Event`
 #### Example: Load
 
 ```ruby
-# load returns the bare Event record (raises on error).
+# load returns the ENTITY — call data_get for the Event record (raises on error).
 event = client.Event.load({ "id" => "event_id" })
 ```
 
@@ -1964,7 +1983,7 @@ Create an instance: `event_occurrence = client.EventOccurrence`
 #### Example: Load
 
 ```ruby
-# load returns the bare EventOccurrence record (raises on error).
+# load returns the ENTITY — call data_get for the EventOccurrence record (raises on error).
 event_occurrence = client.EventOccurrence.load({ "id" => "event_occurrence_id" })
 ```
 
@@ -2006,7 +2025,7 @@ Create an instance: `event_program = client.EventProgram`
 #### Example: Load
 
 ```ruby
-# load returns the bare EventProgram record (raises on error).
+# load returns the ENTITY — call data_get for the EventProgram record (raises on error).
 event_program = client.EventProgram.load({ "id" => "event_program_id" })
 ```
 
@@ -2035,13 +2054,13 @@ Create an instance: `exhibition = client.Exhibition`
 | --- | --- | --- |
 | `aic_end_at` | `Object` |  |
 | `aic_start_at` | `Object` |  |
-| `alt_image_id` | `String` |  |
+| `alt_image_ids` | `Object` |  |
 | `api_link` | `Object` |  |
 | `api_model` | `Object` |  |
-| `artist_id` | `String` |  |
-| `artwork_id` | `String` |  |
-| `artwork_title` | `Object` |  |
-| `document_id` | `String` |  |
+| `artist_ids` | `Object` |  |
+| `artwork_ids` | `Object` |  |
+| `artwork_titles` | `Object` |  |
+| `document_ids` | `Object` |  |
 | `gallery_id` | `String` |  |
 | `gallery_title` | `Object` |  |
 | `id` | `String` |  |
@@ -2051,7 +2070,7 @@ Create an instance: `exhibition = client.Exhibition`
 | `is_published` | `Boolean` |  |
 | `position` | `Object` |  |
 | `short_description` | `Object` |  |
-| `site_id` | `String` |  |
+| `site_ids` | `Object` |  |
 | `source_updated_at` | `Object` |  |
 | `status` | `Object` |  |
 | `suggest_autocomplete_all` | `Object` |  |
@@ -2064,7 +2083,7 @@ Create an instance: `exhibition = client.Exhibition`
 #### Example: Load
 
 ```ruby
-# load returns the bare Exhibition record (raises on error).
+# load returns the ENTITY — call data_get for the Exhibition record (raises on error).
 exhibition = client.Exhibition.load({ "id" => "exhibition_id" })
 ```
 
@@ -2111,7 +2130,7 @@ Create an instance: `gallery = client.Gallery`
 #### Example: Load
 
 ```ruby
-# load returns the bare Gallery record (raises on error).
+# load returns the ENTITY — call data_get for the Gallery record (raises on error).
 gallery = client.Gallery.load({ "id" => "gallery_id" })
 ```
 
@@ -2142,7 +2161,7 @@ Create an instance: `generic_page = client.GenericPage`
 | `api_model` | `Object` |  |
 | `copy` | `Object` |  |
 | `id` | `String` |  |
-| `search_tag` | `Object` |  |
+| `search_tags` | `Object` |  |
 | `source_updated_at` | `Object` |  |
 | `suggest_autocomplete_all` | `Object` |  |
 | `suggest_autocomplete_boosted` | `Object` |  |
@@ -2154,7 +2173,7 @@ Create an instance: `generic_page = client.GenericPage`
 #### Example: Load
 
 ```ruby
-# load returns the bare GenericPage record (raises on error).
+# load returns the ENTITY — call data_get for the GenericPage record (raises on error).
 generic_page = client.GenericPage.load({ "id" => "generic_page_id" })
 ```
 
@@ -2195,7 +2214,7 @@ Create an instance: `highlight = client.Highlight`
 #### Example: Load
 
 ```ruby
-# load returns the bare Highlight record (raises on error).
+# load returns the ENTITY — call data_get for the Highlight record (raises on error).
 highlight = client.Highlight.load({ "id" => "highlight_id" })
 ```
 
@@ -2272,7 +2291,7 @@ Create an instance: `hour = client.Hour`
 #### Example: Load
 
 ```ruby
-# load returns the bare Hour record (raises on error).
+# load returns the ENTITY — call data_get for the Hour record (raises on error).
 hour = client.Hour.load({ "id" => "hour_id" })
 ```
 
@@ -2303,8 +2322,8 @@ Create an instance: `image = client.Image`
 | `alt_text` | `Object` |  |
 | `api_link` | `Object` |  |
 | `api_model` | `Object` |  |
-| `artwork_id` | `String` |  |
-| `artwork_title` | `Object` |  |
+| `artwork_ids` | `Object` |  |
+| `artwork_titles` | `Object` |  |
 | `color` | `Object` |  |
 | `colorfulness` | `Object` |  |
 | `content` | `Object` |  |
@@ -2332,7 +2351,7 @@ Create an instance: `image = client.Image`
 #### Example: Load
 
 ```ruby
-# load returns the bare Image record (raises on error).
+# load returns the ENTITY — call data_get for the Image record (raises on error).
 image = client.Image.load({ "id" => "image_id" })
 ```
 
@@ -2363,7 +2382,7 @@ Create an instance: `landing_page = client.LandingPage`
 | `api_model` | `Object` |  |
 | `copy` | `Object` |  |
 | `id` | `String` |  |
-| `search_tag` | `Object` |  |
+| `search_tags` | `Object` |  |
 | `source_updated_at` | `Object` |  |
 | `suggest_autocomplete_all` | `Object` |  |
 | `suggest_autocomplete_boosted` | `Object` |  |
@@ -2375,7 +2394,7 @@ Create an instance: `landing_page = client.LandingPage`
 #### Example: Load
 
 ```ruby
-# load returns the bare LandingPage record (raises on error).
+# load returns the ENTITY — call data_get for the LandingPage record (raises on error).
 landing_page = client.LandingPage.load({ "id" => "landing_page_id" })
 ```
 
@@ -2418,7 +2437,7 @@ Create an instance: `place = client.Place`
 #### Example: Load
 
 ```ruby
-# load returns the bare Place record (raises on error).
+# load returns the ENTITY — call data_get for the Place record (raises on error).
 place = client.Place.load({ "id" => "place_id" })
 ```
 
@@ -2460,7 +2479,7 @@ Create an instance: `press_release = client.PressRelease`
 #### Example: Load
 
 ```ruby
-# load returns the bare PressRelease record (raises on error).
+# load returns the ENTITY — call data_get for the PressRelease record (raises on error).
 press_release = client.PressRelease.load({ "id" => "press_release_id" })
 ```
 
@@ -2502,7 +2521,7 @@ Create an instance: `printed_publication = client.PrintedPublication`
 #### Example: Load
 
 ```ruby
-# load returns the bare PrintedPublication record (raises on error).
+# load returns the ENTITY — call data_get for the PrintedPublication record (raises on error).
 printed_publication = client.PrintedPublication.load({ "id" => "printed_publication_id" })
 ```
 
@@ -2531,10 +2550,10 @@ Create an instance: `product = client.Product`
 | --- | --- | --- |
 | `api_link` | `Object` |  |
 | `api_model` | `Object` |  |
-| `artist_id` | `String` |  |
-| `artwork_id` | `String` |  |
+| `artist_ids` | `Object` |  |
+| `artwork_ids` | `Object` |  |
 | `description` | `String` |  |
-| `exhibition_id` | `String` |  |
+| `exhibition_ids` | `Object` |  |
 | `external_sku` | `Object` |  |
 | `id` | `String` |  |
 | `image_url` | `Object` |  |
@@ -2554,7 +2573,7 @@ Create an instance: `product = client.Product`
 #### Example: Load
 
 ```ruby
-# load returns the bare Product record (raises on error).
+# load returns the ENTITY — call data_get for the Product record (raises on error).
 product = client.Product.load({ "id" => "product_id" })
 ```
 
@@ -2584,7 +2603,7 @@ Create an instance: `publication = client.Publication`
 | `api_link` | `Object` |  |
 | `api_model` | `Object` |  |
 | `id` | `String` |  |
-| `section_id` | `String` |  |
+| `section_ids` | `Object` |  |
 | `source_updated_at` | `Object` |  |
 | `suggest_autocomplete_all` | `Object` |  |
 | `suggest_autocomplete_boosted` | `Object` |  |
@@ -2596,7 +2615,7 @@ Create an instance: `publication = client.Publication`
 #### Example: Load
 
 ```ruby
-# load returns the bare Publication record (raises on error).
+# load returns the ENTITY — call data_get for the Publication record (raises on error).
 publication = client.Publication.load({ "id" => "publication_id" })
 ```
 
@@ -2675,7 +2694,7 @@ Create an instance: `section = client.Section`
 #### Example: Load
 
 ```ruby
-# load returns the bare Section record (raises on error).
+# load returns the ENTITY — call data_get for the Section record (raises on error).
 section = client.Section.load({ "id" => "section_id" })
 ```
 
@@ -2704,11 +2723,11 @@ Create an instance: `site = client.Site`
 | --- | --- | --- |
 | `api_link` | `Object` |  |
 | `api_model` | `Object` |  |
-| `artwork_id` | `String` |  |
-| `artwork_title` | `Object` |  |
+| `artwork_ids` | `Object` |  |
+| `artwork_titles` | `Object` |  |
 | `description` | `String` |  |
-| `exhibition_id` | `String` |  |
-| `exhibition_title` | `Object` |  |
+| `exhibition_ids` | `Object` |  |
+| `exhibition_titles` | `Object` |  |
 | `id` | `String` |  |
 | `source_updated_at` | `Object` |  |
 | `suggest_autocomplete_all` | `Object` |  |
@@ -2721,7 +2740,7 @@ Create an instance: `site = client.Site`
 #### Example: Load
 
 ```ruby
-# load returns the bare Site record (raises on error).
+# load returns the ENTITY — call data_get for the Site record (raises on error).
 site = client.Site.load({ "id" => "site_id" })
 ```
 
@@ -2751,8 +2770,8 @@ Create an instance: `sound = client.Sound`
 | `alt_text` | `Object` |  |
 | `api_link` | `Object` |  |
 | `api_model` | `Object` |  |
-| `artwork_id` | `String` |  |
-| `artwork_title` | `Object` |  |
+| `artwork_ids` | `Object` |  |
+| `artwork_titles` | `Object` |  |
 | `content` | `Object` |  |
 | `content_e_tag` | `Object` |  |
 | `credit_line` | `Object` |  |
@@ -2774,7 +2793,7 @@ Create an instance: `sound = client.Sound`
 #### Example: Load
 
 ```ruby
-# load returns the bare Sound record (raises on error).
+# load returns the ENTITY — call data_get for the Sound record (raises on error).
 sound = client.Sound.load({ "id" => "sound_id" })
 ```
 
@@ -2815,7 +2834,7 @@ Create an instance: `static_page = client.StaticPage`
 #### Example: Load
 
 ```ruby
-# load returns the bare StaticPage record (raises on error).
+# load returns the ENTITY — call data_get for the StaticPage record (raises on error).
 static_page = client.StaticPage.load({ "id" => "static_page_id" })
 ```
 
@@ -2845,8 +2864,8 @@ Create an instance: `text = client.Text`
 | `alt_text` | `Object` |  |
 | `api_link` | `Object` |  |
 | `api_model` | `Object` |  |
-| `artwork_id` | `String` |  |
-| `artwork_title` | `Object` |  |
+| `artwork_ids` | `Object` |  |
+| `artwork_titles` | `Object` |  |
 | `content` | `Object` |  |
 | `content_e_tag` | `Object` |  |
 | `credit_line` | `Object` |  |
@@ -2866,7 +2885,7 @@ Create an instance: `text = client.Text`
 #### Example: Load
 
 ```ruby
-# load returns the bare Text record (raises on error).
+# load returns the ENTITY — call data_get for the Text record (raises on error).
 text = client.Text.load({ "id" => "text_id" })
 ```
 
@@ -2895,8 +2914,8 @@ Create an instance: `tour = client.Tour`
 | --- | --- | --- |
 | `api_link` | `Object` |  |
 | `api_model` | `Object` |  |
-| `artist_title` | `Object` |  |
-| `artwork_title` | `Object` |  |
+| `artist_titles` | `Object` |  |
+| `artwork_titles` | `Object` |  |
 | `description` | `String` |  |
 | `id` | `String` |  |
 | `image` | `Object` |  |
@@ -2914,7 +2933,7 @@ Create an instance: `tour = client.Tour`
 #### Example: Load
 
 ```ruby
-# load returns the bare Tour record (raises on error).
+# load returns the ENTITY — call data_get for the Tour record (raises on error).
 tour = client.Tour.load({ "id" => "tour_id" })
 ```
 
@@ -2944,8 +2963,8 @@ Create an instance: `video = client.Video`
 | `alt_text` | `Object` |  |
 | `api_link` | `Object` |  |
 | `api_model` | `Object` |  |
-| `artwork_id` | `String` |  |
-| `artwork_title` | `Object` |  |
+| `artwork_ids` | `Object` |  |
+| `artwork_titles` | `Object` |  |
 | `content` | `Object` |  |
 | `content_e_tag` | `Object` |  |
 | `credit_line` | `Object` |  |
@@ -2965,7 +2984,7 @@ Create an instance: `video = client.Video`
 #### Example: Load
 
 ```ruby
-# load returns the bare Video record (raises on error).
+# load returns the ENTITY — call data_get for the Video record (raises on error).
 video = client.Video.load({ "id" => "video_id" })
 ```
 
@@ -3053,11 +3072,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-agent = client.Agent
-agent.list()
+publication = client.Publication
+publication.list()
 
-# agent.data_get now returns the agent data from the last list
-# agent.match_get returns the last match criteria
+# publication.data_get now returns the publication data from the last list
+# publication.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

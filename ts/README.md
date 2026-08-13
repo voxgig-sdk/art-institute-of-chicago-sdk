@@ -35,7 +35,9 @@ const client = new ArtInstituteOfChicagoSDK()
 
 ### 2. List agent records
 
-`list()` resolves to an array of Agent objects — iterate it directly:
+`list()` resolves to an array of Agent ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const agents = await client.Agent().list()
@@ -65,8 +67,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const agents = await client.Agent().list()
-  console.log(agents)
+  const publications = await client.Publication().list()
+  console.log(publications)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -132,9 +134,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = ArtInstituteOfChicagoSDK.test()
 
-const agent = await client.Agent().list()
-// agent is a bare entity populated with mock response data
-console.log(agent)
+const publication = await client.Publication().list()
+// publication is the entity, populated with mock response data
+// — call publication.data() for the record itself
+console.log(publication)
 ```
 
 You can also use the instance method:
@@ -149,7 +152,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Agent()
+const entity = client.Publication()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -333,7 +336,7 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `alt_title` |  |
+| `alt_titles` |  |
 | `api_link` |  |
 | `api_model` |  |
 | `birth_date` |  |
@@ -413,28 +416,32 @@ API path: `/articles`
 
 | Field | Description |
 | --- | --- |
-| `alt_artist_id` |  |
-| `alt_classification_id` |  |
-| `alt_image_id` |  |
-| `alt_material_id` |  |
-| `alt_style_id` |  |
-| `alt_subject_id` |  |
-| `alt_technique_id` |  |
-| `alt_title` |  |
+| `alt_artist_ids` |  |
+| `alt_classification_ids` |  |
+| `alt_image_ids` |  |
+| `alt_material_ids` |  |
+| `alt_style_ids` |  |
+| `alt_subject_ids` |  |
+| `alt_technique_ids` |  |
+| `alt_titles` |  |
 | `api_link` |  |
 | `api_model` |  |
 | `artist_display` |  |
 | `artist_id` |  |
+| `artist_ids` |  |
 | `artist_title` |  |
+| `artist_titles` |  |
 | `artwork_type_id` |  |
 | `artwork_type_title` |  |
 | `boost_rank` |  |
-| `catalog_based_search_keyword_title` |  |
+| `catalog_based_search_keyword_titles` |  |
 | `catalogue_display` |  |
-| `category_id` |  |
-| `category_title` |  |
+| `category_ids` |  |
+| `category_titles` |  |
 | `classification_id` |  |
+| `classification_ids` |  |
 | `classification_title` |  |
+| `classification_titles` |  |
 | `color` |  |
 | `colorfulness` |  |
 | `copyright_notice` |  |
@@ -447,9 +454,9 @@ API path: `/articles`
 | `department_id` |  |
 | `department_title` |  |
 | `description` |  |
-| `dimension` |  |
+| `dimensions` |  |
 | `dimensions_detail` |  |
-| `document_id` |  |
+| `document_ids` |  |
 | `edition` |  |
 | `exhibition_history` |  |
 | `fiscal_year` |  |
@@ -457,13 +464,13 @@ API path: `/articles`
 | `gallery_id` |  |
 | `gallery_title` |  |
 | `has_advanced_imaging` |  |
-| `has_educational_resource` |  |
-| `has_multimedia_resource` |  |
+| `has_educational_resources` |  |
+| `has_multimedia_resources` |  |
 | `has_not_been_viewed_much` |  |
 | `id` |  |
 | `image_embedding` |  |
 | `image_id` |  |
-| `inscription` |  |
+| `inscriptions` |  |
 | `internal_department_id` |  |
 | `is_boosted` |  |
 | `is_on_view` |  |
@@ -474,40 +481,45 @@ API path: `/articles`
 | `longitude` |  |
 | `main_reference_number` |  |
 | `material_id` |  |
-| `material_title` |  |
+| `material_ids` |  |
+| `material_titles` |  |
 | `max_zoom_window_size` |  |
 | `medium_display` |  |
 | `nomisma_id` |  |
 | `on_loan_display` |  |
-| `pageview` |  |
+| `pageviews` |  |
 | `pageviews_recent` |  |
 | `place_of_origin` |  |
 | `provenance_text` |  |
 | `publication_history` |  |
 | `publishing_verification_level` |  |
-| `section_id` |  |
-| `section_title` |  |
+| `section_ids` |  |
+| `section_titles` |  |
 | `short_description` |  |
-| `site_id` |  |
-| `sound_id` |  |
+| `site_ids` |  |
+| `sound_ids` |  |
 | `source_updated_at` |  |
 | `style_id` |  |
+| `style_ids` |  |
 | `style_title` |  |
+| `style_titles` |  |
 | `subject_id` |  |
-| `subject_title` |  |
+| `subject_ids` |  |
+| `subject_titles` |  |
 | `suggest_autocomplete_all` |  |
 | `suggest_autocomplete_boosted` |  |
 | `technique_id` |  |
-| `technique_title` |  |
-| `term_title` |  |
+| `technique_ids` |  |
+| `technique_titles` |  |
+| `term_titles` |  |
 | `text_embedding` |  |
-| `text_id` |  |
-| `theme_title` |  |
+| `text_ids` |  |
+| `theme_titles` |  |
 | `thumbnail` |  |
 | `timestamp` |  |
 | `title` |  |
 | `updated_at` |  |
-| `video_id` |  |
+| `video_ids` |  |
 
 Operations: list, load.
 
@@ -654,8 +666,8 @@ API path: `/educator-resources`
 
 | Field | Description |
 | --- | --- |
-| `alt_audience_id` |  |
-| `alt_event_type_id` |  |
+| `alt_audience_ids` |  |
+| `alt_event_type_ids` |  |
 | `api_link` |  |
 | `api_model` |  |
 | `audience_id` |  |
@@ -675,7 +687,7 @@ API path: `/educator-resources`
 | `id` |  |
 | `image_url` |  |
 | `is_admission_required` |  |
-| `is_after_hour` |  |
+| `is_after_hours` |  |
 | `is_free` |  |
 | `is_member_exclusive` |  |
 | `is_private` |  |
@@ -688,10 +700,10 @@ API path: `/educator-resources`
 | `layout_type` |  |
 | `list_description` |  |
 | `location` |  |
-| `program_id` |  |
-| `program_title` |  |
+| `program_ids` |  |
+| `program_titles` |  |
 | `rsvp_link` |  |
-| `search_tag` |  |
+| `search_tags` |  |
 | `short_description` |  |
 | `slug` |  |
 | `source_updated_at` |  |
@@ -772,13 +784,13 @@ API path: `/event-programs`
 | --- | --- |
 | `aic_end_at` |  |
 | `aic_start_at` |  |
-| `alt_image_id` |  |
+| `alt_image_ids` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artist_id` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
-| `document_id` |  |
+| `artist_ids` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
+| `document_ids` |  |
 | `gallery_id` |  |
 | `gallery_title` |  |
 | `id` |  |
@@ -788,7 +800,7 @@ API path: `/event-programs`
 | `is_published` |  |
 | `position` |  |
 | `short_description` |  |
-| `site_id` |  |
+| `site_ids` |  |
 | `source_updated_at` |  |
 | `status` |  |
 | `suggest_autocomplete_all` |  |
@@ -835,7 +847,7 @@ API path: `/galleries`
 | `api_model` |  |
 | `copy` |  |
 | `id` |  |
-| `search_tag` |  |
+| `search_tags` |  |
 | `source_updated_at` |  |
 | `suggest_autocomplete_all` |  |
 | `suggest_autocomplete_boosted` |  |
@@ -930,8 +942,8 @@ API path: `/hours`
 | `alt_text` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `color` |  |
 | `colorfulness` |  |
 | `content` |  |
@@ -968,7 +980,7 @@ API path: `/images`
 | `api_model` |  |
 | `copy` |  |
 | `id` |  |
-| `search_tag` |  |
+| `search_tags` |  |
 | `source_updated_at` |  |
 | `suggest_autocomplete_all` |  |
 | `suggest_autocomplete_boosted` |  |
@@ -1048,10 +1060,10 @@ API path: `/printed-publications`
 | --- | --- |
 | `api_link` |  |
 | `api_model` |  |
-| `artist_id` |  |
-| `artwork_id` |  |
+| `artist_ids` |  |
+| `artwork_ids` |  |
 | `description` |  |
-| `exhibition_id` |  |
+| `exhibition_ids` |  |
 | `external_sku` |  |
 | `id` |  |
 | `image_url` |  |
@@ -1079,7 +1091,7 @@ API path: `/products`
 | `api_link` |  |
 | `api_model` |  |
 | `id` |  |
-| `section_id` |  |
+| `section_ids` |  |
 | `source_updated_at` |  |
 | `suggest_autocomplete_all` |  |
 | `suggest_autocomplete_boosted` |  |
@@ -1141,11 +1153,11 @@ API path: `/sections`
 | --- | --- |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `description` |  |
-| `exhibition_id` |  |
-| `exhibition_title` |  |
+| `exhibition_ids` |  |
+| `exhibition_titles` |  |
 | `id` |  |
 | `source_updated_at` |  |
 | `suggest_autocomplete_all` |  |
@@ -1166,8 +1178,8 @@ API path: `/sites`
 | `alt_text` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `content` |  |
 | `content_e_tag` |  |
 | `credit_line` |  |
@@ -1216,8 +1228,8 @@ API path: `/static-pages`
 | `alt_text` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `content` |  |
 | `content_e_tag` |  |
 | `credit_line` |  |
@@ -1244,8 +1256,8 @@ API path: `/texts`
 | --- | --- |
 | `api_link` |  |
 | `api_model` |  |
-| `artist_title` |  |
-| `artwork_title` |  |
+| `artist_titles` |  |
+| `artwork_titles` |  |
 | `description` |  |
 | `id` |  |
 | `image` |  |
@@ -1271,8 +1283,8 @@ API path: `/tours`
 | `alt_text` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `content` |  |
 | `content_e_tag` |  |
 | `credit_line` |  |
@@ -1313,7 +1325,7 @@ Create an instance: `const agent = client.Agent()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_title` | `any` |  |
+| `alt_titles` | `any` |  |
 | `api_link` | `any` |  |
 | `api_model` | `any` |  |
 | `birth_date` | `any` |  |
@@ -1473,28 +1485,32 @@ Create an instance: `const artwork = client.Artwork()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_artist_id` | `string` |  |
-| `alt_classification_id` | `string` |  |
-| `alt_image_id` | `string` |  |
-| `alt_material_id` | `string` |  |
-| `alt_style_id` | `string` |  |
-| `alt_subject_id` | `string` |  |
-| `alt_technique_id` | `string` |  |
-| `alt_title` | `any` |  |
+| `alt_artist_ids` | `any` |  |
+| `alt_classification_ids` | `any` |  |
+| `alt_image_ids` | `any` |  |
+| `alt_material_ids` | `any` |  |
+| `alt_style_ids` | `any` |  |
+| `alt_subject_ids` | `any` |  |
+| `alt_technique_ids` | `any` |  |
+| `alt_titles` | `any` |  |
 | `api_link` | `any` |  |
 | `api_model` | `any` |  |
 | `artist_display` | `any` |  |
 | `artist_id` | `string` |  |
+| `artist_ids` | `any` |  |
 | `artist_title` | `any` |  |
+| `artist_titles` | `any` |  |
 | `artwork_type_id` | `string` |  |
 | `artwork_type_title` | `any` |  |
 | `boost_rank` | `any` |  |
-| `catalog_based_search_keyword_title` | `any` |  |
+| `catalog_based_search_keyword_titles` | `any` |  |
 | `catalogue_display` | `any` |  |
-| `category_id` | `string` |  |
-| `category_title` | `any` |  |
+| `category_ids` | `any` |  |
+| `category_titles` | `any` |  |
 | `classification_id` | `string` |  |
+| `classification_ids` | `any` |  |
 | `classification_title` | `any` |  |
+| `classification_titles` | `any` |  |
 | `color` | `any` |  |
 | `colorfulness` | `any` |  |
 | `copyright_notice` | `any` |  |
@@ -1507,9 +1523,9 @@ Create an instance: `const artwork = client.Artwork()`
 | `department_id` | `string` |  |
 | `department_title` | `any` |  |
 | `description` | `string` |  |
-| `dimension` | `any` |  |
+| `dimensions` | `any` |  |
 | `dimensions_detail` | `any` |  |
-| `document_id` | `string` |  |
+| `document_ids` | `any` |  |
 | `edition` | `any` |  |
 | `exhibition_history` | `any` |  |
 | `fiscal_year` | `any` |  |
@@ -1517,13 +1533,13 @@ Create an instance: `const artwork = client.Artwork()`
 | `gallery_id` | `string` |  |
 | `gallery_title` | `any` |  |
 | `has_advanced_imaging` | `boolean` |  |
-| `has_educational_resource` | `boolean` |  |
-| `has_multimedia_resource` | `boolean` |  |
+| `has_educational_resources` | `boolean` |  |
+| `has_multimedia_resources` | `boolean` |  |
 | `has_not_been_viewed_much` | `boolean` |  |
 | `id` | `string` |  |
 | `image_embedding` | `any` |  |
 | `image_id` | `string` |  |
-| `inscription` | `any` |  |
+| `inscriptions` | `any` |  |
 | `internal_department_id` | `string` |  |
 | `is_boosted` | `boolean` |  |
 | `is_on_view` | `boolean` |  |
@@ -1534,40 +1550,45 @@ Create an instance: `const artwork = client.Artwork()`
 | `longitude` | `number` |  |
 | `main_reference_number` | `number` |  |
 | `material_id` | `string` |  |
-| `material_title` | `any` |  |
+| `material_ids` | `any` |  |
+| `material_titles` | `any` |  |
 | `max_zoom_window_size` | `any` |  |
 | `medium_display` | `any` |  |
 | `nomisma_id` | `string` |  |
 | `on_loan_display` | `any` |  |
-| `pageview` | `any` |  |
+| `pageviews` | `any` |  |
 | `pageviews_recent` | `any` |  |
 | `place_of_origin` | `any` |  |
 | `provenance_text` | `any` |  |
 | `publication_history` | `any` |  |
 | `publishing_verification_level` | `any` |  |
-| `section_id` | `string` |  |
-| `section_title` | `any` |  |
+| `section_ids` | `any` |  |
+| `section_titles` | `any` |  |
 | `short_description` | `any` |  |
-| `site_id` | `string` |  |
-| `sound_id` | `string` |  |
+| `site_ids` | `any` |  |
+| `sound_ids` | `any` |  |
 | `source_updated_at` | `any` |  |
 | `style_id` | `string` |  |
+| `style_ids` | `any` |  |
 | `style_title` | `any` |  |
+| `style_titles` | `any` |  |
 | `subject_id` | `string` |  |
-| `subject_title` | `any` |  |
+| `subject_ids` | `any` |  |
+| `subject_titles` | `any` |  |
 | `suggest_autocomplete_all` | `any` |  |
 | `suggest_autocomplete_boosted` | `any` |  |
 | `technique_id` | `string` |  |
-| `technique_title` | `any` |  |
-| `term_title` | `any` |  |
+| `technique_ids` | `any` |  |
+| `technique_titles` | `any` |  |
+| `term_titles` | `any` |  |
 | `text_embedding` | `any` |  |
-| `text_id` | `string` |  |
-| `theme_title` | `any` |  |
+| `text_ids` | `any` |  |
+| `theme_titles` | `any` |  |
 | `thumbnail` | `any` |  |
 | `timestamp` | `any` |  |
 | `title` | `string` |  |
 | `updated_at` | `any` |  |
-| `video_id` | `string` |  |
+| `video_ids` | `any` |  |
 
 #### Example: Load
 
@@ -1874,8 +1895,8 @@ Create an instance: `const event = client.Event()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_audience_id` | `string` |  |
-| `alt_event_type_id` | `string` |  |
+| `alt_audience_ids` | `any` |  |
+| `alt_event_type_ids` | `any` |  |
 | `api_link` | `any` |  |
 | `api_model` | `any` |  |
 | `audience_id` | `string` |  |
@@ -1895,7 +1916,7 @@ Create an instance: `const event = client.Event()`
 | `id` | `string` |  |
 | `image_url` | `any` |  |
 | `is_admission_required` | `boolean` |  |
-| `is_after_hour` | `boolean` |  |
+| `is_after_hours` | `boolean` |  |
 | `is_free` | `boolean` |  |
 | `is_member_exclusive` | `boolean` |  |
 | `is_private` | `boolean` |  |
@@ -1908,10 +1929,10 @@ Create an instance: `const event = client.Event()`
 | `layout_type` | `any` |  |
 | `list_description` | `any` |  |
 | `location` | `any` |  |
-| `program_id` | `string` |  |
-| `program_title` | `any` |  |
+| `program_ids` | `any` |  |
+| `program_titles` | `any` |  |
 | `rsvp_link` | `any` |  |
-| `search_tag` | `any` |  |
+| `search_tags` | `any` |  |
 | `short_description` | `any` |  |
 | `slug` | `string` |  |
 | `source_updated_at` | `any` |  |
@@ -2052,13 +2073,13 @@ Create an instance: `const exhibition = client.Exhibition()`
 | --- | --- | --- |
 | `aic_end_at` | `any` |  |
 | `aic_start_at` | `any` |  |
-| `alt_image_id` | `string` |  |
+| `alt_image_ids` | `any` |  |
 | `api_link` | `any` |  |
 | `api_model` | `any` |  |
-| `artist_id` | `string` |  |
-| `artwork_id` | `string` |  |
-| `artwork_title` | `any` |  |
-| `document_id` | `string` |  |
+| `artist_ids` | `any` |  |
+| `artwork_ids` | `any` |  |
+| `artwork_titles` | `any` |  |
+| `document_ids` | `any` |  |
 | `gallery_id` | `string` |  |
 | `gallery_title` | `any` |  |
 | `id` | `string` |  |
@@ -2068,7 +2089,7 @@ Create an instance: `const exhibition = client.Exhibition()`
 | `is_published` | `boolean` |  |
 | `position` | `any` |  |
 | `short_description` | `any` |  |
-| `site_id` | `string` |  |
+| `site_ids` | `any` |  |
 | `source_updated_at` | `any` |  |
 | `status` | `any` |  |
 | `suggest_autocomplete_all` | `any` |  |
@@ -2155,7 +2176,7 @@ Create an instance: `const generic_page = client.GenericPage()`
 | `api_model` | `any` |  |
 | `copy` | `any` |  |
 | `id` | `string` |  |
-| `search_tag` | `any` |  |
+| `search_tags` | `any` |  |
 | `source_updated_at` | `any` |  |
 | `suggest_autocomplete_all` | `any` |  |
 | `suggest_autocomplete_boosted` | `any` |  |
@@ -2310,8 +2331,8 @@ Create an instance: `const image = client.Image()`
 | `alt_text` | `any` |  |
 | `api_link` | `any` |  |
 | `api_model` | `any` |  |
-| `artwork_id` | `string` |  |
-| `artwork_title` | `any` |  |
+| `artwork_ids` | `any` |  |
+| `artwork_titles` | `any` |  |
 | `color` | `any` |  |
 | `colorfulness` | `any` |  |
 | `content` | `any` |  |
@@ -2368,7 +2389,7 @@ Create an instance: `const landing_page = client.LandingPage()`
 | `api_model` | `any` |  |
 | `copy` | `any` |  |
 | `id` | `string` |  |
-| `search_tag` | `any` |  |
+| `search_tags` | `any` |  |
 | `source_updated_at` | `any` |  |
 | `suggest_autocomplete_all` | `any` |  |
 | `suggest_autocomplete_boosted` | `any` |  |
@@ -2528,10 +2549,10 @@ Create an instance: `const product = client.Product()`
 | --- | --- | --- |
 | `api_link` | `any` |  |
 | `api_model` | `any` |  |
-| `artist_id` | `string` |  |
-| `artwork_id` | `string` |  |
+| `artist_ids` | `any` |  |
+| `artwork_ids` | `any` |  |
 | `description` | `string` |  |
-| `exhibition_id` | `string` |  |
+| `exhibition_ids` | `any` |  |
 | `external_sku` | `any` |  |
 | `id` | `string` |  |
 | `image_url` | `any` |  |
@@ -2579,7 +2600,7 @@ Create an instance: `const publication = client.Publication()`
 | `api_link` | `any` |  |
 | `api_model` | `any` |  |
 | `id` | `string` |  |
-| `section_id` | `string` |  |
+| `section_ids` | `any` |  |
 | `source_updated_at` | `any` |  |
 | `suggest_autocomplete_all` | `any` |  |
 | `suggest_autocomplete_boosted` | `any` |  |
@@ -2694,11 +2715,11 @@ Create an instance: `const site = client.Site()`
 | --- | --- | --- |
 | `api_link` | `any` |  |
 | `api_model` | `any` |  |
-| `artwork_id` | `string` |  |
-| `artwork_title` | `any` |  |
+| `artwork_ids` | `any` |  |
+| `artwork_titles` | `any` |  |
 | `description` | `string` |  |
-| `exhibition_id` | `string` |  |
-| `exhibition_title` | `any` |  |
+| `exhibition_ids` | `any` |  |
+| `exhibition_titles` | `any` |  |
 | `id` | `string` |  |
 | `source_updated_at` | `any` |  |
 | `suggest_autocomplete_all` | `any` |  |
@@ -2739,8 +2760,8 @@ Create an instance: `const sound = client.Sound()`
 | `alt_text` | `any` |  |
 | `api_link` | `any` |  |
 | `api_model` | `any` |  |
-| `artwork_id` | `string` |  |
-| `artwork_title` | `any` |  |
+| `artwork_ids` | `any` |  |
+| `artwork_titles` | `any` |  |
 | `content` | `any` |  |
 | `content_e_tag` | `any` |  |
 | `credit_line` | `any` |  |
@@ -2829,8 +2850,8 @@ Create an instance: `const text = client.Text()`
 | `alt_text` | `any` |  |
 | `api_link` | `any` |  |
 | `api_model` | `any` |  |
-| `artwork_id` | `string` |  |
-| `artwork_title` | `any` |  |
+| `artwork_ids` | `any` |  |
+| `artwork_titles` | `any` |  |
 | `content` | `any` |  |
 | `content_e_tag` | `any` |  |
 | `credit_line` | `any` |  |
@@ -2877,8 +2898,8 @@ Create an instance: `const tour = client.Tour()`
 | --- | --- | --- |
 | `api_link` | `any` |  |
 | `api_model` | `any` |  |
-| `artist_title` | `any` |  |
-| `artwork_title` | `any` |  |
+| `artist_titles` | `any` |  |
+| `artwork_titles` | `any` |  |
 | `description` | `string` |  |
 | `id` | `string` |  |
 | `image` | `any` |  |
@@ -2924,8 +2945,8 @@ Create an instance: `const video = client.Video()`
 | `alt_text` | `any` |  |
 | `api_link` | `any` |  |
 | `api_model` | `any` |  |
-| `artwork_id` | `string` |  |
-| `artwork_title` | `any` |  |
+| `artwork_ids` | `any` |  |
+| `artwork_titles` | `any` |  |
 | `content` | `any` |  |
 | `content_e_tag` | `any` |  |
 | `credit_line` | `any` |  |
@@ -3024,11 +3045,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const agent = client.Agent()
-await agent.list()
+const publication = client.Publication()
+await publication.list()
 
-// agent.data() now returns the agent data from the last `list`
-// agent.match() returns the last match criteria
+// publication.data() now returns the publication data from the last `list`
+// publication.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

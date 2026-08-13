@@ -115,11 +115,11 @@ function category_term_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["ARTINSTITUTEOFCHICAGO_TEST_CATEGORY_TERM_ENTID"] = {},
-    ["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] = "FALSE",
+    ["ART_INSTITUTE_OF_CHICAGO_TEST_CATEGORY_TERM_ENTID"] = {},
+    ["ART_INSTITUTE_OF_CHICAGO_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
+  local live = env["ART_INSTITUTE_OF_CHICAGO_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

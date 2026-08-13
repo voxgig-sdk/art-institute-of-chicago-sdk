@@ -26,8 +26,8 @@ import {
 describe('EducatorResourceEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ARTINSTITUTEOFCHICAGO_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ARTINSTITUTEOFCHICAGO_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ART_INSTITUTE_OF_CHICAGO_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ART_INSTITUTE_OF_CHICAGO_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = ArtInstituteOfChicagoSDK.test()
@@ -63,13 +63,13 @@ describe('EducatorResourceEntity', async () => {
     const educator_resource_ref01_ent = client.EducatorResource()
     const educator_resource_ref01_match: any = {}
 
-    const educator_resource_ref01_list = await educator_resource_ref01_ent.list(educator_resource_ref01_match)
+    const educator_resource_ref01_list = (await educator_resource_ref01_ent.list(educator_resource_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const educator_resource_ref01_match_dt0: any = {}
     educator_resource_ref01_match_dt0.id = educator_resource_ref01_data.id
-    const educator_resource_ref01_data_dt0 = await educator_resource_ref01_ent.load(educator_resource_ref01_match_dt0)
+    const educator_resource_ref01_data_dt0 = (await educator_resource_ref01_ent.load(educator_resource_ref01_match_dt0)).data()
     assert(educator_resource_ref01_data_dt0.id === educator_resource_ref01_data.id)
 
 

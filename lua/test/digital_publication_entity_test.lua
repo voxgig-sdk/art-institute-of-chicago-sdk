@@ -70,7 +70,7 @@ describe("DigitalPublicationEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set ARTINSTITUTEOFCHICAGO_TEST_DIGITAL_PUBLICATION_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set ART_INSTITUTE_OF_CHICAGO_TEST_DIGITAL_PUBLICATION_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -97,7 +97,7 @@ describe("DigitalPublicationEntity", function()
     }
     local digital_publication_ref01_data_dt0_loaded, err = digital_publication_ref01_ent:load(digital_publication_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local digital_publication_ref01_data_dt0_load_result = helpers.to_map(digital_publication_ref01_data_dt0_loaded)
+    local digital_publication_ref01_data_dt0_load_result = helpers.to_map(type(digital_publication_ref01_data_dt0_loaded) == 'table' and digital_publication_ref01_data_dt0_loaded.data_get and digital_publication_ref01_data_dt0_loaded:data_get() or digital_publication_ref01_data_dt0_loaded)
     assert.is_not_nil(digital_publication_ref01_data_dt0_load_result)
     assert.are.equal(digital_publication_ref01_data_dt0_load_result["id"], digital_publication_ref01_data["id"])
 
@@ -136,22 +136,22 @@ function digital_publication_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("ARTINSTITUTEOFCHICAGO_TEST_DIGITAL_PUBLICATION_ENTID")
+  local entid_env_raw = os.getenv("ART_INSTITUTE_OF_CHICAGO_TEST_DIGITAL_PUBLICATION_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["ARTINSTITUTEOFCHICAGO_TEST_DIGITAL_PUBLICATION_ENTID"] = idmap,
-    ["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] = "FALSE",
-    ["ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN"] = "FALSE",
+    ["ART_INSTITUTE_OF_CHICAGO_TEST_DIGITAL_PUBLICATION_ENTID"] = idmap,
+    ["ART_INSTITUTE_OF_CHICAGO_TEST_LIVE"] = "FALSE",
+    ["ART_INSTITUTE_OF_CHICAGO_TEST_EXPLAIN"] = "FALSE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["ARTINSTITUTEOFCHICAGO_TEST_DIGITAL_PUBLICATION_ENTID"])
+    env["ART_INSTITUTE_OF_CHICAGO_TEST_DIGITAL_PUBLICATION_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE" then
+  if env["ART_INSTITUTE_OF_CHICAGO_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
       },
@@ -160,13 +160,13 @@ function digital_publication_basic_setup(extra)
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
+  local live = env["ART_INSTITUTE_OF_CHICAGO_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN"] == "TRUE",
+    explain = env["ART_INSTITUTE_OF_CHICAGO_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

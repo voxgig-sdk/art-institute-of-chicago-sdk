@@ -229,7 +229,7 @@ agent = client.Agent
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_title` | `Object` | No |  |
+| `alt_titles` | `Object` | No |  |
 | `api_link` | `Object` | No |  |
 | `api_model` | `Object` | No |  |
 | `birth_date` | `Object` | No |  |
@@ -509,28 +509,32 @@ artwork = client.Artwork
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_artist_id` | `String` | No |  |
-| `alt_classification_id` | `String` | No |  |
-| `alt_image_id` | `String` | No |  |
-| `alt_material_id` | `String` | No |  |
-| `alt_style_id` | `String` | No |  |
-| `alt_subject_id` | `String` | No |  |
-| `alt_technique_id` | `String` | No |  |
-| `alt_title` | `Object` | No |  |
+| `alt_artist_ids` | `Object` | No |  |
+| `alt_classification_ids` | `Object` | No |  |
+| `alt_image_ids` | `Object` | No |  |
+| `alt_material_ids` | `Object` | No |  |
+| `alt_style_ids` | `Object` | No |  |
+| `alt_subject_ids` | `Object` | No |  |
+| `alt_technique_ids` | `Object` | No |  |
+| `alt_titles` | `Object` | No |  |
 | `api_link` | `Object` | No |  |
 | `api_model` | `Object` | No |  |
 | `artist_display` | `Object` | No |  |
 | `artist_id` | `String` | No |  |
+| `artist_ids` | `Object` | No |  |
 | `artist_title` | `Object` | No |  |
+| `artist_titles` | `Object` | No |  |
 | `artwork_type_id` | `String` | No |  |
 | `artwork_type_title` | `Object` | No |  |
 | `boost_rank` | `Object` | No |  |
-| `catalog_based_search_keyword_title` | `Object` | No |  |
+| `catalog_based_search_keyword_titles` | `Object` | No |  |
 | `catalogue_display` | `Object` | No |  |
-| `category_id` | `String` | No |  |
-| `category_title` | `Object` | No |  |
+| `category_ids` | `Object` | No |  |
+| `category_titles` | `Object` | No |  |
 | `classification_id` | `String` | No |  |
+| `classification_ids` | `Object` | No |  |
 | `classification_title` | `Object` | No |  |
+| `classification_titles` | `Object` | No |  |
 | `color` | `Object` | No |  |
 | `colorfulness` | `Object` | No |  |
 | `copyright_notice` | `Object` | No |  |
@@ -543,9 +547,9 @@ artwork = client.Artwork
 | `department_id` | `String` | No |  |
 | `department_title` | `Object` | No |  |
 | `description` | `String` | No |  |
-| `dimension` | `Object` | No |  |
+| `dimensions` | `Object` | No |  |
 | `dimensions_detail` | `Object` | No |  |
-| `document_id` | `String` | No |  |
+| `document_ids` | `Object` | No |  |
 | `edition` | `Object` | No |  |
 | `exhibition_history` | `Object` | No |  |
 | `fiscal_year` | `Object` | No |  |
@@ -553,13 +557,13 @@ artwork = client.Artwork
 | `gallery_id` | `String` | No |  |
 | `gallery_title` | `Object` | No |  |
 | `has_advanced_imaging` | `Boolean` | No |  |
-| `has_educational_resource` | `Boolean` | No |  |
-| `has_multimedia_resource` | `Boolean` | No |  |
+| `has_educational_resources` | `Boolean` | No |  |
+| `has_multimedia_resources` | `Boolean` | No |  |
 | `has_not_been_viewed_much` | `Boolean` | No |  |
 | `id` | `String` | No |  |
 | `image_embedding` | `Object` | No |  |
 | `image_id` | `String` | No |  |
-| `inscription` | `Object` | No |  |
+| `inscriptions` | `Object` | No |  |
 | `internal_department_id` | `String` | No |  |
 | `is_boosted` | `Boolean` | No |  |
 | `is_on_view` | `Boolean` | No |  |
@@ -570,40 +574,45 @@ artwork = client.Artwork
 | `longitude` | `Float` | No |  |
 | `main_reference_number` | `Integer` | No |  |
 | `material_id` | `String` | No |  |
-| `material_title` | `Object` | No |  |
+| `material_ids` | `Object` | No |  |
+| `material_titles` | `Object` | No |  |
 | `max_zoom_window_size` | `Object` | No |  |
 | `medium_display` | `Object` | No |  |
 | `nomisma_id` | `String` | No |  |
 | `on_loan_display` | `Object` | No |  |
-| `pageview` | `Object` | No |  |
+| `pageviews` | `Object` | No |  |
 | `pageviews_recent` | `Object` | No |  |
 | `place_of_origin` | `Object` | No |  |
 | `provenance_text` | `Object` | No |  |
 | `publication_history` | `Object` | No |  |
 | `publishing_verification_level` | `Object` | No |  |
-| `section_id` | `String` | No |  |
-| `section_title` | `Object` | No |  |
+| `section_ids` | `Object` | No |  |
+| `section_titles` | `Object` | No |  |
 | `short_description` | `Object` | No |  |
-| `site_id` | `String` | No |  |
-| `sound_id` | `String` | No |  |
+| `site_ids` | `Object` | No |  |
+| `sound_ids` | `Object` | No |  |
 | `source_updated_at` | `Object` | No |  |
 | `style_id` | `String` | No |  |
+| `style_ids` | `Object` | No |  |
 | `style_title` | `Object` | No |  |
+| `style_titles` | `Object` | No |  |
 | `subject_id` | `String` | No |  |
-| `subject_title` | `Object` | No |  |
+| `subject_ids` | `Object` | No |  |
+| `subject_titles` | `Object` | No |  |
 | `suggest_autocomplete_all` | `Object` | No |  |
 | `suggest_autocomplete_boosted` | `Object` | No |  |
 | `technique_id` | `String` | No |  |
-| `technique_title` | `Object` | No |  |
-| `term_title` | `Object` | No |  |
+| `technique_ids` | `Object` | No |  |
+| `technique_titles` | `Object` | No |  |
+| `term_titles` | `Object` | No |  |
 | `text_embedding` | `Object` | No |  |
-| `text_id` | `String` | No |  |
-| `theme_title` | `Object` | No |  |
+| `text_ids` | `Object` | No |  |
+| `theme_titles` | `Object` | No |  |
 | `thumbnail` | `Object` | No |  |
 | `timestamp` | `Object` | No |  |
 | `title` | `String` | No |  |
 | `updated_at` | `Object` | No |  |
-| `video_id` | `String` | No |  |
+| `video_ids` | `Object` | No |  |
 
 ### Operations
 
@@ -1150,8 +1159,8 @@ event = client.Event
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_audience_id` | `String` | No |  |
-| `alt_event_type_id` | `String` | No |  |
+| `alt_audience_ids` | `Object` | No |  |
+| `alt_event_type_ids` | `Object` | No |  |
 | `api_link` | `Object` | No |  |
 | `api_model` | `Object` | No |  |
 | `audience_id` | `String` | No |  |
@@ -1171,7 +1180,7 @@ event = client.Event
 | `id` | `String` | No |  |
 | `image_url` | `Object` | No |  |
 | `is_admission_required` | `Boolean` | No |  |
-| `is_after_hour` | `Boolean` | No |  |
+| `is_after_hours` | `Boolean` | No |  |
 | `is_free` | `Boolean` | No |  |
 | `is_member_exclusive` | `Boolean` | No |  |
 | `is_private` | `Boolean` | No |  |
@@ -1184,10 +1193,10 @@ event = client.Event
 | `layout_type` | `Object` | No |  |
 | `list_description` | `Object` | No |  |
 | `location` | `Object` | No |  |
-| `program_id` | `String` | No |  |
-| `program_title` | `Object` | No |  |
+| `program_ids` | `Object` | No |  |
+| `program_titles` | `Object` | No |  |
 | `rsvp_link` | `Object` | No |  |
-| `search_tag` | `Object` | No |  |
+| `search_tags` | `Object` | No |  |
 | `short_description` | `Object` | No |  |
 | `slug` | `String` | No |  |
 | `source_updated_at` | `Object` | No |  |
@@ -1418,13 +1427,13 @@ exhibition = client.Exhibition
 | --- | --- | --- | --- |
 | `aic_end_at` | `Object` | No |  |
 | `aic_start_at` | `Object` | No |  |
-| `alt_image_id` | `String` | No |  |
+| `alt_image_ids` | `Object` | No |  |
 | `api_link` | `Object` | No |  |
 | `api_model` | `Object` | No |  |
-| `artist_id` | `String` | No |  |
-| `artwork_id` | `String` | No |  |
-| `artwork_title` | `Object` | No |  |
-| `document_id` | `String` | No |  |
+| `artist_ids` | `Object` | No |  |
+| `artwork_ids` | `Object` | No |  |
+| `artwork_titles` | `Object` | No |  |
+| `document_ids` | `Object` | No |  |
 | `gallery_id` | `String` | No |  |
 | `gallery_title` | `Object` | No |  |
 | `id` | `String` | No |  |
@@ -1434,7 +1443,7 @@ exhibition = client.Exhibition
 | `is_published` | `Boolean` | No |  |
 | `position` | `Object` | No |  |
 | `short_description` | `Object` | No |  |
-| `site_id` | `String` | No |  |
+| `site_ids` | `Object` | No |  |
 | `source_updated_at` | `Object` | No |  |
 | `status` | `Object` | No |  |
 | `suggest_autocomplete_all` | `Object` | No |  |
@@ -1581,7 +1590,7 @@ generic_page = client.GenericPage
 | `api_model` | `Object` | No |  |
 | `copy` | `Object` | No |  |
 | `id` | `String` | No |  |
-| `search_tag` | `Object` | No |  |
+| `search_tags` | `Object` | No |  |
 | `source_updated_at` | `Object` | No |  |
 | `suggest_autocomplete_all` | `Object` | No |  |
 | `suggest_autocomplete_boosted` | `Object` | No |  |
@@ -1826,8 +1835,8 @@ image = client.Image
 | `alt_text` | `Object` | No |  |
 | `api_link` | `Object` | No |  |
 | `api_model` | `Object` | No |  |
-| `artwork_id` | `String` | No |  |
-| `artwork_title` | `Object` | No |  |
+| `artwork_ids` | `Object` | No |  |
+| `artwork_titles` | `Object` | No |  |
 | `color` | `Object` | No |  |
 | `colorfulness` | `Object` | No |  |
 | `content` | `Object` | No |  |
@@ -1914,7 +1923,7 @@ landing_page = client.LandingPage
 | `api_model` | `Object` | No |  |
 | `copy` | `Object` | No |  |
 | `id` | `String` | No |  |
-| `search_tag` | `Object` | No |  |
+| `search_tags` | `Object` | No |  |
 | `source_updated_at` | `Object` | No |  |
 | `suggest_autocomplete_all` | `Object` | No |  |
 | `suggest_autocomplete_boosted` | `Object` | No |  |
@@ -2194,10 +2203,10 @@ product = client.Product
 | --- | --- | --- | --- |
 | `api_link` | `Object` | No |  |
 | `api_model` | `Object` | No |  |
-| `artist_id` | `String` | No |  |
-| `artwork_id` | `String` | No |  |
+| `artist_ids` | `Object` | No |  |
+| `artwork_ids` | `Object` | No |  |
 | `description` | `String` | No |  |
-| `exhibition_id` | `String` | No |  |
+| `exhibition_ids` | `Object` | No |  |
 | `external_sku` | `Object` | No |  |
 | `id` | `String` | No |  |
 | `image_url` | `Object` | No |  |
@@ -2275,7 +2284,7 @@ publication = client.Publication
 | `api_link` | `Object` | No |  |
 | `api_model` | `Object` | No |  |
 | `id` | `String` | No |  |
-| `section_id` | `String` | No |  |
+| `section_ids` | `Object` | No |  |
 | `source_updated_at` | `Object` | No |  |
 | `suggest_autocomplete_all` | `Object` | No |  |
 | `suggest_autocomplete_boosted` | `Object` | No |  |
@@ -2479,11 +2488,11 @@ site = client.Site
 | --- | --- | --- | --- |
 | `api_link` | `Object` | No |  |
 | `api_model` | `Object` | No |  |
-| `artwork_id` | `String` | No |  |
-| `artwork_title` | `Object` | No |  |
+| `artwork_ids` | `Object` | No |  |
+| `artwork_titles` | `Object` | No |  |
 | `description` | `String` | No |  |
-| `exhibition_id` | `String` | No |  |
-| `exhibition_title` | `Object` | No |  |
+| `exhibition_ids` | `Object` | No |  |
+| `exhibition_titles` | `Object` | No |  |
 | `id` | `String` | No |  |
 | `source_updated_at` | `Object` | No |  |
 | `suggest_autocomplete_all` | `Object` | No |  |
@@ -2554,8 +2563,8 @@ sound = client.Sound
 | `alt_text` | `Object` | No |  |
 | `api_link` | `Object` | No |  |
 | `api_model` | `Object` | No |  |
-| `artwork_id` | `String` | No |  |
-| `artwork_title` | `Object` | No |  |
+| `artwork_ids` | `Object` | No |  |
+| `artwork_titles` | `Object` | No |  |
 | `content` | `Object` | No |  |
 | `content_e_tag` | `Object` | No |  |
 | `credit_line` | `Object` | No |  |
@@ -2704,8 +2713,8 @@ text = client.Text
 | `alt_text` | `Object` | No |  |
 | `api_link` | `Object` | No |  |
 | `api_model` | `Object` | No |  |
-| `artwork_id` | `String` | No |  |
-| `artwork_title` | `Object` | No |  |
+| `artwork_ids` | `Object` | No |  |
+| `artwork_titles` | `Object` | No |  |
 | `content` | `Object` | No |  |
 | `content_e_tag` | `Object` | No |  |
 | `credit_line` | `Object` | No |  |
@@ -2782,8 +2791,8 @@ tour = client.Tour
 | --- | --- | --- | --- |
 | `api_link` | `Object` | No |  |
 | `api_model` | `Object` | No |  |
-| `artist_title` | `Object` | No |  |
-| `artwork_title` | `Object` | No |  |
+| `artist_titles` | `Object` | No |  |
+| `artwork_titles` | `Object` | No |  |
 | `description` | `String` | No |  |
 | `id` | `String` | No |  |
 | `image` | `Object` | No |  |
@@ -2859,8 +2868,8 @@ video = client.Video
 | `alt_text` | `Object` | No |  |
 | `api_link` | `Object` | No |  |
 | `api_model` | `Object` | No |  |
-| `artwork_id` | `String` | No |  |
-| `artwork_title` | `Object` | No |  |
+| `artwork_ids` | `Object` | No |  |
+| `artwork_titles` | `Object` | No |  |
 | `content` | `Object` | No |  |
 | `content_e_tag` | `Object` | No |  |
 | `credit_line` | `Object` | No |  |

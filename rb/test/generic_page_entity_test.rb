@@ -62,7 +62,7 @@ class GenericPageEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set ARTINSTITUTEOFCHICAGO_TEST_GENERIC_PAGE_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set ART_INSTITUTE_OF_CHICAGO_TEST_GENERIC_PAGE_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -87,7 +87,7 @@ class GenericPageEntityTest < Minitest::Test
       "id" => generic_page_ref01_data["id"],
     }
     generic_page_ref01_data_dt0_loaded = generic_page_ref01_ent.load(generic_page_ref01_match_dt0, nil)
-    generic_page_ref01_data_dt0_load_result = Helpers.to_map(generic_page_ref01_data_dt0_loaded)
+    generic_page_ref01_data_dt0_load_result = Helpers.to_map(generic_page_ref01_data_dt0_loaded.respond_to?(:data_get) ? generic_page_ref01_data_dt0_loaded.data_get : generic_page_ref01_data_dt0_loaded)
     assert !generic_page_ref01_data_dt0_load_result.nil?
     assert_equal generic_page_ref01_data_dt0_load_result["id"], generic_page_ref01_data["id"]
 
@@ -120,22 +120,22 @@ def generic_page_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["ARTINSTITUTEOFCHICAGO_TEST_GENERIC_PAGE_ENTID"]
+  entid_env_raw = ENV["ART_INSTITUTE_OF_CHICAGO_TEST_GENERIC_PAGE_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "ARTINSTITUTEOFCHICAGO_TEST_GENERIC_PAGE_ENTID" => idmap,
-    "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
-    "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
+    "ART_INSTITUTE_OF_CHICAGO_TEST_GENERIC_PAGE_ENTID" => idmap,
+    "ART_INSTITUTE_OF_CHICAGO_TEST_LIVE" => "FALSE",
+    "ART_INSTITUTE_OF_CHICAGO_TEST_EXPLAIN" => "FALSE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["ARTINSTITUTEOFCHICAGO_TEST_GENERIC_PAGE_ENTID"])
+    env["ART_INSTITUTE_OF_CHICAGO_TEST_GENERIC_PAGE_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
+  if env["ART_INSTITUTE_OF_CHICAGO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
       },
@@ -144,13 +144,13 @@ def generic_page_basic_setup(extra)
     client = ArtInstituteOfChicagoSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
+  live = env["ART_INSTITUTE_OF_CHICAGO_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN"] == "TRUE",
+    explain: env["ART_INSTITUTE_OF_CHICAGO_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

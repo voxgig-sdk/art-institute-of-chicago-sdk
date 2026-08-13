@@ -26,8 +26,8 @@ import {
 describe('GalleryEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ARTINSTITUTEOFCHICAGO_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ARTINSTITUTEOFCHICAGO_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ART_INSTITUTE_OF_CHICAGO_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ART_INSTITUTE_OF_CHICAGO_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = ArtInstituteOfChicagoSDK.test()
@@ -63,13 +63,13 @@ describe('GalleryEntity', async () => {
     const gallery_ref01_ent = client.Gallery()
     const gallery_ref01_match: any = {}
 
-    const gallery_ref01_list = await gallery_ref01_ent.list(gallery_ref01_match)
+    const gallery_ref01_list = (await gallery_ref01_ent.list(gallery_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const gallery_ref01_match_dt0: any = {}
     gallery_ref01_match_dt0.id = gallery_ref01_data.id
-    const gallery_ref01_data_dt0 = await gallery_ref01_ent.load(gallery_ref01_match_dt0)
+    const gallery_ref01_data_dt0 = (await gallery_ref01_ent.load(gallery_ref01_match_dt0)).data()
     assert(gallery_ref01_data_dt0.id === gallery_ref01_data.id)
 
 

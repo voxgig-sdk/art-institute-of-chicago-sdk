@@ -72,7 +72,7 @@ class EventProgramEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set ARTINSTITUTEOFCHICAGO_TEST_EVENT_PROGRAM_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set ART_INSTITUTE_OF_CHICAGO_TEST_EVENT_PROGRAM_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -97,7 +97,7 @@ class EventProgramEntityTest extends TestCase
             "id" => $event_program_ref01_data["id"],
         ];
         $event_program_ref01_data_dt0_loaded = $event_program_ref01_ent->load($event_program_ref01_match_dt0, null);
-        $event_program_ref01_data_dt0_load_result = Helpers::to_map($event_program_ref01_data_dt0_loaded);
+        $event_program_ref01_data_dt0_load_result = Helpers::to_map(is_object($event_program_ref01_data_dt0_loaded) && method_exists($event_program_ref01_data_dt0_loaded, 'data_get') ? $event_program_ref01_data_dt0_loaded->data_get() : $event_program_ref01_data_dt0_loaded);
         $this->assertNotNull($event_program_ref01_data_dt0_load_result);
         $this->assertEquals($event_program_ref01_data_dt0_load_result["id"], $event_program_ref01_data["id"]);
 
@@ -126,22 +126,22 @@ function event_program_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("ARTINSTITUTEOFCHICAGO_TEST_EVENT_PROGRAM_ENTID");
+    $entid_env_raw = getenv("ART_INSTITUTE_OF_CHICAGO_TEST_EVENT_PROGRAM_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "ARTINSTITUTEOFCHICAGO_TEST_EVENT_PROGRAM_ENTID" => $idmap,
-        "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
-        "ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN" => "FALSE",
+        "ART_INSTITUTE_OF_CHICAGO_TEST_EVENT_PROGRAM_ENTID" => $idmap,
+        "ART_INSTITUTE_OF_CHICAGO_TEST_LIVE" => "FALSE",
+        "ART_INSTITUTE_OF_CHICAGO_TEST_EXPLAIN" => "FALSE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["ARTINSTITUTEOFCHICAGO_TEST_EVENT_PROGRAM_ENTID"]);
+        $env["ART_INSTITUTE_OF_CHICAGO_TEST_EVENT_PROGRAM_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE") {
+    if ($env["ART_INSTITUTE_OF_CHICAGO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
             ],
@@ -150,13 +150,13 @@ function event_program_basic_setup($extra)
         $client = new ArtInstituteOfChicagoSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE";
+    $live = $env["ART_INSTITUTE_OF_CHICAGO_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["ART_INSTITUTE_OF_CHICAGO_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

@@ -16,14 +16,14 @@ main: kit: entity: product: {
       type: "`$ANY`"
     }
     {
-      name: "artist_id"
+      name: "artist_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
-      name: "artwork_id"
+      name: "artwork_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
       name: "description"
@@ -31,9 +31,9 @@ main: kit: entity: product: {
       type: "`$STRING`"
     }
     {
-      name: "exhibition_id"
+      name: "exhibition_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
       name: "external_sku"

@@ -6,7 +6,7 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Agent {
-  alt_title?: any
+  alt_titles?: any
   api_link?: any
   api_model?: any
   birth_date?: any
@@ -29,7 +29,7 @@ export interface AgentLoadMatch {
 }
 
 export interface AgentListMatch {
-  alt_title?: any
+  alt_titles?: any
   api_link?: any
   api_model?: any
   birth_date?: any
@@ -134,28 +134,32 @@ export interface ArticleListMatch {
 }
 
 export interface Artwork {
-  alt_artist_id?: string
-  alt_classification_id?: string
-  alt_image_id?: string
-  alt_material_id?: string
-  alt_style_id?: string
-  alt_subject_id?: string
-  alt_technique_id?: string
-  alt_title?: any
+  alt_artist_ids?: any
+  alt_classification_ids?: any
+  alt_image_ids?: any
+  alt_material_ids?: any
+  alt_style_ids?: any
+  alt_subject_ids?: any
+  alt_technique_ids?: any
+  alt_titles?: any
   api_link?: any
   api_model?: any
   artist_display?: any
   artist_id?: string
+  artist_ids?: any
   artist_title?: any
+  artist_titles?: any
   artwork_type_id?: string
   artwork_type_title?: any
   boost_rank?: any
-  catalog_based_search_keyword_title?: any
+  catalog_based_search_keyword_titles?: any
   catalogue_display?: any
-  category_id?: string
-  category_title?: any
+  category_ids?: any
+  category_titles?: any
   classification_id?: string
+  classification_ids?: any
   classification_title?: any
+  classification_titles?: any
   color?: any
   colorfulness?: any
   copyright_notice?: any
@@ -168,9 +172,9 @@ export interface Artwork {
   department_id?: string
   department_title?: any
   description?: string
-  dimension?: any
+  dimensions?: any
   dimensions_detail?: any
-  document_id?: string
+  document_ids?: any
   edition?: any
   exhibition_history?: any
   fiscal_year?: any
@@ -178,13 +182,13 @@ export interface Artwork {
   gallery_id?: string
   gallery_title?: any
   has_advanced_imaging?: boolean
-  has_educational_resource?: boolean
-  has_multimedia_resource?: boolean
+  has_educational_resources?: boolean
+  has_multimedia_resources?: boolean
   has_not_been_viewed_much?: boolean
   id?: string
   image_embedding?: any
   image_id?: string
-  inscription?: any
+  inscriptions?: any
   internal_department_id?: string
   is_boosted?: boolean
   is_on_view?: boolean
@@ -195,40 +199,45 @@ export interface Artwork {
   longitude?: number
   main_reference_number?: number
   material_id?: string
-  material_title?: any
+  material_ids?: any
+  material_titles?: any
   max_zoom_window_size?: any
   medium_display?: any
   nomisma_id?: string
   on_loan_display?: any
-  pageview?: any
+  pageviews?: any
   pageviews_recent?: any
   place_of_origin?: any
   provenance_text?: any
   publication_history?: any
   publishing_verification_level?: any
-  section_id?: string
-  section_title?: any
+  section_ids?: any
+  section_titles?: any
   short_description?: any
-  site_id?: string
-  sound_id?: string
+  site_ids?: any
+  sound_ids?: any
   source_updated_at?: any
   style_id?: string
+  style_ids?: any
   style_title?: any
+  style_titles?: any
   subject_id?: string
-  subject_title?: any
+  subject_ids?: any
+  subject_titles?: any
   suggest_autocomplete_all?: any
   suggest_autocomplete_boosted?: any
   technique_id?: string
-  technique_title?: any
-  term_title?: any
+  technique_ids?: any
+  technique_titles?: any
+  term_titles?: any
   text_embedding?: any
-  text_id?: string
-  theme_title?: any
+  text_ids?: any
+  theme_titles?: any
   thumbnail?: any
   timestamp?: any
   title?: string
   updated_at?: any
-  video_id?: string
+  video_ids?: any
 }
 
 export interface ArtworkLoadMatch {
@@ -236,28 +245,32 @@ export interface ArtworkLoadMatch {
 }
 
 export interface ArtworkListMatch {
-  alt_artist_id?: string
-  alt_classification_id?: string
-  alt_image_id?: string
-  alt_material_id?: string
-  alt_style_id?: string
-  alt_subject_id?: string
-  alt_technique_id?: string
-  alt_title?: any
+  alt_artist_ids?: any
+  alt_classification_ids?: any
+  alt_image_ids?: any
+  alt_material_ids?: any
+  alt_style_ids?: any
+  alt_subject_ids?: any
+  alt_technique_ids?: any
+  alt_titles?: any
   api_link?: any
   api_model?: any
   artist_display?: any
   artist_id?: string
+  artist_ids?: any
   artist_title?: any
+  artist_titles?: any
   artwork_type_id?: string
   artwork_type_title?: any
   boost_rank?: any
-  catalog_based_search_keyword_title?: any
+  catalog_based_search_keyword_titles?: any
   catalogue_display?: any
-  category_id?: string
-  category_title?: any
+  category_ids?: any
+  category_titles?: any
   classification_id?: string
+  classification_ids?: any
   classification_title?: any
+  classification_titles?: any
   color?: any
   colorfulness?: any
   copyright_notice?: any
@@ -270,9 +283,9 @@ export interface ArtworkListMatch {
   department_id?: string
   department_title?: any
   description?: string
-  dimension?: any
+  dimensions?: any
   dimensions_detail?: any
-  document_id?: string
+  document_ids?: any
   edition?: any
   exhibition_history?: any
   fiscal_year?: any
@@ -280,13 +293,13 @@ export interface ArtworkListMatch {
   gallery_id?: string
   gallery_title?: any
   has_advanced_imaging?: boolean
-  has_educational_resource?: boolean
-  has_multimedia_resource?: boolean
+  has_educational_resources?: boolean
+  has_multimedia_resources?: boolean
   has_not_been_viewed_much?: boolean
   id?: string
   image_embedding?: any
   image_id?: string
-  inscription?: any
+  inscriptions?: any
   internal_department_id?: string
   is_boosted?: boolean
   is_on_view?: boolean
@@ -297,40 +310,45 @@ export interface ArtworkListMatch {
   longitude?: number
   main_reference_number?: number
   material_id?: string
-  material_title?: any
+  material_ids?: any
+  material_titles?: any
   max_zoom_window_size?: any
   medium_display?: any
   nomisma_id?: string
   on_loan_display?: any
-  pageview?: any
+  pageviews?: any
   pageviews_recent?: any
   place_of_origin?: any
   provenance_text?: any
   publication_history?: any
   publishing_verification_level?: any
-  section_id?: string
-  section_title?: any
+  section_ids?: any
+  section_titles?: any
   short_description?: any
-  site_id?: string
-  sound_id?: string
+  site_ids?: any
+  sound_ids?: any
   source_updated_at?: any
   style_id?: string
+  style_ids?: any
   style_title?: any
+  style_titles?: any
   subject_id?: string
-  subject_title?: any
+  subject_ids?: any
+  subject_titles?: any
   suggest_autocomplete_all?: any
   suggest_autocomplete_boosted?: any
   technique_id?: string
-  technique_title?: any
-  term_title?: any
+  technique_ids?: any
+  technique_titles?: any
+  term_titles?: any
   text_embedding?: any
-  text_id?: string
-  theme_title?: any
+  text_ids?: any
+  theme_titles?: any
   thumbnail?: any
   timestamp?: any
   title?: string
   updated_at?: any
-  video_id?: string
+  video_ids?: any
 }
 
 export interface ArtworkDateQualifier {
@@ -552,8 +570,8 @@ export interface EducatorResourceListMatch {
 }
 
 export interface Event {
-  alt_audience_id?: string
-  alt_event_type_id?: string
+  alt_audience_ids?: any
+  alt_event_type_ids?: any
   api_link?: any
   api_model?: any
   audience_id?: string
@@ -573,7 +591,7 @@ export interface Event {
   id?: string
   image_url?: any
   is_admission_required?: boolean
-  is_after_hour?: boolean
+  is_after_hours?: boolean
   is_free?: boolean
   is_member_exclusive?: boolean
   is_private?: boolean
@@ -586,10 +604,10 @@ export interface Event {
   layout_type?: any
   list_description?: any
   location?: any
-  program_id?: string
-  program_title?: any
+  program_ids?: any
+  program_titles?: any
   rsvp_link?: any
-  search_tag?: any
+  search_tags?: any
   short_description?: any
   slug?: string
   source_updated_at?: any
@@ -612,8 +630,8 @@ export interface EventLoadMatch {
 }
 
 export interface EventListMatch {
-  alt_audience_id?: string
-  alt_event_type_id?: string
+  alt_audience_ids?: any
+  alt_event_type_ids?: any
   api_link?: any
   api_model?: any
   audience_id?: string
@@ -633,7 +651,7 @@ export interface EventListMatch {
   id?: string
   image_url?: any
   is_admission_required?: boolean
-  is_after_hour?: boolean
+  is_after_hours?: boolean
   is_free?: boolean
   is_member_exclusive?: boolean
   is_private?: boolean
@@ -646,10 +664,10 @@ export interface EventListMatch {
   layout_type?: any
   list_description?: any
   location?: any
-  program_id?: string
-  program_title?: any
+  program_ids?: any
+  program_titles?: any
   rsvp_link?: any
-  search_tag?: any
+  search_tags?: any
   short_description?: any
   slug?: string
   source_updated_at?: any
@@ -762,13 +780,13 @@ export interface EventProgramListMatch {
 export interface Exhibition {
   aic_end_at?: any
   aic_start_at?: any
-  alt_image_id?: string
+  alt_image_ids?: any
   api_link?: any
   api_model?: any
-  artist_id?: string
-  artwork_id?: string
-  artwork_title?: any
-  document_id?: string
+  artist_ids?: any
+  artwork_ids?: any
+  artwork_titles?: any
+  document_ids?: any
   gallery_id?: string
   gallery_title?: any
   id?: string
@@ -778,7 +796,7 @@ export interface Exhibition {
   is_published?: boolean
   position?: any
   short_description?: any
-  site_id?: string
+  site_ids?: any
   source_updated_at?: any
   status?: any
   suggest_autocomplete_all?: any
@@ -796,13 +814,13 @@ export interface ExhibitionLoadMatch {
 export interface ExhibitionListMatch {
   aic_end_at?: any
   aic_start_at?: any
-  alt_image_id?: string
+  alt_image_ids?: any
   api_link?: any
   api_model?: any
-  artist_id?: string
-  artwork_id?: string
-  artwork_title?: any
-  document_id?: string
+  artist_ids?: any
+  artwork_ids?: any
+  artwork_titles?: any
+  document_ids?: any
   gallery_id?: string
   gallery_title?: any
   id?: string
@@ -812,7 +830,7 @@ export interface ExhibitionListMatch {
   is_published?: boolean
   position?: any
   short_description?: any
-  site_id?: string
+  site_ids?: any
   source_updated_at?: any
   status?: any
   suggest_autocomplete_all?: any
@@ -870,7 +888,7 @@ export interface GenericPage {
   api_model?: any
   copy?: any
   id?: string
-  search_tag?: any
+  search_tags?: any
   source_updated_at?: any
   suggest_autocomplete_all?: any
   suggest_autocomplete_boosted?: any
@@ -889,7 +907,7 @@ export interface GenericPageListMatch {
   api_model?: any
   copy?: any
   id?: string
-  search_tag?: any
+  search_tags?: any
   source_updated_at?: any
   suggest_autocomplete_all?: any
   suggest_autocomplete_boosted?: any
@@ -1036,8 +1054,8 @@ export interface Image {
   alt_text?: any
   api_link?: any
   api_model?: any
-  artwork_id?: string
-  artwork_title?: any
+  artwork_ids?: any
+  artwork_titles?: any
   color?: any
   colorfulness?: any
   content?: any
@@ -1072,8 +1090,8 @@ export interface ImageListMatch {
   alt_text?: any
   api_link?: any
   api_model?: any
-  artwork_id?: string
-  artwork_title?: any
+  artwork_ids?: any
+  artwork_titles?: any
   color?: any
   colorfulness?: any
   content?: any
@@ -1104,7 +1122,7 @@ export interface LandingPage {
   api_model?: any
   copy?: any
   id?: string
-  search_tag?: any
+  search_tags?: any
   source_updated_at?: any
   suggest_autocomplete_all?: any
   suggest_autocomplete_boosted?: any
@@ -1123,7 +1141,7 @@ export interface LandingPageListMatch {
   api_model?: any
   copy?: any
   id?: string
-  search_tag?: any
+  search_tags?: any
   source_updated_at?: any
   suggest_autocomplete_all?: any
   suggest_autocomplete_boosted?: any
@@ -1234,10 +1252,10 @@ export interface PrintedPublicationListMatch {
 export interface Product {
   api_link?: any
   api_model?: any
-  artist_id?: string
-  artwork_id?: string
+  artist_ids?: any
+  artwork_ids?: any
   description?: string
-  exhibition_id?: string
+  exhibition_ids?: any
   external_sku?: any
   id?: string
   image_url?: any
@@ -1262,10 +1280,10 @@ export interface ProductLoadMatch {
 export interface ProductListMatch {
   api_link?: any
   api_model?: any
-  artist_id?: string
-  artwork_id?: string
+  artist_ids?: any
+  artwork_ids?: any
   description?: string
-  exhibition_id?: string
+  exhibition_ids?: any
   external_sku?: any
   id?: string
   image_url?: any
@@ -1287,7 +1305,7 @@ export interface Publication {
   api_link?: any
   api_model?: any
   id?: string
-  section_id?: string
+  section_ids?: any
   source_updated_at?: any
   suggest_autocomplete_all?: any
   suggest_autocomplete_boosted?: any
@@ -1305,7 +1323,7 @@ export interface PublicationListMatch {
   api_link?: any
   api_model?: any
   id?: string
-  section_id?: string
+  section_ids?: any
   source_updated_at?: any
   suggest_autocomplete_all?: any
   suggest_autocomplete_boosted?: any
@@ -1384,11 +1402,11 @@ export interface SectionListMatch {
 export interface Site {
   api_link?: any
   api_model?: any
-  artwork_id?: string
-  artwork_title?: any
+  artwork_ids?: any
+  artwork_titles?: any
   description?: string
-  exhibition_id?: string
-  exhibition_title?: any
+  exhibition_ids?: any
+  exhibition_titles?: any
   id?: string
   source_updated_at?: any
   suggest_autocomplete_all?: any
@@ -1406,11 +1424,11 @@ export interface SiteLoadMatch {
 export interface SiteListMatch {
   api_link?: any
   api_model?: any
-  artwork_id?: string
-  artwork_title?: any
+  artwork_ids?: any
+  artwork_titles?: any
   description?: string
-  exhibition_id?: string
-  exhibition_title?: any
+  exhibition_ids?: any
+  exhibition_titles?: any
   id?: string
   source_updated_at?: any
   suggest_autocomplete_all?: any
@@ -1425,8 +1443,8 @@ export interface Sound {
   alt_text?: any
   api_link?: any
   api_model?: any
-  artwork_id?: string
-  artwork_title?: any
+  artwork_ids?: any
+  artwork_titles?: any
   content?: any
   content_e_tag?: any
   credit_line?: any
@@ -1454,8 +1472,8 @@ export interface SoundListMatch {
   alt_text?: any
   api_link?: any
   api_model?: any
-  artwork_id?: string
-  artwork_title?: any
+  artwork_ids?: any
+  artwork_titles?: any
   content?: any
   content_e_tag?: any
   credit_line?: any
@@ -1509,8 +1527,8 @@ export interface Text {
   alt_text?: any
   api_link?: any
   api_model?: any
-  artwork_id?: string
-  artwork_title?: any
+  artwork_ids?: any
+  artwork_titles?: any
   content?: any
   content_e_tag?: any
   credit_line?: any
@@ -1536,8 +1554,8 @@ export interface TextListMatch {
   alt_text?: any
   api_link?: any
   api_model?: any
-  artwork_id?: string
-  artwork_title?: any
+  artwork_ids?: any
+  artwork_titles?: any
   content?: any
   content_e_tag?: any
   credit_line?: any
@@ -1558,8 +1576,8 @@ export interface TextListMatch {
 export interface Tour {
   api_link?: any
   api_model?: any
-  artist_title?: any
-  artwork_title?: any
+  artist_titles?: any
+  artwork_titles?: any
   description?: string
   id?: string
   image?: any
@@ -1582,8 +1600,8 @@ export interface TourLoadMatch {
 export interface TourListMatch {
   api_link?: any
   api_model?: any
-  artist_title?: any
-  artwork_title?: any
+  artist_titles?: any
+  artwork_titles?: any
   description?: string
   id?: string
   image?: any
@@ -1603,8 +1621,8 @@ export interface Video {
   alt_text?: any
   api_link?: any
   api_model?: any
-  artwork_id?: string
-  artwork_title?: any
+  artwork_ids?: any
+  artwork_titles?: any
   content?: any
   content_e_tag?: any
   credit_line?: any
@@ -1630,8 +1648,8 @@ export interface VideoListMatch {
   alt_text?: any
   api_link?: any
   api_model?: any
-  artwork_id?: string
-  artwork_title?: any
+  artwork_ids?: any
+  artwork_titles?: any
   content?: any
   content_e_tag?: any
   credit_line?: any

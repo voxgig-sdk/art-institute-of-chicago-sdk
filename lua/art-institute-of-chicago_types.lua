@@ -7,7 +7,7 @@
 -- edit by hand.
 
 ---@class Agent
----@field alt_title? any
+---@field alt_titles? any
 ---@field api_link? any
 ---@field api_model? any
 ---@field birth_date? any
@@ -28,7 +28,7 @@
 ---@field id string
 
 ---@class AgentListMatch
----@field alt_title? any
+---@field alt_titles? any
 ---@field api_link? any
 ---@field api_model? any
 ---@field birth_date? any
@@ -123,28 +123,32 @@
 ---@field updated_at? any
 
 ---@class Artwork
----@field alt_artist_id? string
----@field alt_classification_id? string
----@field alt_image_id? string
----@field alt_material_id? string
----@field alt_style_id? string
----@field alt_subject_id? string
----@field alt_technique_id? string
----@field alt_title? any
+---@field alt_artist_ids? any
+---@field alt_classification_ids? any
+---@field alt_image_ids? any
+---@field alt_material_ids? any
+---@field alt_style_ids? any
+---@field alt_subject_ids? any
+---@field alt_technique_ids? any
+---@field alt_titles? any
 ---@field api_link? any
 ---@field api_model? any
 ---@field artist_display? any
 ---@field artist_id? string
+---@field artist_ids? any
 ---@field artist_title? any
+---@field artist_titles? any
 ---@field artwork_type_id? string
 ---@field artwork_type_title? any
 ---@field boost_rank? any
----@field catalog_based_search_keyword_title? any
+---@field catalog_based_search_keyword_titles? any
 ---@field catalogue_display? any
----@field category_id? string
----@field category_title? any
+---@field category_ids? any
+---@field category_titles? any
 ---@field classification_id? string
+---@field classification_ids? any
 ---@field classification_title? any
+---@field classification_titles? any
 ---@field color? any
 ---@field colorfulness? any
 ---@field copyright_notice? any
@@ -157,9 +161,9 @@
 ---@field department_id? string
 ---@field department_title? any
 ---@field description? string
----@field dimension? any
+---@field dimensions? any
 ---@field dimensions_detail? any
----@field document_id? string
+---@field document_ids? any
 ---@field edition? any
 ---@field exhibition_history? any
 ---@field fiscal_year? any
@@ -167,13 +171,13 @@
 ---@field gallery_id? string
 ---@field gallery_title? any
 ---@field has_advanced_imaging? boolean
----@field has_educational_resource? boolean
----@field has_multimedia_resource? boolean
+---@field has_educational_resources? boolean
+---@field has_multimedia_resources? boolean
 ---@field has_not_been_viewed_much? boolean
 ---@field id? string
 ---@field image_embedding? any
 ---@field image_id? string
----@field inscription? any
+---@field inscriptions? any
 ---@field internal_department_id? string
 ---@field is_boosted? boolean
 ---@field is_on_view? boolean
@@ -184,67 +188,76 @@
 ---@field longitude? number
 ---@field main_reference_number? number
 ---@field material_id? string
----@field material_title? any
+---@field material_ids? any
+---@field material_titles? any
 ---@field max_zoom_window_size? any
 ---@field medium_display? any
 ---@field nomisma_id? string
 ---@field on_loan_display? any
----@field pageview? any
+---@field pageviews? any
 ---@field pageviews_recent? any
 ---@field place_of_origin? any
 ---@field provenance_text? any
 ---@field publication_history? any
 ---@field publishing_verification_level? any
----@field section_id? string
----@field section_title? any
+---@field section_ids? any
+---@field section_titles? any
 ---@field short_description? any
----@field site_id? string
----@field sound_id? string
+---@field site_ids? any
+---@field sound_ids? any
 ---@field source_updated_at? any
 ---@field style_id? string
+---@field style_ids? any
 ---@field style_title? any
+---@field style_titles? any
 ---@field subject_id? string
----@field subject_title? any
+---@field subject_ids? any
+---@field subject_titles? any
 ---@field suggest_autocomplete_all? any
 ---@field suggest_autocomplete_boosted? any
 ---@field technique_id? string
----@field technique_title? any
----@field term_title? any
+---@field technique_ids? any
+---@field technique_titles? any
+---@field term_titles? any
 ---@field text_embedding? any
----@field text_id? string
----@field theme_title? any
+---@field text_ids? any
+---@field theme_titles? any
 ---@field thumbnail? any
 ---@field timestamp? any
 ---@field title? string
 ---@field updated_at? any
----@field video_id? string
+---@field video_ids? any
 
 ---@class ArtworkLoadMatch
 ---@field id string
 
 ---@class ArtworkListMatch
----@field alt_artist_id? string
----@field alt_classification_id? string
----@field alt_image_id? string
----@field alt_material_id? string
----@field alt_style_id? string
----@field alt_subject_id? string
----@field alt_technique_id? string
----@field alt_title? any
+---@field alt_artist_ids? any
+---@field alt_classification_ids? any
+---@field alt_image_ids? any
+---@field alt_material_ids? any
+---@field alt_style_ids? any
+---@field alt_subject_ids? any
+---@field alt_technique_ids? any
+---@field alt_titles? any
 ---@field api_link? any
 ---@field api_model? any
 ---@field artist_display? any
 ---@field artist_id? string
+---@field artist_ids? any
 ---@field artist_title? any
+---@field artist_titles? any
 ---@field artwork_type_id? string
 ---@field artwork_type_title? any
 ---@field boost_rank? any
----@field catalog_based_search_keyword_title? any
+---@field catalog_based_search_keyword_titles? any
 ---@field catalogue_display? any
----@field category_id? string
----@field category_title? any
+---@field category_ids? any
+---@field category_titles? any
 ---@field classification_id? string
+---@field classification_ids? any
 ---@field classification_title? any
+---@field classification_titles? any
 ---@field color? any
 ---@field colorfulness? any
 ---@field copyright_notice? any
@@ -257,9 +270,9 @@
 ---@field department_id? string
 ---@field department_title? any
 ---@field description? string
----@field dimension? any
+---@field dimensions? any
 ---@field dimensions_detail? any
----@field document_id? string
+---@field document_ids? any
 ---@field edition? any
 ---@field exhibition_history? any
 ---@field fiscal_year? any
@@ -267,13 +280,13 @@
 ---@field gallery_id? string
 ---@field gallery_title? any
 ---@field has_advanced_imaging? boolean
----@field has_educational_resource? boolean
----@field has_multimedia_resource? boolean
+---@field has_educational_resources? boolean
+---@field has_multimedia_resources? boolean
 ---@field has_not_been_viewed_much? boolean
 ---@field id? string
 ---@field image_embedding? any
 ---@field image_id? string
----@field inscription? any
+---@field inscriptions? any
 ---@field internal_department_id? string
 ---@field is_boosted? boolean
 ---@field is_on_view? boolean
@@ -284,40 +297,45 @@
 ---@field longitude? number
 ---@field main_reference_number? number
 ---@field material_id? string
----@field material_title? any
+---@field material_ids? any
+---@field material_titles? any
 ---@field max_zoom_window_size? any
 ---@field medium_display? any
 ---@field nomisma_id? string
 ---@field on_loan_display? any
----@field pageview? any
+---@field pageviews? any
 ---@field pageviews_recent? any
 ---@field place_of_origin? any
 ---@field provenance_text? any
 ---@field publication_history? any
 ---@field publishing_verification_level? any
----@field section_id? string
----@field section_title? any
+---@field section_ids? any
+---@field section_titles? any
 ---@field short_description? any
----@field site_id? string
----@field sound_id? string
+---@field site_ids? any
+---@field sound_ids? any
 ---@field source_updated_at? any
 ---@field style_id? string
+---@field style_ids? any
 ---@field style_title? any
+---@field style_titles? any
 ---@field subject_id? string
----@field subject_title? any
+---@field subject_ids? any
+---@field subject_titles? any
 ---@field suggest_autocomplete_all? any
 ---@field suggest_autocomplete_boosted? any
 ---@field technique_id? string
----@field technique_title? any
----@field term_title? any
+---@field technique_ids? any
+---@field technique_titles? any
+---@field term_titles? any
 ---@field text_embedding? any
----@field text_id? string
----@field theme_title? any
+---@field text_ids? any
+---@field theme_titles? any
 ---@field thumbnail? any
 ---@field timestamp? any
 ---@field title? string
 ---@field updated_at? any
----@field video_id? string
+---@field video_ids? any
 
 ---@class ArtworkDateQualifier
 ---@field api_link? any
@@ -517,8 +535,8 @@
 ---@field web_url? any
 
 ---@class Event
----@field alt_audience_id? string
----@field alt_event_type_id? string
+---@field alt_audience_ids? any
+---@field alt_event_type_ids? any
 ---@field api_link? any
 ---@field api_model? any
 ---@field audience_id? string
@@ -538,7 +556,7 @@
 ---@field id? string
 ---@field image_url? any
 ---@field is_admission_required? boolean
----@field is_after_hour? boolean
+---@field is_after_hours? boolean
 ---@field is_free? boolean
 ---@field is_member_exclusive? boolean
 ---@field is_private? boolean
@@ -551,10 +569,10 @@
 ---@field layout_type? any
 ---@field list_description? any
 ---@field location? any
----@field program_id? string
----@field program_title? any
+---@field program_ids? any
+---@field program_titles? any
 ---@field rsvp_link? any
----@field search_tag? any
+---@field search_tags? any
 ---@field short_description? any
 ---@field slug? string
 ---@field source_updated_at? any
@@ -575,8 +593,8 @@
 ---@field id string
 
 ---@class EventListMatch
----@field alt_audience_id? string
----@field alt_event_type_id? string
+---@field alt_audience_ids? any
+---@field alt_event_type_ids? any
 ---@field api_link? any
 ---@field api_model? any
 ---@field audience_id? string
@@ -596,7 +614,7 @@
 ---@field id? string
 ---@field image_url? any
 ---@field is_admission_required? boolean
----@field is_after_hour? boolean
+---@field is_after_hours? boolean
 ---@field is_free? boolean
 ---@field is_member_exclusive? boolean
 ---@field is_private? boolean
@@ -609,10 +627,10 @@
 ---@field layout_type? any
 ---@field list_description? any
 ---@field location? any
----@field program_id? string
----@field program_title? any
+---@field program_ids? any
+---@field program_titles? any
 ---@field rsvp_link? any
----@field search_tag? any
+---@field search_tags? any
 ---@field short_description? any
 ---@field slug? string
 ---@field source_updated_at? any
@@ -718,13 +736,13 @@
 ---@class Exhibition
 ---@field aic_end_at? any
 ---@field aic_start_at? any
----@field alt_image_id? string
+---@field alt_image_ids? any
 ---@field api_link? any
 ---@field api_model? any
----@field artist_id? string
----@field artwork_id? string
----@field artwork_title? any
----@field document_id? string
+---@field artist_ids? any
+---@field artwork_ids? any
+---@field artwork_titles? any
+---@field document_ids? any
 ---@field gallery_id? string
 ---@field gallery_title? any
 ---@field id? string
@@ -734,7 +752,7 @@
 ---@field is_published? boolean
 ---@field position? any
 ---@field short_description? any
----@field site_id? string
+---@field site_ids? any
 ---@field source_updated_at? any
 ---@field status? any
 ---@field suggest_autocomplete_all? any
@@ -750,13 +768,13 @@
 ---@class ExhibitionListMatch
 ---@field aic_end_at? any
 ---@field aic_start_at? any
----@field alt_image_id? string
+---@field alt_image_ids? any
 ---@field api_link? any
 ---@field api_model? any
----@field artist_id? string
----@field artwork_id? string
----@field artwork_title? any
----@field document_id? string
+---@field artist_ids? any
+---@field artwork_ids? any
+---@field artwork_titles? any
+---@field document_ids? any
 ---@field gallery_id? string
 ---@field gallery_title? any
 ---@field id? string
@@ -766,7 +784,7 @@
 ---@field is_published? boolean
 ---@field position? any
 ---@field short_description? any
----@field site_id? string
+---@field site_ids? any
 ---@field source_updated_at? any
 ---@field status? any
 ---@field suggest_autocomplete_all? any
@@ -820,7 +838,7 @@
 ---@field api_model? any
 ---@field copy? any
 ---@field id? string
----@field search_tag? any
+---@field search_tags? any
 ---@field source_updated_at? any
 ---@field suggest_autocomplete_all? any
 ---@field suggest_autocomplete_boosted? any
@@ -837,7 +855,7 @@
 ---@field api_model? any
 ---@field copy? any
 ---@field id? string
----@field search_tag? any
+---@field search_tags? any
 ---@field source_updated_at? any
 ---@field suggest_autocomplete_all? any
 ---@field suggest_autocomplete_boosted? any
@@ -977,8 +995,8 @@
 ---@field alt_text? any
 ---@field api_link? any
 ---@field api_model? any
----@field artwork_id? string
----@field artwork_title? any
+---@field artwork_ids? any
+---@field artwork_titles? any
 ---@field color? any
 ---@field colorfulness? any
 ---@field content? any
@@ -1011,8 +1029,8 @@
 ---@field alt_text? any
 ---@field api_link? any
 ---@field api_model? any
----@field artwork_id? string
----@field artwork_title? any
+---@field artwork_ids? any
+---@field artwork_titles? any
 ---@field color? any
 ---@field colorfulness? any
 ---@field content? any
@@ -1042,7 +1060,7 @@
 ---@field api_model? any
 ---@field copy? any
 ---@field id? string
----@field search_tag? any
+---@field search_tags? any
 ---@field source_updated_at? any
 ---@field suggest_autocomplete_all? any
 ---@field suggest_autocomplete_boosted? any
@@ -1059,7 +1077,7 @@
 ---@field api_model? any
 ---@field copy? any
 ---@field id? string
----@field search_tag? any
+---@field search_tags? any
 ---@field source_updated_at? any
 ---@field suggest_autocomplete_all? any
 ---@field suggest_autocomplete_boosted? any
@@ -1160,10 +1178,10 @@
 ---@class Product
 ---@field api_link? any
 ---@field api_model? any
----@field artist_id? string
----@field artwork_id? string
+---@field artist_ids? any
+---@field artwork_ids? any
 ---@field description? string
----@field exhibition_id? string
+---@field exhibition_ids? any
 ---@field external_sku? any
 ---@field id? string
 ---@field image_url? any
@@ -1186,10 +1204,10 @@
 ---@class ProductListMatch
 ---@field api_link? any
 ---@field api_model? any
----@field artist_id? string
----@field artwork_id? string
+---@field artist_ids? any
+---@field artwork_ids? any
 ---@field description? string
----@field exhibition_id? string
+---@field exhibition_ids? any
 ---@field external_sku? any
 ---@field id? string
 ---@field image_url? any
@@ -1210,7 +1228,7 @@
 ---@field api_link? any
 ---@field api_model? any
 ---@field id? string
----@field section_id? string
+---@field section_ids? any
 ---@field source_updated_at? any
 ---@field suggest_autocomplete_all? any
 ---@field suggest_autocomplete_boosted? any
@@ -1226,7 +1244,7 @@
 ---@field api_link? any
 ---@field api_model? any
 ---@field id? string
----@field section_id? string
+---@field section_ids? any
 ---@field source_updated_at? any
 ---@field suggest_autocomplete_all? any
 ---@field suggest_autocomplete_boosted? any
@@ -1299,11 +1317,11 @@
 ---@class Site
 ---@field api_link? any
 ---@field api_model? any
----@field artwork_id? string
----@field artwork_title? any
+---@field artwork_ids? any
+---@field artwork_titles? any
 ---@field description? string
----@field exhibition_id? string
----@field exhibition_title? any
+---@field exhibition_ids? any
+---@field exhibition_titles? any
 ---@field id? string
 ---@field source_updated_at? any
 ---@field suggest_autocomplete_all? any
@@ -1319,11 +1337,11 @@
 ---@class SiteListMatch
 ---@field api_link? any
 ---@field api_model? any
----@field artwork_id? string
----@field artwork_title? any
+---@field artwork_ids? any
+---@field artwork_titles? any
 ---@field description? string
----@field exhibition_id? string
----@field exhibition_title? any
+---@field exhibition_ids? any
+---@field exhibition_titles? any
 ---@field id? string
 ---@field source_updated_at? any
 ---@field suggest_autocomplete_all? any
@@ -1337,8 +1355,8 @@
 ---@field alt_text? any
 ---@field api_link? any
 ---@field api_model? any
----@field artwork_id? string
----@field artwork_title? any
+---@field artwork_ids? any
+---@field artwork_titles? any
 ---@field content? any
 ---@field content_e_tag? any
 ---@field credit_line? any
@@ -1364,8 +1382,8 @@
 ---@field alt_text? any
 ---@field api_link? any
 ---@field api_model? any
----@field artwork_id? string
----@field artwork_title? any
+---@field artwork_ids? any
+---@field artwork_titles? any
 ---@field content? any
 ---@field content_e_tag? any
 ---@field credit_line? any
@@ -1415,8 +1433,8 @@
 ---@field alt_text? any
 ---@field api_link? any
 ---@field api_model? any
----@field artwork_id? string
----@field artwork_title? any
+---@field artwork_ids? any
+---@field artwork_titles? any
 ---@field content? any
 ---@field content_e_tag? any
 ---@field credit_line? any
@@ -1440,8 +1458,8 @@
 ---@field alt_text? any
 ---@field api_link? any
 ---@field api_model? any
----@field artwork_id? string
----@field artwork_title? any
+---@field artwork_ids? any
+---@field artwork_titles? any
 ---@field content? any
 ---@field content_e_tag? any
 ---@field credit_line? any
@@ -1461,8 +1479,8 @@
 ---@class Tour
 ---@field api_link? any
 ---@field api_model? any
----@field artist_title? any
----@field artwork_title? any
+---@field artist_titles? any
+---@field artwork_titles? any
 ---@field description? string
 ---@field id? string
 ---@field image? any
@@ -1483,8 +1501,8 @@
 ---@class TourListMatch
 ---@field api_link? any
 ---@field api_model? any
----@field artist_title? any
----@field artwork_title? any
+---@field artist_titles? any
+---@field artwork_titles? any
 ---@field description? string
 ---@field id? string
 ---@field image? any
@@ -1503,8 +1521,8 @@
 ---@field alt_text? any
 ---@field api_link? any
 ---@field api_model? any
----@field artwork_id? string
----@field artwork_title? any
+---@field artwork_ids? any
+---@field artwork_titles? any
 ---@field content? any
 ---@field content_e_tag? any
 ---@field credit_line? any
@@ -1528,8 +1546,8 @@
 ---@field alt_text? any
 ---@field api_link? any
 ---@field api_model? any
----@field artwork_id? string
----@field artwork_title? any
+---@field artwork_ids? any
+---@field artwork_titles? any
 ---@field content? any
 ---@field content_e_tag? any
 ---@field credit_line? any

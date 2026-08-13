@@ -21,9 +21,9 @@ main: kit: entity: publication: {
       type: "`$STRING`"
     }
     {
-      name: "section_id"
+      name: "section_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
       name: "source_updated_at"

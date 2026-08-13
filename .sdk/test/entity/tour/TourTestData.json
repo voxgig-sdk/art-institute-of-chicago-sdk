@@ -4,8 +4,8 @@
       "TOUR00": {
         "api_link": "saa",
         "api_model": "sab",
-        "artist_title": "sac",
-        "artwork_title": "sad",
+        "artist_titles": "sac",
+        "artwork_titles": "sad",
         "description": "sae",
         "id": "TOUR00",
         "image": "sb0",
@@ -23,8 +23,8 @@
       "TOUR01": {
         "api_link": "s154",
         "api_model": "s155",
-        "artist_title": "s156",
-        "artwork_title": "s157",
+        "artist_titles": "s156",
+        "artwork_titles": "s157",
         "description": "s158",
         "id": "TOUR01",
         "image": "s15a",
@@ -42,8 +42,8 @@
       "TOUR02": {
         "api_link": "s1fe",
         "api_model": "s1ff",
-        "artist_title": "s200",
-        "artwork_title": "s201",
+        "artist_titles": "s200",
+        "artwork_titles": "s201",
         "description": "s202",
         "id": "TOUR02",
         "image": "s204",
@@ -65,8 +65,8 @@
       "tour_ref01": {
         "api_link": "s2a8",
         "api_model": "s2a9",
-        "artist_title": "s2aa",
-        "artwork_title": "s2ab",
+        "artist_titles": "s2aa",
+        "artwork_titles": "s2ab",
         "description": "s2ac",
         "image": "s2ae",
         "intro": "s2af",

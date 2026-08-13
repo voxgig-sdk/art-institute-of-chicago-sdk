@@ -6,42 +6,42 @@ main: kit: entity: artwork: {
 
   fields: [
     {
-      name: "alt_artist_id"
+      name: "alt_artist_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
-      name: "alt_classification_id"
+      name: "alt_classification_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
-      name: "alt_image_id"
+      name: "alt_image_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
-      name: "alt_material_id"
+      name: "alt_material_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
-      name: "alt_style_id"
+      name: "alt_style_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
-      name: "alt_subject_id"
+      name: "alt_subject_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
-      name: "alt_technique_id"
+      name: "alt_technique_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
-      name: "alt_title"
+      name: "alt_titles"
       req: false
       type: "`$ANY`"
     }
@@ -66,7 +66,17 @@ main: kit: entity: artwork: {
       type: "`$STRING`"
     }
     {
+      name: "artist_ids"
+      req: false
+      type: "`$ANY`"
+    }
+    {
       name: "artist_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "artist_titles"
       req: false
       type: "`$ANY`"
     }
@@ -86,7 +96,7 @@ main: kit: entity: artwork: {
       type: "`$ANY`"
     }
     {
-      name: "catalog_based_search_keyword_title"
+      name: "catalog_based_search_keyword_titles"
       req: false
       type: "`$ANY`"
     }
@@ -96,12 +106,12 @@ main: kit: entity: artwork: {
       type: "`$ANY`"
     }
     {
-      name: "category_id"
+      name: "category_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
-      name: "category_title"
+      name: "category_titles"
       req: false
       type: "`$ANY`"
     }
@@ -111,7 +121,17 @@ main: kit: entity: artwork: {
       type: "`$STRING`"
     }
     {
+      name: "classification_ids"
+      req: false
+      type: "`$ANY`"
+    }
+    {
       name: "classification_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "classification_titles"
       req: false
       type: "`$ANY`"
     }
@@ -176,7 +196,7 @@ main: kit: entity: artwork: {
       type: "`$STRING`"
     }
     {
-      name: "dimension"
+      name: "dimensions"
       req: false
       type: "`$ANY`"
     }
@@ -186,9 +206,9 @@ main: kit: entity: artwork: {
       type: "`$ANY`"
     }
     {
-      name: "document_id"
+      name: "document_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
       name: "edition"
@@ -226,12 +246,12 @@ main: kit: entity: artwork: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "has_educational_resource"
+      name: "has_educational_resources"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "has_multimedia_resource"
+      name: "has_multimedia_resources"
       req: false
       type: "`$BOOLEAN`"
     }
@@ -256,7 +276,7 @@ main: kit: entity: artwork: {
       type: "`$STRING`"
     }
     {
-      name: "inscription"
+      name: "inscriptions"
       req: false
       type: "`$ANY`"
     }
@@ -311,7 +331,12 @@ main: kit: entity: artwork: {
       type: "`$STRING`"
     }
     {
-      name: "material_title"
+      name: "material_ids"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "material_titles"
       req: false
       type: "`$ANY`"
     }
@@ -336,7 +361,7 @@ main: kit: entity: artwork: {
       type: "`$ANY`"
     }
     {
-      name: "pageview"
+      name: "pageviews"
       req: false
       type: "`$ANY`"
     }
@@ -366,12 +391,12 @@ main: kit: entity: artwork: {
       type: "`$ANY`"
     }
     {
-      name: "section_id"
+      name: "section_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
-      name: "section_title"
+      name: "section_titles"
       req: false
       type: "`$ANY`"
     }
@@ -381,14 +406,14 @@ main: kit: entity: artwork: {
       type: "`$ANY`"
     }
     {
-      name: "site_id"
+      name: "site_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
-      name: "sound_id"
+      name: "sound_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
       name: "source_updated_at"
@@ -401,7 +426,17 @@ main: kit: entity: artwork: {
       type: "`$STRING`"
     }
     {
+      name: "style_ids"
+      req: false
+      type: "`$ANY`"
+    }
+    {
       name: "style_title"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "style_titles"
       req: false
       type: "`$ANY`"
     }
@@ -411,7 +446,12 @@ main: kit: entity: artwork: {
       type: "`$STRING`"
     }
     {
-      name: "subject_title"
+      name: "subject_ids"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "subject_titles"
       req: false
       type: "`$ANY`"
     }
@@ -431,12 +471,17 @@ main: kit: entity: artwork: {
       type: "`$STRING`"
     }
     {
-      name: "technique_title"
+      name: "technique_ids"
       req: false
       type: "`$ANY`"
     }
     {
-      name: "term_title"
+      name: "technique_titles"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "term_titles"
       req: false
       type: "`$ANY`"
     }
@@ -446,12 +491,12 @@ main: kit: entity: artwork: {
       type: "`$ANY`"
     }
     {
-      name: "text_id"
+      name: "text_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
-      name: "theme_title"
+      name: "theme_titles"
       req: false
       type: "`$ANY`"
     }
@@ -476,9 +521,9 @@ main: kit: entity: artwork: {
       type: "`$ANY`"
     }
     {
-      name: "video_id"
+      name: "video_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
   ]
 

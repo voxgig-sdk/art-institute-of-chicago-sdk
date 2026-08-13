@@ -26,8 +26,8 @@ import {
 describe('PrintedPublicationEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ARTINSTITUTEOFCHICAGO_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ARTINSTITUTEOFCHICAGO_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ART_INSTITUTE_OF_CHICAGO_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ART_INSTITUTE_OF_CHICAGO_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = ArtInstituteOfChicagoSDK.test()
@@ -63,13 +63,13 @@ describe('PrintedPublicationEntity', async () => {
     const printed_publication_ref01_ent = client.PrintedPublication()
     const printed_publication_ref01_match: any = {}
 
-    const printed_publication_ref01_list = await printed_publication_ref01_ent.list(printed_publication_ref01_match)
+    const printed_publication_ref01_list = (await printed_publication_ref01_ent.list(printed_publication_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const printed_publication_ref01_match_dt0: any = {}
     printed_publication_ref01_match_dt0.id = printed_publication_ref01_data.id
-    const printed_publication_ref01_data_dt0 = await printed_publication_ref01_ent.load(printed_publication_ref01_match_dt0)
+    const printed_publication_ref01_data_dt0 = (await printed_publication_ref01_ent.load(printed_publication_ref01_match_dt0)).data()
     assert(printed_publication_ref01_data_dt0.id === printed_publication_ref01_data.id)
 
 

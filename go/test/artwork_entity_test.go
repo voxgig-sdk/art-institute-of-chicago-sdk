@@ -92,7 +92,7 @@ func TestArtworkEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set ARTINSTITUTEOFCHICAGO_TEST_ARTWORK_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set ART_INSTITUTE_OF_CHICAGO_TEST_ARTWORK_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -128,7 +128,7 @@ func TestArtworkEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		artworkRef01DataDt0LoadResult := core.ToMapAny(artworkRef01DataDt0Loaded)
+		artworkRef01DataDt0LoadResult := core.ToMapAny(entityData(artworkRef01DataDt0Loaded))
 		if artworkRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}
@@ -176,21 +176,21 @@ func artworkBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("ARTINSTITUTEOFCHICAGO_TEST_ARTWORK_ENTID")
+	entidEnvRaw := os.Getenv("ART_INSTITUTE_OF_CHICAGO_TEST_ARTWORK_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"ARTINSTITUTEOFCHICAGO_TEST_ARTWORK_ENTID": idmap,
-		"ARTINSTITUTEOFCHICAGO_TEST_LIVE":      "FALSE",
-		"ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN":   "FALSE",
+		"ART_INSTITUTE_OF_CHICAGO_TEST_ARTWORK_ENTID": idmap,
+		"ART_INSTITUTE_OF_CHICAGO_TEST_LIVE":      "FALSE",
+		"ART_INSTITUTE_OF_CHICAGO_TEST_EXPLAIN":   "FALSE",
 	})
 
-	idmapResolved := core.ToMapAny(env["ARTINSTITUTEOFCHICAGO_TEST_ARTWORK_ENTID"])
+	idmapResolved := core.ToMapAny(env["ART_INSTITUTE_OF_CHICAGO_TEST_ARTWORK_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE" {
+	if env["ART_INSTITUTE_OF_CHICAGO_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
 			},
@@ -199,13 +199,13 @@ func artworkBasicSetup(extra map[string]any) *entityTestSetup {
 		client = sdk.NewArtInstituteOfChicagoSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] == "TRUE"
+	live := env["ART_INSTITUTE_OF_CHICAGO_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["ART_INSTITUTE_OF_CHICAGO_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

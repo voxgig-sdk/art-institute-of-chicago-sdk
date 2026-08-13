@@ -16,11 +16,11 @@
 import pytest
 
 from artinstituteofchicago_sdk import ArtInstituteOfChicagoSDK
-from core.error import ArtInstituteOfChicagoError
-from core.result import ArtInstituteOfChicagoResult
-from core.response import ArtInstituteOfChicagoResponse
-from core.spec import ArtInstituteOfChicagoSpec
-from feature.base_feature import ArtInstituteOfChicagoBaseFeature
+from artinstituteofchicago_sdk.core.error import ArtInstituteOfChicagoError
+from artinstituteofchicago_sdk.core.result import ArtInstituteOfChicagoResult
+from artinstituteofchicago_sdk.core.response import ArtInstituteOfChicagoResponse
+from artinstituteofchicago_sdk.core.spec import ArtInstituteOfChicagoSpec
+from artinstituteofchicago_sdk.feature.base_feature import ArtInstituteOfChicagoBaseFeature
 
 
 def _client():

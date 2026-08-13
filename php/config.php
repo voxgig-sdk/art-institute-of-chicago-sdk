@@ -66,7 +66,7 @@ class ArtInstituteOfChicagoConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'alt_title',
+              'name' => 'alt_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 0,
@@ -186,6 +186,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/agents',
                   'parts' => [
@@ -201,6 +202,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/artists',
                   'parts' => [
@@ -235,6 +237,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/agents/{id}',
                   'parts' => [
@@ -267,6 +270,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/artists/{id}',
                   'parts' => [
@@ -367,6 +371,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/agent-roles',
                   'parts' => [
@@ -401,6 +406,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/agent-roles/{id}',
                   'parts' => [
@@ -501,6 +507,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/agent-types',
                   'parts' => [
@@ -535,6 +542,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/agent-types/{id}',
                   'parts' => [
@@ -642,6 +650,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/articles',
                   'parts' => [
@@ -676,6 +685,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/articles/{id}',
                   'parts' => [
@@ -705,56 +715,56 @@ class ArtInstituteOfChicagoConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'alt_artist_id',
+              'name' => 'alt_artist_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'alt_classification_id',
+              'name' => 'alt_classification_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 1,
             ],
             [
               'active' => true,
-              'name' => 'alt_image_id',
+              'name' => 'alt_image_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 2,
             ],
             [
               'active' => true,
-              'name' => 'alt_material_id',
+              'name' => 'alt_material_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 3,
             ],
             [
               'active' => true,
-              'name' => 'alt_style_id',
+              'name' => 'alt_style_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 4,
             ],
             [
               'active' => true,
-              'name' => 'alt_subject_id',
+              'name' => 'alt_subject_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 5,
             ],
             [
               'active' => true,
-              'name' => 'alt_technique_id',
+              'name' => 'alt_technique_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 6,
             ],
             [
               'active' => true,
-              'name' => 'alt_title',
+              'name' => 'alt_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 7,
@@ -789,584 +799,647 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'artist_title',
+              'name' => 'artist_ids',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 12,
             ],
             [
               'active' => true,
-              'name' => 'artwork_type_id',
+              'name' => 'artist_title',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 13,
             ],
             [
               'active' => true,
-              'name' => 'artwork_type_title',
+              'name' => 'artist_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 14,
             ],
             [
               'active' => true,
-              'name' => 'boost_rank',
+              'name' => 'artwork_type_id',
               'req' => false,
-              'type' => '`$ANY`',
+              'type' => '`$STRING`',
               'index$' => 15,
             ],
             [
               'active' => true,
-              'name' => 'catalog_based_search_keyword_title',
+              'name' => 'artwork_type_title',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 16,
             ],
             [
               'active' => true,
-              'name' => 'catalogue_display',
+              'name' => 'boost_rank',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 17,
             ],
             [
               'active' => true,
-              'name' => 'category_id',
+              'name' => 'catalog_based_search_keyword_titles',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 18,
             ],
             [
               'active' => true,
-              'name' => 'category_title',
+              'name' => 'catalogue_display',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 19,
             ],
             [
               'active' => true,
-              'name' => 'classification_id',
+              'name' => 'category_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 20,
             ],
             [
               'active' => true,
-              'name' => 'classification_title',
+              'name' => 'category_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 21,
             ],
             [
               'active' => true,
-              'name' => 'color',
+              'name' => 'classification_id',
               'req' => false,
-              'type' => '`$ANY`',
+              'type' => '`$STRING`',
               'index$' => 22,
             ],
             [
               'active' => true,
-              'name' => 'colorfulness',
+              'name' => 'classification_ids',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 23,
             ],
             [
               'active' => true,
-              'name' => 'copyright_notice',
+              'name' => 'classification_title',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 24,
             ],
             [
               'active' => true,
-              'name' => 'credit_line',
+              'name' => 'classification_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 25,
             ],
             [
               'active' => true,
-              'name' => 'date_display',
+              'name' => 'color',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 26,
             ],
             [
               'active' => true,
-              'name' => 'date_end',
+              'name' => 'colorfulness',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 27,
             ],
             [
               'active' => true,
-              'name' => 'date_qualifier_id',
+              'name' => 'copyright_notice',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 28,
             ],
             [
               'active' => true,
-              'name' => 'date_qualifier_title',
+              'name' => 'credit_line',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 29,
             ],
             [
               'active' => true,
-              'name' => 'date_start',
+              'name' => 'date_display',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 30,
             ],
             [
               'active' => true,
-              'name' => 'department_id',
+              'name' => 'date_end',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 31,
             ],
             [
               'active' => true,
-              'name' => 'department_title',
+              'name' => 'date_qualifier_id',
               'req' => false,
-              'type' => '`$ANY`',
+              'type' => '`$STRING`',
               'index$' => 32,
             ],
             [
               'active' => true,
-              'name' => 'description',
+              'name' => 'date_qualifier_title',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 33,
             ],
             [
               'active' => true,
-              'name' => 'dimension',
+              'name' => 'date_start',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 34,
             ],
             [
               'active' => true,
-              'name' => 'dimensions_detail',
+              'name' => 'department_id',
               'req' => false,
-              'type' => '`$ANY`',
+              'type' => '`$STRING`',
               'index$' => 35,
             ],
             [
               'active' => true,
-              'name' => 'document_id',
+              'name' => 'department_title',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 36,
             ],
             [
               'active' => true,
-              'name' => 'edition',
+              'name' => 'description',
               'req' => false,
-              'type' => '`$ANY`',
+              'type' => '`$STRING`',
               'index$' => 37,
             ],
             [
               'active' => true,
-              'name' => 'exhibition_history',
+              'name' => 'dimensions',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 38,
             ],
             [
               'active' => true,
-              'name' => 'fiscal_year',
+              'name' => 'dimensions_detail',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 39,
             ],
             [
               'active' => true,
-              'name' => 'fiscal_year_deaccession',
+              'name' => 'document_ids',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 40,
             ],
             [
               'active' => true,
-              'name' => 'gallery_id',
+              'name' => 'edition',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 41,
             ],
             [
               'active' => true,
-              'name' => 'gallery_title',
+              'name' => 'exhibition_history',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 42,
             ],
             [
               'active' => true,
-              'name' => 'has_advanced_imaging',
+              'name' => 'fiscal_year',
               'req' => false,
-              'type' => '`$BOOLEAN`',
+              'type' => '`$ANY`',
               'index$' => 43,
             ],
             [
               'active' => true,
-              'name' => 'has_educational_resource',
+              'name' => 'fiscal_year_deaccession',
               'req' => false,
-              'type' => '`$BOOLEAN`',
+              'type' => '`$ANY`',
               'index$' => 44,
             ],
             [
               'active' => true,
-              'name' => 'has_multimedia_resource',
+              'name' => 'gallery_id',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 45,
+            ],
+            [
+              'active' => true,
+              'name' => 'gallery_title',
+              'req' => false,
+              'type' => '`$ANY`',
+              'index$' => 46,
+            ],
+            [
+              'active' => true,
+              'name' => 'has_advanced_imaging',
               'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 45,
+              'index$' => 47,
+            ],
+            [
+              'active' => true,
+              'name' => 'has_educational_resources',
+              'req' => false,
+              'type' => '`$BOOLEAN`',
+              'index$' => 48,
+            ],
+            [
+              'active' => true,
+              'name' => 'has_multimedia_resources',
+              'req' => false,
+              'type' => '`$BOOLEAN`',
+              'index$' => 49,
             ],
             [
               'active' => true,
               'name' => 'has_not_been_viewed_much',
               'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 46,
+              'index$' => 50,
             ],
             [
               'active' => true,
               'name' => 'id',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 47,
+              'index$' => 51,
             ],
             [
               'active' => true,
               'name' => 'image_embedding',
               'req' => false,
               'type' => '`$ANY`',
-              'index$' => 48,
+              'index$' => 52,
             ],
             [
               'active' => true,
               'name' => 'image_id',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 49,
+              'index$' => 53,
             ],
             [
               'active' => true,
-              'name' => 'inscription',
+              'name' => 'inscriptions',
               'req' => false,
               'type' => '`$ANY`',
-              'index$' => 50,
+              'index$' => 54,
             ],
             [
               'active' => true,
               'name' => 'internal_department_id',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 51,
+              'index$' => 55,
             ],
             [
               'active' => true,
               'name' => 'is_boosted',
               'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 52,
+              'index$' => 56,
             ],
             [
               'active' => true,
               'name' => 'is_on_view',
               'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 53,
+              'index$' => 57,
             ],
             [
               'active' => true,
               'name' => 'is_public_domain',
               'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 54,
+              'index$' => 58,
             ],
             [
               'active' => true,
               'name' => 'is_zoomable',
               'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 55,
+              'index$' => 59,
             ],
             [
               'active' => true,
               'name' => 'latitude',
               'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 56,
+              'index$' => 60,
             ],
             [
               'active' => true,
               'name' => 'latlon',
               'req' => false,
               'type' => '`$ANY`',
-              'index$' => 57,
+              'index$' => 61,
             ],
             [
               'active' => true,
               'name' => 'longitude',
               'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 58,
+              'index$' => 62,
             ],
             [
               'active' => true,
               'name' => 'main_reference_number',
               'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 59,
+              'index$' => 63,
             ],
             [
               'active' => true,
               'name' => 'material_id',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 60,
-            ],
-            [
-              'active' => true,
-              'name' => 'material_title',
-              'req' => false,
-              'type' => '`$ANY`',
-              'index$' => 61,
-            ],
-            [
-              'active' => true,
-              'name' => 'max_zoom_window_size',
-              'req' => false,
-              'type' => '`$ANY`',
-              'index$' => 62,
-            ],
-            [
-              'active' => true,
-              'name' => 'medium_display',
-              'req' => false,
-              'type' => '`$ANY`',
-              'index$' => 63,
-            ],
-            [
-              'active' => true,
-              'name' => 'nomisma_id',
-              'req' => false,
-              'type' => '`$STRING`',
               'index$' => 64,
             ],
             [
               'active' => true,
-              'name' => 'on_loan_display',
+              'name' => 'material_ids',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 65,
             ],
             [
               'active' => true,
-              'name' => 'pageview',
+              'name' => 'material_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 66,
             ],
             [
               'active' => true,
-              'name' => 'pageviews_recent',
+              'name' => 'max_zoom_window_size',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 67,
             ],
             [
               'active' => true,
-              'name' => 'place_of_origin',
+              'name' => 'medium_display',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 68,
             ],
             [
               'active' => true,
-              'name' => 'provenance_text',
+              'name' => 'nomisma_id',
               'req' => false,
-              'type' => '`$ANY`',
+              'type' => '`$STRING`',
               'index$' => 69,
             ],
             [
               'active' => true,
-              'name' => 'publication_history',
+              'name' => 'on_loan_display',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 70,
             ],
             [
               'active' => true,
-              'name' => 'publishing_verification_level',
+              'name' => 'pageviews',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 71,
             ],
             [
               'active' => true,
-              'name' => 'section_id',
+              'name' => 'pageviews_recent',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 72,
             ],
             [
               'active' => true,
-              'name' => 'section_title',
+              'name' => 'place_of_origin',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 73,
             ],
             [
               'active' => true,
-              'name' => 'short_description',
+              'name' => 'provenance_text',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 74,
             ],
             [
               'active' => true,
-              'name' => 'site_id',
+              'name' => 'publication_history',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 75,
             ],
             [
               'active' => true,
-              'name' => 'sound_id',
+              'name' => 'publishing_verification_level',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 76,
             ],
             [
               'active' => true,
-              'name' => 'source_updated_at',
+              'name' => 'section_ids',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 77,
             ],
             [
               'active' => true,
-              'name' => 'style_id',
+              'name' => 'section_titles',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 78,
             ],
             [
               'active' => true,
-              'name' => 'style_title',
+              'name' => 'short_description',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 79,
             ],
             [
               'active' => true,
-              'name' => 'subject_id',
+              'name' => 'site_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 80,
             ],
             [
               'active' => true,
-              'name' => 'subject_title',
+              'name' => 'sound_ids',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 81,
             ],
             [
               'active' => true,
-              'name' => 'suggest_autocomplete_all',
+              'name' => 'source_updated_at',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 82,
             ],
             [
               'active' => true,
-              'name' => 'suggest_autocomplete_boosted',
+              'name' => 'style_id',
               'req' => false,
-              'type' => '`$ANY`',
+              'type' => '`$STRING`',
               'index$' => 83,
             ],
             [
               'active' => true,
-              'name' => 'technique_id',
+              'name' => 'style_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 84,
             ],
             [
               'active' => true,
-              'name' => 'technique_title',
+              'name' => 'style_title',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 85,
             ],
             [
               'active' => true,
-              'name' => 'term_title',
+              'name' => 'style_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 86,
             ],
             [
               'active' => true,
-              'name' => 'text_embedding',
+              'name' => 'subject_id',
               'req' => false,
-              'type' => '`$ANY`',
+              'type' => '`$STRING`',
               'index$' => 87,
             ],
             [
               'active' => true,
-              'name' => 'text_id',
+              'name' => 'subject_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 88,
             ],
             [
               'active' => true,
-              'name' => 'theme_title',
+              'name' => 'subject_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 89,
             ],
             [
               'active' => true,
-              'name' => 'thumbnail',
+              'name' => 'suggest_autocomplete_all',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 90,
             ],
             [
               'active' => true,
-              'name' => 'timestamp',
+              'name' => 'suggest_autocomplete_boosted',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 91,
             ],
             [
               'active' => true,
-              'name' => 'title',
+              'name' => 'technique_id',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 92,
             ],
             [
               'active' => true,
-              'name' => 'updated_at',
+              'name' => 'technique_ids',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 93,
             ],
             [
               'active' => true,
-              'name' => 'video_id',
+              'name' => 'technique_titles',
+              'req' => false,
+              'type' => '`$ANY`',
+              'index$' => 94,
+            ],
+            [
+              'active' => true,
+              'name' => 'term_titles',
+              'req' => false,
+              'type' => '`$ANY`',
+              'index$' => 95,
+            ],
+            [
+              'active' => true,
+              'name' => 'text_embedding',
+              'req' => false,
+              'type' => '`$ANY`',
+              'index$' => 96,
+            ],
+            [
+              'active' => true,
+              'name' => 'text_ids',
+              'req' => false,
+              'type' => '`$ANY`',
+              'index$' => 97,
+            ],
+            [
+              'active' => true,
+              'name' => 'theme_titles',
+              'req' => false,
+              'type' => '`$ANY`',
+              'index$' => 98,
+            ],
+            [
+              'active' => true,
+              'name' => 'thumbnail',
+              'req' => false,
+              'type' => '`$ANY`',
+              'index$' => 99,
+            ],
+            [
+              'active' => true,
+              'name' => 'timestamp',
+              'req' => false,
+              'type' => '`$ANY`',
+              'index$' => 100,
+            ],
+            [
+              'active' => true,
+              'name' => 'title',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 94,
+              'index$' => 101,
+            ],
+            [
+              'active' => true,
+              'name' => 'updated_at',
+              'req' => false,
+              'type' => '`$ANY`',
+              'index$' => 102,
+            ],
+            [
+              'active' => true,
+              'name' => 'video_ids',
+              'req' => false,
+              'type' => '`$ANY`',
+              'index$' => 103,
             ],
           ],
           'name' => 'artwork',
@@ -1378,6 +1451,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/artworks',
                   'parts' => [
@@ -1412,6 +1486,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/artworks/{id}',
                   'parts' => [
@@ -1512,6 +1587,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/artwork-date-qualifiers',
                   'parts' => [
@@ -1546,6 +1622,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/artwork-date-qualifiers/{id}',
                   'parts' => [
@@ -1646,6 +1723,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/artwork-place-qualifiers',
                   'parts' => [
@@ -1680,6 +1758,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/artwork-place-qualifiers/{id}',
                   'parts' => [
@@ -1787,6 +1866,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/artwork-types',
                   'parts' => [
@@ -1821,6 +1901,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/artwork-types/{id}',
                   'parts' => [
@@ -1935,6 +2016,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/category-terms',
                   'parts' => [
@@ -1969,6 +2051,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/category-terms/{id}',
                   'parts' => [
@@ -2083,6 +2166,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/digital-publications',
                   'parts' => [
@@ -2117,6 +2201,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/digital-publications/{id}',
                   'parts' => [
@@ -2245,6 +2330,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/digital-publication-articles',
                   'parts' => [
@@ -2279,6 +2365,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/digital-publication-articles/{id}',
                   'parts' => [
@@ -2393,6 +2480,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/educator-resources',
                   'parts' => [
@@ -2427,6 +2515,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/educator-resources/{id}',
                   'parts' => [
@@ -2456,16 +2545,16 @@ class ArtInstituteOfChicagoConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'alt_audience_id',
+              'name' => 'alt_audience_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'alt_event_type_id',
+              'name' => 'alt_event_type_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 1,
             ],
             [
@@ -2603,7 +2692,7 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'is_after_hour',
+              'name' => 'is_after_hours',
               'req' => false,
               'type' => '`$BOOLEAN`',
               'index$' => 21,
@@ -2694,14 +2783,14 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'program_id',
+              'name' => 'program_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 34,
             ],
             [
               'active' => true,
-              'name' => 'program_title',
+              'name' => 'program_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 35,
@@ -2715,7 +2804,7 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'search_tag',
+              'name' => 'search_tags',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 37,
@@ -2835,6 +2924,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/events',
                   'parts' => [
@@ -2869,6 +2959,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/events/{id}',
                   'parts' => [
@@ -3081,6 +3172,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/event-occurrences',
                   'parts' => [
@@ -3115,6 +3207,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/event-occurrences/{id}',
                   'parts' => [
@@ -3229,6 +3322,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/event-programs',
                   'parts' => [
@@ -3263,6 +3357,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/event-programs/{id}',
                   'parts' => [
@@ -3306,9 +3401,9 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'alt_image_id',
+              'name' => 'alt_image_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 2,
             ],
             [
@@ -3327,30 +3422,30 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'artist_id',
+              'name' => 'artist_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 5,
             ],
             [
               'active' => true,
-              'name' => 'artwork_id',
+              'name' => 'artwork_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 6,
             ],
             [
               'active' => true,
-              'name' => 'artwork_title',
+              'name' => 'artwork_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 7,
             ],
             [
               'active' => true,
-              'name' => 'document_id',
+              'name' => 'document_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 8,
             ],
             [
@@ -3418,9 +3513,9 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'site_id',
+              'name' => 'site_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 18,
             ],
             [
@@ -3489,6 +3584,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/exhibitions',
                   'parts' => [
@@ -3523,6 +3619,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/exhibitions/{id}',
                   'parts' => [
@@ -3672,6 +3769,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/galleries',
                   'parts' => [
@@ -3706,6 +3804,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/galleries/{id}',
                   'parts' => [
@@ -3763,7 +3862,7 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'search_tag',
+              'name' => 'search_tags',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 4,
@@ -3827,6 +3926,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/generic-pages',
                   'parts' => [
@@ -3861,6 +3961,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/generic-pages/{id}',
                   'parts' => [
@@ -3968,6 +4069,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/highlights',
                   'parts' => [
@@ -4002,6 +4104,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/highlights/{id}',
                   'parts' => [
@@ -4361,6 +4464,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/hours',
                   'parts' => [
@@ -4395,6 +4499,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/hours/{id}',
                   'parts' => [
@@ -4452,14 +4557,14 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'artwork_id',
+              'name' => 'artwork_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 4,
             ],
             [
               'active' => true,
-              'name' => 'artwork_title',
+              'name' => 'artwork_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 5,
@@ -4635,6 +4740,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/images',
                   'parts' => [
@@ -4669,6 +4775,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/images/{id}',
                   'parts' => [
@@ -4726,7 +4833,7 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'search_tag',
+              'name' => 'search_tags',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 4,
@@ -4790,6 +4897,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/landing-pages',
                   'parts' => [
@@ -4824,6 +4932,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/landing-pages/{id}',
                   'parts' => [
@@ -4945,6 +5054,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/places',
                   'parts' => [
@@ -4979,6 +5089,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/places/{id}',
                   'parts' => [
@@ -5093,6 +5204,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/press-releases',
                   'parts' => [
@@ -5127,6 +5239,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/press-releases/{id}',
                   'parts' => [
@@ -5241,6 +5354,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/printed-publications',
                   'parts' => [
@@ -5275,6 +5389,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/printed-publications/{id}',
                   'parts' => [
@@ -5318,16 +5433,16 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'artist_id',
+              'name' => 'artist_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 2,
             ],
             [
               'active' => true,
-              'name' => 'artwork_id',
+              'name' => 'artwork_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 3,
             ],
             [
@@ -5339,9 +5454,9 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'exhibition_id',
+              'name' => 'exhibition_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 5,
             ],
             [
@@ -5459,6 +5574,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/products',
                   'parts' => [
@@ -5493,6 +5609,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/products/{id}',
                   'parts' => [
@@ -5543,9 +5660,9 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'section_id',
+              'name' => 'section_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 3,
             ],
             [
@@ -5607,6 +5724,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/publications',
                   'parts' => [
@@ -5641,6 +5759,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/publications/{id}',
                   'parts' => [
@@ -5792,6 +5911,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/agents/search',
                   'parts' => [
@@ -5868,6 +5988,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/articles/search',
                   'parts' => [
@@ -5944,6 +6065,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/artworks/search',
                   'parts' => [
@@ -6020,6 +6142,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/category-terms/search',
                   'parts' => [
@@ -6096,6 +6219,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/digital-publication-articles/search',
                   'parts' => [
@@ -6172,6 +6296,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/digital-publications/search',
                   'parts' => [
@@ -6248,6 +6373,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/educator-resources/search',
                   'parts' => [
@@ -6324,6 +6450,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/event-occurrences/search',
                   'parts' => [
@@ -6400,6 +6527,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/event-programs/search',
                   'parts' => [
@@ -6476,6 +6604,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/events/search',
                   'parts' => [
@@ -6552,6 +6681,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/exhibitions/search',
                   'parts' => [
@@ -6628,6 +6758,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/galleries/search',
                   'parts' => [
@@ -6704,6 +6835,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/generic-pages/search',
                   'parts' => [
@@ -6780,6 +6912,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/highlights/search',
                   'parts' => [
@@ -6856,6 +6989,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/hours/search',
                   'parts' => [
@@ -6932,6 +7066,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/images/search',
                   'parts' => [
@@ -7008,6 +7143,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/landing-pages/search',
                   'parts' => [
@@ -7084,6 +7220,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/mobile-sounds/search',
                   'parts' => [
@@ -7160,6 +7297,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/places/search',
                   'parts' => [
@@ -7236,6 +7374,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/press-releases/search',
                   'parts' => [
@@ -7312,6 +7451,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/printed-publications/search',
                   'parts' => [
@@ -7388,6 +7528,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/products/search',
                   'parts' => [
@@ -7464,6 +7605,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/publications/search',
                   'parts' => [
@@ -7540,6 +7682,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/search',
                   'parts' => [
@@ -7615,6 +7758,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/sections/search',
                   'parts' => [
@@ -7691,6 +7835,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/sites/search',
                   'parts' => [
@@ -7767,6 +7912,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/sounds/search',
                   'parts' => [
@@ -7843,6 +7989,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/static-pages/search',
                   'parts' => [
@@ -7919,6 +8066,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/texts/search',
                   'parts' => [
@@ -7995,6 +8143,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/tours/search',
                   'parts' => [
@@ -8071,6 +8220,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/videos/search',
                   'parts' => [
@@ -8225,6 +8375,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/sections',
                   'parts' => [
@@ -8259,6 +8410,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/sections/{id}',
                   'parts' => [
@@ -8302,14 +8454,14 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'artwork_id',
+              'name' => 'artwork_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 2,
             ],
             [
               'active' => true,
-              'name' => 'artwork_title',
+              'name' => 'artwork_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 3,
@@ -8323,14 +8475,14 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'exhibition_id',
+              'name' => 'exhibition_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 5,
             ],
             [
               'active' => true,
-              'name' => 'exhibition_title',
+              'name' => 'exhibition_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 6,
@@ -8401,6 +8553,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/sites',
                   'parts' => [
@@ -8435,6 +8588,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/sites/{id}',
                   'parts' => [
@@ -8485,14 +8639,14 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'artwork_id',
+              'name' => 'artwork_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 3,
             ],
             [
               'active' => true,
-              'name' => 'artwork_title',
+              'name' => 'artwork_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 4,
@@ -8626,6 +8780,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/mobile-sounds',
                   'parts' => [
@@ -8641,6 +8796,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/sounds',
                   'parts' => [
@@ -8675,6 +8831,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/mobile-sounds/{id}',
                   'parts' => [
@@ -8707,6 +8864,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/sounds/{id}',
                   'parts' => [
@@ -8814,6 +8972,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/static-pages',
                   'parts' => [
@@ -8848,6 +9007,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/static-pages/{id}',
                   'parts' => [
@@ -8898,14 +9058,14 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'artwork_id',
+              'name' => 'artwork_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 3,
             ],
             [
               'active' => true,
-              'name' => 'artwork_title',
+              'name' => 'artwork_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 4,
@@ -9025,6 +9185,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/texts',
                   'parts' => [
@@ -9059,6 +9220,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/texts/{id}',
                   'parts' => [
@@ -9102,14 +9264,14 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'artist_title',
+              'name' => 'artist_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 2,
             ],
             [
               'active' => true,
-              'name' => 'artwork_title',
+              'name' => 'artwork_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 3,
@@ -9215,6 +9377,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/tours',
                   'parts' => [
@@ -9249,6 +9412,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/tours/{id}',
                   'parts' => [
@@ -9299,14 +9463,14 @@ class ArtInstituteOfChicagoConfig
             ],
             [
               'active' => true,
-              'name' => 'artwork_id',
+              'name' => 'artwork_ids',
               'req' => false,
-              'type' => '`$STRING`',
+              'type' => '`$ANY`',
               'index$' => 3,
             ],
             [
               'active' => true,
-              'name' => 'artwork_title',
+              'name' => 'artwork_titles',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 4,
@@ -9426,6 +9590,7 @@ class ArtInstituteOfChicagoConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/videos',
                   'parts' => [
@@ -9460,6 +9625,7 @@ class ArtInstituteOfChicagoConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/videos/{id}',
                   'parts' => [

@@ -26,8 +26,8 @@ import {
 describe('LandingPageEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ARTINSTITUTEOFCHICAGO_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ARTINSTITUTEOFCHICAGO_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ART_INSTITUTE_OF_CHICAGO_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ART_INSTITUTE_OF_CHICAGO_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = ArtInstituteOfChicagoSDK.test()
@@ -63,13 +63,13 @@ describe('LandingPageEntity', async () => {
     const landing_page_ref01_ent = client.LandingPage()
     const landing_page_ref01_match: any = {}
 
-    const landing_page_ref01_list = await landing_page_ref01_ent.list(landing_page_ref01_match)
+    const landing_page_ref01_list = (await landing_page_ref01_ent.list(landing_page_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const landing_page_ref01_match_dt0: any = {}
     landing_page_ref01_match_dt0.id = landing_page_ref01_data.id
-    const landing_page_ref01_data_dt0 = await landing_page_ref01_ent.load(landing_page_ref01_match_dt0)
+    const landing_page_ref01_data_dt0 = (await landing_page_ref01_ent.load(landing_page_ref01_match_dt0)).data()
     assert(landing_page_ref01_data_dt0.id === landing_page_ref01_data.id)
 
 

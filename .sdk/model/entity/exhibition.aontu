@@ -16,9 +16,9 @@ main: kit: entity: exhibition: {
       type: "`$ANY`"
     }
     {
-      name: "alt_image_id"
+      name: "alt_image_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
       name: "api_link"
@@ -31,24 +31,24 @@ main: kit: entity: exhibition: {
       type: "`$ANY`"
     }
     {
-      name: "artist_id"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "artwork_id"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "artwork_title"
+      name: "artist_ids"
       req: false
       type: "`$ANY`"
     }
     {
-      name: "document_id"
+      name: "artwork_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
+    }
+    {
+      name: "artwork_titles"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "document_ids"
+      req: false
+      type: "`$ANY`"
     }
     {
       name: "gallery_id"
@@ -96,9 +96,9 @@ main: kit: entity: exhibition: {
       type: "`$ANY`"
     }
     {
-      name: "site_id"
+      name: "site_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
       name: "source_updated_at"

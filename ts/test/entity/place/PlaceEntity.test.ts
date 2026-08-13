@@ -26,8 +26,8 @@ import {
 describe('PlaceEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ARTINSTITUTEOFCHICAGO_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ARTINSTITUTEOFCHICAGO_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ART_INSTITUTE_OF_CHICAGO_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ART_INSTITUTE_OF_CHICAGO_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = ArtInstituteOfChicagoSDK.test()
@@ -63,13 +63,13 @@ describe('PlaceEntity', async () => {
     const place_ref01_ent = client.Place()
     const place_ref01_match: any = {}
 
-    const place_ref01_list = await place_ref01_ent.list(place_ref01_match)
+    const place_ref01_list = (await place_ref01_ent.list(place_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const place_ref01_match_dt0: any = {}
     place_ref01_match_dt0.id = place_ref01_data.id
-    const place_ref01_data_dt0 = await place_ref01_ent.load(place_ref01_match_dt0)
+    const place_ref01_data_dt0 = (await place_ref01_ent.load(place_ref01_match_dt0)).data()
     assert(place_ref01_data_dt0.id === place_ref01_data.id)
 
 

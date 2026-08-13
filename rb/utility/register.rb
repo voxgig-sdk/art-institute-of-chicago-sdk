@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ ArtInstituteOfChicagoUtility.registrar = ->(u) {
   u.prepare_params = ArtInstituteOfChicagoUtilities::PrepareParams
   u.prepare_path = ArtInstituteOfChicagoUtilities::PreparePath
   u.prepare_query = ArtInstituteOfChicagoUtilities::PrepareQuery
+  u.graphql_body = ArtInstituteOfChicagoUtilities::GraphqlBody
+  u.graphql_errors = ArtInstituteOfChicagoUtilities::GraphqlErrors
   u.result_basic = ArtInstituteOfChicagoUtilities::ResultBasic
   u.result_body = ArtInstituteOfChicagoUtilities::ResultBody
   u.result_headers = ArtInstituteOfChicagoUtilities::ResultHeaders

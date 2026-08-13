@@ -121,11 +121,11 @@ function image_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "ARTINSTITUTEOFCHICAGO_TEST_IMAGE_ENTID" => [],
-        "ARTINSTITUTEOFCHICAGO_TEST_LIVE" => "FALSE",
+        "ART_INSTITUTE_OF_CHICAGO_TEST_IMAGE_ENTID" => [],
+        "ART_INSTITUTE_OF_CHICAGO_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["ARTINSTITUTEOFCHICAGO_TEST_LIVE"] === "TRUE";
+    $live = $env["ART_INSTITUTE_OF_CHICAGO_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

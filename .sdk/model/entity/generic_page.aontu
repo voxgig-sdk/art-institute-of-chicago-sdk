@@ -26,7 +26,7 @@ main: kit: entity: generic_page: {
       type: "`$STRING`"
     }
     {
-      name: "search_tag"
+      name: "search_tags"
       req: false
       type: "`$ANY`"
     }

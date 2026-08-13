@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# ArtInstituteOfChicago SDK exists test
 
 import pytest
 from artinstituteofchicago_sdk import ArtInstituteOfChicagoSDK

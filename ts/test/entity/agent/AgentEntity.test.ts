@@ -26,8 +26,8 @@ import {
 describe('AgentEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ARTINSTITUTEOFCHICAGO_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ARTINSTITUTEOFCHICAGO_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ART_INSTITUTE_OF_CHICAGO_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ART_INSTITUTE_OF_CHICAGO_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = ArtInstituteOfChicagoSDK.test()
@@ -63,13 +63,13 @@ describe('AgentEntity', async () => {
     const agent_ref01_ent = client.Agent()
     const agent_ref01_match: any = {}
 
-    const agent_ref01_list = await agent_ref01_ent.list(agent_ref01_match)
+    const agent_ref01_list = (await agent_ref01_ent.list(agent_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const agent_ref01_match_dt0: any = {}
     agent_ref01_match_dt0.id = agent_ref01_data.id
-    const agent_ref01_data_dt0 = await agent_ref01_ent.load(agent_ref01_match_dt0)
+    const agent_ref01_data_dt0 = (await agent_ref01_ent.load(agent_ref01_match_dt0)).data()
     assert(agent_ref01_data_dt0.id === agent_ref01_data.id)
 
 

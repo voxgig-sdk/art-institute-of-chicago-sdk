@@ -26,8 +26,8 @@ import {
 describe('SectionEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ARTINSTITUTEOFCHICAGO_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ARTINSTITUTEOFCHICAGO_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ART_INSTITUTE_OF_CHICAGO_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ART_INSTITUTE_OF_CHICAGO_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = ArtInstituteOfChicagoSDK.test()
@@ -63,13 +63,13 @@ describe('SectionEntity', async () => {
     const section_ref01_ent = client.Section()
     const section_ref01_match: any = {}
 
-    const section_ref01_list = await section_ref01_ent.list(section_ref01_match)
+    const section_ref01_list = (await section_ref01_ent.list(section_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const section_ref01_match_dt0: any = {}
     section_ref01_match_dt0.id = section_ref01_data.id
-    const section_ref01_data_dt0 = await section_ref01_ent.load(section_ref01_match_dt0)
+    const section_ref01_data_dt0 = (await section_ref01_ent.load(section_ref01_match_dt0)).data()
     assert(section_ref01_data_dt0.id === section_ref01_data.id)
 
 

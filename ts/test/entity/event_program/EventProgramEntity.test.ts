@@ -26,8 +26,8 @@ import {
 describe('EventProgramEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ARTINSTITUTEOFCHICAGO_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ARTINSTITUTEOFCHICAGO_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ART_INSTITUTE_OF_CHICAGO_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ART_INSTITUTE_OF_CHICAGO_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = ArtInstituteOfChicagoSDK.test()
@@ -63,13 +63,13 @@ describe('EventProgramEntity', async () => {
     const event_program_ref01_ent = client.EventProgram()
     const event_program_ref01_match: any = {}
 
-    const event_program_ref01_list = await event_program_ref01_ent.list(event_program_ref01_match)
+    const event_program_ref01_list = (await event_program_ref01_ent.list(event_program_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const event_program_ref01_match_dt0: any = {}
     event_program_ref01_match_dt0.id = event_program_ref01_data.id
-    const event_program_ref01_data_dt0 = await event_program_ref01_ent.load(event_program_ref01_match_dt0)
+    const event_program_ref01_data_dt0 = (await event_program_ref01_ent.load(event_program_ref01_match_dt0)).data()
     assert(event_program_ref01_data_dt0.id === event_program_ref01_data.id)
 
 

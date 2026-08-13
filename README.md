@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = ArtInstituteOfChicagoSDK.test()
-const agents = await client.Agent().list()
-// agents is an array of bare Agent records populated with mock data
-console.log(agents)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = ArtInstituteOfChicagoSDK.test({
+  entity: {
+    publication: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const publications = await client.Publication().list()
+// publications is an array of Publication entities, populated with mock data
+// — call publications[0].data() for the record itself
+console.log(publications)
 ```
 
 ### Python
 
 ```python
 client = ArtInstituteOfChicagoSDK.test()
-agents = client.Agent().list()
-print(agents)
+publications = client.Publication().list()
+print(publications)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(agents)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = ArtInstituteOfChicagoSDK::test([
-    "entity" => ["agent" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["publication" => ["test01" => ["id" => "test01"]]],
 ]);
-$agents = $client->Agent()->list();
+$publications = $client->Publication()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Agent(nil).List(
+result, err := client.Publication(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Agent(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = ArtInstituteOfChicagoSDK.test({
-  "entity" => { "agent" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "publication" => { "test01" => { "id" => "test01" } } },
 })
-agents = client.Agent.list()
+publications = client.Publication.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Agent():list()
+local results, err = client:Publication():list()
 ```
 
 ## Packages
@@ -110,7 +119,7 @@ import { ArtInstituteOfChicagoSDK } from '@voxgig-sdk/art-institute-of-chicago'
 
 const client = new ArtInstituteOfChicagoSDK()
 
-// List all agents (returns Agent[])
+// List all agents (returns AgentEntity[] — .data() for the record)
 const agents = await client.Agent().list()
 for (const agent of agents) {
   console.log(agent)
@@ -225,7 +234,7 @@ $client = new ArtInstituteOfChicagoSDK();
 $agents = $client->Agent()->list();
 print_r($agents);
 
-// Load a specific agent (returns the bare record; throws on error)
+// Load a specific agent (returns the ENTITY; call data_get() for the record; throws on error)
 $agent = $client->Agent()->load(["id" => "example_id"]);
 print_r($agent);
 ```
@@ -256,7 +265,7 @@ client = ArtInstituteOfChicagoSDK.new
 agents = client.Agent.list
 puts agents
 
-# Load a specific agent (returns the bare record; raises on error)
+# Load a specific agent (returns the ENTITY; call data_get for the record)
 agent = client.Agent.load({ "id" => "example_id" })
 puts agent
 ```
@@ -393,6 +402,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://api.artic.edu/api/v1](https://api.artic.edu/api/v1)
 

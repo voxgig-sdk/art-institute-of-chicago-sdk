@@ -180,8 +180,29 @@ class ArtInstituteOfChicagoSDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('ArtInstituteOfChicagoSDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -242,248 +263,372 @@ class ArtInstituteOfChicagoSDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('ArtInstituteOfChicagoSDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('ArtInstituteOfChicagoSDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.Agent().list()` / `client.Agent().load({ id })`.
-  Agent(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Agent(entopts?: Record<string, any>) {
     const self = this
-    return new AgentEntity(self,data)
+    return new AgentEntity(self, entopts)
   }
 
 
   // Entity access: `client.AgentRole().list()` / `client.AgentRole().load({ id })`.
-  AgentRole(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  AgentRole(entopts?: Record<string, any>) {
     const self = this
-    return new AgentRoleEntity(self,data)
+    return new AgentRoleEntity(self, entopts)
   }
 
 
   // Entity access: `client.AgentType().list()` / `client.AgentType().load({ id })`.
-  AgentType(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  AgentType(entopts?: Record<string, any>) {
     const self = this
-    return new AgentTypeEntity(self,data)
+    return new AgentTypeEntity(self, entopts)
   }
 
 
   // Entity access: `client.Article().list()` / `client.Article().load({ id })`.
-  Article(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Article(entopts?: Record<string, any>) {
     const self = this
-    return new ArticleEntity(self,data)
+    return new ArticleEntity(self, entopts)
   }
 
 
   // Entity access: `client.Artwork().list()` / `client.Artwork().load({ id })`.
-  Artwork(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Artwork(entopts?: Record<string, any>) {
     const self = this
-    return new ArtworkEntity(self,data)
+    return new ArtworkEntity(self, entopts)
   }
 
 
   // Entity access: `client.ArtworkDateQualifier().list()` / `client.ArtworkDateQualifier().load({ id })`.
-  ArtworkDateQualifier(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ArtworkDateQualifier(entopts?: Record<string, any>) {
     const self = this
-    return new ArtworkDateQualifierEntity(self,data)
+    return new ArtworkDateQualifierEntity(self, entopts)
   }
 
 
   // Entity access: `client.ArtworkPlaceQualifier().list()` / `client.ArtworkPlaceQualifier().load({ id })`.
-  ArtworkPlaceQualifier(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ArtworkPlaceQualifier(entopts?: Record<string, any>) {
     const self = this
-    return new ArtworkPlaceQualifierEntity(self,data)
+    return new ArtworkPlaceQualifierEntity(self, entopts)
   }
 
 
   // Entity access: `client.ArtworkType().list()` / `client.ArtworkType().load({ id })`.
-  ArtworkType(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ArtworkType(entopts?: Record<string, any>) {
     const self = this
-    return new ArtworkTypeEntity(self,data)
+    return new ArtworkTypeEntity(self, entopts)
   }
 
 
   // Entity access: `client.CategoryTerm().list()` / `client.CategoryTerm().load({ id })`.
-  CategoryTerm(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CategoryTerm(entopts?: Record<string, any>) {
     const self = this
-    return new CategoryTermEntity(self,data)
+    return new CategoryTermEntity(self, entopts)
   }
 
 
   // Entity access: `client.DigitalPublication().list()` / `client.DigitalPublication().load({ id })`.
-  DigitalPublication(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DigitalPublication(entopts?: Record<string, any>) {
     const self = this
-    return new DigitalPublicationEntity(self,data)
+    return new DigitalPublicationEntity(self, entopts)
   }
 
 
   // Entity access: `client.DigitalPublicationArticle().list()` / `client.DigitalPublicationArticle().load({ id })`.
-  DigitalPublicationArticle(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DigitalPublicationArticle(entopts?: Record<string, any>) {
     const self = this
-    return new DigitalPublicationArticleEntity(self,data)
+    return new DigitalPublicationArticleEntity(self, entopts)
   }
 
 
   // Entity access: `client.EducatorResource().list()` / `client.EducatorResource().load({ id })`.
-  EducatorResource(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  EducatorResource(entopts?: Record<string, any>) {
     const self = this
-    return new EducatorResourceEntity(self,data)
+    return new EducatorResourceEntity(self, entopts)
   }
 
 
   // Entity access: `client.Event().list()` / `client.Event().load({ id })`.
-  Event(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Event(entopts?: Record<string, any>) {
     const self = this
-    return new EventEntity(self,data)
+    return new EventEntity(self, entopts)
   }
 
 
   // Entity access: `client.EventOccurrence().list()` / `client.EventOccurrence().load({ id })`.
-  EventOccurrence(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  EventOccurrence(entopts?: Record<string, any>) {
     const self = this
-    return new EventOccurrenceEntity(self,data)
+    return new EventOccurrenceEntity(self, entopts)
   }
 
 
   // Entity access: `client.EventProgram().list()` / `client.EventProgram().load({ id })`.
-  EventProgram(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  EventProgram(entopts?: Record<string, any>) {
     const self = this
-    return new EventProgramEntity(self,data)
+    return new EventProgramEntity(self, entopts)
   }
 
 
   // Entity access: `client.Exhibition().list()` / `client.Exhibition().load({ id })`.
-  Exhibition(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Exhibition(entopts?: Record<string, any>) {
     const self = this
-    return new ExhibitionEntity(self,data)
+    return new ExhibitionEntity(self, entopts)
   }
 
 
   // Entity access: `client.Gallery().list()` / `client.Gallery().load({ id })`.
-  Gallery(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Gallery(entopts?: Record<string, any>) {
     const self = this
-    return new GalleryEntity(self,data)
+    return new GalleryEntity(self, entopts)
   }
 
 
   // Entity access: `client.GenericPage().list()` / `client.GenericPage().load({ id })`.
-  GenericPage(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  GenericPage(entopts?: Record<string, any>) {
     const self = this
-    return new GenericPageEntity(self,data)
+    return new GenericPageEntity(self, entopts)
   }
 
 
   // Entity access: `client.Highlight().list()` / `client.Highlight().load({ id })`.
-  Highlight(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Highlight(entopts?: Record<string, any>) {
     const self = this
-    return new HighlightEntity(self,data)
+    return new HighlightEntity(self, entopts)
   }
 
 
   // Entity access: `client.Hour().list()` / `client.Hour().load({ id })`.
-  Hour(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Hour(entopts?: Record<string, any>) {
     const self = this
-    return new HourEntity(self,data)
+    return new HourEntity(self, entopts)
   }
 
 
   // Entity access: `client.Image().list()` / `client.Image().load({ id })`.
-  Image(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Image(entopts?: Record<string, any>) {
     const self = this
-    return new ImageEntity(self,data)
+    return new ImageEntity(self, entopts)
   }
 
 
   // Entity access: `client.LandingPage().list()` / `client.LandingPage().load({ id })`.
-  LandingPage(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  LandingPage(entopts?: Record<string, any>) {
     const self = this
-    return new LandingPageEntity(self,data)
+    return new LandingPageEntity(self, entopts)
   }
 
 
   // Entity access: `client.Place().list()` / `client.Place().load({ id })`.
-  Place(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Place(entopts?: Record<string, any>) {
     const self = this
-    return new PlaceEntity(self,data)
+    return new PlaceEntity(self, entopts)
   }
 
 
   // Entity access: `client.PressRelease().list()` / `client.PressRelease().load({ id })`.
-  PressRelease(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  PressRelease(entopts?: Record<string, any>) {
     const self = this
-    return new PressReleaseEntity(self,data)
+    return new PressReleaseEntity(self, entopts)
   }
 
 
   // Entity access: `client.PrintedPublication().list()` / `client.PrintedPublication().load({ id })`.
-  PrintedPublication(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  PrintedPublication(entopts?: Record<string, any>) {
     const self = this
-    return new PrintedPublicationEntity(self,data)
+    return new PrintedPublicationEntity(self, entopts)
   }
 
 
   // Entity access: `client.Product().list()` / `client.Product().load({ id })`.
-  Product(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Product(entopts?: Record<string, any>) {
     const self = this
-    return new ProductEntity(self,data)
+    return new ProductEntity(self, entopts)
   }
 
 
   // Entity access: `client.Publication().list()` / `client.Publication().load({ id })`.
-  Publication(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Publication(entopts?: Record<string, any>) {
     const self = this
-    return new PublicationEntity(self,data)
+    return new PublicationEntity(self, entopts)
   }
 
 
   // Entity access: `client.Search().list()` / `client.Search().load({ id })`.
-  Search(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Search(entopts?: Record<string, any>) {
     const self = this
-    return new SearchEntity(self,data)
+    return new SearchEntity(self, entopts)
   }
 
 
   // Entity access: `client.Section().list()` / `client.Section().load({ id })`.
-  Section(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Section(entopts?: Record<string, any>) {
     const self = this
-    return new SectionEntity(self,data)
+    return new SectionEntity(self, entopts)
   }
 
 
   // Entity access: `client.Site().list()` / `client.Site().load({ id })`.
-  Site(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Site(entopts?: Record<string, any>) {
     const self = this
-    return new SiteEntity(self,data)
+    return new SiteEntity(self, entopts)
   }
 
 
   // Entity access: `client.Sound().list()` / `client.Sound().load({ id })`.
-  Sound(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Sound(entopts?: Record<string, any>) {
     const self = this
-    return new SoundEntity(self,data)
+    return new SoundEntity(self, entopts)
   }
 
 
   // Entity access: `client.StaticPage().list()` / `client.StaticPage().load({ id })`.
-  StaticPage(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  StaticPage(entopts?: Record<string, any>) {
     const self = this
-    return new StaticPageEntity(self,data)
+    return new StaticPageEntity(self, entopts)
   }
 
 
   // Entity access: `client.Text().list()` / `client.Text().load({ id })`.
-  Text(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Text(entopts?: Record<string, any>) {
     const self = this
-    return new TextEntity(self,data)
+    return new TextEntity(self, entopts)
   }
 
 
   // Entity access: `client.Tour().list()` / `client.Tour().load({ id })`.
-  Tour(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Tour(entopts?: Record<string, any>) {
     const self = this
-    return new TourEntity(self,data)
+    return new TourEntity(self, entopts)
   }
 
 
   // Entity access: `client.Video().list()` / `client.Video().load({ id })`.
-  Video(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Video(entopts?: Record<string, any>) {
     const self = this
-    return new VideoEntity(self,data)
+    return new VideoEntity(self, entopts)
   }
 
 

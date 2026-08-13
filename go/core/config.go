@@ -60,7 +60,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "alt_title",
+						"name": "alt_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 0,
@@ -180,6 +180,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/agents",
 								"parts": []any{
@@ -195,6 +196,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/artists",
 								"parts": []any{
@@ -208,7 +210,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -229,6 +230,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/agents/{id}",
 								"parts": []any{
@@ -261,6 +263,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/artists/{id}",
 								"parts": []any{
@@ -279,7 +282,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -361,6 +363,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/agent-roles",
 								"parts": []any{
@@ -374,7 +377,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -395,6 +397,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/agent-roles/{id}",
 								"parts": []any{
@@ -413,7 +416,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -495,6 +497,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/agent-types",
 								"parts": []any{
@@ -508,7 +511,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -529,6 +531,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/agent-types/{id}",
 								"parts": []any{
@@ -547,7 +550,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -636,6 +638,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/articles",
 								"parts": []any{
@@ -649,7 +652,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -670,6 +672,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/articles/{id}",
 								"parts": []any{
@@ -688,7 +691,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -699,56 +701,56 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "alt_artist_id",
+						"name": "alt_artist_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "alt_classification_id",
+						"name": "alt_classification_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "alt_image_id",
+						"name": "alt_image_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
-						"name": "alt_material_id",
+						"name": "alt_material_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
-						"name": "alt_style_id",
+						"name": "alt_style_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 4,
 					},
 					map[string]any{
 						"active": true,
-						"name": "alt_subject_id",
+						"name": "alt_subject_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 5,
 					},
 					map[string]any{
 						"active": true,
-						"name": "alt_technique_id",
+						"name": "alt_technique_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 6,
 					},
 					map[string]any{
 						"active": true,
-						"name": "alt_title",
+						"name": "alt_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 7,
@@ -783,584 +785,647 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "artist_title",
+						"name": "artist_ids",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 12,
 					},
 					map[string]any{
 						"active": true,
-						"name": "artwork_type_id",
+						"name": "artist_title",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 13,
 					},
 					map[string]any{
 						"active": true,
-						"name": "artwork_type_title",
+						"name": "artist_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 14,
 					},
 					map[string]any{
 						"active": true,
-						"name": "boost_rank",
+						"name": "artwork_type_id",
 						"req": false,
-						"type": "`$ANY`",
+						"type": "`$STRING`",
 						"index$": 15,
 					},
 					map[string]any{
 						"active": true,
-						"name": "catalog_based_search_keyword_title",
+						"name": "artwork_type_title",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 16,
 					},
 					map[string]any{
 						"active": true,
-						"name": "catalogue_display",
+						"name": "boost_rank",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 17,
 					},
 					map[string]any{
 						"active": true,
-						"name": "category_id",
+						"name": "catalog_based_search_keyword_titles",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 18,
 					},
 					map[string]any{
 						"active": true,
-						"name": "category_title",
+						"name": "catalogue_display",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 19,
 					},
 					map[string]any{
 						"active": true,
-						"name": "classification_id",
+						"name": "category_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 20,
 					},
 					map[string]any{
 						"active": true,
-						"name": "classification_title",
+						"name": "category_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 21,
 					},
 					map[string]any{
 						"active": true,
-						"name": "color",
+						"name": "classification_id",
 						"req": false,
-						"type": "`$ANY`",
+						"type": "`$STRING`",
 						"index$": 22,
 					},
 					map[string]any{
 						"active": true,
-						"name": "colorfulness",
+						"name": "classification_ids",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 23,
 					},
 					map[string]any{
 						"active": true,
-						"name": "copyright_notice",
+						"name": "classification_title",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 24,
 					},
 					map[string]any{
 						"active": true,
-						"name": "credit_line",
+						"name": "classification_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 25,
 					},
 					map[string]any{
 						"active": true,
-						"name": "date_display",
+						"name": "color",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 26,
 					},
 					map[string]any{
 						"active": true,
-						"name": "date_end",
+						"name": "colorfulness",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 27,
 					},
 					map[string]any{
 						"active": true,
-						"name": "date_qualifier_id",
+						"name": "copyright_notice",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 28,
 					},
 					map[string]any{
 						"active": true,
-						"name": "date_qualifier_title",
+						"name": "credit_line",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 29,
 					},
 					map[string]any{
 						"active": true,
-						"name": "date_start",
+						"name": "date_display",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 30,
 					},
 					map[string]any{
 						"active": true,
-						"name": "department_id",
+						"name": "date_end",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 31,
 					},
 					map[string]any{
 						"active": true,
-						"name": "department_title",
+						"name": "date_qualifier_id",
 						"req": false,
-						"type": "`$ANY`",
+						"type": "`$STRING`",
 						"index$": 32,
 					},
 					map[string]any{
 						"active": true,
-						"name": "description",
+						"name": "date_qualifier_title",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 33,
 					},
 					map[string]any{
 						"active": true,
-						"name": "dimension",
+						"name": "date_start",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 34,
 					},
 					map[string]any{
 						"active": true,
-						"name": "dimensions_detail",
+						"name": "department_id",
 						"req": false,
-						"type": "`$ANY`",
+						"type": "`$STRING`",
 						"index$": 35,
 					},
 					map[string]any{
 						"active": true,
-						"name": "document_id",
+						"name": "department_title",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 36,
 					},
 					map[string]any{
 						"active": true,
-						"name": "edition",
+						"name": "description",
 						"req": false,
-						"type": "`$ANY`",
+						"type": "`$STRING`",
 						"index$": 37,
 					},
 					map[string]any{
 						"active": true,
-						"name": "exhibition_history",
+						"name": "dimensions",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 38,
 					},
 					map[string]any{
 						"active": true,
-						"name": "fiscal_year",
+						"name": "dimensions_detail",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 39,
 					},
 					map[string]any{
 						"active": true,
-						"name": "fiscal_year_deaccession",
+						"name": "document_ids",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 40,
 					},
 					map[string]any{
 						"active": true,
-						"name": "gallery_id",
+						"name": "edition",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 41,
 					},
 					map[string]any{
 						"active": true,
-						"name": "gallery_title",
+						"name": "exhibition_history",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 42,
 					},
 					map[string]any{
 						"active": true,
-						"name": "has_advanced_imaging",
+						"name": "fiscal_year",
 						"req": false,
-						"type": "`$BOOLEAN`",
+						"type": "`$ANY`",
 						"index$": 43,
 					},
 					map[string]any{
 						"active": true,
-						"name": "has_educational_resource",
+						"name": "fiscal_year_deaccession",
 						"req": false,
-						"type": "`$BOOLEAN`",
+						"type": "`$ANY`",
 						"index$": 44,
 					},
 					map[string]any{
 						"active": true,
-						"name": "has_multimedia_resource",
+						"name": "gallery_id",
+						"req": false,
+						"type": "`$STRING`",
+						"index$": 45,
+					},
+					map[string]any{
+						"active": true,
+						"name": "gallery_title",
+						"req": false,
+						"type": "`$ANY`",
+						"index$": 46,
+					},
+					map[string]any{
+						"active": true,
+						"name": "has_advanced_imaging",
 						"req": false,
 						"type": "`$BOOLEAN`",
-						"index$": 45,
+						"index$": 47,
+					},
+					map[string]any{
+						"active": true,
+						"name": "has_educational_resources",
+						"req": false,
+						"type": "`$BOOLEAN`",
+						"index$": 48,
+					},
+					map[string]any{
+						"active": true,
+						"name": "has_multimedia_resources",
+						"req": false,
+						"type": "`$BOOLEAN`",
+						"index$": 49,
 					},
 					map[string]any{
 						"active": true,
 						"name": "has_not_been_viewed_much",
 						"req": false,
 						"type": "`$BOOLEAN`",
-						"index$": 46,
+						"index$": 50,
 					},
 					map[string]any{
 						"active": true,
 						"name": "id",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 47,
+						"index$": 51,
 					},
 					map[string]any{
 						"active": true,
 						"name": "image_embedding",
 						"req": false,
 						"type": "`$ANY`",
-						"index$": 48,
+						"index$": 52,
 					},
 					map[string]any{
 						"active": true,
 						"name": "image_id",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 49,
+						"index$": 53,
 					},
 					map[string]any{
 						"active": true,
-						"name": "inscription",
+						"name": "inscriptions",
 						"req": false,
 						"type": "`$ANY`",
-						"index$": 50,
+						"index$": 54,
 					},
 					map[string]any{
 						"active": true,
 						"name": "internal_department_id",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 51,
+						"index$": 55,
 					},
 					map[string]any{
 						"active": true,
 						"name": "is_boosted",
 						"req": false,
 						"type": "`$BOOLEAN`",
-						"index$": 52,
+						"index$": 56,
 					},
 					map[string]any{
 						"active": true,
 						"name": "is_on_view",
 						"req": false,
 						"type": "`$BOOLEAN`",
-						"index$": 53,
+						"index$": 57,
 					},
 					map[string]any{
 						"active": true,
 						"name": "is_public_domain",
 						"req": false,
 						"type": "`$BOOLEAN`",
-						"index$": 54,
+						"index$": 58,
 					},
 					map[string]any{
 						"active": true,
 						"name": "is_zoomable",
 						"req": false,
 						"type": "`$BOOLEAN`",
-						"index$": 55,
+						"index$": 59,
 					},
 					map[string]any{
 						"active": true,
 						"name": "latitude",
 						"req": false,
 						"type": "`$NUMBER`",
-						"index$": 56,
+						"index$": 60,
 					},
 					map[string]any{
 						"active": true,
 						"name": "latlon",
 						"req": false,
 						"type": "`$ANY`",
-						"index$": 57,
+						"index$": 61,
 					},
 					map[string]any{
 						"active": true,
 						"name": "longitude",
 						"req": false,
 						"type": "`$NUMBER`",
-						"index$": 58,
+						"index$": 62,
 					},
 					map[string]any{
 						"active": true,
 						"name": "main_reference_number",
 						"req": false,
 						"type": "`$INTEGER`",
-						"index$": 59,
+						"index$": 63,
 					},
 					map[string]any{
 						"active": true,
 						"name": "material_id",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 60,
-					},
-					map[string]any{
-						"active": true,
-						"name": "material_title",
-						"req": false,
-						"type": "`$ANY`",
-						"index$": 61,
-					},
-					map[string]any{
-						"active": true,
-						"name": "max_zoom_window_size",
-						"req": false,
-						"type": "`$ANY`",
-						"index$": 62,
-					},
-					map[string]any{
-						"active": true,
-						"name": "medium_display",
-						"req": false,
-						"type": "`$ANY`",
-						"index$": 63,
-					},
-					map[string]any{
-						"active": true,
-						"name": "nomisma_id",
-						"req": false,
-						"type": "`$STRING`",
 						"index$": 64,
 					},
 					map[string]any{
 						"active": true,
-						"name": "on_loan_display",
+						"name": "material_ids",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 65,
 					},
 					map[string]any{
 						"active": true,
-						"name": "pageview",
+						"name": "material_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 66,
 					},
 					map[string]any{
 						"active": true,
-						"name": "pageviews_recent",
+						"name": "max_zoom_window_size",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 67,
 					},
 					map[string]any{
 						"active": true,
-						"name": "place_of_origin",
+						"name": "medium_display",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 68,
 					},
 					map[string]any{
 						"active": true,
-						"name": "provenance_text",
+						"name": "nomisma_id",
 						"req": false,
-						"type": "`$ANY`",
+						"type": "`$STRING`",
 						"index$": 69,
 					},
 					map[string]any{
 						"active": true,
-						"name": "publication_history",
+						"name": "on_loan_display",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 70,
 					},
 					map[string]any{
 						"active": true,
-						"name": "publishing_verification_level",
+						"name": "pageviews",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 71,
 					},
 					map[string]any{
 						"active": true,
-						"name": "section_id",
+						"name": "pageviews_recent",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 72,
 					},
 					map[string]any{
 						"active": true,
-						"name": "section_title",
+						"name": "place_of_origin",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 73,
 					},
 					map[string]any{
 						"active": true,
-						"name": "short_description",
+						"name": "provenance_text",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 74,
 					},
 					map[string]any{
 						"active": true,
-						"name": "site_id",
+						"name": "publication_history",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 75,
 					},
 					map[string]any{
 						"active": true,
-						"name": "sound_id",
+						"name": "publishing_verification_level",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 76,
 					},
 					map[string]any{
 						"active": true,
-						"name": "source_updated_at",
+						"name": "section_ids",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 77,
 					},
 					map[string]any{
 						"active": true,
-						"name": "style_id",
+						"name": "section_titles",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 78,
 					},
 					map[string]any{
 						"active": true,
-						"name": "style_title",
+						"name": "short_description",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 79,
 					},
 					map[string]any{
 						"active": true,
-						"name": "subject_id",
+						"name": "site_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 80,
 					},
 					map[string]any{
 						"active": true,
-						"name": "subject_title",
+						"name": "sound_ids",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 81,
 					},
 					map[string]any{
 						"active": true,
-						"name": "suggest_autocomplete_all",
+						"name": "source_updated_at",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 82,
 					},
 					map[string]any{
 						"active": true,
-						"name": "suggest_autocomplete_boosted",
+						"name": "style_id",
 						"req": false,
-						"type": "`$ANY`",
+						"type": "`$STRING`",
 						"index$": 83,
 					},
 					map[string]any{
 						"active": true,
-						"name": "technique_id",
+						"name": "style_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 84,
 					},
 					map[string]any{
 						"active": true,
-						"name": "technique_title",
+						"name": "style_title",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 85,
 					},
 					map[string]any{
 						"active": true,
-						"name": "term_title",
+						"name": "style_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 86,
 					},
 					map[string]any{
 						"active": true,
-						"name": "text_embedding",
+						"name": "subject_id",
 						"req": false,
-						"type": "`$ANY`",
+						"type": "`$STRING`",
 						"index$": 87,
 					},
 					map[string]any{
 						"active": true,
-						"name": "text_id",
+						"name": "subject_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 88,
 					},
 					map[string]any{
 						"active": true,
-						"name": "theme_title",
+						"name": "subject_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 89,
 					},
 					map[string]any{
 						"active": true,
-						"name": "thumbnail",
+						"name": "suggest_autocomplete_all",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 90,
 					},
 					map[string]any{
 						"active": true,
-						"name": "timestamp",
+						"name": "suggest_autocomplete_boosted",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 91,
 					},
 					map[string]any{
 						"active": true,
-						"name": "title",
+						"name": "technique_id",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 92,
 					},
 					map[string]any{
 						"active": true,
-						"name": "updated_at",
+						"name": "technique_ids",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 93,
 					},
 					map[string]any{
 						"active": true,
-						"name": "video_id",
+						"name": "technique_titles",
+						"req": false,
+						"type": "`$ANY`",
+						"index$": 94,
+					},
+					map[string]any{
+						"active": true,
+						"name": "term_titles",
+						"req": false,
+						"type": "`$ANY`",
+						"index$": 95,
+					},
+					map[string]any{
+						"active": true,
+						"name": "text_embedding",
+						"req": false,
+						"type": "`$ANY`",
+						"index$": 96,
+					},
+					map[string]any{
+						"active": true,
+						"name": "text_ids",
+						"req": false,
+						"type": "`$ANY`",
+						"index$": 97,
+					},
+					map[string]any{
+						"active": true,
+						"name": "theme_titles",
+						"req": false,
+						"type": "`$ANY`",
+						"index$": 98,
+					},
+					map[string]any{
+						"active": true,
+						"name": "thumbnail",
+						"req": false,
+						"type": "`$ANY`",
+						"index$": 99,
+					},
+					map[string]any{
+						"active": true,
+						"name": "timestamp",
+						"req": false,
+						"type": "`$ANY`",
+						"index$": 100,
+					},
+					map[string]any{
+						"active": true,
+						"name": "title",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 94,
+						"index$": 101,
+					},
+					map[string]any{
+						"active": true,
+						"name": "updated_at",
+						"req": false,
+						"type": "`$ANY`",
+						"index$": 102,
+					},
+					map[string]any{
+						"active": true,
+						"name": "video_ids",
+						"req": false,
+						"type": "`$ANY`",
+						"index$": 103,
 					},
 				},
 				"name": "artwork",
@@ -1372,6 +1437,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/artworks",
 								"parts": []any{
@@ -1385,7 +1451,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -1406,6 +1471,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/artworks/{id}",
 								"parts": []any{
@@ -1424,7 +1490,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -1506,6 +1571,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/artwork-date-qualifiers",
 								"parts": []any{
@@ -1519,7 +1585,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -1540,6 +1605,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/artwork-date-qualifiers/{id}",
 								"parts": []any{
@@ -1558,7 +1624,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -1640,6 +1705,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/artwork-place-qualifiers",
 								"parts": []any{
@@ -1653,7 +1719,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -1674,6 +1739,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/artwork-place-qualifiers/{id}",
 								"parts": []any{
@@ -1692,7 +1758,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -1781,6 +1846,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/artwork-types",
 								"parts": []any{
@@ -1794,7 +1860,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -1815,6 +1880,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/artwork-types/{id}",
 								"parts": []any{
@@ -1833,7 +1899,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -1929,6 +1994,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/category-terms",
 								"parts": []any{
@@ -1942,7 +2008,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -1963,6 +2028,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/category-terms/{id}",
 								"parts": []any{
@@ -1981,7 +2047,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -2077,6 +2142,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/digital-publications",
 								"parts": []any{
@@ -2090,7 +2156,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -2111,6 +2176,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/digital-publications/{id}",
 								"parts": []any{
@@ -2129,7 +2195,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -2239,6 +2304,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/digital-publication-articles",
 								"parts": []any{
@@ -2252,7 +2318,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -2273,6 +2338,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/digital-publication-articles/{id}",
 								"parts": []any{
@@ -2291,7 +2357,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -2387,6 +2452,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/educator-resources",
 								"parts": []any{
@@ -2400,7 +2466,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -2421,6 +2486,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/educator-resources/{id}",
 								"parts": []any{
@@ -2439,7 +2505,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -2450,16 +2515,16 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "alt_audience_id",
+						"name": "alt_audience_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "alt_event_type_id",
+						"name": "alt_event_type_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 1,
 					},
 					map[string]any{
@@ -2597,7 +2662,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "is_after_hour",
+						"name": "is_after_hours",
 						"req": false,
 						"type": "`$BOOLEAN`",
 						"index$": 21,
@@ -2688,14 +2753,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "program_id",
+						"name": "program_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 34,
 					},
 					map[string]any{
 						"active": true,
-						"name": "program_title",
+						"name": "program_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 35,
@@ -2709,7 +2774,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "search_tag",
+						"name": "search_tags",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 37,
@@ -2829,6 +2894,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/events",
 								"parts": []any{
@@ -2842,7 +2908,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -2863,6 +2928,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/events/{id}",
 								"parts": []any{
@@ -2881,7 +2947,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -3075,6 +3140,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/event-occurrences",
 								"parts": []any{
@@ -3088,7 +3154,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -3109,6 +3174,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/event-occurrences/{id}",
 								"parts": []any{
@@ -3127,7 +3193,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -3223,6 +3288,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/event-programs",
 								"parts": []any{
@@ -3236,7 +3302,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -3257,6 +3322,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/event-programs/{id}",
 								"parts": []any{
@@ -3275,7 +3341,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -3300,9 +3365,9 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "alt_image_id",
+						"name": "alt_image_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 2,
 					},
 					map[string]any{
@@ -3321,30 +3386,30 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "artist_id",
+						"name": "artist_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 5,
 					},
 					map[string]any{
 						"active": true,
-						"name": "artwork_id",
+						"name": "artwork_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 6,
 					},
 					map[string]any{
 						"active": true,
-						"name": "artwork_title",
+						"name": "artwork_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 7,
 					},
 					map[string]any{
 						"active": true,
-						"name": "document_id",
+						"name": "document_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 8,
 					},
 					map[string]any{
@@ -3412,9 +3477,9 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "site_id",
+						"name": "site_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 18,
 					},
 					map[string]any{
@@ -3483,6 +3548,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/exhibitions",
 								"parts": []any{
@@ -3496,7 +3562,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -3517,6 +3582,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/exhibitions/{id}",
 								"parts": []any{
@@ -3535,7 +3601,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -3666,6 +3731,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/galleries",
 								"parts": []any{
@@ -3679,7 +3745,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -3700,6 +3765,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/galleries/{id}",
 								"parts": []any{
@@ -3718,7 +3784,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -3757,7 +3822,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "search_tag",
+						"name": "search_tags",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 4,
@@ -3821,6 +3886,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/generic-pages",
 								"parts": []any{
@@ -3834,7 +3900,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -3855,6 +3920,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/generic-pages/{id}",
 								"parts": []any{
@@ -3873,7 +3939,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -3962,6 +4027,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/highlights",
 								"parts": []any{
@@ -3975,7 +4041,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -3996,6 +4061,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/highlights/{id}",
 								"parts": []any{
@@ -4014,7 +4080,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -4355,6 +4420,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/hours",
 								"parts": []any{
@@ -4368,7 +4434,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -4389,6 +4454,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/hours/{id}",
 								"parts": []any{
@@ -4407,7 +4473,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -4446,14 +4511,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "artwork_id",
+						"name": "artwork_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 4,
 					},
 					map[string]any{
 						"active": true,
-						"name": "artwork_title",
+						"name": "artwork_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 5,
@@ -4629,6 +4694,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/images",
 								"parts": []any{
@@ -4642,7 +4708,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -4663,6 +4728,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/images/{id}",
 								"parts": []any{
@@ -4681,7 +4747,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -4720,7 +4785,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "search_tag",
+						"name": "search_tags",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 4,
@@ -4784,6 +4849,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/landing-pages",
 								"parts": []any{
@@ -4797,7 +4863,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -4818,6 +4883,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/landing-pages/{id}",
 								"parts": []any{
@@ -4836,7 +4902,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -4939,6 +5004,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/places",
 								"parts": []any{
@@ -4952,7 +5018,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -4973,6 +5038,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/places/{id}",
 								"parts": []any{
@@ -4991,7 +5057,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -5087,6 +5152,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/press-releases",
 								"parts": []any{
@@ -5100,7 +5166,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -5121,6 +5186,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/press-releases/{id}",
 								"parts": []any{
@@ -5139,7 +5205,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -5235,6 +5300,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/printed-publications",
 								"parts": []any{
@@ -5248,7 +5314,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -5269,6 +5334,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/printed-publications/{id}",
 								"parts": []any{
@@ -5287,7 +5353,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -5312,16 +5377,16 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "artist_id",
+						"name": "artist_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
-						"name": "artwork_id",
+						"name": "artwork_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 3,
 					},
 					map[string]any{
@@ -5333,9 +5398,9 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "exhibition_id",
+						"name": "exhibition_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 5,
 					},
 					map[string]any{
@@ -5453,6 +5518,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/products",
 								"parts": []any{
@@ -5466,7 +5532,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -5487,6 +5552,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/products/{id}",
 								"parts": []any{
@@ -5505,7 +5571,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -5537,9 +5602,9 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "section_id",
+						"name": "section_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 3,
 					},
 					map[string]any{
@@ -5601,6 +5666,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/publications",
 								"parts": []any{
@@ -5614,7 +5680,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -5635,6 +5700,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/publications/{id}",
 								"parts": []any{
@@ -5653,7 +5719,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -5786,6 +5851,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/agents/search",
 								"parts": []any{
@@ -5862,6 +5928,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/articles/search",
 								"parts": []any{
@@ -5938,6 +6005,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/artworks/search",
 								"parts": []any{
@@ -6014,6 +6082,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/category-terms/search",
 								"parts": []any{
@@ -6090,6 +6159,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/digital-publication-articles/search",
 								"parts": []any{
@@ -6166,6 +6236,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/digital-publications/search",
 								"parts": []any{
@@ -6242,6 +6313,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/educator-resources/search",
 								"parts": []any{
@@ -6318,6 +6390,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/event-occurrences/search",
 								"parts": []any{
@@ -6394,6 +6467,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/event-programs/search",
 								"parts": []any{
@@ -6470,6 +6544,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/events/search",
 								"parts": []any{
@@ -6546,6 +6621,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/exhibitions/search",
 								"parts": []any{
@@ -6622,6 +6698,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/galleries/search",
 								"parts": []any{
@@ -6698,6 +6775,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/generic-pages/search",
 								"parts": []any{
@@ -6774,6 +6852,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/highlights/search",
 								"parts": []any{
@@ -6850,6 +6929,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/hours/search",
 								"parts": []any{
@@ -6926,6 +7006,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/images/search",
 								"parts": []any{
@@ -7002,6 +7083,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/landing-pages/search",
 								"parts": []any{
@@ -7078,6 +7160,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/mobile-sounds/search",
 								"parts": []any{
@@ -7154,6 +7237,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/places/search",
 								"parts": []any{
@@ -7230,6 +7314,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/press-releases/search",
 								"parts": []any{
@@ -7306,6 +7391,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/printed-publications/search",
 								"parts": []any{
@@ -7382,6 +7468,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/products/search",
 								"parts": []any{
@@ -7458,6 +7545,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/publications/search",
 								"parts": []any{
@@ -7534,6 +7622,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/search",
 								"parts": []any{
@@ -7609,6 +7698,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/sections/search",
 								"parts": []any{
@@ -7685,6 +7775,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/sites/search",
 								"parts": []any{
@@ -7761,6 +7852,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/sounds/search",
 								"parts": []any{
@@ -7837,6 +7929,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/static-pages/search",
 								"parts": []any{
@@ -7913,6 +8006,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/texts/search",
 								"parts": []any{
@@ -7989,6 +8083,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/tours/search",
 								"parts": []any{
@@ -8065,6 +8160,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/videos/search",
 								"parts": []any{
@@ -8088,7 +8184,6 @@ func MakeConfig() map[string]any {
 								"index$": 30,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -8219,6 +8314,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/sections",
 								"parts": []any{
@@ -8232,7 +8328,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -8253,6 +8348,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/sections/{id}",
 								"parts": []any{
@@ -8271,7 +8367,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -8296,14 +8391,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "artwork_id",
+						"name": "artwork_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
-						"name": "artwork_title",
+						"name": "artwork_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 3,
@@ -8317,14 +8412,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "exhibition_id",
+						"name": "exhibition_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 5,
 					},
 					map[string]any{
 						"active": true,
-						"name": "exhibition_title",
+						"name": "exhibition_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 6,
@@ -8395,6 +8490,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/sites",
 								"parts": []any{
@@ -8408,7 +8504,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -8429,6 +8524,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/sites/{id}",
 								"parts": []any{
@@ -8447,7 +8543,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -8479,14 +8574,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "artwork_id",
+						"name": "artwork_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
-						"name": "artwork_title",
+						"name": "artwork_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 4,
@@ -8620,6 +8715,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/mobile-sounds",
 								"parts": []any{
@@ -8635,6 +8731,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/sounds",
 								"parts": []any{
@@ -8648,7 +8745,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -8669,6 +8765,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/mobile-sounds/{id}",
 								"parts": []any{
@@ -8701,6 +8798,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/sounds/{id}",
 								"parts": []any{
@@ -8719,7 +8817,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -8808,6 +8905,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/static-pages",
 								"parts": []any{
@@ -8821,7 +8919,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -8842,6 +8939,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/static-pages/{id}",
 								"parts": []any{
@@ -8860,7 +8958,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -8892,14 +8989,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "artwork_id",
+						"name": "artwork_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
-						"name": "artwork_title",
+						"name": "artwork_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 4,
@@ -9019,6 +9116,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/texts",
 								"parts": []any{
@@ -9032,7 +9130,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -9053,6 +9150,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/texts/{id}",
 								"parts": []any{
@@ -9071,7 +9169,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -9096,14 +9193,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "artist_title",
+						"name": "artist_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
-						"name": "artwork_title",
+						"name": "artwork_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 3,
@@ -9209,6 +9306,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/tours",
 								"parts": []any{
@@ -9222,7 +9320,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -9243,6 +9340,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/tours/{id}",
 								"parts": []any{
@@ -9261,7 +9359,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -9293,14 +9390,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "artwork_id",
+						"name": "artwork_ids",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ANY`",
 						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
-						"name": "artwork_title",
+						"name": "artwork_titles",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 4,
@@ -9420,6 +9517,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/videos",
 								"parts": []any{
@@ -9433,7 +9531,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -9454,6 +9551,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/videos/{id}",
 								"parts": []any{
@@ -9472,7 +9570,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{

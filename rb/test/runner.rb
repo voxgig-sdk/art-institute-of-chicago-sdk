@@ -23,8 +23,8 @@ module ArtInstituteOfChicagoTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("ARTINSTITUTEOFCHICAGO_TEST_LIVE")
-    override = getenv("ARTINSTITUTEOFCHICAGO_TEST_OVERRIDE")
+    live = getenv("ART_INSTITUTE_OF_CHICAGO_TEST_LIVE")
+    override = getenv("ART_INSTITUTE_OF_CHICAGO_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module ArtInstituteOfChicagoTestRunner
       end
     end
 
-    explain = getenv("ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN")
-    m["ARTINSTITUTEOFCHICAGO_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("ART_INSTITUTE_OF_CHICAGO_TEST_EXPLAIN")
+    m["ART_INSTITUTE_OF_CHICAGO_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

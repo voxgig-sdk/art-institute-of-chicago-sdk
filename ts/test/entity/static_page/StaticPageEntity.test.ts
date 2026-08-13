@@ -26,8 +26,8 @@ import {
 describe('StaticPageEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ARTINSTITUTEOFCHICAGO_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ARTINSTITUTEOFCHICAGO_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ART_INSTITUTE_OF_CHICAGO_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ART_INSTITUTE_OF_CHICAGO_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = ArtInstituteOfChicagoSDK.test()
@@ -63,13 +63,13 @@ describe('StaticPageEntity', async () => {
     const static_page_ref01_ent = client.StaticPage()
     const static_page_ref01_match: any = {}
 
-    const static_page_ref01_list = await static_page_ref01_ent.list(static_page_ref01_match)
+    const static_page_ref01_list = (await static_page_ref01_ent.list(static_page_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const static_page_ref01_match_dt0: any = {}
     static_page_ref01_match_dt0.id = static_page_ref01_data.id
-    const static_page_ref01_data_dt0 = await static_page_ref01_ent.load(static_page_ref01_match_dt0)
+    const static_page_ref01_data_dt0 = (await static_page_ref01_ent.load(static_page_ref01_match_dt0)).data()
     assert(static_page_ref01_data_dt0.id === static_page_ref01_data.id)
 
 

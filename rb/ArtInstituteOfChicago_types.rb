@@ -10,7 +10,7 @@
 
 # Agent entity data model.
 #
-# @!attribute [rw] alt_title
+# @!attribute [rw] alt_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] api_link
@@ -58,7 +58,7 @@
 # @!attribute [rw] updated_at
 #   @return [Object, nil]
 Agent = Struct.new(
-  :alt_title,
+  :alt_titles,
   :api_link,
   :api_model,
   :birth_date,
@@ -88,7 +88,7 @@ AgentLoadMatch = Struct.new(
 
 # Request payload for Agent#list.
 #
-# @!attribute [rw] alt_title
+# @!attribute [rw] alt_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] api_link
@@ -136,7 +136,7 @@ AgentLoadMatch = Struct.new(
 # @!attribute [rw] updated_at
 #   @return [Object, nil]
 AgentListMatch = Struct.new(
-  :alt_title,
+  :alt_titles,
   :api_link,
   :api_model,
   :birth_date,
@@ -438,28 +438,28 @@ ArticleListMatch = Struct.new(
 
 # Artwork entity data model.
 #
-# @!attribute [rw] alt_artist_id
-#   @return [String, nil]
+# @!attribute [rw] alt_artist_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] alt_classification_id
-#   @return [String, nil]
+# @!attribute [rw] alt_classification_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] alt_image_id
-#   @return [String, nil]
+# @!attribute [rw] alt_image_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] alt_material_id
-#   @return [String, nil]
+# @!attribute [rw] alt_material_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] alt_style_id
-#   @return [String, nil]
+# @!attribute [rw] alt_style_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] alt_subject_id
-#   @return [String, nil]
+# @!attribute [rw] alt_subject_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] alt_technique_id
-#   @return [String, nil]
+# @!attribute [rw] alt_technique_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] alt_title
+# @!attribute [rw] alt_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] api_link
@@ -474,7 +474,13 @@ ArticleListMatch = Struct.new(
 # @!attribute [rw] artist_id
 #   @return [String, nil]
 #
+# @!attribute [rw] artist_ids
+#   @return [Object, nil]
+#
 # @!attribute [rw] artist_title
+#   @return [Object, nil]
+#
+# @!attribute [rw] artist_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] artwork_type_id
@@ -486,22 +492,28 @@ ArticleListMatch = Struct.new(
 # @!attribute [rw] boost_rank
 #   @return [Object, nil]
 #
-# @!attribute [rw] catalog_based_search_keyword_title
+# @!attribute [rw] catalog_based_search_keyword_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] catalogue_display
 #   @return [Object, nil]
 #
-# @!attribute [rw] category_id
-#   @return [String, nil]
+# @!attribute [rw] category_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] category_title
+# @!attribute [rw] category_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] classification_id
 #   @return [String, nil]
 #
+# @!attribute [rw] classification_ids
+#   @return [Object, nil]
+#
 # @!attribute [rw] classification_title
+#   @return [Object, nil]
+#
+# @!attribute [rw] classification_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] color
@@ -540,14 +552,14 @@ ArticleListMatch = Struct.new(
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] dimension
+# @!attribute [rw] dimensions
 #   @return [Object, nil]
 #
 # @!attribute [rw] dimensions_detail
 #   @return [Object, nil]
 #
-# @!attribute [rw] document_id
-#   @return [String, nil]
+# @!attribute [rw] document_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] edition
 #   @return [Object, nil]
@@ -570,10 +582,10 @@ ArticleListMatch = Struct.new(
 # @!attribute [rw] has_advanced_imaging
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] has_educational_resource
+# @!attribute [rw] has_educational_resources
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] has_multimedia_resource
+# @!attribute [rw] has_multimedia_resources
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] has_not_been_viewed_much
@@ -588,7 +600,7 @@ ArticleListMatch = Struct.new(
 # @!attribute [rw] image_id
 #   @return [String, nil]
 #
-# @!attribute [rw] inscription
+# @!attribute [rw] inscriptions
 #   @return [Object, nil]
 #
 # @!attribute [rw] internal_department_id
@@ -621,7 +633,10 @@ ArticleListMatch = Struct.new(
 # @!attribute [rw] material_id
 #   @return [String, nil]
 #
-# @!attribute [rw] material_title
+# @!attribute [rw] material_ids
+#   @return [Object, nil]
+#
+# @!attribute [rw] material_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] max_zoom_window_size
@@ -636,7 +651,7 @@ ArticleListMatch = Struct.new(
 # @!attribute [rw] on_loan_display
 #   @return [Object, nil]
 #
-# @!attribute [rw] pageview
+# @!attribute [rw] pageviews
 #   @return [Object, nil]
 #
 # @!attribute [rw] pageviews_recent
@@ -654,20 +669,20 @@ ArticleListMatch = Struct.new(
 # @!attribute [rw] publishing_verification_level
 #   @return [Object, nil]
 #
-# @!attribute [rw] section_id
-#   @return [String, nil]
+# @!attribute [rw] section_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] section_title
+# @!attribute [rw] section_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] short_description
 #   @return [Object, nil]
 #
-# @!attribute [rw] site_id
-#   @return [String, nil]
+# @!attribute [rw] site_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] sound_id
-#   @return [String, nil]
+# @!attribute [rw] sound_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] source_updated_at
 #   @return [Object, nil]
@@ -675,13 +690,22 @@ ArticleListMatch = Struct.new(
 # @!attribute [rw] style_id
 #   @return [String, nil]
 #
+# @!attribute [rw] style_ids
+#   @return [Object, nil]
+#
 # @!attribute [rw] style_title
+#   @return [Object, nil]
+#
+# @!attribute [rw] style_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] subject_id
 #   @return [String, nil]
 #
-# @!attribute [rw] subject_title
+# @!attribute [rw] subject_ids
+#   @return [Object, nil]
+#
+# @!attribute [rw] subject_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] suggest_autocomplete_all
@@ -693,19 +717,22 @@ ArticleListMatch = Struct.new(
 # @!attribute [rw] technique_id
 #   @return [String, nil]
 #
-# @!attribute [rw] technique_title
+# @!attribute [rw] technique_ids
 #   @return [Object, nil]
 #
-# @!attribute [rw] term_title
+# @!attribute [rw] technique_titles
+#   @return [Object, nil]
+#
+# @!attribute [rw] term_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] text_embedding
 #   @return [Object, nil]
 #
-# @!attribute [rw] text_id
-#   @return [String, nil]
+# @!attribute [rw] text_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] theme_title
+# @!attribute [rw] theme_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] thumbnail
@@ -720,31 +747,35 @@ ArticleListMatch = Struct.new(
 # @!attribute [rw] updated_at
 #   @return [Object, nil]
 #
-# @!attribute [rw] video_id
-#   @return [String, nil]
+# @!attribute [rw] video_ids
+#   @return [Object, nil]
 Artwork = Struct.new(
-  :alt_artist_id,
-  :alt_classification_id,
-  :alt_image_id,
-  :alt_material_id,
-  :alt_style_id,
-  :alt_subject_id,
-  :alt_technique_id,
-  :alt_title,
+  :alt_artist_ids,
+  :alt_classification_ids,
+  :alt_image_ids,
+  :alt_material_ids,
+  :alt_style_ids,
+  :alt_subject_ids,
+  :alt_technique_ids,
+  :alt_titles,
   :api_link,
   :api_model,
   :artist_display,
   :artist_id,
+  :artist_ids,
   :artist_title,
+  :artist_titles,
   :artwork_type_id,
   :artwork_type_title,
   :boost_rank,
-  :catalog_based_search_keyword_title,
+  :catalog_based_search_keyword_titles,
   :catalogue_display,
-  :category_id,
-  :category_title,
+  :category_ids,
+  :category_titles,
   :classification_id,
+  :classification_ids,
   :classification_title,
+  :classification_titles,
   :color,
   :colorfulness,
   :copyright_notice,
@@ -757,9 +788,9 @@ Artwork = Struct.new(
   :department_id,
   :department_title,
   :description,
-  :dimension,
+  :dimensions,
   :dimensions_detail,
-  :document_id,
+  :document_ids,
   :edition,
   :exhibition_history,
   :fiscal_year,
@@ -767,13 +798,13 @@ Artwork = Struct.new(
   :gallery_id,
   :gallery_title,
   :has_advanced_imaging,
-  :has_educational_resource,
-  :has_multimedia_resource,
+  :has_educational_resources,
+  :has_multimedia_resources,
   :has_not_been_viewed_much,
   :id,
   :image_embedding,
   :image_id,
-  :inscription,
+  :inscriptions,
   :internal_department_id,
   :is_boosted,
   :is_on_view,
@@ -784,40 +815,45 @@ Artwork = Struct.new(
   :longitude,
   :main_reference_number,
   :material_id,
-  :material_title,
+  :material_ids,
+  :material_titles,
   :max_zoom_window_size,
   :medium_display,
   :nomisma_id,
   :on_loan_display,
-  :pageview,
+  :pageviews,
   :pageviews_recent,
   :place_of_origin,
   :provenance_text,
   :publication_history,
   :publishing_verification_level,
-  :section_id,
-  :section_title,
+  :section_ids,
+  :section_titles,
   :short_description,
-  :site_id,
-  :sound_id,
+  :site_ids,
+  :sound_ids,
   :source_updated_at,
   :style_id,
+  :style_ids,
   :style_title,
+  :style_titles,
   :subject_id,
-  :subject_title,
+  :subject_ids,
+  :subject_titles,
   :suggest_autocomplete_all,
   :suggest_autocomplete_boosted,
   :technique_id,
-  :technique_title,
-  :term_title,
+  :technique_ids,
+  :technique_titles,
+  :term_titles,
   :text_embedding,
-  :text_id,
-  :theme_title,
+  :text_ids,
+  :theme_titles,
   :thumbnail,
   :timestamp,
   :title,
   :updated_at,
-  :video_id,
+  :video_ids,
   keyword_init: true
 )
 
@@ -832,28 +868,28 @@ ArtworkLoadMatch = Struct.new(
 
 # Request payload for Artwork#list.
 #
-# @!attribute [rw] alt_artist_id
-#   @return [String, nil]
+# @!attribute [rw] alt_artist_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] alt_classification_id
-#   @return [String, nil]
+# @!attribute [rw] alt_classification_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] alt_image_id
-#   @return [String, nil]
+# @!attribute [rw] alt_image_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] alt_material_id
-#   @return [String, nil]
+# @!attribute [rw] alt_material_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] alt_style_id
-#   @return [String, nil]
+# @!attribute [rw] alt_style_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] alt_subject_id
-#   @return [String, nil]
+# @!attribute [rw] alt_subject_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] alt_technique_id
-#   @return [String, nil]
+# @!attribute [rw] alt_technique_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] alt_title
+# @!attribute [rw] alt_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] api_link
@@ -868,7 +904,13 @@ ArtworkLoadMatch = Struct.new(
 # @!attribute [rw] artist_id
 #   @return [String, nil]
 #
+# @!attribute [rw] artist_ids
+#   @return [Object, nil]
+#
 # @!attribute [rw] artist_title
+#   @return [Object, nil]
+#
+# @!attribute [rw] artist_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] artwork_type_id
@@ -880,22 +922,28 @@ ArtworkLoadMatch = Struct.new(
 # @!attribute [rw] boost_rank
 #   @return [Object, nil]
 #
-# @!attribute [rw] catalog_based_search_keyword_title
+# @!attribute [rw] catalog_based_search_keyword_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] catalogue_display
 #   @return [Object, nil]
 #
-# @!attribute [rw] category_id
-#   @return [String, nil]
+# @!attribute [rw] category_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] category_title
+# @!attribute [rw] category_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] classification_id
 #   @return [String, nil]
 #
+# @!attribute [rw] classification_ids
+#   @return [Object, nil]
+#
 # @!attribute [rw] classification_title
+#   @return [Object, nil]
+#
+# @!attribute [rw] classification_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] color
@@ -934,14 +982,14 @@ ArtworkLoadMatch = Struct.new(
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] dimension
+# @!attribute [rw] dimensions
 #   @return [Object, nil]
 #
 # @!attribute [rw] dimensions_detail
 #   @return [Object, nil]
 #
-# @!attribute [rw] document_id
-#   @return [String, nil]
+# @!attribute [rw] document_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] edition
 #   @return [Object, nil]
@@ -964,10 +1012,10 @@ ArtworkLoadMatch = Struct.new(
 # @!attribute [rw] has_advanced_imaging
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] has_educational_resource
+# @!attribute [rw] has_educational_resources
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] has_multimedia_resource
+# @!attribute [rw] has_multimedia_resources
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] has_not_been_viewed_much
@@ -982,7 +1030,7 @@ ArtworkLoadMatch = Struct.new(
 # @!attribute [rw] image_id
 #   @return [String, nil]
 #
-# @!attribute [rw] inscription
+# @!attribute [rw] inscriptions
 #   @return [Object, nil]
 #
 # @!attribute [rw] internal_department_id
@@ -1015,7 +1063,10 @@ ArtworkLoadMatch = Struct.new(
 # @!attribute [rw] material_id
 #   @return [String, nil]
 #
-# @!attribute [rw] material_title
+# @!attribute [rw] material_ids
+#   @return [Object, nil]
+#
+# @!attribute [rw] material_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] max_zoom_window_size
@@ -1030,7 +1081,7 @@ ArtworkLoadMatch = Struct.new(
 # @!attribute [rw] on_loan_display
 #   @return [Object, nil]
 #
-# @!attribute [rw] pageview
+# @!attribute [rw] pageviews
 #   @return [Object, nil]
 #
 # @!attribute [rw] pageviews_recent
@@ -1048,20 +1099,20 @@ ArtworkLoadMatch = Struct.new(
 # @!attribute [rw] publishing_verification_level
 #   @return [Object, nil]
 #
-# @!attribute [rw] section_id
-#   @return [String, nil]
+# @!attribute [rw] section_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] section_title
+# @!attribute [rw] section_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] short_description
 #   @return [Object, nil]
 #
-# @!attribute [rw] site_id
-#   @return [String, nil]
+# @!attribute [rw] site_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] sound_id
-#   @return [String, nil]
+# @!attribute [rw] sound_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] source_updated_at
 #   @return [Object, nil]
@@ -1069,13 +1120,22 @@ ArtworkLoadMatch = Struct.new(
 # @!attribute [rw] style_id
 #   @return [String, nil]
 #
+# @!attribute [rw] style_ids
+#   @return [Object, nil]
+#
 # @!attribute [rw] style_title
+#   @return [Object, nil]
+#
+# @!attribute [rw] style_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] subject_id
 #   @return [String, nil]
 #
-# @!attribute [rw] subject_title
+# @!attribute [rw] subject_ids
+#   @return [Object, nil]
+#
+# @!attribute [rw] subject_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] suggest_autocomplete_all
@@ -1087,19 +1147,22 @@ ArtworkLoadMatch = Struct.new(
 # @!attribute [rw] technique_id
 #   @return [String, nil]
 #
-# @!attribute [rw] technique_title
+# @!attribute [rw] technique_ids
 #   @return [Object, nil]
 #
-# @!attribute [rw] term_title
+# @!attribute [rw] technique_titles
+#   @return [Object, nil]
+#
+# @!attribute [rw] term_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] text_embedding
 #   @return [Object, nil]
 #
-# @!attribute [rw] text_id
-#   @return [String, nil]
+# @!attribute [rw] text_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] theme_title
+# @!attribute [rw] theme_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] thumbnail
@@ -1114,31 +1177,35 @@ ArtworkLoadMatch = Struct.new(
 # @!attribute [rw] updated_at
 #   @return [Object, nil]
 #
-# @!attribute [rw] video_id
-#   @return [String, nil]
+# @!attribute [rw] video_ids
+#   @return [Object, nil]
 ArtworkListMatch = Struct.new(
-  :alt_artist_id,
-  :alt_classification_id,
-  :alt_image_id,
-  :alt_material_id,
-  :alt_style_id,
-  :alt_subject_id,
-  :alt_technique_id,
-  :alt_title,
+  :alt_artist_ids,
+  :alt_classification_ids,
+  :alt_image_ids,
+  :alt_material_ids,
+  :alt_style_ids,
+  :alt_subject_ids,
+  :alt_technique_ids,
+  :alt_titles,
   :api_link,
   :api_model,
   :artist_display,
   :artist_id,
+  :artist_ids,
   :artist_title,
+  :artist_titles,
   :artwork_type_id,
   :artwork_type_title,
   :boost_rank,
-  :catalog_based_search_keyword_title,
+  :catalog_based_search_keyword_titles,
   :catalogue_display,
-  :category_id,
-  :category_title,
+  :category_ids,
+  :category_titles,
   :classification_id,
+  :classification_ids,
   :classification_title,
+  :classification_titles,
   :color,
   :colorfulness,
   :copyright_notice,
@@ -1151,9 +1218,9 @@ ArtworkListMatch = Struct.new(
   :department_id,
   :department_title,
   :description,
-  :dimension,
+  :dimensions,
   :dimensions_detail,
-  :document_id,
+  :document_ids,
   :edition,
   :exhibition_history,
   :fiscal_year,
@@ -1161,13 +1228,13 @@ ArtworkListMatch = Struct.new(
   :gallery_id,
   :gallery_title,
   :has_advanced_imaging,
-  :has_educational_resource,
-  :has_multimedia_resource,
+  :has_educational_resources,
+  :has_multimedia_resources,
   :has_not_been_viewed_much,
   :id,
   :image_embedding,
   :image_id,
-  :inscription,
+  :inscriptions,
   :internal_department_id,
   :is_boosted,
   :is_on_view,
@@ -1178,40 +1245,45 @@ ArtworkListMatch = Struct.new(
   :longitude,
   :main_reference_number,
   :material_id,
-  :material_title,
+  :material_ids,
+  :material_titles,
   :max_zoom_window_size,
   :medium_display,
   :nomisma_id,
   :on_loan_display,
-  :pageview,
+  :pageviews,
   :pageviews_recent,
   :place_of_origin,
   :provenance_text,
   :publication_history,
   :publishing_verification_level,
-  :section_id,
-  :section_title,
+  :section_ids,
+  :section_titles,
   :short_description,
-  :site_id,
-  :sound_id,
+  :site_ids,
+  :sound_ids,
   :source_updated_at,
   :style_id,
+  :style_ids,
   :style_title,
+  :style_titles,
   :subject_id,
-  :subject_title,
+  :subject_ids,
+  :subject_titles,
   :suggest_autocomplete_all,
   :suggest_autocomplete_boosted,
   :technique_id,
-  :technique_title,
-  :term_title,
+  :technique_ids,
+  :technique_titles,
+  :term_titles,
   :text_embedding,
-  :text_id,
-  :theme_title,
+  :text_ids,
+  :theme_titles,
   :thumbnail,
   :timestamp,
   :title,
   :updated_at,
-  :video_id,
+  :video_ids,
   keyword_init: true
 )
 
@@ -1942,11 +2014,11 @@ EducatorResourceListMatch = Struct.new(
 
 # Event entity data model.
 #
-# @!attribute [rw] alt_audience_id
-#   @return [String, nil]
+# @!attribute [rw] alt_audience_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] alt_event_type_id
-#   @return [String, nil]
+# @!attribute [rw] alt_event_type_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -2005,7 +2077,7 @@ EducatorResourceListMatch = Struct.new(
 # @!attribute [rw] is_admission_required
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] is_after_hour
+# @!attribute [rw] is_after_hours
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] is_free
@@ -2044,16 +2116,16 @@ EducatorResourceListMatch = Struct.new(
 # @!attribute [rw] location
 #   @return [Object, nil]
 #
-# @!attribute [rw] program_id
-#   @return [String, nil]
+# @!attribute [rw] program_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] program_title
+# @!attribute [rw] program_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] rsvp_link
 #   @return [Object, nil]
 #
-# @!attribute [rw] search_tag
+# @!attribute [rw] search_tags
 #   @return [Object, nil]
 #
 # @!attribute [rw] short_description
@@ -2101,8 +2173,8 @@ EducatorResourceListMatch = Struct.new(
 # @!attribute [rw] virtual_event_url
 #   @return [Object, nil]
 Event = Struct.new(
-  :alt_audience_id,
-  :alt_event_type_id,
+  :alt_audience_ids,
+  :alt_event_type_ids,
   :api_link,
   :api_model,
   :audience_id,
@@ -2122,7 +2194,7 @@ Event = Struct.new(
   :id,
   :image_url,
   :is_admission_required,
-  :is_after_hour,
+  :is_after_hours,
   :is_free,
   :is_member_exclusive,
   :is_private,
@@ -2135,10 +2207,10 @@ Event = Struct.new(
   :layout_type,
   :list_description,
   :location,
-  :program_id,
-  :program_title,
+  :program_ids,
+  :program_titles,
   :rsvp_link,
-  :search_tag,
+  :search_tags,
   :short_description,
   :slug,
   :source_updated_at,
@@ -2168,11 +2240,11 @@ EventLoadMatch = Struct.new(
 
 # Request payload for Event#list.
 #
-# @!attribute [rw] alt_audience_id
-#   @return [String, nil]
+# @!attribute [rw] alt_audience_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] alt_event_type_id
-#   @return [String, nil]
+# @!attribute [rw] alt_event_type_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -2231,7 +2303,7 @@ EventLoadMatch = Struct.new(
 # @!attribute [rw] is_admission_required
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] is_after_hour
+# @!attribute [rw] is_after_hours
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] is_free
@@ -2270,16 +2342,16 @@ EventLoadMatch = Struct.new(
 # @!attribute [rw] location
 #   @return [Object, nil]
 #
-# @!attribute [rw] program_id
-#   @return [String, nil]
+# @!attribute [rw] program_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] program_title
+# @!attribute [rw] program_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] rsvp_link
 #   @return [Object, nil]
 #
-# @!attribute [rw] search_tag
+# @!attribute [rw] search_tags
 #   @return [Object, nil]
 #
 # @!attribute [rw] short_description
@@ -2327,8 +2399,8 @@ EventLoadMatch = Struct.new(
 # @!attribute [rw] virtual_event_url
 #   @return [Object, nil]
 EventListMatch = Struct.new(
-  :alt_audience_id,
-  :alt_event_type_id,
+  :alt_audience_ids,
+  :alt_event_type_ids,
   :api_link,
   :api_model,
   :audience_id,
@@ -2348,7 +2420,7 @@ EventListMatch = Struct.new(
   :id,
   :image_url,
   :is_admission_required,
-  :is_after_hour,
+  :is_after_hours,
   :is_free,
   :is_member_exclusive,
   :is_private,
@@ -2361,10 +2433,10 @@ EventListMatch = Struct.new(
   :layout_type,
   :list_description,
   :location,
-  :program_id,
-  :program_title,
+  :program_ids,
+  :program_titles,
   :rsvp_link,
-  :search_tag,
+  :search_tags,
   :short_description,
   :slug,
   :source_updated_at,
@@ -2717,8 +2789,8 @@ EventProgramListMatch = Struct.new(
 # @!attribute [rw] aic_start_at
 #   @return [Object, nil]
 #
-# @!attribute [rw] alt_image_id
-#   @return [String, nil]
+# @!attribute [rw] alt_image_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -2726,17 +2798,17 @@ EventProgramListMatch = Struct.new(
 # @!attribute [rw] api_model
 #   @return [Object, nil]
 #
-# @!attribute [rw] artist_id
-#   @return [String, nil]
-#
-# @!attribute [rw] artwork_id
-#   @return [String, nil]
-#
-# @!attribute [rw] artwork_title
+# @!attribute [rw] artist_ids
 #   @return [Object, nil]
 #
-# @!attribute [rw] document_id
-#   @return [String, nil]
+# @!attribute [rw] artwork_ids
+#   @return [Object, nil]
+#
+# @!attribute [rw] artwork_titles
+#   @return [Object, nil]
+#
+# @!attribute [rw] document_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] gallery_id
 #   @return [String, nil]
@@ -2765,8 +2837,8 @@ EventProgramListMatch = Struct.new(
 # @!attribute [rw] short_description
 #   @return [Object, nil]
 #
-# @!attribute [rw] site_id
-#   @return [String, nil]
+# @!attribute [rw] site_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] source_updated_at
 #   @return [Object, nil]
@@ -2794,13 +2866,13 @@ EventProgramListMatch = Struct.new(
 Exhibition = Struct.new(
   :aic_end_at,
   :aic_start_at,
-  :alt_image_id,
+  :alt_image_ids,
   :api_link,
   :api_model,
-  :artist_id,
-  :artwork_id,
-  :artwork_title,
-  :document_id,
+  :artist_ids,
+  :artwork_ids,
+  :artwork_titles,
+  :document_ids,
   :gallery_id,
   :gallery_title,
   :id,
@@ -2810,7 +2882,7 @@ Exhibition = Struct.new(
   :is_published,
   :position,
   :short_description,
-  :site_id,
+  :site_ids,
   :source_updated_at,
   :status,
   :suggest_autocomplete_all,
@@ -2839,8 +2911,8 @@ ExhibitionLoadMatch = Struct.new(
 # @!attribute [rw] aic_start_at
 #   @return [Object, nil]
 #
-# @!attribute [rw] alt_image_id
-#   @return [String, nil]
+# @!attribute [rw] alt_image_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] api_link
 #   @return [Object, nil]
@@ -2848,17 +2920,17 @@ ExhibitionLoadMatch = Struct.new(
 # @!attribute [rw] api_model
 #   @return [Object, nil]
 #
-# @!attribute [rw] artist_id
-#   @return [String, nil]
-#
-# @!attribute [rw] artwork_id
-#   @return [String, nil]
-#
-# @!attribute [rw] artwork_title
+# @!attribute [rw] artist_ids
 #   @return [Object, nil]
 #
-# @!attribute [rw] document_id
-#   @return [String, nil]
+# @!attribute [rw] artwork_ids
+#   @return [Object, nil]
+#
+# @!attribute [rw] artwork_titles
+#   @return [Object, nil]
+#
+# @!attribute [rw] document_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] gallery_id
 #   @return [String, nil]
@@ -2887,8 +2959,8 @@ ExhibitionLoadMatch = Struct.new(
 # @!attribute [rw] short_description
 #   @return [Object, nil]
 #
-# @!attribute [rw] site_id
-#   @return [String, nil]
+# @!attribute [rw] site_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] source_updated_at
 #   @return [Object, nil]
@@ -2916,13 +2988,13 @@ ExhibitionLoadMatch = Struct.new(
 ExhibitionListMatch = Struct.new(
   :aic_end_at,
   :aic_start_at,
-  :alt_image_id,
+  :alt_image_ids,
   :api_link,
   :api_model,
-  :artist_id,
-  :artwork_id,
-  :artwork_title,
-  :document_id,
+  :artist_ids,
+  :artwork_ids,
+  :artwork_titles,
+  :document_ids,
   :gallery_id,
   :gallery_title,
   :id,
@@ -2932,7 +3004,7 @@ ExhibitionListMatch = Struct.new(
   :is_published,
   :position,
   :short_description,
-  :site_id,
+  :site_ids,
   :source_updated_at,
   :status,
   :suggest_autocomplete_all,
@@ -3105,7 +3177,7 @@ GalleryListMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] search_tag
+# @!attribute [rw] search_tags
 #   @return [Object, nil]
 #
 # @!attribute [rw] source_updated_at
@@ -3133,7 +3205,7 @@ GenericPage = Struct.new(
   :api_model,
   :copy,
   :id,
-  :search_tag,
+  :search_tags,
   :source_updated_at,
   :suggest_autocomplete_all,
   :suggest_autocomplete_boosted,
@@ -3167,7 +3239,7 @@ GenericPageLoadMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] search_tag
+# @!attribute [rw] search_tags
 #   @return [Object, nil]
 #
 # @!attribute [rw] source_updated_at
@@ -3195,7 +3267,7 @@ GenericPageListMatch = Struct.new(
   :api_model,
   :copy,
   :id,
-  :search_tag,
+  :search_tags,
   :source_updated_at,
   :suggest_autocomplete_all,
   :suggest_autocomplete_boosted,
@@ -3706,10 +3778,10 @@ HourListMatch = Struct.new(
 # @!attribute [rw] api_model
 #   @return [Object, nil]
 #
-# @!attribute [rw] artwork_id
-#   @return [String, nil]
+# @!attribute [rw] artwork_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] artwork_title
+# @!attribute [rw] artwork_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] color
@@ -3785,8 +3857,8 @@ Image = Struct.new(
   :alt_text,
   :api_link,
   :api_model,
-  :artwork_id,
-  :artwork_title,
+  :artwork_ids,
+  :artwork_titles,
   :color,
   :colorfulness,
   :content,
@@ -3836,10 +3908,10 @@ ImageLoadMatch = Struct.new(
 # @!attribute [rw] api_model
 #   @return [Object, nil]
 #
-# @!attribute [rw] artwork_id
-#   @return [String, nil]
+# @!attribute [rw] artwork_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] artwork_title
+# @!attribute [rw] artwork_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] color
@@ -3915,8 +3987,8 @@ ImageListMatch = Struct.new(
   :alt_text,
   :api_link,
   :api_model,
-  :artwork_id,
-  :artwork_title,
+  :artwork_ids,
+  :artwork_titles,
   :color,
   :colorfulness,
   :content,
@@ -3957,7 +4029,7 @@ ImageListMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] search_tag
+# @!attribute [rw] search_tags
 #   @return [Object, nil]
 #
 # @!attribute [rw] source_updated_at
@@ -3985,7 +4057,7 @@ LandingPage = Struct.new(
   :api_model,
   :copy,
   :id,
-  :search_tag,
+  :search_tags,
   :source_updated_at,
   :suggest_autocomplete_all,
   :suggest_autocomplete_boosted,
@@ -4019,7 +4091,7 @@ LandingPageLoadMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] search_tag
+# @!attribute [rw] search_tags
 #   @return [Object, nil]
 #
 # @!attribute [rw] source_updated_at
@@ -4047,7 +4119,7 @@ LandingPageListMatch = Struct.new(
   :api_model,
   :copy,
   :id,
-  :search_tag,
+  :search_tags,
   :source_updated_at,
   :suggest_autocomplete_all,
   :suggest_autocomplete_boosted,
@@ -4395,17 +4467,17 @@ PrintedPublicationListMatch = Struct.new(
 # @!attribute [rw] api_model
 #   @return [Object, nil]
 #
-# @!attribute [rw] artist_id
-#   @return [String, nil]
+# @!attribute [rw] artist_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] artwork_id
-#   @return [String, nil]
+# @!attribute [rw] artwork_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] exhibition_id
-#   @return [String, nil]
+# @!attribute [rw] exhibition_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] external_sku
 #   @return [Object, nil]
@@ -4454,10 +4526,10 @@ PrintedPublicationListMatch = Struct.new(
 Product = Struct.new(
   :api_link,
   :api_model,
-  :artist_id,
-  :artwork_id,
+  :artist_ids,
+  :artwork_ids,
   :description,
-  :exhibition_id,
+  :exhibition_ids,
   :external_sku,
   :id,
   :image_url,
@@ -4493,17 +4565,17 @@ ProductLoadMatch = Struct.new(
 # @!attribute [rw] api_model
 #   @return [Object, nil]
 #
-# @!attribute [rw] artist_id
-#   @return [String, nil]
+# @!attribute [rw] artist_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] artwork_id
-#   @return [String, nil]
+# @!attribute [rw] artwork_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] exhibition_id
-#   @return [String, nil]
+# @!attribute [rw] exhibition_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] external_sku
 #   @return [Object, nil]
@@ -4552,10 +4624,10 @@ ProductLoadMatch = Struct.new(
 ProductListMatch = Struct.new(
   :api_link,
   :api_model,
-  :artist_id,
-  :artwork_id,
+  :artist_ids,
+  :artwork_ids,
   :description,
-  :exhibition_id,
+  :exhibition_ids,
   :external_sku,
   :id,
   :image_url,
@@ -4585,8 +4657,8 @@ ProductListMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] section_id
-#   @return [String, nil]
+# @!attribute [rw] section_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] source_updated_at
 #   @return [Object, nil]
@@ -4612,7 +4684,7 @@ Publication = Struct.new(
   :api_link,
   :api_model,
   :id,
-  :section_id,
+  :section_ids,
   :source_updated_at,
   :suggest_autocomplete_all,
   :suggest_autocomplete_boosted,
@@ -4643,8 +4715,8 @@ PublicationLoadMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] section_id
-#   @return [String, nil]
+# @!attribute [rw] section_ids
+#   @return [Object, nil]
 #
 # @!attribute [rw] source_updated_at
 #   @return [Object, nil]
@@ -4670,7 +4742,7 @@ PublicationListMatch = Struct.new(
   :api_link,
   :api_model,
   :id,
-  :section_id,
+  :section_ids,
   :source_updated_at,
   :suggest_autocomplete_all,
   :suggest_autocomplete_boosted,
@@ -4918,19 +4990,19 @@ SectionListMatch = Struct.new(
 # @!attribute [rw] api_model
 #   @return [Object, nil]
 #
-# @!attribute [rw] artwork_id
-#   @return [String, nil]
+# @!attribute [rw] artwork_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] artwork_title
+# @!attribute [rw] artwork_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] exhibition_id
-#   @return [String, nil]
+# @!attribute [rw] exhibition_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] exhibition_title
+# @!attribute [rw] exhibition_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] id
@@ -4959,11 +5031,11 @@ SectionListMatch = Struct.new(
 Site = Struct.new(
   :api_link,
   :api_model,
-  :artwork_id,
-  :artwork_title,
+  :artwork_ids,
+  :artwork_titles,
   :description,
-  :exhibition_id,
-  :exhibition_title,
+  :exhibition_ids,
+  :exhibition_titles,
   :id,
   :source_updated_at,
   :suggest_autocomplete_all,
@@ -4992,19 +5064,19 @@ SiteLoadMatch = Struct.new(
 # @!attribute [rw] api_model
 #   @return [Object, nil]
 #
-# @!attribute [rw] artwork_id
-#   @return [String, nil]
+# @!attribute [rw] artwork_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] artwork_title
+# @!attribute [rw] artwork_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] exhibition_id
-#   @return [String, nil]
+# @!attribute [rw] exhibition_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] exhibition_title
+# @!attribute [rw] exhibition_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] id
@@ -5033,11 +5105,11 @@ SiteLoadMatch = Struct.new(
 SiteListMatch = Struct.new(
   :api_link,
   :api_model,
-  :artwork_id,
-  :artwork_title,
+  :artwork_ids,
+  :artwork_titles,
   :description,
-  :exhibition_id,
-  :exhibition_title,
+  :exhibition_ids,
+  :exhibition_titles,
   :id,
   :source_updated_at,
   :suggest_autocomplete_all,
@@ -5060,10 +5132,10 @@ SiteListMatch = Struct.new(
 # @!attribute [rw] api_model
 #   @return [Object, nil]
 #
-# @!attribute [rw] artwork_id
-#   @return [String, nil]
+# @!attribute [rw] artwork_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] artwork_title
+# @!attribute [rw] artwork_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] content
@@ -5120,8 +5192,8 @@ Sound = Struct.new(
   :alt_text,
   :api_link,
   :api_model,
-  :artwork_id,
-  :artwork_title,
+  :artwork_ids,
+  :artwork_titles,
   :content,
   :content_e_tag,
   :credit_line,
@@ -5162,10 +5234,10 @@ SoundLoadMatch = Struct.new(
 # @!attribute [rw] api_model
 #   @return [Object, nil]
 #
-# @!attribute [rw] artwork_id
-#   @return [String, nil]
+# @!attribute [rw] artwork_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] artwork_title
+# @!attribute [rw] artwork_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] content
@@ -5222,8 +5294,8 @@ SoundListMatch = Struct.new(
   :alt_text,
   :api_link,
   :api_model,
-  :artwork_id,
-  :artwork_title,
+  :artwork_ids,
+  :artwork_titles,
   :content,
   :content_e_tag,
   :credit_line,
@@ -5354,10 +5426,10 @@ StaticPageListMatch = Struct.new(
 # @!attribute [rw] api_model
 #   @return [Object, nil]
 #
-# @!attribute [rw] artwork_id
-#   @return [String, nil]
+# @!attribute [rw] artwork_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] artwork_title
+# @!attribute [rw] artwork_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] content
@@ -5408,8 +5480,8 @@ Text = Struct.new(
   :alt_text,
   :api_link,
   :api_model,
-  :artwork_id,
-  :artwork_title,
+  :artwork_ids,
+  :artwork_titles,
   :content,
   :content_e_tag,
   :credit_line,
@@ -5448,10 +5520,10 @@ TextLoadMatch = Struct.new(
 # @!attribute [rw] api_model
 #   @return [Object, nil]
 #
-# @!attribute [rw] artwork_id
-#   @return [String, nil]
+# @!attribute [rw] artwork_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] artwork_title
+# @!attribute [rw] artwork_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] content
@@ -5502,8 +5574,8 @@ TextListMatch = Struct.new(
   :alt_text,
   :api_link,
   :api_model,
-  :artwork_id,
-  :artwork_title,
+  :artwork_ids,
+  :artwork_titles,
   :content,
   :content_e_tag,
   :credit_line,
@@ -5530,10 +5602,10 @@ TextListMatch = Struct.new(
 # @!attribute [rw] api_model
 #   @return [Object, nil]
 #
-# @!attribute [rw] artist_title
+# @!attribute [rw] artist_titles
 #   @return [Object, nil]
 #
-# @!attribute [rw] artwork_title
+# @!attribute [rw] artwork_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] description
@@ -5577,8 +5649,8 @@ TextListMatch = Struct.new(
 Tour = Struct.new(
   :api_link,
   :api_model,
-  :artist_title,
-  :artwork_title,
+  :artist_titles,
+  :artwork_titles,
   :description,
   :id,
   :image,
@@ -5612,10 +5684,10 @@ TourLoadMatch = Struct.new(
 # @!attribute [rw] api_model
 #   @return [Object, nil]
 #
-# @!attribute [rw] artist_title
+# @!attribute [rw] artist_titles
 #   @return [Object, nil]
 #
-# @!attribute [rw] artwork_title
+# @!attribute [rw] artwork_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] description
@@ -5659,8 +5731,8 @@ TourLoadMatch = Struct.new(
 TourListMatch = Struct.new(
   :api_link,
   :api_model,
-  :artist_title,
-  :artwork_title,
+  :artist_titles,
+  :artwork_titles,
   :description,
   :id,
   :image,
@@ -5688,10 +5760,10 @@ TourListMatch = Struct.new(
 # @!attribute [rw] api_model
 #   @return [Object, nil]
 #
-# @!attribute [rw] artwork_id
-#   @return [String, nil]
+# @!attribute [rw] artwork_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] artwork_title
+# @!attribute [rw] artwork_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] content
@@ -5742,8 +5814,8 @@ Video = Struct.new(
   :alt_text,
   :api_link,
   :api_model,
-  :artwork_id,
-  :artwork_title,
+  :artwork_ids,
+  :artwork_titles,
   :content,
   :content_e_tag,
   :credit_line,
@@ -5782,10 +5854,10 @@ VideoLoadMatch = Struct.new(
 # @!attribute [rw] api_model
 #   @return [Object, nil]
 #
-# @!attribute [rw] artwork_id
-#   @return [String, nil]
+# @!attribute [rw] artwork_ids
+#   @return [Object, nil]
 #
-# @!attribute [rw] artwork_title
+# @!attribute [rw] artwork_titles
 #   @return [Object, nil]
 #
 # @!attribute [rw] content
@@ -5836,8 +5908,8 @@ VideoListMatch = Struct.new(
   :alt_text,
   :api_link,
   :api_model,
-  :artwork_id,
-  :artwork_title,
+  :artwork_ids,
+  :artwork_titles,
   :content,
   :content_e_tag,
   :credit_line,

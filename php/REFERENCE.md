@@ -228,7 +228,7 @@ $agent = $client->Agent();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_title` | `mixed` | No |  |
+| `alt_titles` | `mixed` | No |  |
 | `api_link` | `mixed` | No |  |
 | `api_model` | `mixed` | No |  |
 | `birth_date` | `mixed` | No |  |
@@ -508,28 +508,32 @@ $artwork = $client->Artwork();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_artist_id` | `string` | No |  |
-| `alt_classification_id` | `string` | No |  |
-| `alt_image_id` | `string` | No |  |
-| `alt_material_id` | `string` | No |  |
-| `alt_style_id` | `string` | No |  |
-| `alt_subject_id` | `string` | No |  |
-| `alt_technique_id` | `string` | No |  |
-| `alt_title` | `mixed` | No |  |
+| `alt_artist_ids` | `mixed` | No |  |
+| `alt_classification_ids` | `mixed` | No |  |
+| `alt_image_ids` | `mixed` | No |  |
+| `alt_material_ids` | `mixed` | No |  |
+| `alt_style_ids` | `mixed` | No |  |
+| `alt_subject_ids` | `mixed` | No |  |
+| `alt_technique_ids` | `mixed` | No |  |
+| `alt_titles` | `mixed` | No |  |
 | `api_link` | `mixed` | No |  |
 | `api_model` | `mixed` | No |  |
 | `artist_display` | `mixed` | No |  |
 | `artist_id` | `string` | No |  |
+| `artist_ids` | `mixed` | No |  |
 | `artist_title` | `mixed` | No |  |
+| `artist_titles` | `mixed` | No |  |
 | `artwork_type_id` | `string` | No |  |
 | `artwork_type_title` | `mixed` | No |  |
 | `boost_rank` | `mixed` | No |  |
-| `catalog_based_search_keyword_title` | `mixed` | No |  |
+| `catalog_based_search_keyword_titles` | `mixed` | No |  |
 | `catalogue_display` | `mixed` | No |  |
-| `category_id` | `string` | No |  |
-| `category_title` | `mixed` | No |  |
+| `category_ids` | `mixed` | No |  |
+| `category_titles` | `mixed` | No |  |
 | `classification_id` | `string` | No |  |
+| `classification_ids` | `mixed` | No |  |
 | `classification_title` | `mixed` | No |  |
+| `classification_titles` | `mixed` | No |  |
 | `color` | `mixed` | No |  |
 | `colorfulness` | `mixed` | No |  |
 | `copyright_notice` | `mixed` | No |  |
@@ -542,9 +546,9 @@ $artwork = $client->Artwork();
 | `department_id` | `string` | No |  |
 | `department_title` | `mixed` | No |  |
 | `description` | `string` | No |  |
-| `dimension` | `mixed` | No |  |
+| `dimensions` | `mixed` | No |  |
 | `dimensions_detail` | `mixed` | No |  |
-| `document_id` | `string` | No |  |
+| `document_ids` | `mixed` | No |  |
 | `edition` | `mixed` | No |  |
 | `exhibition_history` | `mixed` | No |  |
 | `fiscal_year` | `mixed` | No |  |
@@ -552,13 +556,13 @@ $artwork = $client->Artwork();
 | `gallery_id` | `string` | No |  |
 | `gallery_title` | `mixed` | No |  |
 | `has_advanced_imaging` | `bool` | No |  |
-| `has_educational_resource` | `bool` | No |  |
-| `has_multimedia_resource` | `bool` | No |  |
+| `has_educational_resources` | `bool` | No |  |
+| `has_multimedia_resources` | `bool` | No |  |
 | `has_not_been_viewed_much` | `bool` | No |  |
 | `id` | `string` | No |  |
 | `image_embedding` | `mixed` | No |  |
 | `image_id` | `string` | No |  |
-| `inscription` | `mixed` | No |  |
+| `inscriptions` | `mixed` | No |  |
 | `internal_department_id` | `string` | No |  |
 | `is_boosted` | `bool` | No |  |
 | `is_on_view` | `bool` | No |  |
@@ -569,40 +573,45 @@ $artwork = $client->Artwork();
 | `longitude` | `float` | No |  |
 | `main_reference_number` | `int` | No |  |
 | `material_id` | `string` | No |  |
-| `material_title` | `mixed` | No |  |
+| `material_ids` | `mixed` | No |  |
+| `material_titles` | `mixed` | No |  |
 | `max_zoom_window_size` | `mixed` | No |  |
 | `medium_display` | `mixed` | No |  |
 | `nomisma_id` | `string` | No |  |
 | `on_loan_display` | `mixed` | No |  |
-| `pageview` | `mixed` | No |  |
+| `pageviews` | `mixed` | No |  |
 | `pageviews_recent` | `mixed` | No |  |
 | `place_of_origin` | `mixed` | No |  |
 | `provenance_text` | `mixed` | No |  |
 | `publication_history` | `mixed` | No |  |
 | `publishing_verification_level` | `mixed` | No |  |
-| `section_id` | `string` | No |  |
-| `section_title` | `mixed` | No |  |
+| `section_ids` | `mixed` | No |  |
+| `section_titles` | `mixed` | No |  |
 | `short_description` | `mixed` | No |  |
-| `site_id` | `string` | No |  |
-| `sound_id` | `string` | No |  |
+| `site_ids` | `mixed` | No |  |
+| `sound_ids` | `mixed` | No |  |
 | `source_updated_at` | `mixed` | No |  |
 | `style_id` | `string` | No |  |
+| `style_ids` | `mixed` | No |  |
 | `style_title` | `mixed` | No |  |
+| `style_titles` | `mixed` | No |  |
 | `subject_id` | `string` | No |  |
-| `subject_title` | `mixed` | No |  |
+| `subject_ids` | `mixed` | No |  |
+| `subject_titles` | `mixed` | No |  |
 | `suggest_autocomplete_all` | `mixed` | No |  |
 | `suggest_autocomplete_boosted` | `mixed` | No |  |
 | `technique_id` | `string` | No |  |
-| `technique_title` | `mixed` | No |  |
-| `term_title` | `mixed` | No |  |
+| `technique_ids` | `mixed` | No |  |
+| `technique_titles` | `mixed` | No |  |
+| `term_titles` | `mixed` | No |  |
 | `text_embedding` | `mixed` | No |  |
-| `text_id` | `string` | No |  |
-| `theme_title` | `mixed` | No |  |
+| `text_ids` | `mixed` | No |  |
+| `theme_titles` | `mixed` | No |  |
 | `thumbnail` | `mixed` | No |  |
 | `timestamp` | `mixed` | No |  |
 | `title` | `string` | No |  |
 | `updated_at` | `mixed` | No |  |
-| `video_id` | `string` | No |  |
+| `video_ids` | `mixed` | No |  |
 
 ### Operations
 
@@ -1149,8 +1158,8 @@ $event = $client->Event();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_audience_id` | `string` | No |  |
-| `alt_event_type_id` | `string` | No |  |
+| `alt_audience_ids` | `mixed` | No |  |
+| `alt_event_type_ids` | `mixed` | No |  |
 | `api_link` | `mixed` | No |  |
 | `api_model` | `mixed` | No |  |
 | `audience_id` | `string` | No |  |
@@ -1170,7 +1179,7 @@ $event = $client->Event();
 | `id` | `string` | No |  |
 | `image_url` | `mixed` | No |  |
 | `is_admission_required` | `bool` | No |  |
-| `is_after_hour` | `bool` | No |  |
+| `is_after_hours` | `bool` | No |  |
 | `is_free` | `bool` | No |  |
 | `is_member_exclusive` | `bool` | No |  |
 | `is_private` | `bool` | No |  |
@@ -1183,10 +1192,10 @@ $event = $client->Event();
 | `layout_type` | `mixed` | No |  |
 | `list_description` | `mixed` | No |  |
 | `location` | `mixed` | No |  |
-| `program_id` | `string` | No |  |
-| `program_title` | `mixed` | No |  |
+| `program_ids` | `mixed` | No |  |
+| `program_titles` | `mixed` | No |  |
 | `rsvp_link` | `mixed` | No |  |
-| `search_tag` | `mixed` | No |  |
+| `search_tags` | `mixed` | No |  |
 | `short_description` | `mixed` | No |  |
 | `slug` | `string` | No |  |
 | `source_updated_at` | `mixed` | No |  |
@@ -1417,13 +1426,13 @@ $exhibition = $client->Exhibition();
 | --- | --- | --- | --- |
 | `aic_end_at` | `mixed` | No |  |
 | `aic_start_at` | `mixed` | No |  |
-| `alt_image_id` | `string` | No |  |
+| `alt_image_ids` | `mixed` | No |  |
 | `api_link` | `mixed` | No |  |
 | `api_model` | `mixed` | No |  |
-| `artist_id` | `string` | No |  |
-| `artwork_id` | `string` | No |  |
-| `artwork_title` | `mixed` | No |  |
-| `document_id` | `string` | No |  |
+| `artist_ids` | `mixed` | No |  |
+| `artwork_ids` | `mixed` | No |  |
+| `artwork_titles` | `mixed` | No |  |
+| `document_ids` | `mixed` | No |  |
 | `gallery_id` | `string` | No |  |
 | `gallery_title` | `mixed` | No |  |
 | `id` | `string` | No |  |
@@ -1433,7 +1442,7 @@ $exhibition = $client->Exhibition();
 | `is_published` | `bool` | No |  |
 | `position` | `mixed` | No |  |
 | `short_description` | `mixed` | No |  |
-| `site_id` | `string` | No |  |
+| `site_ids` | `mixed` | No |  |
 | `source_updated_at` | `mixed` | No |  |
 | `status` | `mixed` | No |  |
 | `suggest_autocomplete_all` | `mixed` | No |  |
@@ -1580,7 +1589,7 @@ $generic_page = $client->GenericPage();
 | `api_model` | `mixed` | No |  |
 | `copy` | `mixed` | No |  |
 | `id` | `string` | No |  |
-| `search_tag` | `mixed` | No |  |
+| `search_tags` | `mixed` | No |  |
 | `source_updated_at` | `mixed` | No |  |
 | `suggest_autocomplete_all` | `mixed` | No |  |
 | `suggest_autocomplete_boosted` | `mixed` | No |  |
@@ -1825,8 +1834,8 @@ $image = $client->Image();
 | `alt_text` | `mixed` | No |  |
 | `api_link` | `mixed` | No |  |
 | `api_model` | `mixed` | No |  |
-| `artwork_id` | `string` | No |  |
-| `artwork_title` | `mixed` | No |  |
+| `artwork_ids` | `mixed` | No |  |
+| `artwork_titles` | `mixed` | No |  |
 | `color` | `mixed` | No |  |
 | `colorfulness` | `mixed` | No |  |
 | `content` | `mixed` | No |  |
@@ -1913,7 +1922,7 @@ $landing_page = $client->LandingPage();
 | `api_model` | `mixed` | No |  |
 | `copy` | `mixed` | No |  |
 | `id` | `string` | No |  |
-| `search_tag` | `mixed` | No |  |
+| `search_tags` | `mixed` | No |  |
 | `source_updated_at` | `mixed` | No |  |
 | `suggest_autocomplete_all` | `mixed` | No |  |
 | `suggest_autocomplete_boosted` | `mixed` | No |  |
@@ -2193,10 +2202,10 @@ $product = $client->Product();
 | --- | --- | --- | --- |
 | `api_link` | `mixed` | No |  |
 | `api_model` | `mixed` | No |  |
-| `artist_id` | `string` | No |  |
-| `artwork_id` | `string` | No |  |
+| `artist_ids` | `mixed` | No |  |
+| `artwork_ids` | `mixed` | No |  |
 | `description` | `string` | No |  |
-| `exhibition_id` | `string` | No |  |
+| `exhibition_ids` | `mixed` | No |  |
 | `external_sku` | `mixed` | No |  |
 | `id` | `string` | No |  |
 | `image_url` | `mixed` | No |  |
@@ -2274,7 +2283,7 @@ $publication = $client->Publication();
 | `api_link` | `mixed` | No |  |
 | `api_model` | `mixed` | No |  |
 | `id` | `string` | No |  |
-| `section_id` | `string` | No |  |
+| `section_ids` | `mixed` | No |  |
 | `source_updated_at` | `mixed` | No |  |
 | `suggest_autocomplete_all` | `mixed` | No |  |
 | `suggest_autocomplete_boosted` | `mixed` | No |  |
@@ -2478,11 +2487,11 @@ $site = $client->Site();
 | --- | --- | --- | --- |
 | `api_link` | `mixed` | No |  |
 | `api_model` | `mixed` | No |  |
-| `artwork_id` | `string` | No |  |
-| `artwork_title` | `mixed` | No |  |
+| `artwork_ids` | `mixed` | No |  |
+| `artwork_titles` | `mixed` | No |  |
 | `description` | `string` | No |  |
-| `exhibition_id` | `string` | No |  |
-| `exhibition_title` | `mixed` | No |  |
+| `exhibition_ids` | `mixed` | No |  |
+| `exhibition_titles` | `mixed` | No |  |
 | `id` | `string` | No |  |
 | `source_updated_at` | `mixed` | No |  |
 | `suggest_autocomplete_all` | `mixed` | No |  |
@@ -2553,8 +2562,8 @@ $sound = $client->Sound();
 | `alt_text` | `mixed` | No |  |
 | `api_link` | `mixed` | No |  |
 | `api_model` | `mixed` | No |  |
-| `artwork_id` | `string` | No |  |
-| `artwork_title` | `mixed` | No |  |
+| `artwork_ids` | `mixed` | No |  |
+| `artwork_titles` | `mixed` | No |  |
 | `content` | `mixed` | No |  |
 | `content_e_tag` | `mixed` | No |  |
 | `credit_line` | `mixed` | No |  |
@@ -2703,8 +2712,8 @@ $text = $client->Text();
 | `alt_text` | `mixed` | No |  |
 | `api_link` | `mixed` | No |  |
 | `api_model` | `mixed` | No |  |
-| `artwork_id` | `string` | No |  |
-| `artwork_title` | `mixed` | No |  |
+| `artwork_ids` | `mixed` | No |  |
+| `artwork_titles` | `mixed` | No |  |
 | `content` | `mixed` | No |  |
 | `content_e_tag` | `mixed` | No |  |
 | `credit_line` | `mixed` | No |  |
@@ -2781,8 +2790,8 @@ $tour = $client->Tour();
 | --- | --- | --- | --- |
 | `api_link` | `mixed` | No |  |
 | `api_model` | `mixed` | No |  |
-| `artist_title` | `mixed` | No |  |
-| `artwork_title` | `mixed` | No |  |
+| `artist_titles` | `mixed` | No |  |
+| `artwork_titles` | `mixed` | No |  |
 | `description` | `string` | No |  |
 | `id` | `string` | No |  |
 | `image` | `mixed` | No |  |
@@ -2858,8 +2867,8 @@ $video = $client->Video();
 | `alt_text` | `mixed` | No |  |
 | `api_link` | `mixed` | No |  |
 | `api_model` | `mixed` | No |  |
-| `artwork_id` | `string` | No |  |
-| `artwork_title` | `mixed` | No |  |
+| `artwork_ids` | `mixed` | No |  |
+| `artwork_titles` | `mixed` | No |  |
 | `content` | `mixed` | No |  |
 | `content_e_tag` | `mixed` | No |  |
 | `credit_line` | `mixed` | No |  |

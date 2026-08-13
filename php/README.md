@@ -38,7 +38,7 @@ try {
     // list() returns an array of Agent records — iterate directly.
     $agents = $client->Agent()->list();
     foreach ($agents as $item) {
-        echo $item["id"] . " " . $item["alt_title"] . "\n";
+        echo $item["id"] . " " . $item["alt_titles"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -49,7 +49,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare Agent record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Agent record (throws on error).
     $agent = $client->Agent()->load(["id" => "example_id"]);
     print_r($agent);
 } catch (\Throwable $err) {
@@ -65,7 +65,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $agents = $client->Agent()->list();
+    $publications = $client->Publication()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -137,12 +137,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```php
 $client = ArtInstituteOfChicagoSDK::test([
-    "entity" => ["agent" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["publication" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
-$agent = $client->Agent()->list();
-print_r($agent);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$publication = $client->Publication()->list();
+print_r($publication);
 ```
 
 ### Use a custom fetch function
@@ -274,7 +275,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -296,7 +297,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `alt_title` |  |
+| `alt_titles` |  |
 | `api_link` |  |
 | `api_model` |  |
 | `birth_date` |  |
@@ -376,28 +377,32 @@ API path: `/articles`
 
 | Field | Description |
 | --- | --- |
-| `alt_artist_id` |  |
-| `alt_classification_id` |  |
-| `alt_image_id` |  |
-| `alt_material_id` |  |
-| `alt_style_id` |  |
-| `alt_subject_id` |  |
-| `alt_technique_id` |  |
-| `alt_title` |  |
+| `alt_artist_ids` |  |
+| `alt_classification_ids` |  |
+| `alt_image_ids` |  |
+| `alt_material_ids` |  |
+| `alt_style_ids` |  |
+| `alt_subject_ids` |  |
+| `alt_technique_ids` |  |
+| `alt_titles` |  |
 | `api_link` |  |
 | `api_model` |  |
 | `artist_display` |  |
 | `artist_id` |  |
+| `artist_ids` |  |
 | `artist_title` |  |
+| `artist_titles` |  |
 | `artwork_type_id` |  |
 | `artwork_type_title` |  |
 | `boost_rank` |  |
-| `catalog_based_search_keyword_title` |  |
+| `catalog_based_search_keyword_titles` |  |
 | `catalogue_display` |  |
-| `category_id` |  |
-| `category_title` |  |
+| `category_ids` |  |
+| `category_titles` |  |
 | `classification_id` |  |
+| `classification_ids` |  |
 | `classification_title` |  |
+| `classification_titles` |  |
 | `color` |  |
 | `colorfulness` |  |
 | `copyright_notice` |  |
@@ -410,9 +415,9 @@ API path: `/articles`
 | `department_id` |  |
 | `department_title` |  |
 | `description` |  |
-| `dimension` |  |
+| `dimensions` |  |
 | `dimensions_detail` |  |
-| `document_id` |  |
+| `document_ids` |  |
 | `edition` |  |
 | `exhibition_history` |  |
 | `fiscal_year` |  |
@@ -420,13 +425,13 @@ API path: `/articles`
 | `gallery_id` |  |
 | `gallery_title` |  |
 | `has_advanced_imaging` |  |
-| `has_educational_resource` |  |
-| `has_multimedia_resource` |  |
+| `has_educational_resources` |  |
+| `has_multimedia_resources` |  |
 | `has_not_been_viewed_much` |  |
 | `id` |  |
 | `image_embedding` |  |
 | `image_id` |  |
-| `inscription` |  |
+| `inscriptions` |  |
 | `internal_department_id` |  |
 | `is_boosted` |  |
 | `is_on_view` |  |
@@ -437,40 +442,45 @@ API path: `/articles`
 | `longitude` |  |
 | `main_reference_number` |  |
 | `material_id` |  |
-| `material_title` |  |
+| `material_ids` |  |
+| `material_titles` |  |
 | `max_zoom_window_size` |  |
 | `medium_display` |  |
 | `nomisma_id` |  |
 | `on_loan_display` |  |
-| `pageview` |  |
+| `pageviews` |  |
 | `pageviews_recent` |  |
 | `place_of_origin` |  |
 | `provenance_text` |  |
 | `publication_history` |  |
 | `publishing_verification_level` |  |
-| `section_id` |  |
-| `section_title` |  |
+| `section_ids` |  |
+| `section_titles` |  |
 | `short_description` |  |
-| `site_id` |  |
-| `sound_id` |  |
+| `site_ids` |  |
+| `sound_ids` |  |
 | `source_updated_at` |  |
 | `style_id` |  |
+| `style_ids` |  |
 | `style_title` |  |
+| `style_titles` |  |
 | `subject_id` |  |
-| `subject_title` |  |
+| `subject_ids` |  |
+| `subject_titles` |  |
 | `suggest_autocomplete_all` |  |
 | `suggest_autocomplete_boosted` |  |
 | `technique_id` |  |
-| `technique_title` |  |
-| `term_title` |  |
+| `technique_ids` |  |
+| `technique_titles` |  |
+| `term_titles` |  |
 | `text_embedding` |  |
-| `text_id` |  |
-| `theme_title` |  |
+| `text_ids` |  |
+| `theme_titles` |  |
 | `thumbnail` |  |
 | `timestamp` |  |
 | `title` |  |
 | `updated_at` |  |
-| `video_id` |  |
+| `video_ids` |  |
 
 Operations: List, Load.
 
@@ -617,8 +627,8 @@ API path: `/educator-resources`
 
 | Field | Description |
 | --- | --- |
-| `alt_audience_id` |  |
-| `alt_event_type_id` |  |
+| `alt_audience_ids` |  |
+| `alt_event_type_ids` |  |
 | `api_link` |  |
 | `api_model` |  |
 | `audience_id` |  |
@@ -638,7 +648,7 @@ API path: `/educator-resources`
 | `id` |  |
 | `image_url` |  |
 | `is_admission_required` |  |
-| `is_after_hour` |  |
+| `is_after_hours` |  |
 | `is_free` |  |
 | `is_member_exclusive` |  |
 | `is_private` |  |
@@ -651,10 +661,10 @@ API path: `/educator-resources`
 | `layout_type` |  |
 | `list_description` |  |
 | `location` |  |
-| `program_id` |  |
-| `program_title` |  |
+| `program_ids` |  |
+| `program_titles` |  |
 | `rsvp_link` |  |
-| `search_tag` |  |
+| `search_tags` |  |
 | `short_description` |  |
 | `slug` |  |
 | `source_updated_at` |  |
@@ -735,13 +745,13 @@ API path: `/event-programs`
 | --- | --- |
 | `aic_end_at` |  |
 | `aic_start_at` |  |
-| `alt_image_id` |  |
+| `alt_image_ids` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artist_id` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
-| `document_id` |  |
+| `artist_ids` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
+| `document_ids` |  |
 | `gallery_id` |  |
 | `gallery_title` |  |
 | `id` |  |
@@ -751,7 +761,7 @@ API path: `/event-programs`
 | `is_published` |  |
 | `position` |  |
 | `short_description` |  |
-| `site_id` |  |
+| `site_ids` |  |
 | `source_updated_at` |  |
 | `status` |  |
 | `suggest_autocomplete_all` |  |
@@ -798,7 +808,7 @@ API path: `/galleries`
 | `api_model` |  |
 | `copy` |  |
 | `id` |  |
-| `search_tag` |  |
+| `search_tags` |  |
 | `source_updated_at` |  |
 | `suggest_autocomplete_all` |  |
 | `suggest_autocomplete_boosted` |  |
@@ -893,8 +903,8 @@ API path: `/hours`
 | `alt_text` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `color` |  |
 | `colorfulness` |  |
 | `content` |  |
@@ -931,7 +941,7 @@ API path: `/images`
 | `api_model` |  |
 | `copy` |  |
 | `id` |  |
-| `search_tag` |  |
+| `search_tags` |  |
 | `source_updated_at` |  |
 | `suggest_autocomplete_all` |  |
 | `suggest_autocomplete_boosted` |  |
@@ -1011,10 +1021,10 @@ API path: `/printed-publications`
 | --- | --- |
 | `api_link` |  |
 | `api_model` |  |
-| `artist_id` |  |
-| `artwork_id` |  |
+| `artist_ids` |  |
+| `artwork_ids` |  |
 | `description` |  |
-| `exhibition_id` |  |
+| `exhibition_ids` |  |
 | `external_sku` |  |
 | `id` |  |
 | `image_url` |  |
@@ -1042,7 +1052,7 @@ API path: `/products`
 | `api_link` |  |
 | `api_model` |  |
 | `id` |  |
-| `section_id` |  |
+| `section_ids` |  |
 | `source_updated_at` |  |
 | `suggest_autocomplete_all` |  |
 | `suggest_autocomplete_boosted` |  |
@@ -1104,11 +1114,11 @@ API path: `/sections`
 | --- | --- |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `description` |  |
-| `exhibition_id` |  |
-| `exhibition_title` |  |
+| `exhibition_ids` |  |
+| `exhibition_titles` |  |
 | `id` |  |
 | `source_updated_at` |  |
 | `suggest_autocomplete_all` |  |
@@ -1129,8 +1139,8 @@ API path: `/sites`
 | `alt_text` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `content` |  |
 | `content_e_tag` |  |
 | `credit_line` |  |
@@ -1179,8 +1189,8 @@ API path: `/static-pages`
 | `alt_text` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `content` |  |
 | `content_e_tag` |  |
 | `credit_line` |  |
@@ -1207,8 +1217,8 @@ API path: `/texts`
 | --- | --- |
 | `api_link` |  |
 | `api_model` |  |
-| `artist_title` |  |
-| `artwork_title` |  |
+| `artist_titles` |  |
+| `artwork_titles` |  |
 | `description` |  |
 | `id` |  |
 | `image` |  |
@@ -1234,8 +1244,8 @@ API path: `/tours`
 | `alt_text` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `content` |  |
 | `content_e_tag` |  |
 | `credit_line` |  |
@@ -1276,7 +1286,7 @@ Create an instance: `$agent = $client->Agent();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_title` | `mixed` |  |
+| `alt_titles` | `mixed` |  |
 | `api_link` | `mixed` |  |
 | `api_model` | `mixed` |  |
 | `birth_date` | `mixed` |  |
@@ -1296,7 +1306,7 @@ Create an instance: `$agent = $client->Agent();`
 #### Example: Load
 
 ```php
-// load() returns the bare Agent record (throws on error).
+// load() returns the ENTITY — call data_get() for the Agent record (throws on error).
 $agent = $client->Agent()->load(["id" => "agent_id"]);
 ```
 
@@ -1336,7 +1346,7 @@ Create an instance: `$agent_role = $client->AgentRole();`
 #### Example: Load
 
 ```php
-// load() returns the bare AgentRole record (throws on error).
+// load() returns the ENTITY — call data_get() for the AgentRole record (throws on error).
 $agent_role = $client->AgentRole()->load(["id" => "agent_role_id"]);
 ```
 
@@ -1376,7 +1386,7 @@ Create an instance: `$agent_type = $client->AgentType();`
 #### Example: Load
 
 ```php
-// load() returns the bare AgentType record (throws on error).
+// load() returns the ENTITY — call data_get() for the AgentType record (throws on error).
 $agent_type = $client->AgentType()->load(["id" => "agent_type_id"]);
 ```
 
@@ -1417,7 +1427,7 @@ Create an instance: `$article = $client->Article();`
 #### Example: Load
 
 ```php
-// load() returns the bare Article record (throws on error).
+// load() returns the ENTITY — call data_get() for the Article record (throws on error).
 $article = $client->Article()->load(["id" => "article_id"]);
 ```
 
@@ -1444,28 +1454,32 @@ Create an instance: `$artwork = $client->Artwork();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_artist_id` | `string` |  |
-| `alt_classification_id` | `string` |  |
-| `alt_image_id` | `string` |  |
-| `alt_material_id` | `string` |  |
-| `alt_style_id` | `string` |  |
-| `alt_subject_id` | `string` |  |
-| `alt_technique_id` | `string` |  |
-| `alt_title` | `mixed` |  |
+| `alt_artist_ids` | `mixed` |  |
+| `alt_classification_ids` | `mixed` |  |
+| `alt_image_ids` | `mixed` |  |
+| `alt_material_ids` | `mixed` |  |
+| `alt_style_ids` | `mixed` |  |
+| `alt_subject_ids` | `mixed` |  |
+| `alt_technique_ids` | `mixed` |  |
+| `alt_titles` | `mixed` |  |
 | `api_link` | `mixed` |  |
 | `api_model` | `mixed` |  |
 | `artist_display` | `mixed` |  |
 | `artist_id` | `string` |  |
+| `artist_ids` | `mixed` |  |
 | `artist_title` | `mixed` |  |
+| `artist_titles` | `mixed` |  |
 | `artwork_type_id` | `string` |  |
 | `artwork_type_title` | `mixed` |  |
 | `boost_rank` | `mixed` |  |
-| `catalog_based_search_keyword_title` | `mixed` |  |
+| `catalog_based_search_keyword_titles` | `mixed` |  |
 | `catalogue_display` | `mixed` |  |
-| `category_id` | `string` |  |
-| `category_title` | `mixed` |  |
+| `category_ids` | `mixed` |  |
+| `category_titles` | `mixed` |  |
 | `classification_id` | `string` |  |
+| `classification_ids` | `mixed` |  |
 | `classification_title` | `mixed` |  |
+| `classification_titles` | `mixed` |  |
 | `color` | `mixed` |  |
 | `colorfulness` | `mixed` |  |
 | `copyright_notice` | `mixed` |  |
@@ -1478,9 +1492,9 @@ Create an instance: `$artwork = $client->Artwork();`
 | `department_id` | `string` |  |
 | `department_title` | `mixed` |  |
 | `description` | `string` |  |
-| `dimension` | `mixed` |  |
+| `dimensions` | `mixed` |  |
 | `dimensions_detail` | `mixed` |  |
-| `document_id` | `string` |  |
+| `document_ids` | `mixed` |  |
 | `edition` | `mixed` |  |
 | `exhibition_history` | `mixed` |  |
 | `fiscal_year` | `mixed` |  |
@@ -1488,13 +1502,13 @@ Create an instance: `$artwork = $client->Artwork();`
 | `gallery_id` | `string` |  |
 | `gallery_title` | `mixed` |  |
 | `has_advanced_imaging` | `bool` |  |
-| `has_educational_resource` | `bool` |  |
-| `has_multimedia_resource` | `bool` |  |
+| `has_educational_resources` | `bool` |  |
+| `has_multimedia_resources` | `bool` |  |
 | `has_not_been_viewed_much` | `bool` |  |
 | `id` | `string` |  |
 | `image_embedding` | `mixed` |  |
 | `image_id` | `string` |  |
-| `inscription` | `mixed` |  |
+| `inscriptions` | `mixed` |  |
 | `internal_department_id` | `string` |  |
 | `is_boosted` | `bool` |  |
 | `is_on_view` | `bool` |  |
@@ -1505,45 +1519,50 @@ Create an instance: `$artwork = $client->Artwork();`
 | `longitude` | `float` |  |
 | `main_reference_number` | `int` |  |
 | `material_id` | `string` |  |
-| `material_title` | `mixed` |  |
+| `material_ids` | `mixed` |  |
+| `material_titles` | `mixed` |  |
 | `max_zoom_window_size` | `mixed` |  |
 | `medium_display` | `mixed` |  |
 | `nomisma_id` | `string` |  |
 | `on_loan_display` | `mixed` |  |
-| `pageview` | `mixed` |  |
+| `pageviews` | `mixed` |  |
 | `pageviews_recent` | `mixed` |  |
 | `place_of_origin` | `mixed` |  |
 | `provenance_text` | `mixed` |  |
 | `publication_history` | `mixed` |  |
 | `publishing_verification_level` | `mixed` |  |
-| `section_id` | `string` |  |
-| `section_title` | `mixed` |  |
+| `section_ids` | `mixed` |  |
+| `section_titles` | `mixed` |  |
 | `short_description` | `mixed` |  |
-| `site_id` | `string` |  |
-| `sound_id` | `string` |  |
+| `site_ids` | `mixed` |  |
+| `sound_ids` | `mixed` |  |
 | `source_updated_at` | `mixed` |  |
 | `style_id` | `string` |  |
+| `style_ids` | `mixed` |  |
 | `style_title` | `mixed` |  |
+| `style_titles` | `mixed` |  |
 | `subject_id` | `string` |  |
-| `subject_title` | `mixed` |  |
+| `subject_ids` | `mixed` |  |
+| `subject_titles` | `mixed` |  |
 | `suggest_autocomplete_all` | `mixed` |  |
 | `suggest_autocomplete_boosted` | `mixed` |  |
 | `technique_id` | `string` |  |
-| `technique_title` | `mixed` |  |
-| `term_title` | `mixed` |  |
+| `technique_ids` | `mixed` |  |
+| `technique_titles` | `mixed` |  |
+| `term_titles` | `mixed` |  |
 | `text_embedding` | `mixed` |  |
-| `text_id` | `string` |  |
-| `theme_title` | `mixed` |  |
+| `text_ids` | `mixed` |  |
+| `theme_titles` | `mixed` |  |
 | `thumbnail` | `mixed` |  |
 | `timestamp` | `mixed` |  |
 | `title` | `string` |  |
 | `updated_at` | `mixed` |  |
-| `video_id` | `string` |  |
+| `video_ids` | `mixed` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Artwork record (throws on error).
+// load() returns the ENTITY — call data_get() for the Artwork record (throws on error).
 $artwork = $client->Artwork()->load(["id" => "artwork_id"]);
 ```
 
@@ -1583,7 +1602,7 @@ Create an instance: `$artwork_date_qualifier = $client->ArtworkDateQualifier();`
 #### Example: Load
 
 ```php
-// load() returns the bare ArtworkDateQualifier record (throws on error).
+// load() returns the ENTITY — call data_get() for the ArtworkDateQualifier record (throws on error).
 $artwork_date_qualifier = $client->ArtworkDateQualifier()->load(["id" => "artwork_date_qualifier_id"]);
 ```
 
@@ -1623,7 +1642,7 @@ Create an instance: `$artwork_place_qualifier = $client->ArtworkPlaceQualifier()
 #### Example: Load
 
 ```php
-// load() returns the bare ArtworkPlaceQualifier record (throws on error).
+// load() returns the ENTITY — call data_get() for the ArtworkPlaceQualifier record (throws on error).
 $artwork_place_qualifier = $client->ArtworkPlaceQualifier()->load(["id" => "artwork_place_qualifier_id"]);
 ```
 
@@ -1664,7 +1683,7 @@ Create an instance: `$artwork_type = $client->ArtworkType();`
 #### Example: Load
 
 ```php
-// load() returns the bare ArtworkType record (throws on error).
+// load() returns the ENTITY — call data_get() for the ArtworkType record (throws on error).
 $artwork_type = $client->ArtworkType()->load(["id" => "artwork_type_id"]);
 ```
 
@@ -1706,7 +1725,7 @@ Create an instance: `$category_term = $client->CategoryTerm();`
 #### Example: Load
 
 ```php
-// load() returns the bare CategoryTerm record (throws on error).
+// load() returns the ENTITY — call data_get() for the CategoryTerm record (throws on error).
 $category_term = $client->CategoryTerm()->load(["id" => "category_term_id"]);
 ```
 
@@ -1748,7 +1767,7 @@ Create an instance: `$digital_publication = $client->DigitalPublication();`
 #### Example: Load
 
 ```php
-// load() returns the bare DigitalPublication record (throws on error).
+// load() returns the ENTITY — call data_get() for the DigitalPublication record (throws on error).
 $digital_publication = $client->DigitalPublication()->load(["id" => "digital_publication_id"]);
 ```
 
@@ -1792,7 +1811,7 @@ Create an instance: `$digital_publication_article = $client->DigitalPublicationA
 #### Example: Load
 
 ```php
-// load() returns the bare DigitalPublicationArticle record (throws on error).
+// load() returns the ENTITY — call data_get() for the DigitalPublicationArticle record (throws on error).
 $digital_publication_article = $client->DigitalPublicationArticle()->load(["id" => "digital_publication_article_id"]);
 ```
 
@@ -1834,7 +1853,7 @@ Create an instance: `$educator_resource = $client->EducatorResource();`
 #### Example: Load
 
 ```php
-// load() returns the bare EducatorResource record (throws on error).
+// load() returns the ENTITY — call data_get() for the EducatorResource record (throws on error).
 $educator_resource = $client->EducatorResource()->load(["id" => "educator_resource_id"]);
 ```
 
@@ -1861,8 +1880,8 @@ Create an instance: `$event = $client->Event();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_audience_id` | `string` |  |
-| `alt_event_type_id` | `string` |  |
+| `alt_audience_ids` | `mixed` |  |
+| `alt_event_type_ids` | `mixed` |  |
 | `api_link` | `mixed` |  |
 | `api_model` | `mixed` |  |
 | `audience_id` | `string` |  |
@@ -1882,7 +1901,7 @@ Create an instance: `$event = $client->Event();`
 | `id` | `string` |  |
 | `image_url` | `mixed` |  |
 | `is_admission_required` | `bool` |  |
-| `is_after_hour` | `bool` |  |
+| `is_after_hours` | `bool` |  |
 | `is_free` | `bool` |  |
 | `is_member_exclusive` | `bool` |  |
 | `is_private` | `bool` |  |
@@ -1895,10 +1914,10 @@ Create an instance: `$event = $client->Event();`
 | `layout_type` | `mixed` |  |
 | `list_description` | `mixed` |  |
 | `location` | `mixed` |  |
-| `program_id` | `string` |  |
-| `program_title` | `mixed` |  |
+| `program_ids` | `mixed` |  |
+| `program_titles` | `mixed` |  |
 | `rsvp_link` | `mixed` |  |
-| `search_tag` | `mixed` |  |
+| `search_tags` | `mixed` |  |
 | `short_description` | `mixed` |  |
 | `slug` | `string` |  |
 | `source_updated_at` | `mixed` |  |
@@ -1918,7 +1937,7 @@ Create an instance: `$event = $client->Event();`
 #### Example: Load
 
 ```php
-// load() returns the bare Event record (throws on error).
+// load() returns the ENTITY — call data_get() for the Event record (throws on error).
 $event = $client->Event()->load(["id" => "event_id"]);
 ```
 
@@ -1974,7 +1993,7 @@ Create an instance: `$event_occurrence = $client->EventOccurrence();`
 #### Example: Load
 
 ```php
-// load() returns the bare EventOccurrence record (throws on error).
+// load() returns the ENTITY — call data_get() for the EventOccurrence record (throws on error).
 $event_occurrence = $client->EventOccurrence()->load(["id" => "event_occurrence_id"]);
 ```
 
@@ -2016,7 +2035,7 @@ Create an instance: `$event_program = $client->EventProgram();`
 #### Example: Load
 
 ```php
-// load() returns the bare EventProgram record (throws on error).
+// load() returns the ENTITY — call data_get() for the EventProgram record (throws on error).
 $event_program = $client->EventProgram()->load(["id" => "event_program_id"]);
 ```
 
@@ -2045,13 +2064,13 @@ Create an instance: `$exhibition = $client->Exhibition();`
 | --- | --- | --- |
 | `aic_end_at` | `mixed` |  |
 | `aic_start_at` | `mixed` |  |
-| `alt_image_id` | `string` |  |
+| `alt_image_ids` | `mixed` |  |
 | `api_link` | `mixed` |  |
 | `api_model` | `mixed` |  |
-| `artist_id` | `string` |  |
-| `artwork_id` | `string` |  |
-| `artwork_title` | `mixed` |  |
-| `document_id` | `string` |  |
+| `artist_ids` | `mixed` |  |
+| `artwork_ids` | `mixed` |  |
+| `artwork_titles` | `mixed` |  |
+| `document_ids` | `mixed` |  |
 | `gallery_id` | `string` |  |
 | `gallery_title` | `mixed` |  |
 | `id` | `string` |  |
@@ -2061,7 +2080,7 @@ Create an instance: `$exhibition = $client->Exhibition();`
 | `is_published` | `bool` |  |
 | `position` | `mixed` |  |
 | `short_description` | `mixed` |  |
-| `site_id` | `string` |  |
+| `site_ids` | `mixed` |  |
 | `source_updated_at` | `mixed` |  |
 | `status` | `mixed` |  |
 | `suggest_autocomplete_all` | `mixed` |  |
@@ -2074,7 +2093,7 @@ Create an instance: `$exhibition = $client->Exhibition();`
 #### Example: Load
 
 ```php
-// load() returns the bare Exhibition record (throws on error).
+// load() returns the ENTITY — call data_get() for the Exhibition record (throws on error).
 $exhibition = $client->Exhibition()->load(["id" => "exhibition_id"]);
 ```
 
@@ -2121,7 +2140,7 @@ Create an instance: `$gallery = $client->Gallery();`
 #### Example: Load
 
 ```php
-// load() returns the bare Gallery record (throws on error).
+// load() returns the ENTITY — call data_get() for the Gallery record (throws on error).
 $gallery = $client->Gallery()->load(["id" => "gallery_id"]);
 ```
 
@@ -2152,7 +2171,7 @@ Create an instance: `$generic_page = $client->GenericPage();`
 | `api_model` | `mixed` |  |
 | `copy` | `mixed` |  |
 | `id` | `string` |  |
-| `search_tag` | `mixed` |  |
+| `search_tags` | `mixed` |  |
 | `source_updated_at` | `mixed` |  |
 | `suggest_autocomplete_all` | `mixed` |  |
 | `suggest_autocomplete_boosted` | `mixed` |  |
@@ -2164,7 +2183,7 @@ Create an instance: `$generic_page = $client->GenericPage();`
 #### Example: Load
 
 ```php
-// load() returns the bare GenericPage record (throws on error).
+// load() returns the ENTITY — call data_get() for the GenericPage record (throws on error).
 $generic_page = $client->GenericPage()->load(["id" => "generic_page_id"]);
 ```
 
@@ -2205,7 +2224,7 @@ Create an instance: `$highlight = $client->Highlight();`
 #### Example: Load
 
 ```php
-// load() returns the bare Highlight record (throws on error).
+// load() returns the ENTITY — call data_get() for the Highlight record (throws on error).
 $highlight = $client->Highlight()->load(["id" => "highlight_id"]);
 ```
 
@@ -2282,7 +2301,7 @@ Create an instance: `$hour = $client->Hour();`
 #### Example: Load
 
 ```php
-// load() returns the bare Hour record (throws on error).
+// load() returns the ENTITY — call data_get() for the Hour record (throws on error).
 $hour = $client->Hour()->load(["id" => "hour_id"]);
 ```
 
@@ -2313,8 +2332,8 @@ Create an instance: `$image = $client->Image();`
 | `alt_text` | `mixed` |  |
 | `api_link` | `mixed` |  |
 | `api_model` | `mixed` |  |
-| `artwork_id` | `string` |  |
-| `artwork_title` | `mixed` |  |
+| `artwork_ids` | `mixed` |  |
+| `artwork_titles` | `mixed` |  |
 | `color` | `mixed` |  |
 | `colorfulness` | `mixed` |  |
 | `content` | `mixed` |  |
@@ -2342,7 +2361,7 @@ Create an instance: `$image = $client->Image();`
 #### Example: Load
 
 ```php
-// load() returns the bare Image record (throws on error).
+// load() returns the ENTITY — call data_get() for the Image record (throws on error).
 $image = $client->Image()->load(["id" => "image_id"]);
 ```
 
@@ -2373,7 +2392,7 @@ Create an instance: `$landing_page = $client->LandingPage();`
 | `api_model` | `mixed` |  |
 | `copy` | `mixed` |  |
 | `id` | `string` |  |
-| `search_tag` | `mixed` |  |
+| `search_tags` | `mixed` |  |
 | `source_updated_at` | `mixed` |  |
 | `suggest_autocomplete_all` | `mixed` |  |
 | `suggest_autocomplete_boosted` | `mixed` |  |
@@ -2385,7 +2404,7 @@ Create an instance: `$landing_page = $client->LandingPage();`
 #### Example: Load
 
 ```php
-// load() returns the bare LandingPage record (throws on error).
+// load() returns the ENTITY — call data_get() for the LandingPage record (throws on error).
 $landing_page = $client->LandingPage()->load(["id" => "landing_page_id"]);
 ```
 
@@ -2428,7 +2447,7 @@ Create an instance: `$place = $client->Place();`
 #### Example: Load
 
 ```php
-// load() returns the bare Place record (throws on error).
+// load() returns the ENTITY — call data_get() for the Place record (throws on error).
 $place = $client->Place()->load(["id" => "place_id"]);
 ```
 
@@ -2470,7 +2489,7 @@ Create an instance: `$press_release = $client->PressRelease();`
 #### Example: Load
 
 ```php
-// load() returns the bare PressRelease record (throws on error).
+// load() returns the ENTITY — call data_get() for the PressRelease record (throws on error).
 $press_release = $client->PressRelease()->load(["id" => "press_release_id"]);
 ```
 
@@ -2512,7 +2531,7 @@ Create an instance: `$printed_publication = $client->PrintedPublication();`
 #### Example: Load
 
 ```php
-// load() returns the bare PrintedPublication record (throws on error).
+// load() returns the ENTITY — call data_get() for the PrintedPublication record (throws on error).
 $printed_publication = $client->PrintedPublication()->load(["id" => "printed_publication_id"]);
 ```
 
@@ -2541,10 +2560,10 @@ Create an instance: `$product = $client->Product();`
 | --- | --- | --- |
 | `api_link` | `mixed` |  |
 | `api_model` | `mixed` |  |
-| `artist_id` | `string` |  |
-| `artwork_id` | `string` |  |
+| `artist_ids` | `mixed` |  |
+| `artwork_ids` | `mixed` |  |
 | `description` | `string` |  |
-| `exhibition_id` | `string` |  |
+| `exhibition_ids` | `mixed` |  |
 | `external_sku` | `mixed` |  |
 | `id` | `string` |  |
 | `image_url` | `mixed` |  |
@@ -2564,7 +2583,7 @@ Create an instance: `$product = $client->Product();`
 #### Example: Load
 
 ```php
-// load() returns the bare Product record (throws on error).
+// load() returns the ENTITY — call data_get() for the Product record (throws on error).
 $product = $client->Product()->load(["id" => "product_id"]);
 ```
 
@@ -2594,7 +2613,7 @@ Create an instance: `$publication = $client->Publication();`
 | `api_link` | `mixed` |  |
 | `api_model` | `mixed` |  |
 | `id` | `string` |  |
-| `section_id` | `string` |  |
+| `section_ids` | `mixed` |  |
 | `source_updated_at` | `mixed` |  |
 | `suggest_autocomplete_all` | `mixed` |  |
 | `suggest_autocomplete_boosted` | `mixed` |  |
@@ -2606,7 +2625,7 @@ Create an instance: `$publication = $client->Publication();`
 #### Example: Load
 
 ```php
-// load() returns the bare Publication record (throws on error).
+// load() returns the ENTITY — call data_get() for the Publication record (throws on error).
 $publication = $client->Publication()->load(["id" => "publication_id"]);
 ```
 
@@ -2685,7 +2704,7 @@ Create an instance: `$section = $client->Section();`
 #### Example: Load
 
 ```php
-// load() returns the bare Section record (throws on error).
+// load() returns the ENTITY — call data_get() for the Section record (throws on error).
 $section = $client->Section()->load(["id" => "section_id"]);
 ```
 
@@ -2714,11 +2733,11 @@ Create an instance: `$site = $client->Site();`
 | --- | --- | --- |
 | `api_link` | `mixed` |  |
 | `api_model` | `mixed` |  |
-| `artwork_id` | `string` |  |
-| `artwork_title` | `mixed` |  |
+| `artwork_ids` | `mixed` |  |
+| `artwork_titles` | `mixed` |  |
 | `description` | `string` |  |
-| `exhibition_id` | `string` |  |
-| `exhibition_title` | `mixed` |  |
+| `exhibition_ids` | `mixed` |  |
+| `exhibition_titles` | `mixed` |  |
 | `id` | `string` |  |
 | `source_updated_at` | `mixed` |  |
 | `suggest_autocomplete_all` | `mixed` |  |
@@ -2731,7 +2750,7 @@ Create an instance: `$site = $client->Site();`
 #### Example: Load
 
 ```php
-// load() returns the bare Site record (throws on error).
+// load() returns the ENTITY — call data_get() for the Site record (throws on error).
 $site = $client->Site()->load(["id" => "site_id"]);
 ```
 
@@ -2761,8 +2780,8 @@ Create an instance: `$sound = $client->Sound();`
 | `alt_text` | `mixed` |  |
 | `api_link` | `mixed` |  |
 | `api_model` | `mixed` |  |
-| `artwork_id` | `string` |  |
-| `artwork_title` | `mixed` |  |
+| `artwork_ids` | `mixed` |  |
+| `artwork_titles` | `mixed` |  |
 | `content` | `mixed` |  |
 | `content_e_tag` | `mixed` |  |
 | `credit_line` | `mixed` |  |
@@ -2784,7 +2803,7 @@ Create an instance: `$sound = $client->Sound();`
 #### Example: Load
 
 ```php
-// load() returns the bare Sound record (throws on error).
+// load() returns the ENTITY — call data_get() for the Sound record (throws on error).
 $sound = $client->Sound()->load(["id" => "sound_id"]);
 ```
 
@@ -2825,7 +2844,7 @@ Create an instance: `$static_page = $client->StaticPage();`
 #### Example: Load
 
 ```php
-// load() returns the bare StaticPage record (throws on error).
+// load() returns the ENTITY — call data_get() for the StaticPage record (throws on error).
 $static_page = $client->StaticPage()->load(["id" => "static_page_id"]);
 ```
 
@@ -2855,8 +2874,8 @@ Create an instance: `$text = $client->Text();`
 | `alt_text` | `mixed` |  |
 | `api_link` | `mixed` |  |
 | `api_model` | `mixed` |  |
-| `artwork_id` | `string` |  |
-| `artwork_title` | `mixed` |  |
+| `artwork_ids` | `mixed` |  |
+| `artwork_titles` | `mixed` |  |
 | `content` | `mixed` |  |
 | `content_e_tag` | `mixed` |  |
 | `credit_line` | `mixed` |  |
@@ -2876,7 +2895,7 @@ Create an instance: `$text = $client->Text();`
 #### Example: Load
 
 ```php
-// load() returns the bare Text record (throws on error).
+// load() returns the ENTITY — call data_get() for the Text record (throws on error).
 $text = $client->Text()->load(["id" => "text_id"]);
 ```
 
@@ -2905,8 +2924,8 @@ Create an instance: `$tour = $client->Tour();`
 | --- | --- | --- |
 | `api_link` | `mixed` |  |
 | `api_model` | `mixed` |  |
-| `artist_title` | `mixed` |  |
-| `artwork_title` | `mixed` |  |
+| `artist_titles` | `mixed` |  |
+| `artwork_titles` | `mixed` |  |
 | `description` | `string` |  |
 | `id` | `string` |  |
 | `image` | `mixed` |  |
@@ -2924,7 +2943,7 @@ Create an instance: `$tour = $client->Tour();`
 #### Example: Load
 
 ```php
-// load() returns the bare Tour record (throws on error).
+// load() returns the ENTITY — call data_get() for the Tour record (throws on error).
 $tour = $client->Tour()->load(["id" => "tour_id"]);
 ```
 
@@ -2954,8 +2973,8 @@ Create an instance: `$video = $client->Video();`
 | `alt_text` | `mixed` |  |
 | `api_link` | `mixed` |  |
 | `api_model` | `mixed` |  |
-| `artwork_id` | `string` |  |
-| `artwork_title` | `mixed` |  |
+| `artwork_ids` | `mixed` |  |
+| `artwork_titles` | `mixed` |  |
 | `content` | `mixed` |  |
 | `content_e_tag` | `mixed` |  |
 | `credit_line` | `mixed` |  |
@@ -2975,7 +2994,7 @@ Create an instance: `$video = $client->Video();`
 #### Example: Load
 
 ```php
-// load() returns the bare Video record (throws on error).
+// load() returns the ENTITY — call data_get() for the Video record (throws on error).
 $video = $client->Video()->load(["id" => "video_id"]);
 ```
 
@@ -3063,11 +3082,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$agent = $client->Agent();
-$agent->list();
+$publication = $client->Publication();
+$publication->list();
 
-// $agent->data_get() now returns the agent data from the last list
-// $agent->match_get() returns the last match criteria
+// $publication->data_get() now returns the publication data from the last list
+// $publication->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

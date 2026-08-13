@@ -6,14 +6,14 @@ main: kit: entity: event: {
 
   fields: [
     {
-      name: "alt_audience_id"
+      name: "alt_audience_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
-      name: "alt_event_type_id"
+      name: "alt_event_type_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
       name: "api_link"
@@ -111,7 +111,7 @@ main: kit: entity: event: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "is_after_hour"
+      name: "is_after_hours"
       req: false
       type: "`$BOOLEAN`"
     }
@@ -176,12 +176,12 @@ main: kit: entity: event: {
       type: "`$ANY`"
     }
     {
-      name: "program_id"
+      name: "program_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
-      name: "program_title"
+      name: "program_titles"
       req: false
       type: "`$ANY`"
     }
@@ -191,7 +191,7 @@ main: kit: entity: event: {
       type: "`$ANY`"
     }
     {
-      name: "search_tag"
+      name: "search_tags"
       req: false
       type: "`$ANY`"
     }

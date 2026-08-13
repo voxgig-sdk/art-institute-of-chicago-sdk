@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "agent": {
           "active": true,
@@ -27,7 +32,7 @@
           "fields": [
             {
               "active": true,
-              "name": "alt_title",
+              "name": "alt_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -135,6 +140,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/agents",
                   "parts": [
@@ -149,6 +155,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/artists",
                   "parts": [
@@ -180,6 +187,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/agents/{id}",
                   "parts": [
@@ -210,6 +218,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/artists/{id}",
                   "parts": [
@@ -307,6 +316,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/agent-roles",
                   "parts": [
@@ -338,6 +348,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/agent-roles/{id}",
                   "parts": [
@@ -435,6 +446,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/agent-types",
                   "parts": [
@@ -466,6 +478,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/agent-types/{id}",
                   "parts": [
@@ -569,6 +582,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/articles",
                   "parts": [
@@ -600,6 +614,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/articles/{id}",
                   "parts": [
@@ -631,49 +646,49 @@
           "fields": [
             {
               "active": true,
-              "name": "alt_artist_id",
+              "name": "alt_artist_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "alt_classification_id",
+              "name": "alt_classification_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "alt_image_id",
+              "name": "alt_image_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "alt_material_id",
+              "name": "alt_material_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "alt_style_id",
+              "name": "alt_style_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "alt_subject_id",
+              "name": "alt_subject_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "alt_technique_id",
+              "name": "alt_technique_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "alt_title",
+              "name": "alt_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -703,7 +718,19 @@
             },
             {
               "active": true,
+              "name": "artist_ids",
+              "req": false,
+              "type": "`$ANY`"
+            },
+            {
+              "active": true,
               "name": "artist_title",
+              "req": false,
+              "type": "`$ANY`"
+            },
+            {
+              "active": true,
+              "name": "artist_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -727,7 +754,7 @@
             },
             {
               "active": true,
-              "name": "catalog_based_search_keyword_title",
+              "name": "catalog_based_search_keyword_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -739,13 +766,13 @@
             },
             {
               "active": true,
-              "name": "category_id",
+              "name": "category_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "category_title",
+              "name": "category_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -757,7 +784,19 @@
             },
             {
               "active": true,
+              "name": "classification_ids",
+              "req": false,
+              "type": "`$ANY`"
+            },
+            {
+              "active": true,
               "name": "classification_title",
+              "req": false,
+              "type": "`$ANY`"
+            },
+            {
+              "active": true,
+              "name": "classification_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -835,7 +874,7 @@
             },
             {
               "active": true,
-              "name": "dimension",
+              "name": "dimensions",
               "req": false,
               "type": "`$ANY`"
             },
@@ -847,9 +886,9 @@
             },
             {
               "active": true,
-              "name": "document_id",
+              "name": "document_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
@@ -895,13 +934,13 @@
             },
             {
               "active": true,
-              "name": "has_educational_resource",
+              "name": "has_educational_resources",
               "req": false,
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
-              "name": "has_multimedia_resource",
+              "name": "has_multimedia_resources",
               "req": false,
               "type": "`$BOOLEAN`"
             },
@@ -931,7 +970,7 @@
             },
             {
               "active": true,
-              "name": "inscription",
+              "name": "inscriptions",
               "req": false,
               "type": "`$ANY`"
             },
@@ -997,7 +1036,13 @@
             },
             {
               "active": true,
-              "name": "material_title",
+              "name": "material_ids",
+              "req": false,
+              "type": "`$ANY`"
+            },
+            {
+              "active": true,
+              "name": "material_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -1027,7 +1072,7 @@
             },
             {
               "active": true,
-              "name": "pageview",
+              "name": "pageviews",
               "req": false,
               "type": "`$ANY`"
             },
@@ -1063,13 +1108,13 @@
             },
             {
               "active": true,
-              "name": "section_id",
+              "name": "section_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "section_title",
+              "name": "section_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -1081,15 +1126,15 @@
             },
             {
               "active": true,
-              "name": "site_id",
+              "name": "site_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "sound_id",
+              "name": "sound_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
@@ -1105,7 +1150,19 @@
             },
             {
               "active": true,
+              "name": "style_ids",
+              "req": false,
+              "type": "`$ANY`"
+            },
+            {
+              "active": true,
               "name": "style_title",
+              "req": false,
+              "type": "`$ANY`"
+            },
+            {
+              "active": true,
+              "name": "style_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -1117,7 +1174,13 @@
             },
             {
               "active": true,
-              "name": "subject_title",
+              "name": "subject_ids",
+              "req": false,
+              "type": "`$ANY`"
+            },
+            {
+              "active": true,
+              "name": "subject_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -1141,13 +1204,19 @@
             },
             {
               "active": true,
-              "name": "technique_title",
+              "name": "technique_ids",
               "req": false,
               "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "term_title",
+              "name": "technique_titles",
+              "req": false,
+              "type": "`$ANY`"
+            },
+            {
+              "active": true,
+              "name": "term_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -1159,13 +1228,13 @@
             },
             {
               "active": true,
-              "name": "text_id",
+              "name": "text_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "theme_title",
+              "name": "theme_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -1195,9 +1264,9 @@
             },
             {
               "active": true,
-              "name": "video_id",
+              "name": "video_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             }
           ],
           "id": {
@@ -1213,6 +1282,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/artworks",
                   "parts": [
@@ -1244,6 +1314,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/artworks/{id}",
                   "parts": [
@@ -1341,6 +1412,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/artwork-date-qualifiers",
                   "parts": [
@@ -1372,6 +1444,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/artwork-date-qualifiers/{id}",
                   "parts": [
@@ -1469,6 +1542,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/artwork-place-qualifiers",
                   "parts": [
@@ -1500,6 +1574,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/artwork-place-qualifiers/{id}",
                   "parts": [
@@ -1603,6 +1678,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/artwork-types",
                   "parts": [
@@ -1634,6 +1710,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/artwork-types/{id}",
                   "parts": [
@@ -1743,6 +1820,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/category-terms",
                   "parts": [
@@ -1774,6 +1852,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/category-terms/{id}",
                   "parts": [
@@ -1883,6 +1962,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/digital-publications",
                   "parts": [
@@ -1914,6 +1994,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/digital-publications/{id}",
                   "parts": [
@@ -2035,6 +2116,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/digital-publication-articles",
                   "parts": [
@@ -2066,6 +2148,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/digital-publication-articles/{id}",
                   "parts": [
@@ -2175,6 +2258,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/educator-resources",
                   "parts": [
@@ -2206,6 +2290,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/educator-resources/{id}",
                   "parts": [
@@ -2237,15 +2322,15 @@
           "fields": [
             {
               "active": true,
-              "name": "alt_audience_id",
+              "name": "alt_audience_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "alt_event_type_id",
+              "name": "alt_event_type_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
@@ -2363,7 +2448,7 @@
             },
             {
               "active": true,
-              "name": "is_after_hour",
+              "name": "is_after_hours",
               "req": false,
               "type": "`$BOOLEAN`"
             },
@@ -2441,13 +2526,13 @@
             },
             {
               "active": true,
-              "name": "program_id",
+              "name": "program_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "program_title",
+              "name": "program_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -2459,7 +2544,7 @@
             },
             {
               "active": true,
-              "name": "search_tag",
+              "name": "search_tags",
               "req": false,
               "type": "`$ANY`"
             },
@@ -2567,6 +2652,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/events",
                   "parts": [
@@ -2598,6 +2684,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/events/{id}",
                   "parts": [
@@ -2791,6 +2878,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/event-occurrences",
                   "parts": [
@@ -2822,6 +2910,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/event-occurrences/{id}",
                   "parts": [
@@ -2931,6 +3020,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/event-programs",
                   "parts": [
@@ -2962,6 +3052,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/event-programs/{id}",
                   "parts": [
@@ -3005,9 +3096,9 @@
             },
             {
               "active": true,
-              "name": "alt_image_id",
+              "name": "alt_image_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
@@ -3023,27 +3114,27 @@
             },
             {
               "active": true,
-              "name": "artist_id",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "artwork_id",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "artwork_title",
+              "name": "artist_ids",
               "req": false,
               "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "document_id",
+              "name": "artwork_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
+            },
+            {
+              "active": true,
+              "name": "artwork_titles",
+              "req": false,
+              "type": "`$ANY`"
+            },
+            {
+              "active": true,
+              "name": "document_ids",
+              "req": false,
+              "type": "`$ANY`"
             },
             {
               "active": true,
@@ -3101,9 +3192,9 @@
             },
             {
               "active": true,
-              "name": "site_id",
+              "name": "site_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
@@ -3167,6 +3258,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/exhibitions",
                   "parts": [
@@ -3198,6 +3290,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/exhibitions/{id}",
                   "parts": [
@@ -3337,6 +3430,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/galleries",
                   "parts": [
@@ -3368,6 +3462,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/galleries/{id}",
                   "parts": [
@@ -3423,7 +3518,7 @@
             },
             {
               "active": true,
-              "name": "search_tag",
+              "name": "search_tags",
               "req": false,
               "type": "`$ANY`"
             },
@@ -3483,6 +3578,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/generic-pages",
                   "parts": [
@@ -3514,6 +3610,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/generic-pages/{id}",
                   "parts": [
@@ -3617,6 +3714,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/highlights",
                   "parts": [
@@ -3648,6 +3746,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/highlights/{id}",
                   "parts": [
@@ -3967,6 +4066,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/hours",
                   "parts": [
@@ -3998,6 +4098,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/hours/{id}",
                   "parts": [
@@ -4053,13 +4154,13 @@
             },
             {
               "active": true,
-              "name": "artwork_id",
+              "name": "artwork_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "artwork_title",
+              "name": "artwork_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -4215,6 +4316,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/images",
                   "parts": [
@@ -4246,6 +4348,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/images/{id}",
                   "parts": [
@@ -4301,7 +4404,7 @@
             },
             {
               "active": true,
-              "name": "search_tag",
+              "name": "search_tags",
               "req": false,
               "type": "`$ANY`"
             },
@@ -4361,6 +4464,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/landing-pages",
                   "parts": [
@@ -4392,6 +4496,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/landing-pages/{id}",
                   "parts": [
@@ -4507,6 +4612,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/places",
                   "parts": [
@@ -4538,6 +4644,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/places/{id}",
                   "parts": [
@@ -4647,6 +4754,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/press-releases",
                   "parts": [
@@ -4678,6 +4786,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/press-releases/{id}",
                   "parts": [
@@ -4787,6 +4896,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/printed-publications",
                   "parts": [
@@ -4818,6 +4928,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/printed-publications/{id}",
                   "parts": [
@@ -4861,15 +4972,15 @@
             },
             {
               "active": true,
-              "name": "artist_id",
+              "name": "artist_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "artwork_id",
+              "name": "artwork_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
@@ -4879,9 +4990,9 @@
             },
             {
               "active": true,
-              "name": "exhibition_id",
+              "name": "exhibition_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
@@ -4987,6 +5098,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/products",
                   "parts": [
@@ -5018,6 +5130,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/products/{id}",
                   "parts": [
@@ -5067,9 +5180,9 @@
             },
             {
               "active": true,
-              "name": "section_id",
+              "name": "section_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
@@ -5127,6 +5240,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/publications",
                   "parts": [
@@ -5158,6 +5272,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/publications/{id}",
                   "parts": [
@@ -5306,6 +5421,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/agents/search",
                   "parts": [
@@ -5381,6 +5497,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/articles/search",
                   "parts": [
@@ -5456,6 +5573,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/artworks/search",
                   "parts": [
@@ -5531,6 +5649,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/category-terms/search",
                   "parts": [
@@ -5606,6 +5725,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/digital-publication-articles/search",
                   "parts": [
@@ -5681,6 +5801,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/digital-publications/search",
                   "parts": [
@@ -5756,6 +5877,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/educator-resources/search",
                   "parts": [
@@ -5831,6 +5953,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/event-occurrences/search",
                   "parts": [
@@ -5906,6 +6029,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/event-programs/search",
                   "parts": [
@@ -5981,6 +6105,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/events/search",
                   "parts": [
@@ -6056,6 +6181,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/exhibitions/search",
                   "parts": [
@@ -6131,6 +6257,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/galleries/search",
                   "parts": [
@@ -6206,6 +6333,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/generic-pages/search",
                   "parts": [
@@ -6281,6 +6409,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/highlights/search",
                   "parts": [
@@ -6356,6 +6485,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/hours/search",
                   "parts": [
@@ -6431,6 +6561,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/images/search",
                   "parts": [
@@ -6506,6 +6637,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/landing-pages/search",
                   "parts": [
@@ -6581,6 +6713,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/mobile-sounds/search",
                   "parts": [
@@ -6656,6 +6789,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/places/search",
                   "parts": [
@@ -6731,6 +6865,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/press-releases/search",
                   "parts": [
@@ -6806,6 +6941,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/printed-publications/search",
                   "parts": [
@@ -6881,6 +7017,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/products/search",
                   "parts": [
@@ -6956,6 +7093,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/publications/search",
                   "parts": [
@@ -7031,6 +7169,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/search",
                   "parts": [
@@ -7105,6 +7244,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/sections/search",
                   "parts": [
@@ -7180,6 +7320,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/sites/search",
                   "parts": [
@@ -7255,6 +7396,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/sounds/search",
                   "parts": [
@@ -7330,6 +7472,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/static-pages/search",
                   "parts": [
@@ -7405,6 +7548,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/texts/search",
                   "parts": [
@@ -7480,6 +7624,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/tours/search",
                   "parts": [
@@ -7555,6 +7700,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/videos/search",
                   "parts": [
@@ -7699,6 +7845,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/sections",
                   "parts": [
@@ -7730,6 +7877,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/sections/{id}",
                   "parts": [
@@ -7773,13 +7921,13 @@
             },
             {
               "active": true,
-              "name": "artwork_id",
+              "name": "artwork_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "artwork_title",
+              "name": "artwork_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -7791,13 +7939,13 @@
             },
             {
               "active": true,
-              "name": "exhibition_id",
+              "name": "exhibition_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "exhibition_title",
+              "name": "exhibition_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -7863,6 +8011,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/sites",
                   "parts": [
@@ -7894,6 +8043,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/sites/{id}",
                   "parts": [
@@ -7943,13 +8093,13 @@
             },
             {
               "active": true,
-              "name": "artwork_id",
+              "name": "artwork_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "artwork_title",
+              "name": "artwork_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -8069,6 +8219,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/mobile-sounds",
                   "parts": [
@@ -8083,6 +8234,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/sounds",
                   "parts": [
@@ -8114,6 +8266,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/mobile-sounds/{id}",
                   "parts": [
@@ -8144,6 +8297,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/sounds/{id}",
                   "parts": [
@@ -8247,6 +8401,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/static-pages",
                   "parts": [
@@ -8278,6 +8433,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/static-pages/{id}",
                   "parts": [
@@ -8327,13 +8483,13 @@
             },
             {
               "active": true,
-              "name": "artwork_id",
+              "name": "artwork_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "artwork_title",
+              "name": "artwork_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -8441,6 +8597,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/texts",
                   "parts": [
@@ -8472,6 +8629,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/texts/{id}",
                   "parts": [
@@ -8515,13 +8673,13 @@
             },
             {
               "active": true,
-              "name": "artist_title",
+              "name": "artist_titles",
               "req": false,
               "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "artwork_title",
+              "name": "artwork_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -8617,6 +8775,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/tours",
                   "parts": [
@@ -8648,6 +8807,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/tours/{id}",
                   "parts": [
@@ -8697,13 +8857,13 @@
             },
             {
               "active": true,
-              "name": "artwork_id",
+              "name": "artwork_ids",
               "req": false,
-              "type": "`$STRING`"
+              "type": "`$ANY`"
             },
             {
               "active": true,
-              "name": "artwork_title",
+              "name": "artwork_titles",
               "req": false,
               "type": "`$ANY`"
             },
@@ -8811,6 +8971,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/videos",
                   "parts": [
@@ -8842,6 +9003,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/videos/{id}",
                   "parts": [
@@ -10638,18 +10800,41 @@
         "website": "https://api.artic.edu"
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "art-institute-of-chicago"
+            "goversion": "",
+            "name": "art-institute-of-chicago",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -10671,22 +10856,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "art-institute-of-chicago"
+            "goversion": "",
+            "name": "art-institute-of-chicago",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -10725,21 +10928,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "art-institute-of-chicago"
+            "goversion": "",
+            "name": "art-institute-of-chicago",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -10778,12 +10999,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -10795,10 +11021,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "art-institute-of-chicago"
+            "goversion": "",
+            "name": "art-institute-of-chicago",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -10820,22 +11059,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "art-institute-of-chicago"
+            "goversion": "",
+            "name": "art-institute-of-chicago",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -10857,13 +11114,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -10875,10 +11137,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "art-institute-of-chicago"
+            "goversion": "",
+            "name": "art-institute-of-chicago",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -10900,13 +11175,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -10923,10 +11203,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "art-institute-of-chicago"
+            "goversion": "",
+            "name": "art-institute-of-chicago",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -10948,13 +11241,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -10977,10 +11275,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "art-institute-of-chicago"
+            "goversion": "",
+            "name": "art-institute-of-chicago",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -11002,9 +11313,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

@@ -26,8 +26,8 @@ import {
 describe('HourEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ARTINSTITUTEOFCHICAGO_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ARTINSTITUTEOFCHICAGO_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ART_INSTITUTE_OF_CHICAGO_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ART_INSTITUTE_OF_CHICAGO_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = ArtInstituteOfChicagoSDK.test()
@@ -63,13 +63,13 @@ describe('HourEntity', async () => {
     const hour_ref01_ent = client.Hour()
     const hour_ref01_match: any = {}
 
-    const hour_ref01_list = await hour_ref01_ent.list(hour_ref01_match)
+    const hour_ref01_list = (await hour_ref01_ent.list(hour_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const hour_ref01_match_dt0: any = {}
     hour_ref01_match_dt0.id = hour_ref01_data.id
-    const hour_ref01_data_dt0 = await hour_ref01_ent.load(hour_ref01_match_dt0)
+    const hour_ref01_data_dt0 = (await hour_ref01_ent.load(hour_ref01_match_dt0)).data()
     assert(hour_ref01_data_dt0.id === hour_ref01_data.id)
 
 

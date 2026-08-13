@@ -2,7 +2,7 @@
   "existing": {
     "agent": {
       "AGENT00": {
-        "alt_title": "sa0",
+        "alt_titles": "sa0",
         "api_link": "sa1",
         "api_model": "sa2",
         "birth_date": "sa3",
@@ -20,7 +20,7 @@
         "updated_at": "saf"
       },
       "AGENT01": {
-        "alt_title": "s140",
+        "alt_titles": "s140",
         "api_link": "s141",
         "api_model": "s142",
         "birth_date": "s143",
@@ -38,7 +38,7 @@
         "updated_at": "s14f"
       },
       "AGENT02": {
-        "alt_title": "s1e0",
+        "alt_titles": "s1e0",
         "api_link": "s1e1",
         "api_model": "s1e2",
         "birth_date": "s1e3",
@@ -60,7 +60,7 @@
   "new": {
     "agent": {
       "agent_ref01": {
-        "alt_title": "s280",
+        "alt_titles": "s280",
         "api_link": "s281",
         "api_model": "s282",
         "birth_date": "s283",

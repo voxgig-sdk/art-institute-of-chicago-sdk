@@ -26,8 +26,8 @@ import {
 describe('VideoEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ARTINSTITUTEOFCHICAGO_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ARTINSTITUTEOFCHICAGO_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ART_INSTITUTE_OF_CHICAGO_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ART_INSTITUTE_OF_CHICAGO_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = ArtInstituteOfChicagoSDK.test()
@@ -63,13 +63,13 @@ describe('VideoEntity', async () => {
     const video_ref01_ent = client.Video()
     const video_ref01_match: any = {}
 
-    const video_ref01_list = await video_ref01_ent.list(video_ref01_match)
+    const video_ref01_list = (await video_ref01_ent.list(video_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const video_ref01_match_dt0: any = {}
     video_ref01_match_dt0.id = video_ref01_data.id
-    const video_ref01_data_dt0 = await video_ref01_ent.load(video_ref01_match_dt0)
+    const video_ref01_data_dt0 = (await video_ref01_ent.load(video_ref01_match_dt0)).data()
     assert(video_ref01_data_dt0.id === video_ref01_data.id)
 
 

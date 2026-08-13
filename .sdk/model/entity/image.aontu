@@ -26,12 +26,12 @@ main: kit: entity: image: {
       type: "`$ANY`"
     }
     {
-      name: "artwork_id"
+      name: "artwork_ids"
       req: false
-      type: "`$STRING`"
+      type: "`$ANY`"
     }
     {
-      name: "artwork_title"
+      name: "artwork_titles"
       req: false
       type: "`$ANY`"
     }

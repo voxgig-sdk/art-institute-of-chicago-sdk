@@ -37,7 +37,7 @@ class DigitalPublicationEntity extends ArtInstituteOfChicagoEntityBase<DigitalPu
 
 
 
-  async load(this: any, reqmatch?: DigitalPublicationLoadMatch, ctrl?: Control): Promise<DigitalPublication> {
+  async load(this: any, reqmatch?: DigitalPublicationLoadMatch, ctrl?: Control): Promise<DigitalPublicationEntity> {
 
     const utility = this._utility
 
@@ -128,7 +128,15 @@ class DigitalPublicationEntity extends ArtInstituteOfChicagoEntityBase<DigitalPu
         }
       }
 
-      return done(ctx)
+      const out = done(ctx)
+
+      // An operation resolves to the ENTITY, not the raw data — the record
+      // has just been absorbed into this instance and is reached through
+      // data(). `done` still runs: it completes the pipeline and raises on
+      // failure, and when throwing is disabled it hands back the error
+      // payload, which passes through unchanged. See AGENTS.md "Entity
+      // operations return ENTITIES".
+      return (ctx.result && ctx.result.ok) ? this : out
     }
     catch (err: any) {
 
@@ -150,7 +158,7 @@ class DigitalPublicationEntity extends ArtInstituteOfChicagoEntityBase<DigitalPu
 
 
 
-  async list(this: any, reqmatch?: DigitalPublicationListMatch, ctrl?: Control): Promise<DigitalPublication[]> {
+  async list(this: any, reqmatch?: DigitalPublicationListMatch, ctrl?: Control): Promise<DigitalPublicationEntity[]> {
 
     const utility = this._utility
 

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from artinstituteofchicago_sdk.utility.voxgig_struct import voxgig_struct as vs
 from artinstituteofchicago_sdk import ArtInstituteOfChicagoSDK
-from core import helpers
+from artinstituteofchicago_sdk.core import helpers
 from test import runner
 
 
@@ -105,11 +105,11 @@ def _article_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "ARTINSTITUTEOFCHICAGO_TEST_ARTICLE_ENTID": {},
-        "ARTINSTITUTEOFCHICAGO_TEST_LIVE": "FALSE",
+        "ART_INSTITUTE_OF_CHICAGO_TEST_ARTICLE_ENTID": {},
+        "ART_INSTITUTE_OF_CHICAGO_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("ARTINSTITUTEOFCHICAGO_TEST_LIVE") == "TRUE"
+    live = env.get("ART_INSTITUTE_OF_CHICAGO_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import ArtInstituteOfChicagoControl
-from core.error import ArtInstituteOfChicagoError
-from core.result import ArtInstituteOfChicagoResult
-from core.spec import ArtInstituteOfChicagoSpec
+from artinstituteofchicago_sdk.config import make_config
+from artinstituteofchicago_sdk.features import _make_feature
+from artinstituteofchicago_sdk.core.control import ArtInstituteOfChicagoControl
+from artinstituteofchicago_sdk.core.error import ArtInstituteOfChicagoError
+from artinstituteofchicago_sdk.core.result import ArtInstituteOfChicagoResult
+from artinstituteofchicago_sdk.core.spec import ArtInstituteOfChicagoSpec
 
 
 # True when this SDK was generated with the named feature.

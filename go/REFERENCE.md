@@ -234,7 +234,7 @@ fmt.Println(agent.GetName()) // "agent"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_title` | `any` | No |  |
+| `alt_titles` | `any` | No |  |
 | `api_link` | `any` | No |  |
 | `api_model` | `any` | No |  |
 | `birth_date` | `any` | No |  |
@@ -526,28 +526,32 @@ fmt.Println(artwork.GetName()) // "artwork"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_artist_id` | `string` | No |  |
-| `alt_classification_id` | `string` | No |  |
-| `alt_image_id` | `string` | No |  |
-| `alt_material_id` | `string` | No |  |
-| `alt_style_id` | `string` | No |  |
-| `alt_subject_id` | `string` | No |  |
-| `alt_technique_id` | `string` | No |  |
-| `alt_title` | `any` | No |  |
+| `alt_artist_ids` | `any` | No |  |
+| `alt_classification_ids` | `any` | No |  |
+| `alt_image_ids` | `any` | No |  |
+| `alt_material_ids` | `any` | No |  |
+| `alt_style_ids` | `any` | No |  |
+| `alt_subject_ids` | `any` | No |  |
+| `alt_technique_ids` | `any` | No |  |
+| `alt_titles` | `any` | No |  |
 | `api_link` | `any` | No |  |
 | `api_model` | `any` | No |  |
 | `artist_display` | `any` | No |  |
 | `artist_id` | `string` | No |  |
+| `artist_ids` | `any` | No |  |
 | `artist_title` | `any` | No |  |
+| `artist_titles` | `any` | No |  |
 | `artwork_type_id` | `string` | No |  |
 | `artwork_type_title` | `any` | No |  |
 | `boost_rank` | `any` | No |  |
-| `catalog_based_search_keyword_title` | `any` | No |  |
+| `catalog_based_search_keyword_titles` | `any` | No |  |
 | `catalogue_display` | `any` | No |  |
-| `category_id` | `string` | No |  |
-| `category_title` | `any` | No |  |
+| `category_ids` | `any` | No |  |
+| `category_titles` | `any` | No |  |
 | `classification_id` | `string` | No |  |
+| `classification_ids` | `any` | No |  |
 | `classification_title` | `any` | No |  |
+| `classification_titles` | `any` | No |  |
 | `color` | `any` | No |  |
 | `colorfulness` | `any` | No |  |
 | `copyright_notice` | `any` | No |  |
@@ -560,9 +564,9 @@ fmt.Println(artwork.GetName()) // "artwork"
 | `department_id` | `string` | No |  |
 | `department_title` | `any` | No |  |
 | `description` | `string` | No |  |
-| `dimension` | `any` | No |  |
+| `dimensions` | `any` | No |  |
 | `dimensions_detail` | `any` | No |  |
-| `document_id` | `string` | No |  |
+| `document_ids` | `any` | No |  |
 | `edition` | `any` | No |  |
 | `exhibition_history` | `any` | No |  |
 | `fiscal_year` | `any` | No |  |
@@ -570,13 +574,13 @@ fmt.Println(artwork.GetName()) // "artwork"
 | `gallery_id` | `string` | No |  |
 | `gallery_title` | `any` | No |  |
 | `has_advanced_imaging` | `bool` | No |  |
-| `has_educational_resource` | `bool` | No |  |
-| `has_multimedia_resource` | `bool` | No |  |
+| `has_educational_resources` | `bool` | No |  |
+| `has_multimedia_resources` | `bool` | No |  |
 | `has_not_been_viewed_much` | `bool` | No |  |
 | `id` | `string` | No |  |
 | `image_embedding` | `any` | No |  |
 | `image_id` | `string` | No |  |
-| `inscription` | `any` | No |  |
+| `inscriptions` | `any` | No |  |
 | `internal_department_id` | `string` | No |  |
 | `is_boosted` | `bool` | No |  |
 | `is_on_view` | `bool` | No |  |
@@ -587,40 +591,45 @@ fmt.Println(artwork.GetName()) // "artwork"
 | `longitude` | `float64` | No |  |
 | `main_reference_number` | `int` | No |  |
 | `material_id` | `string` | No |  |
-| `material_title` | `any` | No |  |
+| `material_ids` | `any` | No |  |
+| `material_titles` | `any` | No |  |
 | `max_zoom_window_size` | `any` | No |  |
 | `medium_display` | `any` | No |  |
 | `nomisma_id` | `string` | No |  |
 | `on_loan_display` | `any` | No |  |
-| `pageview` | `any` | No |  |
+| `pageviews` | `any` | No |  |
 | `pageviews_recent` | `any` | No |  |
 | `place_of_origin` | `any` | No |  |
 | `provenance_text` | `any` | No |  |
 | `publication_history` | `any` | No |  |
 | `publishing_verification_level` | `any` | No |  |
-| `section_id` | `string` | No |  |
-| `section_title` | `any` | No |  |
+| `section_ids` | `any` | No |  |
+| `section_titles` | `any` | No |  |
 | `short_description` | `any` | No |  |
-| `site_id` | `string` | No |  |
-| `sound_id` | `string` | No |  |
+| `site_ids` | `any` | No |  |
+| `sound_ids` | `any` | No |  |
 | `source_updated_at` | `any` | No |  |
 | `style_id` | `string` | No |  |
+| `style_ids` | `any` | No |  |
 | `style_title` | `any` | No |  |
+| `style_titles` | `any` | No |  |
 | `subject_id` | `string` | No |  |
-| `subject_title` | `any` | No |  |
+| `subject_ids` | `any` | No |  |
+| `subject_titles` | `any` | No |  |
 | `suggest_autocomplete_all` | `any` | No |  |
 | `suggest_autocomplete_boosted` | `any` | No |  |
 | `technique_id` | `string` | No |  |
-| `technique_title` | `any` | No |  |
-| `term_title` | `any` | No |  |
+| `technique_ids` | `any` | No |  |
+| `technique_titles` | `any` | No |  |
+| `term_titles` | `any` | No |  |
 | `text_embedding` | `any` | No |  |
-| `text_id` | `string` | No |  |
-| `theme_title` | `any` | No |  |
+| `text_ids` | `any` | No |  |
+| `theme_titles` | `any` | No |  |
 | `thumbnail` | `any` | No |  |
 | `timestamp` | `any` | No |  |
 | `title` | `string` | No |  |
 | `updated_at` | `any` | No |  |
-| `video_id` | `string` | No |  |
+| `video_ids` | `any` | No |  |
 
 ### Operations
 
@@ -1191,8 +1200,8 @@ fmt.Println(event.GetName()) // "event"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_audience_id` | `string` | No |  |
-| `alt_event_type_id` | `string` | No |  |
+| `alt_audience_ids` | `any` | No |  |
+| `alt_event_type_ids` | `any` | No |  |
 | `api_link` | `any` | No |  |
 | `api_model` | `any` | No |  |
 | `audience_id` | `string` | No |  |
@@ -1212,7 +1221,7 @@ fmt.Println(event.GetName()) // "event"
 | `id` | `string` | No |  |
 | `image_url` | `any` | No |  |
 | `is_admission_required` | `bool` | No |  |
-| `is_after_hour` | `bool` | No |  |
+| `is_after_hours` | `bool` | No |  |
 | `is_free` | `bool` | No |  |
 | `is_member_exclusive` | `bool` | No |  |
 | `is_private` | `bool` | No |  |
@@ -1225,10 +1234,10 @@ fmt.Println(event.GetName()) // "event"
 | `layout_type` | `any` | No |  |
 | `list_description` | `any` | No |  |
 | `location` | `any` | No |  |
-| `program_id` | `string` | No |  |
-| `program_title` | `any` | No |  |
+| `program_ids` | `any` | No |  |
+| `program_titles` | `any` | No |  |
 | `rsvp_link` | `any` | No |  |
-| `search_tag` | `any` | No |  |
+| `search_tags` | `any` | No |  |
 | `short_description` | `any` | No |  |
 | `slug` | `string` | No |  |
 | `source_updated_at` | `any` | No |  |
@@ -1468,13 +1477,13 @@ fmt.Println(exhibition.GetName()) // "exhibition"
 | --- | --- | --- | --- |
 | `aic_end_at` | `any` | No |  |
 | `aic_start_at` | `any` | No |  |
-| `alt_image_id` | `string` | No |  |
+| `alt_image_ids` | `any` | No |  |
 | `api_link` | `any` | No |  |
 | `api_model` | `any` | No |  |
-| `artist_id` | `string` | No |  |
-| `artwork_id` | `string` | No |  |
-| `artwork_title` | `any` | No |  |
-| `document_id` | `string` | No |  |
+| `artist_ids` | `any` | No |  |
+| `artwork_ids` | `any` | No |  |
+| `artwork_titles` | `any` | No |  |
+| `document_ids` | `any` | No |  |
 | `gallery_id` | `string` | No |  |
 | `gallery_title` | `any` | No |  |
 | `id` | `string` | No |  |
@@ -1484,7 +1493,7 @@ fmt.Println(exhibition.GetName()) // "exhibition"
 | `is_published` | `bool` | No |  |
 | `position` | `any` | No |  |
 | `short_description` | `any` | No |  |
-| `site_id` | `string` | No |  |
+| `site_ids` | `any` | No |  |
 | `source_updated_at` | `any` | No |  |
 | `status` | `any` | No |  |
 | `suggest_autocomplete_all` | `any` | No |  |
@@ -1637,7 +1646,7 @@ fmt.Println(genericPage.GetName()) // "generic_page"
 | `api_model` | `any` | No |  |
 | `copy` | `any` | No |  |
 | `id` | `string` | No |  |
-| `search_tag` | `any` | No |  |
+| `search_tags` | `any` | No |  |
 | `source_updated_at` | `any` | No |  |
 | `suggest_autocomplete_all` | `any` | No |  |
 | `suggest_autocomplete_boosted` | `any` | No |  |
@@ -1891,8 +1900,8 @@ fmt.Println(image.GetName()) // "image"
 | `alt_text` | `any` | No |  |
 | `api_link` | `any` | No |  |
 | `api_model` | `any` | No |  |
-| `artwork_id` | `string` | No |  |
-| `artwork_title` | `any` | No |  |
+| `artwork_ids` | `any` | No |  |
+| `artwork_titles` | `any` | No |  |
 | `color` | `any` | No |  |
 | `colorfulness` | `any` | No |  |
 | `content` | `any` | No |  |
@@ -1982,7 +1991,7 @@ fmt.Println(landingPage.GetName()) // "landing_page"
 | `api_model` | `any` | No |  |
 | `copy` | `any` | No |  |
 | `id` | `string` | No |  |
-| `search_tag` | `any` | No |  |
+| `search_tags` | `any` | No |  |
 | `source_updated_at` | `any` | No |  |
 | `suggest_autocomplete_all` | `any` | No |  |
 | `suggest_autocomplete_boosted` | `any` | No |  |
@@ -2274,10 +2283,10 @@ fmt.Println(product.GetName()) // "product"
 | --- | --- | --- | --- |
 | `api_link` | `any` | No |  |
 | `api_model` | `any` | No |  |
-| `artist_id` | `string` | No |  |
-| `artwork_id` | `string` | No |  |
+| `artist_ids` | `any` | No |  |
+| `artwork_ids` | `any` | No |  |
 | `description` | `string` | No |  |
-| `exhibition_id` | `string` | No |  |
+| `exhibition_ids` | `any` | No |  |
 | `external_sku` | `any` | No |  |
 | `id` | `string` | No |  |
 | `image_url` | `any` | No |  |
@@ -2358,7 +2367,7 @@ fmt.Println(publication.GetName()) // "publication"
 | `api_link` | `any` | No |  |
 | `api_model` | `any` | No |  |
 | `id` | `string` | No |  |
-| `section_id` | `string` | No |  |
+| `section_ids` | `any` | No |  |
 | `source_updated_at` | `any` | No |  |
 | `suggest_autocomplete_all` | `any` | No |  |
 | `suggest_autocomplete_boosted` | `any` | No |  |
@@ -2567,11 +2576,11 @@ fmt.Println(site.GetName()) // "site"
 | --- | --- | --- | --- |
 | `api_link` | `any` | No |  |
 | `api_model` | `any` | No |  |
-| `artwork_id` | `string` | No |  |
-| `artwork_title` | `any` | No |  |
+| `artwork_ids` | `any` | No |  |
+| `artwork_titles` | `any` | No |  |
 | `description` | `string` | No |  |
-| `exhibition_id` | `string` | No |  |
-| `exhibition_title` | `any` | No |  |
+| `exhibition_ids` | `any` | No |  |
+| `exhibition_titles` | `any` | No |  |
 | `id` | `string` | No |  |
 | `source_updated_at` | `any` | No |  |
 | `suggest_autocomplete_all` | `any` | No |  |
@@ -2645,8 +2654,8 @@ fmt.Println(sound.GetName()) // "sound"
 | `alt_text` | `any` | No |  |
 | `api_link` | `any` | No |  |
 | `api_model` | `any` | No |  |
-| `artwork_id` | `string` | No |  |
-| `artwork_title` | `any` | No |  |
+| `artwork_ids` | `any` | No |  |
+| `artwork_titles` | `any` | No |  |
 | `content` | `any` | No |  |
 | `content_e_tag` | `any` | No |  |
 | `credit_line` | `any` | No |  |
@@ -2801,8 +2810,8 @@ fmt.Println(text.GetName()) // "text"
 | `alt_text` | `any` | No |  |
 | `api_link` | `any` | No |  |
 | `api_model` | `any` | No |  |
-| `artwork_id` | `string` | No |  |
-| `artwork_title` | `any` | No |  |
+| `artwork_ids` | `any` | No |  |
+| `artwork_titles` | `any` | No |  |
 | `content` | `any` | No |  |
 | `content_e_tag` | `any` | No |  |
 | `credit_line` | `any` | No |  |
@@ -2882,8 +2891,8 @@ fmt.Println(tour.GetName()) // "tour"
 | --- | --- | --- | --- |
 | `api_link` | `any` | No |  |
 | `api_model` | `any` | No |  |
-| `artist_title` | `any` | No |  |
-| `artwork_title` | `any` | No |  |
+| `artist_titles` | `any` | No |  |
+| `artwork_titles` | `any` | No |  |
 | `description` | `string` | No |  |
 | `id` | `string` | No |  |
 | `image` | `any` | No |  |
@@ -2962,8 +2971,8 @@ fmt.Println(video.GetName()) // "video"
 | `alt_text` | `any` | No |  |
 | `api_link` | `any` | No |  |
 | `api_model` | `any` | No |  |
-| `artwork_id` | `string` | No |  |
-| `artwork_title` | `any` | No |  |
+| `artwork_ids` | `any` | No |  |
+| `artwork_titles` | `any` | No |  |
 | `content` | `any` | No |  |
 | `content_e_tag` | `any` | No |  |
 | `credit_line` | `any` | No |  |

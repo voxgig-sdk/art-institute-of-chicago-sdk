@@ -26,8 +26,8 @@ import {
 describe('SoundEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ARTINSTITUTEOFCHICAGO_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ARTINSTITUTEOFCHICAGO_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ART_INSTITUTE_OF_CHICAGO_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ART_INSTITUTE_OF_CHICAGO_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = ArtInstituteOfChicagoSDK.test()
@@ -63,13 +63,13 @@ describe('SoundEntity', async () => {
     const sound_ref01_ent = client.Sound()
     const sound_ref01_match: any = {}
 
-    const sound_ref01_list = await sound_ref01_ent.list(sound_ref01_match)
+    const sound_ref01_list = (await sound_ref01_ent.list(sound_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const sound_ref01_match_dt0: any = {}
     sound_ref01_match_dt0.id = sound_ref01_data.id
-    const sound_ref01_data_dt0 = await sound_ref01_ent.load(sound_ref01_match_dt0)
+    const sound_ref01_data_dt0 = (await sound_ref01_ent.load(sound_ref01_match_dt0)).data()
     assert(sound_ref01_data_dt0.id === sound_ref01_data.id)
 
 

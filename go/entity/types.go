@@ -6,11 +6,15 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/art-institute-of-chicago-sdk/go/core"
+)
 
 // Agent is the typed data model for the agent entity.
 type Agent struct {
-	AltTitle *any `json:"alt_title,omitempty"`
+	AltTitles *any `json:"alt_titles,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
 	BirthDate *any `json:"birth_date,omitempty"`
@@ -35,7 +39,7 @@ type AgentLoadMatch struct {
 
 // AgentListMatch is the typed request payload for Agent.ListTyped.
 type AgentListMatch struct {
-	AltTitle *any `json:"alt_title,omitempty"`
+	AltTitles *any `json:"alt_titles,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
 	BirthDate *any `json:"birth_date,omitempty"`
@@ -150,28 +154,32 @@ type ArticleListMatch struct {
 
 // Artwork is the typed data model for the artwork entity.
 type Artwork struct {
-	AltArtistId *string `json:"alt_artist_id,omitempty"`
-	AltClassificationId *string `json:"alt_classification_id,omitempty"`
-	AltImageId *string `json:"alt_image_id,omitempty"`
-	AltMaterialId *string `json:"alt_material_id,omitempty"`
-	AltStyleId *string `json:"alt_style_id,omitempty"`
-	AltSubjectId *string `json:"alt_subject_id,omitempty"`
-	AltTechniqueId *string `json:"alt_technique_id,omitempty"`
-	AltTitle *any `json:"alt_title,omitempty"`
+	AltArtistIds *any `json:"alt_artist_ids,omitempty"`
+	AltClassificationIds *any `json:"alt_classification_ids,omitempty"`
+	AltImageIds *any `json:"alt_image_ids,omitempty"`
+	AltMaterialIds *any `json:"alt_material_ids,omitempty"`
+	AltStyleIds *any `json:"alt_style_ids,omitempty"`
+	AltSubjectIds *any `json:"alt_subject_ids,omitempty"`
+	AltTechniqueIds *any `json:"alt_technique_ids,omitempty"`
+	AltTitles *any `json:"alt_titles,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
 	ArtistDisplay *any `json:"artist_display,omitempty"`
 	ArtistId *string `json:"artist_id,omitempty"`
+	ArtistIds *any `json:"artist_ids,omitempty"`
 	ArtistTitle *any `json:"artist_title,omitempty"`
+	ArtistTitles *any `json:"artist_titles,omitempty"`
 	ArtworkTypeId *string `json:"artwork_type_id,omitempty"`
 	ArtworkTypeTitle *any `json:"artwork_type_title,omitempty"`
 	BoostRank *any `json:"boost_rank,omitempty"`
-	CatalogBasedSearchKeywordTitle *any `json:"catalog_based_search_keyword_title,omitempty"`
+	CatalogBasedSearchKeywordTitles *any `json:"catalog_based_search_keyword_titles,omitempty"`
 	CatalogueDisplay *any `json:"catalogue_display,omitempty"`
-	CategoryId *string `json:"category_id,omitempty"`
-	CategoryTitle *any `json:"category_title,omitempty"`
+	CategoryIds *any `json:"category_ids,omitempty"`
+	CategoryTitles *any `json:"category_titles,omitempty"`
 	ClassificationId *string `json:"classification_id,omitempty"`
+	ClassificationIds *any `json:"classification_ids,omitempty"`
 	ClassificationTitle *any `json:"classification_title,omitempty"`
+	ClassificationTitles *any `json:"classification_titles,omitempty"`
 	Color *any `json:"color,omitempty"`
 	Colorfulness *any `json:"colorfulness,omitempty"`
 	CopyrightNotice *any `json:"copyright_notice,omitempty"`
@@ -184,9 +192,9 @@ type Artwork struct {
 	DepartmentId *string `json:"department_id,omitempty"`
 	DepartmentTitle *any `json:"department_title,omitempty"`
 	Description *string `json:"description,omitempty"`
-	Dimension *any `json:"dimension,omitempty"`
+	Dimensions *any `json:"dimensions,omitempty"`
 	DimensionsDetail *any `json:"dimensions_detail,omitempty"`
-	DocumentId *string `json:"document_id,omitempty"`
+	DocumentIds *any `json:"document_ids,omitempty"`
 	Edition *any `json:"edition,omitempty"`
 	ExhibitionHistory *any `json:"exhibition_history,omitempty"`
 	FiscalYear *any `json:"fiscal_year,omitempty"`
@@ -194,13 +202,13 @@ type Artwork struct {
 	GalleryId *string `json:"gallery_id,omitempty"`
 	GalleryTitle *any `json:"gallery_title,omitempty"`
 	HasAdvancedImaging *bool `json:"has_advanced_imaging,omitempty"`
-	HasEducationalResource *bool `json:"has_educational_resource,omitempty"`
-	HasMultimediaResource *bool `json:"has_multimedia_resource,omitempty"`
+	HasEducationalResources *bool `json:"has_educational_resources,omitempty"`
+	HasMultimediaResources *bool `json:"has_multimedia_resources,omitempty"`
 	HasNotBeenViewedMuch *bool `json:"has_not_been_viewed_much,omitempty"`
 	Id *string `json:"id,omitempty"`
 	ImageEmbedding *any `json:"image_embedding,omitempty"`
 	ImageId *string `json:"image_id,omitempty"`
-	Inscription *any `json:"inscription,omitempty"`
+	Inscriptions *any `json:"inscriptions,omitempty"`
 	InternalDepartmentId *string `json:"internal_department_id,omitempty"`
 	IsBoosted *bool `json:"is_boosted,omitempty"`
 	IsOnView *bool `json:"is_on_view,omitempty"`
@@ -211,40 +219,45 @@ type Artwork struct {
 	Longitude *float64 `json:"longitude,omitempty"`
 	MainReferenceNumber *int `json:"main_reference_number,omitempty"`
 	MaterialId *string `json:"material_id,omitempty"`
-	MaterialTitle *any `json:"material_title,omitempty"`
+	MaterialIds *any `json:"material_ids,omitempty"`
+	MaterialTitles *any `json:"material_titles,omitempty"`
 	MaxZoomWindowSize *any `json:"max_zoom_window_size,omitempty"`
 	MediumDisplay *any `json:"medium_display,omitempty"`
 	NomismaId *string `json:"nomisma_id,omitempty"`
 	OnLoanDisplay *any `json:"on_loan_display,omitempty"`
-	Pageview *any `json:"pageview,omitempty"`
+	Pageviews *any `json:"pageviews,omitempty"`
 	PageviewsRecent *any `json:"pageviews_recent,omitempty"`
 	PlaceOfOrigin *any `json:"place_of_origin,omitempty"`
 	ProvenanceText *any `json:"provenance_text,omitempty"`
 	PublicationHistory *any `json:"publication_history,omitempty"`
 	PublishingVerificationLevel *any `json:"publishing_verification_level,omitempty"`
-	SectionId *string `json:"section_id,omitempty"`
-	SectionTitle *any `json:"section_title,omitempty"`
+	SectionIds *any `json:"section_ids,omitempty"`
+	SectionTitles *any `json:"section_titles,omitempty"`
 	ShortDescription *any `json:"short_description,omitempty"`
-	SiteId *string `json:"site_id,omitempty"`
-	SoundId *string `json:"sound_id,omitempty"`
+	SiteIds *any `json:"site_ids,omitempty"`
+	SoundIds *any `json:"sound_ids,omitempty"`
 	SourceUpdatedAt *any `json:"source_updated_at,omitempty"`
 	StyleId *string `json:"style_id,omitempty"`
+	StyleIds *any `json:"style_ids,omitempty"`
 	StyleTitle *any `json:"style_title,omitempty"`
+	StyleTitles *any `json:"style_titles,omitempty"`
 	SubjectId *string `json:"subject_id,omitempty"`
-	SubjectTitle *any `json:"subject_title,omitempty"`
+	SubjectIds *any `json:"subject_ids,omitempty"`
+	SubjectTitles *any `json:"subject_titles,omitempty"`
 	SuggestAutocompleteAll *any `json:"suggest_autocomplete_all,omitempty"`
 	SuggestAutocompleteBoosted *any `json:"suggest_autocomplete_boosted,omitempty"`
 	TechniqueId *string `json:"technique_id,omitempty"`
-	TechniqueTitle *any `json:"technique_title,omitempty"`
-	TermTitle *any `json:"term_title,omitempty"`
+	TechniqueIds *any `json:"technique_ids,omitempty"`
+	TechniqueTitles *any `json:"technique_titles,omitempty"`
+	TermTitles *any `json:"term_titles,omitempty"`
 	TextEmbedding *any `json:"text_embedding,omitempty"`
-	TextId *string `json:"text_id,omitempty"`
-	ThemeTitle *any `json:"theme_title,omitempty"`
+	TextIds *any `json:"text_ids,omitempty"`
+	ThemeTitles *any `json:"theme_titles,omitempty"`
 	Thumbnail *any `json:"thumbnail,omitempty"`
 	Timestamp *any `json:"timestamp,omitempty"`
 	Title *string `json:"title,omitempty"`
 	UpdatedAt *any `json:"updated_at,omitempty"`
-	VideoId *string `json:"video_id,omitempty"`
+	VideoIds *any `json:"video_ids,omitempty"`
 }
 
 // ArtworkLoadMatch is the typed request payload for Artwork.LoadTyped.
@@ -254,28 +267,32 @@ type ArtworkLoadMatch struct {
 
 // ArtworkListMatch is the typed request payload for Artwork.ListTyped.
 type ArtworkListMatch struct {
-	AltArtistId *string `json:"alt_artist_id,omitempty"`
-	AltClassificationId *string `json:"alt_classification_id,omitempty"`
-	AltImageId *string `json:"alt_image_id,omitempty"`
-	AltMaterialId *string `json:"alt_material_id,omitempty"`
-	AltStyleId *string `json:"alt_style_id,omitempty"`
-	AltSubjectId *string `json:"alt_subject_id,omitempty"`
-	AltTechniqueId *string `json:"alt_technique_id,omitempty"`
-	AltTitle *any `json:"alt_title,omitempty"`
+	AltArtistIds *any `json:"alt_artist_ids,omitempty"`
+	AltClassificationIds *any `json:"alt_classification_ids,omitempty"`
+	AltImageIds *any `json:"alt_image_ids,omitempty"`
+	AltMaterialIds *any `json:"alt_material_ids,omitempty"`
+	AltStyleIds *any `json:"alt_style_ids,omitempty"`
+	AltSubjectIds *any `json:"alt_subject_ids,omitempty"`
+	AltTechniqueIds *any `json:"alt_technique_ids,omitempty"`
+	AltTitles *any `json:"alt_titles,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
 	ArtistDisplay *any `json:"artist_display,omitempty"`
 	ArtistId *string `json:"artist_id,omitempty"`
+	ArtistIds *any `json:"artist_ids,omitempty"`
 	ArtistTitle *any `json:"artist_title,omitempty"`
+	ArtistTitles *any `json:"artist_titles,omitempty"`
 	ArtworkTypeId *string `json:"artwork_type_id,omitempty"`
 	ArtworkTypeTitle *any `json:"artwork_type_title,omitempty"`
 	BoostRank *any `json:"boost_rank,omitempty"`
-	CatalogBasedSearchKeywordTitle *any `json:"catalog_based_search_keyword_title,omitempty"`
+	CatalogBasedSearchKeywordTitles *any `json:"catalog_based_search_keyword_titles,omitempty"`
 	CatalogueDisplay *any `json:"catalogue_display,omitempty"`
-	CategoryId *string `json:"category_id,omitempty"`
-	CategoryTitle *any `json:"category_title,omitempty"`
+	CategoryIds *any `json:"category_ids,omitempty"`
+	CategoryTitles *any `json:"category_titles,omitempty"`
 	ClassificationId *string `json:"classification_id,omitempty"`
+	ClassificationIds *any `json:"classification_ids,omitempty"`
 	ClassificationTitle *any `json:"classification_title,omitempty"`
+	ClassificationTitles *any `json:"classification_titles,omitempty"`
 	Color *any `json:"color,omitempty"`
 	Colorfulness *any `json:"colorfulness,omitempty"`
 	CopyrightNotice *any `json:"copyright_notice,omitempty"`
@@ -288,9 +305,9 @@ type ArtworkListMatch struct {
 	DepartmentId *string `json:"department_id,omitempty"`
 	DepartmentTitle *any `json:"department_title,omitempty"`
 	Description *string `json:"description,omitempty"`
-	Dimension *any `json:"dimension,omitempty"`
+	Dimensions *any `json:"dimensions,omitempty"`
 	DimensionsDetail *any `json:"dimensions_detail,omitempty"`
-	DocumentId *string `json:"document_id,omitempty"`
+	DocumentIds *any `json:"document_ids,omitempty"`
 	Edition *any `json:"edition,omitempty"`
 	ExhibitionHistory *any `json:"exhibition_history,omitempty"`
 	FiscalYear *any `json:"fiscal_year,omitempty"`
@@ -298,13 +315,13 @@ type ArtworkListMatch struct {
 	GalleryId *string `json:"gallery_id,omitempty"`
 	GalleryTitle *any `json:"gallery_title,omitempty"`
 	HasAdvancedImaging *bool `json:"has_advanced_imaging,omitempty"`
-	HasEducationalResource *bool `json:"has_educational_resource,omitempty"`
-	HasMultimediaResource *bool `json:"has_multimedia_resource,omitempty"`
+	HasEducationalResources *bool `json:"has_educational_resources,omitempty"`
+	HasMultimediaResources *bool `json:"has_multimedia_resources,omitempty"`
 	HasNotBeenViewedMuch *bool `json:"has_not_been_viewed_much,omitempty"`
 	Id *string `json:"id,omitempty"`
 	ImageEmbedding *any `json:"image_embedding,omitempty"`
 	ImageId *string `json:"image_id,omitempty"`
-	Inscription *any `json:"inscription,omitempty"`
+	Inscriptions *any `json:"inscriptions,omitempty"`
 	InternalDepartmentId *string `json:"internal_department_id,omitempty"`
 	IsBoosted *bool `json:"is_boosted,omitempty"`
 	IsOnView *bool `json:"is_on_view,omitempty"`
@@ -315,40 +332,45 @@ type ArtworkListMatch struct {
 	Longitude *float64 `json:"longitude,omitempty"`
 	MainReferenceNumber *int `json:"main_reference_number,omitempty"`
 	MaterialId *string `json:"material_id,omitempty"`
-	MaterialTitle *any `json:"material_title,omitempty"`
+	MaterialIds *any `json:"material_ids,omitempty"`
+	MaterialTitles *any `json:"material_titles,omitempty"`
 	MaxZoomWindowSize *any `json:"max_zoom_window_size,omitempty"`
 	MediumDisplay *any `json:"medium_display,omitempty"`
 	NomismaId *string `json:"nomisma_id,omitempty"`
 	OnLoanDisplay *any `json:"on_loan_display,omitempty"`
-	Pageview *any `json:"pageview,omitempty"`
+	Pageviews *any `json:"pageviews,omitempty"`
 	PageviewsRecent *any `json:"pageviews_recent,omitempty"`
 	PlaceOfOrigin *any `json:"place_of_origin,omitempty"`
 	ProvenanceText *any `json:"provenance_text,omitempty"`
 	PublicationHistory *any `json:"publication_history,omitempty"`
 	PublishingVerificationLevel *any `json:"publishing_verification_level,omitempty"`
-	SectionId *string `json:"section_id,omitempty"`
-	SectionTitle *any `json:"section_title,omitempty"`
+	SectionIds *any `json:"section_ids,omitempty"`
+	SectionTitles *any `json:"section_titles,omitempty"`
 	ShortDescription *any `json:"short_description,omitempty"`
-	SiteId *string `json:"site_id,omitempty"`
-	SoundId *string `json:"sound_id,omitempty"`
+	SiteIds *any `json:"site_ids,omitempty"`
+	SoundIds *any `json:"sound_ids,omitempty"`
 	SourceUpdatedAt *any `json:"source_updated_at,omitempty"`
 	StyleId *string `json:"style_id,omitempty"`
+	StyleIds *any `json:"style_ids,omitempty"`
 	StyleTitle *any `json:"style_title,omitempty"`
+	StyleTitles *any `json:"style_titles,omitempty"`
 	SubjectId *string `json:"subject_id,omitempty"`
-	SubjectTitle *any `json:"subject_title,omitempty"`
+	SubjectIds *any `json:"subject_ids,omitempty"`
+	SubjectTitles *any `json:"subject_titles,omitempty"`
 	SuggestAutocompleteAll *any `json:"suggest_autocomplete_all,omitempty"`
 	SuggestAutocompleteBoosted *any `json:"suggest_autocomplete_boosted,omitempty"`
 	TechniqueId *string `json:"technique_id,omitempty"`
-	TechniqueTitle *any `json:"technique_title,omitempty"`
-	TermTitle *any `json:"term_title,omitempty"`
+	TechniqueIds *any `json:"technique_ids,omitempty"`
+	TechniqueTitles *any `json:"technique_titles,omitempty"`
+	TermTitles *any `json:"term_titles,omitempty"`
 	TextEmbedding *any `json:"text_embedding,omitempty"`
-	TextId *string `json:"text_id,omitempty"`
-	ThemeTitle *any `json:"theme_title,omitempty"`
+	TextIds *any `json:"text_ids,omitempty"`
+	ThemeTitles *any `json:"theme_titles,omitempty"`
 	Thumbnail *any `json:"thumbnail,omitempty"`
 	Timestamp *any `json:"timestamp,omitempty"`
 	Title *string `json:"title,omitempty"`
 	UpdatedAt *any `json:"updated_at,omitempty"`
-	VideoId *string `json:"video_id,omitempty"`
+	VideoIds *any `json:"video_ids,omitempty"`
 }
 
 // ArtworkDateQualifier is the typed data model for the artwork_date_qualifier entity.
@@ -592,8 +614,8 @@ type EducatorResourceListMatch struct {
 
 // Event is the typed data model for the event entity.
 type Event struct {
-	AltAudienceId *string `json:"alt_audience_id,omitempty"`
-	AltEventTypeId *string `json:"alt_event_type_id,omitempty"`
+	AltAudienceIds *any `json:"alt_audience_ids,omitempty"`
+	AltEventTypeIds *any `json:"alt_event_type_ids,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
 	AudienceId *string `json:"audience_id,omitempty"`
@@ -613,7 +635,7 @@ type Event struct {
 	Id *string `json:"id,omitempty"`
 	ImageUrl *any `json:"image_url,omitempty"`
 	IsAdmissionRequired *bool `json:"is_admission_required,omitempty"`
-	IsAfterHour *bool `json:"is_after_hour,omitempty"`
+	IsAfterHours *bool `json:"is_after_hours,omitempty"`
 	IsFree *bool `json:"is_free,omitempty"`
 	IsMemberExclusive *bool `json:"is_member_exclusive,omitempty"`
 	IsPrivate *bool `json:"is_private,omitempty"`
@@ -626,10 +648,10 @@ type Event struct {
 	LayoutType *any `json:"layout_type,omitempty"`
 	ListDescription *any `json:"list_description,omitempty"`
 	Location *any `json:"location,omitempty"`
-	ProgramId *string `json:"program_id,omitempty"`
-	ProgramTitle *any `json:"program_title,omitempty"`
+	ProgramIds *any `json:"program_ids,omitempty"`
+	ProgramTitles *any `json:"program_titles,omitempty"`
 	RsvpLink *any `json:"rsvp_link,omitempty"`
-	SearchTag *any `json:"search_tag,omitempty"`
+	SearchTags *any `json:"search_tags,omitempty"`
 	ShortDescription *any `json:"short_description,omitempty"`
 	Slug *string `json:"slug,omitempty"`
 	SourceUpdatedAt *any `json:"source_updated_at,omitempty"`
@@ -654,8 +676,8 @@ type EventLoadMatch struct {
 
 // EventListMatch is the typed request payload for Event.ListTyped.
 type EventListMatch struct {
-	AltAudienceId *string `json:"alt_audience_id,omitempty"`
-	AltEventTypeId *string `json:"alt_event_type_id,omitempty"`
+	AltAudienceIds *any `json:"alt_audience_ids,omitempty"`
+	AltEventTypeIds *any `json:"alt_event_type_ids,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
 	AudienceId *string `json:"audience_id,omitempty"`
@@ -675,7 +697,7 @@ type EventListMatch struct {
 	Id *string `json:"id,omitempty"`
 	ImageUrl *any `json:"image_url,omitempty"`
 	IsAdmissionRequired *bool `json:"is_admission_required,omitempty"`
-	IsAfterHour *bool `json:"is_after_hour,omitempty"`
+	IsAfterHours *bool `json:"is_after_hours,omitempty"`
 	IsFree *bool `json:"is_free,omitempty"`
 	IsMemberExclusive *bool `json:"is_member_exclusive,omitempty"`
 	IsPrivate *bool `json:"is_private,omitempty"`
@@ -688,10 +710,10 @@ type EventListMatch struct {
 	LayoutType *any `json:"layout_type,omitempty"`
 	ListDescription *any `json:"list_description,omitempty"`
 	Location *any `json:"location,omitempty"`
-	ProgramId *string `json:"program_id,omitempty"`
-	ProgramTitle *any `json:"program_title,omitempty"`
+	ProgramIds *any `json:"program_ids,omitempty"`
+	ProgramTitles *any `json:"program_titles,omitempty"`
 	RsvpLink *any `json:"rsvp_link,omitempty"`
-	SearchTag *any `json:"search_tag,omitempty"`
+	SearchTags *any `json:"search_tags,omitempty"`
 	ShortDescription *any `json:"short_description,omitempty"`
 	Slug *string `json:"slug,omitempty"`
 	SourceUpdatedAt *any `json:"source_updated_at,omitempty"`
@@ -811,13 +833,13 @@ type EventProgramListMatch struct {
 type Exhibition struct {
 	AicEndAt *any `json:"aic_end_at,omitempty"`
 	AicStartAt *any `json:"aic_start_at,omitempty"`
-	AltImageId *string `json:"alt_image_id,omitempty"`
+	AltImageIds *any `json:"alt_image_ids,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
-	ArtistId *string `json:"artist_id,omitempty"`
-	ArtworkId *string `json:"artwork_id,omitempty"`
-	ArtworkTitle *any `json:"artwork_title,omitempty"`
-	DocumentId *string `json:"document_id,omitempty"`
+	ArtistIds *any `json:"artist_ids,omitempty"`
+	ArtworkIds *any `json:"artwork_ids,omitempty"`
+	ArtworkTitles *any `json:"artwork_titles,omitempty"`
+	DocumentIds *any `json:"document_ids,omitempty"`
 	GalleryId *string `json:"gallery_id,omitempty"`
 	GalleryTitle *any `json:"gallery_title,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -827,7 +849,7 @@ type Exhibition struct {
 	IsPublished *bool `json:"is_published,omitempty"`
 	Position *any `json:"position,omitempty"`
 	ShortDescription *any `json:"short_description,omitempty"`
-	SiteId *string `json:"site_id,omitempty"`
+	SiteIds *any `json:"site_ids,omitempty"`
 	SourceUpdatedAt *any `json:"source_updated_at,omitempty"`
 	Status *any `json:"status,omitempty"`
 	SuggestAutocompleteAll *any `json:"suggest_autocomplete_all,omitempty"`
@@ -847,13 +869,13 @@ type ExhibitionLoadMatch struct {
 type ExhibitionListMatch struct {
 	AicEndAt *any `json:"aic_end_at,omitempty"`
 	AicStartAt *any `json:"aic_start_at,omitempty"`
-	AltImageId *string `json:"alt_image_id,omitempty"`
+	AltImageIds *any `json:"alt_image_ids,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
-	ArtistId *string `json:"artist_id,omitempty"`
-	ArtworkId *string `json:"artwork_id,omitempty"`
-	ArtworkTitle *any `json:"artwork_title,omitempty"`
-	DocumentId *string `json:"document_id,omitempty"`
+	ArtistIds *any `json:"artist_ids,omitempty"`
+	ArtworkIds *any `json:"artwork_ids,omitempty"`
+	ArtworkTitles *any `json:"artwork_titles,omitempty"`
+	DocumentIds *any `json:"document_ids,omitempty"`
 	GalleryId *string `json:"gallery_id,omitempty"`
 	GalleryTitle *any `json:"gallery_title,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -863,7 +885,7 @@ type ExhibitionListMatch struct {
 	IsPublished *bool `json:"is_published,omitempty"`
 	Position *any `json:"position,omitempty"`
 	ShortDescription *any `json:"short_description,omitempty"`
-	SiteId *string `json:"site_id,omitempty"`
+	SiteIds *any `json:"site_ids,omitempty"`
 	SourceUpdatedAt *any `json:"source_updated_at,omitempty"`
 	Status *any `json:"status,omitempty"`
 	SuggestAutocompleteAll *any `json:"suggest_autocomplete_all,omitempty"`
@@ -925,7 +947,7 @@ type GenericPage struct {
 	ApiModel *any `json:"api_model,omitempty"`
 	Copy *any `json:"copy,omitempty"`
 	Id *string `json:"id,omitempty"`
-	SearchTag *any `json:"search_tag,omitempty"`
+	SearchTags *any `json:"search_tags,omitempty"`
 	SourceUpdatedAt *any `json:"source_updated_at,omitempty"`
 	SuggestAutocompleteAll *any `json:"suggest_autocomplete_all,omitempty"`
 	SuggestAutocompleteBoosted *any `json:"suggest_autocomplete_boosted,omitempty"`
@@ -946,7 +968,7 @@ type GenericPageListMatch struct {
 	ApiModel *any `json:"api_model,omitempty"`
 	Copy *any `json:"copy,omitempty"`
 	Id *string `json:"id,omitempty"`
-	SearchTag *any `json:"search_tag,omitempty"`
+	SearchTags *any `json:"search_tags,omitempty"`
 	SourceUpdatedAt *any `json:"source_updated_at,omitempty"`
 	SuggestAutocompleteAll *any `json:"suggest_autocomplete_all,omitempty"`
 	SuggestAutocompleteBoosted *any `json:"suggest_autocomplete_boosted,omitempty"`
@@ -1100,8 +1122,8 @@ type Image struct {
 	AltText *any `json:"alt_text,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
-	ArtworkId *string `json:"artwork_id,omitempty"`
-	ArtworkTitle *any `json:"artwork_title,omitempty"`
+	ArtworkIds *any `json:"artwork_ids,omitempty"`
+	ArtworkTitles *any `json:"artwork_titles,omitempty"`
 	Color *any `json:"color,omitempty"`
 	Colorfulness *any `json:"colorfulness,omitempty"`
 	Content *any `json:"content,omitempty"`
@@ -1138,8 +1160,8 @@ type ImageListMatch struct {
 	AltText *any `json:"alt_text,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
-	ArtworkId *string `json:"artwork_id,omitempty"`
-	ArtworkTitle *any `json:"artwork_title,omitempty"`
+	ArtworkIds *any `json:"artwork_ids,omitempty"`
+	ArtworkTitles *any `json:"artwork_titles,omitempty"`
 	Color *any `json:"color,omitempty"`
 	Colorfulness *any `json:"colorfulness,omitempty"`
 	Content *any `json:"content,omitempty"`
@@ -1171,7 +1193,7 @@ type LandingPage struct {
 	ApiModel *any `json:"api_model,omitempty"`
 	Copy *any `json:"copy,omitempty"`
 	Id *string `json:"id,omitempty"`
-	SearchTag *any `json:"search_tag,omitempty"`
+	SearchTags *any `json:"search_tags,omitempty"`
 	SourceUpdatedAt *any `json:"source_updated_at,omitempty"`
 	SuggestAutocompleteAll *any `json:"suggest_autocomplete_all,omitempty"`
 	SuggestAutocompleteBoosted *any `json:"suggest_autocomplete_boosted,omitempty"`
@@ -1192,7 +1214,7 @@ type LandingPageListMatch struct {
 	ApiModel *any `json:"api_model,omitempty"`
 	Copy *any `json:"copy,omitempty"`
 	Id *string `json:"id,omitempty"`
-	SearchTag *any `json:"search_tag,omitempty"`
+	SearchTags *any `json:"search_tags,omitempty"`
 	SourceUpdatedAt *any `json:"source_updated_at,omitempty"`
 	SuggestAutocompleteAll *any `json:"suggest_autocomplete_all,omitempty"`
 	SuggestAutocompleteBoosted *any `json:"suggest_autocomplete_boosted,omitempty"`
@@ -1313,10 +1335,10 @@ type PrintedPublicationListMatch struct {
 type Product struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
-	ArtistId *string `json:"artist_id,omitempty"`
-	ArtworkId *string `json:"artwork_id,omitempty"`
+	ArtistIds *any `json:"artist_ids,omitempty"`
+	ArtworkIds *any `json:"artwork_ids,omitempty"`
 	Description *string `json:"description,omitempty"`
-	ExhibitionId *string `json:"exhibition_id,omitempty"`
+	ExhibitionIds *any `json:"exhibition_ids,omitempty"`
 	ExternalSku *any `json:"external_sku,omitempty"`
 	Id *string `json:"id,omitempty"`
 	ImageUrl *any `json:"image_url,omitempty"`
@@ -1343,10 +1365,10 @@ type ProductLoadMatch struct {
 type ProductListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
-	ArtistId *string `json:"artist_id,omitempty"`
-	ArtworkId *string `json:"artwork_id,omitempty"`
+	ArtistIds *any `json:"artist_ids,omitempty"`
+	ArtworkIds *any `json:"artwork_ids,omitempty"`
 	Description *string `json:"description,omitempty"`
-	ExhibitionId *string `json:"exhibition_id,omitempty"`
+	ExhibitionIds *any `json:"exhibition_ids,omitempty"`
 	ExternalSku *any `json:"external_sku,omitempty"`
 	Id *string `json:"id,omitempty"`
 	ImageUrl *any `json:"image_url,omitempty"`
@@ -1369,7 +1391,7 @@ type Publication struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
 	Id *string `json:"id,omitempty"`
-	SectionId *string `json:"section_id,omitempty"`
+	SectionIds *any `json:"section_ids,omitempty"`
 	SourceUpdatedAt *any `json:"source_updated_at,omitempty"`
 	SuggestAutocompleteAll *any `json:"suggest_autocomplete_all,omitempty"`
 	SuggestAutocompleteBoosted *any `json:"suggest_autocomplete_boosted,omitempty"`
@@ -1389,7 +1411,7 @@ type PublicationListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
 	Id *string `json:"id,omitempty"`
-	SectionId *string `json:"section_id,omitempty"`
+	SectionIds *any `json:"section_ids,omitempty"`
 	SourceUpdatedAt *any `json:"source_updated_at,omitempty"`
 	SuggestAutocompleteAll *any `json:"suggest_autocomplete_all,omitempty"`
 	SuggestAutocompleteBoosted *any `json:"suggest_autocomplete_boosted,omitempty"`
@@ -1474,11 +1496,11 @@ type SectionListMatch struct {
 type Site struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
-	ArtworkId *string `json:"artwork_id,omitempty"`
-	ArtworkTitle *any `json:"artwork_title,omitempty"`
+	ArtworkIds *any `json:"artwork_ids,omitempty"`
+	ArtworkTitles *any `json:"artwork_titles,omitempty"`
 	Description *string `json:"description,omitempty"`
-	ExhibitionId *string `json:"exhibition_id,omitempty"`
-	ExhibitionTitle *any `json:"exhibition_title,omitempty"`
+	ExhibitionIds *any `json:"exhibition_ids,omitempty"`
+	ExhibitionTitles *any `json:"exhibition_titles,omitempty"`
 	Id *string `json:"id,omitempty"`
 	SourceUpdatedAt *any `json:"source_updated_at,omitempty"`
 	SuggestAutocompleteAll *any `json:"suggest_autocomplete_all,omitempty"`
@@ -1498,11 +1520,11 @@ type SiteLoadMatch struct {
 type SiteListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
-	ArtworkId *string `json:"artwork_id,omitempty"`
-	ArtworkTitle *any `json:"artwork_title,omitempty"`
+	ArtworkIds *any `json:"artwork_ids,omitempty"`
+	ArtworkTitles *any `json:"artwork_titles,omitempty"`
 	Description *string `json:"description,omitempty"`
-	ExhibitionId *string `json:"exhibition_id,omitempty"`
-	ExhibitionTitle *any `json:"exhibition_title,omitempty"`
+	ExhibitionIds *any `json:"exhibition_ids,omitempty"`
+	ExhibitionTitles *any `json:"exhibition_titles,omitempty"`
 	Id *string `json:"id,omitempty"`
 	SourceUpdatedAt *any `json:"source_updated_at,omitempty"`
 	SuggestAutocompleteAll *any `json:"suggest_autocomplete_all,omitempty"`
@@ -1518,8 +1540,8 @@ type Sound struct {
 	AltText *any `json:"alt_text,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
-	ArtworkId *string `json:"artwork_id,omitempty"`
-	ArtworkTitle *any `json:"artwork_title,omitempty"`
+	ArtworkIds *any `json:"artwork_ids,omitempty"`
+	ArtworkTitles *any `json:"artwork_titles,omitempty"`
 	Content *any `json:"content,omitempty"`
 	ContentETag *any `json:"content_e_tag,omitempty"`
 	CreditLine *any `json:"credit_line,omitempty"`
@@ -1549,8 +1571,8 @@ type SoundListMatch struct {
 	AltText *any `json:"alt_text,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
-	ArtworkId *string `json:"artwork_id,omitempty"`
-	ArtworkTitle *any `json:"artwork_title,omitempty"`
+	ArtworkIds *any `json:"artwork_ids,omitempty"`
+	ArtworkTitles *any `json:"artwork_titles,omitempty"`
 	Content *any `json:"content,omitempty"`
 	ContentETag *any `json:"content_e_tag,omitempty"`
 	CreditLine *any `json:"credit_line,omitempty"`
@@ -1608,8 +1630,8 @@ type Text struct {
 	AltText *any `json:"alt_text,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
-	ArtworkId *string `json:"artwork_id,omitempty"`
-	ArtworkTitle *any `json:"artwork_title,omitempty"`
+	ArtworkIds *any `json:"artwork_ids,omitempty"`
+	ArtworkTitles *any `json:"artwork_titles,omitempty"`
 	Content *any `json:"content,omitempty"`
 	ContentETag *any `json:"content_e_tag,omitempty"`
 	CreditLine *any `json:"credit_line,omitempty"`
@@ -1637,8 +1659,8 @@ type TextListMatch struct {
 	AltText *any `json:"alt_text,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
-	ArtworkId *string `json:"artwork_id,omitempty"`
-	ArtworkTitle *any `json:"artwork_title,omitempty"`
+	ArtworkIds *any `json:"artwork_ids,omitempty"`
+	ArtworkTitles *any `json:"artwork_titles,omitempty"`
 	Content *any `json:"content,omitempty"`
 	ContentETag *any `json:"content_e_tag,omitempty"`
 	CreditLine *any `json:"credit_line,omitempty"`
@@ -1660,8 +1682,8 @@ type TextListMatch struct {
 type Tour struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
-	ArtistTitle *any `json:"artist_title,omitempty"`
-	ArtworkTitle *any `json:"artwork_title,omitempty"`
+	ArtistTitles *any `json:"artist_titles,omitempty"`
+	ArtworkTitles *any `json:"artwork_titles,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Image *any `json:"image,omitempty"`
@@ -1686,8 +1708,8 @@ type TourLoadMatch struct {
 type TourListMatch struct {
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
-	ArtistTitle *any `json:"artist_title,omitempty"`
-	ArtworkTitle *any `json:"artwork_title,omitempty"`
+	ArtistTitles *any `json:"artist_titles,omitempty"`
+	ArtworkTitles *any `json:"artwork_titles,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Image *any `json:"image,omitempty"`
@@ -1708,8 +1730,8 @@ type Video struct {
 	AltText *any `json:"alt_text,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
-	ArtworkId *string `json:"artwork_id,omitempty"`
-	ArtworkTitle *any `json:"artwork_title,omitempty"`
+	ArtworkIds *any `json:"artwork_ids,omitempty"`
+	ArtworkTitles *any `json:"artwork_titles,omitempty"`
 	Content *any `json:"content,omitempty"`
 	ContentETag *any `json:"content_e_tag,omitempty"`
 	CreditLine *any `json:"credit_line,omitempty"`
@@ -1737,8 +1759,8 @@ type VideoListMatch struct {
 	AltText *any `json:"alt_text,omitempty"`
 	ApiLink *any `json:"api_link,omitempty"`
 	ApiModel *any `json:"api_model,omitempty"`
-	ArtworkId *string `json:"artwork_id,omitempty"`
-	ArtworkTitle *any `json:"artwork_title,omitempty"`
+	ArtworkIds *any `json:"artwork_ids,omitempty"`
+	ArtworkTitles *any `json:"artwork_titles,omitempty"`
 	Content *any `json:"content,omitempty"`
 	ContentETag *any `json:"content_e_tag,omitempty"`
 	CreditLine *any `json:"credit_line,omitempty"`
@@ -1768,12 +1790,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -1785,12 +1821,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

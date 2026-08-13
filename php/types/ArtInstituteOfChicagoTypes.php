@@ -15,7 +15,7 @@ declare(strict_types=1);
 /** Agent entity data model. */
 class Agent
 {
-    public mixed $alt_title = null;
+    public mixed $alt_titles = null;
     public mixed $api_link = null;
     public mixed $api_model = null;
     public mixed $birth_date = null;
@@ -42,7 +42,7 @@ class AgentLoadMatch
 /** Request payload for Agent#list. */
 class AgentListMatch
 {
-    public mixed $alt_title = null;
+    public mixed $alt_titles = null;
     public mixed $api_link = null;
     public mixed $api_model = null;
     public mixed $birth_date = null;
@@ -167,28 +167,32 @@ class ArticleListMatch
 /** Artwork entity data model. */
 class Artwork
 {
-    public ?string $alt_artist_id = null;
-    public ?string $alt_classification_id = null;
-    public ?string $alt_image_id = null;
-    public ?string $alt_material_id = null;
-    public ?string $alt_style_id = null;
-    public ?string $alt_subject_id = null;
-    public ?string $alt_technique_id = null;
-    public mixed $alt_title = null;
+    public mixed $alt_artist_ids = null;
+    public mixed $alt_classification_ids = null;
+    public mixed $alt_image_ids = null;
+    public mixed $alt_material_ids = null;
+    public mixed $alt_style_ids = null;
+    public mixed $alt_subject_ids = null;
+    public mixed $alt_technique_ids = null;
+    public mixed $alt_titles = null;
     public mixed $api_link = null;
     public mixed $api_model = null;
     public mixed $artist_display = null;
     public ?string $artist_id = null;
+    public mixed $artist_ids = null;
     public mixed $artist_title = null;
+    public mixed $artist_titles = null;
     public ?string $artwork_type_id = null;
     public mixed $artwork_type_title = null;
     public mixed $boost_rank = null;
-    public mixed $catalog_based_search_keyword_title = null;
+    public mixed $catalog_based_search_keyword_titles = null;
     public mixed $catalogue_display = null;
-    public ?string $category_id = null;
-    public mixed $category_title = null;
+    public mixed $category_ids = null;
+    public mixed $category_titles = null;
     public ?string $classification_id = null;
+    public mixed $classification_ids = null;
     public mixed $classification_title = null;
+    public mixed $classification_titles = null;
     public mixed $color = null;
     public mixed $colorfulness = null;
     public mixed $copyright_notice = null;
@@ -201,9 +205,9 @@ class Artwork
     public ?string $department_id = null;
     public mixed $department_title = null;
     public ?string $description = null;
-    public mixed $dimension = null;
+    public mixed $dimensions = null;
     public mixed $dimensions_detail = null;
-    public ?string $document_id = null;
+    public mixed $document_ids = null;
     public mixed $edition = null;
     public mixed $exhibition_history = null;
     public mixed $fiscal_year = null;
@@ -211,13 +215,13 @@ class Artwork
     public ?string $gallery_id = null;
     public mixed $gallery_title = null;
     public ?bool $has_advanced_imaging = null;
-    public ?bool $has_educational_resource = null;
-    public ?bool $has_multimedia_resource = null;
+    public ?bool $has_educational_resources = null;
+    public ?bool $has_multimedia_resources = null;
     public ?bool $has_not_been_viewed_much = null;
     public ?string $id = null;
     public mixed $image_embedding = null;
     public ?string $image_id = null;
-    public mixed $inscription = null;
+    public mixed $inscriptions = null;
     public ?string $internal_department_id = null;
     public ?bool $is_boosted = null;
     public ?bool $is_on_view = null;
@@ -228,40 +232,45 @@ class Artwork
     public ?float $longitude = null;
     public ?int $main_reference_number = null;
     public ?string $material_id = null;
-    public mixed $material_title = null;
+    public mixed $material_ids = null;
+    public mixed $material_titles = null;
     public mixed $max_zoom_window_size = null;
     public mixed $medium_display = null;
     public ?string $nomisma_id = null;
     public mixed $on_loan_display = null;
-    public mixed $pageview = null;
+    public mixed $pageviews = null;
     public mixed $pageviews_recent = null;
     public mixed $place_of_origin = null;
     public mixed $provenance_text = null;
     public mixed $publication_history = null;
     public mixed $publishing_verification_level = null;
-    public ?string $section_id = null;
-    public mixed $section_title = null;
+    public mixed $section_ids = null;
+    public mixed $section_titles = null;
     public mixed $short_description = null;
-    public ?string $site_id = null;
-    public ?string $sound_id = null;
+    public mixed $site_ids = null;
+    public mixed $sound_ids = null;
     public mixed $source_updated_at = null;
     public ?string $style_id = null;
+    public mixed $style_ids = null;
     public mixed $style_title = null;
+    public mixed $style_titles = null;
     public ?string $subject_id = null;
-    public mixed $subject_title = null;
+    public mixed $subject_ids = null;
+    public mixed $subject_titles = null;
     public mixed $suggest_autocomplete_all = null;
     public mixed $suggest_autocomplete_boosted = null;
     public ?string $technique_id = null;
-    public mixed $technique_title = null;
-    public mixed $term_title = null;
+    public mixed $technique_ids = null;
+    public mixed $technique_titles = null;
+    public mixed $term_titles = null;
     public mixed $text_embedding = null;
-    public ?string $text_id = null;
-    public mixed $theme_title = null;
+    public mixed $text_ids = null;
+    public mixed $theme_titles = null;
     public mixed $thumbnail = null;
     public mixed $timestamp = null;
     public ?string $title = null;
     public mixed $updated_at = null;
-    public ?string $video_id = null;
+    public mixed $video_ids = null;
 }
 
 /** Request payload for Artwork#load. */
@@ -273,28 +282,32 @@ class ArtworkLoadMatch
 /** Request payload for Artwork#list. */
 class ArtworkListMatch
 {
-    public ?string $alt_artist_id = null;
-    public ?string $alt_classification_id = null;
-    public ?string $alt_image_id = null;
-    public ?string $alt_material_id = null;
-    public ?string $alt_style_id = null;
-    public ?string $alt_subject_id = null;
-    public ?string $alt_technique_id = null;
-    public mixed $alt_title = null;
+    public mixed $alt_artist_ids = null;
+    public mixed $alt_classification_ids = null;
+    public mixed $alt_image_ids = null;
+    public mixed $alt_material_ids = null;
+    public mixed $alt_style_ids = null;
+    public mixed $alt_subject_ids = null;
+    public mixed $alt_technique_ids = null;
+    public mixed $alt_titles = null;
     public mixed $api_link = null;
     public mixed $api_model = null;
     public mixed $artist_display = null;
     public ?string $artist_id = null;
+    public mixed $artist_ids = null;
     public mixed $artist_title = null;
+    public mixed $artist_titles = null;
     public ?string $artwork_type_id = null;
     public mixed $artwork_type_title = null;
     public mixed $boost_rank = null;
-    public mixed $catalog_based_search_keyword_title = null;
+    public mixed $catalog_based_search_keyword_titles = null;
     public mixed $catalogue_display = null;
-    public ?string $category_id = null;
-    public mixed $category_title = null;
+    public mixed $category_ids = null;
+    public mixed $category_titles = null;
     public ?string $classification_id = null;
+    public mixed $classification_ids = null;
     public mixed $classification_title = null;
+    public mixed $classification_titles = null;
     public mixed $color = null;
     public mixed $colorfulness = null;
     public mixed $copyright_notice = null;
@@ -307,9 +320,9 @@ class ArtworkListMatch
     public ?string $department_id = null;
     public mixed $department_title = null;
     public ?string $description = null;
-    public mixed $dimension = null;
+    public mixed $dimensions = null;
     public mixed $dimensions_detail = null;
-    public ?string $document_id = null;
+    public mixed $document_ids = null;
     public mixed $edition = null;
     public mixed $exhibition_history = null;
     public mixed $fiscal_year = null;
@@ -317,13 +330,13 @@ class ArtworkListMatch
     public ?string $gallery_id = null;
     public mixed $gallery_title = null;
     public ?bool $has_advanced_imaging = null;
-    public ?bool $has_educational_resource = null;
-    public ?bool $has_multimedia_resource = null;
+    public ?bool $has_educational_resources = null;
+    public ?bool $has_multimedia_resources = null;
     public ?bool $has_not_been_viewed_much = null;
     public ?string $id = null;
     public mixed $image_embedding = null;
     public ?string $image_id = null;
-    public mixed $inscription = null;
+    public mixed $inscriptions = null;
     public ?string $internal_department_id = null;
     public ?bool $is_boosted = null;
     public ?bool $is_on_view = null;
@@ -334,40 +347,45 @@ class ArtworkListMatch
     public ?float $longitude = null;
     public ?int $main_reference_number = null;
     public ?string $material_id = null;
-    public mixed $material_title = null;
+    public mixed $material_ids = null;
+    public mixed $material_titles = null;
     public mixed $max_zoom_window_size = null;
     public mixed $medium_display = null;
     public ?string $nomisma_id = null;
     public mixed $on_loan_display = null;
-    public mixed $pageview = null;
+    public mixed $pageviews = null;
     public mixed $pageviews_recent = null;
     public mixed $place_of_origin = null;
     public mixed $provenance_text = null;
     public mixed $publication_history = null;
     public mixed $publishing_verification_level = null;
-    public ?string $section_id = null;
-    public mixed $section_title = null;
+    public mixed $section_ids = null;
+    public mixed $section_titles = null;
     public mixed $short_description = null;
-    public ?string $site_id = null;
-    public ?string $sound_id = null;
+    public mixed $site_ids = null;
+    public mixed $sound_ids = null;
     public mixed $source_updated_at = null;
     public ?string $style_id = null;
+    public mixed $style_ids = null;
     public mixed $style_title = null;
+    public mixed $style_titles = null;
     public ?string $subject_id = null;
-    public mixed $subject_title = null;
+    public mixed $subject_ids = null;
+    public mixed $subject_titles = null;
     public mixed $suggest_autocomplete_all = null;
     public mixed $suggest_autocomplete_boosted = null;
     public ?string $technique_id = null;
-    public mixed $technique_title = null;
-    public mixed $term_title = null;
+    public mixed $technique_ids = null;
+    public mixed $technique_titles = null;
+    public mixed $term_titles = null;
     public mixed $text_embedding = null;
-    public ?string $text_id = null;
-    public mixed $theme_title = null;
+    public mixed $text_ids = null;
+    public mixed $theme_titles = null;
     public mixed $thumbnail = null;
     public mixed $timestamp = null;
     public ?string $title = null;
     public mixed $updated_at = null;
-    public ?string $video_id = null;
+    public mixed $video_ids = null;
 }
 
 /** ArtworkDateQualifier entity data model. */
@@ -633,8 +651,8 @@ class EducatorResourceListMatch
 /** Event entity data model. */
 class Event
 {
-    public ?string $alt_audience_id = null;
-    public ?string $alt_event_type_id = null;
+    public mixed $alt_audience_ids = null;
+    public mixed $alt_event_type_ids = null;
     public mixed $api_link = null;
     public mixed $api_model = null;
     public ?string $audience_id = null;
@@ -654,7 +672,7 @@ class Event
     public ?string $id = null;
     public mixed $image_url = null;
     public ?bool $is_admission_required = null;
-    public ?bool $is_after_hour = null;
+    public ?bool $is_after_hours = null;
     public ?bool $is_free = null;
     public ?bool $is_member_exclusive = null;
     public ?bool $is_private = null;
@@ -667,10 +685,10 @@ class Event
     public mixed $layout_type = null;
     public mixed $list_description = null;
     public mixed $location = null;
-    public ?string $program_id = null;
-    public mixed $program_title = null;
+    public mixed $program_ids = null;
+    public mixed $program_titles = null;
     public mixed $rsvp_link = null;
-    public mixed $search_tag = null;
+    public mixed $search_tags = null;
     public mixed $short_description = null;
     public ?string $slug = null;
     public mixed $source_updated_at = null;
@@ -697,8 +715,8 @@ class EventLoadMatch
 /** Request payload for Event#list. */
 class EventListMatch
 {
-    public ?string $alt_audience_id = null;
-    public ?string $alt_event_type_id = null;
+    public mixed $alt_audience_ids = null;
+    public mixed $alt_event_type_ids = null;
     public mixed $api_link = null;
     public mixed $api_model = null;
     public ?string $audience_id = null;
@@ -718,7 +736,7 @@ class EventListMatch
     public ?string $id = null;
     public mixed $image_url = null;
     public ?bool $is_admission_required = null;
-    public ?bool $is_after_hour = null;
+    public ?bool $is_after_hours = null;
     public ?bool $is_free = null;
     public ?bool $is_member_exclusive = null;
     public ?bool $is_private = null;
@@ -731,10 +749,10 @@ class EventListMatch
     public mixed $layout_type = null;
     public mixed $list_description = null;
     public mixed $location = null;
-    public ?string $program_id = null;
-    public mixed $program_title = null;
+    public mixed $program_ids = null;
+    public mixed $program_titles = null;
     public mixed $rsvp_link = null;
-    public mixed $search_tag = null;
+    public mixed $search_tags = null;
     public mixed $short_description = null;
     public ?string $slug = null;
     public mixed $source_updated_at = null;
@@ -861,13 +879,13 @@ class Exhibition
 {
     public mixed $aic_end_at = null;
     public mixed $aic_start_at = null;
-    public ?string $alt_image_id = null;
+    public mixed $alt_image_ids = null;
     public mixed $api_link = null;
     public mixed $api_model = null;
-    public ?string $artist_id = null;
-    public ?string $artwork_id = null;
-    public mixed $artwork_title = null;
-    public ?string $document_id = null;
+    public mixed $artist_ids = null;
+    public mixed $artwork_ids = null;
+    public mixed $artwork_titles = null;
+    public mixed $document_ids = null;
     public ?string $gallery_id = null;
     public mixed $gallery_title = null;
     public ?string $id = null;
@@ -877,7 +895,7 @@ class Exhibition
     public ?bool $is_published = null;
     public mixed $position = null;
     public mixed $short_description = null;
-    public ?string $site_id = null;
+    public mixed $site_ids = null;
     public mixed $source_updated_at = null;
     public mixed $status = null;
     public mixed $suggest_autocomplete_all = null;
@@ -899,13 +917,13 @@ class ExhibitionListMatch
 {
     public mixed $aic_end_at = null;
     public mixed $aic_start_at = null;
-    public ?string $alt_image_id = null;
+    public mixed $alt_image_ids = null;
     public mixed $api_link = null;
     public mixed $api_model = null;
-    public ?string $artist_id = null;
-    public ?string $artwork_id = null;
-    public mixed $artwork_title = null;
-    public ?string $document_id = null;
+    public mixed $artist_ids = null;
+    public mixed $artwork_ids = null;
+    public mixed $artwork_titles = null;
+    public mixed $document_ids = null;
     public ?string $gallery_id = null;
     public mixed $gallery_title = null;
     public ?string $id = null;
@@ -915,7 +933,7 @@ class ExhibitionListMatch
     public ?bool $is_published = null;
     public mixed $position = null;
     public mixed $short_description = null;
-    public ?string $site_id = null;
+    public mixed $site_ids = null;
     public mixed $source_updated_at = null;
     public mixed $status = null;
     public mixed $suggest_autocomplete_all = null;
@@ -981,7 +999,7 @@ class GenericPage
     public mixed $api_model = null;
     public mixed $copy = null;
     public ?string $id = null;
-    public mixed $search_tag = null;
+    public mixed $search_tags = null;
     public mixed $source_updated_at = null;
     public mixed $suggest_autocomplete_all = null;
     public mixed $suggest_autocomplete_boosted = null;
@@ -1004,7 +1022,7 @@ class GenericPageListMatch
     public mixed $api_model = null;
     public mixed $copy = null;
     public ?string $id = null;
-    public mixed $search_tag = null;
+    public mixed $search_tags = null;
     public mixed $source_updated_at = null;
     public mixed $suggest_autocomplete_all = null;
     public mixed $suggest_autocomplete_boosted = null;
@@ -1165,8 +1183,8 @@ class Image
     public mixed $alt_text = null;
     public mixed $api_link = null;
     public mixed $api_model = null;
-    public ?string $artwork_id = null;
-    public mixed $artwork_title = null;
+    public mixed $artwork_ids = null;
+    public mixed $artwork_titles = null;
     public mixed $color = null;
     public mixed $colorfulness = null;
     public mixed $content = null;
@@ -1205,8 +1223,8 @@ class ImageListMatch
     public mixed $alt_text = null;
     public mixed $api_link = null;
     public mixed $api_model = null;
-    public ?string $artwork_id = null;
-    public mixed $artwork_title = null;
+    public mixed $artwork_ids = null;
+    public mixed $artwork_titles = null;
     public mixed $color = null;
     public mixed $colorfulness = null;
     public mixed $content = null;
@@ -1239,7 +1257,7 @@ class LandingPage
     public mixed $api_model = null;
     public mixed $copy = null;
     public ?string $id = null;
-    public mixed $search_tag = null;
+    public mixed $search_tags = null;
     public mixed $source_updated_at = null;
     public mixed $suggest_autocomplete_all = null;
     public mixed $suggest_autocomplete_boosted = null;
@@ -1262,7 +1280,7 @@ class LandingPageListMatch
     public mixed $api_model = null;
     public mixed $copy = null;
     public ?string $id = null;
-    public mixed $search_tag = null;
+    public mixed $search_tags = null;
     public mixed $source_updated_at = null;
     public mixed $suggest_autocomplete_all = null;
     public mixed $suggest_autocomplete_boosted = null;
@@ -1393,10 +1411,10 @@ class Product
 {
     public mixed $api_link = null;
     public mixed $api_model = null;
-    public ?string $artist_id = null;
-    public ?string $artwork_id = null;
+    public mixed $artist_ids = null;
+    public mixed $artwork_ids = null;
     public ?string $description = null;
-    public ?string $exhibition_id = null;
+    public mixed $exhibition_ids = null;
     public mixed $external_sku = null;
     public ?string $id = null;
     public mixed $image_url = null;
@@ -1425,10 +1443,10 @@ class ProductListMatch
 {
     public mixed $api_link = null;
     public mixed $api_model = null;
-    public ?string $artist_id = null;
-    public ?string $artwork_id = null;
+    public mixed $artist_ids = null;
+    public mixed $artwork_ids = null;
     public ?string $description = null;
-    public ?string $exhibition_id = null;
+    public mixed $exhibition_ids = null;
     public mixed $external_sku = null;
     public ?string $id = null;
     public mixed $image_url = null;
@@ -1452,7 +1470,7 @@ class Publication
     public mixed $api_link = null;
     public mixed $api_model = null;
     public ?string $id = null;
-    public ?string $section_id = null;
+    public mixed $section_ids = null;
     public mixed $source_updated_at = null;
     public mixed $suggest_autocomplete_all = null;
     public mixed $suggest_autocomplete_boosted = null;
@@ -1474,7 +1492,7 @@ class PublicationListMatch
     public mixed $api_link = null;
     public mixed $api_model = null;
     public ?string $id = null;
-    public ?string $section_id = null;
+    public mixed $section_ids = null;
     public mixed $source_updated_at = null;
     public mixed $suggest_autocomplete_all = null;
     public mixed $suggest_autocomplete_boosted = null;
@@ -1565,11 +1583,11 @@ class Site
 {
     public mixed $api_link = null;
     public mixed $api_model = null;
-    public ?string $artwork_id = null;
-    public mixed $artwork_title = null;
+    public mixed $artwork_ids = null;
+    public mixed $artwork_titles = null;
     public ?string $description = null;
-    public ?string $exhibition_id = null;
-    public mixed $exhibition_title = null;
+    public mixed $exhibition_ids = null;
+    public mixed $exhibition_titles = null;
     public ?string $id = null;
     public mixed $source_updated_at = null;
     public mixed $suggest_autocomplete_all = null;
@@ -1591,11 +1609,11 @@ class SiteListMatch
 {
     public mixed $api_link = null;
     public mixed $api_model = null;
-    public ?string $artwork_id = null;
-    public mixed $artwork_title = null;
+    public mixed $artwork_ids = null;
+    public mixed $artwork_titles = null;
     public ?string $description = null;
-    public ?string $exhibition_id = null;
-    public mixed $exhibition_title = null;
+    public mixed $exhibition_ids = null;
+    public mixed $exhibition_titles = null;
     public ?string $id = null;
     public mixed $source_updated_at = null;
     public mixed $suggest_autocomplete_all = null;
@@ -1612,8 +1630,8 @@ class Sound
     public mixed $alt_text = null;
     public mixed $api_link = null;
     public mixed $api_model = null;
-    public ?string $artwork_id = null;
-    public mixed $artwork_title = null;
+    public mixed $artwork_ids = null;
+    public mixed $artwork_titles = null;
     public mixed $content = null;
     public mixed $content_e_tag = null;
     public mixed $credit_line = null;
@@ -1645,8 +1663,8 @@ class SoundListMatch
     public mixed $alt_text = null;
     public mixed $api_link = null;
     public mixed $api_model = null;
-    public ?string $artwork_id = null;
-    public mixed $artwork_title = null;
+    public mixed $artwork_ids = null;
+    public mixed $artwork_titles = null;
     public mixed $content = null;
     public mixed $content_e_tag = null;
     public mixed $credit_line = null;
@@ -1708,8 +1726,8 @@ class Text
     public mixed $alt_text = null;
     public mixed $api_link = null;
     public mixed $api_model = null;
-    public ?string $artwork_id = null;
-    public mixed $artwork_title = null;
+    public mixed $artwork_ids = null;
+    public mixed $artwork_titles = null;
     public mixed $content = null;
     public mixed $content_e_tag = null;
     public mixed $credit_line = null;
@@ -1739,8 +1757,8 @@ class TextListMatch
     public mixed $alt_text = null;
     public mixed $api_link = null;
     public mixed $api_model = null;
-    public ?string $artwork_id = null;
-    public mixed $artwork_title = null;
+    public mixed $artwork_ids = null;
+    public mixed $artwork_titles = null;
     public mixed $content = null;
     public mixed $content_e_tag = null;
     public mixed $credit_line = null;
@@ -1763,8 +1781,8 @@ class Tour
 {
     public mixed $api_link = null;
     public mixed $api_model = null;
-    public mixed $artist_title = null;
-    public mixed $artwork_title = null;
+    public mixed $artist_titles = null;
+    public mixed $artwork_titles = null;
     public ?string $description = null;
     public ?string $id = null;
     public mixed $image = null;
@@ -1791,8 +1809,8 @@ class TourListMatch
 {
     public mixed $api_link = null;
     public mixed $api_model = null;
-    public mixed $artist_title = null;
-    public mixed $artwork_title = null;
+    public mixed $artist_titles = null;
+    public mixed $artwork_titles = null;
     public ?string $description = null;
     public ?string $id = null;
     public mixed $image = null;
@@ -1814,8 +1832,8 @@ class Video
     public mixed $alt_text = null;
     public mixed $api_link = null;
     public mixed $api_model = null;
-    public ?string $artwork_id = null;
-    public mixed $artwork_title = null;
+    public mixed $artwork_ids = null;
+    public mixed $artwork_titles = null;
     public mixed $content = null;
     public mixed $content_e_tag = null;
     public mixed $credit_line = null;
@@ -1845,8 +1863,8 @@ class VideoListMatch
     public mixed $alt_text = null;
     public mixed $api_link = null;
     public mixed $api_model = null;
-    public ?string $artwork_id = null;
-    public mixed $artwork_title = null;
+    public mixed $artwork_ids = null;
+    public mixed $artwork_titles = null;
     public mixed $content = null;
     public mixed $content_e_tag = null;
     public mixed $credit_line = null;

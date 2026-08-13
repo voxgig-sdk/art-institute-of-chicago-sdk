@@ -26,8 +26,8 @@ import {
 describe('CategoryTermEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ARTINSTITUTEOFCHICAGO_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ARTINSTITUTEOFCHICAGO_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ART_INSTITUTE_OF_CHICAGO_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ART_INSTITUTE_OF_CHICAGO_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = ArtInstituteOfChicagoSDK.test()
@@ -63,13 +63,13 @@ describe('CategoryTermEntity', async () => {
     const category_term_ref01_ent = client.CategoryTerm()
     const category_term_ref01_match: any = {}
 
-    const category_term_ref01_list = await category_term_ref01_ent.list(category_term_ref01_match)
+    const category_term_ref01_list = (await category_term_ref01_ent.list(category_term_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const category_term_ref01_match_dt0: any = {}
     category_term_ref01_match_dt0.id = category_term_ref01_data.id
-    const category_term_ref01_data_dt0 = await category_term_ref01_ent.load(category_term_ref01_match_dt0)
+    const category_term_ref01_data_dt0 = (await category_term_ref01_ent.load(category_term_ref01_match_dt0)).data()
     assert(category_term_ref01_data_dt0.id === category_term_ref01_data.id)
 
 

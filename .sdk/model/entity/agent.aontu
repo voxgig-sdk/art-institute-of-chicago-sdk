@@ -6,7 +6,7 @@ main: kit: entity: agent: {
 
   fields: [
     {
-      name: "alt_title"
+      name: "alt_titles"
       req: false
       type: "`$ANY`"
     }

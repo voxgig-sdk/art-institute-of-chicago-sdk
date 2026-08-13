@@ -52,7 +52,7 @@ except Exception as err:
 
 ### 3. Load an agent
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -69,8 +69,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    agents = client.Agent().list()
-    print(agents)
+    publications = client.Publication().list()
+    print(publications)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -136,9 +136,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = ArtInstituteOfChicagoSDK.test()
 
-# Entity ops return the bare record and raise on error.
-agent = client.Agent().list()
-# agent contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+publication = client.Publication().list()
+# publication contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -267,7 +268,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -289,7 +290,7 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `alt_title` |  |
+| `alt_titles` |  |
 | `api_link` |  |
 | `api_model` |  |
 | `birth_date` |  |
@@ -369,28 +370,32 @@ API path: `/articles`
 
 | Field | Description |
 | --- | --- |
-| `alt_artist_id` |  |
-| `alt_classification_id` |  |
-| `alt_image_id` |  |
-| `alt_material_id` |  |
-| `alt_style_id` |  |
-| `alt_subject_id` |  |
-| `alt_technique_id` |  |
-| `alt_title` |  |
+| `alt_artist_ids` |  |
+| `alt_classification_ids` |  |
+| `alt_image_ids` |  |
+| `alt_material_ids` |  |
+| `alt_style_ids` |  |
+| `alt_subject_ids` |  |
+| `alt_technique_ids` |  |
+| `alt_titles` |  |
 | `api_link` |  |
 | `api_model` |  |
 | `artist_display` |  |
 | `artist_id` |  |
+| `artist_ids` |  |
 | `artist_title` |  |
+| `artist_titles` |  |
 | `artwork_type_id` |  |
 | `artwork_type_title` |  |
 | `boost_rank` |  |
-| `catalog_based_search_keyword_title` |  |
+| `catalog_based_search_keyword_titles` |  |
 | `catalogue_display` |  |
-| `category_id` |  |
-| `category_title` |  |
+| `category_ids` |  |
+| `category_titles` |  |
 | `classification_id` |  |
+| `classification_ids` |  |
 | `classification_title` |  |
+| `classification_titles` |  |
 | `color` |  |
 | `colorfulness` |  |
 | `copyright_notice` |  |
@@ -403,9 +408,9 @@ API path: `/articles`
 | `department_id` |  |
 | `department_title` |  |
 | `description` |  |
-| `dimension` |  |
+| `dimensions` |  |
 | `dimensions_detail` |  |
-| `document_id` |  |
+| `document_ids` |  |
 | `edition` |  |
 | `exhibition_history` |  |
 | `fiscal_year` |  |
@@ -413,13 +418,13 @@ API path: `/articles`
 | `gallery_id` |  |
 | `gallery_title` |  |
 | `has_advanced_imaging` |  |
-| `has_educational_resource` |  |
-| `has_multimedia_resource` |  |
+| `has_educational_resources` |  |
+| `has_multimedia_resources` |  |
 | `has_not_been_viewed_much` |  |
 | `id` |  |
 | `image_embedding` |  |
 | `image_id` |  |
-| `inscription` |  |
+| `inscriptions` |  |
 | `internal_department_id` |  |
 | `is_boosted` |  |
 | `is_on_view` |  |
@@ -430,40 +435,45 @@ API path: `/articles`
 | `longitude` |  |
 | `main_reference_number` |  |
 | `material_id` |  |
-| `material_title` |  |
+| `material_ids` |  |
+| `material_titles` |  |
 | `max_zoom_window_size` |  |
 | `medium_display` |  |
 | `nomisma_id` |  |
 | `on_loan_display` |  |
-| `pageview` |  |
+| `pageviews` |  |
 | `pageviews_recent` |  |
 | `place_of_origin` |  |
 | `provenance_text` |  |
 | `publication_history` |  |
 | `publishing_verification_level` |  |
-| `section_id` |  |
-| `section_title` |  |
+| `section_ids` |  |
+| `section_titles` |  |
 | `short_description` |  |
-| `site_id` |  |
-| `sound_id` |  |
+| `site_ids` |  |
+| `sound_ids` |  |
 | `source_updated_at` |  |
 | `style_id` |  |
+| `style_ids` |  |
 | `style_title` |  |
+| `style_titles` |  |
 | `subject_id` |  |
-| `subject_title` |  |
+| `subject_ids` |  |
+| `subject_titles` |  |
 | `suggest_autocomplete_all` |  |
 | `suggest_autocomplete_boosted` |  |
 | `technique_id` |  |
-| `technique_title` |  |
-| `term_title` |  |
+| `technique_ids` |  |
+| `technique_titles` |  |
+| `term_titles` |  |
 | `text_embedding` |  |
-| `text_id` |  |
-| `theme_title` |  |
+| `text_ids` |  |
+| `theme_titles` |  |
 | `thumbnail` |  |
 | `timestamp` |  |
 | `title` |  |
 | `updated_at` |  |
-| `video_id` |  |
+| `video_ids` |  |
 
 Operations: List, Load.
 
@@ -610,8 +620,8 @@ API path: `/educator-resources`
 
 | Field | Description |
 | --- | --- |
-| `alt_audience_id` |  |
-| `alt_event_type_id` |  |
+| `alt_audience_ids` |  |
+| `alt_event_type_ids` |  |
 | `api_link` |  |
 | `api_model` |  |
 | `audience_id` |  |
@@ -631,7 +641,7 @@ API path: `/educator-resources`
 | `id` |  |
 | `image_url` |  |
 | `is_admission_required` |  |
-| `is_after_hour` |  |
+| `is_after_hours` |  |
 | `is_free` |  |
 | `is_member_exclusive` |  |
 | `is_private` |  |
@@ -644,10 +654,10 @@ API path: `/educator-resources`
 | `layout_type` |  |
 | `list_description` |  |
 | `location` |  |
-| `program_id` |  |
-| `program_title` |  |
+| `program_ids` |  |
+| `program_titles` |  |
 | `rsvp_link` |  |
-| `search_tag` |  |
+| `search_tags` |  |
 | `short_description` |  |
 | `slug` |  |
 | `source_updated_at` |  |
@@ -728,13 +738,13 @@ API path: `/event-programs`
 | --- | --- |
 | `aic_end_at` |  |
 | `aic_start_at` |  |
-| `alt_image_id` |  |
+| `alt_image_ids` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artist_id` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
-| `document_id` |  |
+| `artist_ids` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
+| `document_ids` |  |
 | `gallery_id` |  |
 | `gallery_title` |  |
 | `id` |  |
@@ -744,7 +754,7 @@ API path: `/event-programs`
 | `is_published` |  |
 | `position` |  |
 | `short_description` |  |
-| `site_id` |  |
+| `site_ids` |  |
 | `source_updated_at` |  |
 | `status` |  |
 | `suggest_autocomplete_all` |  |
@@ -791,7 +801,7 @@ API path: `/galleries`
 | `api_model` |  |
 | `copy` |  |
 | `id` |  |
-| `search_tag` |  |
+| `search_tags` |  |
 | `source_updated_at` |  |
 | `suggest_autocomplete_all` |  |
 | `suggest_autocomplete_boosted` |  |
@@ -886,8 +896,8 @@ API path: `/hours`
 | `alt_text` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `color` |  |
 | `colorfulness` |  |
 | `content` |  |
@@ -924,7 +934,7 @@ API path: `/images`
 | `api_model` |  |
 | `copy` |  |
 | `id` |  |
-| `search_tag` |  |
+| `search_tags` |  |
 | `source_updated_at` |  |
 | `suggest_autocomplete_all` |  |
 | `suggest_autocomplete_boosted` |  |
@@ -1004,10 +1014,10 @@ API path: `/printed-publications`
 | --- | --- |
 | `api_link` |  |
 | `api_model` |  |
-| `artist_id` |  |
-| `artwork_id` |  |
+| `artist_ids` |  |
+| `artwork_ids` |  |
 | `description` |  |
-| `exhibition_id` |  |
+| `exhibition_ids` |  |
 | `external_sku` |  |
 | `id` |  |
 | `image_url` |  |
@@ -1035,7 +1045,7 @@ API path: `/products`
 | `api_link` |  |
 | `api_model` |  |
 | `id` |  |
-| `section_id` |  |
+| `section_ids` |  |
 | `source_updated_at` |  |
 | `suggest_autocomplete_all` |  |
 | `suggest_autocomplete_boosted` |  |
@@ -1097,11 +1107,11 @@ API path: `/sections`
 | --- | --- |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `description` |  |
-| `exhibition_id` |  |
-| `exhibition_title` |  |
+| `exhibition_ids` |  |
+| `exhibition_titles` |  |
 | `id` |  |
 | `source_updated_at` |  |
 | `suggest_autocomplete_all` |  |
@@ -1122,8 +1132,8 @@ API path: `/sites`
 | `alt_text` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `content` |  |
 | `content_e_tag` |  |
 | `credit_line` |  |
@@ -1172,8 +1182,8 @@ API path: `/static-pages`
 | `alt_text` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `content` |  |
 | `content_e_tag` |  |
 | `credit_line` |  |
@@ -1200,8 +1210,8 @@ API path: `/texts`
 | --- | --- |
 | `api_link` |  |
 | `api_model` |  |
-| `artist_title` |  |
-| `artwork_title` |  |
+| `artist_titles` |  |
+| `artwork_titles` |  |
 | `description` |  |
 | `id` |  |
 | `image` |  |
@@ -1227,8 +1237,8 @@ API path: `/tours`
 | `alt_text` |  |
 | `api_link` |  |
 | `api_model` |  |
-| `artwork_id` |  |
-| `artwork_title` |  |
+| `artwork_ids` |  |
+| `artwork_titles` |  |
 | `content` |  |
 | `content_e_tag` |  |
 | `credit_line` |  |
@@ -1269,7 +1279,7 @@ Create an instance: `agent = client.Agent()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_title` | `Any` |  |
+| `alt_titles` | `Any` |  |
 | `api_link` | `Any` |  |
 | `api_model` | `Any` |  |
 | `birth_date` | `Any` |  |
@@ -1429,28 +1439,32 @@ Create an instance: `artwork = client.Artwork()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_artist_id` | `str` |  |
-| `alt_classification_id` | `str` |  |
-| `alt_image_id` | `str` |  |
-| `alt_material_id` | `str` |  |
-| `alt_style_id` | `str` |  |
-| `alt_subject_id` | `str` |  |
-| `alt_technique_id` | `str` |  |
-| `alt_title` | `Any` |  |
+| `alt_artist_ids` | `Any` |  |
+| `alt_classification_ids` | `Any` |  |
+| `alt_image_ids` | `Any` |  |
+| `alt_material_ids` | `Any` |  |
+| `alt_style_ids` | `Any` |  |
+| `alt_subject_ids` | `Any` |  |
+| `alt_technique_ids` | `Any` |  |
+| `alt_titles` | `Any` |  |
 | `api_link` | `Any` |  |
 | `api_model` | `Any` |  |
 | `artist_display` | `Any` |  |
 | `artist_id` | `str` |  |
+| `artist_ids` | `Any` |  |
 | `artist_title` | `Any` |  |
+| `artist_titles` | `Any` |  |
 | `artwork_type_id` | `str` |  |
 | `artwork_type_title` | `Any` |  |
 | `boost_rank` | `Any` |  |
-| `catalog_based_search_keyword_title` | `Any` |  |
+| `catalog_based_search_keyword_titles` | `Any` |  |
 | `catalogue_display` | `Any` |  |
-| `category_id` | `str` |  |
-| `category_title` | `Any` |  |
+| `category_ids` | `Any` |  |
+| `category_titles` | `Any` |  |
 | `classification_id` | `str` |  |
+| `classification_ids` | `Any` |  |
 | `classification_title` | `Any` |  |
+| `classification_titles` | `Any` |  |
 | `color` | `Any` |  |
 | `colorfulness` | `Any` |  |
 | `copyright_notice` | `Any` |  |
@@ -1463,9 +1477,9 @@ Create an instance: `artwork = client.Artwork()`
 | `department_id` | `str` |  |
 | `department_title` | `Any` |  |
 | `description` | `str` |  |
-| `dimension` | `Any` |  |
+| `dimensions` | `Any` |  |
 | `dimensions_detail` | `Any` |  |
-| `document_id` | `str` |  |
+| `document_ids` | `Any` |  |
 | `edition` | `Any` |  |
 | `exhibition_history` | `Any` |  |
 | `fiscal_year` | `Any` |  |
@@ -1473,13 +1487,13 @@ Create an instance: `artwork = client.Artwork()`
 | `gallery_id` | `str` |  |
 | `gallery_title` | `Any` |  |
 | `has_advanced_imaging` | `bool` |  |
-| `has_educational_resource` | `bool` |  |
-| `has_multimedia_resource` | `bool` |  |
+| `has_educational_resources` | `bool` |  |
+| `has_multimedia_resources` | `bool` |  |
 | `has_not_been_viewed_much` | `bool` |  |
 | `id` | `str` |  |
 | `image_embedding` | `Any` |  |
 | `image_id` | `str` |  |
-| `inscription` | `Any` |  |
+| `inscriptions` | `Any` |  |
 | `internal_department_id` | `str` |  |
 | `is_boosted` | `bool` |  |
 | `is_on_view` | `bool` |  |
@@ -1490,40 +1504,45 @@ Create an instance: `artwork = client.Artwork()`
 | `longitude` | `float` |  |
 | `main_reference_number` | `int` |  |
 | `material_id` | `str` |  |
-| `material_title` | `Any` |  |
+| `material_ids` | `Any` |  |
+| `material_titles` | `Any` |  |
 | `max_zoom_window_size` | `Any` |  |
 | `medium_display` | `Any` |  |
 | `nomisma_id` | `str` |  |
 | `on_loan_display` | `Any` |  |
-| `pageview` | `Any` |  |
+| `pageviews` | `Any` |  |
 | `pageviews_recent` | `Any` |  |
 | `place_of_origin` | `Any` |  |
 | `provenance_text` | `Any` |  |
 | `publication_history` | `Any` |  |
 | `publishing_verification_level` | `Any` |  |
-| `section_id` | `str` |  |
-| `section_title` | `Any` |  |
+| `section_ids` | `Any` |  |
+| `section_titles` | `Any` |  |
 | `short_description` | `Any` |  |
-| `site_id` | `str` |  |
-| `sound_id` | `str` |  |
+| `site_ids` | `Any` |  |
+| `sound_ids` | `Any` |  |
 | `source_updated_at` | `Any` |  |
 | `style_id` | `str` |  |
+| `style_ids` | `Any` |  |
 | `style_title` | `Any` |  |
+| `style_titles` | `Any` |  |
 | `subject_id` | `str` |  |
-| `subject_title` | `Any` |  |
+| `subject_ids` | `Any` |  |
+| `subject_titles` | `Any` |  |
 | `suggest_autocomplete_all` | `Any` |  |
 | `suggest_autocomplete_boosted` | `Any` |  |
 | `technique_id` | `str` |  |
-| `technique_title` | `Any` |  |
-| `term_title` | `Any` |  |
+| `technique_ids` | `Any` |  |
+| `technique_titles` | `Any` |  |
+| `term_titles` | `Any` |  |
 | `text_embedding` | `Any` |  |
-| `text_id` | `str` |  |
-| `theme_title` | `Any` |  |
+| `text_ids` | `Any` |  |
+| `theme_titles` | `Any` |  |
 | `thumbnail` | `Any` |  |
 | `timestamp` | `Any` |  |
 | `title` | `str` |  |
 | `updated_at` | `Any` |  |
-| `video_id` | `str` |  |
+| `video_ids` | `Any` |  |
 
 #### Example: Load
 
@@ -1830,8 +1849,8 @@ Create an instance: `event = client.Event()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_audience_id` | `str` |  |
-| `alt_event_type_id` | `str` |  |
+| `alt_audience_ids` | `Any` |  |
+| `alt_event_type_ids` | `Any` |  |
 | `api_link` | `Any` |  |
 | `api_model` | `Any` |  |
 | `audience_id` | `str` |  |
@@ -1851,7 +1870,7 @@ Create an instance: `event = client.Event()`
 | `id` | `str` |  |
 | `image_url` | `Any` |  |
 | `is_admission_required` | `bool` |  |
-| `is_after_hour` | `bool` |  |
+| `is_after_hours` | `bool` |  |
 | `is_free` | `bool` |  |
 | `is_member_exclusive` | `bool` |  |
 | `is_private` | `bool` |  |
@@ -1864,10 +1883,10 @@ Create an instance: `event = client.Event()`
 | `layout_type` | `Any` |  |
 | `list_description` | `Any` |  |
 | `location` | `Any` |  |
-| `program_id` | `str` |  |
-| `program_title` | `Any` |  |
+| `program_ids` | `Any` |  |
+| `program_titles` | `Any` |  |
 | `rsvp_link` | `Any` |  |
-| `search_tag` | `Any` |  |
+| `search_tags` | `Any` |  |
 | `short_description` | `Any` |  |
 | `slug` | `str` |  |
 | `source_updated_at` | `Any` |  |
@@ -2008,13 +2027,13 @@ Create an instance: `exhibition = client.Exhibition()`
 | --- | --- | --- |
 | `aic_end_at` | `Any` |  |
 | `aic_start_at` | `Any` |  |
-| `alt_image_id` | `str` |  |
+| `alt_image_ids` | `Any` |  |
 | `api_link` | `Any` |  |
 | `api_model` | `Any` |  |
-| `artist_id` | `str` |  |
-| `artwork_id` | `str` |  |
-| `artwork_title` | `Any` |  |
-| `document_id` | `str` |  |
+| `artist_ids` | `Any` |  |
+| `artwork_ids` | `Any` |  |
+| `artwork_titles` | `Any` |  |
+| `document_ids` | `Any` |  |
 | `gallery_id` | `str` |  |
 | `gallery_title` | `Any` |  |
 | `id` | `str` |  |
@@ -2024,7 +2043,7 @@ Create an instance: `exhibition = client.Exhibition()`
 | `is_published` | `bool` |  |
 | `position` | `Any` |  |
 | `short_description` | `Any` |  |
-| `site_id` | `str` |  |
+| `site_ids` | `Any` |  |
 | `source_updated_at` | `Any` |  |
 | `status` | `Any` |  |
 | `suggest_autocomplete_all` | `Any` |  |
@@ -2111,7 +2130,7 @@ Create an instance: `generic_page = client.GenericPage()`
 | `api_model` | `Any` |  |
 | `copy` | `Any` |  |
 | `id` | `str` |  |
-| `search_tag` | `Any` |  |
+| `search_tags` | `Any` |  |
 | `source_updated_at` | `Any` |  |
 | `suggest_autocomplete_all` | `Any` |  |
 | `suggest_autocomplete_boosted` | `Any` |  |
@@ -2266,8 +2285,8 @@ Create an instance: `image = client.Image()`
 | `alt_text` | `Any` |  |
 | `api_link` | `Any` |  |
 | `api_model` | `Any` |  |
-| `artwork_id` | `str` |  |
-| `artwork_title` | `Any` |  |
+| `artwork_ids` | `Any` |  |
+| `artwork_titles` | `Any` |  |
 | `color` | `Any` |  |
 | `colorfulness` | `Any` |  |
 | `content` | `Any` |  |
@@ -2324,7 +2343,7 @@ Create an instance: `landing_page = client.LandingPage()`
 | `api_model` | `Any` |  |
 | `copy` | `Any` |  |
 | `id` | `str` |  |
-| `search_tag` | `Any` |  |
+| `search_tags` | `Any` |  |
 | `source_updated_at` | `Any` |  |
 | `suggest_autocomplete_all` | `Any` |  |
 | `suggest_autocomplete_boosted` | `Any` |  |
@@ -2484,10 +2503,10 @@ Create an instance: `product = client.Product()`
 | --- | --- | --- |
 | `api_link` | `Any` |  |
 | `api_model` | `Any` |  |
-| `artist_id` | `str` |  |
-| `artwork_id` | `str` |  |
+| `artist_ids` | `Any` |  |
+| `artwork_ids` | `Any` |  |
 | `description` | `str` |  |
-| `exhibition_id` | `str` |  |
+| `exhibition_ids` | `Any` |  |
 | `external_sku` | `Any` |  |
 | `id` | `str` |  |
 | `image_url` | `Any` |  |
@@ -2535,7 +2554,7 @@ Create an instance: `publication = client.Publication()`
 | `api_link` | `Any` |  |
 | `api_model` | `Any` |  |
 | `id` | `str` |  |
-| `section_id` | `str` |  |
+| `section_ids` | `Any` |  |
 | `source_updated_at` | `Any` |  |
 | `suggest_autocomplete_all` | `Any` |  |
 | `suggest_autocomplete_boosted` | `Any` |  |
@@ -2650,11 +2669,11 @@ Create an instance: `site = client.Site()`
 | --- | --- | --- |
 | `api_link` | `Any` |  |
 | `api_model` | `Any` |  |
-| `artwork_id` | `str` |  |
-| `artwork_title` | `Any` |  |
+| `artwork_ids` | `Any` |  |
+| `artwork_titles` | `Any` |  |
 | `description` | `str` |  |
-| `exhibition_id` | `str` |  |
-| `exhibition_title` | `Any` |  |
+| `exhibition_ids` | `Any` |  |
+| `exhibition_titles` | `Any` |  |
 | `id` | `str` |  |
 | `source_updated_at` | `Any` |  |
 | `suggest_autocomplete_all` | `Any` |  |
@@ -2695,8 +2714,8 @@ Create an instance: `sound = client.Sound()`
 | `alt_text` | `Any` |  |
 | `api_link` | `Any` |  |
 | `api_model` | `Any` |  |
-| `artwork_id` | `str` |  |
-| `artwork_title` | `Any` |  |
+| `artwork_ids` | `Any` |  |
+| `artwork_titles` | `Any` |  |
 | `content` | `Any` |  |
 | `content_e_tag` | `Any` |  |
 | `credit_line` | `Any` |  |
@@ -2785,8 +2804,8 @@ Create an instance: `text = client.Text()`
 | `alt_text` | `Any` |  |
 | `api_link` | `Any` |  |
 | `api_model` | `Any` |  |
-| `artwork_id` | `str` |  |
-| `artwork_title` | `Any` |  |
+| `artwork_ids` | `Any` |  |
+| `artwork_titles` | `Any` |  |
 | `content` | `Any` |  |
 | `content_e_tag` | `Any` |  |
 | `credit_line` | `Any` |  |
@@ -2833,8 +2852,8 @@ Create an instance: `tour = client.Tour()`
 | --- | --- | --- |
 | `api_link` | `Any` |  |
 | `api_model` | `Any` |  |
-| `artist_title` | `Any` |  |
-| `artwork_title` | `Any` |  |
+| `artist_titles` | `Any` |  |
+| `artwork_titles` | `Any` |  |
 | `description` | `str` |  |
 | `id` | `str` |  |
 | `image` | `Any` |  |
@@ -2880,8 +2899,8 @@ Create an instance: `video = client.Video()`
 | `alt_text` | `Any` |  |
 | `api_link` | `Any` |  |
 | `api_model` | `Any` |  |
-| `artwork_id` | `str` |  |
-| `artwork_title` | `Any` |  |
+| `artwork_ids` | `Any` |  |
+| `artwork_titles` | `Any` |  |
 | `content` | `Any` |  |
 | `content_e_tag` | `Any` |  |
 | `credit_line` | `Any` |  |
@@ -2986,11 +3005,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-agent = client.Agent()
-agent.list()
+publication = client.Publication()
+publication.list()
 
-# agent.data_get() now returns the agent data from the last list
-# agent.match_get() returns the last match criteria
+# publication.data_get() now returns the publication data from the last list
+# publication.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration
