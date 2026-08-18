@@ -23,8 +23,8 @@ class ArtInstituteOfChicagoSDK:
         utility = ArtInstituteOfChicagoUtility()
         self._utility = utility
 
-        from artinstituteofchicago_sdk.config import make_config
-        config = make_config()
+        from artinstituteofchicago_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

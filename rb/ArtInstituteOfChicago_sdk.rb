@@ -28,7 +28,7 @@ class ArtInstituteOfChicagoSDK
     utility = ArtInstituteOfChicagoUtility.new
     @_utility = utility
 
-    config = ArtInstituteOfChicagoConfig.make_config
+    config = ArtInstituteOfChicagoConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

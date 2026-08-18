@@ -40,7 +40,7 @@ class ArtInstituteOfChicagoSDK
         $utility = new ArtInstituteOfChicagoUtility();
         $this->_utility = $utility;
 
-        $config = ArtInstituteOfChicagoConfig::make_config();
+        $config = ArtInstituteOfChicagoConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

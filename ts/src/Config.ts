@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://api.artic.edu/api/v1',
+    base: "https://api.artic.edu/api/v1",
 
     headers: {
       "content-type": "application/json"
@@ -157,116 +157,68 @@ class Config {
     "agent": {
       "fields": [
         {
-          "active": true,
           "name": "alt_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "birth_date",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "death_date",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "description",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "is_artist",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 7
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "sort_title",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 11
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 12
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "ulan_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 15
+          "type": "`$ANY`"
         }
       ],
       "name": "agent",
@@ -276,7 +228,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -288,11 +239,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -304,28 +253,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -344,21 +288,17 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -377,11 +317,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -391,67 +329,40 @@ class Config {
     "agent_role": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         }
       ],
       "name": "agent_role",
@@ -461,7 +372,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -473,28 +383,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -513,11 +418,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -527,67 +430,40 @@ class Config {
     "agent_type": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         }
       ],
       "name": "agent_type",
@@ -597,7 +473,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -609,28 +484,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -649,11 +519,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -663,74 +531,44 @@ class Config {
     "article": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "copy",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         }
       ],
       "name": "article",
@@ -740,7 +578,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -752,28 +589,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -792,11 +624,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -806,732 +636,420 @@ class Config {
     "artwork": {
       "fields": [
         {
-          "active": true,
           "name": "alt_artist_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "alt_classification_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "alt_image_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "alt_material_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "alt_style_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "alt_subject_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "alt_technique_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "alt_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artist_display",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artist_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 11
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "artist_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 12
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artist_title",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 13
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artist_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 14
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artwork_type_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 15
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "artwork_type_title",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 16
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "boost_rank",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 17
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "catalog_based_search_keyword_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 18
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "catalogue_display",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 19
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "category_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 20
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "category_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 21
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "classification_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 22
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "classification_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 23
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "classification_title",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 24
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "classification_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 25
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "color",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 26
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "colorfulness",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 27
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "copyright_notice",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 28
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "credit_line",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 29
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "date_display",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 30
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "date_end",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 31
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "date_qualifier_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 32
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "date_qualifier_title",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 33
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "date_start",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 34
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "department_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 35
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "department_title",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 36
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "description",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 37
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "dimensions",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 38
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "dimensions_detail",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 39
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "document_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 40
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "edition",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 41
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "exhibition_history",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 42
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "fiscal_year",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 43
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "fiscal_year_deaccession",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 44
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "gallery_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 45
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "gallery_title",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 46
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "has_advanced_imaging",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 47
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "has_educational_resources",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 48
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "has_multimedia_resources",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 49
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "has_not_been_viewed_much",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 50
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 51
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "image_embedding",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 52
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "image_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 53
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "inscriptions",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 54
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "internal_department_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 55
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "is_boosted",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 56
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_on_view",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 57
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_public_domain",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 58
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_zoomable",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 59
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "latitude",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 60
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "latlon",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 61
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "longitude",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 62
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "main_reference_number",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 63
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "material_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 64
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "material_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 65
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "material_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 66
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "max_zoom_window_size",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 67
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "medium_display",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 68
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "nomisma_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 69
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "on_loan_display",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 70
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "pageviews",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 71
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "pageviews_recent",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 72
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "place_of_origin",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 73
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "provenance_text",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 74
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "publication_history",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 75
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "publishing_verification_level",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 76
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "section_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 77
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "section_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 78
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "short_description",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 79
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "site_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 80
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "sound_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 81
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 82
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "style_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 83
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "style_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 84
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "style_title",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 85
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "style_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 86
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "subject_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 87
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "subject_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 88
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "subject_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 89
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 90
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 91
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "technique_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 92
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "technique_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 93
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "technique_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 94
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "term_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 95
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "text_embedding",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 96
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "text_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 97
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "theme_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 98
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "thumbnail",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 99
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 100
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 101
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 102
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "video_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 103
+          "type": "`$ANY`"
         }
       ],
       "name": "artwork",
@@ -1541,7 +1059,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -1553,28 +1070,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -1593,11 +1105,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -1607,67 +1117,40 @@ class Config {
     "artwork_date_qualifier": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         }
       ],
       "name": "artwork_date_qualifier",
@@ -1677,7 +1160,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -1689,28 +1171,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -1729,11 +1206,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -1743,67 +1218,40 @@ class Config {
     "artwork_place_qualifier": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         }
       ],
       "name": "artwork_place_qualifier",
@@ -1813,7 +1261,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -1825,28 +1272,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -1865,11 +1307,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -1879,74 +1319,44 @@ class Config {
     "artwork_type": {
       "fields": [
         {
-          "active": true,
           "name": "aat_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         }
       ],
       "name": "artwork_type",
@@ -1956,7 +1366,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -1968,28 +1377,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -2008,11 +1412,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -2022,81 +1424,48 @@ class Config {
     "category_term": {
       "fields": [
         {
-          "active": true,
           "name": "aat_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "parent_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "subtype",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         }
       ],
       "name": "category_term",
@@ -2106,7 +1475,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -2118,28 +1486,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -2158,11 +1521,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -2172,81 +1533,48 @@ class Config {
     "digital_publication": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "copy",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "web_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         }
       ],
       "name": "digital_publication",
@@ -2256,7 +1584,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -2268,28 +1595,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -2308,11 +1630,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -2322,95 +1642,56 @@ class Config {
     "digital_publication_article": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "author_display",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "copy",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "digital_publication_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 11
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "web_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 12
+          "type": "`$ANY`"
         }
       ],
       "name": "digital_publication_article",
@@ -2420,7 +1701,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -2432,28 +1712,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -2472,11 +1747,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -2486,81 +1759,48 @@ class Config {
     "educator_resource": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "copy",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "web_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         }
       ],
       "name": "educator_resource",
@@ -2570,7 +1810,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -2582,28 +1821,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -2622,11 +1856,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -2636,375 +1868,216 @@ class Config {
     "event": {
       "fields": [
         {
-          "active": true,
           "name": "alt_audience_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "alt_event_type_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "audience_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "buy_button_caption",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "buy_button_text",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "date_display",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "description",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "door_time",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "end_date",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "end_time",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 11
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "entrance",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 12
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "event_host_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "event_host_title",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 14
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "event_type_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 15
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "header_description",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 16
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "hero_caption",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 17
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 18
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "image_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 19
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "is_admission_required",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 20
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_after_hours",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 21
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_free",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 22
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_member_exclusive",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 23
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_private",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 24
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_registration_required",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 25
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_sales_button_hidden",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 26
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_sold_out",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 27
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_ticketed",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 28
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_virtual_event",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 29
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "join_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 30
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "layout_type",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 31
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "list_description",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 32
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "location",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 33
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "program_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 34
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "program_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 35
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "rsvp_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 36
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "search_tags",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 37
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "short_description",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 38
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "slug",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 39
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 40
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "start_date",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 41
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "start_time",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 42
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 43
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 44
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "survey_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 45
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "ticketed_event_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 46
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 47
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 48
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "title_display",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 49
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 50
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "virtual_event_passcode",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 51
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "virtual_event_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 52
+          "type": "`$ANY`"
         }
       ],
       "name": "event",
@@ -3014,7 +2087,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -3026,28 +2098,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -3066,11 +2133,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -3080,179 +2145,104 @@ class Config {
     "event_occurrence": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "button_caption",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "button_text",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "button_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "description",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "end_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "event_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "image_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "is_private",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 10
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_sales_button_hidden",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 11
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_ticketed",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 12
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "location",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 13
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "off_sale_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 14
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "on_sale_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 15
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "short_description",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 16
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 17
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "start_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 18
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 19
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 20
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 21
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 22
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "title_display",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 23
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 24
+          "type": "`$ANY`"
         }
       ],
       "name": "event_occurrence",
@@ -3262,7 +2252,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -3274,28 +2263,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -3314,11 +2298,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -3328,81 +2310,48 @@ class Config {
     "event_program": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "is_affiliate_group",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 3
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_event_host",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 4
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         }
       ],
       "name": "event_program",
@@ -3412,7 +2361,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -3424,28 +2372,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -3464,11 +2407,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -3478,193 +2419,112 @@ class Config {
     "exhibition": {
       "fields": [
         {
-          "active": true,
           "name": "aic_end_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "aic_start_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "alt_image_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artist_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artwork_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artwork_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "document_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "gallery_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "gallery_title",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 11
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "image_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "image_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 13
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "is_featured",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 14
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_published",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 15
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "position",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 16
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "short_description",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 17
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "site_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 18
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 19
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "status",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 20
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 21
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 22
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 23
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 24
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 25
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "web_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 26
+          "type": "`$ANY`"
         }
       ],
       "name": "exhibition",
@@ -3674,7 +2534,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -3686,28 +2545,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -3726,11 +2580,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -3740,116 +2592,68 @@ class Config {
     "gallery": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "floor",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "is_closed",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 4
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "latitude",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 5
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "latlon",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "longitude",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 7
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "number",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 11
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "tgn_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 13
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 15
+          "type": "`$ANY`"
         }
       ],
       "name": "gallery",
@@ -3859,7 +2663,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -3871,28 +2674,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -3911,11 +2709,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -3925,88 +2721,52 @@ class Config {
     "generic_page": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "copy",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "search_tags",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "web_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 11
+          "type": "`$ANY`"
         }
       ],
       "name": "generic_page",
@@ -4016,7 +2776,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -4028,28 +2787,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -4068,11 +2822,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -4082,74 +2834,44 @@ class Config {
     "highlight": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "copy",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         }
       ],
       "name": "highlight",
@@ -4159,7 +2881,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -4171,28 +2892,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -4211,11 +2927,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -4225,326 +2939,188 @@ class Config {
     "hour": {
       "fields": [
         {
-          "active": true,
           "name": "additional_text",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "friday_is_closed",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "friday_member_close",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "friday_member_open",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "friday_public_close",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "friday_public_open",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "monday_is_closed",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "monday_member_close",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "monday_member_open",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 11
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "monday_public_close",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 12
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "monday_public_open",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 13
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "saturday_is_closed",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 14
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "saturday_member_close",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 15
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "saturday_member_open",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 16
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "saturday_public_close",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 17
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "saturday_public_open",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 18
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 19
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 20
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 21
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "summary",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 22
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "sunday_is_closed",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 23
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "sunday_member_close",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 24
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "sunday_member_open",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 25
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "sunday_public_close",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 26
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "sunday_public_open",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 27
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "thursday_is_closed",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 28
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "thursday_member_close",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 29
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "thursday_member_open",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 30
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "thursday_public_close",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 31
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "thursday_public_open",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 32
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 33
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 34
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "tuesday_is_closed",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 35
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "tuesday_member_close",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 36
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "tuesday_member_open",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 37
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "tuesday_public_close",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 38
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "tuesday_public_open",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 39
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 40
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "wednesday_is_closed",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 41
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "wednesday_member_close",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 42
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "wednesday_member_open",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 43
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "wednesday_public_close",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 44
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "wednesday_public_open",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 45
+          "type": "`$ANY`"
         }
       ],
       "name": "hour",
@@ -4554,7 +3130,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -4566,28 +3141,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -4606,11 +3176,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -4620,207 +3188,120 @@ class Config {
     "image": {
       "fields": [
         {
-          "active": true,
           "name": "ahash",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "alt_text",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artwork_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artwork_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "color",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "colorfulness",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "content",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "content_e_tag",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "credit_line",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "fingerprint",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 11
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "height",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 12
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "iiif_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 14
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "is_educational_resource",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 15
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_multimedia_resource",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 16
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_teacher_resource",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 17
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "lake_guid",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 18
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "lqip",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 19
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "phash",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 20
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 21
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 22
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 23
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 24
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 25
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "type",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 26
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 27
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "width",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 28
+          "type": "`$NUMBER`"
         }
       ],
       "name": "image",
@@ -4830,7 +3311,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -4842,28 +3322,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -4882,11 +3357,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -4896,88 +3369,52 @@ class Config {
     "landing_page": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "copy",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "search_tags",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "web_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 11
+          "type": "`$ANY`"
         }
       ],
       "name": "landing_page",
@@ -4987,7 +3424,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -4999,28 +3435,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -5039,11 +3470,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -5053,88 +3482,52 @@ class Config {
     "place": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "latitude",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 3
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "longitude",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 4
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "tgn_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 11
+          "type": "`$ANY`"
         }
       ],
       "name": "place",
@@ -5144,7 +3537,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -5156,28 +3548,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -5196,11 +3583,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -5210,81 +3595,48 @@ class Config {
     "press_release": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "copy",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "web_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         }
       ],
       "name": "press_release",
@@ -5294,7 +3646,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -5306,28 +3657,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -5346,11 +3692,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -5360,81 +3704,48 @@ class Config {
     "printed_publication": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "copy",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "web_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         }
       ],
       "name": "printed_publication",
@@ -5444,7 +3755,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -5456,28 +3766,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -5496,11 +3801,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -5510,151 +3813,88 @@ class Config {
     "product": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artist_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artwork_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "description",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "exhibition_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "external_sku",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "image_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "max_compare_at_price",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "max_current_price",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "min_compare_at_price",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 11
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "min_current_price",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 12
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "price_display",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 13
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 14
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 15
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 16
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 17
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 18
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 19
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "web_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 20
+          "type": "`$ANY`"
         }
       ],
       "name": "product",
@@ -5664,7 +3904,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -5676,28 +3915,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -5716,11 +3950,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -5730,81 +3962,48 @@ class Config {
     "publication": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "section_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "web_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         }
       ],
       "name": "publication",
@@ -5814,7 +4013,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -5826,28 +4024,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -5866,11 +4059,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -5880,67 +4071,40 @@ class Config {
     "search": {
       "fields": [
         {
-          "active": true,
           "name": "api_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "is_boosted",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 4
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "score",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 5
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "thumbnail",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         }
       ],
       "name": "search",
@@ -5950,55 +4114,42 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6023,59 +4174,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6100,59 +4237,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6177,59 +4300,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6254,59 +4363,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 3
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6331,59 +4426,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 4
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6408,59 +4489,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 5
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6485,59 +4552,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 6
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6562,59 +4615,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 7
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6639,59 +4678,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 8
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6716,59 +4741,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 9
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6793,59 +4804,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 10
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6870,59 +4867,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 11
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -6947,59 +4930,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 12
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7024,59 +4993,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 13
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7101,59 +5056,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 14
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7178,59 +5119,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 15
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7255,59 +5182,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 16
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7332,59 +5245,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 17
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7409,59 +5308,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 18
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7486,59 +5371,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 19
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7563,59 +5434,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 20
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7640,59 +5497,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 21
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7717,59 +5560,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 22
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7793,59 +5622,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 23
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7870,59 +5685,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 24
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -7947,59 +5748,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 25
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -8024,59 +5811,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 26
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -8101,59 +5874,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 27
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -8178,59 +5937,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 28
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -8255,59 +6000,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 29
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "from",
                     "orig": "from",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -8332,11 +6063,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 30
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -8346,116 +6075,68 @@ class Config {
     "section": {
       "fields": [
         {
-          "active": true,
           "name": "accession",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artwork_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "content",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "generic_page_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "publication_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "publication_title",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 11
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 12
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 14
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "web_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 15
+          "type": "`$ANY`"
         }
       ],
       "name": "section",
@@ -8465,7 +6146,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -8477,28 +6157,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -8517,11 +6192,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -8531,109 +6204,64 @@ class Config {
     "site": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artwork_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artwork_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "description",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "exhibition_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "exhibition_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 11
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 13
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "web_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 14
+          "type": "`$ANY`"
         }
       ],
       "name": "site",
@@ -8643,7 +6271,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -8655,28 +6282,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -8695,11 +6317,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -8709,158 +6329,92 @@ class Config {
     "sound": {
       "fields": [
         {
-          "active": true,
           "name": "alt_text",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artwork_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artwork_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "content",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "content_e_tag",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "credit_line",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "is_educational_resource",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 9
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_multimedia_resource",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 10
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_teacher_resource",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 11
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "lake_guid",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 12
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 13
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 14
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 15
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 16
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 17
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "transcript",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 18
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "type",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 19
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 20
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "web_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 21
+          "type": "`$ANY`"
         }
       ],
       "name": "sound",
@@ -8870,7 +6424,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -8882,11 +6435,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -8898,28 +6449,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -8938,21 +6484,17 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -8971,11 +6513,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -8985,74 +6525,44 @@ class Config {
     "static_page": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "web_url",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         }
       ],
       "name": "static_page",
@@ -9062,7 +6572,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -9074,28 +6583,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -9114,11 +6618,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -9128,144 +6630,84 @@ class Config {
     "text": {
       "fields": [
         {
-          "active": true,
           "name": "alt_text",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artwork_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artwork_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "content",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "content_e_tag",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "credit_line",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "is_educational_resource",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 9
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_multimedia_resource",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 10
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_teacher_resource",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 11
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "lake_guid",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 12
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 13
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 14
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 15
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 16
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 17
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "type",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 18
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 19
+          "type": "`$ANY`"
         }
       ],
       "name": "text",
@@ -9275,7 +6717,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -9287,28 +6728,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -9327,11 +6763,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -9341,123 +6775,72 @@ class Config {
     "tour": {
       "fields": [
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artist_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artwork_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "description",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "image",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "intro",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "intro_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 8
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "intro_transcript",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 9
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 10
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 11
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 12
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 13
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 15
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "weight",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 16
+          "type": "`$NUMBER`"
         }
       ],
       "name": "tour",
@@ -9467,7 +6850,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -9479,28 +6861,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -9519,11 +6896,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -9533,144 +6908,84 @@ class Config {
     "video": {
       "fields": [
         {
-          "active": true,
           "name": "alt_text",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_link",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "api_model",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artwork_ids",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "artwork_titles",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "content",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "content_e_tag",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "credit_line",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 7
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "is_educational_resource",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 9
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_multimedia_resource",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 10
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "is_teacher_resource",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 11
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "lake_guid",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 12
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "source_updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 13
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_all",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 14
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "suggest_autocomplete_boosted",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 15
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 16
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 17
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "type",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 18
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "updated_at",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 19
+          "type": "`$ANY`"
         }
       ],
       "name": "video",
@@ -9680,7 +6995,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -9692,28 +7006,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -9732,11 +7041,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
