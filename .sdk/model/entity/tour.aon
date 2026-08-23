@@ -1,0 +1,172 @@
+# Entity: tour
+
+main: kit: entity: tour: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "api_link"
+      req: false
+      short: "REST API link for this resource"
+      type: "`$ANY`"
+    }
+    {
+      name: "api_model"
+      req: false
+      short: "REST API resource type or endpoint"
+      type: "`$ANY`"
+    }
+    {
+      name: "artist_titles"
+      req: false
+      short: "Names of the artists of the artworks featured in this tour's tour stops"
+      type: "`$ANY`"
+    }
+    {
+      name: "artwork_titles"
+      req: false
+      short: "Names of the artworks featured in this tour's tour stops"
+      type: "`$ANY`"
+    }
+    {
+      name: "description"
+      req: false
+      short: "Explanation of what the tour is"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique identifier of this resource."
+      type: "`$STRING`"
+    }
+    {
+      name: "image"
+      req: false
+      short: "The main image for the tour"
+      type: "`$ANY`"
+    }
+    {
+      name: "intro"
+      req: false
+      short: "Text introducing the tour"
+      type: "`$ANY`"
+    }
+    {
+      name: "intro_link"
+      req: false
+      short: "Link to the audio file of the introduction"
+      type: "`$ANY`"
+    }
+    {
+      name: "intro_transcript"
+      req: false
+      short: "Transcript of the introduction audio to the tour"
+      type: "`$ANY`"
+    }
+    {
+      name: "source_updated_at"
+      req: false
+      short: "Date and time the resource was updated in the source system"
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_all"
+      req: false
+      short: "Internal field to power the `/autosuggest` endpoint."
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_boosted"
+      req: false
+      short: "Internal field to power the `/autocomplete` endpoint."
+      type: "`$ANY`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      short: "Date and time the record was updated in the aggregator search index"
+      type: "`$ANY`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "The name of this resource"
+      type: "`$STRING`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      short: "Date and time the record was updated in the aggregator database"
+      type: "`$ANY`"
+    }
+    {
+      name: "weight"
+      req: false
+      short: "Number representing this tour's sort order"
+      type: "`$NUMBER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "tour"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/tours"
+          parts: [
+            "tours"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/tours/{id}"
+          parts: [
+            "tours"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

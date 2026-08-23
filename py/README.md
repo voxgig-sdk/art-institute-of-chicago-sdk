@@ -290,22 +290,22 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `alt_titles` |  |
-| `api_link` |  |
-| `api_model` |  |
-| `birth_date` |  |
-| `death_date` |  |
-| `description` |  |
-| `id` |  |
-| `is_artist` |  |
-| `sort_title` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `ulan_id` |  |
-| `updated_at` |  |
+| `alt_titles` | Alternate names for this agent |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `birth_date` | The year this agent was born |
+| `death_date` | The year this agent died |
+| `description` | A biographical description of the agent |
+| `id` | Unique identifier of this resource. |
+| `is_artist` | Whether the agent is an artist. |
+| `sort_title` | Sortable name for this agent, typically with last name first. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `ulan_id` | Unique identifier of this agent in Getty's ULAN |
+| `updated_at` | Date and time the record was updated in the aggregator database |
 
 Operations: List, Load.
 
@@ -315,15 +315,15 @@ API path: `/agents`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `id` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `id` | Unique identifier of this resource. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
 
 Operations: List, Load.
 
@@ -333,15 +333,15 @@ API path: `/agent-roles`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `id` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `id` | Unique identifier of this resource. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
 
 Operations: List, Load.
 
@@ -351,16 +351,16 @@ API path: `/agent-types`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `copy` |  |
-| `id` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `copy` | The text of the article |
+| `id` | Unique identifier of this resource. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
 
 Operations: List, Load.
 
@@ -370,110 +370,110 @@ API path: `/articles`
 
 | Field | Description |
 | --- | --- |
-| `alt_artist_ids` |  |
-| `alt_classification_ids` |  |
-| `alt_image_ids` |  |
-| `alt_material_ids` |  |
-| `alt_style_ids` |  |
-| `alt_subject_ids` |  |
-| `alt_technique_ids` |  |
-| `alt_titles` |  |
-| `api_link` |  |
-| `api_model` |  |
-| `artist_display` |  |
-| `artist_id` |  |
-| `artist_ids` |  |
-| `artist_title` |  |
-| `artist_titles` |  |
-| `artwork_type_id` |  |
-| `artwork_type_title` |  |
-| `boost_rank` |  |
-| `catalog_based_search_keyword_titles` |  |
-| `catalogue_display` |  |
-| `category_ids` |  |
-| `category_titles` |  |
-| `classification_id` |  |
-| `classification_ids` |  |
-| `classification_title` |  |
-| `classification_titles` |  |
-| `color` |  |
-| `colorfulness` |  |
-| `copyright_notice` |  |
-| `credit_line` |  |
-| `date_display` |  |
-| `date_end` |  |
-| `date_qualifier_id` |  |
-| `date_qualifier_title` |  |
-| `date_start` |  |
-| `department_id` |  |
-| `department_title` |  |
-| `description` |  |
-| `dimensions` |  |
-| `dimensions_detail` |  |
-| `document_ids` |  |
-| `edition` |  |
-| `exhibition_history` |  |
-| `fiscal_year` |  |
-| `fiscal_year_deaccession` |  |
-| `gallery_id` |  |
-| `gallery_title` |  |
-| `has_advanced_imaging` |  |
-| `has_educational_resources` |  |
-| `has_multimedia_resources` |  |
-| `has_not_been_viewed_much` |  |
-| `id` |  |
-| `image_embedding` |  |
-| `image_id` |  |
-| `inscriptions` |  |
-| `internal_department_id` |  |
-| `is_boosted` |  |
-| `is_on_view` |  |
-| `is_public_domain` |  |
-| `is_zoomable` |  |
-| `latitude` |  |
-| `latlon` |  |
-| `longitude` |  |
-| `main_reference_number` |  |
-| `material_id` |  |
-| `material_ids` |  |
-| `material_titles` |  |
-| `max_zoom_window_size` |  |
-| `medium_display` |  |
-| `nomisma_id` |  |
-| `on_loan_display` |  |
-| `pageviews` |  |
-| `pageviews_recent` |  |
-| `place_of_origin` |  |
-| `provenance_text` |  |
-| `publication_history` |  |
-| `publishing_verification_level` |  |
-| `section_ids` |  |
-| `section_titles` |  |
-| `short_description` |  |
-| `site_ids` |  |
-| `sound_ids` |  |
-| `source_updated_at` |  |
-| `style_id` |  |
-| `style_ids` |  |
-| `style_title` |  |
-| `style_titles` |  |
-| `subject_id` |  |
-| `subject_ids` |  |
-| `subject_titles` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `technique_id` |  |
-| `technique_ids` |  |
-| `technique_titles` |  |
-| `term_titles` |  |
-| `text_embedding` |  |
-| `text_ids` |  |
-| `theme_titles` |  |
-| `thumbnail` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
-| `video_ids` |  |
+| `alt_artist_ids` | Unique identifiers of the non-preferred artists/cultures associated with this work |
+| `alt_classification_ids` | Unique identifiers of all other non-preferred classification terms for this work |
+| `alt_image_ids` | Unique identifiers of all non-preferred images of this work. |
+| `alt_material_ids` | Unique identifiers of all other non-preferred material terms for this work |
+| `alt_style_ids` | Unique identifiers of all other non-preferred style terms for this work |
+| `alt_subject_ids` | Unique identifiers of all other non-preferred subject terms for this work |
+| `alt_technique_ids` | Unique identifiers of all other non-preferred technique terms for this work |
+| `alt_titles` | Alternate names for this work |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `artist_display` | Readable description of the creator of this work. |
+| `artist_id` | Unique identifier of the preferred artist/culture associated with this work |
+| `artist_ids` | Unique identifier of all artist/cultures associated with this work |
+| `artist_title` | Name of the preferred artist/culture associated with this work |
+| `artist_titles` | Names of all artist/cultures associated with this work |
+| `artwork_type_id` | Unique identifier of the kind of object or work |
+| `artwork_type_title` | The kind of object or work (e.g. |
+| `boost_rank` | Manual indication of what rank this artwork should take in search results. |
+| `catalog_based_search_keyword_titles` | The keyword search values that would be catalog-based searches on this record |
+| `catalogue_display` | Brief text listing all the catalogues raisonnés which include this work. |
+| `category_ids` | Unique identifiers of the categories this work is a part of |
+| `category_titles` | Names of the categories this artwork is a part of |
+| `classification_id` | Unique identifier of the preferred classification term for this work |
+| `classification_ids` | Unique identifiers of all classification terms for this work |
+| `classification_title` | The name of the preferred classification term for this work |
+| `classification_titles` | The names of all classification terms related to this artwork |
+| `color` | Dominant color of this artwork in HSL |
+| `colorfulness` | Unbounded positive float representing an abstract measure of colorfulness. |
+| `copyright_notice` | Statement notifying how the work is protected by copyright. |
+| `credit_line` | Brief statement indicating how the work came into the collection |
+| `date_display` | Readable, free-text description of the period of time associated with the creation of this work. |
+| `date_end` | The year of the period of time associated with the creation of this work |
+| `date_qualifier_id` | Unique identifier of the qualifer to the dates provided for this record. |
+| `date_qualifier_title` | Readable, text qualifer to the dates provided for this record. |
+| `date_start` | The year of the period of time associated with the creation of this work |
+| `department_id` | Unique identifier of the curatorial department that this work belongs to |
+| `department_title` | Name of the curatorial department that this work belongs to |
+| `description` | Longer explanation describing the work |
+| `dimensions` | The size, shape, scale, and dimensions of the work. |
+| `dimensions_detail` | The height, width, depth, and/or diameter of each section of the work in centimeters |
+| `document_ids` | Unique identifiers of assets that serve as documentation for this artwork |
+| `edition` | Edition number if the work is one of many |
+| `exhibition_history` | List of all the places this work has been exhibited |
+| `fiscal_year` | The fiscal year in which the work was acquired. |
+| `fiscal_year_deaccession` | The fiscal year in which the work was deaccessioned. |
+| `gallery_id` | Unique identifier of the location of this work in our museum |
+| `gallery_title` | The location of this work in our museum |
+| `has_advanced_imaging` | Whether this artwork is enhanced with 3D models, 360 image sequences, Mirador views, etc. |
+| `has_educational_resources` | Whether this artwork has any documents tagged as educational |
+| `has_multimedia_resources` | Whether this artwork has any associated microsites, digital publications, or documents tagged as multimedia |
+| `has_not_been_viewed_much` | Whether the artwork hasn't been visited on our website very much |
+| `id` | Unique identifier of this resource. |
+| `image_embedding` | The generated embeddings describing the artwork image |
+| `image_id` | Unique identifier of the preferred image to use to represent this work |
+| `inscriptions` | A description of distinguishing or identifying physical markings that are on the work |
+| `internal_department_id` | An internal department id we use for analytics. |
+| `is_boosted` | Whether this document should be boosted in search |
+| `is_on_view` | Whether the work is on display |
+| `is_public_domain` | Whether the work is in the public domain, meaning it was created before copyrights existed or has left the copyright term |
+| `is_zoomable` | Whether images of the work are allowed to be displayed in a zoomable interface. |
+| `latitude` | Latitude coordinate of the location of this work in our galleries |
+| `latlon` | Latitude and longitude coordinates of the location of this work in our galleries |
+| `longitude` | Longitude coordinate of the location of this work in our galleries |
+| `main_reference_number` | Unique identifier assigned to the artwork upon acquisition |
+| `material_id` | Unique identifier of the preferred material term for this work |
+| `material_ids` | Unique identifiers of all material terms for this work |
+| `material_titles` | The names of all material terms related to this artwork |
+| `max_zoom_window_size` | The maximum size of the window the image is allowed to be viewed in, in pixels. |
+| `medium_display` | The substances or materials used in the creation of a work |
+| `nomisma_id` | Unique identifier of this work in the nomisma coin database |
+| `on_loan_display` | If an artwork is on loan, this contains details about the loan |
+| `pageviews` | Approx. |
+| `pageviews_recent` | Approx. |
+| `place_of_origin` | The location where the creation, design, or production of the work took place, or the original location of the work |
+| `provenance_text` | Ownership/collecting history of the work. |
+| `publication_history` | Bibliographic list of all the places this work has been published |
+| `publishing_verification_level` | Indicator of how much metadata on the work in published. |
+| `section_ids` | Unique identifiers of the digital publication chapters this work in included in |
+| `section_titles` | Names of the digital publication chapters this work is included in |
+| `short_description` | Short explanation describing the work |
+| `site_ids` | Unique identifiers of the microsites this work is a part of |
+| `sound_ids` | Unique identifiers of the audio about this work |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `style_id` | Unique identifier of the preferred style term for this work |
+| `style_ids` | Unique identifiers of all style terms for this work |
+| `style_title` | The name of the preferred style term for this work |
+| `style_titles` | The names of all style terms related to this artwork |
+| `subject_id` | Unique identifier of the preferred subject term for this work |
+| `subject_ids` | Unique identifiers of all subject terms for this work |
+| `subject_titles` | The names of all subject terms related to this artwork |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `technique_id` | Unique identifier of the preferred technique term for this work |
+| `technique_ids` | Unique identifiers of all technique terms for this work |
+| `technique_titles` | The names of all technique terms related to this artwork |
+| `term_titles` | The names of the taxonomy tags for this work |
+| `text_embedding` | The generated embeddings of artwork text |
+| `text_ids` | Unique identifiers of the texts about this work |
+| `theme_titles` | The names of all thematic publish categories related to this artwork |
+| `thumbnail` | Metadata about the image referenced by `image_id`. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `video_ids` | Unique identifiers of the videos about this work |
 
 Operations: List, Load.
 
@@ -483,15 +483,15 @@ API path: `/artworks`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `id` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `id` | Unique identifier of this resource. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
 
 Operations: List, Load.
 
@@ -501,15 +501,15 @@ API path: `/artwork-date-qualifiers`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `id` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `id` | Unique identifier of this resource. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
 
 Operations: List, Load.
 
@@ -519,16 +519,16 @@ API path: `/artwork-place-qualifiers`
 
 | Field | Description |
 | --- | --- |
-| `aat_id` |  |
-| `api_link` |  |
-| `api_model` |  |
-| `id` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
+| `aat_id` | Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT) |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `id` | Unique identifier of this resource. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
 
 Operations: List, Load.
 
@@ -538,17 +538,17 @@ API path: `/artwork-types`
 
 | Field | Description |
 | --- | --- |
-| `aat_id` |  |
-| `api_link` |  |
-| `api_model` |  |
-| `id` |  |
-| `parent_id` |  |
-| `source_updated_at` |  |
-| `subtype` |  |
-| `suggest_autocomplete_all` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
+| `aat_id` | Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT) |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `id` | Unique identifier of this resource. |
+| `parent_id` | Unique identifier of this category's parent |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `subtype` | Takes one of the following values: classification, material, technique, style, subject, department, theme |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
 
 Operations: List, Load.
 
@@ -558,17 +558,17 @@ API path: `/category-terms`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `copy` |  |
-| `id` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
-| `web_url` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `copy` | The text of the page |
+| `id` | Unique identifier of this resource. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `web_url` | The URL to this page on our website |
 
 Operations: List, Load.
 
@@ -578,19 +578,19 @@ API path: `/digital-publications`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `author_display` |  |
-| `copy` |  |
-| `digital_publication_id` |  |
-| `id` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
-| `web_url` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `author_display` | A display-friendly text of the authors of this article |
+| `copy` | The text of the article |
+| `digital_publication_id` | Unique identifier of the digital publication this article belongs to |
+| `id` | Unique identifier of this resource. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `web_url` | The URL to this article on our website |
 
 Operations: List, Load.
 
@@ -600,17 +600,17 @@ API path: `/digital-publication-articles`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `copy` |  |
-| `id` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
-| `web_url` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `copy` | The text of the page |
+| `id` | Unique identifier of this resource. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `web_url` | The URL to this page on our website |
 
 Operations: List, Load.
 
@@ -620,59 +620,59 @@ API path: `/educator-resources`
 
 | Field | Description |
 | --- | --- |
-| `alt_audience_ids` |  |
-| `alt_event_type_ids` |  |
-| `api_link` |  |
-| `api_model` |  |
-| `audience_id` |  |
-| `buy_button_caption` |  |
-| `buy_button_text` |  |
-| `date_display` |  |
-| `description` |  |
-| `door_time` |  |
-| `end_date` |  |
-| `end_time` |  |
-| `entrance` |  |
-| `event_host_id` |  |
-| `event_host_title` |  |
-| `event_type_id` |  |
-| `header_description` |  |
-| `hero_caption` |  |
-| `id` |  |
-| `image_url` |  |
-| `is_admission_required` |  |
-| `is_after_hours` |  |
-| `is_free` |  |
-| `is_member_exclusive` |  |
-| `is_private` |  |
-| `is_registration_required` |  |
-| `is_sales_button_hidden` |  |
-| `is_sold_out` |  |
-| `is_ticketed` |  |
-| `is_virtual_event` |  |
-| `join_url` |  |
-| `layout_type` |  |
-| `list_description` |  |
-| `location` |  |
-| `program_ids` |  |
-| `program_titles` |  |
-| `rsvp_link` |  |
-| `search_tags` |  |
-| `short_description` |  |
-| `slug` |  |
-| `source_updated_at` |  |
-| `start_date` |  |
-| `start_time` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `survey_url` |  |
-| `ticketed_event_id` |  |
-| `timestamp` |  |
-| `title` |  |
-| `title_display` |  |
-| `updated_at` |  |
-| `virtual_event_passcode` |  |
-| `virtual_event_url` |  |
+| `alt_audience_ids` | Unique identifiers indicating the alternate audiences for this event |
+| `alt_event_type_ids` | Unique identifiers indicating the alternate types of this event |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `audience_id` | Unique identifier indicating the preferred audience for this event |
+| `buy_button_caption` | Additional text below the ticket/registration button |
+| `buy_button_text` | The text used on the ticket/registration button |
+| `date_display` | A readable display of the event dates |
+| `description` | All copytext of the event |
+| `door_time` | The time the doors open for this event |
+| `end_date` | The date the event ends |
+| `end_time` | The time the event ends |
+| `entrance` | Which entrance to use for this event |
+| `event_host_id` | Unique identifier of the host (cf. |
+| `event_host_title` | Unique identifier of the host (cf. |
+| `event_type_id` | Unique identifier indicating the preferred type of this event |
+| `header_description` | Brief description of the event displayed below the title |
+| `hero_caption` | Text displayed with the hero image on the event |
+| `id` | Unique identifier of this resource. |
+| `image_url` | The URL of an image representing this page |
+| `is_admission_required` | Whether admission to the museum is required to attend this event |
+| `is_after_hours` | Whether the event is to be held after the museum closes |
+| `is_free` | Whether the event is free |
+| `is_member_exclusive` | Whether the event is exclusive to members of the museum |
+| `is_private` | Whether the event is private |
+| `is_registration_required` | Whether registration is required to attend the event |
+| `is_sales_button_hidden` | Whether the buy tickets button is hidden on the website event page |
+| `is_sold_out` | Whether the event is sold out |
+| `is_ticketed` | Whether a ticket is required to attend the event |
+| `is_virtual_event` | Whether the event is being held virtually |
+| `join_url` | URL to the membership signup page via this event |
+| `layout_type` | Number indicating the type of layout this event page uses |
+| `list_description` | One-sentence description of the event displayed in listings |
+| `location` | Where the event takes place |
+| `program_ids` | Unique identifiers indicating the programs this event is a part of |
+| `program_titles` | Titles of the programs this event is a part of |
+| `rsvp_link` | The URL to the sales site for this event |
+| `search_tags` | Editor-specified list of tags to aid in internal search |
+| `short_description` | Brief description of the event |
+| `slug` | A string used in the URL for this event |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `start_date` | The date the event begins |
+| `start_time` | The time the event starts |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `survey_url` | URL to the survey associated with this event |
+| `ticketed_event_id` | Unique identifier of the event in the ticketing system this website event is tied to |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `title_display` | The name of this event formatted with HTML (optional) |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `virtual_event_passcode` | Passcode to access the virtual event |
+| `virtual_event_url` | URL to the virtual event |
 
 Operations: List, Load.
 
@@ -682,31 +682,31 @@ API path: `/events`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `button_caption` |  |
-| `button_text` |  |
-| `button_url` |  |
-| `description` |  |
-| `end_at` |  |
-| `event_id` |  |
-| `id` |  |
-| `image_url` |  |
-| `is_private` |  |
-| `is_sales_button_hidden` |  |
-| `is_ticketed` |  |
-| `location` |  |
-| `off_sale_at` |  |
-| `on_sale_at` |  |
-| `short_description` |  |
-| `source_updated_at` |  |
-| `start_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `title_display` |  |
-| `updated_at` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `button_caption` | Additional text below the ticket/registration button |
+| `button_text` | The text used on the ticket/registration button |
+| `button_url` | The URL to the sales site or an RSVP link for this event |
+| `description` | Description of the event |
+| `end_at` | The date the event occurrence ends |
+| `event_id` | Identifier of the master event of which this is an occurrence |
+| `id` | Unique identifier of this resource. |
+| `image_url` | The URL of an image representing this page |
+| `is_private` | Whether the event is private. |
+| `is_sales_button_hidden` | Whether the buy tickets button is hidden on the website event page |
+| `is_ticketed` | Whether a ticket is required to attend the event |
+| `location` | Where the event takes place |
+| `off_sale_at` | Date and time the event goes off sale |
+| `on_sale_at` | Date and time the event goes on sale |
+| `short_description` | Brief description of the event |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `start_at` | The date the event occurrence begins |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `title_display` | The name of this event formatted with HTML (optional) |
+| `updated_at` | Date and time the record was updated in the aggregator database |
 
 Operations: List, Load.
 
@@ -716,17 +716,17 @@ API path: `/event-occurrences`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `id` |  |
-| `is_affiliate_group` |  |
-| `is_event_host` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `id` | Unique identifier of this resource. |
+| `is_affiliate_group` | Whether this program represents an affiliate group |
+| `is_event_host` | Whether this program represents an event host |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
 
 Operations: List, Load.
 
@@ -736,33 +736,33 @@ API path: `/event-programs`
 
 | Field | Description |
 | --- | --- |
-| `aic_end_at` |  |
-| `aic_start_at` |  |
-| `alt_image_ids` |  |
-| `api_link` |  |
-| `api_model` |  |
-| `artist_ids` |  |
-| `artwork_ids` |  |
-| `artwork_titles` |  |
-| `document_ids` |  |
-| `gallery_id` |  |
-| `gallery_title` |  |
-| `id` |  |
-| `image_id` |  |
-| `image_url` |  |
-| `is_featured` |  |
-| `is_published` |  |
-| `position` |  |
-| `short_description` |  |
-| `site_ids` |  |
-| `source_updated_at` |  |
-| `status` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
-| `web_url` |  |
+| `aic_end_at` | Date the exhibition closed at the Art Institute of Chicago |
+| `aic_start_at` | Date the exhibition opened at the Art Institute of Chicago |
+| `alt_image_ids` | Unique identifiers of all non-preferred images of this exhibition. |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `artist_ids` | Unique identifiers of the artist agent records representing who was shown in the exhibition |
+| `artwork_ids` | Unique identifiers of the artworks that were part of the exhibition |
+| `artwork_titles` | Names of the artworks that were part of the exhibition |
+| `document_ids` | Unique identifiers of assets that serve as documentation for this exhibition |
+| `gallery_id` | Unique identifier of the gallery that mainly housed the exhibition |
+| `gallery_title` | The name of the gallery that mainly housed the exhibition |
+| `id` | Unique identifier of this resource. |
+| `image_id` | Unique identifier of the preferred image to use to represent this exhibition |
+| `image_url` | URL to the hero image from the website |
+| `is_featured` | Is this exhibition currently featured on our website? |
+| `is_published` | Is this exhibition currently published on our website? |
+| `position` | Numering position represnting the order in which this exhibition is featured on the website |
+| `short_description` | Brief explanation of what this exhibition is |
+| `site_ids` | Unique identifiers of the microsites this exhibition is a part of |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `status` | Whether the exhibition is open or closed |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `web_url` | URL to this exhibition on our website |
 
 Operations: List, Load.
 
@@ -772,22 +772,22 @@ API path: `/exhibitions`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `floor` |  |
-| `id` |  |
-| `is_closed` |  |
-| `latitude` |  |
-| `latlon` |  |
-| `longitude` |  |
-| `number` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `tgn_id` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `floor` | The level the gallery is on, e.g., 1, 2, 3, or LL |
+| `id` | Unique identifier of this resource. |
+| `is_closed` | Whether the gallery is currently closed |
+| `latitude` | Latitude coordinate of the center of the room |
+| `latlon` | Latitude and longitude coordinates of the center of the room |
+| `longitude` | Longitude coordinate of the center of the room |
+| `number` | The gallery's room number. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `tgn_id` | Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN) |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
 
 Operations: List, Load.
 
@@ -797,18 +797,18 @@ API path: `/galleries`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `copy` |  |
-| `id` |  |
-| `search_tags` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
-| `web_url` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `copy` | The text of the page |
+| `id` | Unique identifier of this resource. |
+| `search_tags` | Editor-specified list of tags to aid in internal search |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `web_url` | The URL to this page on our website |
 
 Operations: List, Load.
 
@@ -818,16 +818,16 @@ API path: `/generic-pages`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `copy` |  |
-| `id` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `copy` | The text of the highlight description |
+| `id` | Unique identifier of this resource. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
 
 Operations: List, Load.
 
@@ -837,52 +837,52 @@ API path: `/highlights`
 
 | Field | Description |
 | --- | --- |
-| `additional_text` |  |
-| `api_link` |  |
-| `api_model` |  |
-| `friday_is_closed` |  |
-| `friday_member_close` |  |
-| `friday_member_open` |  |
-| `friday_public_close` |  |
-| `friday_public_open` |  |
-| `id` |  |
-| `monday_is_closed` |  |
-| `monday_member_close` |  |
-| `monday_member_open` |  |
-| `monday_public_close` |  |
-| `monday_public_open` |  |
-| `saturday_is_closed` |  |
-| `saturday_member_close` |  |
-| `saturday_member_open` |  |
-| `saturday_public_close` |  |
-| `saturday_public_open` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `summary` |  |
-| `sunday_is_closed` |  |
-| `sunday_member_close` |  |
-| `sunday_member_open` |  |
-| `sunday_public_close` |  |
-| `sunday_public_open` |  |
-| `thursday_is_closed` |  |
-| `thursday_member_close` |  |
-| `thursday_member_open` |  |
-| `thursday_public_close` |  |
-| `thursday_public_open` |  |
-| `timestamp` |  |
-| `title` |  |
-| `tuesday_is_closed` |  |
-| `tuesday_member_close` |  |
-| `tuesday_member_open` |  |
-| `tuesday_public_close` |  |
-| `tuesday_public_open` |  |
-| `updated_at` |  |
-| `wednesday_is_closed` |  |
-| `wednesday_member_close` |  |
-| `wednesday_member_open` |  |
-| `wednesday_public_close` |  |
-| `wednesday_public_open` |  |
+| `additional_text` | Additional information about the hours |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `friday_is_closed` | Whether the museum is closed on Fridays |
+| `friday_member_close` | The time member hours ends on Fridays |
+| `friday_member_open` | The time member hours starts on Fridays |
+| `friday_public_close` | The time public hours ends on Fridays |
+| `friday_public_open` | The time public hours starts on Fridays |
+| `id` | Unique identifier of this resource. |
+| `monday_is_closed` | Whether the museum is closed on Mondays |
+| `monday_member_close` | The time member hours ends on Mondays |
+| `monday_member_open` | The time member hours starts on Mondays |
+| `monday_public_close` | The time public hours ends on Mondays |
+| `monday_public_open` | The time public hours starts on Mondays |
+| `saturday_is_closed` | Whether the museum is closed on Saturdays |
+| `saturday_member_close` | The time member hours ends on Saturdays |
+| `saturday_member_open` | The time member hours starts on Saturdays |
+| `saturday_public_close` | The time public hours ends on Saturdays |
+| `saturday_public_open` | The time public hours starts on Saturdays |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `summary` | Readable summary of the hours |
+| `sunday_is_closed` | Whether the museum is closed on Sundays |
+| `sunday_member_close` | The time member hours ends on Sundays |
+| `sunday_member_open` | The time member hours starts on Sundays |
+| `sunday_public_close` | The time public hours ends on Sundays |
+| `sunday_public_open` | The time public hours starts on Sundays |
+| `thursday_is_closed` | Whether the museum is closed on Thursdays |
+| `thursday_member_close` | The time member hours ends on Thursdays |
+| `thursday_member_open` | The time member hours starts on Thursdays |
+| `thursday_public_close` | The time public hours ends on Thursdays |
+| `thursday_public_open` | The time public hours starts on Thursdays |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `tuesday_is_closed` | Whether the museum is closed on Tuesdays |
+| `tuesday_member_close` | The time member hours ends on Tuesdays |
+| `tuesday_member_open` | The time member hours starts on Tuesdays |
+| `tuesday_public_close` | The time public hours ends on Tuesdays |
+| `tuesday_public_open` | The time public hours starts on Tuesdays |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `wednesday_is_closed` | Whether the museum is closed on Wednesdays |
+| `wednesday_member_close` | The time member hours ends on Wednesdays |
+| `wednesday_member_open` | The time member hours starts on Wednesdays |
+| `wednesday_public_close` | The time public hours ends on Wednesdays |
+| `wednesday_public_open` | The time public hours starts on Wednesdays |
 
 Operations: List, Load.
 
@@ -892,35 +892,35 @@ API path: `/hours`
 
 | Field | Description |
 | --- | --- |
-| `ahash` |  |
-| `alt_text` |  |
-| `api_link` |  |
-| `api_model` |  |
-| `artwork_ids` |  |
-| `artwork_titles` |  |
-| `color` |  |
-| `colorfulness` |  |
-| `content` |  |
-| `content_e_tag` |  |
-| `credit_line` |  |
-| `fingerprint` |  |
-| `height` |  |
-| `id` |  |
-| `iiif_url` |  |
-| `is_educational_resource` |  |
-| `is_multimedia_resource` |  |
-| `is_teacher_resource` |  |
-| `lake_guid` |  |
-| `lqip` |  |
-| `phash` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `type` |  |
-| `updated_at` |  |
-| `width` |  |
+| `ahash` | Image hash generated using ahash algorithm with 64 boolean subfields |
+| `alt_text` | Alternative text for the asset to describe it to people with low or no vision |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `artwork_ids` | Unique identifiers of the artworks associated with this asset |
+| `artwork_titles` | Names of the artworks associated with this asset |
+| `color` | Dominant color of this image in HSL |
+| `colorfulness` | Unbounded positive float representing an abstract measure of colorfulness. |
+| `content` | Text of or URL to the contents of this asset |
+| `content_e_tag` | Arbitrary unique identifier that changes when the binary file gets updated |
+| `credit_line` | Asset-specific copyright information |
+| `fingerprint` | Image hashes: aHash, dHash, pHash, wHash |
+| `height` | Native height of the image |
+| `id` | Unique identifier of this resource. |
+| `iiif_url` | IIIF URL of this image |
+| `is_educational_resource` | Whether this resource is considered to be educational |
+| `is_multimedia_resource` | Whether this resource is considered to be multimedia |
+| `is_teacher_resource` | Whether this resource is considered to be educational |
+| `lake_guid` | Unique UUID of this resource in LAKE, our DAMS. |
+| `lqip` | Low-quality image placeholder (LQIP). |
+| `phash` | Image hash generated using phash algorithm with 64 boolean subfields |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `type` | Type always takes one of the following values: image, sound, text, video |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `width` | Native width of the image |
 
 Operations: List, Load.
 
@@ -930,18 +930,18 @@ API path: `/images`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `copy` |  |
-| `id` |  |
-| `search_tags` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
-| `web_url` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `copy` | The text of the page |
+| `id` | Unique identifier of this resource. |
+| `search_tags` | Editor-specified list of tags to aid in internal search |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `web_url` | The URL to this page on our website |
 
 Operations: List, Load.
 
@@ -951,18 +951,18 @@ API path: `/landing-pages`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `id` |  |
-| `latitude` |  |
-| `longitude` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `tgn_id` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `id` | Unique identifier of this resource. |
+| `latitude` | Latitude coordinate of the center of the room |
+| `longitude` | Longitude coordinate of the center of the room |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `tgn_id` | Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN) |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
 
 Operations: List, Load.
 
@@ -972,17 +972,17 @@ API path: `/places`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `copy` |  |
-| `id` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
-| `web_url` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `copy` | The text of the page |
+| `id` | Unique identifier of this resource. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `web_url` | The URL to this page on our website |
 
 Operations: List, Load.
 
@@ -992,17 +992,17 @@ API path: `/press-releases`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `copy` |  |
-| `id` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
-| `web_url` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `copy` | The text of the page |
+| `id` | Unique identifier of this resource. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `web_url` | The URL to this page on our website |
 
 Operations: List, Load.
 
@@ -1012,27 +1012,27 @@ API path: `/printed-publications`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `artist_ids` |  |
-| `artwork_ids` |  |
-| `description` |  |
-| `exhibition_ids` |  |
-| `external_sku` |  |
-| `id` |  |
-| `image_url` |  |
-| `max_compare_at_price` |  |
-| `max_current_price` |  |
-| `min_compare_at_price` |  |
-| `min_current_price` |  |
-| `price_display` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
-| `web_url` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `artist_ids` | Unique identifiers of the artists associated with this product |
+| `artwork_ids` | Unique identifiers of the artworks associated with this product |
+| `description` | Explanation of what this product is |
+| `exhibition_ids` | Unique identifiers of the exhibitions associated with this product |
+| `external_sku` | Numeric product identification code of a machine-readable barcode, when the customer sku differs from our internal one |
+| `id` | Unique identifier of this resource. |
+| `image_url` | URL of an image for this product |
+| `max_compare_at_price` | Number indicating how much the most expensive variant of a product cost before a sale |
+| `max_current_price` | Number indicating how much the most expensive variant of a product costs right now |
+| `min_compare_at_price` | Number indicating how much the least expensive variant of a product cost before a sale |
+| `min_current_price` | Number indicating how much the least expensive variant of a product costs right now |
+| `price_display` | Explanation of what this product is |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `web_url` | URL of this product in the shop |
 
 Operations: List, Load.
 
@@ -1042,17 +1042,17 @@ API path: `/products`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `id` |  |
-| `section_ids` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
-| `web_url` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `id` | Unique identifier of this resource. |
+| `section_ids` | Unique identifiers of the sections of this publication |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `web_url` | URL to the publication |
 
 Operations: List, Load.
 
@@ -1062,15 +1062,15 @@ API path: `/publications`
 
 | Field | Description |
 | --- | --- |
-| `api_id` |  |
-| `api_link` |  |
-| `api_model` |  |
-| `id` |  |
-| `is_boosted` |  |
-| `score` |  |
-| `thumbnail` |  |
-| `timestamp` |  |
-| `title` |  |
+| `api_id` | API unique identifier |
+| `api_link` | URL to this recource in the API |
+| `api_model` | Name of the model the resource represents |
+| `id` | Unique identifier within the search index |
+| `is_boosted` | Whether this record has been flagged to be boosted |
+| `score` | Search index ranking of the result |
+| `thumbnail` | Metadata on the image representing this record |
+| `timestamp` | Date this record was last updated in the API |
+| `title` | The name of this resource |
 
 Operations: List.
 
@@ -1080,22 +1080,22 @@ API path: `/agents/search`
 
 | Field | Description |
 | --- | --- |
-| `accession` |  |
-| `api_link` |  |
-| `api_model` |  |
-| `artwork_id` |  |
-| `content` |  |
-| `generic_page_id` |  |
-| `id` |  |
-| `publication_id` |  |
-| `publication_title` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
-| `web_url` |  |
+| `accession` | An accession number parsed from the title or tombstone |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `artwork_id` | Unique identifier of the artwork with which this section is associated |
+| `content` | Content of this section in plaintext |
+| `generic_page_id` | Unique identifier of the page on the website that represents the publication this section belongs to |
+| `id` | Unique identifier of this resource. |
+| `publication_id` | Unique identifier of the publication this section belongs to |
+| `publication_title` | Name of the publication this section belongs to |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `web_url` | URL to the section |
 
 Operations: List, Load.
 
@@ -1105,21 +1105,21 @@ API path: `/sections`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `artwork_ids` |  |
-| `artwork_titles` |  |
-| `description` |  |
-| `exhibition_ids` |  |
-| `exhibition_titles` |  |
-| `id` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
-| `web_url` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `artwork_ids` | Unique identifiers of the artworks this site is associated with |
+| `artwork_titles` | Names of the artworks this site is associated with |
+| `description` | Explanation of what this site is |
+| `exhibition_ids` | Unique identifier of the exhibitions this site is associated with |
+| `exhibition_titles` | Names of the exhibitions this site is associated with |
+| `id` | Unique identifier of this resource. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `web_url` | URL to this site |
 
 Operations: List, Load.
 
@@ -1129,28 +1129,28 @@ API path: `/sites`
 
 | Field | Description |
 | --- | --- |
-| `alt_text` |  |
-| `api_link` |  |
-| `api_model` |  |
-| `artwork_ids` |  |
-| `artwork_titles` |  |
-| `content` |  |
-| `content_e_tag` |  |
-| `credit_line` |  |
-| `id` |  |
-| `is_educational_resource` |  |
-| `is_multimedia_resource` |  |
-| `is_teacher_resource` |  |
-| `lake_guid` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `transcript` |  |
-| `type` |  |
-| `updated_at` |  |
-| `web_url` |  |
+| `alt_text` | Alternative text for the asset to describe it to people with low or no vision |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `artwork_ids` | Unique identifiers of the artworks associated with this asset |
+| `artwork_titles` | Names of the artworks associated with this asset |
+| `content` | Text of or URL to the contents of this asset |
+| `content_e_tag` | Arbitrary unique identifier that changes when the binary file gets updated |
+| `credit_line` | Asset-specific copyright information |
+| `id` | Unique identifier of this resource. |
+| `is_educational_resource` | Whether this resource is considered to be educational |
+| `is_multimedia_resource` | Whether this resource is considered to be multimedia |
+| `is_teacher_resource` | Whether this resource is considered to be educational |
+| `lake_guid` | Unique UUID of this resource in LAKE, our DAMS. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | Name of this mobile audio file – derived from the artwork and tour titles |
+| `transcript` | Text transcription of the audio file |
+| `type` | Type always takes one of the following values: image, sound, text, video |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `web_url` | URL to the audio file |
 
 Operations: List, Load.
 
@@ -1160,16 +1160,16 @@ API path: `/mobile-sounds`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `id` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
-| `web_url` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `id` | Unique identifier of this resource. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `web_url` | The URL to this page on our website |
 
 Operations: List, Load.
 
@@ -1179,26 +1179,26 @@ API path: `/static-pages`
 
 | Field | Description |
 | --- | --- |
-| `alt_text` |  |
-| `api_link` |  |
-| `api_model` |  |
-| `artwork_ids` |  |
-| `artwork_titles` |  |
-| `content` |  |
-| `content_e_tag` |  |
-| `credit_line` |  |
-| `id` |  |
-| `is_educational_resource` |  |
-| `is_multimedia_resource` |  |
-| `is_teacher_resource` |  |
-| `lake_guid` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `type` |  |
-| `updated_at` |  |
+| `alt_text` | Alternative text for the asset to describe it to people with low or no vision |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `artwork_ids` | Unique identifiers of the artworks associated with this asset |
+| `artwork_titles` | Names of the artworks associated with this asset |
+| `content` | Text of or URL to the contents of this asset |
+| `content_e_tag` | Arbitrary unique identifier that changes when the binary file gets updated |
+| `credit_line` | Asset-specific copyright information |
+| `id` | Unique identifier of this resource. |
+| `is_educational_resource` | Whether this resource is considered to be educational |
+| `is_multimedia_resource` | Whether this resource is considered to be multimedia |
+| `is_teacher_resource` | Whether this resource is considered to be educational |
+| `lake_guid` | Unique UUID of this resource in LAKE, our DAMS. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `type` | Type always takes one of the following values: image, sound, text, video |
+| `updated_at` | Date and time the record was updated in the aggregator database |
 
 Operations: List, Load.
 
@@ -1208,23 +1208,23 @@ API path: `/texts`
 
 | Field | Description |
 | --- | --- |
-| `api_link` |  |
-| `api_model` |  |
-| `artist_titles` |  |
-| `artwork_titles` |  |
-| `description` |  |
-| `id` |  |
-| `image` |  |
-| `intro` |  |
-| `intro_link` |  |
-| `intro_transcript` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `updated_at` |  |
-| `weight` |  |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `artist_titles` | Names of the artists of the artworks featured in this tour's tour stops |
+| `artwork_titles` | Names of the artworks featured in this tour's tour stops |
+| `description` | Explanation of what the tour is |
+| `id` | Unique identifier of this resource. |
+| `image` | The main image for the tour |
+| `intro` | Text introducing the tour |
+| `intro_link` | Link to the audio file of the introduction |
+| `intro_transcript` | Transcript of the introduction audio to the tour |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `updated_at` | Date and time the record was updated in the aggregator database |
+| `weight` | Number representing this tour's sort order |
 
 Operations: List, Load.
 
@@ -1234,26 +1234,26 @@ API path: `/tours`
 
 | Field | Description |
 | --- | --- |
-| `alt_text` |  |
-| `api_link` |  |
-| `api_model` |  |
-| `artwork_ids` |  |
-| `artwork_titles` |  |
-| `content` |  |
-| `content_e_tag` |  |
-| `credit_line` |  |
-| `id` |  |
-| `is_educational_resource` |  |
-| `is_multimedia_resource` |  |
-| `is_teacher_resource` |  |
-| `lake_guid` |  |
-| `source_updated_at` |  |
-| `suggest_autocomplete_all` |  |
-| `suggest_autocomplete_boosted` |  |
-| `timestamp` |  |
-| `title` |  |
-| `type` |  |
-| `updated_at` |  |
+| `alt_text` | Alternative text for the asset to describe it to people with low or no vision |
+| `api_link` | REST API link for this resource |
+| `api_model` | REST API resource type or endpoint |
+| `artwork_ids` | Unique identifiers of the artworks associated with this asset |
+| `artwork_titles` | Names of the artworks associated with this asset |
+| `content` | Text of or URL to the contents of this asset |
+| `content_e_tag` | Arbitrary unique identifier that changes when the binary file gets updated |
+| `credit_line` | Asset-specific copyright information |
+| `id` | Unique identifier of this resource. |
+| `is_educational_resource` | Whether this resource is considered to be educational |
+| `is_multimedia_resource` | Whether this resource is considered to be multimedia |
+| `is_teacher_resource` | Whether this resource is considered to be educational |
+| `lake_guid` | Unique UUID of this resource in LAKE, our DAMS. |
+| `source_updated_at` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | Date and time the record was updated in the aggregator search index |
+| `title` | The name of this resource |
+| `type` | Type always takes one of the following values: image, sound, text, video |
+| `updated_at` | Date and time the record was updated in the aggregator database |
 
 Operations: List, Load.
 
@@ -1279,22 +1279,22 @@ Create an instance: `agent = client.Agent()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_titles` | `Any` |  |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `birth_date` | `Any` |  |
-| `death_date` | `Any` |  |
-| `description` | `str` |  |
-| `id` | `str` |  |
-| `is_artist` | `bool` |  |
-| `sort_title` | `Any` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `ulan_id` | `str` |  |
-| `updated_at` | `Any` |  |
+| `alt_titles` | `Any` | Alternate names for this agent |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `birth_date` | `Any` | The year this agent was born |
+| `death_date` | `Any` | The year this agent died |
+| `description` | `str` | A biographical description of the agent |
+| `id` | `str` | Unique identifier of this resource. |
+| `is_artist` | `bool` | Whether the agent is an artist. |
+| `sort_title` | `Any` | Sortable name for this agent, typically with last name first. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `ulan_id` | `str` | Unique identifier of this agent in Getty's ULAN |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
 
 #### Example: Load
 
@@ -1324,15 +1324,15 @@ Create an instance: `agent_role = client.AgentRole()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `id` | `str` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `id` | `str` | Unique identifier of this resource. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
 
 #### Example: Load
 
@@ -1362,15 +1362,15 @@ Create an instance: `agent_type = client.AgentType()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `id` | `str` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `id` | `str` | Unique identifier of this resource. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
 
 #### Example: Load
 
@@ -1400,16 +1400,16 @@ Create an instance: `article = client.Article()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `copy` | `Any` |  |
-| `id` | `str` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `copy` | `Any` | The text of the article |
+| `id` | `str` | Unique identifier of this resource. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
 
 #### Example: Load
 
@@ -1439,110 +1439,110 @@ Create an instance: `artwork = client.Artwork()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_artist_ids` | `Any` |  |
-| `alt_classification_ids` | `Any` |  |
-| `alt_image_ids` | `Any` |  |
-| `alt_material_ids` | `Any` |  |
-| `alt_style_ids` | `Any` |  |
-| `alt_subject_ids` | `Any` |  |
-| `alt_technique_ids` | `Any` |  |
-| `alt_titles` | `Any` |  |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `artist_display` | `Any` |  |
-| `artist_id` | `str` |  |
-| `artist_ids` | `Any` |  |
-| `artist_title` | `Any` |  |
-| `artist_titles` | `Any` |  |
-| `artwork_type_id` | `str` |  |
-| `artwork_type_title` | `Any` |  |
-| `boost_rank` | `Any` |  |
-| `catalog_based_search_keyword_titles` | `Any` |  |
-| `catalogue_display` | `Any` |  |
-| `category_ids` | `Any` |  |
-| `category_titles` | `Any` |  |
-| `classification_id` | `str` |  |
-| `classification_ids` | `Any` |  |
-| `classification_title` | `Any` |  |
-| `classification_titles` | `Any` |  |
-| `color` | `Any` |  |
-| `colorfulness` | `Any` |  |
-| `copyright_notice` | `Any` |  |
-| `credit_line` | `Any` |  |
-| `date_display` | `Any` |  |
-| `date_end` | `Any` |  |
-| `date_qualifier_id` | `str` |  |
-| `date_qualifier_title` | `Any` |  |
-| `date_start` | `Any` |  |
-| `department_id` | `str` |  |
-| `department_title` | `Any` |  |
-| `description` | `str` |  |
-| `dimensions` | `Any` |  |
-| `dimensions_detail` | `Any` |  |
-| `document_ids` | `Any` |  |
-| `edition` | `Any` |  |
-| `exhibition_history` | `Any` |  |
-| `fiscal_year` | `Any` |  |
-| `fiscal_year_deaccession` | `Any` |  |
-| `gallery_id` | `str` |  |
-| `gallery_title` | `Any` |  |
-| `has_advanced_imaging` | `bool` |  |
-| `has_educational_resources` | `bool` |  |
-| `has_multimedia_resources` | `bool` |  |
-| `has_not_been_viewed_much` | `bool` |  |
-| `id` | `str` |  |
-| `image_embedding` | `Any` |  |
-| `image_id` | `str` |  |
-| `inscriptions` | `Any` |  |
-| `internal_department_id` | `str` |  |
-| `is_boosted` | `bool` |  |
-| `is_on_view` | `bool` |  |
-| `is_public_domain` | `bool` |  |
-| `is_zoomable` | `bool` |  |
-| `latitude` | `float` |  |
-| `latlon` | `Any` |  |
-| `longitude` | `float` |  |
-| `main_reference_number` | `int` |  |
-| `material_id` | `str` |  |
-| `material_ids` | `Any` |  |
-| `material_titles` | `Any` |  |
-| `max_zoom_window_size` | `Any` |  |
-| `medium_display` | `Any` |  |
-| `nomisma_id` | `str` |  |
-| `on_loan_display` | `Any` |  |
-| `pageviews` | `Any` |  |
-| `pageviews_recent` | `Any` |  |
-| `place_of_origin` | `Any` |  |
-| `provenance_text` | `Any` |  |
-| `publication_history` | `Any` |  |
-| `publishing_verification_level` | `Any` |  |
-| `section_ids` | `Any` |  |
-| `section_titles` | `Any` |  |
-| `short_description` | `Any` |  |
-| `site_ids` | `Any` |  |
-| `sound_ids` | `Any` |  |
-| `source_updated_at` | `Any` |  |
-| `style_id` | `str` |  |
-| `style_ids` | `Any` |  |
-| `style_title` | `Any` |  |
-| `style_titles` | `Any` |  |
-| `subject_id` | `str` |  |
-| `subject_ids` | `Any` |  |
-| `subject_titles` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `technique_id` | `str` |  |
-| `technique_ids` | `Any` |  |
-| `technique_titles` | `Any` |  |
-| `term_titles` | `Any` |  |
-| `text_embedding` | `Any` |  |
-| `text_ids` | `Any` |  |
-| `theme_titles` | `Any` |  |
-| `thumbnail` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
-| `video_ids` | `Any` |  |
+| `alt_artist_ids` | `Any` | Unique identifiers of the non-preferred artists/cultures associated with this work |
+| `alt_classification_ids` | `Any` | Unique identifiers of all other non-preferred classification terms for this work |
+| `alt_image_ids` | `Any` | Unique identifiers of all non-preferred images of this work. |
+| `alt_material_ids` | `Any` | Unique identifiers of all other non-preferred material terms for this work |
+| `alt_style_ids` | `Any` | Unique identifiers of all other non-preferred style terms for this work |
+| `alt_subject_ids` | `Any` | Unique identifiers of all other non-preferred subject terms for this work |
+| `alt_technique_ids` | `Any` | Unique identifiers of all other non-preferred technique terms for this work |
+| `alt_titles` | `Any` | Alternate names for this work |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `artist_display` | `Any` | Readable description of the creator of this work. |
+| `artist_id` | `str` | Unique identifier of the preferred artist/culture associated with this work |
+| `artist_ids` | `Any` | Unique identifier of all artist/cultures associated with this work |
+| `artist_title` | `Any` | Name of the preferred artist/culture associated with this work |
+| `artist_titles` | `Any` | Names of all artist/cultures associated with this work |
+| `artwork_type_id` | `str` | Unique identifier of the kind of object or work |
+| `artwork_type_title` | `Any` | The kind of object or work (e.g. |
+| `boost_rank` | `Any` | Manual indication of what rank this artwork should take in search results. |
+| `catalog_based_search_keyword_titles` | `Any` | The keyword search values that would be catalog-based searches on this record |
+| `catalogue_display` | `Any` | Brief text listing all the catalogues raisonnés which include this work. |
+| `category_ids` | `Any` | Unique identifiers of the categories this work is a part of |
+| `category_titles` | `Any` | Names of the categories this artwork is a part of |
+| `classification_id` | `str` | Unique identifier of the preferred classification term for this work |
+| `classification_ids` | `Any` | Unique identifiers of all classification terms for this work |
+| `classification_title` | `Any` | The name of the preferred classification term for this work |
+| `classification_titles` | `Any` | The names of all classification terms related to this artwork |
+| `color` | `Any` | Dominant color of this artwork in HSL |
+| `colorfulness` | `Any` | Unbounded positive float representing an abstract measure of colorfulness. |
+| `copyright_notice` | `Any` | Statement notifying how the work is protected by copyright. |
+| `credit_line` | `Any` | Brief statement indicating how the work came into the collection |
+| `date_display` | `Any` | Readable, free-text description of the period of time associated with the creation of this work. |
+| `date_end` | `Any` | The year of the period of time associated with the creation of this work |
+| `date_qualifier_id` | `str` | Unique identifier of the qualifer to the dates provided for this record. |
+| `date_qualifier_title` | `Any` | Readable, text qualifer to the dates provided for this record. |
+| `date_start` | `Any` | The year of the period of time associated with the creation of this work |
+| `department_id` | `str` | Unique identifier of the curatorial department that this work belongs to |
+| `department_title` | `Any` | Name of the curatorial department that this work belongs to |
+| `description` | `str` | Longer explanation describing the work |
+| `dimensions` | `Any` | The size, shape, scale, and dimensions of the work. |
+| `dimensions_detail` | `Any` | The height, width, depth, and/or diameter of each section of the work in centimeters |
+| `document_ids` | `Any` | Unique identifiers of assets that serve as documentation for this artwork |
+| `edition` | `Any` | Edition number if the work is one of many |
+| `exhibition_history` | `Any` | List of all the places this work has been exhibited |
+| `fiscal_year` | `Any` | The fiscal year in which the work was acquired. |
+| `fiscal_year_deaccession` | `Any` | The fiscal year in which the work was deaccessioned. |
+| `gallery_id` | `str` | Unique identifier of the location of this work in our museum |
+| `gallery_title` | `Any` | The location of this work in our museum |
+| `has_advanced_imaging` | `bool` | Whether this artwork is enhanced with 3D models, 360 image sequences, Mirador views, etc. |
+| `has_educational_resources` | `bool` | Whether this artwork has any documents tagged as educational |
+| `has_multimedia_resources` | `bool` | Whether this artwork has any associated microsites, digital publications, or documents tagged as multimedia |
+| `has_not_been_viewed_much` | `bool` | Whether the artwork hasn't been visited on our website very much |
+| `id` | `str` | Unique identifier of this resource. |
+| `image_embedding` | `Any` | The generated embeddings describing the artwork image |
+| `image_id` | `str` | Unique identifier of the preferred image to use to represent this work |
+| `inscriptions` | `Any` | A description of distinguishing or identifying physical markings that are on the work |
+| `internal_department_id` | `str` | An internal department id we use for analytics. |
+| `is_boosted` | `bool` | Whether this document should be boosted in search |
+| `is_on_view` | `bool` | Whether the work is on display |
+| `is_public_domain` | `bool` | Whether the work is in the public domain, meaning it was created before copyrights existed or has left the copyright term |
+| `is_zoomable` | `bool` | Whether images of the work are allowed to be displayed in a zoomable interface. |
+| `latitude` | `float` | Latitude coordinate of the location of this work in our galleries |
+| `latlon` | `Any` | Latitude and longitude coordinates of the location of this work in our galleries |
+| `longitude` | `float` | Longitude coordinate of the location of this work in our galleries |
+| `main_reference_number` | `int` | Unique identifier assigned to the artwork upon acquisition |
+| `material_id` | `str` | Unique identifier of the preferred material term for this work |
+| `material_ids` | `Any` | Unique identifiers of all material terms for this work |
+| `material_titles` | `Any` | The names of all material terms related to this artwork |
+| `max_zoom_window_size` | `Any` | The maximum size of the window the image is allowed to be viewed in, in pixels. |
+| `medium_display` | `Any` | The substances or materials used in the creation of a work |
+| `nomisma_id` | `str` | Unique identifier of this work in the nomisma coin database |
+| `on_loan_display` | `Any` | If an artwork is on loan, this contains details about the loan |
+| `pageviews` | `Any` | Approx. |
+| `pageviews_recent` | `Any` | Approx. |
+| `place_of_origin` | `Any` | The location where the creation, design, or production of the work took place, or the original location of the work |
+| `provenance_text` | `Any` | Ownership/collecting history of the work. |
+| `publication_history` | `Any` | Bibliographic list of all the places this work has been published |
+| `publishing_verification_level` | `Any` | Indicator of how much metadata on the work in published. |
+| `section_ids` | `Any` | Unique identifiers of the digital publication chapters this work in included in |
+| `section_titles` | `Any` | Names of the digital publication chapters this work is included in |
+| `short_description` | `Any` | Short explanation describing the work |
+| `site_ids` | `Any` | Unique identifiers of the microsites this work is a part of |
+| `sound_ids` | `Any` | Unique identifiers of the audio about this work |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `style_id` | `str` | Unique identifier of the preferred style term for this work |
+| `style_ids` | `Any` | Unique identifiers of all style terms for this work |
+| `style_title` | `Any` | The name of the preferred style term for this work |
+| `style_titles` | `Any` | The names of all style terms related to this artwork |
+| `subject_id` | `str` | Unique identifier of the preferred subject term for this work |
+| `subject_ids` | `Any` | Unique identifiers of all subject terms for this work |
+| `subject_titles` | `Any` | The names of all subject terms related to this artwork |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `technique_id` | `str` | Unique identifier of the preferred technique term for this work |
+| `technique_ids` | `Any` | Unique identifiers of all technique terms for this work |
+| `technique_titles` | `Any` | The names of all technique terms related to this artwork |
+| `term_titles` | `Any` | The names of the taxonomy tags for this work |
+| `text_embedding` | `Any` | The generated embeddings of artwork text |
+| `text_ids` | `Any` | Unique identifiers of the texts about this work |
+| `theme_titles` | `Any` | The names of all thematic publish categories related to this artwork |
+| `thumbnail` | `Any` | Metadata about the image referenced by `image_id`. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `video_ids` | `Any` | Unique identifiers of the videos about this work |
 
 #### Example: Load
 
@@ -1572,15 +1572,15 @@ Create an instance: `artwork_date_qualifier = client.ArtworkDateQualifier()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `id` | `str` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `id` | `str` | Unique identifier of this resource. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
 
 #### Example: Load
 
@@ -1610,15 +1610,15 @@ Create an instance: `artwork_place_qualifier = client.ArtworkPlaceQualifier()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `id` | `str` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `id` | `str` | Unique identifier of this resource. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
 
 #### Example: Load
 
@@ -1648,16 +1648,16 @@ Create an instance: `artwork_type = client.ArtworkType()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aat_id` | `str` |  |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `id` | `str` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
+| `aat_id` | `str` | Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT) |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `id` | `str` | Unique identifier of this resource. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
 
 #### Example: Load
 
@@ -1687,17 +1687,17 @@ Create an instance: `category_term = client.CategoryTerm()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aat_id` | `str` |  |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `id` | `str` |  |
-| `parent_id` | `str` |  |
-| `source_updated_at` | `Any` |  |
-| `subtype` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
+| `aat_id` | `str` | Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT) |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `id` | `str` | Unique identifier of this resource. |
+| `parent_id` | `str` | Unique identifier of this category's parent |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `subtype` | `Any` | Takes one of the following values: classification, material, technique, style, subject, department, theme |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
 
 #### Example: Load
 
@@ -1727,17 +1727,17 @@ Create an instance: `digital_publication = client.DigitalPublication()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `copy` | `Any` |  |
-| `id` | `str` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
-| `web_url` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `copy` | `Any` | The text of the page |
+| `id` | `str` | Unique identifier of this resource. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `web_url` | `Any` | The URL to this page on our website |
 
 #### Example: Load
 
@@ -1767,19 +1767,19 @@ Create an instance: `digital_publication_article = client.DigitalPublicationArti
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `author_display` | `Any` |  |
-| `copy` | `Any` |  |
-| `digital_publication_id` | `str` |  |
-| `id` | `str` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
-| `web_url` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `author_display` | `Any` | A display-friendly text of the authors of this article |
+| `copy` | `Any` | The text of the article |
+| `digital_publication_id` | `str` | Unique identifier of the digital publication this article belongs to |
+| `id` | `str` | Unique identifier of this resource. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `web_url` | `Any` | The URL to this article on our website |
 
 #### Example: Load
 
@@ -1809,17 +1809,17 @@ Create an instance: `educator_resource = client.EducatorResource()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `copy` | `Any` |  |
-| `id` | `str` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
-| `web_url` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `copy` | `Any` | The text of the page |
+| `id` | `str` | Unique identifier of this resource. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `web_url` | `Any` | The URL to this page on our website |
 
 #### Example: Load
 
@@ -1849,59 +1849,59 @@ Create an instance: `event = client.Event()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_audience_ids` | `Any` |  |
-| `alt_event_type_ids` | `Any` |  |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `audience_id` | `str` |  |
-| `buy_button_caption` | `Any` |  |
-| `buy_button_text` | `Any` |  |
-| `date_display` | `Any` |  |
-| `description` | `str` |  |
-| `door_time` | `Any` |  |
-| `end_date` | `Any` |  |
-| `end_time` | `Any` |  |
-| `entrance` | `Any` |  |
-| `event_host_id` | `str` |  |
-| `event_host_title` | `Any` |  |
-| `event_type_id` | `str` |  |
-| `header_description` | `Any` |  |
-| `hero_caption` | `Any` |  |
-| `id` | `str` |  |
-| `image_url` | `Any` |  |
-| `is_admission_required` | `bool` |  |
-| `is_after_hours` | `bool` |  |
-| `is_free` | `bool` |  |
-| `is_member_exclusive` | `bool` |  |
-| `is_private` | `bool` |  |
-| `is_registration_required` | `bool` |  |
-| `is_sales_button_hidden` | `bool` |  |
-| `is_sold_out` | `bool` |  |
-| `is_ticketed` | `bool` |  |
-| `is_virtual_event` | `bool` |  |
-| `join_url` | `Any` |  |
-| `layout_type` | `Any` |  |
-| `list_description` | `Any` |  |
-| `location` | `Any` |  |
-| `program_ids` | `Any` |  |
-| `program_titles` | `Any` |  |
-| `rsvp_link` | `Any` |  |
-| `search_tags` | `Any` |  |
-| `short_description` | `Any` |  |
-| `slug` | `str` |  |
-| `source_updated_at` | `Any` |  |
-| `start_date` | `Any` |  |
-| `start_time` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `survey_url` | `Any` |  |
-| `ticketed_event_id` | `str` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `title_display` | `Any` |  |
-| `updated_at` | `Any` |  |
-| `virtual_event_passcode` | `Any` |  |
-| `virtual_event_url` | `Any` |  |
+| `alt_audience_ids` | `Any` | Unique identifiers indicating the alternate audiences for this event |
+| `alt_event_type_ids` | `Any` | Unique identifiers indicating the alternate types of this event |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `audience_id` | `str` | Unique identifier indicating the preferred audience for this event |
+| `buy_button_caption` | `Any` | Additional text below the ticket/registration button |
+| `buy_button_text` | `Any` | The text used on the ticket/registration button |
+| `date_display` | `Any` | A readable display of the event dates |
+| `description` | `str` | All copytext of the event |
+| `door_time` | `Any` | The time the doors open for this event |
+| `end_date` | `Any` | The date the event ends |
+| `end_time` | `Any` | The time the event ends |
+| `entrance` | `Any` | Which entrance to use for this event |
+| `event_host_id` | `str` | Unique identifier of the host (cf. |
+| `event_host_title` | `Any` | Unique identifier of the host (cf. |
+| `event_type_id` | `str` | Unique identifier indicating the preferred type of this event |
+| `header_description` | `Any` | Brief description of the event displayed below the title |
+| `hero_caption` | `Any` | Text displayed with the hero image on the event |
+| `id` | `str` | Unique identifier of this resource. |
+| `image_url` | `Any` | The URL of an image representing this page |
+| `is_admission_required` | `bool` | Whether admission to the museum is required to attend this event |
+| `is_after_hours` | `bool` | Whether the event is to be held after the museum closes |
+| `is_free` | `bool` | Whether the event is free |
+| `is_member_exclusive` | `bool` | Whether the event is exclusive to members of the museum |
+| `is_private` | `bool` | Whether the event is private |
+| `is_registration_required` | `bool` | Whether registration is required to attend the event |
+| `is_sales_button_hidden` | `bool` | Whether the buy tickets button is hidden on the website event page |
+| `is_sold_out` | `bool` | Whether the event is sold out |
+| `is_ticketed` | `bool` | Whether a ticket is required to attend the event |
+| `is_virtual_event` | `bool` | Whether the event is being held virtually |
+| `join_url` | `Any` | URL to the membership signup page via this event |
+| `layout_type` | `Any` | Number indicating the type of layout this event page uses |
+| `list_description` | `Any` | One-sentence description of the event displayed in listings |
+| `location` | `Any` | Where the event takes place |
+| `program_ids` | `Any` | Unique identifiers indicating the programs this event is a part of |
+| `program_titles` | `Any` | Titles of the programs this event is a part of |
+| `rsvp_link` | `Any` | The URL to the sales site for this event |
+| `search_tags` | `Any` | Editor-specified list of tags to aid in internal search |
+| `short_description` | `Any` | Brief description of the event |
+| `slug` | `str` | A string used in the URL for this event |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `start_date` | `Any` | The date the event begins |
+| `start_time` | `Any` | The time the event starts |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `survey_url` | `Any` | URL to the survey associated with this event |
+| `ticketed_event_id` | `str` | Unique identifier of the event in the ticketing system this website event is tied to |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `title_display` | `Any` | The name of this event formatted with HTML (optional) |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `virtual_event_passcode` | `Any` | Passcode to access the virtual event |
+| `virtual_event_url` | `Any` | URL to the virtual event |
 
 #### Example: Load
 
@@ -1931,31 +1931,31 @@ Create an instance: `event_occurrence = client.EventOccurrence()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `button_caption` | `Any` |  |
-| `button_text` | `Any` |  |
-| `button_url` | `Any` |  |
-| `description` | `str` |  |
-| `end_at` | `Any` |  |
-| `event_id` | `str` |  |
-| `id` | `str` |  |
-| `image_url` | `Any` |  |
-| `is_private` | `bool` |  |
-| `is_sales_button_hidden` | `bool` |  |
-| `is_ticketed` | `bool` |  |
-| `location` | `Any` |  |
-| `off_sale_at` | `Any` |  |
-| `on_sale_at` | `Any` |  |
-| `short_description` | `Any` |  |
-| `source_updated_at` | `Any` |  |
-| `start_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `title_display` | `Any` |  |
-| `updated_at` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `button_caption` | `Any` | Additional text below the ticket/registration button |
+| `button_text` | `Any` | The text used on the ticket/registration button |
+| `button_url` | `Any` | The URL to the sales site or an RSVP link for this event |
+| `description` | `str` | Description of the event |
+| `end_at` | `Any` | The date the event occurrence ends |
+| `event_id` | `str` | Identifier of the master event of which this is an occurrence |
+| `id` | `str` | Unique identifier of this resource. |
+| `image_url` | `Any` | The URL of an image representing this page |
+| `is_private` | `bool` | Whether the event is private. |
+| `is_sales_button_hidden` | `bool` | Whether the buy tickets button is hidden on the website event page |
+| `is_ticketed` | `bool` | Whether a ticket is required to attend the event |
+| `location` | `Any` | Where the event takes place |
+| `off_sale_at` | `Any` | Date and time the event goes off sale |
+| `on_sale_at` | `Any` | Date and time the event goes on sale |
+| `short_description` | `Any` | Brief description of the event |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `start_at` | `Any` | The date the event occurrence begins |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `title_display` | `Any` | The name of this event formatted with HTML (optional) |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
 
 #### Example: Load
 
@@ -1985,17 +1985,17 @@ Create an instance: `event_program = client.EventProgram()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `id` | `str` |  |
-| `is_affiliate_group` | `bool` |  |
-| `is_event_host` | `bool` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `id` | `str` | Unique identifier of this resource. |
+| `is_affiliate_group` | `bool` | Whether this program represents an affiliate group |
+| `is_event_host` | `bool` | Whether this program represents an event host |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
 
 #### Example: Load
 
@@ -2025,33 +2025,33 @@ Create an instance: `exhibition = client.Exhibition()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aic_end_at` | `Any` |  |
-| `aic_start_at` | `Any` |  |
-| `alt_image_ids` | `Any` |  |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `artist_ids` | `Any` |  |
-| `artwork_ids` | `Any` |  |
-| `artwork_titles` | `Any` |  |
-| `document_ids` | `Any` |  |
-| `gallery_id` | `str` |  |
-| `gallery_title` | `Any` |  |
-| `id` | `str` |  |
-| `image_id` | `str` |  |
-| `image_url` | `Any` |  |
-| `is_featured` | `bool` |  |
-| `is_published` | `bool` |  |
-| `position` | `Any` |  |
-| `short_description` | `Any` |  |
-| `site_ids` | `Any` |  |
-| `source_updated_at` | `Any` |  |
-| `status` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
-| `web_url` | `Any` |  |
+| `aic_end_at` | `Any` | Date the exhibition closed at the Art Institute of Chicago |
+| `aic_start_at` | `Any` | Date the exhibition opened at the Art Institute of Chicago |
+| `alt_image_ids` | `Any` | Unique identifiers of all non-preferred images of this exhibition. |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `artist_ids` | `Any` | Unique identifiers of the artist agent records representing who was shown in the exhibition |
+| `artwork_ids` | `Any` | Unique identifiers of the artworks that were part of the exhibition |
+| `artwork_titles` | `Any` | Names of the artworks that were part of the exhibition |
+| `document_ids` | `Any` | Unique identifiers of assets that serve as documentation for this exhibition |
+| `gallery_id` | `str` | Unique identifier of the gallery that mainly housed the exhibition |
+| `gallery_title` | `Any` | The name of the gallery that mainly housed the exhibition |
+| `id` | `str` | Unique identifier of this resource. |
+| `image_id` | `str` | Unique identifier of the preferred image to use to represent this exhibition |
+| `image_url` | `Any` | URL to the hero image from the website |
+| `is_featured` | `bool` | Is this exhibition currently featured on our website? |
+| `is_published` | `bool` | Is this exhibition currently published on our website? |
+| `position` | `Any` | Numering position represnting the order in which this exhibition is featured on the website |
+| `short_description` | `Any` | Brief explanation of what this exhibition is |
+| `site_ids` | `Any` | Unique identifiers of the microsites this exhibition is a part of |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `status` | `Any` | Whether the exhibition is open or closed |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `web_url` | `Any` | URL to this exhibition on our website |
 
 #### Example: Load
 
@@ -2081,22 +2081,22 @@ Create an instance: `gallery = client.Gallery()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `floor` | `Any` |  |
-| `id` | `str` |  |
-| `is_closed` | `bool` |  |
-| `latitude` | `float` |  |
-| `latlon` | `Any` |  |
-| `longitude` | `float` |  |
-| `number` | `Any` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `tgn_id` | `str` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `floor` | `Any` | The level the gallery is on, e.g., 1, 2, 3, or LL |
+| `id` | `str` | Unique identifier of this resource. |
+| `is_closed` | `bool` | Whether the gallery is currently closed |
+| `latitude` | `float` | Latitude coordinate of the center of the room |
+| `latlon` | `Any` | Latitude and longitude coordinates of the center of the room |
+| `longitude` | `float` | Longitude coordinate of the center of the room |
+| `number` | `Any` | The gallery's room number. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `tgn_id` | `str` | Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN) |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
 
 #### Example: Load
 
@@ -2126,18 +2126,18 @@ Create an instance: `generic_page = client.GenericPage()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `copy` | `Any` |  |
-| `id` | `str` |  |
-| `search_tags` | `Any` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
-| `web_url` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `copy` | `Any` | The text of the page |
+| `id` | `str` | Unique identifier of this resource. |
+| `search_tags` | `Any` | Editor-specified list of tags to aid in internal search |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `web_url` | `Any` | The URL to this page on our website |
 
 #### Example: Load
 
@@ -2167,16 +2167,16 @@ Create an instance: `highlight = client.Highlight()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `copy` | `Any` |  |
-| `id` | `str` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `copy` | `Any` | The text of the highlight description |
+| `id` | `str` | Unique identifier of this resource. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
 
 #### Example: Load
 
@@ -2206,52 +2206,52 @@ Create an instance: `hour = client.Hour()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `additional_text` | `Any` |  |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `friday_is_closed` | `Any` |  |
-| `friday_member_close` | `Any` |  |
-| `friday_member_open` | `Any` |  |
-| `friday_public_close` | `Any` |  |
-| `friday_public_open` | `Any` |  |
-| `id` | `str` |  |
-| `monday_is_closed` | `Any` |  |
-| `monday_member_close` | `Any` |  |
-| `monday_member_open` | `Any` |  |
-| `monday_public_close` | `Any` |  |
-| `monday_public_open` | `Any` |  |
-| `saturday_is_closed` | `Any` |  |
-| `saturday_member_close` | `Any` |  |
-| `saturday_member_open` | `Any` |  |
-| `saturday_public_close` | `Any` |  |
-| `saturday_public_open` | `Any` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `summary` | `Any` |  |
-| `sunday_is_closed` | `Any` |  |
-| `sunday_member_close` | `Any` |  |
-| `sunday_member_open` | `Any` |  |
-| `sunday_public_close` | `Any` |  |
-| `sunday_public_open` | `Any` |  |
-| `thursday_is_closed` | `Any` |  |
-| `thursday_member_close` | `Any` |  |
-| `thursday_member_open` | `Any` |  |
-| `thursday_public_close` | `Any` |  |
-| `thursday_public_open` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `tuesday_is_closed` | `Any` |  |
-| `tuesday_member_close` | `Any` |  |
-| `tuesday_member_open` | `Any` |  |
-| `tuesday_public_close` | `Any` |  |
-| `tuesday_public_open` | `Any` |  |
-| `updated_at` | `Any` |  |
-| `wednesday_is_closed` | `Any` |  |
-| `wednesday_member_close` | `Any` |  |
-| `wednesday_member_open` | `Any` |  |
-| `wednesday_public_close` | `Any` |  |
-| `wednesday_public_open` | `Any` |  |
+| `additional_text` | `Any` | Additional information about the hours |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `friday_is_closed` | `Any` | Whether the museum is closed on Fridays |
+| `friday_member_close` | `Any` | The time member hours ends on Fridays |
+| `friday_member_open` | `Any` | The time member hours starts on Fridays |
+| `friday_public_close` | `Any` | The time public hours ends on Fridays |
+| `friday_public_open` | `Any` | The time public hours starts on Fridays |
+| `id` | `str` | Unique identifier of this resource. |
+| `monday_is_closed` | `Any` | Whether the museum is closed on Mondays |
+| `monday_member_close` | `Any` | The time member hours ends on Mondays |
+| `monday_member_open` | `Any` | The time member hours starts on Mondays |
+| `monday_public_close` | `Any` | The time public hours ends on Mondays |
+| `monday_public_open` | `Any` | The time public hours starts on Mondays |
+| `saturday_is_closed` | `Any` | Whether the museum is closed on Saturdays |
+| `saturday_member_close` | `Any` | The time member hours ends on Saturdays |
+| `saturday_member_open` | `Any` | The time member hours starts on Saturdays |
+| `saturday_public_close` | `Any` | The time public hours ends on Saturdays |
+| `saturday_public_open` | `Any` | The time public hours starts on Saturdays |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `summary` | `Any` | Readable summary of the hours |
+| `sunday_is_closed` | `Any` | Whether the museum is closed on Sundays |
+| `sunday_member_close` | `Any` | The time member hours ends on Sundays |
+| `sunday_member_open` | `Any` | The time member hours starts on Sundays |
+| `sunday_public_close` | `Any` | The time public hours ends on Sundays |
+| `sunday_public_open` | `Any` | The time public hours starts on Sundays |
+| `thursday_is_closed` | `Any` | Whether the museum is closed on Thursdays |
+| `thursday_member_close` | `Any` | The time member hours ends on Thursdays |
+| `thursday_member_open` | `Any` | The time member hours starts on Thursdays |
+| `thursday_public_close` | `Any` | The time public hours ends on Thursdays |
+| `thursday_public_open` | `Any` | The time public hours starts on Thursdays |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `tuesday_is_closed` | `Any` | Whether the museum is closed on Tuesdays |
+| `tuesday_member_close` | `Any` | The time member hours ends on Tuesdays |
+| `tuesday_member_open` | `Any` | The time member hours starts on Tuesdays |
+| `tuesday_public_close` | `Any` | The time public hours ends on Tuesdays |
+| `tuesday_public_open` | `Any` | The time public hours starts on Tuesdays |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `wednesday_is_closed` | `Any` | Whether the museum is closed on Wednesdays |
+| `wednesday_member_close` | `Any` | The time member hours ends on Wednesdays |
+| `wednesday_member_open` | `Any` | The time member hours starts on Wednesdays |
+| `wednesday_public_close` | `Any` | The time public hours ends on Wednesdays |
+| `wednesday_public_open` | `Any` | The time public hours starts on Wednesdays |
 
 #### Example: Load
 
@@ -2281,35 +2281,35 @@ Create an instance: `image = client.Image()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ahash` | `Any` |  |
-| `alt_text` | `Any` |  |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `artwork_ids` | `Any` |  |
-| `artwork_titles` | `Any` |  |
-| `color` | `Any` |  |
-| `colorfulness` | `Any` |  |
-| `content` | `Any` |  |
-| `content_e_tag` | `Any` |  |
-| `credit_line` | `Any` |  |
-| `fingerprint` | `Any` |  |
-| `height` | `float` |  |
-| `id` | `str` |  |
-| `iiif_url` | `Any` |  |
-| `is_educational_resource` | `bool` |  |
-| `is_multimedia_resource` | `bool` |  |
-| `is_teacher_resource` | `bool` |  |
-| `lake_guid` | `Any` |  |
-| `lqip` | `Any` |  |
-| `phash` | `Any` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `type` | `Any` |  |
-| `updated_at` | `Any` |  |
-| `width` | `float` |  |
+| `ahash` | `Any` | Image hash generated using ahash algorithm with 64 boolean subfields |
+| `alt_text` | `Any` | Alternative text for the asset to describe it to people with low or no vision |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `artwork_ids` | `Any` | Unique identifiers of the artworks associated with this asset |
+| `artwork_titles` | `Any` | Names of the artworks associated with this asset |
+| `color` | `Any` | Dominant color of this image in HSL |
+| `colorfulness` | `Any` | Unbounded positive float representing an abstract measure of colorfulness. |
+| `content` | `Any` | Text of or URL to the contents of this asset |
+| `content_e_tag` | `Any` | Arbitrary unique identifier that changes when the binary file gets updated |
+| `credit_line` | `Any` | Asset-specific copyright information |
+| `fingerprint` | `Any` | Image hashes: aHash, dHash, pHash, wHash |
+| `height` | `float` | Native height of the image |
+| `id` | `str` | Unique identifier of this resource. |
+| `iiif_url` | `Any` | IIIF URL of this image |
+| `is_educational_resource` | `bool` | Whether this resource is considered to be educational |
+| `is_multimedia_resource` | `bool` | Whether this resource is considered to be multimedia |
+| `is_teacher_resource` | `bool` | Whether this resource is considered to be educational |
+| `lake_guid` | `Any` | Unique UUID of this resource in LAKE, our DAMS. |
+| `lqip` | `Any` | Low-quality image placeholder (LQIP). |
+| `phash` | `Any` | Image hash generated using phash algorithm with 64 boolean subfields |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `type` | `Any` | Type always takes one of the following values: image, sound, text, video |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `width` | `float` | Native width of the image |
 
 #### Example: Load
 
@@ -2339,18 +2339,18 @@ Create an instance: `landing_page = client.LandingPage()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `copy` | `Any` |  |
-| `id` | `str` |  |
-| `search_tags` | `Any` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
-| `web_url` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `copy` | `Any` | The text of the page |
+| `id` | `str` | Unique identifier of this resource. |
+| `search_tags` | `Any` | Editor-specified list of tags to aid in internal search |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `web_url` | `Any` | The URL to this page on our website |
 
 #### Example: Load
 
@@ -2380,18 +2380,18 @@ Create an instance: `place = client.Place()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `id` | `str` |  |
-| `latitude` | `float` |  |
-| `longitude` | `float` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `tgn_id` | `str` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `id` | `str` | Unique identifier of this resource. |
+| `latitude` | `float` | Latitude coordinate of the center of the room |
+| `longitude` | `float` | Longitude coordinate of the center of the room |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `tgn_id` | `str` | Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN) |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
 
 #### Example: Load
 
@@ -2421,17 +2421,17 @@ Create an instance: `press_release = client.PressRelease()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `copy` | `Any` |  |
-| `id` | `str` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
-| `web_url` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `copy` | `Any` | The text of the page |
+| `id` | `str` | Unique identifier of this resource. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `web_url` | `Any` | The URL to this page on our website |
 
 #### Example: Load
 
@@ -2461,17 +2461,17 @@ Create an instance: `printed_publication = client.PrintedPublication()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `copy` | `Any` |  |
-| `id` | `str` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
-| `web_url` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `copy` | `Any` | The text of the page |
+| `id` | `str` | Unique identifier of this resource. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `web_url` | `Any` | The URL to this page on our website |
 
 #### Example: Load
 
@@ -2501,27 +2501,27 @@ Create an instance: `product = client.Product()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `artist_ids` | `Any` |  |
-| `artwork_ids` | `Any` |  |
-| `description` | `str` |  |
-| `exhibition_ids` | `Any` |  |
-| `external_sku` | `Any` |  |
-| `id` | `str` |  |
-| `image_url` | `Any` |  |
-| `max_compare_at_price` | `Any` |  |
-| `max_current_price` | `Any` |  |
-| `min_compare_at_price` | `Any` |  |
-| `min_current_price` | `Any` |  |
-| `price_display` | `Any` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
-| `web_url` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `artist_ids` | `Any` | Unique identifiers of the artists associated with this product |
+| `artwork_ids` | `Any` | Unique identifiers of the artworks associated with this product |
+| `description` | `str` | Explanation of what this product is |
+| `exhibition_ids` | `Any` | Unique identifiers of the exhibitions associated with this product |
+| `external_sku` | `Any` | Numeric product identification code of a machine-readable barcode, when the customer sku differs from our internal one |
+| `id` | `str` | Unique identifier of this resource. |
+| `image_url` | `Any` | URL of an image for this product |
+| `max_compare_at_price` | `Any` | Number indicating how much the most expensive variant of a product cost before a sale |
+| `max_current_price` | `Any` | Number indicating how much the most expensive variant of a product costs right now |
+| `min_compare_at_price` | `Any` | Number indicating how much the least expensive variant of a product cost before a sale |
+| `min_current_price` | `Any` | Number indicating how much the least expensive variant of a product costs right now |
+| `price_display` | `Any` | Explanation of what this product is |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `web_url` | `Any` | URL of this product in the shop |
 
 #### Example: Load
 
@@ -2551,17 +2551,17 @@ Create an instance: `publication = client.Publication()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `id` | `str` |  |
-| `section_ids` | `Any` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
-| `web_url` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `id` | `str` | Unique identifier of this resource. |
+| `section_ids` | `Any` | Unique identifiers of the sections of this publication |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `web_url` | `Any` | URL to the publication |
 
 #### Example: Load
 
@@ -2590,15 +2590,15 @@ Create an instance: `search = client.Search()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_id` | `str` |  |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `id` | `str` |  |
-| `is_boosted` | `bool` |  |
-| `score` | `float` |  |
-| `thumbnail` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
+| `api_id` | `str` | API unique identifier |
+| `api_link` | `Any` | URL to this recource in the API |
+| `api_model` | `Any` | Name of the model the resource represents |
+| `id` | `str` | Unique identifier within the search index |
+| `is_boosted` | `bool` | Whether this record has been flagged to be boosted |
+| `score` | `float` | Search index ranking of the result |
+| `thumbnail` | `Any` | Metadata on the image representing this record |
+| `timestamp` | `Any` | Date this record was last updated in the API |
+| `title` | `str` | The name of this resource |
 
 #### Example: List
 
@@ -2622,22 +2622,22 @@ Create an instance: `section = client.Section()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `accession` | `Any` |  |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `artwork_id` | `str` |  |
-| `content` | `Any` |  |
-| `generic_page_id` | `str` |  |
-| `id` | `str` |  |
-| `publication_id` | `str` |  |
-| `publication_title` | `Any` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
-| `web_url` | `Any` |  |
+| `accession` | `Any` | An accession number parsed from the title or tombstone |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `artwork_id` | `str` | Unique identifier of the artwork with which this section is associated |
+| `content` | `Any` | Content of this section in plaintext |
+| `generic_page_id` | `str` | Unique identifier of the page on the website that represents the publication this section belongs to |
+| `id` | `str` | Unique identifier of this resource. |
+| `publication_id` | `str` | Unique identifier of the publication this section belongs to |
+| `publication_title` | `Any` | Name of the publication this section belongs to |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `web_url` | `Any` | URL to the section |
 
 #### Example: Load
 
@@ -2667,21 +2667,21 @@ Create an instance: `site = client.Site()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `artwork_ids` | `Any` |  |
-| `artwork_titles` | `Any` |  |
-| `description` | `str` |  |
-| `exhibition_ids` | `Any` |  |
-| `exhibition_titles` | `Any` |  |
-| `id` | `str` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
-| `web_url` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `artwork_ids` | `Any` | Unique identifiers of the artworks this site is associated with |
+| `artwork_titles` | `Any` | Names of the artworks this site is associated with |
+| `description` | `str` | Explanation of what this site is |
+| `exhibition_ids` | `Any` | Unique identifier of the exhibitions this site is associated with |
+| `exhibition_titles` | `Any` | Names of the exhibitions this site is associated with |
+| `id` | `str` | Unique identifier of this resource. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `web_url` | `Any` | URL to this site |
 
 #### Example: Load
 
@@ -2711,28 +2711,28 @@ Create an instance: `sound = client.Sound()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | `Any` |  |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `artwork_ids` | `Any` |  |
-| `artwork_titles` | `Any` |  |
-| `content` | `Any` |  |
-| `content_e_tag` | `Any` |  |
-| `credit_line` | `Any` |  |
-| `id` | `str` |  |
-| `is_educational_resource` | `bool` |  |
-| `is_multimedia_resource` | `bool` |  |
-| `is_teacher_resource` | `bool` |  |
-| `lake_guid` | `Any` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `transcript` | `Any` |  |
-| `type` | `Any` |  |
-| `updated_at` | `Any` |  |
-| `web_url` | `Any` |  |
+| `alt_text` | `Any` | Alternative text for the asset to describe it to people with low or no vision |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `artwork_ids` | `Any` | Unique identifiers of the artworks associated with this asset |
+| `artwork_titles` | `Any` | Names of the artworks associated with this asset |
+| `content` | `Any` | Text of or URL to the contents of this asset |
+| `content_e_tag` | `Any` | Arbitrary unique identifier that changes when the binary file gets updated |
+| `credit_line` | `Any` | Asset-specific copyright information |
+| `id` | `str` | Unique identifier of this resource. |
+| `is_educational_resource` | `bool` | Whether this resource is considered to be educational |
+| `is_multimedia_resource` | `bool` | Whether this resource is considered to be multimedia |
+| `is_teacher_resource` | `bool` | Whether this resource is considered to be educational |
+| `lake_guid` | `Any` | Unique UUID of this resource in LAKE, our DAMS. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | Name of this mobile audio file – derived from the artwork and tour titles |
+| `transcript` | `Any` | Text transcription of the audio file |
+| `type` | `Any` | Type always takes one of the following values: image, sound, text, video |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `web_url` | `Any` | URL to the audio file |
 
 #### Example: Load
 
@@ -2762,16 +2762,16 @@ Create an instance: `static_page = client.StaticPage()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `id` | `str` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
-| `web_url` | `Any` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `id` | `str` | Unique identifier of this resource. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `web_url` | `Any` | The URL to this page on our website |
 
 #### Example: Load
 
@@ -2801,26 +2801,26 @@ Create an instance: `text = client.Text()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | `Any` |  |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `artwork_ids` | `Any` |  |
-| `artwork_titles` | `Any` |  |
-| `content` | `Any` |  |
-| `content_e_tag` | `Any` |  |
-| `credit_line` | `Any` |  |
-| `id` | `str` |  |
-| `is_educational_resource` | `bool` |  |
-| `is_multimedia_resource` | `bool` |  |
-| `is_teacher_resource` | `bool` |  |
-| `lake_guid` | `Any` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `type` | `Any` |  |
-| `updated_at` | `Any` |  |
+| `alt_text` | `Any` | Alternative text for the asset to describe it to people with low or no vision |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `artwork_ids` | `Any` | Unique identifiers of the artworks associated with this asset |
+| `artwork_titles` | `Any` | Names of the artworks associated with this asset |
+| `content` | `Any` | Text of or URL to the contents of this asset |
+| `content_e_tag` | `Any` | Arbitrary unique identifier that changes when the binary file gets updated |
+| `credit_line` | `Any` | Asset-specific copyright information |
+| `id` | `str` | Unique identifier of this resource. |
+| `is_educational_resource` | `bool` | Whether this resource is considered to be educational |
+| `is_multimedia_resource` | `bool` | Whether this resource is considered to be multimedia |
+| `is_teacher_resource` | `bool` | Whether this resource is considered to be educational |
+| `lake_guid` | `Any` | Unique UUID of this resource in LAKE, our DAMS. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `type` | `Any` | Type always takes one of the following values: image, sound, text, video |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
 
 #### Example: Load
 
@@ -2850,23 +2850,23 @@ Create an instance: `tour = client.Tour()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `artist_titles` | `Any` |  |
-| `artwork_titles` | `Any` |  |
-| `description` | `str` |  |
-| `id` | `str` |  |
-| `image` | `Any` |  |
-| `intro` | `Any` |  |
-| `intro_link` | `Any` |  |
-| `intro_transcript` | `Any` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `updated_at` | `Any` |  |
-| `weight` | `float` |  |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `artist_titles` | `Any` | Names of the artists of the artworks featured in this tour's tour stops |
+| `artwork_titles` | `Any` | Names of the artworks featured in this tour's tour stops |
+| `description` | `str` | Explanation of what the tour is |
+| `id` | `str` | Unique identifier of this resource. |
+| `image` | `Any` | The main image for the tour |
+| `intro` | `Any` | Text introducing the tour |
+| `intro_link` | `Any` | Link to the audio file of the introduction |
+| `intro_transcript` | `Any` | Transcript of the introduction audio to the tour |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
+| `weight` | `float` | Number representing this tour's sort order |
 
 #### Example: Load
 
@@ -2896,26 +2896,26 @@ Create an instance: `video = client.Video()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alt_text` | `Any` |  |
-| `api_link` | `Any` |  |
-| `api_model` | `Any` |  |
-| `artwork_ids` | `Any` |  |
-| `artwork_titles` | `Any` |  |
-| `content` | `Any` |  |
-| `content_e_tag` | `Any` |  |
-| `credit_line` | `Any` |  |
-| `id` | `str` |  |
-| `is_educational_resource` | `bool` |  |
-| `is_multimedia_resource` | `bool` |  |
-| `is_teacher_resource` | `bool` |  |
-| `lake_guid` | `Any` |  |
-| `source_updated_at` | `Any` |  |
-| `suggest_autocomplete_all` | `Any` |  |
-| `suggest_autocomplete_boosted` | `Any` |  |
-| `timestamp` | `Any` |  |
-| `title` | `str` |  |
-| `type` | `Any` |  |
-| `updated_at` | `Any` |  |
+| `alt_text` | `Any` | Alternative text for the asset to describe it to people with low or no vision |
+| `api_link` | `Any` | REST API link for this resource |
+| `api_model` | `Any` | REST API resource type or endpoint |
+| `artwork_ids` | `Any` | Unique identifiers of the artworks associated with this asset |
+| `artwork_titles` | `Any` | Names of the artworks associated with this asset |
+| `content` | `Any` | Text of or URL to the contents of this asset |
+| `content_e_tag` | `Any` | Arbitrary unique identifier that changes when the binary file gets updated |
+| `credit_line` | `Any` | Asset-specific copyright information |
+| `id` | `str` | Unique identifier of this resource. |
+| `is_educational_resource` | `bool` | Whether this resource is considered to be educational |
+| `is_multimedia_resource` | `bool` | Whether this resource is considered to be multimedia |
+| `is_teacher_resource` | `bool` | Whether this resource is considered to be educational |
+| `lake_guid` | `Any` | Unique UUID of this resource in LAKE, our DAMS. |
+| `source_updated_at` | `Any` | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `Any` | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `Any` | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `Any` | Date and time the record was updated in the aggregator search index |
+| `title` | `str` | The name of this resource |
+| `type` | `Any` | Type always takes one of the following values: image, sound, text, video |
+| `updated_at` | `Any` | Date and time the record was updated in the aggregator database |
 
 #### Example: Load
 

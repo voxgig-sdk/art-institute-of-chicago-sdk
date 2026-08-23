@@ -1,0 +1,220 @@
+# Entity: event_occurrence
+
+main: kit: entity: event_occurrence: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "api_link"
+      req: false
+      short: "REST API link for this resource"
+      type: "`$ANY`"
+    }
+    {
+      name: "api_model"
+      req: false
+      short: "REST API resource type or endpoint"
+      type: "`$ANY`"
+    }
+    {
+      name: "button_caption"
+      req: false
+      short: "Additional text below the ticket/registration button"
+      type: "`$ANY`"
+    }
+    {
+      name: "button_text"
+      req: false
+      short: "The text used on the ticket/registration button"
+      type: "`$ANY`"
+    }
+    {
+      name: "button_url"
+      req: false
+      short: "The URL to the sales site or an RSVP link for this event"
+      type: "`$ANY`"
+    }
+    {
+      name: "description"
+      req: false
+      short: "Description of the event"
+      type: "`$STRING`"
+    }
+    {
+      name: "end_at"
+      req: false
+      short: "The date the event occurrence ends"
+      type: "`$ANY`"
+    }
+    {
+      name: "event_id"
+      req: false
+      short: "Identifier of the master event of which this is an occurrence"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique identifier of this resource."
+      type: "`$STRING`"
+    }
+    {
+      name: "image_url"
+      req: false
+      short: "The URL of an image representing this page"
+      type: "`$ANY`"
+    }
+    {
+      name: "is_private"
+      req: false
+      short: "Whether the event is private."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_sales_button_hidden"
+      req: false
+      short: "Whether the buy tickets button is hidden on the website event page"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_ticketed"
+      req: false
+      short: "Whether a ticket is required to attend the event"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "location"
+      req: false
+      short: "Where the event takes place"
+      type: "`$ANY`"
+    }
+    {
+      name: "off_sale_at"
+      req: false
+      short: "Date and time the event goes off sale"
+      type: "`$ANY`"
+    }
+    {
+      name: "on_sale_at"
+      req: false
+      short: "Date and time the event goes on sale"
+      type: "`$ANY`"
+    }
+    {
+      name: "short_description"
+      req: false
+      short: "Brief description of the event"
+      type: "`$ANY`"
+    }
+    {
+      name: "source_updated_at"
+      req: false
+      short: "Date and time the resource was updated in the source system"
+      type: "`$ANY`"
+    }
+    {
+      name: "start_at"
+      req: false
+      short: "The date the event occurrence begins"
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_all"
+      req: false
+      short: "Internal field to power the `/autosuggest` endpoint."
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_boosted"
+      req: false
+      short: "Internal field to power the `/autocomplete` endpoint."
+      type: "`$ANY`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      short: "Date and time the record was updated in the aggregator search index"
+      type: "`$ANY`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "The name of this resource"
+      type: "`$STRING`"
+    }
+    {
+      name: "title_display"
+      req: false
+      short: "The name of this event formatted with HTML (optional)"
+      type: "`$ANY`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      short: "Date and time the record was updated in the aggregator database"
+      type: "`$ANY`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "event_occurrence"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/event-occurrences"
+          parts: [
+            "event-occurrences"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/event-occurrences/{id}"
+          parts: [
+            "event-occurrences"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

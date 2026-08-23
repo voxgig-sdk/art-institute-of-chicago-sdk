@@ -1,0 +1,388 @@
+# Entity: event
+
+main: kit: entity: event: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "alt_audience_ids"
+      req: false
+      short: "Unique identifiers indicating the alternate audiences for this event"
+      type: "`$ANY`"
+    }
+    {
+      name: "alt_event_type_ids"
+      req: false
+      short: "Unique identifiers indicating the alternate types of this event"
+      type: "`$ANY`"
+    }
+    {
+      name: "api_link"
+      req: false
+      short: "REST API link for this resource"
+      type: "`$ANY`"
+    }
+    {
+      name: "api_model"
+      req: false
+      short: "REST API resource type or endpoint"
+      type: "`$ANY`"
+    }
+    {
+      name: "audience_id"
+      req: false
+      short: "Unique identifier indicating the preferred audience for this event"
+      type: "`$STRING`"
+    }
+    {
+      name: "buy_button_caption"
+      req: false
+      short: "Additional text below the ticket/registration button"
+      type: "`$ANY`"
+    }
+    {
+      name: "buy_button_text"
+      req: false
+      short: "The text used on the ticket/registration button"
+      type: "`$ANY`"
+    }
+    {
+      name: "date_display"
+      req: false
+      short: "A readable display of the event dates"
+      type: "`$ANY`"
+    }
+    {
+      name: "description"
+      req: false
+      short: "All copytext of the event"
+      type: "`$STRING`"
+    }
+    {
+      name: "door_time"
+      req: false
+      short: "The time the doors open for this event"
+      type: "`$ANY`"
+    }
+    {
+      name: "end_date"
+      req: false
+      short: "The date the event ends"
+      type: "`$ANY`"
+    }
+    {
+      name: "end_time"
+      req: false
+      short: "The time the event ends"
+      type: "`$ANY`"
+    }
+    {
+      name: "entrance"
+      req: false
+      short: "Which entrance to use for this event"
+      type: "`$ANY`"
+    }
+    {
+      name: "event_host_id"
+      req: false
+      short: "Unique identifier of the host (cf."
+      type: "`$STRING`"
+    }
+    {
+      name: "event_host_title"
+      req: false
+      short: "Unique identifier of the host (cf."
+      type: "`$ANY`"
+    }
+    {
+      name: "event_type_id"
+      req: false
+      short: "Unique identifier indicating the preferred type of this event"
+      type: "`$STRING`"
+    }
+    {
+      name: "header_description"
+      req: false
+      short: "Brief description of the event displayed below the title"
+      type: "`$ANY`"
+    }
+    {
+      name: "hero_caption"
+      req: false
+      short: "Text displayed with the hero image on the event"
+      type: "`$ANY`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique identifier of this resource."
+      type: "`$STRING`"
+    }
+    {
+      name: "image_url"
+      req: false
+      short: "The URL of an image representing this page"
+      type: "`$ANY`"
+    }
+    {
+      name: "is_admission_required"
+      req: false
+      short: "Whether admission to the museum is required to attend this event"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_after_hours"
+      req: false
+      short: "Whether the event is to be held after the museum closes"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_free"
+      req: false
+      short: "Whether the event is free"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_member_exclusive"
+      req: false
+      short: "Whether the event is exclusive to members of the museum"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_private"
+      req: false
+      short: "Whether the event is private"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_registration_required"
+      req: false
+      short: "Whether registration is required to attend the event"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_sales_button_hidden"
+      req: false
+      short: "Whether the buy tickets button is hidden on the website event page"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_sold_out"
+      req: false
+      short: "Whether the event is sold out"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_ticketed"
+      req: false
+      short: "Whether a ticket is required to attend the event"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_virtual_event"
+      req: false
+      short: "Whether the event is being held virtually"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "join_url"
+      req: false
+      short: "URL to the membership signup page via this event"
+      type: "`$ANY`"
+    }
+    {
+      name: "layout_type"
+      req: false
+      short: "Number indicating the type of layout this event page uses"
+      type: "`$ANY`"
+    }
+    {
+      name: "list_description"
+      req: false
+      short: "One-sentence description of the event displayed in listings"
+      type: "`$ANY`"
+    }
+    {
+      name: "location"
+      req: false
+      short: "Where the event takes place"
+      type: "`$ANY`"
+    }
+    {
+      name: "program_ids"
+      req: false
+      short: "Unique identifiers indicating the programs this event is a part of"
+      type: "`$ANY`"
+    }
+    {
+      name: "program_titles"
+      req: false
+      short: "Titles of the programs this event is a part of"
+      type: "`$ANY`"
+    }
+    {
+      name: "rsvp_link"
+      req: false
+      short: "The URL to the sales site for this event"
+      type: "`$ANY`"
+    }
+    {
+      name: "search_tags"
+      req: false
+      short: "Editor-specified list of tags to aid in internal search"
+      type: "`$ANY`"
+    }
+    {
+      name: "short_description"
+      req: false
+      short: "Brief description of the event"
+      type: "`$ANY`"
+    }
+    {
+      name: "slug"
+      req: false
+      short: "A string used in the URL for this event"
+      type: "`$STRING`"
+    }
+    {
+      name: "source_updated_at"
+      req: false
+      short: "Date and time the resource was updated in the source system"
+      type: "`$ANY`"
+    }
+    {
+      name: "start_date"
+      req: false
+      short: "The date the event begins"
+      type: "`$ANY`"
+    }
+    {
+      name: "start_time"
+      req: false
+      short: "The time the event starts"
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_all"
+      req: false
+      short: "Internal field to power the `/autosuggest` endpoint."
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_boosted"
+      req: false
+      short: "Internal field to power the `/autocomplete` endpoint."
+      type: "`$ANY`"
+    }
+    {
+      name: "survey_url"
+      req: false
+      short: "URL to the survey associated with this event"
+      type: "`$ANY`"
+    }
+    {
+      name: "ticketed_event_id"
+      req: false
+      short: "Unique identifier of the event in the ticketing system this website event is tied to"
+      type: "`$STRING`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      short: "Date and time the record was updated in the aggregator search index"
+      type: "`$ANY`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "The name of this resource"
+      type: "`$STRING`"
+    }
+    {
+      name: "title_display"
+      req: false
+      short: "The name of this event formatted with HTML (optional)"
+      type: "`$ANY`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      short: "Date and time the record was updated in the aggregator database"
+      type: "`$ANY`"
+    }
+    {
+      name: "virtual_event_passcode"
+      req: false
+      short: "Passcode to access the virtual event"
+      type: "`$ANY`"
+    }
+    {
+      name: "virtual_event_url"
+      req: false
+      short: "URL to the virtual event"
+      type: "`$ANY`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "event"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/events"
+          parts: [
+            "events"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/events/{id}"
+          parts: [
+            "events"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

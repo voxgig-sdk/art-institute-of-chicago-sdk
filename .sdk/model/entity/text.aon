@@ -1,0 +1,190 @@
+# Entity: text
+
+main: kit: entity: text: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "alt_text"
+      req: false
+      short: "Alternative text for the asset to describe it to people with low or no vision"
+      type: "`$ANY`"
+    }
+    {
+      name: "api_link"
+      req: false
+      short: "REST API link for this resource"
+      type: "`$ANY`"
+    }
+    {
+      name: "api_model"
+      req: false
+      short: "REST API resource type or endpoint"
+      type: "`$ANY`"
+    }
+    {
+      name: "artwork_ids"
+      req: false
+      short: "Unique identifiers of the artworks associated with this asset"
+      type: "`$ANY`"
+    }
+    {
+      name: "artwork_titles"
+      req: false
+      short: "Names of the artworks associated with this asset"
+      type: "`$ANY`"
+    }
+    {
+      name: "content"
+      req: false
+      short: "Text of or URL to the contents of this asset"
+      type: "`$ANY`"
+    }
+    {
+      name: "content_e_tag"
+      req: false
+      short: "Arbitrary unique identifier that changes when the binary file gets updated"
+      type: "`$ANY`"
+    }
+    {
+      name: "credit_line"
+      req: false
+      short: "Asset-specific copyright information"
+      type: "`$ANY`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique identifier of this resource."
+      type: "`$STRING`"
+    }
+    {
+      name: "is_educational_resource"
+      req: false
+      short: "Whether this resource is considered to be educational"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_multimedia_resource"
+      req: false
+      short: "Whether this resource is considered to be multimedia"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_teacher_resource"
+      req: false
+      short: "Whether this resource is considered to be educational"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "lake_guid"
+      req: false
+      short: "Unique UUID of this resource in LAKE, our DAMS."
+      type: "`$ANY`"
+    }
+    {
+      name: "source_updated_at"
+      req: false
+      short: "Date and time the resource was updated in the source system"
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_all"
+      req: false
+      short: "Internal field to power the `/autosuggest` endpoint."
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_boosted"
+      req: false
+      short: "Internal field to power the `/autocomplete` endpoint."
+      type: "`$ANY`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      short: "Date and time the record was updated in the aggregator search index"
+      type: "`$ANY`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "The name of this resource"
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      short: "Type always takes one of the following values: image, sound, text, video"
+      type: "`$ANY`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      short: "Date and time the record was updated in the aggregator database"
+      type: "`$ANY`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "text"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/texts"
+          parts: [
+            "texts"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/texts/{id}"
+          parts: [
+            "texts"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

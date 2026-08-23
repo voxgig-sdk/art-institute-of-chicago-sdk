@@ -228,22 +228,22 @@ $agent = $client->Agent();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_titles` | `mixed` | No |  |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `birth_date` | `mixed` | No |  |
-| `death_date` | `mixed` | No |  |
-| `description` | `string` | No |  |
-| `id` | `string` | No |  |
-| `is_artist` | `bool` | No |  |
-| `sort_title` | `mixed` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `ulan_id` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
+| `alt_titles` | `mixed` | No | Alternate names for this agent |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `birth_date` | `mixed` | No | The year this agent was born |
+| `death_date` | `mixed` | No | The year this agent died |
+| `description` | `string` | No | A biographical description of the agent |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `is_artist` | `bool` | No | Whether the agent is an artist. |
+| `sort_title` | `mixed` | No | Sortable name for this agent, typically with last name first. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `ulan_id` | `string` | No | Unique identifier of this agent in Getty's ULAN |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
 
 ### Operations
 
@@ -303,15 +303,15 @@ $agent_role = $client->AgentRole();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
 
 ### Operations
 
@@ -371,15 +371,15 @@ $agent_type = $client->AgentType();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
 
 ### Operations
 
@@ -439,16 +439,16 @@ $article = $client->Article();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `copy` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `copy` | `mixed` | No | The text of the article |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
 
 ### Operations
 
@@ -508,110 +508,110 @@ $artwork = $client->Artwork();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_artist_ids` | `mixed` | No |  |
-| `alt_classification_ids` | `mixed` | No |  |
-| `alt_image_ids` | `mixed` | No |  |
-| `alt_material_ids` | `mixed` | No |  |
-| `alt_style_ids` | `mixed` | No |  |
-| `alt_subject_ids` | `mixed` | No |  |
-| `alt_technique_ids` | `mixed` | No |  |
-| `alt_titles` | `mixed` | No |  |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `artist_display` | `mixed` | No |  |
-| `artist_id` | `string` | No |  |
-| `artist_ids` | `mixed` | No |  |
-| `artist_title` | `mixed` | No |  |
-| `artist_titles` | `mixed` | No |  |
-| `artwork_type_id` | `string` | No |  |
-| `artwork_type_title` | `mixed` | No |  |
-| `boost_rank` | `mixed` | No |  |
-| `catalog_based_search_keyword_titles` | `mixed` | No |  |
-| `catalogue_display` | `mixed` | No |  |
-| `category_ids` | `mixed` | No |  |
-| `category_titles` | `mixed` | No |  |
-| `classification_id` | `string` | No |  |
-| `classification_ids` | `mixed` | No |  |
-| `classification_title` | `mixed` | No |  |
-| `classification_titles` | `mixed` | No |  |
-| `color` | `mixed` | No |  |
-| `colorfulness` | `mixed` | No |  |
-| `copyright_notice` | `mixed` | No |  |
-| `credit_line` | `mixed` | No |  |
-| `date_display` | `mixed` | No |  |
-| `date_end` | `mixed` | No |  |
-| `date_qualifier_id` | `string` | No |  |
-| `date_qualifier_title` | `mixed` | No |  |
-| `date_start` | `mixed` | No |  |
-| `department_id` | `string` | No |  |
-| `department_title` | `mixed` | No |  |
-| `description` | `string` | No |  |
-| `dimensions` | `mixed` | No |  |
-| `dimensions_detail` | `mixed` | No |  |
-| `document_ids` | `mixed` | No |  |
-| `edition` | `mixed` | No |  |
-| `exhibition_history` | `mixed` | No |  |
-| `fiscal_year` | `mixed` | No |  |
-| `fiscal_year_deaccession` | `mixed` | No |  |
-| `gallery_id` | `string` | No |  |
-| `gallery_title` | `mixed` | No |  |
-| `has_advanced_imaging` | `bool` | No |  |
-| `has_educational_resources` | `bool` | No |  |
-| `has_multimedia_resources` | `bool` | No |  |
-| `has_not_been_viewed_much` | `bool` | No |  |
-| `id` | `string` | No |  |
-| `image_embedding` | `mixed` | No |  |
-| `image_id` | `string` | No |  |
-| `inscriptions` | `mixed` | No |  |
-| `internal_department_id` | `string` | No |  |
-| `is_boosted` | `bool` | No |  |
-| `is_on_view` | `bool` | No |  |
-| `is_public_domain` | `bool` | No |  |
-| `is_zoomable` | `bool` | No |  |
-| `latitude` | `float` | No |  |
-| `latlon` | `mixed` | No |  |
-| `longitude` | `float` | No |  |
-| `main_reference_number` | `int` | No |  |
-| `material_id` | `string` | No |  |
-| `material_ids` | `mixed` | No |  |
-| `material_titles` | `mixed` | No |  |
-| `max_zoom_window_size` | `mixed` | No |  |
-| `medium_display` | `mixed` | No |  |
-| `nomisma_id` | `string` | No |  |
-| `on_loan_display` | `mixed` | No |  |
-| `pageviews` | `mixed` | No |  |
-| `pageviews_recent` | `mixed` | No |  |
-| `place_of_origin` | `mixed` | No |  |
-| `provenance_text` | `mixed` | No |  |
-| `publication_history` | `mixed` | No |  |
-| `publishing_verification_level` | `mixed` | No |  |
-| `section_ids` | `mixed` | No |  |
-| `section_titles` | `mixed` | No |  |
-| `short_description` | `mixed` | No |  |
-| `site_ids` | `mixed` | No |  |
-| `sound_ids` | `mixed` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `style_id` | `string` | No |  |
-| `style_ids` | `mixed` | No |  |
-| `style_title` | `mixed` | No |  |
-| `style_titles` | `mixed` | No |  |
-| `subject_id` | `string` | No |  |
-| `subject_ids` | `mixed` | No |  |
-| `subject_titles` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `technique_id` | `string` | No |  |
-| `technique_ids` | `mixed` | No |  |
-| `technique_titles` | `mixed` | No |  |
-| `term_titles` | `mixed` | No |  |
-| `text_embedding` | `mixed` | No |  |
-| `text_ids` | `mixed` | No |  |
-| `theme_titles` | `mixed` | No |  |
-| `thumbnail` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `video_ids` | `mixed` | No |  |
+| `alt_artist_ids` | `mixed` | No | Unique identifiers of the non-preferred artists/cultures associated with this work |
+| `alt_classification_ids` | `mixed` | No | Unique identifiers of all other non-preferred classification terms for this work |
+| `alt_image_ids` | `mixed` | No | Unique identifiers of all non-preferred images of this work. |
+| `alt_material_ids` | `mixed` | No | Unique identifiers of all other non-preferred material terms for this work |
+| `alt_style_ids` | `mixed` | No | Unique identifiers of all other non-preferred style terms for this work |
+| `alt_subject_ids` | `mixed` | No | Unique identifiers of all other non-preferred subject terms for this work |
+| `alt_technique_ids` | `mixed` | No | Unique identifiers of all other non-preferred technique terms for this work |
+| `alt_titles` | `mixed` | No | Alternate names for this work |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `artist_display` | `mixed` | No | Readable description of the creator of this work. |
+| `artist_id` | `string` | No | Unique identifier of the preferred artist/culture associated with this work |
+| `artist_ids` | `mixed` | No | Unique identifier of all artist/cultures associated with this work |
+| `artist_title` | `mixed` | No | Name of the preferred artist/culture associated with this work |
+| `artist_titles` | `mixed` | No | Names of all artist/cultures associated with this work |
+| `artwork_type_id` | `string` | No | Unique identifier of the kind of object or work |
+| `artwork_type_title` | `mixed` | No | The kind of object or work (e.g. |
+| `boost_rank` | `mixed` | No | Manual indication of what rank this artwork should take in search results. |
+| `catalog_based_search_keyword_titles` | `mixed` | No | The keyword search values that would be catalog-based searches on this record |
+| `catalogue_display` | `mixed` | No | Brief text listing all the catalogues raisonnés which include this work. |
+| `category_ids` | `mixed` | No | Unique identifiers of the categories this work is a part of |
+| `category_titles` | `mixed` | No | Names of the categories this artwork is a part of |
+| `classification_id` | `string` | No | Unique identifier of the preferred classification term for this work |
+| `classification_ids` | `mixed` | No | Unique identifiers of all classification terms for this work |
+| `classification_title` | `mixed` | No | The name of the preferred classification term for this work |
+| `classification_titles` | `mixed` | No | The names of all classification terms related to this artwork |
+| `color` | `mixed` | No | Dominant color of this artwork in HSL |
+| `colorfulness` | `mixed` | No | Unbounded positive float representing an abstract measure of colorfulness. |
+| `copyright_notice` | `mixed` | No | Statement notifying how the work is protected by copyright. |
+| `credit_line` | `mixed` | No | Brief statement indicating how the work came into the collection |
+| `date_display` | `mixed` | No | Readable, free-text description of the period of time associated with the creation of this work. |
+| `date_end` | `mixed` | No | The year of the period of time associated with the creation of this work |
+| `date_qualifier_id` | `string` | No | Unique identifier of the qualifer to the dates provided for this record. |
+| `date_qualifier_title` | `mixed` | No | Readable, text qualifer to the dates provided for this record. |
+| `date_start` | `mixed` | No | The year of the period of time associated with the creation of this work |
+| `department_id` | `string` | No | Unique identifier of the curatorial department that this work belongs to |
+| `department_title` | `mixed` | No | Name of the curatorial department that this work belongs to |
+| `description` | `string` | No | Longer explanation describing the work |
+| `dimensions` | `mixed` | No | The size, shape, scale, and dimensions of the work. |
+| `dimensions_detail` | `mixed` | No | The height, width, depth, and/or diameter of each section of the work in centimeters |
+| `document_ids` | `mixed` | No | Unique identifiers of assets that serve as documentation for this artwork |
+| `edition` | `mixed` | No | Edition number if the work is one of many |
+| `exhibition_history` | `mixed` | No | List of all the places this work has been exhibited |
+| `fiscal_year` | `mixed` | No | The fiscal year in which the work was acquired. |
+| `fiscal_year_deaccession` | `mixed` | No | The fiscal year in which the work was deaccessioned. |
+| `gallery_id` | `string` | No | Unique identifier of the location of this work in our museum |
+| `gallery_title` | `mixed` | No | The location of this work in our museum |
+| `has_advanced_imaging` | `bool` | No | Whether this artwork is enhanced with 3D models, 360 image sequences, Mirador views, etc. |
+| `has_educational_resources` | `bool` | No | Whether this artwork has any documents tagged as educational |
+| `has_multimedia_resources` | `bool` | No | Whether this artwork has any associated microsites, digital publications, or documents tagged as multimedia |
+| `has_not_been_viewed_much` | `bool` | No | Whether the artwork hasn't been visited on our website very much |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `image_embedding` | `mixed` | No | The generated embeddings describing the artwork image |
+| `image_id` | `string` | No | Unique identifier of the preferred image to use to represent this work |
+| `inscriptions` | `mixed` | No | A description of distinguishing or identifying physical markings that are on the work |
+| `internal_department_id` | `string` | No | An internal department id we use for analytics. |
+| `is_boosted` | `bool` | No | Whether this document should be boosted in search |
+| `is_on_view` | `bool` | No | Whether the work is on display |
+| `is_public_domain` | `bool` | No | Whether the work is in the public domain, meaning it was created before copyrights existed or has left the copyright term |
+| `is_zoomable` | `bool` | No | Whether images of the work are allowed to be displayed in a zoomable interface. |
+| `latitude` | `float` | No | Latitude coordinate of the location of this work in our galleries |
+| `latlon` | `mixed` | No | Latitude and longitude coordinates of the location of this work in our galleries |
+| `longitude` | `float` | No | Longitude coordinate of the location of this work in our galleries |
+| `main_reference_number` | `int` | No | Unique identifier assigned to the artwork upon acquisition |
+| `material_id` | `string` | No | Unique identifier of the preferred material term for this work |
+| `material_ids` | `mixed` | No | Unique identifiers of all material terms for this work |
+| `material_titles` | `mixed` | No | The names of all material terms related to this artwork |
+| `max_zoom_window_size` | `mixed` | No | The maximum size of the window the image is allowed to be viewed in, in pixels. |
+| `medium_display` | `mixed` | No | The substances or materials used in the creation of a work |
+| `nomisma_id` | `string` | No | Unique identifier of this work in the nomisma coin database |
+| `on_loan_display` | `mixed` | No | If an artwork is on loan, this contains details about the loan |
+| `pageviews` | `mixed` | No | Approx. |
+| `pageviews_recent` | `mixed` | No | Approx. |
+| `place_of_origin` | `mixed` | No | The location where the creation, design, or production of the work took place, or the original location of the work |
+| `provenance_text` | `mixed` | No | Ownership/collecting history of the work. |
+| `publication_history` | `mixed` | No | Bibliographic list of all the places this work has been published |
+| `publishing_verification_level` | `mixed` | No | Indicator of how much metadata on the work in published. |
+| `section_ids` | `mixed` | No | Unique identifiers of the digital publication chapters this work in included in |
+| `section_titles` | `mixed` | No | Names of the digital publication chapters this work is included in |
+| `short_description` | `mixed` | No | Short explanation describing the work |
+| `site_ids` | `mixed` | No | Unique identifiers of the microsites this work is a part of |
+| `sound_ids` | `mixed` | No | Unique identifiers of the audio about this work |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `style_id` | `string` | No | Unique identifier of the preferred style term for this work |
+| `style_ids` | `mixed` | No | Unique identifiers of all style terms for this work |
+| `style_title` | `mixed` | No | The name of the preferred style term for this work |
+| `style_titles` | `mixed` | No | The names of all style terms related to this artwork |
+| `subject_id` | `string` | No | Unique identifier of the preferred subject term for this work |
+| `subject_ids` | `mixed` | No | Unique identifiers of all subject terms for this work |
+| `subject_titles` | `mixed` | No | The names of all subject terms related to this artwork |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `technique_id` | `string` | No | Unique identifier of the preferred technique term for this work |
+| `technique_ids` | `mixed` | No | Unique identifiers of all technique terms for this work |
+| `technique_titles` | `mixed` | No | The names of all technique terms related to this artwork |
+| `term_titles` | `mixed` | No | The names of the taxonomy tags for this work |
+| `text_embedding` | `mixed` | No | The generated embeddings of artwork text |
+| `text_ids` | `mixed` | No | Unique identifiers of the texts about this work |
+| `theme_titles` | `mixed` | No | The names of all thematic publish categories related to this artwork |
+| `thumbnail` | `mixed` | No | Metadata about the image referenced by `image_id`. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `video_ids` | `mixed` | No | Unique identifiers of the videos about this work |
 
 ### Operations
 
@@ -671,15 +671,15 @@ $artwork_date_qualifier = $client->ArtworkDateQualifier();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
 
 ### Operations
 
@@ -739,15 +739,15 @@ $artwork_place_qualifier = $client->ArtworkPlaceQualifier();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
 
 ### Operations
 
@@ -807,16 +807,16 @@ $artwork_type = $client->ArtworkType();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aat_id` | `string` | No |  |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
+| `aat_id` | `string` | No | Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT) |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
 
 ### Operations
 
@@ -876,17 +876,17 @@ $category_term = $client->CategoryTerm();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aat_id` | `string` | No |  |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `parent_id` | `string` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `subtype` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
+| `aat_id` | `string` | No | Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT) |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `parent_id` | `string` | No | Unique identifier of this category's parent |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `subtype` | `mixed` | No | Takes one of the following values: classification, material, technique, style, subject, department, theme |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
 
 ### Operations
 
@@ -946,17 +946,17 @@ $digital_publication = $client->DigitalPublication();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `copy` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `web_url` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `copy` | `mixed` | No | The text of the page |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `web_url` | `mixed` | No | The URL to this page on our website |
 
 ### Operations
 
@@ -1016,19 +1016,19 @@ $digital_publication_article = $client->DigitalPublicationArticle();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `author_display` | `mixed` | No |  |
-| `copy` | `mixed` | No |  |
-| `digital_publication_id` | `string` | No |  |
-| `id` | `string` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `web_url` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `author_display` | `mixed` | No | A display-friendly text of the authors of this article |
+| `copy` | `mixed` | No | The text of the article |
+| `digital_publication_id` | `string` | No | Unique identifier of the digital publication this article belongs to |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `web_url` | `mixed` | No | The URL to this article on our website |
 
 ### Operations
 
@@ -1088,17 +1088,17 @@ $educator_resource = $client->EducatorResource();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `copy` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `web_url` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `copy` | `mixed` | No | The text of the page |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `web_url` | `mixed` | No | The URL to this page on our website |
 
 ### Operations
 
@@ -1158,59 +1158,59 @@ $event = $client->Event();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_audience_ids` | `mixed` | No |  |
-| `alt_event_type_ids` | `mixed` | No |  |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `audience_id` | `string` | No |  |
-| `buy_button_caption` | `mixed` | No |  |
-| `buy_button_text` | `mixed` | No |  |
-| `date_display` | `mixed` | No |  |
-| `description` | `string` | No |  |
-| `door_time` | `mixed` | No |  |
-| `end_date` | `mixed` | No |  |
-| `end_time` | `mixed` | No |  |
-| `entrance` | `mixed` | No |  |
-| `event_host_id` | `string` | No |  |
-| `event_host_title` | `mixed` | No |  |
-| `event_type_id` | `string` | No |  |
-| `header_description` | `mixed` | No |  |
-| `hero_caption` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `image_url` | `mixed` | No |  |
-| `is_admission_required` | `bool` | No |  |
-| `is_after_hours` | `bool` | No |  |
-| `is_free` | `bool` | No |  |
-| `is_member_exclusive` | `bool` | No |  |
-| `is_private` | `bool` | No |  |
-| `is_registration_required` | `bool` | No |  |
-| `is_sales_button_hidden` | `bool` | No |  |
-| `is_sold_out` | `bool` | No |  |
-| `is_ticketed` | `bool` | No |  |
-| `is_virtual_event` | `bool` | No |  |
-| `join_url` | `mixed` | No |  |
-| `layout_type` | `mixed` | No |  |
-| `list_description` | `mixed` | No |  |
-| `location` | `mixed` | No |  |
-| `program_ids` | `mixed` | No |  |
-| `program_titles` | `mixed` | No |  |
-| `rsvp_link` | `mixed` | No |  |
-| `search_tags` | `mixed` | No |  |
-| `short_description` | `mixed` | No |  |
-| `slug` | `string` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `start_date` | `mixed` | No |  |
-| `start_time` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `survey_url` | `mixed` | No |  |
-| `ticketed_event_id` | `string` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `title_display` | `mixed` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `virtual_event_passcode` | `mixed` | No |  |
-| `virtual_event_url` | `mixed` | No |  |
+| `alt_audience_ids` | `mixed` | No | Unique identifiers indicating the alternate audiences for this event |
+| `alt_event_type_ids` | `mixed` | No | Unique identifiers indicating the alternate types of this event |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `audience_id` | `string` | No | Unique identifier indicating the preferred audience for this event |
+| `buy_button_caption` | `mixed` | No | Additional text below the ticket/registration button |
+| `buy_button_text` | `mixed` | No | The text used on the ticket/registration button |
+| `date_display` | `mixed` | No | A readable display of the event dates |
+| `description` | `string` | No | All copytext of the event |
+| `door_time` | `mixed` | No | The time the doors open for this event |
+| `end_date` | `mixed` | No | The date the event ends |
+| `end_time` | `mixed` | No | The time the event ends |
+| `entrance` | `mixed` | No | Which entrance to use for this event |
+| `event_host_id` | `string` | No | Unique identifier of the host (cf. |
+| `event_host_title` | `mixed` | No | Unique identifier of the host (cf. |
+| `event_type_id` | `string` | No | Unique identifier indicating the preferred type of this event |
+| `header_description` | `mixed` | No | Brief description of the event displayed below the title |
+| `hero_caption` | `mixed` | No | Text displayed with the hero image on the event |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `image_url` | `mixed` | No | The URL of an image representing this page |
+| `is_admission_required` | `bool` | No | Whether admission to the museum is required to attend this event |
+| `is_after_hours` | `bool` | No | Whether the event is to be held after the museum closes |
+| `is_free` | `bool` | No | Whether the event is free |
+| `is_member_exclusive` | `bool` | No | Whether the event is exclusive to members of the museum |
+| `is_private` | `bool` | No | Whether the event is private |
+| `is_registration_required` | `bool` | No | Whether registration is required to attend the event |
+| `is_sales_button_hidden` | `bool` | No | Whether the buy tickets button is hidden on the website event page |
+| `is_sold_out` | `bool` | No | Whether the event is sold out |
+| `is_ticketed` | `bool` | No | Whether a ticket is required to attend the event |
+| `is_virtual_event` | `bool` | No | Whether the event is being held virtually |
+| `join_url` | `mixed` | No | URL to the membership signup page via this event |
+| `layout_type` | `mixed` | No | Number indicating the type of layout this event page uses |
+| `list_description` | `mixed` | No | One-sentence description of the event displayed in listings |
+| `location` | `mixed` | No | Where the event takes place |
+| `program_ids` | `mixed` | No | Unique identifiers indicating the programs this event is a part of |
+| `program_titles` | `mixed` | No | Titles of the programs this event is a part of |
+| `rsvp_link` | `mixed` | No | The URL to the sales site for this event |
+| `search_tags` | `mixed` | No | Editor-specified list of tags to aid in internal search |
+| `short_description` | `mixed` | No | Brief description of the event |
+| `slug` | `string` | No | A string used in the URL for this event |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `start_date` | `mixed` | No | The date the event begins |
+| `start_time` | `mixed` | No | The time the event starts |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `survey_url` | `mixed` | No | URL to the survey associated with this event |
+| `ticketed_event_id` | `string` | No | Unique identifier of the event in the ticketing system this website event is tied to |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `title_display` | `mixed` | No | The name of this event formatted with HTML (optional) |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `virtual_event_passcode` | `mixed` | No | Passcode to access the virtual event |
+| `virtual_event_url` | `mixed` | No | URL to the virtual event |
 
 ### Operations
 
@@ -1270,31 +1270,31 @@ $event_occurrence = $client->EventOccurrence();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `button_caption` | `mixed` | No |  |
-| `button_text` | `mixed` | No |  |
-| `button_url` | `mixed` | No |  |
-| `description` | `string` | No |  |
-| `end_at` | `mixed` | No |  |
-| `event_id` | `string` | No |  |
-| `id` | `string` | No |  |
-| `image_url` | `mixed` | No |  |
-| `is_private` | `bool` | No |  |
-| `is_sales_button_hidden` | `bool` | No |  |
-| `is_ticketed` | `bool` | No |  |
-| `location` | `mixed` | No |  |
-| `off_sale_at` | `mixed` | No |  |
-| `on_sale_at` | `mixed` | No |  |
-| `short_description` | `mixed` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `start_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `title_display` | `mixed` | No |  |
-| `updated_at` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `button_caption` | `mixed` | No | Additional text below the ticket/registration button |
+| `button_text` | `mixed` | No | The text used on the ticket/registration button |
+| `button_url` | `mixed` | No | The URL to the sales site or an RSVP link for this event |
+| `description` | `string` | No | Description of the event |
+| `end_at` | `mixed` | No | The date the event occurrence ends |
+| `event_id` | `string` | No | Identifier of the master event of which this is an occurrence |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `image_url` | `mixed` | No | The URL of an image representing this page |
+| `is_private` | `bool` | No | Whether the event is private. |
+| `is_sales_button_hidden` | `bool` | No | Whether the buy tickets button is hidden on the website event page |
+| `is_ticketed` | `bool` | No | Whether a ticket is required to attend the event |
+| `location` | `mixed` | No | Where the event takes place |
+| `off_sale_at` | `mixed` | No | Date and time the event goes off sale |
+| `on_sale_at` | `mixed` | No | Date and time the event goes on sale |
+| `short_description` | `mixed` | No | Brief description of the event |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `start_at` | `mixed` | No | The date the event occurrence begins |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `title_display` | `mixed` | No | The name of this event formatted with HTML (optional) |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
 
 ### Operations
 
@@ -1354,17 +1354,17 @@ $event_program = $client->EventProgram();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `is_affiliate_group` | `bool` | No |  |
-| `is_event_host` | `bool` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `is_affiliate_group` | `bool` | No | Whether this program represents an affiliate group |
+| `is_event_host` | `bool` | No | Whether this program represents an event host |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
 
 ### Operations
 
@@ -1424,33 +1424,33 @@ $exhibition = $client->Exhibition();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aic_end_at` | `mixed` | No |  |
-| `aic_start_at` | `mixed` | No |  |
-| `alt_image_ids` | `mixed` | No |  |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `artist_ids` | `mixed` | No |  |
-| `artwork_ids` | `mixed` | No |  |
-| `artwork_titles` | `mixed` | No |  |
-| `document_ids` | `mixed` | No |  |
-| `gallery_id` | `string` | No |  |
-| `gallery_title` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `image_id` | `string` | No |  |
-| `image_url` | `mixed` | No |  |
-| `is_featured` | `bool` | No |  |
-| `is_published` | `bool` | No |  |
-| `position` | `mixed` | No |  |
-| `short_description` | `mixed` | No |  |
-| `site_ids` | `mixed` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `status` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `web_url` | `mixed` | No |  |
+| `aic_end_at` | `mixed` | No | Date the exhibition closed at the Art Institute of Chicago |
+| `aic_start_at` | `mixed` | No | Date the exhibition opened at the Art Institute of Chicago |
+| `alt_image_ids` | `mixed` | No | Unique identifiers of all non-preferred images of this exhibition. |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `artist_ids` | `mixed` | No | Unique identifiers of the artist agent records representing who was shown in the exhibition |
+| `artwork_ids` | `mixed` | No | Unique identifiers of the artworks that were part of the exhibition |
+| `artwork_titles` | `mixed` | No | Names of the artworks that were part of the exhibition |
+| `document_ids` | `mixed` | No | Unique identifiers of assets that serve as documentation for this exhibition |
+| `gallery_id` | `string` | No | Unique identifier of the gallery that mainly housed the exhibition |
+| `gallery_title` | `mixed` | No | The name of the gallery that mainly housed the exhibition |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `image_id` | `string` | No | Unique identifier of the preferred image to use to represent this exhibition |
+| `image_url` | `mixed` | No | URL to the hero image from the website |
+| `is_featured` | `bool` | No | Is this exhibition currently featured on our website? |
+| `is_published` | `bool` | No | Is this exhibition currently published on our website? |
+| `position` | `mixed` | No | Numering position represnting the order in which this exhibition is featured on the website |
+| `short_description` | `mixed` | No | Brief explanation of what this exhibition is |
+| `site_ids` | `mixed` | No | Unique identifiers of the microsites this exhibition is a part of |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `status` | `mixed` | No | Whether the exhibition is open or closed |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `web_url` | `mixed` | No | URL to this exhibition on our website |
 
 ### Operations
 
@@ -1510,22 +1510,22 @@ $gallery = $client->Gallery();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `floor` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `is_closed` | `bool` | No |  |
-| `latitude` | `float` | No |  |
-| `latlon` | `mixed` | No |  |
-| `longitude` | `float` | No |  |
-| `number` | `mixed` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `tgn_id` | `string` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `floor` | `mixed` | No | The level the gallery is on, e.g., 1, 2, 3, or LL |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `is_closed` | `bool` | No | Whether the gallery is currently closed |
+| `latitude` | `float` | No | Latitude coordinate of the center of the room |
+| `latlon` | `mixed` | No | Latitude and longitude coordinates of the center of the room |
+| `longitude` | `float` | No | Longitude coordinate of the center of the room |
+| `number` | `mixed` | No | The gallery's room number. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `tgn_id` | `string` | No | Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN) |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
 
 ### Operations
 
@@ -1585,18 +1585,18 @@ $generic_page = $client->GenericPage();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `copy` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `search_tags` | `mixed` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `web_url` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `copy` | `mixed` | No | The text of the page |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `search_tags` | `mixed` | No | Editor-specified list of tags to aid in internal search |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `web_url` | `mixed` | No | The URL to this page on our website |
 
 ### Operations
 
@@ -1656,16 +1656,16 @@ $highlight = $client->Highlight();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `copy` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `copy` | `mixed` | No | The text of the highlight description |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
 
 ### Operations
 
@@ -1725,52 +1725,52 @@ $hour = $client->Hour();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `additional_text` | `mixed` | No |  |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `friday_is_closed` | `mixed` | No |  |
-| `friday_member_close` | `mixed` | No |  |
-| `friday_member_open` | `mixed` | No |  |
-| `friday_public_close` | `mixed` | No |  |
-| `friday_public_open` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `monday_is_closed` | `mixed` | No |  |
-| `monday_member_close` | `mixed` | No |  |
-| `monday_member_open` | `mixed` | No |  |
-| `monday_public_close` | `mixed` | No |  |
-| `monday_public_open` | `mixed` | No |  |
-| `saturday_is_closed` | `mixed` | No |  |
-| `saturday_member_close` | `mixed` | No |  |
-| `saturday_member_open` | `mixed` | No |  |
-| `saturday_public_close` | `mixed` | No |  |
-| `saturday_public_open` | `mixed` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `summary` | `mixed` | No |  |
-| `sunday_is_closed` | `mixed` | No |  |
-| `sunday_member_close` | `mixed` | No |  |
-| `sunday_member_open` | `mixed` | No |  |
-| `sunday_public_close` | `mixed` | No |  |
-| `sunday_public_open` | `mixed` | No |  |
-| `thursday_is_closed` | `mixed` | No |  |
-| `thursday_member_close` | `mixed` | No |  |
-| `thursday_member_open` | `mixed` | No |  |
-| `thursday_public_close` | `mixed` | No |  |
-| `thursday_public_open` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `tuesday_is_closed` | `mixed` | No |  |
-| `tuesday_member_close` | `mixed` | No |  |
-| `tuesday_member_open` | `mixed` | No |  |
-| `tuesday_public_close` | `mixed` | No |  |
-| `tuesday_public_open` | `mixed` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `wednesday_is_closed` | `mixed` | No |  |
-| `wednesday_member_close` | `mixed` | No |  |
-| `wednesday_member_open` | `mixed` | No |  |
-| `wednesday_public_close` | `mixed` | No |  |
-| `wednesday_public_open` | `mixed` | No |  |
+| `additional_text` | `mixed` | No | Additional information about the hours |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `friday_is_closed` | `mixed` | No | Whether the museum is closed on Fridays |
+| `friday_member_close` | `mixed` | No | The time member hours ends on Fridays |
+| `friday_member_open` | `mixed` | No | The time member hours starts on Fridays |
+| `friday_public_close` | `mixed` | No | The time public hours ends on Fridays |
+| `friday_public_open` | `mixed` | No | The time public hours starts on Fridays |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `monday_is_closed` | `mixed` | No | Whether the museum is closed on Mondays |
+| `monday_member_close` | `mixed` | No | The time member hours ends on Mondays |
+| `monday_member_open` | `mixed` | No | The time member hours starts on Mondays |
+| `monday_public_close` | `mixed` | No | The time public hours ends on Mondays |
+| `monday_public_open` | `mixed` | No | The time public hours starts on Mondays |
+| `saturday_is_closed` | `mixed` | No | Whether the museum is closed on Saturdays |
+| `saturday_member_close` | `mixed` | No | The time member hours ends on Saturdays |
+| `saturday_member_open` | `mixed` | No | The time member hours starts on Saturdays |
+| `saturday_public_close` | `mixed` | No | The time public hours ends on Saturdays |
+| `saturday_public_open` | `mixed` | No | The time public hours starts on Saturdays |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `summary` | `mixed` | No | Readable summary of the hours |
+| `sunday_is_closed` | `mixed` | No | Whether the museum is closed on Sundays |
+| `sunday_member_close` | `mixed` | No | The time member hours ends on Sundays |
+| `sunday_member_open` | `mixed` | No | The time member hours starts on Sundays |
+| `sunday_public_close` | `mixed` | No | The time public hours ends on Sundays |
+| `sunday_public_open` | `mixed` | No | The time public hours starts on Sundays |
+| `thursday_is_closed` | `mixed` | No | Whether the museum is closed on Thursdays |
+| `thursday_member_close` | `mixed` | No | The time member hours ends on Thursdays |
+| `thursday_member_open` | `mixed` | No | The time member hours starts on Thursdays |
+| `thursday_public_close` | `mixed` | No | The time public hours ends on Thursdays |
+| `thursday_public_open` | `mixed` | No | The time public hours starts on Thursdays |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `tuesday_is_closed` | `mixed` | No | Whether the museum is closed on Tuesdays |
+| `tuesday_member_close` | `mixed` | No | The time member hours ends on Tuesdays |
+| `tuesday_member_open` | `mixed` | No | The time member hours starts on Tuesdays |
+| `tuesday_public_close` | `mixed` | No | The time public hours ends on Tuesdays |
+| `tuesday_public_open` | `mixed` | No | The time public hours starts on Tuesdays |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `wednesday_is_closed` | `mixed` | No | Whether the museum is closed on Wednesdays |
+| `wednesday_member_close` | `mixed` | No | The time member hours ends on Wednesdays |
+| `wednesday_member_open` | `mixed` | No | The time member hours starts on Wednesdays |
+| `wednesday_public_close` | `mixed` | No | The time public hours ends on Wednesdays |
+| `wednesday_public_open` | `mixed` | No | The time public hours starts on Wednesdays |
 
 ### Operations
 
@@ -1830,35 +1830,35 @@ $image = $client->Image();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ahash` | `mixed` | No |  |
-| `alt_text` | `mixed` | No |  |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `artwork_ids` | `mixed` | No |  |
-| `artwork_titles` | `mixed` | No |  |
-| `color` | `mixed` | No |  |
-| `colorfulness` | `mixed` | No |  |
-| `content` | `mixed` | No |  |
-| `content_e_tag` | `mixed` | No |  |
-| `credit_line` | `mixed` | No |  |
-| `fingerprint` | `mixed` | No |  |
-| `height` | `float` | No |  |
-| `id` | `string` | No |  |
-| `iiif_url` | `mixed` | No |  |
-| `is_educational_resource` | `bool` | No |  |
-| `is_multimedia_resource` | `bool` | No |  |
-| `is_teacher_resource` | `bool` | No |  |
-| `lake_guid` | `mixed` | No |  |
-| `lqip` | `mixed` | No |  |
-| `phash` | `mixed` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `type` | `mixed` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `width` | `float` | No |  |
+| `ahash` | `mixed` | No | Image hash generated using ahash algorithm with 64 boolean subfields |
+| `alt_text` | `mixed` | No | Alternative text for the asset to describe it to people with low or no vision |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `artwork_ids` | `mixed` | No | Unique identifiers of the artworks associated with this asset |
+| `artwork_titles` | `mixed` | No | Names of the artworks associated with this asset |
+| `color` | `mixed` | No | Dominant color of this image in HSL |
+| `colorfulness` | `mixed` | No | Unbounded positive float representing an abstract measure of colorfulness. |
+| `content` | `mixed` | No | Text of or URL to the contents of this asset |
+| `content_e_tag` | `mixed` | No | Arbitrary unique identifier that changes when the binary file gets updated |
+| `credit_line` | `mixed` | No | Asset-specific copyright information |
+| `fingerprint` | `mixed` | No | Image hashes: aHash, dHash, pHash, wHash |
+| `height` | `float` | No | Native height of the image |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `iiif_url` | `mixed` | No | IIIF URL of this image |
+| `is_educational_resource` | `bool` | No | Whether this resource is considered to be educational |
+| `is_multimedia_resource` | `bool` | No | Whether this resource is considered to be multimedia |
+| `is_teacher_resource` | `bool` | No | Whether this resource is considered to be educational |
+| `lake_guid` | `mixed` | No | Unique UUID of this resource in LAKE, our DAMS. |
+| `lqip` | `mixed` | No | Low-quality image placeholder (LQIP). |
+| `phash` | `mixed` | No | Image hash generated using phash algorithm with 64 boolean subfields |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `type` | `mixed` | No | Type always takes one of the following values: image, sound, text, video |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `width` | `float` | No | Native width of the image |
 
 ### Operations
 
@@ -1918,18 +1918,18 @@ $landing_page = $client->LandingPage();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `copy` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `search_tags` | `mixed` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `web_url` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `copy` | `mixed` | No | The text of the page |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `search_tags` | `mixed` | No | Editor-specified list of tags to aid in internal search |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `web_url` | `mixed` | No | The URL to this page on our website |
 
 ### Operations
 
@@ -1989,18 +1989,18 @@ $place = $client->Place();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `latitude` | `float` | No |  |
-| `longitude` | `float` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `tgn_id` | `string` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `latitude` | `float` | No | Latitude coordinate of the center of the room |
+| `longitude` | `float` | No | Longitude coordinate of the center of the room |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `tgn_id` | `string` | No | Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN) |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
 
 ### Operations
 
@@ -2060,17 +2060,17 @@ $press_release = $client->PressRelease();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `copy` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `web_url` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `copy` | `mixed` | No | The text of the page |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `web_url` | `mixed` | No | The URL to this page on our website |
 
 ### Operations
 
@@ -2130,17 +2130,17 @@ $printed_publication = $client->PrintedPublication();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `copy` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `web_url` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `copy` | `mixed` | No | The text of the page |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `web_url` | `mixed` | No | The URL to this page on our website |
 
 ### Operations
 
@@ -2200,27 +2200,27 @@ $product = $client->Product();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `artist_ids` | `mixed` | No |  |
-| `artwork_ids` | `mixed` | No |  |
-| `description` | `string` | No |  |
-| `exhibition_ids` | `mixed` | No |  |
-| `external_sku` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `image_url` | `mixed` | No |  |
-| `max_compare_at_price` | `mixed` | No |  |
-| `max_current_price` | `mixed` | No |  |
-| `min_compare_at_price` | `mixed` | No |  |
-| `min_current_price` | `mixed` | No |  |
-| `price_display` | `mixed` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `web_url` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `artist_ids` | `mixed` | No | Unique identifiers of the artists associated with this product |
+| `artwork_ids` | `mixed` | No | Unique identifiers of the artworks associated with this product |
+| `description` | `string` | No | Explanation of what this product is |
+| `exhibition_ids` | `mixed` | No | Unique identifiers of the exhibitions associated with this product |
+| `external_sku` | `mixed` | No | Numeric product identification code of a machine-readable barcode, when the customer sku differs from our internal one |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `image_url` | `mixed` | No | URL of an image for this product |
+| `max_compare_at_price` | `mixed` | No | Number indicating how much the most expensive variant of a product cost before a sale |
+| `max_current_price` | `mixed` | No | Number indicating how much the most expensive variant of a product costs right now |
+| `min_compare_at_price` | `mixed` | No | Number indicating how much the least expensive variant of a product cost before a sale |
+| `min_current_price` | `mixed` | No | Number indicating how much the least expensive variant of a product costs right now |
+| `price_display` | `mixed` | No | Explanation of what this product is |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `web_url` | `mixed` | No | URL of this product in the shop |
 
 ### Operations
 
@@ -2280,17 +2280,17 @@ $publication = $client->Publication();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `section_ids` | `mixed` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `web_url` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `section_ids` | `mixed` | No | Unique identifiers of the sections of this publication |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `web_url` | `mixed` | No | URL to the publication |
 
 ### Operations
 
@@ -2350,15 +2350,15 @@ $search = $client->Search();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_id` | `string` | No |  |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `is_boosted` | `bool` | No |  |
-| `score` | `float` | No |  |
-| `thumbnail` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
+| `api_id` | `string` | No | API unique identifier |
+| `api_link` | `mixed` | No | URL to this recource in the API |
+| `api_model` | `mixed` | No | Name of the model the resource represents |
+| `id` | `string` | No | Unique identifier within the search index |
+| `is_boosted` | `bool` | No | Whether this record has been flagged to be boosted |
+| `score` | `float` | No | Search index ranking of the result |
+| `thumbnail` | `mixed` | No | Metadata on the image representing this record |
+| `timestamp` | `mixed` | No | Date this record was last updated in the API |
+| `title` | `string` | No | The name of this resource |
 
 ### Operations
 
@@ -2410,22 +2410,22 @@ $section = $client->Section();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accession` | `mixed` | No |  |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `artwork_id` | `string` | No |  |
-| `content` | `mixed` | No |  |
-| `generic_page_id` | `string` | No |  |
-| `id` | `string` | No |  |
-| `publication_id` | `string` | No |  |
-| `publication_title` | `mixed` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `web_url` | `mixed` | No |  |
+| `accession` | `mixed` | No | An accession number parsed from the title or tombstone |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `artwork_id` | `string` | No | Unique identifier of the artwork with which this section is associated |
+| `content` | `mixed` | No | Content of this section in plaintext |
+| `generic_page_id` | `string` | No | Unique identifier of the page on the website that represents the publication this section belongs to |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `publication_id` | `string` | No | Unique identifier of the publication this section belongs to |
+| `publication_title` | `mixed` | No | Name of the publication this section belongs to |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `web_url` | `mixed` | No | URL to the section |
 
 ### Operations
 
@@ -2485,21 +2485,21 @@ $site = $client->Site();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `artwork_ids` | `mixed` | No |  |
-| `artwork_titles` | `mixed` | No |  |
-| `description` | `string` | No |  |
-| `exhibition_ids` | `mixed` | No |  |
-| `exhibition_titles` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `web_url` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `artwork_ids` | `mixed` | No | Unique identifiers of the artworks this site is associated with |
+| `artwork_titles` | `mixed` | No | Names of the artworks this site is associated with |
+| `description` | `string` | No | Explanation of what this site is |
+| `exhibition_ids` | `mixed` | No | Unique identifier of the exhibitions this site is associated with |
+| `exhibition_titles` | `mixed` | No | Names of the exhibitions this site is associated with |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `web_url` | `mixed` | No | URL to this site |
 
 ### Operations
 
@@ -2559,28 +2559,28 @@ $sound = $client->Sound();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | `mixed` | No |  |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `artwork_ids` | `mixed` | No |  |
-| `artwork_titles` | `mixed` | No |  |
-| `content` | `mixed` | No |  |
-| `content_e_tag` | `mixed` | No |  |
-| `credit_line` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `is_educational_resource` | `bool` | No |  |
-| `is_multimedia_resource` | `bool` | No |  |
-| `is_teacher_resource` | `bool` | No |  |
-| `lake_guid` | `mixed` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `transcript` | `mixed` | No |  |
-| `type` | `mixed` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `web_url` | `mixed` | No |  |
+| `alt_text` | `mixed` | No | Alternative text for the asset to describe it to people with low or no vision |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `artwork_ids` | `mixed` | No | Unique identifiers of the artworks associated with this asset |
+| `artwork_titles` | `mixed` | No | Names of the artworks associated with this asset |
+| `content` | `mixed` | No | Text of or URL to the contents of this asset |
+| `content_e_tag` | `mixed` | No | Arbitrary unique identifier that changes when the binary file gets updated |
+| `credit_line` | `mixed` | No | Asset-specific copyright information |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `is_educational_resource` | `bool` | No | Whether this resource is considered to be educational |
+| `is_multimedia_resource` | `bool` | No | Whether this resource is considered to be multimedia |
+| `is_teacher_resource` | `bool` | No | Whether this resource is considered to be educational |
+| `lake_guid` | `mixed` | No | Unique UUID of this resource in LAKE, our DAMS. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | Name of this mobile audio file – derived from the artwork and tour titles |
+| `transcript` | `mixed` | No | Text transcription of the audio file |
+| `type` | `mixed` | No | Type always takes one of the following values: image, sound, text, video |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `web_url` | `mixed` | No | URL to the audio file |
 
 ### Operations
 
@@ -2640,16 +2640,16 @@ $static_page = $client->StaticPage();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `web_url` | `mixed` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `web_url` | `mixed` | No | The URL to this page on our website |
 
 ### Operations
 
@@ -2709,26 +2709,26 @@ $text = $client->Text();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | `mixed` | No |  |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `artwork_ids` | `mixed` | No |  |
-| `artwork_titles` | `mixed` | No |  |
-| `content` | `mixed` | No |  |
-| `content_e_tag` | `mixed` | No |  |
-| `credit_line` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `is_educational_resource` | `bool` | No |  |
-| `is_multimedia_resource` | `bool` | No |  |
-| `is_teacher_resource` | `bool` | No |  |
-| `lake_guid` | `mixed` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `type` | `mixed` | No |  |
-| `updated_at` | `mixed` | No |  |
+| `alt_text` | `mixed` | No | Alternative text for the asset to describe it to people with low or no vision |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `artwork_ids` | `mixed` | No | Unique identifiers of the artworks associated with this asset |
+| `artwork_titles` | `mixed` | No | Names of the artworks associated with this asset |
+| `content` | `mixed` | No | Text of or URL to the contents of this asset |
+| `content_e_tag` | `mixed` | No | Arbitrary unique identifier that changes when the binary file gets updated |
+| `credit_line` | `mixed` | No | Asset-specific copyright information |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `is_educational_resource` | `bool` | No | Whether this resource is considered to be educational |
+| `is_multimedia_resource` | `bool` | No | Whether this resource is considered to be multimedia |
+| `is_teacher_resource` | `bool` | No | Whether this resource is considered to be educational |
+| `lake_guid` | `mixed` | No | Unique UUID of this resource in LAKE, our DAMS. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `type` | `mixed` | No | Type always takes one of the following values: image, sound, text, video |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
 
 ### Operations
 
@@ -2788,23 +2788,23 @@ $tour = $client->Tour();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `artist_titles` | `mixed` | No |  |
-| `artwork_titles` | `mixed` | No |  |
-| `description` | `string` | No |  |
-| `id` | `string` | No |  |
-| `image` | `mixed` | No |  |
-| `intro` | `mixed` | No |  |
-| `intro_link` | `mixed` | No |  |
-| `intro_transcript` | `mixed` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `updated_at` | `mixed` | No |  |
-| `weight` | `float` | No |  |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `artist_titles` | `mixed` | No | Names of the artists of the artworks featured in this tour's tour stops |
+| `artwork_titles` | `mixed` | No | Names of the artworks featured in this tour's tour stops |
+| `description` | `string` | No | Explanation of what the tour is |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `image` | `mixed` | No | The main image for the tour |
+| `intro` | `mixed` | No | Text introducing the tour |
+| `intro_link` | `mixed` | No | Link to the audio file of the introduction |
+| `intro_transcript` | `mixed` | No | Transcript of the introduction audio to the tour |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
+| `weight` | `float` | No | Number representing this tour's sort order |
 
 ### Operations
 
@@ -2864,26 +2864,26 @@ $video = $client->Video();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alt_text` | `mixed` | No |  |
-| `api_link` | `mixed` | No |  |
-| `api_model` | `mixed` | No |  |
-| `artwork_ids` | `mixed` | No |  |
-| `artwork_titles` | `mixed` | No |  |
-| `content` | `mixed` | No |  |
-| `content_e_tag` | `mixed` | No |  |
-| `credit_line` | `mixed` | No |  |
-| `id` | `string` | No |  |
-| `is_educational_resource` | `bool` | No |  |
-| `is_multimedia_resource` | `bool` | No |  |
-| `is_teacher_resource` | `bool` | No |  |
-| `lake_guid` | `mixed` | No |  |
-| `source_updated_at` | `mixed` | No |  |
-| `suggest_autocomplete_all` | `mixed` | No |  |
-| `suggest_autocomplete_boosted` | `mixed` | No |  |
-| `timestamp` | `mixed` | No |  |
-| `title` | `string` | No |  |
-| `type` | `mixed` | No |  |
-| `updated_at` | `mixed` | No |  |
+| `alt_text` | `mixed` | No | Alternative text for the asset to describe it to people with low or no vision |
+| `api_link` | `mixed` | No | REST API link for this resource |
+| `api_model` | `mixed` | No | REST API resource type or endpoint |
+| `artwork_ids` | `mixed` | No | Unique identifiers of the artworks associated with this asset |
+| `artwork_titles` | `mixed` | No | Names of the artworks associated with this asset |
+| `content` | `mixed` | No | Text of or URL to the contents of this asset |
+| `content_e_tag` | `mixed` | No | Arbitrary unique identifier that changes when the binary file gets updated |
+| `credit_line` | `mixed` | No | Asset-specific copyright information |
+| `id` | `string` | No | Unique identifier of this resource. |
+| `is_educational_resource` | `bool` | No | Whether this resource is considered to be educational |
+| `is_multimedia_resource` | `bool` | No | Whether this resource is considered to be multimedia |
+| `is_teacher_resource` | `bool` | No | Whether this resource is considered to be educational |
+| `lake_guid` | `mixed` | No | Unique UUID of this resource in LAKE, our DAMS. |
+| `source_updated_at` | `mixed` | No | Date and time the resource was updated in the source system |
+| `suggest_autocomplete_all` | `mixed` | No | Internal field to power the `/autosuggest` endpoint. |
+| `suggest_autocomplete_boosted` | `mixed` | No | Internal field to power the `/autocomplete` endpoint. |
+| `timestamp` | `mixed` | No | Date and time the record was updated in the aggregator search index |
+| `title` | `string` | No | The name of this resource |
+| `type` | `mixed` | No | Type always takes one of the following values: image, sound, text, video |
+| `updated_at` | `mixed` | No | Date and time the record was updated in the aggregator database |
 
 ### Operations
 

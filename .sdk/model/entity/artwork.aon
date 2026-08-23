@@ -1,0 +1,694 @@
+# Entity: artwork
+
+main: kit: entity: artwork: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "alt_artist_ids"
+      req: false
+      short: "Unique identifiers of the non-preferred artists/cultures associated with this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "alt_classification_ids"
+      req: false
+      short: "Unique identifiers of all other non-preferred classification terms for this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "alt_image_ids"
+      req: false
+      short: "Unique identifiers of all non-preferred images of this work."
+      type: "`$ANY`"
+    }
+    {
+      name: "alt_material_ids"
+      req: false
+      short: "Unique identifiers of all other non-preferred material terms for this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "alt_style_ids"
+      req: false
+      short: "Unique identifiers of all other non-preferred style terms for this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "alt_subject_ids"
+      req: false
+      short: "Unique identifiers of all other non-preferred subject terms for this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "alt_technique_ids"
+      req: false
+      short: "Unique identifiers of all other non-preferred technique terms for this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "alt_titles"
+      req: false
+      short: "Alternate names for this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "api_link"
+      req: false
+      short: "REST API link for this resource"
+      type: "`$ANY`"
+    }
+    {
+      name: "api_model"
+      req: false
+      short: "REST API resource type or endpoint"
+      type: "`$ANY`"
+    }
+    {
+      name: "artist_display"
+      req: false
+      short: "Readable description of the creator of this work."
+      type: "`$ANY`"
+    }
+    {
+      name: "artist_id"
+      req: false
+      short: "Unique identifier of the preferred artist/culture associated with this work"
+      type: "`$STRING`"
+    }
+    {
+      name: "artist_ids"
+      req: false
+      short: "Unique identifier of all artist/cultures associated with this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "artist_title"
+      req: false
+      short: "Name of the preferred artist/culture associated with this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "artist_titles"
+      req: false
+      short: "Names of all artist/cultures associated with this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "artwork_type_id"
+      req: false
+      short: "Unique identifier of the kind of object or work"
+      type: "`$STRING`"
+    }
+    {
+      name: "artwork_type_title"
+      req: false
+      short: "The kind of object or work (e.g."
+      type: "`$ANY`"
+    }
+    {
+      name: "boost_rank"
+      req: false
+      short: "Manual indication of what rank this artwork should take in search results."
+      type: "`$ANY`"
+    }
+    {
+      name: "catalog_based_search_keyword_titles"
+      req: false
+      short: "The keyword search values that would be catalog-based searches on this record"
+      type: "`$ANY`"
+    }
+    {
+      name: "catalogue_display"
+      req: false
+      short: "Brief text listing all the catalogues raisonnés which include this work."
+      type: "`$ANY`"
+    }
+    {
+      name: "category_ids"
+      req: false
+      short: "Unique identifiers of the categories this work is a part of"
+      type: "`$ANY`"
+    }
+    {
+      name: "category_titles"
+      req: false
+      short: "Names of the categories this artwork is a part of"
+      type: "`$ANY`"
+    }
+    {
+      name: "classification_id"
+      req: false
+      short: "Unique identifier of the preferred classification term for this work"
+      type: "`$STRING`"
+    }
+    {
+      name: "classification_ids"
+      req: false
+      short: "Unique identifiers of all classification terms for this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "classification_title"
+      req: false
+      short: "The name of the preferred classification term for this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "classification_titles"
+      req: false
+      short: "The names of all classification terms related to this artwork"
+      type: "`$ANY`"
+    }
+    {
+      name: "color"
+      req: false
+      short: "Dominant color of this artwork in HSL"
+      type: "`$ANY`"
+    }
+    {
+      name: "colorfulness"
+      req: false
+      short: "Unbounded positive float representing an abstract measure of colorfulness."
+      type: "`$ANY`"
+    }
+    {
+      name: "copyright_notice"
+      req: false
+      short: "Statement notifying how the work is protected by copyright."
+      type: "`$ANY`"
+    }
+    {
+      name: "credit_line"
+      req: false
+      short: "Brief statement indicating how the work came into the collection"
+      type: "`$ANY`"
+    }
+    {
+      name: "date_display"
+      req: false
+      short: "Readable, free-text description of the period of time associated with the creation of this work."
+      type: "`$ANY`"
+    }
+    {
+      name: "date_end"
+      req: false
+      short: "The year of the period of time associated with the creation of this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "date_qualifier_id"
+      req: false
+      short: "Unique identifier of the qualifer to the dates provided for this record."
+      type: "`$STRING`"
+    }
+    {
+      name: "date_qualifier_title"
+      req: false
+      short: "Readable, text qualifer to the dates provided for this record."
+      type: "`$ANY`"
+    }
+    {
+      name: "date_start"
+      req: false
+      short: "The year of the period of time associated with the creation of this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "department_id"
+      req: false
+      short: "Unique identifier of the curatorial department that this work belongs to"
+      type: "`$STRING`"
+    }
+    {
+      name: "department_title"
+      req: false
+      short: "Name of the curatorial department that this work belongs to"
+      type: "`$ANY`"
+    }
+    {
+      name: "description"
+      req: false
+      short: "Longer explanation describing the work"
+      type: "`$STRING`"
+    }
+    {
+      name: "dimensions"
+      req: false
+      short: "The size, shape, scale, and dimensions of the work."
+      type: "`$ANY`"
+    }
+    {
+      name: "dimensions_detail"
+      req: false
+      short: "The height, width, depth, and/or diameter of each section of the work in centimeters"
+      type: "`$ANY`"
+    }
+    {
+      name: "document_ids"
+      req: false
+      short: "Unique identifiers of assets that serve as documentation for this artwork"
+      type: "`$ANY`"
+    }
+    {
+      name: "edition"
+      req: false
+      short: "Edition number if the work is one of many"
+      type: "`$ANY`"
+    }
+    {
+      name: "exhibition_history"
+      req: false
+      short: "List of all the places this work has been exhibited"
+      type: "`$ANY`"
+    }
+    {
+      name: "fiscal_year"
+      req: false
+      short: "The fiscal year in which the work was acquired."
+      type: "`$ANY`"
+    }
+    {
+      name: "fiscal_year_deaccession"
+      req: false
+      short: "The fiscal year in which the work was deaccessioned."
+      type: "`$ANY`"
+    }
+    {
+      name: "gallery_id"
+      req: false
+      short: "Unique identifier of the location of this work in our museum"
+      type: "`$STRING`"
+    }
+    {
+      name: "gallery_title"
+      req: false
+      short: "The location of this work in our museum"
+      type: "`$ANY`"
+    }
+    {
+      name: "has_advanced_imaging"
+      req: false
+      short: "Whether this artwork is enhanced with 3D models, 360 image sequences, Mirador views, etc."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "has_educational_resources"
+      req: false
+      short: "Whether this artwork has any documents tagged as educational"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "has_multimedia_resources"
+      req: false
+      short: "Whether this artwork has any associated microsites, digital publications, or documents tagged as multimedia"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "has_not_been_viewed_much"
+      req: false
+      short: "Whether the artwork hasn't been visited on our website very much"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique identifier of this resource."
+      type: "`$STRING`"
+    }
+    {
+      name: "image_embedding"
+      req: false
+      short: "The generated embeddings describing the artwork image"
+      type: "`$ANY`"
+    }
+    {
+      name: "image_id"
+      req: false
+      short: "Unique identifier of the preferred image to use to represent this work"
+      type: "`$STRING`"
+    }
+    {
+      name: "inscriptions"
+      req: false
+      short: "A description of distinguishing or identifying physical markings that are on the work"
+      type: "`$ANY`"
+    }
+    {
+      name: "internal_department_id"
+      req: false
+      short: "An internal department id we use for analytics."
+      type: "`$STRING`"
+    }
+    {
+      name: "is_boosted"
+      req: false
+      short: "Whether this document should be boosted in search"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_on_view"
+      req: false
+      short: "Whether the work is on display"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_public_domain"
+      req: false
+      short: "Whether the work is in the public domain, meaning it was created before copyrights existed or has left the copyright term"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_zoomable"
+      req: false
+      short: "Whether images of the work are allowed to be displayed in a zoomable interface."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "latitude"
+      req: false
+      short: "Latitude coordinate of the location of this work in our galleries"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "latlon"
+      req: false
+      short: "Latitude and longitude coordinates of the location of this work in our galleries"
+      type: "`$ANY`"
+    }
+    {
+      name: "longitude"
+      req: false
+      short: "Longitude coordinate of the location of this work in our galleries"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "main_reference_number"
+      req: false
+      short: "Unique identifier assigned to the artwork upon acquisition"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "material_id"
+      req: false
+      short: "Unique identifier of the preferred material term for this work"
+      type: "`$STRING`"
+    }
+    {
+      name: "material_ids"
+      req: false
+      short: "Unique identifiers of all material terms for this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "material_titles"
+      req: false
+      short: "The names of all material terms related to this artwork"
+      type: "`$ANY`"
+    }
+    {
+      name: "max_zoom_window_size"
+      req: false
+      short: "The maximum size of the window the image is allowed to be viewed in, in pixels."
+      type: "`$ANY`"
+    }
+    {
+      name: "medium_display"
+      req: false
+      short: "The substances or materials used in the creation of a work"
+      type: "`$ANY`"
+    }
+    {
+      name: "nomisma_id"
+      req: false
+      short: "Unique identifier of this work in the nomisma coin database"
+      type: "`$STRING`"
+    }
+    {
+      name: "on_loan_display"
+      req: false
+      short: "If an artwork is on loan, this contains details about the loan"
+      type: "`$ANY`"
+    }
+    {
+      name: "pageviews"
+      req: false
+      short: "Approx."
+      type: "`$ANY`"
+    }
+    {
+      name: "pageviews_recent"
+      req: false
+      short: "Approx."
+      type: "`$ANY`"
+    }
+    {
+      name: "place_of_origin"
+      req: false
+      short: "The location where the creation, design, or production of the work took place, or the original location of the work"
+      type: "`$ANY`"
+    }
+    {
+      name: "provenance_text"
+      req: false
+      short: "Ownership/collecting history of the work."
+      type: "`$ANY`"
+    }
+    {
+      name: "publication_history"
+      req: false
+      short: "Bibliographic list of all the places this work has been published"
+      type: "`$ANY`"
+    }
+    {
+      name: "publishing_verification_level"
+      req: false
+      short: "Indicator of how much metadata on the work in published."
+      type: "`$ANY`"
+    }
+    {
+      name: "section_ids"
+      req: false
+      short: "Unique identifiers of the digital publication chapters this work in included in"
+      type: "`$ANY`"
+    }
+    {
+      name: "section_titles"
+      req: false
+      short: "Names of the digital publication chapters this work is included in"
+      type: "`$ANY`"
+    }
+    {
+      name: "short_description"
+      req: false
+      short: "Short explanation describing the work"
+      type: "`$ANY`"
+    }
+    {
+      name: "site_ids"
+      req: false
+      short: "Unique identifiers of the microsites this work is a part of"
+      type: "`$ANY`"
+    }
+    {
+      name: "sound_ids"
+      req: false
+      short: "Unique identifiers of the audio about this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "source_updated_at"
+      req: false
+      short: "Date and time the resource was updated in the source system"
+      type: "`$ANY`"
+    }
+    {
+      name: "style_id"
+      req: false
+      short: "Unique identifier of the preferred style term for this work"
+      type: "`$STRING`"
+    }
+    {
+      name: "style_ids"
+      req: false
+      short: "Unique identifiers of all style terms for this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "style_title"
+      req: false
+      short: "The name of the preferred style term for this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "style_titles"
+      req: false
+      short: "The names of all style terms related to this artwork"
+      type: "`$ANY`"
+    }
+    {
+      name: "subject_id"
+      req: false
+      short: "Unique identifier of the preferred subject term for this work"
+      type: "`$STRING`"
+    }
+    {
+      name: "subject_ids"
+      req: false
+      short: "Unique identifiers of all subject terms for this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "subject_titles"
+      req: false
+      short: "The names of all subject terms related to this artwork"
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_all"
+      req: false
+      short: "Internal field to power the `/autosuggest` endpoint."
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_boosted"
+      req: false
+      short: "Internal field to power the `/autocomplete` endpoint."
+      type: "`$ANY`"
+    }
+    {
+      name: "technique_id"
+      req: false
+      short: "Unique identifier of the preferred technique term for this work"
+      type: "`$STRING`"
+    }
+    {
+      name: "technique_ids"
+      req: false
+      short: "Unique identifiers of all technique terms for this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "technique_titles"
+      req: false
+      short: "The names of all technique terms related to this artwork"
+      type: "`$ANY`"
+    }
+    {
+      name: "term_titles"
+      req: false
+      short: "The names of the taxonomy tags for this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "text_embedding"
+      req: false
+      short: "The generated embeddings of artwork text"
+      type: "`$ANY`"
+    }
+    {
+      name: "text_ids"
+      req: false
+      short: "Unique identifiers of the texts about this work"
+      type: "`$ANY`"
+    }
+    {
+      name: "theme_titles"
+      req: false
+      short: "The names of all thematic publish categories related to this artwork"
+      type: "`$ANY`"
+    }
+    {
+      name: "thumbnail"
+      req: false
+      short: "Metadata about the image referenced by `image_id`."
+      type: "`$ANY`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      short: "Date and time the record was updated in the aggregator search index"
+      type: "`$ANY`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "The name of this resource"
+      type: "`$STRING`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      short: "Date and time the record was updated in the aggregator database"
+      type: "`$ANY`"
+    }
+    {
+      name: "video_ids"
+      req: false
+      short: "Unique identifiers of the videos about this work"
+      type: "`$ANY`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "artwork"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/artworks"
+          parts: [
+            "artworks"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/artworks/{id}"
+          parts: [
+            "artworks"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,196 @@
+# Entity: product
+
+main: kit: entity: product: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "api_link"
+      req: false
+      short: "REST API link for this resource"
+      type: "`$ANY`"
+    }
+    {
+      name: "api_model"
+      req: false
+      short: "REST API resource type or endpoint"
+      type: "`$ANY`"
+    }
+    {
+      name: "artist_ids"
+      req: false
+      short: "Unique identifiers of the artists associated with this product"
+      type: "`$ANY`"
+    }
+    {
+      name: "artwork_ids"
+      req: false
+      short: "Unique identifiers of the artworks associated with this product"
+      type: "`$ANY`"
+    }
+    {
+      name: "description"
+      req: false
+      short: "Explanation of what this product is"
+      type: "`$STRING`"
+    }
+    {
+      name: "exhibition_ids"
+      req: false
+      short: "Unique identifiers of the exhibitions associated with this product"
+      type: "`$ANY`"
+    }
+    {
+      name: "external_sku"
+      req: false
+      short: "Numeric product identification code of a machine-readable barcode, when the customer sku differs from our internal one"
+      type: "`$ANY`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique identifier of this resource."
+      type: "`$STRING`"
+    }
+    {
+      name: "image_url"
+      req: false
+      short: "URL of an image for this product"
+      type: "`$ANY`"
+    }
+    {
+      name: "max_compare_at_price"
+      req: false
+      short: "Number indicating how much the most expensive variant of a product cost before a sale"
+      type: "`$ANY`"
+    }
+    {
+      name: "max_current_price"
+      req: false
+      short: "Number indicating how much the most expensive variant of a product costs right now"
+      type: "`$ANY`"
+    }
+    {
+      name: "min_compare_at_price"
+      req: false
+      short: "Number indicating how much the least expensive variant of a product cost before a sale"
+      type: "`$ANY`"
+    }
+    {
+      name: "min_current_price"
+      req: false
+      short: "Number indicating how much the least expensive variant of a product costs right now"
+      type: "`$ANY`"
+    }
+    {
+      name: "price_display"
+      req: false
+      short: "Explanation of what this product is"
+      type: "`$ANY`"
+    }
+    {
+      name: "source_updated_at"
+      req: false
+      short: "Date and time the resource was updated in the source system"
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_all"
+      req: false
+      short: "Internal field to power the `/autosuggest` endpoint."
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_boosted"
+      req: false
+      short: "Internal field to power the `/autocomplete` endpoint."
+      type: "`$ANY`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      short: "Date and time the record was updated in the aggregator search index"
+      type: "`$ANY`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "The name of this resource"
+      type: "`$STRING`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      short: "Date and time the record was updated in the aggregator database"
+      type: "`$ANY`"
+    }
+    {
+      name: "web_url"
+      req: false
+      short: "URL of this product in the shop"
+      type: "`$ANY`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "product"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/products"
+          parts: [
+            "products"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/products/{id}"
+          parts: [
+            "products"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

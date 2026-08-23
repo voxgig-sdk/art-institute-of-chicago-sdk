@@ -1,0 +1,232 @@
+# Entity: exhibition
+
+main: kit: entity: exhibition: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "aic_end_at"
+      req: false
+      short: "Date the exhibition closed at the Art Institute of Chicago"
+      type: "`$ANY`"
+    }
+    {
+      name: "aic_start_at"
+      req: false
+      short: "Date the exhibition opened at the Art Institute of Chicago"
+      type: "`$ANY`"
+    }
+    {
+      name: "alt_image_ids"
+      req: false
+      short: "Unique identifiers of all non-preferred images of this exhibition."
+      type: "`$ANY`"
+    }
+    {
+      name: "api_link"
+      req: false
+      short: "REST API link for this resource"
+      type: "`$ANY`"
+    }
+    {
+      name: "api_model"
+      req: false
+      short: "REST API resource type or endpoint"
+      type: "`$ANY`"
+    }
+    {
+      name: "artist_ids"
+      req: false
+      short: "Unique identifiers of the artist agent records representing who was shown in the exhibition"
+      type: "`$ANY`"
+    }
+    {
+      name: "artwork_ids"
+      req: false
+      short: "Unique identifiers of the artworks that were part of the exhibition"
+      type: "`$ANY`"
+    }
+    {
+      name: "artwork_titles"
+      req: false
+      short: "Names of the artworks that were part of the exhibition"
+      type: "`$ANY`"
+    }
+    {
+      name: "document_ids"
+      req: false
+      short: "Unique identifiers of assets that serve as documentation for this exhibition"
+      type: "`$ANY`"
+    }
+    {
+      name: "gallery_id"
+      req: false
+      short: "Unique identifier of the gallery that mainly housed the exhibition"
+      type: "`$STRING`"
+    }
+    {
+      name: "gallery_title"
+      req: false
+      short: "The name of the gallery that mainly housed the exhibition"
+      type: "`$ANY`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique identifier of this resource."
+      type: "`$STRING`"
+    }
+    {
+      name: "image_id"
+      req: false
+      short: "Unique identifier of the preferred image to use to represent this exhibition"
+      type: "`$STRING`"
+    }
+    {
+      name: "image_url"
+      req: false
+      short: "URL to the hero image from the website"
+      type: "`$ANY`"
+    }
+    {
+      name: "is_featured"
+      req: false
+      short: "Is this exhibition currently featured on our website?"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_published"
+      req: false
+      short: "Is this exhibition currently published on our website?"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "position"
+      req: false
+      short: "Numering position represnting the order in which this exhibition is featured on the website"
+      type: "`$ANY`"
+    }
+    {
+      name: "short_description"
+      req: false
+      short: "Brief explanation of what this exhibition is"
+      type: "`$ANY`"
+    }
+    {
+      name: "site_ids"
+      req: false
+      short: "Unique identifiers of the microsites this exhibition is a part of"
+      type: "`$ANY`"
+    }
+    {
+      name: "source_updated_at"
+      req: false
+      short: "Date and time the resource was updated in the source system"
+      type: "`$ANY`"
+    }
+    {
+      name: "status"
+      req: false
+      short: "Whether the exhibition is open or closed"
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_all"
+      req: false
+      short: "Internal field to power the `/autosuggest` endpoint."
+      type: "`$ANY`"
+    }
+    {
+      name: "suggest_autocomplete_boosted"
+      req: false
+      short: "Internal field to power the `/autocomplete` endpoint."
+      type: "`$ANY`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      short: "Date and time the record was updated in the aggregator search index"
+      type: "`$ANY`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "The name of this resource"
+      type: "`$STRING`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      short: "Date and time the record was updated in the aggregator database"
+      type: "`$ANY`"
+    }
+    {
+      name: "web_url"
+      req: false
+      short: "URL to this exhibition on our website"
+      type: "`$ANY`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "exhibition"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/exhibitions"
+          parts: [
+            "exhibitions"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/exhibitions/{id}"
+          parts: [
+            "exhibitions"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
