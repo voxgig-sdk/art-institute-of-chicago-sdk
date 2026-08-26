@@ -42,6 +42,7 @@ class ArtInstituteOfChicagoConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
