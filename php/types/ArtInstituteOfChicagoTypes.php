@@ -1519,15 +1519,12 @@ class Search
 /** Request payload for Search#list. */
 class SearchListMatch
 {
-    public ?string $api_id = null;
-    public mixed $api_link = null;
-    public mixed $api_model = null;
-    public ?string $id = null;
-    public ?bool $is_boosted = null;
-    public ?float $score = null;
-    public mixed $thumbnail = null;
-    public mixed $timestamp = null;
-    public ?string $title = null;
+    public ?string $facet = null;
+    public ?string $from = null;
+    public ?string $q = null;
+    public ?string $query = null;
+    public ?string $size = null;
+    public ?string $sort = null;
 }
 
 /** Section entity data model. */

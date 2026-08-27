@@ -1436,15 +1436,12 @@ type Search struct {
 
 // SearchListMatch is the typed request payload for Search.ListTyped.
 type SearchListMatch struct {
-	ApiId *string `json:"api_id,omitempty"`
-	ApiLink *any `json:"api_link,omitempty"`
-	ApiModel *any `json:"api_model,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IsBoosted *bool `json:"is_boosted,omitempty"`
-	Score *float64 `json:"score,omitempty"`
-	Thumbnail *any `json:"thumbnail,omitempty"`
-	Timestamp *any `json:"timestamp,omitempty"`
-	Title *string `json:"title,omitempty"`
+	Facet *string `json:"facet,omitempty"`
+	From *string `json:"from,omitempty"`
+	Q *string `json:"q,omitempty"`
+	Query *string `json:"query,omitempty"`
+	Size *string `json:"size,omitempty"`
+	Sort *string `json:"sort,omitempty"`
 }
 
 // Section is the typed data model for the section entity.

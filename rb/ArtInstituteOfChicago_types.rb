@@ -4796,42 +4796,30 @@ Search = Struct.new(
 
 # Request payload for Search#list.
 #
-# @!attribute [rw] api_id
+# @!attribute [rw] facet
 #   @return [String, nil]
 #
-# @!attribute [rw] api_link
-#   @return [Object, nil]
-#
-# @!attribute [rw] api_model
-#   @return [Object, nil]
-#
-# @!attribute [rw] id
+# @!attribute [rw] from
 #   @return [String, nil]
 #
-# @!attribute [rw] is_boosted
-#   @return [Boolean, nil]
+# @!attribute [rw] q
+#   @return [String, nil]
 #
-# @!attribute [rw] score
-#   @return [Float, nil]
+# @!attribute [rw] query
+#   @return [String, nil]
 #
-# @!attribute [rw] thumbnail
-#   @return [Object, nil]
+# @!attribute [rw] size
+#   @return [String, nil]
 #
-# @!attribute [rw] timestamp
-#   @return [Object, nil]
-#
-# @!attribute [rw] title
+# @!attribute [rw] sort
 #   @return [String, nil]
 SearchListMatch = Struct.new(
-  :api_id,
-  :api_link,
-  :api_model,
-  :id,
-  :is_boosted,
-  :score,
-  :thumbnail,
-  :timestamp,
-  :title,
+  :facet,
+  :from,
+  :q,
+  :query,
+  :size,
+  :sort,
   keyword_init: true
 )
 

@@ -1357,15 +1357,11 @@ class Search(TypedDict, total=False):
 
 
 class SearchListMatch(TypedDict, total=False):
-    api_id: str
-    api_link: Any
-    api_model: Any
-    id: str
-    is_boosted: bool
-    score: float
-    thumbnail: Any
-    timestamp: Any
-    title: str
+    facet: str
+    q: str
+    query: str
+    size: str
+    sort: str
 
 
 class Section(TypedDict, total=False):

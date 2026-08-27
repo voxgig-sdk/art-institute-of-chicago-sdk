@@ -1346,15 +1346,12 @@ export interface Search {
 }
 
 export interface SearchListMatch {
-  api_id?: string
-  api_link?: any
-  api_model?: any
-  id?: string
-  is_boosted?: boolean
-  score?: number
-  thumbnail?: any
-  timestamp?: any
-  title?: string
+  facet?: string
+  from?: string
+  q?: string
+  query?: string
+  size?: string
+  sort?: string
 }
 
 export interface Section {

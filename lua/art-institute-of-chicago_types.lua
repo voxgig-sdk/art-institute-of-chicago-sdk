@@ -1265,15 +1265,12 @@
 ---@field title? string
 
 ---@class SearchListMatch
----@field api_id? string
----@field api_link? any
----@field api_model? any
----@field id? string
----@field is_boosted? boolean
----@field score? number
----@field thumbnail? any
----@field timestamp? any
----@field title? string
+---@field facet? string
+---@field from? string
+---@field q? string
+---@field query? string
+---@field size? string
+---@field sort? string
 
 ---@class Section
 ---@field accession? any
