@@ -140,8 +140,10 @@ main: kit: entity: text: {
         {
           method: "GET"
           orig: "/texts"
-          parts: [
-            "texts"
+          segments: [
+            {
+              lit: "texts"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -167,9 +169,13 @@ main: kit: entity: text: {
           }
           method: "GET"
           orig: "/texts/{id}"
-          parts: [
-            "texts"
-            "{id}"
+          segments: [
+            {
+              lit: "texts"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

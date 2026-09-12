@@ -182,8 +182,10 @@ main: kit: entity: exhibition: {
         {
           method: "GET"
           orig: "/exhibitions"
-          parts: [
-            "exhibitions"
+          segments: [
+            {
+              lit: "exhibitions"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -209,9 +211,13 @@ main: kit: entity: exhibition: {
           }
           method: "GET"
           orig: "/exhibitions/{id}"
-          parts: [
-            "exhibitions"
-            "{id}"
+          segments: [
+            {
+              lit: "exhibitions"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

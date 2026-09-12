@@ -74,8 +74,10 @@ main: kit: entity: agent_type: {
         {
           method: "GET"
           orig: "/agent-types"
-          parts: [
-            "agent-types"
+          segments: [
+            {
+              lit: "agent-types"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -101,9 +103,13 @@ main: kit: entity: agent_type: {
           }
           method: "GET"
           orig: "/agent-types/{id}"
-          parts: [
-            "agent-types"
-            "{id}"
+          segments: [
+            {
+              lit: "agent-types"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

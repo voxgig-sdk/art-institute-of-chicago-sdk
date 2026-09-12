@@ -338,8 +338,10 @@ main: kit: entity: event: {
         {
           method: "GET"
           orig: "/events"
-          parts: [
-            "events"
+          segments: [
+            {
+              lit: "events"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -365,9 +367,13 @@ main: kit: entity: event: {
           }
           method: "GET"
           orig: "/events/{id}"
-          parts: [
-            "events"
-            "{id}"
+          segments: [
+            {
+              lit: "events"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

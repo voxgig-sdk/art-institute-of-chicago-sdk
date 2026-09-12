@@ -86,8 +86,10 @@ main: kit: entity: category_term: {
         {
           method: "GET"
           orig: "/category-terms"
-          parts: [
-            "category-terms"
+          segments: [
+            {
+              lit: "category-terms"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -113,9 +115,13 @@ main: kit: entity: category_term: {
           }
           method: "GET"
           orig: "/category-terms/{id}"
-          parts: [
-            "category-terms"
-            "{id}"
+          segments: [
+            {
+              lit: "category-terms"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

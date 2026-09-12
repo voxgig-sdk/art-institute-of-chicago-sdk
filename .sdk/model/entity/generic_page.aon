@@ -92,8 +92,10 @@ main: kit: entity: generic_page: {
         {
           method: "GET"
           orig: "/generic-pages"
-          parts: [
-            "generic-pages"
+          segments: [
+            {
+              lit: "generic-pages"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -119,9 +121,13 @@ main: kit: entity: generic_page: {
           }
           method: "GET"
           orig: "/generic-pages/{id}"
-          parts: [
-            "generic-pages"
-            "{id}"
+          segments: [
+            {
+              lit: "generic-pages"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

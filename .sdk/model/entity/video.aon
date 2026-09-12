@@ -140,8 +140,10 @@ main: kit: entity: video: {
         {
           method: "GET"
           orig: "/videos"
-          parts: [
-            "videos"
+          segments: [
+            {
+              lit: "videos"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -167,9 +169,13 @@ main: kit: entity: video: {
           }
           method: "GET"
           orig: "/videos/{id}"
-          parts: [
-            "videos"
-            "{id}"
+          segments: [
+            {
+              lit: "videos"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

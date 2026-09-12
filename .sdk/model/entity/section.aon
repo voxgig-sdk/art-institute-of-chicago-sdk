@@ -116,8 +116,10 @@ main: kit: entity: section: {
         {
           method: "GET"
           orig: "/sections"
-          parts: [
-            "sections"
+          segments: [
+            {
+              lit: "sections"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -143,9 +145,13 @@ main: kit: entity: section: {
           }
           method: "GET"
           orig: "/sections/{id}"
-          parts: [
-            "sections"
-            "{id}"
+          segments: [
+            {
+              lit: "sections"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

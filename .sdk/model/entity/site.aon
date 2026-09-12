@@ -110,8 +110,10 @@ main: kit: entity: site: {
         {
           method: "GET"
           orig: "/sites"
-          parts: [
-            "sites"
+          segments: [
+            {
+              lit: "sites"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -137,9 +139,13 @@ main: kit: entity: site: {
           }
           method: "GET"
           orig: "/sites/{id}"
-          parts: [
-            "sites"
-            "{id}"
+          segments: [
+            {
+              lit: "sites"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

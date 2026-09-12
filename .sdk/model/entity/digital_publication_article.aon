@@ -98,8 +98,10 @@ main: kit: entity: digital_publication_article: {
         {
           method: "GET"
           orig: "/digital-publication-articles"
-          parts: [
-            "digital-publication-articles"
+          segments: [
+            {
+              lit: "digital-publication-articles"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -125,9 +127,13 @@ main: kit: entity: digital_publication_article: {
           }
           method: "GET"
           orig: "/digital-publication-articles/{id}"
-          parts: [
-            "digital-publication-articles"
-            "{id}"
+          segments: [
+            {
+              lit: "digital-publication-articles"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

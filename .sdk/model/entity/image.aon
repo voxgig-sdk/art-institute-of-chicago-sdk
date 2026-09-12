@@ -194,8 +194,10 @@ main: kit: entity: image: {
         {
           method: "GET"
           orig: "/images"
-          parts: [
-            "images"
+          segments: [
+            {
+              lit: "images"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -221,9 +223,13 @@ main: kit: entity: image: {
           }
           method: "GET"
           orig: "/images/{id}"
-          parts: [
-            "images"
-            "{id}"
+          segments: [
+            {
+              lit: "images"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

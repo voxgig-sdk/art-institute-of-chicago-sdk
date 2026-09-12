@@ -92,8 +92,10 @@ main: kit: entity: landing_page: {
         {
           method: "GET"
           orig: "/landing-pages"
-          parts: [
-            "landing-pages"
+          segments: [
+            {
+              lit: "landing-pages"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -119,9 +121,13 @@ main: kit: entity: landing_page: {
           }
           method: "GET"
           orig: "/landing-pages/{id}"
-          parts: [
-            "landing-pages"
-            "{id}"
+          segments: [
+            {
+              lit: "landing-pages"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

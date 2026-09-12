@@ -296,8 +296,10 @@ main: kit: entity: hour: {
         {
           method: "GET"
           orig: "/hours"
-          parts: [
-            "hours"
+          segments: [
+            {
+              lit: "hours"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -323,9 +325,13 @@ main: kit: entity: hour: {
           }
           method: "GET"
           orig: "/hours/{id}"
-          parts: [
-            "hours"
-            "{id}"
+          segments: [
+            {
+              lit: "hours"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

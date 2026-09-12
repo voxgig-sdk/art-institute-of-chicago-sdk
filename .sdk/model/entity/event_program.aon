@@ -86,8 +86,10 @@ main: kit: entity: event_program: {
         {
           method: "GET"
           orig: "/event-programs"
-          parts: [
-            "event-programs"
+          segments: [
+            {
+              lit: "event-programs"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -113,9 +115,13 @@ main: kit: entity: event_program: {
           }
           method: "GET"
           orig: "/event-programs/{id}"
-          parts: [
-            "event-programs"
-            "{id}"
+          segments: [
+            {
+              lit: "event-programs"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

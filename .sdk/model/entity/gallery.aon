@@ -116,8 +116,10 @@ main: kit: entity: gallery: {
         {
           method: "GET"
           orig: "/galleries"
-          parts: [
-            "galleries"
+          segments: [
+            {
+              lit: "galleries"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -143,9 +145,13 @@ main: kit: entity: gallery: {
           }
           method: "GET"
           orig: "/galleries/{id}"
-          parts: [
-            "galleries"
-            "{id}"
+          segments: [
+            {
+              lit: "galleries"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

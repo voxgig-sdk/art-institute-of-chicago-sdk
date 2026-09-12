@@ -74,8 +74,10 @@ main: kit: entity: artwork_place_qualifier: {
         {
           method: "GET"
           orig: "/artwork-place-qualifiers"
-          parts: [
-            "artwork-place-qualifiers"
+          segments: [
+            {
+              lit: "artwork-place-qualifiers"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -101,9 +103,13 @@ main: kit: entity: artwork_place_qualifier: {
           }
           method: "GET"
           orig: "/artwork-place-qualifiers/{id}"
-          parts: [
-            "artwork-place-qualifiers"
-            "{id}"
+          segments: [
+            {
+              lit: "artwork-place-qualifiers"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

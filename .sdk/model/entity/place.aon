@@ -92,8 +92,10 @@ main: kit: entity: place: {
         {
           method: "GET"
           orig: "/places"
-          parts: [
-            "places"
+          segments: [
+            {
+              lit: "places"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -119,9 +121,13 @@ main: kit: entity: place: {
           }
           method: "GET"
           orig: "/places/{id}"
-          parts: [
-            "places"
-            "{id}"
+          segments: [
+            {
+              lit: "places"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

@@ -116,8 +116,10 @@ main: kit: entity: agent: {
         {
           method: "GET"
           orig: "/agents"
-          parts: [
-            "agents"
+          segments: [
+            {
+              lit: "agents"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -127,8 +129,10 @@ main: kit: entity: agent: {
         {
           method: "GET"
           orig: "/artists"
-          parts: [
-            "artists"
+          segments: [
+            {
+              lit: "artists"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -154,9 +158,13 @@ main: kit: entity: agent: {
           }
           method: "GET"
           orig: "/agents/{id}"
-          parts: [
-            "agents"
-            "{id}"
+          segments: [
+            {
+              lit: "agents"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -182,9 +190,13 @@ main: kit: entity: agent: {
           }
           method: "GET"
           orig: "/artists/{id}"
-          parts: [
-            "artists"
-            "{id}"
+          segments: [
+            {
+              lit: "artists"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

@@ -152,8 +152,10 @@ main: kit: entity: sound: {
         {
           method: "GET"
           orig: "/mobile-sounds"
-          parts: [
-            "mobile-sounds"
+          segments: [
+            {
+              lit: "mobile-sounds"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -163,8 +165,10 @@ main: kit: entity: sound: {
         {
           method: "GET"
           orig: "/sounds"
-          parts: [
-            "sounds"
+          segments: [
+            {
+              lit: "sounds"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -190,9 +194,13 @@ main: kit: entity: sound: {
           }
           method: "GET"
           orig: "/mobile-sounds/{id}"
-          parts: [
-            "mobile-sounds"
-            "{id}"
+          segments: [
+            {
+              lit: "mobile-sounds"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -218,9 +226,13 @@ main: kit: entity: sound: {
           }
           method: "GET"
           orig: "/sounds/{id}"
-          parts: [
-            "sounds"
-            "{id}"
+          segments: [
+            {
+              lit: "sounds"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

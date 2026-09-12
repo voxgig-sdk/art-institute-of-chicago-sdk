@@ -80,8 +80,10 @@ main: kit: entity: article: {
         {
           method: "GET"
           orig: "/articles"
-          parts: [
-            "articles"
+          segments: [
+            {
+              lit: "articles"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -107,9 +109,13 @@ main: kit: entity: article: {
           }
           method: "GET"
           orig: "/articles/{id}"
-          parts: [
-            "articles"
-            "{id}"
+          segments: [
+            {
+              lit: "articles"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

@@ -122,8 +122,10 @@ main: kit: entity: tour: {
         {
           method: "GET"
           orig: "/tours"
-          parts: [
-            "tours"
+          segments: [
+            {
+              lit: "tours"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -149,9 +151,13 @@ main: kit: entity: tour: {
           }
           method: "GET"
           orig: "/tours/{id}"
-          parts: [
-            "tours"
-            "{id}"
+          segments: [
+            {
+              lit: "tours"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

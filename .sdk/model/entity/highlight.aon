@@ -80,8 +80,10 @@ main: kit: entity: highlight: {
         {
           method: "GET"
           orig: "/highlights"
-          parts: [
-            "highlights"
+          segments: [
+            {
+              lit: "highlights"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -107,9 +109,13 @@ main: kit: entity: highlight: {
           }
           method: "GET"
           orig: "/highlights/{id}"
-          parts: [
-            "highlights"
-            "{id}"
+          segments: [
+            {
+              lit: "highlights"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

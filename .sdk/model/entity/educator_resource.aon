@@ -86,8 +86,10 @@ main: kit: entity: educator_resource: {
         {
           method: "GET"
           orig: "/educator-resources"
-          parts: [
-            "educator-resources"
+          segments: [
+            {
+              lit: "educator-resources"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -113,9 +115,13 @@ main: kit: entity: educator_resource: {
           }
           method: "GET"
           orig: "/educator-resources/{id}"
-          parts: [
-            "educator-resources"
-            "{id}"
+          segments: [
+            {
+              lit: "educator-resources"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

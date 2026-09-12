@@ -86,8 +86,10 @@ main: kit: entity: printed_publication: {
         {
           method: "GET"
           orig: "/printed-publications"
-          parts: [
-            "printed-publications"
+          segments: [
+            {
+              lit: "printed-publications"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -113,9 +115,13 @@ main: kit: entity: printed_publication: {
           }
           method: "GET"
           orig: "/printed-publications/{id}"
-          parts: [
-            "printed-publications"
-            "{id}"
+          segments: [
+            {
+              lit: "printed-publications"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

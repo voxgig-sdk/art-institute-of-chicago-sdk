@@ -74,8 +74,10 @@ main: kit: entity: agent_role: {
         {
           method: "GET"
           orig: "/agent-roles"
-          parts: [
-            "agent-roles"
+          segments: [
+            {
+              lit: "agent-roles"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -101,9 +103,13 @@ main: kit: entity: agent_role: {
           }
           method: "GET"
           orig: "/agent-roles/{id}"
-          parts: [
-            "agent-roles"
-            "{id}"
+          segments: [
+            {
+              lit: "agent-roles"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

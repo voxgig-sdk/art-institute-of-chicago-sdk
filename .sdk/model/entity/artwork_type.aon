@@ -80,8 +80,10 @@ main: kit: entity: artwork_type: {
         {
           method: "GET"
           orig: "/artwork-types"
-          parts: [
-            "artwork-types"
+          segments: [
+            {
+              lit: "artwork-types"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -107,9 +109,13 @@ main: kit: entity: artwork_type: {
           }
           method: "GET"
           orig: "/artwork-types/{id}"
-          parts: [
-            "artwork-types"
-            "{id}"
+          segments: [
+            {
+              lit: "artwork-types"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

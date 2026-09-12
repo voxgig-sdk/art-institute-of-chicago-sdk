@@ -80,8 +80,10 @@ main: kit: entity: static_page: {
         {
           method: "GET"
           orig: "/static-pages"
-          parts: [
-            "static-pages"
+          segments: [
+            {
+              lit: "static-pages"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -107,9 +109,13 @@ main: kit: entity: static_page: {
           }
           method: "GET"
           orig: "/static-pages/{id}"
-          parts: [
-            "static-pages"
-            "{id}"
+          segments: [
+            {
+              lit: "static-pages"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

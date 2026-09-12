@@ -98,7 +98,7 @@ func TestPublicationEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		publicationRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.publication", setup.data)))
+		publicationRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.publication")))
 		var publicationRef01Data map[string]any
 		if len(publicationRef01DataRaw) > 0 {
 			publicationRef01Data = core.ToMapAny(publicationRef01DataRaw[0][1])
@@ -163,7 +163,7 @@ func publicationBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"publication01", "publication02", "publication03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -191,10 +191,22 @@ func publicationBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["ART_INSTITUTE_OF_CHICAGO_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewArtInstituteOfChicagoSDK(core.ToMapAny(mergedOpts))
 	}

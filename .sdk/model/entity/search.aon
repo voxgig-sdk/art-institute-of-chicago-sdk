@@ -120,9 +120,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/agents/search"
-          parts: [
-            "agents"
-            "search"
+          segments: [
+            {
+              lit: "agents"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -188,9 +192,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/articles/search"
-          parts: [
-            "articles"
-            "search"
+          segments: [
+            {
+              lit: "articles"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -256,9 +264,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/artworks/search"
-          parts: [
-            "artworks"
-            "search"
+          segments: [
+            {
+              lit: "artworks"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -324,9 +336,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/category-terms/search"
-          parts: [
-            "category-terms"
-            "search"
+          segments: [
+            {
+              lit: "category-terms"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -392,9 +408,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/digital-publication-articles/search"
-          parts: [
-            "digital-publication-articles"
-            "search"
+          segments: [
+            {
+              lit: "digital-publication-articles"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -460,9 +480,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/digital-publications/search"
-          parts: [
-            "digital-publications"
-            "search"
+          segments: [
+            {
+              lit: "digital-publications"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -528,9 +552,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/educator-resources/search"
-          parts: [
-            "educator-resources"
-            "search"
+          segments: [
+            {
+              lit: "educator-resources"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -596,9 +624,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/event-occurrences/search"
-          parts: [
-            "event-occurrences"
-            "search"
+          segments: [
+            {
+              lit: "event-occurrences"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -664,9 +696,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/event-programs/search"
-          parts: [
-            "event-programs"
-            "search"
+          segments: [
+            {
+              lit: "event-programs"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -732,9 +768,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/events/search"
-          parts: [
-            "events"
-            "search"
+          segments: [
+            {
+              lit: "events"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -800,9 +840,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/exhibitions/search"
-          parts: [
-            "exhibitions"
-            "search"
+          segments: [
+            {
+              lit: "exhibitions"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -868,9 +912,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/galleries/search"
-          parts: [
-            "galleries"
-            "search"
+          segments: [
+            {
+              lit: "galleries"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -936,9 +984,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/generic-pages/search"
-          parts: [
-            "generic-pages"
-            "search"
+          segments: [
+            {
+              lit: "generic-pages"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -1004,9 +1056,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/highlights/search"
-          parts: [
-            "highlights"
-            "search"
+          segments: [
+            {
+              lit: "highlights"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -1072,9 +1128,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/hours/search"
-          parts: [
-            "hours"
-            "search"
+          segments: [
+            {
+              lit: "hours"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -1140,9 +1200,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/images/search"
-          parts: [
-            "images"
-            "search"
+          segments: [
+            {
+              lit: "images"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -1208,9 +1272,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/landing-pages/search"
-          parts: [
-            "landing-pages"
-            "search"
+          segments: [
+            {
+              lit: "landing-pages"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -1276,9 +1344,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/mobile-sounds/search"
-          parts: [
-            "mobile-sounds"
-            "search"
+          segments: [
+            {
+              lit: "mobile-sounds"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -1344,9 +1416,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/places/search"
-          parts: [
-            "places"
-            "search"
+          segments: [
+            {
+              lit: "places"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -1412,9 +1488,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/press-releases/search"
-          parts: [
-            "press-releases"
-            "search"
+          segments: [
+            {
+              lit: "press-releases"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -1480,9 +1560,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/printed-publications/search"
-          parts: [
-            "printed-publications"
-            "search"
+          segments: [
+            {
+              lit: "printed-publications"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -1548,9 +1632,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/products/search"
-          parts: [
-            "products"
-            "search"
+          segments: [
+            {
+              lit: "products"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -1616,9 +1704,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/publications/search"
-          parts: [
-            "publications"
-            "search"
+          segments: [
+            {
+              lit: "publications"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -1684,8 +1776,10 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/search"
-          parts: [
-            "search"
+          segments: [
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -1751,9 +1845,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/sections/search"
-          parts: [
-            "sections"
-            "search"
+          segments: [
+            {
+              lit: "sections"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -1819,9 +1917,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/sites/search"
-          parts: [
-            "sites"
-            "search"
+          segments: [
+            {
+              lit: "sites"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -1887,9 +1989,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/sounds/search"
-          parts: [
-            "sounds"
-            "search"
+          segments: [
+            {
+              lit: "sounds"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -1955,9 +2061,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/static-pages/search"
-          parts: [
-            "static-pages"
-            "search"
+          segments: [
+            {
+              lit: "static-pages"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -2023,9 +2133,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/texts/search"
-          parts: [
-            "texts"
-            "search"
+          segments: [
+            {
+              lit: "texts"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -2091,9 +2205,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/tours/search"
-          parts: [
-            "tours"
-            "search"
+          segments: [
+            {
+              lit: "tours"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -2159,9 +2277,13 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/videos/search"
-          parts: [
-            "videos"
-            "search"
+          segments: [
+            {
+              lit: "videos"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [

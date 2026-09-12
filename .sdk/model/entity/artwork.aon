@@ -644,8 +644,10 @@ main: kit: entity: artwork: {
         {
           method: "GET"
           orig: "/artworks"
-          parts: [
-            "artworks"
+          segments: [
+            {
+              lit: "artworks"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -671,9 +673,13 @@ main: kit: entity: artwork: {
           }
           method: "GET"
           orig: "/artworks/{id}"
-          parts: [
-            "artworks"
-            "{id}"
+          segments: [
+            {
+              lit: "artworks"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

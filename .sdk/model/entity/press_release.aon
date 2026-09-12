@@ -86,8 +86,10 @@ main: kit: entity: press_release: {
         {
           method: "GET"
           orig: "/press-releases"
-          parts: [
-            "press-releases"
+          segments: [
+            {
+              lit: "press-releases"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -113,9 +115,13 @@ main: kit: entity: press_release: {
           }
           method: "GET"
           orig: "/press-releases/{id}"
-          parts: [
-            "press-releases"
-            "{id}"
+          segments: [
+            {
+              lit: "press-releases"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
