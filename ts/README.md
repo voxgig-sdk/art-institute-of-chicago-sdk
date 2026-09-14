@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { ArtInstituteOfChicagoSDK } from '@voxgig-sdk/art-institute-of-chicago'
+import { ArtInstituteOfChicagoSDK } from '@voxgig-sdk/art-institute-of-chicago-sdk'
 
 const client = new ArtInstituteOfChicagoSDK()
 ```
@@ -3058,7 +3058,7 @@ art-institute-of-chicago/
 Import the SDK from the package root:
 
 ```ts
-import { ArtInstituteOfChicagoSDK } from '@voxgig-sdk/art-institute-of-chicago'
+import { ArtInstituteOfChicagoSDK } from '@voxgig-sdk/art-institute-of-chicago-sdk'
 ```
 
 ### Entity state

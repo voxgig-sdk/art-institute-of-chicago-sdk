@@ -105,7 +105,7 @@ local results, err = client:Publication():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/art-institute-of-chicago` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases) |
+| TypeScript | `@voxgig-sdk/art-institute-of-chicago-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases) |
 | Python | `voxgig-sdk-art-institute-of-chicago` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases) |
 | PHP | `voxgig-sdk/art-institute-of-chicago` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/art-institute-of-chicago-sdk/go` | `go get github.com/voxgig-sdk/art-institute-of-chicago-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Publication():list()
 ### TypeScript
 
 ```ts
-import { ArtInstituteOfChicagoSDK } from '@voxgig-sdk/art-institute-of-chicago'
+import { ArtInstituteOfChicagoSDK } from '@voxgig-sdk/art-institute-of-chicago-sdk'
 
 const client = new ArtInstituteOfChicagoSDK()
 
