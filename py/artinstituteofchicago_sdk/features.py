@@ -1,12 +1,18 @@
 # ArtInstituteOfChicago SDK feature factory
 
 from artinstituteofchicago_sdk.feature.base_feature import ArtInstituteOfChicagoBaseFeature
+from artinstituteofchicago_sdk.feature.ratelimit_feature import ArtInstituteOfChicagoRatelimitFeature
+from artinstituteofchicago_sdk.feature.retry_feature import ArtInstituteOfChicagoRetryFeature
 from artinstituteofchicago_sdk.feature.test_feature import ArtInstituteOfChicagoTestFeature
+from artinstituteofchicago_sdk.feature.timeout_feature import ArtInstituteOfChicagoTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: ArtInstituteOfChicagoBaseFeature(),
+    "ratelimit": lambda: ArtInstituteOfChicagoRatelimitFeature(),
+    "retry": lambda: ArtInstituteOfChicagoRetryFeature(),
     "test": lambda: ArtInstituteOfChicagoTestFeature(),
+    "timeout": lambda: ArtInstituteOfChicagoTimeoutFeature(),
 }
 
 

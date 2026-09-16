@@ -49,5 +49,3668 @@
         "title": "s170"
       }
     }
+  },
+  "requests": {
+    "GET /agents/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /articles/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /artworks/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /category-terms/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /digital-publication-articles/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /digital-publications/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /educator-resources/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /event-occurrences/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /event-programs/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /events/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /exhibitions/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /galleries/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /generic-pages/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /highlights/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /hours/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /images/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /landing-pages/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /mobile-sounds/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /places/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /press-releases/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /printed-publications/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /products/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /publications/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /sections/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /sites/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /sounds/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /static-pages/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /texts/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /tours/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /videos/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "Your search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "For complex queries, you can pass Elasticsearch domain syntax queries here",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Used in conjunction with `query`",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Starting point of results. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results to return. Pagination via Elasticsearch conventions",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A comma-separated list of 'count' aggregation facets to include in the results.",
+            "in": "query",
+            "name": "facets",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "_score": {
+                    "description": "Search index ranking of the result"
+                  },
+                  "api_id": {
+                    "description": "API unique identifier"
+                  },
+                  "api_link": {
+                    "description": "URL to this recource in the API"
+                  },
+                  "api_model": {
+                    "description": "Name of the model the resource represents"
+                  },
+                  "id": {
+                    "description": "Unique identifier within the search index"
+                  },
+                  "is_boosted": {
+                    "description": "Whether this record has been flagged to be boosted"
+                  },
+                  "thumbnail": {
+                    "description": "Metadata on the image representing this record"
+                  },
+                  "timestamp": {
+                    "description": "Date this record was last updated in the API"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

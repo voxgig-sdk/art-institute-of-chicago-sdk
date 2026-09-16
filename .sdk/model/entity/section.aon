@@ -114,6 +114,12 @@ main: kit: entity: section: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /sections"
+            json: "{\"parameters\":[],\"produces\":[\"application/json\"],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"accession\":{\"description\":\"An accession number parsed from the title or tombstone\"},\"api_link\":{\"description\":\"REST API link for this resource\"},\"api_model\":{\"description\":\"REST API resource type or endpoint\"},\"artwork_id\":{\"description\":\"Unique identifier of the artwork with which this section is associated\"},\"content\":{\"description\":\"Content of this section in plaintext\"},\"generic_page_id\":{\"description\":\"Unique identifier of the page on the website that represents the publication this section belongs to\"},\"id\":{\"description\":\"Unique identifier of this resource. Taken from the source system.\"},\"publication_id\":{\"description\":\"Unique identifier of the publication this section belongs to\"},\"publication_title\":{\"description\":\"Name of the publication this section belongs to\"},\"source_updated_at\":{\"description\":\"Date and time the resource was updated in the source system\"},\"suggest_autocomplete_all\":{\"description\":\"Internal field to power the `/autosuggest` endpoint. Do not use directly.\"},\"suggest_autocomplete_boosted\":{\"description\":\"Internal field to power the `/autocomplete` endpoint. Do not use directly.\"},\"timestamp\":{\"description\":\"Date and time the record was updated in the aggregator search index\"},\"title\":{\"description\":\"The name of this resource\"},\"updated_at\":{\"description\":\"Date and time the record was updated in the aggregator database\"},\"web_url\":{\"description\":\"URL to the section\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/sections"
           segments: [
@@ -142,6 +148,12 @@ main: kit: entity: section: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /sections/{id}"
+            json: "{\"parameters\":[{\"in\":\"path\",\"name\":\"id\",\"required\":true,\"type\":\"string\"}],\"produces\":[\"application/json\"],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"accession\":{\"description\":\"An accession number parsed from the title or tombstone\"},\"api_link\":{\"description\":\"REST API link for this resource\"},\"api_model\":{\"description\":\"REST API resource type or endpoint\"},\"artwork_id\":{\"description\":\"Unique identifier of the artwork with which this section is associated\"},\"content\":{\"description\":\"Content of this section in plaintext\"},\"generic_page_id\":{\"description\":\"Unique identifier of the page on the website that represents the publication this section belongs to\"},\"id\":{\"description\":\"Unique identifier of this resource. Taken from the source system.\"},\"publication_id\":{\"description\":\"Unique identifier of the publication this section belongs to\"},\"publication_title\":{\"description\":\"Name of the publication this section belongs to\"},\"source_updated_at\":{\"description\":\"Date and time the resource was updated in the source system\"},\"suggest_autocomplete_all\":{\"description\":\"Internal field to power the `/autosuggest` endpoint. Do not use directly.\"},\"suggest_autocomplete_boosted\":{\"description\":\"Internal field to power the `/autocomplete` endpoint. Do not use directly.\"},\"timestamp\":{\"description\":\"Date and time the record was updated in the aggregator search index\"},\"title\":{\"description\":\"The name of this resource\"},\"updated_at\":{\"description\":\"Date and time the record was updated in the aggregator database\"},\"web_url\":{\"description\":\"URL to the section\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/sections/{id}"

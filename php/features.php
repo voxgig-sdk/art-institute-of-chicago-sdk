@@ -4,7 +4,10 @@ declare(strict_types=1);
 // ArtInstituteOfChicago SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class ArtInstituteOfChicagoFeatures
@@ -14,8 +17,14 @@ class ArtInstituteOfChicagoFeatures
         switch ($name) {
             case "base":
                 return new ArtInstituteOfChicagoBaseFeature();
+            case "ratelimit":
+                return new ArtInstituteOfChicagoRatelimitFeature();
+            case "retry":
+                return new ArtInstituteOfChicagoRetryFeature();
             case "test":
                 return new ArtInstituteOfChicagoTestFeature();
+            case "timeout":
+                return new ArtInstituteOfChicagoTimeoutFeature();
             default:
                 return new ArtInstituteOfChicagoBaseFeature();
         }
@@ -31,7 +40,10 @@ class ArtInstituteOfChicagoFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

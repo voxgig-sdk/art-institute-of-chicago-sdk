@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { ArtInstituteOfChicagoSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('ExhibitionEntity', async () => {
 
     const live = 'TRUE' === process.env.ART_INSTITUTE_OF_CHICAGO_TEST_LIVE
     for (const op of ['list', 'load']) {
-      if (maybeSkipControl(t, 'entityOp', 'exhibition.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'exhibition.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set ART_INSTITUTE_OF_CHICAGO_TEST_EXHIBITION_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"aic_end_at","req":false,"short":"Date the exhibition closed at the Art Institute of Chicago","type":"`$ANY`","index$":0},{"active":true,"name":"aic_start_at","req":false,"short":"Date the exhibition opened at the Art Institute of Chicago","type":"`$ANY`","index$":1},{"active":true,"name":"alt_image_ids","req":false,"short":"Unique identifiers of all non-preferred images of this exhibition.","type":"`$ANY`","index$":2},{"active":true,"name":"api_link","req":false,"short":"REST API link for this resource","type":"`$ANY`","index$":3},{"active":true,"name":"api_model","req":false,"short":"REST API resource type or endpoint","type":"`$ANY`","index$":4},{"active":true,"name":"artist_ids","req":false,"short":"Unique identifiers of the artist agent records representing who was shown in the exhibition","type":"`$ANY`","index$":5},{"active":true,"name":"artwork_ids","req":false,"short":"Unique identifiers of the artworks that were part of the exhibition","type":"`$ANY`","index$":6},{"active":true,"name":"artwork_titles","req":false,"short":"Names of the artworks that were part of the exhibition","type":"`$ANY`","index$":7},{"active":true,"name":"document_ids","req":false,"short":"Unique identifiers of assets that serve as documentation for this exhibition","type":"`$ANY`","index$":8},{"active":true,"name":"gallery_id","req":false,"short":"Unique identifier of the gallery that mainly housed the exhibition","type":"`$STRING`","index$":9},{"active":true,"name":"gallery_title","req":false,"short":"The name of the gallery that mainly housed the exhibition","type":"`$ANY`","index$":10},{"active":true,"name":"id","req":false,"short":"Unique identifier of this resource.","type":"`$STRING`","index$":11},{"active":true,"name":"image_id","req":false,"short":"Unique identifier of the preferred image to use to represent this exhibition","type":"`$STRING`","index$":12},{"active":true,"name":"image_url","req":false,"short":"URL to the hero image from the website","type":"`$ANY`","index$":13},{"active":true,"name":"is_featured","req":false,"short":"Is this exhibition currently featured on our website?","type":"`$BOOLEAN`","index$":14},{"active":true,"name":"is_published","req":false,"short":"Is this exhibition currently published on our website?","type":"`$BOOLEAN`","index$":15},{"active":true,"name":"position","req":false,"short":"Numering position represnting the order in which this exhibition is featured on the website","type":"`$ANY`","index$":16},{"active":true,"name":"short_description","req":false,"short":"Brief explanation of what this exhibition is","type":"`$ANY`","index$":17},{"active":true,"name":"site_ids","req":false,"short":"Unique identifiers of the microsites this exhibition is a part of","type":"`$ANY`","index$":18},{"active":true,"name":"source_updated_at","req":false,"short":"Date and time the resource was updated in the source system","type":"`$ANY`","index$":19},{"active":true,"name":"status","req":false,"short":"Whether the exhibition is open or closed","type":"`$ANY`","index$":20},{"active":true,"name":"suggest_autocomplete_all","req":false,"short":"Internal field to power the `/autosuggest` endpoint.","type":"`$ANY`","index$":21},{"active":true,"name":"suggest_autocomplete_boosted","req":false,"short":"Internal field to power the `/autocomplete` endpoint.","type":"`$ANY`","index$":22},{"active":true,"name":"timestamp","req":false,"short":"Date and time the record was updated in the aggregator search index","type":"`$ANY`","index$":23},{"active":true,"name":"title","req":false,"short":"The name of this resource","type":"`$STRING`","index$":24},{"active":true,"name":"updated_at","req":false,"short":"Date and time the record was updated in the aggregator database","type":"`$ANY`","index$":25},{"active":true,"name":"web_url","req":false,"short":"URL to this exhibition on our website","type":"`$ANY`","index$":26}],"id":{"field":"id","name":"id"},"name":"exhibition","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{},"contract":{"id":"GET /exhibitions","json":"{\"parameters\":[],\"produces\":[\"application/json\"],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"aic_end_at\":{\"description\":\"Date the exhibition closed at the Art Institute of Chicago\"},\"aic_start_at\":{\"description\":\"Date the exhibition opened at the Art Institute of Chicago\"},\"alt_image_ids\":{\"description\":\"Unique identifiers of all non-preferred images of this exhibition.\"},\"api_link\":{\"description\":\"REST API link for this resource\"},\"api_model\":{\"description\":\"REST API resource type or endpoint\"},\"artist_ids\":{\"description\":\"Unique identifiers of the artist agent records representing who was shown in the exhibition\"},\"artwork_ids\":{\"description\":\"Unique identifiers of the artworks that were part of the exhibition\"},\"artwork_titles\":{\"description\":\"Names of the artworks that were part of the exhibition\"},\"document_ids\":{\"description\":\"Unique identifiers of assets that serve as documentation for this exhibition\"},\"gallery_id\":{\"description\":\"Unique identifier of the gallery that mainly housed the exhibition\"},\"gallery_title\":{\"description\":\"The name of the gallery that mainly housed the exhibition\"},\"id\":{\"description\":\"Unique identifier of this resource. Taken from the source system.\"},\"image_id\":{\"description\":\"Unique identifier of the preferred image to use to represent this exhibition\"},\"image_url\":{\"description\":\"URL to the hero image from the website\"},\"is_featured\":{\"description\":\"Is this exhibition currently featured on our website?\"},\"is_published\":{\"description\":\"Is this exhibition currently published on our website? Only relevant for non-past exhibitions.\"},\"position\":{\"description\":\"Numering position represnting the order in which this exhibition is featured on the website\"},\"short_description\":{\"description\":\"Brief explanation of what this exhibition is\"},\"site_ids\":{\"description\":\"Unique identifiers of the microsites this exhibition is a part of\"},\"source_updated_at\":{\"description\":\"Date and time the resource was updated in the source system\"},\"status\":{\"description\":\"Whether the exhibition is open or closed\"},\"suggest_autocomplete_all\":{\"description\":\"Internal field to power the `/autosuggest` endpoint. Do not use directly.\"},\"suggest_autocomplete_boosted\":{\"description\":\"Internal field to power the `/autocomplete` endpoint. Do not use directly.\"},\"timestamp\":{\"description\":\"Date and time the record was updated in the aggregator search index\"},\"title\":{\"description\":\"The name of this resource\"},\"updated_at\":{\"description\":\"Date and time the record was updated in the aggregator database\"},\"web_url\":{\"description\":\"URL to this exhibition on our website\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/exhibitions","segments":[{"lit":"exhibitions"}],"select":{},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"kind":"param","name":"id","orig":"id","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /exhibitions/{id}","json":"{\"parameters\":[{\"in\":\"path\",\"name\":\"id\",\"required\":true,\"type\":\"string\"}],\"produces\":[\"application/json\"],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"aic_end_at\":{\"description\":\"Date the exhibition closed at the Art Institute of Chicago\"},\"aic_start_at\":{\"description\":\"Date the exhibition opened at the Art Institute of Chicago\"},\"alt_image_ids\":{\"description\":\"Unique identifiers of all non-preferred images of this exhibition.\"},\"api_link\":{\"description\":\"REST API link for this resource\"},\"api_model\":{\"description\":\"REST API resource type or endpoint\"},\"artist_ids\":{\"description\":\"Unique identifiers of the artist agent records representing who was shown in the exhibition\"},\"artwork_ids\":{\"description\":\"Unique identifiers of the artworks that were part of the exhibition\"},\"artwork_titles\":{\"description\":\"Names of the artworks that were part of the exhibition\"},\"document_ids\":{\"description\":\"Unique identifiers of assets that serve as documentation for this exhibition\"},\"gallery_id\":{\"description\":\"Unique identifier of the gallery that mainly housed the exhibition\"},\"gallery_title\":{\"description\":\"The name of the gallery that mainly housed the exhibition\"},\"id\":{\"description\":\"Unique identifier of this resource. Taken from the source system.\"},\"image_id\":{\"description\":\"Unique identifier of the preferred image to use to represent this exhibition\"},\"image_url\":{\"description\":\"URL to the hero image from the website\"},\"is_featured\":{\"description\":\"Is this exhibition currently featured on our website?\"},\"is_published\":{\"description\":\"Is this exhibition currently published on our website? Only relevant for non-past exhibitions.\"},\"position\":{\"description\":\"Numering position represnting the order in which this exhibition is featured on the website\"},\"short_description\":{\"description\":\"Brief explanation of what this exhibition is\"},\"site_ids\":{\"description\":\"Unique identifiers of the microsites this exhibition is a part of\"},\"source_updated_at\":{\"description\":\"Date and time the resource was updated in the source system\"},\"status\":{\"description\":\"Whether the exhibition is open or closed\"},\"suggest_autocomplete_all\":{\"description\":\"Internal field to power the `/autosuggest` endpoint. Do not use directly.\"},\"suggest_autocomplete_boosted\":{\"description\":\"Internal field to power the `/autocomplete` endpoint. Do not use directly.\"},\"timestamp\":{\"description\":\"Date and time the record was updated in the aggregator search index\"},\"title\":{\"description\":\"The name of this resource\"},\"updated_at\":{\"description\":\"Date and time the record was updated in the aggregator database\"},\"web_url\":{\"description\":\"URL to this exhibition on our website\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/exhibitions/{id}","segments":[{"lit":"exhibitions"},{"var":"id"}],"select":{"exist":["id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"exhibition","name__orig":"exhibition","Name":"Exhibition","name_":"exhibition","name-":"exhibition","NAME":"EXHIBITION","index$":15}, {"active":true,"entity":"exhibition","key$":"BasicExhibitionFlow","kind":"basic","name":"BasicExhibitionFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"exhibition_ref01"}}],"index$":0},{"active":true,"data":{},"input":{"ref":"exhibition_ref01","srcdatavar":"exhibition_ref01_data","suffix":"_dt0"},"match":{"id":"exhibition01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-exhibition_ref01"}}],"index$":1}]}, 'Exhibition')
     }
     const client = setup.client
     const struct = setup.struct
@@ -116,13 +115,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['ART_INSTITUTE_OF_CHICAGO_TEST_EXHIBITION_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'ART_INSTITUTE_OF_CHICAGO_TEST_EXHIBITION_ENTID': idmap,
     'ART_INSTITUTE_OF_CHICAGO_TEST_LIVE': 'FALSE',
@@ -133,7 +125,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.ART_INSTITUTE_OF_CHICAGO_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['ART_INSTITUTE_OF_CHICAGO_TEST_EXHIBITION_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new ArtInstituteOfChicagoSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -145,7 +143,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -158,7 +157,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.ART_INSTITUTE_OF_CHICAGO_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

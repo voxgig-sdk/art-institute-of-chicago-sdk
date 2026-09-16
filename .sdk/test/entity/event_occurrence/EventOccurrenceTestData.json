@@ -113,5 +113,254 @@
         "updated_at": "s400"
       }
     }
+  },
+  "requests": {
+    "GET /event-occurrences": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "api_link": {
+                    "description": "REST API link for this resource"
+                  },
+                  "api_model": {
+                    "description": "REST API resource type or endpoint"
+                  },
+                  "button_caption": {
+                    "description": "Additional text below the ticket/registration button"
+                  },
+                  "button_text": {
+                    "description": "The text used on the ticket/registration button"
+                  },
+                  "button_url": {
+                    "description": "The URL to the sales site or an RSVP link for this event"
+                  },
+                  "description": {
+                    "description": "Description of the event"
+                  },
+                  "end_at": {
+                    "description": "The date the event occurrence ends"
+                  },
+                  "event_id": {
+                    "description": "Identifier of the master event of which this is an occurrence"
+                  },
+                  "id": {
+                    "description": "Unique identifier of this resource. Taken from the source system."
+                  },
+                  "image_url": {
+                    "description": "The URL of an image representing this page"
+                  },
+                  "is_private": {
+                    "description": "Whether the event is private. Private events should be omitted from listings."
+                  },
+                  "is_sales_button_hidden": {
+                    "description": "Whether the buy tickets button is hidden on the website event page"
+                  },
+                  "is_ticketed": {
+                    "description": "Whether a ticket is required to attend the event"
+                  },
+                  "location": {
+                    "description": "Where the event takes place"
+                  },
+                  "off_sale_at": {
+                    "description": "Date and time the event goes off sale"
+                  },
+                  "on_sale_at": {
+                    "description": "Date and time the event goes on sale"
+                  },
+                  "short_description": {
+                    "description": "Brief description of the event"
+                  },
+                  "source_updated_at": {
+                    "description": "Date and time the resource was updated in the source system"
+                  },
+                  "start_at": {
+                    "description": "The date the event occurrence begins"
+                  },
+                  "suggest_autocomplete_all": {
+                    "description": "Internal field to power the `/autosuggest` endpoint. Do not use directly."
+                  },
+                  "suggest_autocomplete_boosted": {
+                    "description": "Internal field to power the `/autocomplete` endpoint. Do not use directly."
+                  },
+                  "timestamp": {
+                    "description": "Date and time the record was updated in the aggregator search index"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  },
+                  "title_display": {
+                    "description": "The name of this event formatted with HTML (optional)"
+                  },
+                  "updated_at": {
+                    "description": "Date and time the record was updated in the aggregator database"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /event-occurrences/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "api_link": {
+                    "description": "REST API link for this resource"
+                  },
+                  "api_model": {
+                    "description": "REST API resource type or endpoint"
+                  },
+                  "button_caption": {
+                    "description": "Additional text below the ticket/registration button"
+                  },
+                  "button_text": {
+                    "description": "The text used on the ticket/registration button"
+                  },
+                  "button_url": {
+                    "description": "The URL to the sales site or an RSVP link for this event"
+                  },
+                  "description": {
+                    "description": "Description of the event"
+                  },
+                  "end_at": {
+                    "description": "The date the event occurrence ends"
+                  },
+                  "event_id": {
+                    "description": "Identifier of the master event of which this is an occurrence"
+                  },
+                  "id": {
+                    "description": "Unique identifier of this resource. Taken from the source system."
+                  },
+                  "image_url": {
+                    "description": "The URL of an image representing this page"
+                  },
+                  "is_private": {
+                    "description": "Whether the event is private. Private events should be omitted from listings."
+                  },
+                  "is_sales_button_hidden": {
+                    "description": "Whether the buy tickets button is hidden on the website event page"
+                  },
+                  "is_ticketed": {
+                    "description": "Whether a ticket is required to attend the event"
+                  },
+                  "location": {
+                    "description": "Where the event takes place"
+                  },
+                  "off_sale_at": {
+                    "description": "Date and time the event goes off sale"
+                  },
+                  "on_sale_at": {
+                    "description": "Date and time the event goes on sale"
+                  },
+                  "short_description": {
+                    "description": "Brief description of the event"
+                  },
+                  "source_updated_at": {
+                    "description": "Date and time the resource was updated in the source system"
+                  },
+                  "start_at": {
+                    "description": "The date the event occurrence begins"
+                  },
+                  "suggest_autocomplete_all": {
+                    "description": "Internal field to power the `/autosuggest` endpoint. Do not use directly."
+                  },
+                  "suggest_autocomplete_boosted": {
+                    "description": "Internal field to power the `/autocomplete` endpoint. Do not use directly."
+                  },
+                  "timestamp": {
+                    "description": "Date and time the record was updated in the aggregator search index"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  },
+                  "title_display": {
+                    "description": "The name of this event formatted with HTML (optional)"
+                  },
+                  "updated_at": {
+                    "description": "Date and time the record was updated in the aggregator database"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

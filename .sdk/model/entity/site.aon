@@ -108,6 +108,12 @@ main: kit: entity: site: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /sites"
+            json: "{\"parameters\":[],\"produces\":[\"application/json\"],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"api_link\":{\"description\":\"REST API link for this resource\"},\"api_model\":{\"description\":\"REST API resource type or endpoint\"},\"artwork_ids\":{\"description\":\"Unique identifiers of the artworks this site is associated with\"},\"artwork_titles\":{\"description\":\"Names of the artworks this site is associated with\"},\"description\":{\"description\":\"Explanation of what this site is\"},\"exhibition_ids\":{\"description\":\"Unique identifier of the exhibitions this site is associated with\"},\"exhibition_titles\":{\"description\":\"Names of the exhibitions this site is associated with\"},\"id\":{\"description\":\"Unique identifier of this resource. Taken from the source system.\"},\"source_updated_at\":{\"description\":\"Date and time the resource was updated in the source system\"},\"suggest_autocomplete_all\":{\"description\":\"Internal field to power the `/autosuggest` endpoint. Do not use directly.\"},\"suggest_autocomplete_boosted\":{\"description\":\"Internal field to power the `/autocomplete` endpoint. Do not use directly.\"},\"timestamp\":{\"description\":\"Date and time the record was updated in the aggregator search index\"},\"title\":{\"description\":\"The name of this resource\"},\"updated_at\":{\"description\":\"Date and time the record was updated in the aggregator database\"},\"web_url\":{\"description\":\"URL to this site\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/sites"
           segments: [
@@ -136,6 +142,12 @@ main: kit: entity: site: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /sites/{id}"
+            json: "{\"parameters\":[{\"in\":\"path\",\"name\":\"id\",\"required\":true,\"type\":\"string\"}],\"produces\":[\"application/json\"],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"api_link\":{\"description\":\"REST API link for this resource\"},\"api_model\":{\"description\":\"REST API resource type or endpoint\"},\"artwork_ids\":{\"description\":\"Unique identifiers of the artworks this site is associated with\"},\"artwork_titles\":{\"description\":\"Names of the artworks this site is associated with\"},\"description\":{\"description\":\"Explanation of what this site is\"},\"exhibition_ids\":{\"description\":\"Unique identifier of the exhibitions this site is associated with\"},\"exhibition_titles\":{\"description\":\"Names of the exhibitions this site is associated with\"},\"id\":{\"description\":\"Unique identifier of this resource. Taken from the source system.\"},\"source_updated_at\":{\"description\":\"Date and time the resource was updated in the source system\"},\"suggest_autocomplete_all\":{\"description\":\"Internal field to power the `/autosuggest` endpoint. Do not use directly.\"},\"suggest_autocomplete_boosted\":{\"description\":\"Internal field to power the `/autocomplete` endpoint. Do not use directly.\"},\"timestamp\":{\"description\":\"Date and time the record was updated in the aggregator search index\"},\"title\":{\"description\":\"The name of this resource\"},\"updated_at\":{\"description\":\"Date and time the record was updated in the aggregator database\"},\"web_url\":{\"description\":\"URL to this site\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/sites/{id}"

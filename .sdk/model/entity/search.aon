@@ -118,6 +118,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /agents/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/agents/search"
           segments: [
@@ -189,6 +195,12 @@ main: kit: entity: search: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /articles/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/articles/search"
@@ -262,6 +274,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /artworks/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/artworks/search"
           segments: [
@@ -333,6 +351,12 @@ main: kit: entity: search: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /category-terms/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/category-terms/search"
@@ -406,6 +430,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /digital-publication-articles/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/digital-publication-articles/search"
           segments: [
@@ -477,6 +507,12 @@ main: kit: entity: search: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /digital-publications/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/digital-publications/search"
@@ -550,6 +586,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /educator-resources/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/educator-resources/search"
           segments: [
@@ -621,6 +663,12 @@ main: kit: entity: search: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /event-occurrences/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/event-occurrences/search"
@@ -694,6 +742,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /event-programs/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/event-programs/search"
           segments: [
@@ -765,6 +819,12 @@ main: kit: entity: search: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /events/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/events/search"
@@ -838,6 +898,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /exhibitions/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/exhibitions/search"
           segments: [
@@ -909,6 +975,12 @@ main: kit: entity: search: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /galleries/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/galleries/search"
@@ -982,6 +1054,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /generic-pages/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/generic-pages/search"
           segments: [
@@ -1053,6 +1131,12 @@ main: kit: entity: search: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /highlights/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/highlights/search"
@@ -1126,6 +1210,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /hours/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/hours/search"
           segments: [
@@ -1197,6 +1287,12 @@ main: kit: entity: search: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /images/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/images/search"
@@ -1270,6 +1366,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /landing-pages/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/landing-pages/search"
           segments: [
@@ -1341,6 +1443,12 @@ main: kit: entity: search: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /mobile-sounds/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/mobile-sounds/search"
@@ -1414,6 +1522,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /places/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/places/search"
           segments: [
@@ -1485,6 +1599,12 @@ main: kit: entity: search: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /press-releases/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/press-releases/search"
@@ -1558,6 +1678,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /printed-publications/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/printed-publications/search"
           segments: [
@@ -1629,6 +1755,12 @@ main: kit: entity: search: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /products/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/products/search"
@@ -1702,6 +1834,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /publications/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/publications/search"
           segments: [
@@ -1774,6 +1912,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"produces\":[\"application/json\"],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/search"
           segments: [
@@ -1842,6 +1986,12 @@ main: kit: entity: search: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /sections/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/sections/search"
@@ -1915,6 +2065,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /sites/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/sites/search"
           segments: [
@@ -1986,6 +2142,12 @@ main: kit: entity: search: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /sounds/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/sounds/search"
@@ -2059,6 +2221,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /static-pages/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/static-pages/search"
           segments: [
@@ -2130,6 +2298,12 @@ main: kit: entity: search: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /texts/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/texts/search"
@@ -2203,6 +2377,12 @@ main: kit: entity: search: {
               }
             ]
           }
+          contract: {
+            id: "GET /tours/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/tours/search"
           segments: [
@@ -2274,6 +2454,12 @@ main: kit: entity: search: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /videos/search"
+            json: "{\"parameters\":[{\"description\":\"Your search query\",\"in\":\"query\",\"name\":\"q\",\"schema\":{\"type\":\"string\"}},{\"description\":\"For complex queries, you can pass Elasticsearch domain syntax queries here\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Used in conjunction with `query`\",\"in\":\"query\",\"name\":\"sort\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Starting point of results. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"from\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return. Pagination via Elasticsearch conventions\",\"in\":\"query\",\"name\":\"size\",\"schema\":{\"type\":\"string\"}},{\"description\":\"A comma-separated list of 'count' aggregation facets to include in the results.\",\"in\":\"query\",\"name\":\"facets\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"_score\":{\"description\":\"Search index ranking of the result\"},\"api_id\":{\"description\":\"API unique identifier\"},\"api_link\":{\"description\":\"URL to this recource in the API\"},\"api_model\":{\"description\":\"Name of the model the resource represents\"},\"id\":{\"description\":\"Unique identifier within the search index\"},\"is_boosted\":{\"description\":\"Whether this record has been flagged to be boosted\"},\"thumbnail\":{\"description\":\"Metadata on the image representing this record\"},\"timestamp\":{\"description\":\"Date this record was last updated in the API\"},\"title\":{\"description\":\"The name of this resource\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/videos/search"

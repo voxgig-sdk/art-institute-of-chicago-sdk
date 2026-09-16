@@ -84,6 +84,12 @@ main: kit: entity: category_term: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /category-terms"
+            json: "{\"parameters\":[],\"produces\":[\"application/json\"],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"aat_id\":{\"description\":\"Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT)\"},\"api_link\":{\"description\":\"REST API link for this resource\"},\"api_model\":{\"description\":\"REST API resource type or endpoint\"},\"id\":{\"description\":\"Unique identifier of this resource. Taken from the source system.\"},\"parent_id\":{\"description\":\"Unique identifier of this category's parent\"},\"source_updated_at\":{\"description\":\"Date and time the resource was updated in the source system\"},\"subtype\":{\"description\":\"Takes one of the following values: classification, material, technique, style, subject, department, theme\"},\"suggest_autocomplete_all\":{\"description\":\"Internal field to power the `/autosuggest` endpoint. Do not use directly.\"},\"timestamp\":{\"description\":\"Date and time the record was updated in the aggregator search index\"},\"title\":{\"description\":\"The name of this resource\"},\"updated_at\":{\"description\":\"Date and time the record was updated in the aggregator database\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/category-terms"
           segments: [
@@ -112,6 +118,12 @@ main: kit: entity: category_term: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /category-terms/{id}"
+            json: "{\"parameters\":[{\"in\":\"path\",\"name\":\"id\",\"required\":true,\"type\":\"string\"}],\"produces\":[\"application/json\"],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"aat_id\":{\"description\":\"Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT)\"},\"api_link\":{\"description\":\"REST API link for this resource\"},\"api_model\":{\"description\":\"REST API resource type or endpoint\"},\"id\":{\"description\":\"Unique identifier of this resource. Taken from the source system.\"},\"parent_id\":{\"description\":\"Unique identifier of this category's parent\"},\"source_updated_at\":{\"description\":\"Date and time the resource was updated in the source system\"},\"subtype\":{\"description\":\"Takes one of the following values: classification, material, technique, style, subject, department, theme\"},\"suggest_autocomplete_all\":{\"description\":\"Internal field to power the `/autosuggest` endpoint. Do not use directly.\"},\"timestamp\":{\"description\":\"Date and time the record was updated in the aggregator search index\"},\"title\":{\"description\":\"The name of this resource\"},\"updated_at\":{\"description\":\"Date and time the record was updated in the aggregator database\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/category-terms/{id}"

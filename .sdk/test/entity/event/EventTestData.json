@@ -225,5 +225,422 @@
         "virtual_event_url": "s87c"
       }
     }
+  },
+  "requests": {
+    "GET /events": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "alt_audience_ids": {
+                    "description": "Unique identifiers indicating the alternate audiences for this event"
+                  },
+                  "alt_event_type_ids": {
+                    "description": "Unique identifiers indicating the alternate types of this event"
+                  },
+                  "api_link": {
+                    "description": "REST API link for this resource"
+                  },
+                  "api_model": {
+                    "description": "REST API resource type or endpoint"
+                  },
+                  "audience_id": {
+                    "description": "Unique identifier indicating the preferred audience for this event"
+                  },
+                  "buy_button_caption": {
+                    "description": "Additional text below the ticket/registration button"
+                  },
+                  "buy_button_text": {
+                    "description": "The text used on the ticket/registration button"
+                  },
+                  "date_display": {
+                    "description": "A readable display of the event dates"
+                  },
+                  "description": {
+                    "description": "All copytext of the event"
+                  },
+                  "door_time": {
+                    "description": "The time the doors open for this event"
+                  },
+                  "end_date": {
+                    "description": "The date the event ends"
+                  },
+                  "end_time": {
+                    "description": "The time the event ends"
+                  },
+                  "entrance": {
+                    "description": "Which entrance to use for this event"
+                  },
+                  "event_host_id": {
+                    "description": "Unique identifier of the host (cf. event programs) that is presenting this event"
+                  },
+                  "event_host_title": {
+                    "description": "Unique identifier of the host (cf. event programs) that is presenting this event"
+                  },
+                  "event_type_id": {
+                    "description": "Unique identifier indicating the preferred type of this event"
+                  },
+                  "header_description": {
+                    "description": "Brief description of the event displayed below the title"
+                  },
+                  "hero_caption": {
+                    "description": "Text displayed with the hero image on the event"
+                  },
+                  "id": {
+                    "description": "Unique identifier of this resource. Taken from the source system."
+                  },
+                  "image_url": {
+                    "description": "The URL of an image representing this page"
+                  },
+                  "is_admission_required": {
+                    "description": "Whether admission to the museum is required to attend this event"
+                  },
+                  "is_after_hours": {
+                    "description": "Whether the event is to be held after the museum closes"
+                  },
+                  "is_free": {
+                    "description": "Whether the event is free"
+                  },
+                  "is_member_exclusive": {
+                    "description": "Whether the event is exclusive to members of the museum"
+                  },
+                  "is_private": {
+                    "description": "Whether the event is private"
+                  },
+                  "is_registration_required": {
+                    "description": "Whether registration is required to attend the event"
+                  },
+                  "is_sales_button_hidden": {
+                    "description": "Whether the buy tickets button is hidden on the website event page"
+                  },
+                  "is_sold_out": {
+                    "description": "Whether the event is sold out"
+                  },
+                  "is_ticketed": {
+                    "description": "Whether a ticket is required to attend the event"
+                  },
+                  "is_virtual_event": {
+                    "description": "Whether the event is being held virtually"
+                  },
+                  "join_url": {
+                    "description": "URL to the membership signup page via this event"
+                  },
+                  "layout_type": {
+                    "description": "Number indicating the type of layout this event page uses"
+                  },
+                  "list_description": {
+                    "description": "One-sentence description of the event displayed in listings"
+                  },
+                  "location": {
+                    "description": "Where the event takes place"
+                  },
+                  "program_ids": {
+                    "description": "Unique identifiers indicating the programs this event is a part of"
+                  },
+                  "program_titles": {
+                    "description": "Titles of the programs this event is a part of"
+                  },
+                  "rsvp_link": {
+                    "description": "The URL to the sales site for this event"
+                  },
+                  "search_tags": {
+                    "description": "Editor-specified list of tags to aid in internal search"
+                  },
+                  "short_description": {
+                    "description": "Brief description of the event"
+                  },
+                  "slug": {
+                    "description": "A string used in the URL for this event"
+                  },
+                  "source_updated_at": {
+                    "description": "Date and time the resource was updated in the source system"
+                  },
+                  "start_date": {
+                    "description": "The date the event begins"
+                  },
+                  "start_time": {
+                    "description": "The time the event starts"
+                  },
+                  "suggest_autocomplete_all": {
+                    "description": "Internal field to power the `/autosuggest` endpoint. Do not use directly."
+                  },
+                  "suggest_autocomplete_boosted": {
+                    "description": "Internal field to power the `/autocomplete` endpoint. Do not use directly."
+                  },
+                  "survey_url": {
+                    "description": "URL to the survey associated with this event"
+                  },
+                  "ticketed_event_id": {
+                    "description": "Unique identifier of the event in the ticketing system this website event is tied to"
+                  },
+                  "timestamp": {
+                    "description": "Date and time the record was updated in the aggregator search index"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  },
+                  "title_display": {
+                    "description": "The name of this event formatted with HTML (optional)"
+                  },
+                  "updated_at": {
+                    "description": "Date and time the record was updated in the aggregator database"
+                  },
+                  "virtual_event_passcode": {
+                    "description": "Passcode to access the virtual event"
+                  },
+                  "virtual_event_url": {
+                    "description": "URL to the virtual event"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /events/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "alt_audience_ids": {
+                    "description": "Unique identifiers indicating the alternate audiences for this event"
+                  },
+                  "alt_event_type_ids": {
+                    "description": "Unique identifiers indicating the alternate types of this event"
+                  },
+                  "api_link": {
+                    "description": "REST API link for this resource"
+                  },
+                  "api_model": {
+                    "description": "REST API resource type or endpoint"
+                  },
+                  "audience_id": {
+                    "description": "Unique identifier indicating the preferred audience for this event"
+                  },
+                  "buy_button_caption": {
+                    "description": "Additional text below the ticket/registration button"
+                  },
+                  "buy_button_text": {
+                    "description": "The text used on the ticket/registration button"
+                  },
+                  "date_display": {
+                    "description": "A readable display of the event dates"
+                  },
+                  "description": {
+                    "description": "All copytext of the event"
+                  },
+                  "door_time": {
+                    "description": "The time the doors open for this event"
+                  },
+                  "end_date": {
+                    "description": "The date the event ends"
+                  },
+                  "end_time": {
+                    "description": "The time the event ends"
+                  },
+                  "entrance": {
+                    "description": "Which entrance to use for this event"
+                  },
+                  "event_host_id": {
+                    "description": "Unique identifier of the host (cf. event programs) that is presenting this event"
+                  },
+                  "event_host_title": {
+                    "description": "Unique identifier of the host (cf. event programs) that is presenting this event"
+                  },
+                  "event_type_id": {
+                    "description": "Unique identifier indicating the preferred type of this event"
+                  },
+                  "header_description": {
+                    "description": "Brief description of the event displayed below the title"
+                  },
+                  "hero_caption": {
+                    "description": "Text displayed with the hero image on the event"
+                  },
+                  "id": {
+                    "description": "Unique identifier of this resource. Taken from the source system."
+                  },
+                  "image_url": {
+                    "description": "The URL of an image representing this page"
+                  },
+                  "is_admission_required": {
+                    "description": "Whether admission to the museum is required to attend this event"
+                  },
+                  "is_after_hours": {
+                    "description": "Whether the event is to be held after the museum closes"
+                  },
+                  "is_free": {
+                    "description": "Whether the event is free"
+                  },
+                  "is_member_exclusive": {
+                    "description": "Whether the event is exclusive to members of the museum"
+                  },
+                  "is_private": {
+                    "description": "Whether the event is private"
+                  },
+                  "is_registration_required": {
+                    "description": "Whether registration is required to attend the event"
+                  },
+                  "is_sales_button_hidden": {
+                    "description": "Whether the buy tickets button is hidden on the website event page"
+                  },
+                  "is_sold_out": {
+                    "description": "Whether the event is sold out"
+                  },
+                  "is_ticketed": {
+                    "description": "Whether a ticket is required to attend the event"
+                  },
+                  "is_virtual_event": {
+                    "description": "Whether the event is being held virtually"
+                  },
+                  "join_url": {
+                    "description": "URL to the membership signup page via this event"
+                  },
+                  "layout_type": {
+                    "description": "Number indicating the type of layout this event page uses"
+                  },
+                  "list_description": {
+                    "description": "One-sentence description of the event displayed in listings"
+                  },
+                  "location": {
+                    "description": "Where the event takes place"
+                  },
+                  "program_ids": {
+                    "description": "Unique identifiers indicating the programs this event is a part of"
+                  },
+                  "program_titles": {
+                    "description": "Titles of the programs this event is a part of"
+                  },
+                  "rsvp_link": {
+                    "description": "The URL to the sales site for this event"
+                  },
+                  "search_tags": {
+                    "description": "Editor-specified list of tags to aid in internal search"
+                  },
+                  "short_description": {
+                    "description": "Brief description of the event"
+                  },
+                  "slug": {
+                    "description": "A string used in the URL for this event"
+                  },
+                  "source_updated_at": {
+                    "description": "Date and time the resource was updated in the source system"
+                  },
+                  "start_date": {
+                    "description": "The date the event begins"
+                  },
+                  "start_time": {
+                    "description": "The time the event starts"
+                  },
+                  "suggest_autocomplete_all": {
+                    "description": "Internal field to power the `/autosuggest` endpoint. Do not use directly."
+                  },
+                  "suggest_autocomplete_boosted": {
+                    "description": "Internal field to power the `/autocomplete` endpoint. Do not use directly."
+                  },
+                  "survey_url": {
+                    "description": "URL to the survey associated with this event"
+                  },
+                  "ticketed_event_id": {
+                    "description": "Unique identifier of the event in the ticketing system this website event is tied to"
+                  },
+                  "timestamp": {
+                    "description": "Date and time the record was updated in the aggregator search index"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  },
+                  "title_display": {
+                    "description": "The name of this event formatted with HTML (optional)"
+                  },
+                  "updated_at": {
+                    "description": "Date and time the record was updated in the aggregator database"
+                  },
+                  "virtual_event_passcode": {
+                    "description": "Passcode to access the virtual event"
+                  },
+                  "virtual_event_url": {
+                    "description": "URL to the virtual event"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

@@ -57,5 +57,170 @@
         "web_url": "s1c2"
       }
     }
+  },
+  "requests": {
+    "GET /press-releases": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "api_link": {
+                    "description": "REST API link for this resource"
+                  },
+                  "api_model": {
+                    "description": "REST API resource type or endpoint"
+                  },
+                  "copy": {
+                    "description": "The text of the page"
+                  },
+                  "id": {
+                    "description": "Unique identifier of this resource. Taken from the source system."
+                  },
+                  "source_updated_at": {
+                    "description": "Date and time the resource was updated in the source system"
+                  },
+                  "suggest_autocomplete_all": {
+                    "description": "Internal field to power the `/autosuggest` endpoint. Do not use directly."
+                  },
+                  "suggest_autocomplete_boosted": {
+                    "description": "Internal field to power the `/autocomplete` endpoint. Do not use directly."
+                  },
+                  "timestamp": {
+                    "description": "Date and time the record was updated in the aggregator search index"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  },
+                  "updated_at": {
+                    "description": "Date and time the record was updated in the aggregator database"
+                  },
+                  "web_url": {
+                    "description": "The URL to this page on our website"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /press-releases/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "api_link": {
+                    "description": "REST API link for this resource"
+                  },
+                  "api_model": {
+                    "description": "REST API resource type or endpoint"
+                  },
+                  "copy": {
+                    "description": "The text of the page"
+                  },
+                  "id": {
+                    "description": "Unique identifier of this resource. Taken from the source system."
+                  },
+                  "source_updated_at": {
+                    "description": "Date and time the resource was updated in the source system"
+                  },
+                  "suggest_autocomplete_all": {
+                    "description": "Internal field to power the `/autosuggest` endpoint. Do not use directly."
+                  },
+                  "suggest_autocomplete_boosted": {
+                    "description": "Internal field to power the `/autocomplete` endpoint. Do not use directly."
+                  },
+                  "timestamp": {
+                    "description": "Date and time the record was updated in the aggregator search index"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  },
+                  "updated_at": {
+                    "description": "Date and time the record was updated in the aggregator database"
+                  },
+                  "web_url": {
+                    "description": "The URL to this page on our website"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

@@ -121,5 +121,266 @@
         "web_url": "s452"
       }
     }
+  },
+  "requests": {
+    "GET /exhibitions": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "aic_end_at": {
+                    "description": "Date the exhibition closed at the Art Institute of Chicago"
+                  },
+                  "aic_start_at": {
+                    "description": "Date the exhibition opened at the Art Institute of Chicago"
+                  },
+                  "alt_image_ids": {
+                    "description": "Unique identifiers of all non-preferred images of this exhibition."
+                  },
+                  "api_link": {
+                    "description": "REST API link for this resource"
+                  },
+                  "api_model": {
+                    "description": "REST API resource type or endpoint"
+                  },
+                  "artist_ids": {
+                    "description": "Unique identifiers of the artist agent records representing who was shown in the exhibition"
+                  },
+                  "artwork_ids": {
+                    "description": "Unique identifiers of the artworks that were part of the exhibition"
+                  },
+                  "artwork_titles": {
+                    "description": "Names of the artworks that were part of the exhibition"
+                  },
+                  "document_ids": {
+                    "description": "Unique identifiers of assets that serve as documentation for this exhibition"
+                  },
+                  "gallery_id": {
+                    "description": "Unique identifier of the gallery that mainly housed the exhibition"
+                  },
+                  "gallery_title": {
+                    "description": "The name of the gallery that mainly housed the exhibition"
+                  },
+                  "id": {
+                    "description": "Unique identifier of this resource. Taken from the source system."
+                  },
+                  "image_id": {
+                    "description": "Unique identifier of the preferred image to use to represent this exhibition"
+                  },
+                  "image_url": {
+                    "description": "URL to the hero image from the website"
+                  },
+                  "is_featured": {
+                    "description": "Is this exhibition currently featured on our website?"
+                  },
+                  "is_published": {
+                    "description": "Is this exhibition currently published on our website? Only relevant for non-past exhibitions."
+                  },
+                  "position": {
+                    "description": "Numering position represnting the order in which this exhibition is featured on the website"
+                  },
+                  "short_description": {
+                    "description": "Brief explanation of what this exhibition is"
+                  },
+                  "site_ids": {
+                    "description": "Unique identifiers of the microsites this exhibition is a part of"
+                  },
+                  "source_updated_at": {
+                    "description": "Date and time the resource was updated in the source system"
+                  },
+                  "status": {
+                    "description": "Whether the exhibition is open or closed"
+                  },
+                  "suggest_autocomplete_all": {
+                    "description": "Internal field to power the `/autosuggest` endpoint. Do not use directly."
+                  },
+                  "suggest_autocomplete_boosted": {
+                    "description": "Internal field to power the `/autocomplete` endpoint. Do not use directly."
+                  },
+                  "timestamp": {
+                    "description": "Date and time the record was updated in the aggregator search index"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  },
+                  "updated_at": {
+                    "description": "Date and time the record was updated in the aggregator database"
+                  },
+                  "web_url": {
+                    "description": "URL to this exhibition on our website"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /exhibitions/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "aic_end_at": {
+                    "description": "Date the exhibition closed at the Art Institute of Chicago"
+                  },
+                  "aic_start_at": {
+                    "description": "Date the exhibition opened at the Art Institute of Chicago"
+                  },
+                  "alt_image_ids": {
+                    "description": "Unique identifiers of all non-preferred images of this exhibition."
+                  },
+                  "api_link": {
+                    "description": "REST API link for this resource"
+                  },
+                  "api_model": {
+                    "description": "REST API resource type or endpoint"
+                  },
+                  "artist_ids": {
+                    "description": "Unique identifiers of the artist agent records representing who was shown in the exhibition"
+                  },
+                  "artwork_ids": {
+                    "description": "Unique identifiers of the artworks that were part of the exhibition"
+                  },
+                  "artwork_titles": {
+                    "description": "Names of the artworks that were part of the exhibition"
+                  },
+                  "document_ids": {
+                    "description": "Unique identifiers of assets that serve as documentation for this exhibition"
+                  },
+                  "gallery_id": {
+                    "description": "Unique identifier of the gallery that mainly housed the exhibition"
+                  },
+                  "gallery_title": {
+                    "description": "The name of the gallery that mainly housed the exhibition"
+                  },
+                  "id": {
+                    "description": "Unique identifier of this resource. Taken from the source system."
+                  },
+                  "image_id": {
+                    "description": "Unique identifier of the preferred image to use to represent this exhibition"
+                  },
+                  "image_url": {
+                    "description": "URL to the hero image from the website"
+                  },
+                  "is_featured": {
+                    "description": "Is this exhibition currently featured on our website?"
+                  },
+                  "is_published": {
+                    "description": "Is this exhibition currently published on our website? Only relevant for non-past exhibitions."
+                  },
+                  "position": {
+                    "description": "Numering position represnting the order in which this exhibition is featured on the website"
+                  },
+                  "short_description": {
+                    "description": "Brief explanation of what this exhibition is"
+                  },
+                  "site_ids": {
+                    "description": "Unique identifiers of the microsites this exhibition is a part of"
+                  },
+                  "source_updated_at": {
+                    "description": "Date and time the resource was updated in the source system"
+                  },
+                  "status": {
+                    "description": "Whether the exhibition is open or closed"
+                  },
+                  "suggest_autocomplete_all": {
+                    "description": "Internal field to power the `/autosuggest` endpoint. Do not use directly."
+                  },
+                  "suggest_autocomplete_boosted": {
+                    "description": "Internal field to power the `/autocomplete` endpoint. Do not use directly."
+                  },
+                  "timestamp": {
+                    "description": "Date and time the record was updated in the aggregator search index"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  },
+                  "updated_at": {
+                    "description": "Date and time the record was updated in the aggregator database"
+                  },
+                  "web_url": {
+                    "description": "URL to this exhibition on our website"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

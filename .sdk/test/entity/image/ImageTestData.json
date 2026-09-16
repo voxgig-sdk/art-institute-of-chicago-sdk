@@ -129,5 +129,278 @@
         "width": 1188
       }
     }
+  },
+  "requests": {
+    "GET /images": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "ahash": {
+                    "description": "Image hash generated using ahash algorithm with 64 boolean subfields"
+                  },
+                  "alt_text": {
+                    "description": "Alternative text for the asset to describe it to people with low or no vision"
+                  },
+                  "api_link": {
+                    "description": "REST API link for this resource"
+                  },
+                  "api_model": {
+                    "description": "REST API resource type or endpoint"
+                  },
+                  "artwork_ids": {
+                    "description": "Unique identifiers of the artworks associated with this asset"
+                  },
+                  "artwork_titles": {
+                    "description": "Names of the artworks associated with this asset"
+                  },
+                  "color": {
+                    "description": "Dominant color of this image in HSL"
+                  },
+                  "colorfulness": {
+                    "description": "Unbounded positive float representing an abstract measure of colorfulness."
+                  },
+                  "content": {
+                    "description": "Text of or URL to the contents of this asset"
+                  },
+                  "content_e_tag": {
+                    "description": "Arbitrary unique identifier that changes when the binary file gets updated"
+                  },
+                  "credit_line": {
+                    "description": "Asset-specific copyright information"
+                  },
+                  "fingerprint": {
+                    "description": "Image hashes: aHash, dHash, pHash, wHash"
+                  },
+                  "height": {
+                    "description": "Native height of the image"
+                  },
+                  "id": {
+                    "description": "Unique identifier of this resource. Taken from the source system."
+                  },
+                  "iiif_url": {
+                    "description": "IIIF URL of this image"
+                  },
+                  "is_educational_resource": {
+                    "description": "Whether this resource is considered to be educational"
+                  },
+                  "is_multimedia_resource": {
+                    "description": "Whether this resource is considered to be multimedia"
+                  },
+                  "is_teacher_resource": {
+                    "description": "Whether this resource is considered to be educational"
+                  },
+                  "lake_guid": {
+                    "description": "Unique UUID of this resource in LAKE, our DAMS."
+                  },
+                  "lqip": {
+                    "description": "Low-quality image placeholder (LQIP). Currently a 5x5-constrained, base64-encoded GIF."
+                  },
+                  "phash": {
+                    "description": "Image hash generated using phash algorithm with 64 boolean subfields"
+                  },
+                  "source_updated_at": {
+                    "description": "Date and time the resource was updated in the source system"
+                  },
+                  "suggest_autocomplete_all": {
+                    "description": "Internal field to power the `/autosuggest` endpoint. Do not use directly."
+                  },
+                  "suggest_autocomplete_boosted": {
+                    "description": "Internal field to power the `/autocomplete` endpoint. Do not use directly."
+                  },
+                  "timestamp": {
+                    "description": "Date and time the record was updated in the aggregator search index"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  },
+                  "type": {
+                    "description": "Type always takes one of the following values: image, sound, text, video"
+                  },
+                  "updated_at": {
+                    "description": "Date and time the record was updated in the aggregator database"
+                  },
+                  "width": {
+                    "description": "Native width of the image"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /images/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "items": {
+                "properties": {
+                  "ahash": {
+                    "description": "Image hash generated using ahash algorithm with 64 boolean subfields"
+                  },
+                  "alt_text": {
+                    "description": "Alternative text for the asset to describe it to people with low or no vision"
+                  },
+                  "api_link": {
+                    "description": "REST API link for this resource"
+                  },
+                  "api_model": {
+                    "description": "REST API resource type or endpoint"
+                  },
+                  "artwork_ids": {
+                    "description": "Unique identifiers of the artworks associated with this asset"
+                  },
+                  "artwork_titles": {
+                    "description": "Names of the artworks associated with this asset"
+                  },
+                  "color": {
+                    "description": "Dominant color of this image in HSL"
+                  },
+                  "colorfulness": {
+                    "description": "Unbounded positive float representing an abstract measure of colorfulness."
+                  },
+                  "content": {
+                    "description": "Text of or URL to the contents of this asset"
+                  },
+                  "content_e_tag": {
+                    "description": "Arbitrary unique identifier that changes when the binary file gets updated"
+                  },
+                  "credit_line": {
+                    "description": "Asset-specific copyright information"
+                  },
+                  "fingerprint": {
+                    "description": "Image hashes: aHash, dHash, pHash, wHash"
+                  },
+                  "height": {
+                    "description": "Native height of the image"
+                  },
+                  "id": {
+                    "description": "Unique identifier of this resource. Taken from the source system."
+                  },
+                  "iiif_url": {
+                    "description": "IIIF URL of this image"
+                  },
+                  "is_educational_resource": {
+                    "description": "Whether this resource is considered to be educational"
+                  },
+                  "is_multimedia_resource": {
+                    "description": "Whether this resource is considered to be multimedia"
+                  },
+                  "is_teacher_resource": {
+                    "description": "Whether this resource is considered to be educational"
+                  },
+                  "lake_guid": {
+                    "description": "Unique UUID of this resource in LAKE, our DAMS."
+                  },
+                  "lqip": {
+                    "description": "Low-quality image placeholder (LQIP). Currently a 5x5-constrained, base64-encoded GIF."
+                  },
+                  "phash": {
+                    "description": "Image hash generated using phash algorithm with 64 boolean subfields"
+                  },
+                  "source_updated_at": {
+                    "description": "Date and time the resource was updated in the source system"
+                  },
+                  "suggest_autocomplete_all": {
+                    "description": "Internal field to power the `/autosuggest` endpoint. Do not use directly."
+                  },
+                  "suggest_autocomplete_boosted": {
+                    "description": "Internal field to power the `/autocomplete` endpoint. Do not use directly."
+                  },
+                  "timestamp": {
+                    "description": "Date and time the record was updated in the aggregator search index"
+                  },
+                  "title": {
+                    "description": "The name of this resource"
+                  },
+                  "type": {
+                    "description": "Type always takes one of the following values: image, sound, text, video"
+                  },
+                  "updated_at": {
+                    "description": "Date and time the record was updated in the aggregator database"
+                  },
+                  "width": {
+                    "description": "Native width of the image"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "default": {
+            "description": "error",
+            "schema": {
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "status",
+                "error",
+                "detail"
+              ]
+            }
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

@@ -114,6 +114,12 @@ main: kit: entity: gallery: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /galleries"
+            json: "{\"parameters\":[],\"produces\":[\"application/json\"],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"api_link\":{\"description\":\"REST API link for this resource\"},\"api_model\":{\"description\":\"REST API resource type or endpoint\"},\"floor\":{\"description\":\"The level the gallery is on, e.g., 1, 2, 3, or LL\"},\"id\":{\"description\":\"Unique identifier of this resource. Taken from the source system.\"},\"is_closed\":{\"description\":\"Whether the gallery is currently closed\"},\"latitude\":{\"description\":\"Latitude coordinate of the center of the room\"},\"latlon\":{\"description\":\"Latitude and longitude coordinates of the center of the room\"},\"longitude\":{\"description\":\"Longitude coordinate of the center of the room\"},\"number\":{\"description\":\"The gallery's room number. For \\\"Gallery 100A\\\", this would be \\\"100A\\\".\"},\"source_updated_at\":{\"description\":\"Date and time the resource was updated in the source system\"},\"suggest_autocomplete_all\":{\"description\":\"Internal field to power the `/autosuggest` endpoint. Do not use directly.\"},\"suggest_autocomplete_boosted\":{\"description\":\"Internal field to power the `/autocomplete` endpoint. Do not use directly.\"},\"tgn_id\":{\"description\":\"Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN)\"},\"timestamp\":{\"description\":\"Date and time the record was updated in the aggregator search index\"},\"title\":{\"description\":\"The name of this resource\"},\"updated_at\":{\"description\":\"Date and time the record was updated in the aggregator database\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/galleries"
           segments: [
@@ -142,6 +148,12 @@ main: kit: entity: gallery: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /galleries/{id}"
+            json: "{\"parameters\":[{\"in\":\"path\",\"name\":\"id\",\"required\":true,\"type\":\"string\"}],\"produces\":[\"application/json\"],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Successful operation\",\"schema\":{\"items\":{\"properties\":{\"api_link\":{\"description\":\"REST API link for this resource\"},\"api_model\":{\"description\":\"REST API resource type or endpoint\"},\"floor\":{\"description\":\"The level the gallery is on, e.g., 1, 2, 3, or LL\"},\"id\":{\"description\":\"Unique identifier of this resource. Taken from the source system.\"},\"is_closed\":{\"description\":\"Whether the gallery is currently closed\"},\"latitude\":{\"description\":\"Latitude coordinate of the center of the room\"},\"latlon\":{\"description\":\"Latitude and longitude coordinates of the center of the room\"},\"longitude\":{\"description\":\"Longitude coordinate of the center of the room\"},\"number\":{\"description\":\"The gallery's room number. For \\\"Gallery 100A\\\", this would be \\\"100A\\\".\"},\"source_updated_at\":{\"description\":\"Date and time the resource was updated in the source system\"},\"suggest_autocomplete_all\":{\"description\":\"Internal field to power the `/autosuggest` endpoint. Do not use directly.\"},\"suggest_autocomplete_boosted\":{\"description\":\"Internal field to power the `/autocomplete` endpoint. Do not use directly.\"},\"tgn_id\":{\"description\":\"Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN)\"},\"timestamp\":{\"description\":\"Date and time the record was updated in the aggregator search index\"},\"title\":{\"description\":\"The name of this resource\"},\"updated_at\":{\"description\":\"Date and time the record was updated in the aggregator database\"}},\"type\":\"object\"},\"type\":\"array\"}},\"default\":{\"description\":\"error\",\"schema\":{\"properties\":{\"detail\":{\"type\":\"string\"},\"error\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\"}},\"required\":[\"status\",\"error\",\"detail\"]}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/galleries/{id}"
