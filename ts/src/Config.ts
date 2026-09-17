@@ -127,111 +127,111 @@ class Config {
 
     entity: {
       
-      agent: {
-      },
-
-      agent_role: {
-      },
-
-      agent_type: {
-      },
-
-      article: {
-      },
-
-      artwork: {
-      },
-
-      artwork_date_qualifier: {
-      },
-
-      artwork_place_qualifier: {
-      },
-
-      artwork_type: {
-      },
-
-      category_term: {
-      },
-
-      digital_publication: {
-      },
-
-      digital_publication_article: {
-      },
-
-      educator_resource: {
-      },
-
-      event: {
-      },
-
-      event_occurrence: {
-      },
-
-      event_program: {
-      },
-
-      exhibition: {
-      },
-
-      gallery: {
-      },
-
-      generic_page: {
-      },
-
-      highlight: {
-      },
-
-      hour: {
-      },
-
-      image: {
-      },
-
-      landing_page: {
-      },
-
-      place: {
-      },
-
-      press_release: {
-      },
-
-      printed_publication: {
-      },
-
-      product: {
-      },
-
-      publication: {
-      },
-
-      search: {
-      },
-
-      section: {
-      },
-
-      site: {
-      },
-
-      sound: {
-      },
-
-      static_page: {
-      },
-
-      text: {
-      },
-
-      tour: {
-      },
-
-      video: {
-      },
-
+        agent: {
+        },
+  
+        agent_role: {
+        },
+  
+        agent_type: {
+        },
+  
+        article: {
+        },
+  
+        artwork: {
+        },
+  
+        artwork_date_qualifier: {
+        },
+  
+        artwork_place_qualifier: {
+        },
+  
+        artwork_type: {
+        },
+  
+        category_term: {
+        },
+  
+        digital_publication: {
+        },
+  
+        digital_publication_article: {
+        },
+  
+        educator_resource: {
+        },
+  
+        event: {
+        },
+  
+        event_occurrence: {
+        },
+  
+        event_program: {
+        },
+  
+        exhibition: {
+        },
+  
+        gallery: {
+        },
+  
+        generic_page: {
+        },
+  
+        highlight: {
+        },
+  
+        hour: {
+        },
+  
+        image: {
+        },
+  
+        landing_page: {
+        },
+  
+        place: {
+        },
+  
+        press_release: {
+        },
+  
+        printed_publication: {
+        },
+  
+        product: {
+        },
+  
+        publication: {
+        },
+  
+        search: {
+        },
+  
+        section: {
+        },
+  
+        site: {
+        },
+  
+        sound: {
+        },
+  
+        static_page: {
+        },
+  
+        text: {
+        },
+  
+        tour: {
+        },
+  
+        video: {
+        },
+  
     }
   }
 

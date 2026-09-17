@@ -105,12 +105,12 @@ local results, err = client:Publication():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/art-institute-of-chicago-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases) |
-| Python | `voxgig-sdk-art-institute-of-chicago` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases) |
-| PHP | `voxgig-sdk/art-institute-of-chicago` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases) |
+| TypeScript | `@voxgig-sdk/art-institute-of-chicago-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/tags) |
+| Python | `voxgig-sdk-art-institute-of-chicago` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/tags) |
+| PHP | `voxgig-sdk/art-institute-of-chicago` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/art-institute-of-chicago-sdk/go` | `go get github.com/voxgig-sdk/art-institute-of-chicago-sdk/go@latest` |
-| Ruby | `voxgig-sdk-art-institute-of-chicago` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases) |
-| Lua | `voxgig-sdk-art-institute-of-chicago` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases) |
+| Ruby | `voxgig-sdk-art-institute-of-chicago` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/tags) |
+| Lua | `voxgig-sdk-art-institute-of-chicago` | publish pending — [install from git tag](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/art-institute-of-chicago-sdk/go-cli` | `go install github.com/voxgig-sdk/art-institute-of-chicago-sdk/go-cli/cmd/art-institute-of-chicago@latest` |
 | Go MCP server | `github.com/voxgig-sdk/art-institute-of-chicago-sdk/go-mcp` | `go get github.com/voxgig-sdk/art-institute-of-chicago-sdk/go-mcp@latest` |
 
