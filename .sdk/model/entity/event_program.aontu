@@ -1,0 +1,163 @@
+# Entity: event_program
+
+main: kit: entity: event_program: {
+
+  alias: field: {}
+
+  fields: {
+    api_link: {
+      h: "Api Link"
+      n: "api_link"
+      r: false
+      sh: "REST API link for this resource"
+      t: "`$ANY`"
+    }
+    api_model: {
+      h: "Api Model"
+      n: "api_model"
+      r: false
+      sh: "REST API resource type or endpoint"
+      t: "`$ANY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier of this resource."
+      t: "`$STRING`"
+    }
+    is_affiliate_group: {
+      h: "Is Affiliate Group"
+      n: "is_affiliate_group"
+      r: false
+      sh: "Whether this program represents an affiliate group"
+      t: "`$BOOLEAN`"
+    }
+    is_event_host: {
+      h: "Is Event Host"
+      n: "is_event_host"
+      r: false
+      sh: "Whether this program represents an event host"
+      t: "`$BOOLEAN`"
+    }
+    source_updated_at: {
+      h: "Source Updated At"
+      n: "source_updated_at"
+      r: false
+      sh: "Date and time the resource was updated in the source system"
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_all: {
+      h: "Suggest Autocomplete All"
+      n: "suggest_autocomplete_all"
+      r: false
+      sh: "Internal field to power the `/autosuggest` endpoint."
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_boosted: {
+      h: "Suggest Autocomplete Boosted"
+      n: "suggest_autocomplete_boosted"
+      r: false
+      sh: "Internal field to power the `/autocomplete` endpoint."
+      t: "`$ANY`"
+    }
+    timestamp: {
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "Date and time the record was updated in the aggregator search index"
+      t: "`$ANY`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "The name of this resource"
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "Date and time the record was updated in the aggregator database"
+      t: "`$ANY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "event_program"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /event-programs"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/event-programs"
+          s: [
+            {
+              lit: "event-programs"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /event-programs/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/event-programs/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "event-programs"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

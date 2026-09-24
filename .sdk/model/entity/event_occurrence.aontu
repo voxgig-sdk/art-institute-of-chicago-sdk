@@ -1,0 +1,261 @@
+# Entity: event_occurrence
+
+main: kit: entity: event_occurrence: {
+
+  alias: field: {}
+
+  fields: {
+    api_link: {
+      h: "Api Link"
+      n: "api_link"
+      r: false
+      sh: "REST API link for this resource"
+      t: "`$ANY`"
+    }
+    api_model: {
+      h: "Api Model"
+      n: "api_model"
+      r: false
+      sh: "REST API resource type or endpoint"
+      t: "`$ANY`"
+    }
+    button_caption: {
+      h: "Button Caption"
+      n: "button_caption"
+      r: false
+      sh: "Additional text below the ticket/registration button"
+      t: "`$ANY`"
+    }
+    button_text: {
+      h: "Button Text"
+      n: "button_text"
+      r: false
+      sh: "The text used on the ticket/registration button"
+      t: "`$ANY`"
+    }
+    button_url: {
+      h: "Button Url"
+      n: "button_url"
+      r: false
+      sh: "The URL to the sales site or an RSVP link for this event"
+      t: "`$ANY`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Description of the event"
+      t: "`$STRING`"
+    }
+    end_at: {
+      h: "End At"
+      n: "end_at"
+      r: false
+      sh: "The date the event occurrence ends"
+      t: "`$ANY`"
+    }
+    event_id: {
+      h: "Event Id"
+      n: "event_id"
+      r: false
+      sh: "Identifier of the master event of which this is an occurrence"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier of this resource."
+      t: "`$STRING`"
+    }
+    image_url: {
+      h: "Image Url"
+      n: "image_url"
+      r: false
+      sh: "The URL of an image representing this page"
+      t: "`$ANY`"
+    }
+    is_private: {
+      h: "Is Private"
+      n: "is_private"
+      r: false
+      sh: "Whether the event is private."
+      t: "`$BOOLEAN`"
+    }
+    is_sales_button_hidden: {
+      h: "Is Sales Button Hidden"
+      n: "is_sales_button_hidden"
+      r: false
+      sh: "Whether the buy tickets button is hidden on the website event page"
+      t: "`$BOOLEAN`"
+    }
+    is_ticketed: {
+      h: "Is Ticketed"
+      n: "is_ticketed"
+      r: false
+      sh: "Whether a ticket is required to attend the event"
+      t: "`$BOOLEAN`"
+    }
+    location: {
+      h: "Location"
+      n: "location"
+      r: false
+      sh: "Where the event takes place"
+      t: "`$ANY`"
+    }
+    off_sale_at: {
+      h: "Off Sale At"
+      n: "off_sale_at"
+      r: false
+      sh: "Date and time the event goes off sale"
+      t: "`$ANY`"
+    }
+    on_sale_at: {
+      h: "On Sale At"
+      n: "on_sale_at"
+      r: false
+      sh: "Date and time the event goes on sale"
+      t: "`$ANY`"
+    }
+    short_description: {
+      h: "Short Description"
+      n: "short_description"
+      r: false
+      sh: "Brief description of the event"
+      t: "`$ANY`"
+    }
+    source_updated_at: {
+      h: "Source Updated At"
+      n: "source_updated_at"
+      r: false
+      sh: "Date and time the resource was updated in the source system"
+      t: "`$ANY`"
+    }
+    start_at: {
+      h: "Start At"
+      n: "start_at"
+      r: false
+      sh: "The date the event occurrence begins"
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_all: {
+      h: "Suggest Autocomplete All"
+      n: "suggest_autocomplete_all"
+      r: false
+      sh: "Internal field to power the `/autosuggest` endpoint."
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_boosted: {
+      h: "Suggest Autocomplete Boosted"
+      n: "suggest_autocomplete_boosted"
+      r: false
+      sh: "Internal field to power the `/autocomplete` endpoint."
+      t: "`$ANY`"
+    }
+    timestamp: {
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "Date and time the record was updated in the aggregator search index"
+      t: "`$ANY`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "The name of this resource"
+      t: "`$STRING`"
+    }
+    title_display: {
+      h: "Title Display"
+      n: "title_display"
+      r: false
+      sh: "The name of this event formatted with HTML (optional)"
+      t: "`$ANY`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "Date and time the record was updated in the aggregator database"
+      t: "`$ANY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "event_occurrence"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /event-occurrences"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/event-occurrences"
+          s: [
+            {
+              lit: "event-occurrences"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /event-occurrences/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/event-occurrences/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "event-occurrences"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

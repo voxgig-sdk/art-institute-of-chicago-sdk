@@ -121,83 +121,99 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "alt_titles",
-            ["short"] = "Alternate names for this agent",
+            ["title"] = "Alt Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "Alternate names for this agent",
           },
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "birth_date",
-            ["short"] = "The year this agent was born",
+            ["title"] = "Birth Date",
             ["type"] = "`$ANY`",
+            ["short"] = "The year this agent was born",
           },
           {
             ["name"] = "death_date",
-            ["short"] = "The year this agent died",
+            ["title"] = "Death Date",
             ["type"] = "`$ANY`",
+            ["short"] = "The year this agent died",
           },
           {
             ["name"] = "description",
-            ["short"] = "A biographical description of the agent",
+            ["title"] = "Description",
             ["type"] = "`$STRING`",
+            ["short"] = "A biographical description of the agent",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "is_artist",
-            ["short"] = "Whether the agent is an artist.",
+            ["title"] = "Is Artist",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether the agent is an artist.",
           },
           {
             ["name"] = "sort_title",
-            ["short"] = "Sortable name for this agent, typically with last name first.",
+            ["title"] = "Sort Title",
             ["type"] = "`$ANY`",
+            ["short"] = "Sortable name for this agent, typically with last name first.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "ulan_id",
-            ["short"] = "Unique identifier of this agent in Getty's ULAN",
+            ["title"] = "Ulan Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this agent in Getty's ULAN",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
         },
         ["id"] = {
@@ -211,7 +227,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/agents",
@@ -220,17 +235,18 @@ local function make_config()
                     ["lit"] = "agents",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "agents",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "agents",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/artists",
@@ -239,14 +255,16 @@ local function make_config()
                     ["lit"] = "artists",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "artists",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "artists",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -255,17 +273,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/agents/{id}",
@@ -277,32 +284,33 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
+                ["parts"] = {
+                  "agents",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "agents",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/artists/{id}",
@@ -314,18 +322,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "artists",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "artists",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -339,48 +359,57 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
         },
         ["id"] = {
@@ -394,7 +423,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/agent-roles",
@@ -403,14 +431,16 @@ local function make_config()
                     ["lit"] = "agent-roles",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "agent-roles",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "agent-roles",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -419,17 +449,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/agent-roles/{id}",
@@ -441,18 +460,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "agent-roles",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "agent-roles",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -466,48 +497,57 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
         },
         ["id"] = {
@@ -521,7 +561,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/agent-types",
@@ -530,14 +569,16 @@ local function make_config()
                     ["lit"] = "agent-types",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "agent-types",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "agent-types",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -546,17 +587,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/agent-types/{id}",
@@ -568,18 +598,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "agent-types",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "agent-types",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -593,53 +635,63 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "copy",
-            ["short"] = "The text of the article",
+            ["title"] = "Copy",
             ["type"] = "`$ANY`",
+            ["short"] = "The text of the article",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
         },
         ["id"] = {
@@ -653,7 +705,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/articles",
@@ -662,14 +713,16 @@ local function make_config()
                     ["lit"] = "articles",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "articles",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "articles",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -678,17 +731,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/articles/{id}",
@@ -700,18 +742,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "articles",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "articles",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -725,523 +779,627 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "alt_artist_ids",
-            ["short"] = "Unique identifiers of the non-preferred artists/cultures associated with this work",
+            ["title"] = "Alt Artist Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the non-preferred artists/cultures associated with this work",
           },
           {
             ["name"] = "alt_classification_ids",
-            ["short"] = "Unique identifiers of all other non-preferred classification terms for this work",
+            ["title"] = "Alt Classification Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of all other non-preferred classification terms for this work",
           },
           {
             ["name"] = "alt_image_ids",
-            ["short"] = "Unique identifiers of all non-preferred images of this work.",
+            ["title"] = "Alt Image Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of all non-preferred images of this work.",
           },
           {
             ["name"] = "alt_material_ids",
-            ["short"] = "Unique identifiers of all other non-preferred material terms for this work",
+            ["title"] = "Alt Material Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of all other non-preferred material terms for this work",
           },
           {
             ["name"] = "alt_style_ids",
-            ["short"] = "Unique identifiers of all other non-preferred style terms for this work",
+            ["title"] = "Alt Style Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of all other non-preferred style terms for this work",
           },
           {
             ["name"] = "alt_subject_ids",
-            ["short"] = "Unique identifiers of all other non-preferred subject terms for this work",
+            ["title"] = "Alt Subject Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of all other non-preferred subject terms for this work",
           },
           {
             ["name"] = "alt_technique_ids",
-            ["short"] = "Unique identifiers of all other non-preferred technique terms for this work",
+            ["title"] = "Alt Technique Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of all other non-preferred technique terms for this work",
           },
           {
             ["name"] = "alt_titles",
-            ["short"] = "Alternate names for this work",
+            ["title"] = "Alt Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "Alternate names for this work",
           },
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "artist_display",
-            ["short"] = "Readable description of the creator of this work.",
+            ["title"] = "Artist Display",
             ["type"] = "`$ANY`",
+            ["short"] = "Readable description of the creator of this work.",
           },
           {
             ["name"] = "artist_id",
-            ["short"] = "Unique identifier of the preferred artist/culture associated with this work",
+            ["title"] = "Artist Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the preferred artist/culture associated with this work",
           },
           {
             ["name"] = "artist_ids",
-            ["short"] = "Unique identifier of all artist/cultures associated with this work",
+            ["title"] = "Artist Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifier of all artist/cultures associated with this work",
           },
           {
             ["name"] = "artist_title",
-            ["short"] = "Name of the preferred artist/culture associated with this work",
+            ["title"] = "Artist Title",
             ["type"] = "`$ANY`",
+            ["short"] = "Name of the preferred artist/culture associated with this work",
           },
           {
             ["name"] = "artist_titles",
-            ["short"] = "Names of all artist/cultures associated with this work",
+            ["title"] = "Artist Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "Names of all artist/cultures associated with this work",
           },
           {
             ["name"] = "artwork_type_id",
-            ["short"] = "Unique identifier of the kind of object or work",
+            ["title"] = "Artwork Type Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the kind of object or work",
           },
           {
             ["name"] = "artwork_type_title",
-            ["short"] = "The kind of object or work (e.g.",
+            ["title"] = "Artwork Type Title",
             ["type"] = "`$ANY`",
+            ["short"] = "The kind of object or work (e.g.",
           },
           {
             ["name"] = "boost_rank",
-            ["short"] = "Manual indication of what rank this artwork should take in search results.",
+            ["title"] = "Boost Rank",
             ["type"] = "`$ANY`",
+            ["short"] = "Manual indication of what rank this artwork should take in search results.",
           },
           {
             ["name"] = "catalog_based_search_keyword_titles",
-            ["short"] = "The keyword search values that would be catalog-based searches on this record",
+            ["title"] = "Catalog Based Search Keyword Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "The keyword search values that would be catalog-based searches on this record",
           },
           {
             ["name"] = "catalogue_display",
-            ["short"] = "Brief text listing all the catalogues raisonnés which include this work.",
+            ["title"] = "Catalogue Display",
             ["type"] = "`$ANY`",
+            ["short"] = "Brief text listing all the catalogues raisonnés which include this work.",
           },
           {
             ["name"] = "category_ids",
-            ["short"] = "Unique identifiers of the categories this work is a part of",
+            ["title"] = "Category Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the categories this work is a part of",
           },
           {
             ["name"] = "category_titles",
-            ["short"] = "Names of the categories this artwork is a part of",
+            ["title"] = "Category Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "Names of the categories this artwork is a part of",
           },
           {
             ["name"] = "classification_id",
-            ["short"] = "Unique identifier of the preferred classification term for this work",
+            ["title"] = "Classification Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the preferred classification term for this work",
           },
           {
             ["name"] = "classification_ids",
-            ["short"] = "Unique identifiers of all classification terms for this work",
+            ["title"] = "Classification Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of all classification terms for this work",
           },
           {
             ["name"] = "classification_title",
-            ["short"] = "The name of the preferred classification term for this work",
+            ["title"] = "Classification Title",
             ["type"] = "`$ANY`",
+            ["short"] = "The name of the preferred classification term for this work",
           },
           {
             ["name"] = "classification_titles",
-            ["short"] = "The names of all classification terms related to this artwork",
+            ["title"] = "Classification Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "The names of all classification terms related to this artwork",
           },
           {
             ["name"] = "color",
-            ["short"] = "Dominant color of this artwork in HSL",
+            ["title"] = "Color",
             ["type"] = "`$ANY`",
+            ["short"] = "Dominant color of this artwork in HSL",
           },
           {
             ["name"] = "colorfulness",
-            ["short"] = "Unbounded positive float representing an abstract measure of colorfulness.",
+            ["title"] = "Colorfulness",
             ["type"] = "`$ANY`",
+            ["short"] = "Unbounded positive float representing an abstract measure of colorfulness.",
           },
           {
             ["name"] = "copyright_notice",
-            ["short"] = "Statement notifying how the work is protected by copyright.",
+            ["title"] = "Copyright Notice",
             ["type"] = "`$ANY`",
+            ["short"] = "Statement notifying how the work is protected by copyright.",
           },
           {
             ["name"] = "credit_line",
-            ["short"] = "Brief statement indicating how the work came into the collection",
+            ["title"] = "Credit Line",
             ["type"] = "`$ANY`",
+            ["short"] = "Brief statement indicating how the work came into the collection",
           },
           {
             ["name"] = "date_display",
-            ["short"] = "Readable, free-text description of the period of time associated with the creation of this work.",
+            ["title"] = "Date Display",
             ["type"] = "`$ANY`",
+            ["short"] = "Readable, free-text description of the period of time associated with the creation of this work.",
           },
           {
             ["name"] = "date_end",
-            ["short"] = "The year of the period of time associated with the creation of this work",
+            ["title"] = "Date End",
             ["type"] = "`$ANY`",
+            ["short"] = "The year of the period of time associated with the creation of this work",
           },
           {
             ["name"] = "date_qualifier_id",
-            ["short"] = "Unique identifier of the qualifer to the dates provided for this record.",
+            ["title"] = "Date Qualifier Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the qualifer to the dates provided for this record.",
           },
           {
             ["name"] = "date_qualifier_title",
-            ["short"] = "Readable, text qualifer to the dates provided for this record.",
+            ["title"] = "Date Qualifier Title",
             ["type"] = "`$ANY`",
+            ["short"] = "Readable, text qualifer to the dates provided for this record.",
           },
           {
             ["name"] = "date_start",
-            ["short"] = "The year of the period of time associated with the creation of this work",
+            ["title"] = "Date Start",
             ["type"] = "`$ANY`",
+            ["short"] = "The year of the period of time associated with the creation of this work",
           },
           {
             ["name"] = "department_id",
-            ["short"] = "Unique identifier of the curatorial department that this work belongs to",
+            ["title"] = "Department Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the curatorial department that this work belongs to",
           },
           {
             ["name"] = "department_title",
-            ["short"] = "Name of the curatorial department that this work belongs to",
+            ["title"] = "Department Title",
             ["type"] = "`$ANY`",
+            ["short"] = "Name of the curatorial department that this work belongs to",
           },
           {
             ["name"] = "description",
-            ["short"] = "Longer explanation describing the work",
+            ["title"] = "Description",
             ["type"] = "`$STRING`",
+            ["short"] = "Longer explanation describing the work",
           },
           {
             ["name"] = "dimensions",
-            ["short"] = "The size, shape, scale, and dimensions of the work.",
+            ["title"] = "Dimensions",
             ["type"] = "`$ANY`",
+            ["short"] = "The size, shape, scale, and dimensions of the work.",
           },
           {
             ["name"] = "dimensions_detail",
-            ["short"] = "The height, width, depth, and/or diameter of each section of the work in centimeters",
+            ["title"] = "Dimensions Detail",
             ["type"] = "`$ANY`",
+            ["short"] = "The height, width, depth, and/or diameter of each section of the work in centimeters",
           },
           {
             ["name"] = "document_ids",
-            ["short"] = "Unique identifiers of assets that serve as documentation for this artwork",
+            ["title"] = "Document Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of assets that serve as documentation for this artwork",
           },
           {
             ["name"] = "edition",
-            ["short"] = "Edition number if the work is one of many",
+            ["title"] = "Edition",
             ["type"] = "`$ANY`",
+            ["short"] = "Edition number if the work is one of many",
           },
           {
             ["name"] = "exhibition_history",
-            ["short"] = "List of all the places this work has been exhibited",
+            ["title"] = "Exhibition History",
             ["type"] = "`$ANY`",
+            ["short"] = "List of all the places this work has been exhibited",
           },
           {
             ["name"] = "fiscal_year",
-            ["short"] = "The fiscal year in which the work was acquired.",
+            ["title"] = "Fiscal Year",
             ["type"] = "`$ANY`",
+            ["short"] = "The fiscal year in which the work was acquired.",
           },
           {
             ["name"] = "fiscal_year_deaccession",
-            ["short"] = "The fiscal year in which the work was deaccessioned.",
+            ["title"] = "Fiscal Year Deaccession",
             ["type"] = "`$ANY`",
+            ["short"] = "The fiscal year in which the work was deaccessioned.",
           },
           {
             ["name"] = "gallery_id",
-            ["short"] = "Unique identifier of the location of this work in our museum",
+            ["title"] = "Gallery Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the location of this work in our museum",
           },
           {
             ["name"] = "gallery_title",
-            ["short"] = "The location of this work in our museum",
+            ["title"] = "Gallery Title",
             ["type"] = "`$ANY`",
+            ["short"] = "The location of this work in our museum",
           },
           {
             ["name"] = "has_advanced_imaging",
-            ["short"] = "Whether this artwork is enhanced with 3D models, 360 image sequences, Mirador views, etc.",
+            ["title"] = "Has Advanced Imaging",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this artwork is enhanced with 3D models, 360 image sequences, Mirador views, etc.",
           },
           {
             ["name"] = "has_educational_resources",
-            ["short"] = "Whether this artwork has any documents tagged as educational",
+            ["title"] = "Has Educational Resources",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this artwork has any documents tagged as educational",
           },
           {
             ["name"] = "has_multimedia_resources",
-            ["short"] = "Whether this artwork has any associated microsites, digital publications, or documents tagged as multimedia",
+            ["title"] = "Has Multimedia Resources",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this artwork has any associated microsites, digital publications, or documents tagged as multimedia",
           },
           {
             ["name"] = "has_not_been_viewed_much",
-            ["short"] = "Whether the artwork hasn't been visited on our website very much",
+            ["title"] = "Has Not Been Viewed Much",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether the artwork hasn't been visited on our website very much",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "image_embedding",
-            ["short"] = "The generated embeddings describing the artwork image",
+            ["title"] = "Image Embedding",
             ["type"] = "`$ANY`",
+            ["short"] = "The generated embeddings describing the artwork image",
           },
           {
             ["name"] = "image_id",
-            ["short"] = "Unique identifier of the preferred image to use to represent this work",
+            ["title"] = "Image Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the preferred image to use to represent this work",
           },
           {
             ["name"] = "inscriptions",
-            ["short"] = "A description of distinguishing or identifying physical markings that are on the work",
+            ["title"] = "Inscriptions",
             ["type"] = "`$ANY`",
+            ["short"] = "A description of distinguishing or identifying physical markings that are on the work",
           },
           {
             ["name"] = "internal_department_id",
-            ["short"] = "An internal department id we use for analytics.",
+            ["title"] = "Internal Department Id",
             ["type"] = "`$STRING`",
+            ["short"] = "An internal department id we use for analytics.",
           },
           {
             ["name"] = "is_boosted",
-            ["short"] = "Whether this document should be boosted in search",
+            ["title"] = "Is Boosted",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this document should be boosted in search",
           },
           {
             ["name"] = "is_on_view",
-            ["short"] = "Whether the work is on display",
+            ["title"] = "Is On View",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether the work is on display",
           },
           {
             ["name"] = "is_public_domain",
-            ["short"] = "Whether the work is in the public domain, meaning it was created before copyrights existed or has left the copyright term",
+            ["title"] = "Is Public Domain",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether the work is in the public domain, meaning it was created before copyrights existed or has left the copyright term",
           },
           {
             ["name"] = "is_zoomable",
-            ["short"] = "Whether images of the work are allowed to be displayed in a zoomable interface.",
+            ["title"] = "Is Zoomable",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether images of the work are allowed to be displayed in a zoomable interface.",
           },
           {
             ["name"] = "latitude",
-            ["short"] = "Latitude coordinate of the location of this work in our galleries",
+            ["title"] = "Latitude",
             ["type"] = "`$NUMBER`",
+            ["short"] = "Latitude coordinate of the location of this work in our galleries",
           },
           {
             ["name"] = "latlon",
-            ["short"] = "Latitude and longitude coordinates of the location of this work in our galleries",
+            ["title"] = "Latlon",
             ["type"] = "`$ANY`",
+            ["short"] = "Latitude and longitude coordinates of the location of this work in our galleries",
           },
           {
             ["name"] = "longitude",
-            ["short"] = "Longitude coordinate of the location of this work in our galleries",
+            ["title"] = "Longitude",
             ["type"] = "`$NUMBER`",
+            ["short"] = "Longitude coordinate of the location of this work in our galleries",
           },
           {
             ["name"] = "main_reference_number",
-            ["short"] = "Unique identifier assigned to the artwork upon acquisition",
+            ["title"] = "Main Reference Number",
             ["type"] = "`$INTEGER`",
+            ["short"] = "Unique identifier assigned to the artwork upon acquisition",
           },
           {
             ["name"] = "material_id",
-            ["short"] = "Unique identifier of the preferred material term for this work",
+            ["title"] = "Material Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the preferred material term for this work",
           },
           {
             ["name"] = "material_ids",
-            ["short"] = "Unique identifiers of all material terms for this work",
+            ["title"] = "Material Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of all material terms for this work",
           },
           {
             ["name"] = "material_titles",
-            ["short"] = "The names of all material terms related to this artwork",
+            ["title"] = "Material Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "The names of all material terms related to this artwork",
           },
           {
             ["name"] = "max_zoom_window_size",
-            ["short"] = "The maximum size of the window the image is allowed to be viewed in, in pixels.",
+            ["title"] = "Max Zoom Window Size",
             ["type"] = "`$ANY`",
+            ["short"] = "The maximum size of the window the image is allowed to be viewed in, in pixels.",
           },
           {
             ["name"] = "medium_display",
-            ["short"] = "The substances or materials used in the creation of a work",
+            ["title"] = "Medium Display",
             ["type"] = "`$ANY`",
+            ["short"] = "The substances or materials used in the creation of a work",
           },
           {
             ["name"] = "nomisma_id",
-            ["short"] = "Unique identifier of this work in the nomisma coin database",
+            ["title"] = "Nomisma Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this work in the nomisma coin database",
           },
           {
             ["name"] = "on_loan_display",
-            ["short"] = "If an artwork is on loan, this contains details about the loan",
+            ["title"] = "On Loan Display",
             ["type"] = "`$ANY`",
+            ["short"] = "If an artwork is on loan, this contains details about the loan",
           },
           {
             ["name"] = "pageviews",
-            ["short"] = "Approx.",
+            ["title"] = "Pageviews",
             ["type"] = "`$ANY`",
+            ["short"] = "Approx.",
           },
           {
             ["name"] = "pageviews_recent",
-            ["short"] = "Approx.",
+            ["title"] = "Pageviews Recent",
             ["type"] = "`$ANY`",
+            ["short"] = "Approx.",
           },
           {
             ["name"] = "place_of_origin",
-            ["short"] = "The location where the creation, design, or production of the work took place, or the original location of the work",
+            ["title"] = "Place Of Origin",
             ["type"] = "`$ANY`",
+            ["short"] = "The location where the creation, design, or production of the work took place, or the original location of the work",
           },
           {
             ["name"] = "provenance_text",
-            ["short"] = "Ownership/collecting history of the work.",
+            ["title"] = "Provenance Text",
             ["type"] = "`$ANY`",
+            ["short"] = "Ownership/collecting history of the work.",
           },
           {
             ["name"] = "publication_history",
-            ["short"] = "Bibliographic list of all the places this work has been published",
+            ["title"] = "Publication History",
             ["type"] = "`$ANY`",
+            ["short"] = "Bibliographic list of all the places this work has been published",
           },
           {
             ["name"] = "publishing_verification_level",
-            ["short"] = "Indicator of how much metadata on the work in published.",
+            ["title"] = "Publishing Verification Level",
             ["type"] = "`$ANY`",
+            ["short"] = "Indicator of how much metadata on the work in published.",
           },
           {
             ["name"] = "section_ids",
-            ["short"] = "Unique identifiers of the digital publication chapters this work in included in",
+            ["title"] = "Section Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the digital publication chapters this work in included in",
           },
           {
             ["name"] = "section_titles",
-            ["short"] = "Names of the digital publication chapters this work is included in",
+            ["title"] = "Section Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "Names of the digital publication chapters this work is included in",
           },
           {
             ["name"] = "short_description",
-            ["short"] = "Short explanation describing the work",
+            ["title"] = "Short Description",
             ["type"] = "`$ANY`",
+            ["short"] = "Short explanation describing the work",
           },
           {
             ["name"] = "site_ids",
-            ["short"] = "Unique identifiers of the microsites this work is a part of",
+            ["title"] = "Site Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the microsites this work is a part of",
           },
           {
             ["name"] = "sound_ids",
-            ["short"] = "Unique identifiers of the audio about this work",
+            ["title"] = "Sound Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the audio about this work",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "style_id",
-            ["short"] = "Unique identifier of the preferred style term for this work",
+            ["title"] = "Style Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the preferred style term for this work",
           },
           {
             ["name"] = "style_ids",
-            ["short"] = "Unique identifiers of all style terms for this work",
+            ["title"] = "Style Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of all style terms for this work",
           },
           {
             ["name"] = "style_title",
-            ["short"] = "The name of the preferred style term for this work",
+            ["title"] = "Style Title",
             ["type"] = "`$ANY`",
+            ["short"] = "The name of the preferred style term for this work",
           },
           {
             ["name"] = "style_titles",
-            ["short"] = "The names of all style terms related to this artwork",
+            ["title"] = "Style Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "The names of all style terms related to this artwork",
           },
           {
             ["name"] = "subject_id",
-            ["short"] = "Unique identifier of the preferred subject term for this work",
+            ["title"] = "Subject Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the preferred subject term for this work",
           },
           {
             ["name"] = "subject_ids",
-            ["short"] = "Unique identifiers of all subject terms for this work",
+            ["title"] = "Subject Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of all subject terms for this work",
           },
           {
             ["name"] = "subject_titles",
-            ["short"] = "The names of all subject terms related to this artwork",
+            ["title"] = "Subject Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "The names of all subject terms related to this artwork",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "technique_id",
-            ["short"] = "Unique identifier of the preferred technique term for this work",
+            ["title"] = "Technique Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the preferred technique term for this work",
           },
           {
             ["name"] = "technique_ids",
-            ["short"] = "Unique identifiers of all technique terms for this work",
+            ["title"] = "Technique Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of all technique terms for this work",
           },
           {
             ["name"] = "technique_titles",
-            ["short"] = "The names of all technique terms related to this artwork",
+            ["title"] = "Technique Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "The names of all technique terms related to this artwork",
           },
           {
             ["name"] = "term_titles",
-            ["short"] = "The names of the taxonomy tags for this work",
+            ["title"] = "Term Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "The names of the taxonomy tags for this work",
           },
           {
             ["name"] = "text_embedding",
-            ["short"] = "The generated embeddings of artwork text",
+            ["title"] = "Text Embedding",
             ["type"] = "`$ANY`",
+            ["short"] = "The generated embeddings of artwork text",
           },
           {
             ["name"] = "text_ids",
-            ["short"] = "Unique identifiers of the texts about this work",
+            ["title"] = "Text Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the texts about this work",
           },
           {
             ["name"] = "theme_titles",
-            ["short"] = "The names of all thematic publish categories related to this artwork",
+            ["title"] = "Theme Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "The names of all thematic publish categories related to this artwork",
           },
           {
             ["name"] = "thumbnail",
-            ["short"] = "Metadata about the image referenced by `image_id`.",
+            ["title"] = "Thumbnail",
             ["type"] = "`$ANY`",
+            ["short"] = "Metadata about the image referenced by `image_id`.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "video_ids",
-            ["short"] = "Unique identifiers of the videos about this work",
+            ["title"] = "Video Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the videos about this work",
           },
         },
         ["id"] = {
@@ -1255,7 +1413,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/artworks",
@@ -1264,14 +1421,16 @@ local function make_config()
                     ["lit"] = "artworks",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "artworks",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "artworks",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -1280,17 +1439,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/artworks/{id}",
@@ -1302,18 +1450,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "artworks",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "artworks",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -1327,48 +1487,57 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
         },
         ["id"] = {
@@ -1382,7 +1551,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/artwork-date-qualifiers",
@@ -1391,14 +1559,16 @@ local function make_config()
                     ["lit"] = "artwork-date-qualifiers",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "artwork-date-qualifiers",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "artwork-date-qualifiers",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -1407,17 +1577,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/artwork-date-qualifiers/{id}",
@@ -1429,18 +1588,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "artwork-date-qualifiers",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "artwork-date-qualifiers",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -1454,48 +1625,57 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
         },
         ["id"] = {
@@ -1509,7 +1689,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/artwork-place-qualifiers",
@@ -1518,14 +1697,16 @@ local function make_config()
                     ["lit"] = "artwork-place-qualifiers",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "artwork-place-qualifiers",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "artwork-place-qualifiers",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -1534,17 +1715,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/artwork-place-qualifiers/{id}",
@@ -1556,18 +1726,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "artwork-place-qualifiers",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "artwork-place-qualifiers",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -1581,53 +1763,63 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "aat_id",
-            ["short"] = "Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT)",
+            ["title"] = "Aat Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT)",
           },
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
         },
         ["id"] = {
@@ -1641,7 +1833,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/artwork-types",
@@ -1650,14 +1841,16 @@ local function make_config()
                     ["lit"] = "artwork-types",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "artwork-types",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "artwork-types",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -1666,17 +1859,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/artwork-types/{id}",
@@ -1688,18 +1870,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "artwork-types",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "artwork-types",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -1713,58 +1907,69 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "aat_id",
-            ["short"] = "Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT)",
+            ["title"] = "Aat Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT)",
           },
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "parent_id",
-            ["short"] = "Unique identifier of this category's parent",
+            ["title"] = "Parent Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this category's parent",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "subtype",
-            ["short"] = "Takes one of the following values: classification, material, technique, style, subject, department, theme",
+            ["title"] = "Subtype",
             ["type"] = "`$ANY`",
+            ["short"] = "Takes one of the following values: classification, material, technique, style, subject, department, theme",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
         },
         ["id"] = {
@@ -1778,7 +1983,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/category-terms",
@@ -1787,14 +1991,16 @@ local function make_config()
                     ["lit"] = "category-terms",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "category-terms",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "category-terms",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -1803,17 +2009,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/category-terms/{id}",
@@ -1825,18 +2020,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "category-terms",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "category-terms",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -1850,58 +2057,69 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "copy",
-            ["short"] = "The text of the page",
+            ["title"] = "Copy",
             ["type"] = "`$ANY`",
+            ["short"] = "The text of the page",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "web_url",
-            ["short"] = "The URL to this page on our website",
+            ["title"] = "Web Url",
             ["type"] = "`$ANY`",
+            ["short"] = "The URL to this page on our website",
           },
         },
         ["id"] = {
@@ -1915,7 +2133,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/digital-publications",
@@ -1924,14 +2141,16 @@ local function make_config()
                     ["lit"] = "digital-publications",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "digital-publications",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "digital-publications",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -1940,17 +2159,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/digital-publications/{id}",
@@ -1962,18 +2170,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "digital-publications",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "digital-publications",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -1987,68 +2207,81 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "author_display",
-            ["short"] = "A display-friendly text of the authors of this article",
+            ["title"] = "Author Display",
             ["type"] = "`$ANY`",
+            ["short"] = "A display-friendly text of the authors of this article",
           },
           {
             ["name"] = "copy",
-            ["short"] = "The text of the article",
+            ["title"] = "Copy",
             ["type"] = "`$ANY`",
+            ["short"] = "The text of the article",
           },
           {
             ["name"] = "digital_publication_id",
-            ["short"] = "Unique identifier of the digital publication this article belongs to",
+            ["title"] = "Digital Publication Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the digital publication this article belongs to",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "web_url",
-            ["short"] = "The URL to this article on our website",
+            ["title"] = "Web Url",
             ["type"] = "`$ANY`",
+            ["short"] = "The URL to this article on our website",
           },
         },
         ["id"] = {
@@ -2062,7 +2295,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/digital-publication-articles",
@@ -2071,14 +2303,16 @@ local function make_config()
                     ["lit"] = "digital-publication-articles",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "digital-publication-articles",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "digital-publication-articles",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -2087,17 +2321,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/digital-publication-articles/{id}",
@@ -2109,18 +2332,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "digital-publication-articles",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "digital-publication-articles",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -2134,58 +2369,69 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "copy",
-            ["short"] = "The text of the page",
+            ["title"] = "Copy",
             ["type"] = "`$ANY`",
+            ["short"] = "The text of the page",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "web_url",
-            ["short"] = "The URL to this page on our website",
+            ["title"] = "Web Url",
             ["type"] = "`$ANY`",
+            ["short"] = "The URL to this page on our website",
           },
         },
         ["id"] = {
@@ -2199,7 +2445,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/educator-resources",
@@ -2208,14 +2453,16 @@ local function make_config()
                     ["lit"] = "educator-resources",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "educator-resources",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "educator-resources",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -2224,17 +2471,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/educator-resources/{id}",
@@ -2246,18 +2482,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "educator-resources",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "educator-resources",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -2271,268 +2519,321 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "alt_audience_ids",
-            ["short"] = "Unique identifiers indicating the alternate audiences for this event",
+            ["title"] = "Alt Audience Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers indicating the alternate audiences for this event",
           },
           {
             ["name"] = "alt_event_type_ids",
-            ["short"] = "Unique identifiers indicating the alternate types of this event",
+            ["title"] = "Alt Event Type Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers indicating the alternate types of this event",
           },
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "audience_id",
-            ["short"] = "Unique identifier indicating the preferred audience for this event",
+            ["title"] = "Audience Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier indicating the preferred audience for this event",
           },
           {
             ["name"] = "buy_button_caption",
-            ["short"] = "Additional text below the ticket/registration button",
+            ["title"] = "Buy Button Caption",
             ["type"] = "`$ANY`",
+            ["short"] = "Additional text below the ticket/registration button",
           },
           {
             ["name"] = "buy_button_text",
-            ["short"] = "The text used on the ticket/registration button",
+            ["title"] = "Buy Button Text",
             ["type"] = "`$ANY`",
+            ["short"] = "The text used on the ticket/registration button",
           },
           {
             ["name"] = "date_display",
-            ["short"] = "A readable display of the event dates",
+            ["title"] = "Date Display",
             ["type"] = "`$ANY`",
+            ["short"] = "A readable display of the event dates",
           },
           {
             ["name"] = "description",
-            ["short"] = "All copytext of the event",
+            ["title"] = "Description",
             ["type"] = "`$STRING`",
+            ["short"] = "All copytext of the event",
           },
           {
             ["name"] = "door_time",
-            ["short"] = "The time the doors open for this event",
+            ["title"] = "Door Time",
             ["type"] = "`$ANY`",
+            ["short"] = "The time the doors open for this event",
           },
           {
             ["name"] = "end_date",
-            ["short"] = "The date the event ends",
+            ["title"] = "End Date",
             ["type"] = "`$ANY`",
+            ["short"] = "The date the event ends",
           },
           {
             ["name"] = "end_time",
-            ["short"] = "The time the event ends",
+            ["title"] = "End Time",
             ["type"] = "`$ANY`",
+            ["short"] = "The time the event ends",
           },
           {
             ["name"] = "entrance",
-            ["short"] = "Which entrance to use for this event",
+            ["title"] = "Entrance",
             ["type"] = "`$ANY`",
+            ["short"] = "Which entrance to use for this event",
           },
           {
             ["name"] = "event_host_id",
-            ["short"] = "Unique identifier of the host (cf.",
+            ["title"] = "Event Host Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the host (cf.",
           },
           {
             ["name"] = "event_host_title",
-            ["short"] = "Unique identifier of the host (cf.",
+            ["title"] = "Event Host Title",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifier of the host (cf.",
           },
           {
             ["name"] = "event_type_id",
-            ["short"] = "Unique identifier indicating the preferred type of this event",
+            ["title"] = "Event Type Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier indicating the preferred type of this event",
           },
           {
             ["name"] = "header_description",
-            ["short"] = "Brief description of the event displayed below the title",
+            ["title"] = "Header Description",
             ["type"] = "`$ANY`",
+            ["short"] = "Brief description of the event displayed below the title",
           },
           {
             ["name"] = "hero_caption",
-            ["short"] = "Text displayed with the hero image on the event",
+            ["title"] = "Hero Caption",
             ["type"] = "`$ANY`",
+            ["short"] = "Text displayed with the hero image on the event",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "image_url",
-            ["short"] = "The URL of an image representing this page",
+            ["title"] = "Image Url",
             ["type"] = "`$ANY`",
+            ["short"] = "The URL of an image representing this page",
           },
           {
             ["name"] = "is_admission_required",
-            ["short"] = "Whether admission to the museum is required to attend this event",
+            ["title"] = "Is Admission Required",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether admission to the museum is required to attend this event",
           },
           {
             ["name"] = "is_after_hours",
-            ["short"] = "Whether the event is to be held after the museum closes",
+            ["title"] = "Is After Hours",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether the event is to be held after the museum closes",
           },
           {
             ["name"] = "is_free",
-            ["short"] = "Whether the event is free",
+            ["title"] = "Is Free",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether the event is free",
           },
           {
             ["name"] = "is_member_exclusive",
-            ["short"] = "Whether the event is exclusive to members of the museum",
+            ["title"] = "Is Member Exclusive",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether the event is exclusive to members of the museum",
           },
           {
             ["name"] = "is_private",
-            ["short"] = "Whether the event is private",
+            ["title"] = "Is Private",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether the event is private",
           },
           {
             ["name"] = "is_registration_required",
-            ["short"] = "Whether registration is required to attend the event",
+            ["title"] = "Is Registration Required",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether registration is required to attend the event",
           },
           {
             ["name"] = "is_sales_button_hidden",
-            ["short"] = "Whether the buy tickets button is hidden on the website event page",
+            ["title"] = "Is Sales Button Hidden",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether the buy tickets button is hidden on the website event page",
           },
           {
             ["name"] = "is_sold_out",
-            ["short"] = "Whether the event is sold out",
+            ["title"] = "Is Sold Out",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether the event is sold out",
           },
           {
             ["name"] = "is_ticketed",
-            ["short"] = "Whether a ticket is required to attend the event",
+            ["title"] = "Is Ticketed",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether a ticket is required to attend the event",
           },
           {
             ["name"] = "is_virtual_event",
-            ["short"] = "Whether the event is being held virtually",
+            ["title"] = "Is Virtual Event",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether the event is being held virtually",
           },
           {
             ["name"] = "join_url",
-            ["short"] = "URL to the membership signup page via this event",
+            ["title"] = "Join Url",
             ["type"] = "`$ANY`",
+            ["short"] = "URL to the membership signup page via this event",
           },
           {
             ["name"] = "layout_type",
-            ["short"] = "Number indicating the type of layout this event page uses",
+            ["title"] = "Layout Type",
             ["type"] = "`$ANY`",
+            ["short"] = "Number indicating the type of layout this event page uses",
           },
           {
             ["name"] = "list_description",
-            ["short"] = "One-sentence description of the event displayed in listings",
+            ["title"] = "List Description",
             ["type"] = "`$ANY`",
+            ["short"] = "One-sentence description of the event displayed in listings",
           },
           {
             ["name"] = "location",
-            ["short"] = "Where the event takes place",
+            ["title"] = "Location",
             ["type"] = "`$ANY`",
+            ["short"] = "Where the event takes place",
           },
           {
             ["name"] = "program_ids",
-            ["short"] = "Unique identifiers indicating the programs this event is a part of",
+            ["title"] = "Program Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers indicating the programs this event is a part of",
           },
           {
             ["name"] = "program_titles",
-            ["short"] = "Titles of the programs this event is a part of",
+            ["title"] = "Program Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "Titles of the programs this event is a part of",
           },
           {
             ["name"] = "rsvp_link",
-            ["short"] = "The URL to the sales site for this event",
+            ["title"] = "Rsvp Link",
             ["type"] = "`$ANY`",
+            ["short"] = "The URL to the sales site for this event",
           },
           {
             ["name"] = "search_tags",
-            ["short"] = "Editor-specified list of tags to aid in internal search",
+            ["title"] = "Search Tags",
             ["type"] = "`$ANY`",
+            ["short"] = "Editor-specified list of tags to aid in internal search",
           },
           {
             ["name"] = "short_description",
-            ["short"] = "Brief description of the event",
+            ["title"] = "Short Description",
             ["type"] = "`$ANY`",
+            ["short"] = "Brief description of the event",
           },
           {
             ["name"] = "slug",
-            ["short"] = "A string used in the URL for this event",
+            ["title"] = "Slug",
             ["type"] = "`$STRING`",
+            ["short"] = "A string used in the URL for this event",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "start_date",
-            ["short"] = "The date the event begins",
+            ["title"] = "Start Date",
             ["type"] = "`$ANY`",
+            ["short"] = "The date the event begins",
           },
           {
             ["name"] = "start_time",
-            ["short"] = "The time the event starts",
+            ["title"] = "Start Time",
             ["type"] = "`$ANY`",
+            ["short"] = "The time the event starts",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "survey_url",
-            ["short"] = "URL to the survey associated with this event",
+            ["title"] = "Survey Url",
             ["type"] = "`$ANY`",
+            ["short"] = "URL to the survey associated with this event",
           },
           {
             ["name"] = "ticketed_event_id",
-            ["short"] = "Unique identifier of the event in the ticketing system this website event is tied to",
+            ["title"] = "Ticketed Event Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the event in the ticketing system this website event is tied to",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "title_display",
-            ["short"] = "The name of this event formatted with HTML (optional)",
+            ["title"] = "Title Display",
             ["type"] = "`$ANY`",
+            ["short"] = "The name of this event formatted with HTML (optional)",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "virtual_event_passcode",
-            ["short"] = "Passcode to access the virtual event",
+            ["title"] = "Virtual Event Passcode",
             ["type"] = "`$ANY`",
+            ["short"] = "Passcode to access the virtual event",
           },
           {
             ["name"] = "virtual_event_url",
-            ["short"] = "URL to the virtual event",
+            ["title"] = "Virtual Event Url",
             ["type"] = "`$ANY`",
+            ["short"] = "URL to the virtual event",
           },
         },
         ["id"] = {
@@ -2546,7 +2847,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/events",
@@ -2555,14 +2855,16 @@ local function make_config()
                     ["lit"] = "events",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "events",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "events",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -2571,17 +2873,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/events/{id}",
@@ -2593,18 +2884,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "events",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "events",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -2618,128 +2921,153 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "button_caption",
-            ["short"] = "Additional text below the ticket/registration button",
+            ["title"] = "Button Caption",
             ["type"] = "`$ANY`",
+            ["short"] = "Additional text below the ticket/registration button",
           },
           {
             ["name"] = "button_text",
-            ["short"] = "The text used on the ticket/registration button",
+            ["title"] = "Button Text",
             ["type"] = "`$ANY`",
+            ["short"] = "The text used on the ticket/registration button",
           },
           {
             ["name"] = "button_url",
-            ["short"] = "The URL to the sales site or an RSVP link for this event",
+            ["title"] = "Button Url",
             ["type"] = "`$ANY`",
+            ["short"] = "The URL to the sales site or an RSVP link for this event",
           },
           {
             ["name"] = "description",
-            ["short"] = "Description of the event",
+            ["title"] = "Description",
             ["type"] = "`$STRING`",
+            ["short"] = "Description of the event",
           },
           {
             ["name"] = "end_at",
-            ["short"] = "The date the event occurrence ends",
+            ["title"] = "End At",
             ["type"] = "`$ANY`",
+            ["short"] = "The date the event occurrence ends",
           },
           {
             ["name"] = "event_id",
-            ["short"] = "Identifier of the master event of which this is an occurrence",
+            ["title"] = "Event Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Identifier of the master event of which this is an occurrence",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "image_url",
-            ["short"] = "The URL of an image representing this page",
+            ["title"] = "Image Url",
             ["type"] = "`$ANY`",
+            ["short"] = "The URL of an image representing this page",
           },
           {
             ["name"] = "is_private",
-            ["short"] = "Whether the event is private.",
+            ["title"] = "Is Private",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether the event is private.",
           },
           {
             ["name"] = "is_sales_button_hidden",
-            ["short"] = "Whether the buy tickets button is hidden on the website event page",
+            ["title"] = "Is Sales Button Hidden",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether the buy tickets button is hidden on the website event page",
           },
           {
             ["name"] = "is_ticketed",
-            ["short"] = "Whether a ticket is required to attend the event",
+            ["title"] = "Is Ticketed",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether a ticket is required to attend the event",
           },
           {
             ["name"] = "location",
-            ["short"] = "Where the event takes place",
+            ["title"] = "Location",
             ["type"] = "`$ANY`",
+            ["short"] = "Where the event takes place",
           },
           {
             ["name"] = "off_sale_at",
-            ["short"] = "Date and time the event goes off sale",
+            ["title"] = "Off Sale At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the event goes off sale",
           },
           {
             ["name"] = "on_sale_at",
-            ["short"] = "Date and time the event goes on sale",
+            ["title"] = "On Sale At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the event goes on sale",
           },
           {
             ["name"] = "short_description",
-            ["short"] = "Brief description of the event",
+            ["title"] = "Short Description",
             ["type"] = "`$ANY`",
+            ["short"] = "Brief description of the event",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "start_at",
-            ["short"] = "The date the event occurrence begins",
+            ["title"] = "Start At",
             ["type"] = "`$ANY`",
+            ["short"] = "The date the event occurrence begins",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "title_display",
-            ["short"] = "The name of this event formatted with HTML (optional)",
+            ["title"] = "Title Display",
             ["type"] = "`$ANY`",
+            ["short"] = "The name of this event formatted with HTML (optional)",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
         },
         ["id"] = {
@@ -2753,7 +3081,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/event-occurrences",
@@ -2762,14 +3089,16 @@ local function make_config()
                     ["lit"] = "event-occurrences",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "event-occurrences",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "event-occurrences",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -2778,17 +3107,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/event-occurrences/{id}",
@@ -2800,18 +3118,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "event-occurrences",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "event-occurrences",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -2825,58 +3155,69 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "is_affiliate_group",
-            ["short"] = "Whether this program represents an affiliate group",
+            ["title"] = "Is Affiliate Group",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this program represents an affiliate group",
           },
           {
             ["name"] = "is_event_host",
-            ["short"] = "Whether this program represents an event host",
+            ["title"] = "Is Event Host",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this program represents an event host",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
         },
         ["id"] = {
@@ -2890,7 +3231,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/event-programs",
@@ -2899,14 +3239,16 @@ local function make_config()
                     ["lit"] = "event-programs",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "event-programs",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "event-programs",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -2915,17 +3257,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/event-programs/{id}",
@@ -2937,18 +3268,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "event-programs",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "event-programs",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -2962,138 +3305,165 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "aic_end_at",
-            ["short"] = "Date the exhibition closed at the Art Institute of Chicago",
+            ["title"] = "Aic End At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date the exhibition closed at the Art Institute of Chicago",
           },
           {
             ["name"] = "aic_start_at",
-            ["short"] = "Date the exhibition opened at the Art Institute of Chicago",
+            ["title"] = "Aic Start At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date the exhibition opened at the Art Institute of Chicago",
           },
           {
             ["name"] = "alt_image_ids",
-            ["short"] = "Unique identifiers of all non-preferred images of this exhibition.",
+            ["title"] = "Alt Image Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of all non-preferred images of this exhibition.",
           },
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "artist_ids",
-            ["short"] = "Unique identifiers of the artist agent records representing who was shown in the exhibition",
+            ["title"] = "Artist Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the artist agent records representing who was shown in the exhibition",
           },
           {
             ["name"] = "artwork_ids",
-            ["short"] = "Unique identifiers of the artworks that were part of the exhibition",
+            ["title"] = "Artwork Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the artworks that were part of the exhibition",
           },
           {
             ["name"] = "artwork_titles",
-            ["short"] = "Names of the artworks that were part of the exhibition",
+            ["title"] = "Artwork Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "Names of the artworks that were part of the exhibition",
           },
           {
             ["name"] = "document_ids",
-            ["short"] = "Unique identifiers of assets that serve as documentation for this exhibition",
+            ["title"] = "Document Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of assets that serve as documentation for this exhibition",
           },
           {
             ["name"] = "gallery_id",
-            ["short"] = "Unique identifier of the gallery that mainly housed the exhibition",
+            ["title"] = "Gallery Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the gallery that mainly housed the exhibition",
           },
           {
             ["name"] = "gallery_title",
-            ["short"] = "The name of the gallery that mainly housed the exhibition",
+            ["title"] = "Gallery Title",
             ["type"] = "`$ANY`",
+            ["short"] = "The name of the gallery that mainly housed the exhibition",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "image_id",
-            ["short"] = "Unique identifier of the preferred image to use to represent this exhibition",
+            ["title"] = "Image Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the preferred image to use to represent this exhibition",
           },
           {
             ["name"] = "image_url",
-            ["short"] = "URL to the hero image from the website",
+            ["title"] = "Image Url",
             ["type"] = "`$ANY`",
+            ["short"] = "URL to the hero image from the website",
           },
           {
             ["name"] = "is_featured",
-            ["short"] = "Is this exhibition currently featured on our website?",
+            ["title"] = "Is Featured",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Is this exhibition currently featured on our website?",
           },
           {
             ["name"] = "is_published",
-            ["short"] = "Is this exhibition currently published on our website?",
+            ["title"] = "Is Published",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Is this exhibition currently published on our website?",
           },
           {
             ["name"] = "position",
-            ["short"] = "Numering position represnting the order in which this exhibition is featured on the website",
+            ["title"] = "Position",
             ["type"] = "`$ANY`",
+            ["short"] = "Numering position represnting the order in which this exhibition is featured on the website",
           },
           {
             ["name"] = "short_description",
-            ["short"] = "Brief explanation of what this exhibition is",
+            ["title"] = "Short Description",
             ["type"] = "`$ANY`",
+            ["short"] = "Brief explanation of what this exhibition is",
           },
           {
             ["name"] = "site_ids",
-            ["short"] = "Unique identifiers of the microsites this exhibition is a part of",
+            ["title"] = "Site Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the microsites this exhibition is a part of",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "status",
-            ["short"] = "Whether the exhibition is open or closed",
+            ["title"] = "Status",
             ["type"] = "`$ANY`",
+            ["short"] = "Whether the exhibition is open or closed",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "web_url",
-            ["short"] = "URL to this exhibition on our website",
+            ["title"] = "Web Url",
             ["type"] = "`$ANY`",
+            ["short"] = "URL to this exhibition on our website",
           },
         },
         ["id"] = {
@@ -3107,7 +3477,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/exhibitions",
@@ -3116,14 +3485,16 @@ local function make_config()
                     ["lit"] = "exhibitions",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "exhibitions",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "exhibitions",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -3132,17 +3503,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/exhibitions/{id}",
@@ -3154,18 +3514,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "exhibitions",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "exhibitions",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -3179,83 +3551,99 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "floor",
-            ["short"] = "The level the gallery is on, e.g., 1, 2, 3, or LL",
+            ["title"] = "Floor",
             ["type"] = "`$ANY`",
+            ["short"] = "The level the gallery is on, e.g., 1, 2, 3, or LL",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "is_closed",
-            ["short"] = "Whether the gallery is currently closed",
+            ["title"] = "Is Closed",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether the gallery is currently closed",
           },
           {
             ["name"] = "latitude",
-            ["short"] = "Latitude coordinate of the center of the room",
+            ["title"] = "Latitude",
             ["type"] = "`$NUMBER`",
+            ["short"] = "Latitude coordinate of the center of the room",
           },
           {
             ["name"] = "latlon",
-            ["short"] = "Latitude and longitude coordinates of the center of the room",
+            ["title"] = "Latlon",
             ["type"] = "`$ANY`",
+            ["short"] = "Latitude and longitude coordinates of the center of the room",
           },
           {
             ["name"] = "longitude",
-            ["short"] = "Longitude coordinate of the center of the room",
+            ["title"] = "Longitude",
             ["type"] = "`$NUMBER`",
+            ["short"] = "Longitude coordinate of the center of the room",
           },
           {
             ["name"] = "number",
-            ["short"] = "The gallery's room number.",
+            ["title"] = "Number",
             ["type"] = "`$ANY`",
+            ["short"] = "The gallery's room number.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "tgn_id",
-            ["short"] = "Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN)",
+            ["title"] = "Tgn Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN)",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
         },
         ["id"] = {
@@ -3269,7 +3657,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/galleries",
@@ -3278,14 +3665,16 @@ local function make_config()
                     ["lit"] = "galleries",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "galleries",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "galleries",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -3294,17 +3683,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/galleries/{id}",
@@ -3316,18 +3694,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "galleries",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "galleries",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -3341,63 +3731,75 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "copy",
-            ["short"] = "The text of the page",
+            ["title"] = "Copy",
             ["type"] = "`$ANY`",
+            ["short"] = "The text of the page",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "search_tags",
-            ["short"] = "Editor-specified list of tags to aid in internal search",
+            ["title"] = "Search Tags",
             ["type"] = "`$ANY`",
+            ["short"] = "Editor-specified list of tags to aid in internal search",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "web_url",
-            ["short"] = "The URL to this page on our website",
+            ["title"] = "Web Url",
             ["type"] = "`$ANY`",
+            ["short"] = "The URL to this page on our website",
           },
         },
         ["id"] = {
@@ -3411,7 +3813,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/generic-pages",
@@ -3420,14 +3821,16 @@ local function make_config()
                     ["lit"] = "generic-pages",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "generic-pages",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "generic-pages",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -3436,17 +3839,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/generic-pages/{id}",
@@ -3458,18 +3850,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "generic-pages",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "generic-pages",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -3483,53 +3887,63 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "copy",
-            ["short"] = "The text of the highlight description",
+            ["title"] = "Copy",
             ["type"] = "`$ANY`",
+            ["short"] = "The text of the highlight description",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
         },
         ["id"] = {
@@ -3543,7 +3957,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/highlights",
@@ -3552,14 +3965,16 @@ local function make_config()
                     ["lit"] = "highlights",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "highlights",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "highlights",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -3568,17 +3983,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/highlights/{id}",
@@ -3590,18 +3994,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "highlights",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "highlights",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -3615,233 +4031,279 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "additional_text",
-            ["short"] = "Additional information about the hours",
+            ["title"] = "Additional Text",
             ["type"] = "`$ANY`",
+            ["short"] = "Additional information about the hours",
           },
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "friday_is_closed",
-            ["short"] = "Whether the museum is closed on Fridays",
+            ["title"] = "Friday Is Closed",
             ["type"] = "`$ANY`",
+            ["short"] = "Whether the museum is closed on Fridays",
           },
           {
             ["name"] = "friday_member_close",
-            ["short"] = "The time member hours ends on Fridays",
+            ["title"] = "Friday Member Close",
             ["type"] = "`$ANY`",
+            ["short"] = "The time member hours ends on Fridays",
           },
           {
             ["name"] = "friday_member_open",
-            ["short"] = "The time member hours starts on Fridays",
+            ["title"] = "Friday Member Open",
             ["type"] = "`$ANY`",
+            ["short"] = "The time member hours starts on Fridays",
           },
           {
             ["name"] = "friday_public_close",
-            ["short"] = "The time public hours ends on Fridays",
+            ["title"] = "Friday Public Close",
             ["type"] = "`$ANY`",
+            ["short"] = "The time public hours ends on Fridays",
           },
           {
             ["name"] = "friday_public_open",
-            ["short"] = "The time public hours starts on Fridays",
+            ["title"] = "Friday Public Open",
             ["type"] = "`$ANY`",
+            ["short"] = "The time public hours starts on Fridays",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "monday_is_closed",
-            ["short"] = "Whether the museum is closed on Mondays",
+            ["title"] = "Monday Is Closed",
             ["type"] = "`$ANY`",
+            ["short"] = "Whether the museum is closed on Mondays",
           },
           {
             ["name"] = "monday_member_close",
-            ["short"] = "The time member hours ends on Mondays",
+            ["title"] = "Monday Member Close",
             ["type"] = "`$ANY`",
+            ["short"] = "The time member hours ends on Mondays",
           },
           {
             ["name"] = "monday_member_open",
-            ["short"] = "The time member hours starts on Mondays",
+            ["title"] = "Monday Member Open",
             ["type"] = "`$ANY`",
+            ["short"] = "The time member hours starts on Mondays",
           },
           {
             ["name"] = "monday_public_close",
-            ["short"] = "The time public hours ends on Mondays",
+            ["title"] = "Monday Public Close",
             ["type"] = "`$ANY`",
+            ["short"] = "The time public hours ends on Mondays",
           },
           {
             ["name"] = "monday_public_open",
-            ["short"] = "The time public hours starts on Mondays",
+            ["title"] = "Monday Public Open",
             ["type"] = "`$ANY`",
+            ["short"] = "The time public hours starts on Mondays",
           },
           {
             ["name"] = "saturday_is_closed",
-            ["short"] = "Whether the museum is closed on Saturdays",
+            ["title"] = "Saturday Is Closed",
             ["type"] = "`$ANY`",
+            ["short"] = "Whether the museum is closed on Saturdays",
           },
           {
             ["name"] = "saturday_member_close",
-            ["short"] = "The time member hours ends on Saturdays",
+            ["title"] = "Saturday Member Close",
             ["type"] = "`$ANY`",
+            ["short"] = "The time member hours ends on Saturdays",
           },
           {
             ["name"] = "saturday_member_open",
-            ["short"] = "The time member hours starts on Saturdays",
+            ["title"] = "Saturday Member Open",
             ["type"] = "`$ANY`",
+            ["short"] = "The time member hours starts on Saturdays",
           },
           {
             ["name"] = "saturday_public_close",
-            ["short"] = "The time public hours ends on Saturdays",
+            ["title"] = "Saturday Public Close",
             ["type"] = "`$ANY`",
+            ["short"] = "The time public hours ends on Saturdays",
           },
           {
             ["name"] = "saturday_public_open",
-            ["short"] = "The time public hours starts on Saturdays",
+            ["title"] = "Saturday Public Open",
             ["type"] = "`$ANY`",
+            ["short"] = "The time public hours starts on Saturdays",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "summary",
-            ["short"] = "Readable summary of the hours",
+            ["title"] = "Summary",
             ["type"] = "`$ANY`",
+            ["short"] = "Readable summary of the hours",
           },
           {
             ["name"] = "sunday_is_closed",
-            ["short"] = "Whether the museum is closed on Sundays",
+            ["title"] = "Sunday Is Closed",
             ["type"] = "`$ANY`",
+            ["short"] = "Whether the museum is closed on Sundays",
           },
           {
             ["name"] = "sunday_member_close",
-            ["short"] = "The time member hours ends on Sundays",
+            ["title"] = "Sunday Member Close",
             ["type"] = "`$ANY`",
+            ["short"] = "The time member hours ends on Sundays",
           },
           {
             ["name"] = "sunday_member_open",
-            ["short"] = "The time member hours starts on Sundays",
+            ["title"] = "Sunday Member Open",
             ["type"] = "`$ANY`",
+            ["short"] = "The time member hours starts on Sundays",
           },
           {
             ["name"] = "sunday_public_close",
-            ["short"] = "The time public hours ends on Sundays",
+            ["title"] = "Sunday Public Close",
             ["type"] = "`$ANY`",
+            ["short"] = "The time public hours ends on Sundays",
           },
           {
             ["name"] = "sunday_public_open",
-            ["short"] = "The time public hours starts on Sundays",
+            ["title"] = "Sunday Public Open",
             ["type"] = "`$ANY`",
+            ["short"] = "The time public hours starts on Sundays",
           },
           {
             ["name"] = "thursday_is_closed",
-            ["short"] = "Whether the museum is closed on Thursdays",
+            ["title"] = "Thursday Is Closed",
             ["type"] = "`$ANY`",
+            ["short"] = "Whether the museum is closed on Thursdays",
           },
           {
             ["name"] = "thursday_member_close",
-            ["short"] = "The time member hours ends on Thursdays",
+            ["title"] = "Thursday Member Close",
             ["type"] = "`$ANY`",
+            ["short"] = "The time member hours ends on Thursdays",
           },
           {
             ["name"] = "thursday_member_open",
-            ["short"] = "The time member hours starts on Thursdays",
+            ["title"] = "Thursday Member Open",
             ["type"] = "`$ANY`",
+            ["short"] = "The time member hours starts on Thursdays",
           },
           {
             ["name"] = "thursday_public_close",
-            ["short"] = "The time public hours ends on Thursdays",
+            ["title"] = "Thursday Public Close",
             ["type"] = "`$ANY`",
+            ["short"] = "The time public hours ends on Thursdays",
           },
           {
             ["name"] = "thursday_public_open",
-            ["short"] = "The time public hours starts on Thursdays",
+            ["title"] = "Thursday Public Open",
             ["type"] = "`$ANY`",
+            ["short"] = "The time public hours starts on Thursdays",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "tuesday_is_closed",
-            ["short"] = "Whether the museum is closed on Tuesdays",
+            ["title"] = "Tuesday Is Closed",
             ["type"] = "`$ANY`",
+            ["short"] = "Whether the museum is closed on Tuesdays",
           },
           {
             ["name"] = "tuesday_member_close",
-            ["short"] = "The time member hours ends on Tuesdays",
+            ["title"] = "Tuesday Member Close",
             ["type"] = "`$ANY`",
+            ["short"] = "The time member hours ends on Tuesdays",
           },
           {
             ["name"] = "tuesday_member_open",
-            ["short"] = "The time member hours starts on Tuesdays",
+            ["title"] = "Tuesday Member Open",
             ["type"] = "`$ANY`",
+            ["short"] = "The time member hours starts on Tuesdays",
           },
           {
             ["name"] = "tuesday_public_close",
-            ["short"] = "The time public hours ends on Tuesdays",
+            ["title"] = "Tuesday Public Close",
             ["type"] = "`$ANY`",
+            ["short"] = "The time public hours ends on Tuesdays",
           },
           {
             ["name"] = "tuesday_public_open",
-            ["short"] = "The time public hours starts on Tuesdays",
+            ["title"] = "Tuesday Public Open",
             ["type"] = "`$ANY`",
+            ["short"] = "The time public hours starts on Tuesdays",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "wednesday_is_closed",
-            ["short"] = "Whether the museum is closed on Wednesdays",
+            ["title"] = "Wednesday Is Closed",
             ["type"] = "`$ANY`",
+            ["short"] = "Whether the museum is closed on Wednesdays",
           },
           {
             ["name"] = "wednesday_member_close",
-            ["short"] = "The time member hours ends on Wednesdays",
+            ["title"] = "Wednesday Member Close",
             ["type"] = "`$ANY`",
+            ["short"] = "The time member hours ends on Wednesdays",
           },
           {
             ["name"] = "wednesday_member_open",
-            ["short"] = "The time member hours starts on Wednesdays",
+            ["title"] = "Wednesday Member Open",
             ["type"] = "`$ANY`",
+            ["short"] = "The time member hours starts on Wednesdays",
           },
           {
             ["name"] = "wednesday_public_close",
-            ["short"] = "The time public hours ends on Wednesdays",
+            ["title"] = "Wednesday Public Close",
             ["type"] = "`$ANY`",
+            ["short"] = "The time public hours ends on Wednesdays",
           },
           {
             ["name"] = "wednesday_public_open",
-            ["short"] = "The time public hours starts on Wednesdays",
+            ["title"] = "Wednesday Public Open",
             ["type"] = "`$ANY`",
+            ["short"] = "The time public hours starts on Wednesdays",
           },
         },
         ["id"] = {
@@ -3855,7 +4317,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/hours",
@@ -3864,14 +4325,16 @@ local function make_config()
                     ["lit"] = "hours",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "hours",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "hours",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -3880,17 +4343,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/hours/{id}",
@@ -3902,18 +4354,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "hours",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "hours",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -3927,148 +4391,177 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "ahash",
-            ["short"] = "Image hash generated using ahash algorithm with 64 boolean subfields",
+            ["title"] = "Ahash",
             ["type"] = "`$ANY`",
+            ["short"] = "Image hash generated using ahash algorithm with 64 boolean subfields",
           },
           {
             ["name"] = "alt_text",
-            ["short"] = "Alternative text for the asset to describe it to people with low or no vision",
+            ["title"] = "Alt Text",
             ["type"] = "`$ANY`",
+            ["short"] = "Alternative text for the asset to describe it to people with low or no vision",
           },
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "artwork_ids",
-            ["short"] = "Unique identifiers of the artworks associated with this asset",
+            ["title"] = "Artwork Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the artworks associated with this asset",
           },
           {
             ["name"] = "artwork_titles",
-            ["short"] = "Names of the artworks associated with this asset",
+            ["title"] = "Artwork Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "Names of the artworks associated with this asset",
           },
           {
             ["name"] = "color",
-            ["short"] = "Dominant color of this image in HSL",
+            ["title"] = "Color",
             ["type"] = "`$ANY`",
+            ["short"] = "Dominant color of this image in HSL",
           },
           {
             ["name"] = "colorfulness",
-            ["short"] = "Unbounded positive float representing an abstract measure of colorfulness.",
+            ["title"] = "Colorfulness",
             ["type"] = "`$ANY`",
+            ["short"] = "Unbounded positive float representing an abstract measure of colorfulness.",
           },
           {
             ["name"] = "content",
-            ["short"] = "Text of or URL to the contents of this asset",
+            ["title"] = "Content",
             ["type"] = "`$ANY`",
+            ["short"] = "Text of or URL to the contents of this asset",
           },
           {
             ["name"] = "content_e_tag",
-            ["short"] = "Arbitrary unique identifier that changes when the binary file gets updated",
+            ["title"] = "Content E Tag",
             ["type"] = "`$ANY`",
+            ["short"] = "Arbitrary unique identifier that changes when the binary file gets updated",
           },
           {
             ["name"] = "credit_line",
-            ["short"] = "Asset-specific copyright information",
+            ["title"] = "Credit Line",
             ["type"] = "`$ANY`",
+            ["short"] = "Asset-specific copyright information",
           },
           {
             ["name"] = "fingerprint",
-            ["short"] = "Image hashes: aHash, dHash, pHash, wHash",
+            ["title"] = "Fingerprint",
             ["type"] = "`$ANY`",
+            ["short"] = "Image hashes: aHash, dHash, pHash, wHash",
           },
           {
             ["name"] = "height",
-            ["short"] = "Native height of the image",
+            ["title"] = "Height",
             ["type"] = "`$NUMBER`",
+            ["short"] = "Native height of the image",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "iiif_url",
-            ["short"] = "IIIF URL of this image",
+            ["title"] = "Iiif Url",
             ["type"] = "`$ANY`",
+            ["short"] = "IIIF URL of this image",
           },
           {
             ["name"] = "is_educational_resource",
-            ["short"] = "Whether this resource is considered to be educational",
+            ["title"] = "Is Educational Resource",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this resource is considered to be educational",
           },
           {
             ["name"] = "is_multimedia_resource",
-            ["short"] = "Whether this resource is considered to be multimedia",
+            ["title"] = "Is Multimedia Resource",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this resource is considered to be multimedia",
           },
           {
             ["name"] = "is_teacher_resource",
-            ["short"] = "Whether this resource is considered to be educational",
+            ["title"] = "Is Teacher Resource",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this resource is considered to be educational",
           },
           {
             ["name"] = "lake_guid",
-            ["short"] = "Unique UUID of this resource in LAKE, our DAMS.",
+            ["title"] = "Lake Guid",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique UUID of this resource in LAKE, our DAMS.",
           },
           {
             ["name"] = "lqip",
-            ["short"] = "Low-quality image placeholder (LQIP).",
+            ["title"] = "Lqip",
             ["type"] = "`$ANY`",
+            ["short"] = "Low-quality image placeholder (LQIP).",
           },
           {
             ["name"] = "phash",
-            ["short"] = "Image hash generated using phash algorithm with 64 boolean subfields",
+            ["title"] = "Phash",
             ["type"] = "`$ANY`",
+            ["short"] = "Image hash generated using phash algorithm with 64 boolean subfields",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "type",
-            ["short"] = "Type always takes one of the following values: image, sound, text, video",
+            ["title"] = "Type",
             ["type"] = "`$ANY`",
+            ["short"] = "Type always takes one of the following values: image, sound, text, video",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "width",
-            ["short"] = "Native width of the image",
+            ["title"] = "Width",
             ["type"] = "`$NUMBER`",
+            ["short"] = "Native width of the image",
           },
         },
         ["id"] = {
@@ -4082,7 +4575,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/images",
@@ -4091,14 +4583,16 @@ local function make_config()
                     ["lit"] = "images",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "images",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "images",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -4107,17 +4601,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/images/{id}",
@@ -4129,18 +4612,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "images",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "images",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -4154,63 +4649,75 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "copy",
-            ["short"] = "The text of the page",
+            ["title"] = "Copy",
             ["type"] = "`$ANY`",
+            ["short"] = "The text of the page",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "search_tags",
-            ["short"] = "Editor-specified list of tags to aid in internal search",
+            ["title"] = "Search Tags",
             ["type"] = "`$ANY`",
+            ["short"] = "Editor-specified list of tags to aid in internal search",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "web_url",
-            ["short"] = "The URL to this page on our website",
+            ["title"] = "Web Url",
             ["type"] = "`$ANY`",
+            ["short"] = "The URL to this page on our website",
           },
         },
         ["id"] = {
@@ -4224,7 +4731,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/landing-pages",
@@ -4233,14 +4739,16 @@ local function make_config()
                     ["lit"] = "landing-pages",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "landing-pages",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "landing-pages",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -4249,17 +4757,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/landing-pages/{id}",
@@ -4271,18 +4768,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "landing-pages",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "landing-pages",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -4296,63 +4805,75 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "latitude",
-            ["short"] = "Latitude coordinate of the center of the room",
+            ["title"] = "Latitude",
             ["type"] = "`$NUMBER`",
+            ["short"] = "Latitude coordinate of the center of the room",
           },
           {
             ["name"] = "longitude",
-            ["short"] = "Longitude coordinate of the center of the room",
+            ["title"] = "Longitude",
             ["type"] = "`$NUMBER`",
+            ["short"] = "Longitude coordinate of the center of the room",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "tgn_id",
-            ["short"] = "Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN)",
+            ["title"] = "Tgn Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN)",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
         },
         ["id"] = {
@@ -4366,7 +4887,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/places",
@@ -4375,14 +4895,16 @@ local function make_config()
                     ["lit"] = "places",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "places",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "places",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -4391,17 +4913,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/places/{id}",
@@ -4413,18 +4924,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "places",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "places",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -4438,58 +4961,69 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "copy",
-            ["short"] = "The text of the page",
+            ["title"] = "Copy",
             ["type"] = "`$ANY`",
+            ["short"] = "The text of the page",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "web_url",
-            ["short"] = "The URL to this page on our website",
+            ["title"] = "Web Url",
             ["type"] = "`$ANY`",
+            ["short"] = "The URL to this page on our website",
           },
         },
         ["id"] = {
@@ -4503,7 +5037,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/press-releases",
@@ -4512,14 +5045,16 @@ local function make_config()
                     ["lit"] = "press-releases",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "press-releases",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "press-releases",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -4528,17 +5063,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/press-releases/{id}",
@@ -4550,18 +5074,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "press-releases",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "press-releases",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -4575,58 +5111,69 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "copy",
-            ["short"] = "The text of the page",
+            ["title"] = "Copy",
             ["type"] = "`$ANY`",
+            ["short"] = "The text of the page",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "web_url",
-            ["short"] = "The URL to this page on our website",
+            ["title"] = "Web Url",
             ["type"] = "`$ANY`",
+            ["short"] = "The URL to this page on our website",
           },
         },
         ["id"] = {
@@ -4640,7 +5187,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/printed-publications",
@@ -4649,14 +5195,16 @@ local function make_config()
                     ["lit"] = "printed-publications",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "printed-publications",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "printed-publications",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -4665,17 +5213,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/printed-publications/{id}",
@@ -4687,18 +5224,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "printed-publications",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "printed-publications",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -4712,108 +5261,129 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "artist_ids",
-            ["short"] = "Unique identifiers of the artists associated with this product",
+            ["title"] = "Artist Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the artists associated with this product",
           },
           {
             ["name"] = "artwork_ids",
-            ["short"] = "Unique identifiers of the artworks associated with this product",
+            ["title"] = "Artwork Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the artworks associated with this product",
           },
           {
             ["name"] = "description",
-            ["short"] = "Explanation of what this product is",
+            ["title"] = "Description",
             ["type"] = "`$STRING`",
+            ["short"] = "Explanation of what this product is",
           },
           {
             ["name"] = "exhibition_ids",
-            ["short"] = "Unique identifiers of the exhibitions associated with this product",
+            ["title"] = "Exhibition Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the exhibitions associated with this product",
           },
           {
             ["name"] = "external_sku",
-            ["short"] = "Numeric product identification code of a machine-readable barcode, when the customer sku differs from our internal one",
+            ["title"] = "External Sku",
             ["type"] = "`$ANY`",
+            ["short"] = "Numeric product identification code of a machine-readable barcode, when the customer sku differs from our internal one",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "image_url",
-            ["short"] = "URL of an image for this product",
+            ["title"] = "Image Url",
             ["type"] = "`$ANY`",
+            ["short"] = "URL of an image for this product",
           },
           {
             ["name"] = "max_compare_at_price",
-            ["short"] = "Number indicating how much the most expensive variant of a product cost before a sale",
+            ["title"] = "Max Compare At Price",
             ["type"] = "`$ANY`",
+            ["short"] = "Number indicating how much the most expensive variant of a product cost before a sale",
           },
           {
             ["name"] = "max_current_price",
-            ["short"] = "Number indicating how much the most expensive variant of a product costs right now",
+            ["title"] = "Max Current Price",
             ["type"] = "`$ANY`",
+            ["short"] = "Number indicating how much the most expensive variant of a product costs right now",
           },
           {
             ["name"] = "min_compare_at_price",
-            ["short"] = "Number indicating how much the least expensive variant of a product cost before a sale",
+            ["title"] = "Min Compare At Price",
             ["type"] = "`$ANY`",
+            ["short"] = "Number indicating how much the least expensive variant of a product cost before a sale",
           },
           {
             ["name"] = "min_current_price",
-            ["short"] = "Number indicating how much the least expensive variant of a product costs right now",
+            ["title"] = "Min Current Price",
             ["type"] = "`$ANY`",
+            ["short"] = "Number indicating how much the least expensive variant of a product costs right now",
           },
           {
             ["name"] = "price_display",
-            ["short"] = "Explanation of what this product is",
+            ["title"] = "Price Display",
             ["type"] = "`$ANY`",
+            ["short"] = "Explanation of what this product is",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "web_url",
-            ["short"] = "URL of this product in the shop",
+            ["title"] = "Web Url",
             ["type"] = "`$ANY`",
+            ["short"] = "URL of this product in the shop",
           },
         },
         ["id"] = {
@@ -4827,7 +5397,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/products",
@@ -4836,14 +5405,16 @@ local function make_config()
                     ["lit"] = "products",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "products",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "products",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -4852,17 +5423,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/products/{id}",
@@ -4874,18 +5434,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "products",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "products",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -4899,58 +5471,69 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "section_ids",
-            ["short"] = "Unique identifiers of the sections of this publication",
+            ["title"] = "Section Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the sections of this publication",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "web_url",
-            ["short"] = "URL to the publication",
+            ["title"] = "Web Url",
             ["type"] = "`$ANY`",
+            ["short"] = "URL to the publication",
           },
         },
         ["id"] = {
@@ -4964,7 +5547,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/publications",
@@ -4973,14 +5555,16 @@ local function make_config()
                     ["lit"] = "publications",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "publications",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "publications",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -4989,17 +5573,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/publications/{id}",
@@ -5011,18 +5584,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "publications",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "publications",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -5036,48 +5621,57 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_id",
-            ["short"] = "API unique identifier",
+            ["title"] = "Api Id",
             ["type"] = "`$STRING`",
+            ["short"] = "API unique identifier",
           },
           {
             ["name"] = "api_link",
-            ["short"] = "URL to this recource in the API",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "URL to this recource in the API",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "Name of the model the resource represents",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "Name of the model the resource represents",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier within the search index",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier within the search index",
           },
           {
             ["name"] = "is_boosted",
-            ["short"] = "Whether this record has been flagged to be boosted",
+            ["title"] = "Is Boosted",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this record has been flagged to be boosted",
           },
           {
             ["name"] = "score",
-            ["short"] = "Search index ranking of the result",
+            ["title"] = "Score",
             ["type"] = "`$NUMBER`",
+            ["short"] = "Search index ranking of the result",
           },
           {
             ["name"] = "thumbnail",
-            ["short"] = "Metadata on the image representing this record",
+            ["title"] = "Thumbnail",
             ["type"] = "`$ANY`",
+            ["short"] = "Metadata on the image representing this record",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date this record was last updated in the API",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date this record was last updated in the API",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
         },
         ["id"] = {
@@ -5091,46 +5685,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/agents/search",
@@ -5142,6 +5696,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "agents",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -5152,56 +5755,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "agents",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/articles/search",
@@ -5213,6 +5768,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "articles",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -5223,56 +5827,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "articles",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/artworks/search",
@@ -5284,6 +5840,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "artworks",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -5294,56 +5899,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "artworks",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/category-terms/search",
@@ -5355,6 +5912,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "category-terms",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -5365,56 +5971,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "category-terms",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/digital-publication-articles/search",
@@ -5426,6 +5984,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "digital-publication-articles",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -5436,56 +6043,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "digital-publication-articles",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/digital-publications/search",
@@ -5497,6 +6056,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "digital-publications",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -5507,56 +6115,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "digital-publications",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/educator-resources/search",
@@ -5568,6 +6128,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "educator-resources",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -5578,56 +6187,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "educator-resources",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/event-occurrences/search",
@@ -5639,6 +6200,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "event-occurrences",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -5649,56 +6259,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "event-occurrences",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/event-programs/search",
@@ -5710,6 +6272,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "event-programs",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -5720,56 +6331,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "event-programs",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/events/search",
@@ -5781,6 +6344,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "events",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -5791,56 +6403,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "events",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/exhibitions/search",
@@ -5852,6 +6416,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "exhibitions",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -5862,56 +6475,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "exhibitions",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/galleries/search",
@@ -5923,6 +6488,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "galleries",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -5933,56 +6547,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "galleries",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/generic-pages/search",
@@ -5994,6 +6560,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "generic-pages",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -6004,56 +6619,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "generic-pages",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/highlights/search",
@@ -6065,6 +6632,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "highlights",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -6075,56 +6691,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "highlights",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/hours/search",
@@ -6136,6 +6704,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "hours",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -6146,56 +6763,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "hours",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/images/search",
@@ -6207,6 +6776,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "images",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -6217,56 +6835,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "images",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/landing-pages/search",
@@ -6278,6 +6848,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "landing-pages",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -6288,56 +6907,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "landing-pages",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/mobile-sounds/search",
@@ -6349,6 +6920,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "mobile-sounds",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -6359,56 +6979,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "mobile-sounds",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/places/search",
@@ -6420,6 +6992,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "places",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -6430,56 +7051,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "places",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/press-releases/search",
@@ -6491,6 +7064,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "press-releases",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -6501,56 +7123,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "press-releases",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/printed-publications/search",
@@ -6562,6 +7136,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "printed-publications",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -6572,56 +7195,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "printed-publications",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/products/search",
@@ -6633,6 +7208,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "products",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -6643,56 +7267,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "products",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/publications/search",
@@ -6704,6 +7280,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "publications",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -6714,56 +7339,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "publications",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/search",
@@ -6772,6 +7349,54 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -6782,55 +7407,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sections/search",
@@ -6842,6 +7420,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "sections",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -6852,56 +7479,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "sections",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sites/search",
@@ -6913,6 +7492,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "sites",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -6923,56 +7551,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "sites",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sounds/search",
@@ -6984,6 +7564,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "sounds",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -6994,56 +7623,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "sounds",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/static-pages/search",
@@ -7055,6 +7636,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "static-pages",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -7065,56 +7695,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "static-pages",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/texts/search",
@@ -7126,6 +7708,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "texts",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -7136,56 +7767,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "texts",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/tours/search",
@@ -7197,6 +7780,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "tours",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -7207,56 +7839,8 @@ local function make_config()
                     "sort",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "tours",
-                  "search",
-                },
               },
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "facet",
-                      ["orig"] = "facet",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "q",
-                      ["orig"] = "q",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "sort",
-                      ["orig"] = "sort",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/videos/search",
@@ -7268,6 +7852,55 @@ local function make_config()
                     ["lit"] = "search",
                   },
                 },
+                ["parts"] = {
+                  "videos",
+                  "search",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "facet",
+                      ["orig"] = "facet",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "q",
+                      ["orig"] = "q",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "sort",
+                      ["orig"] = "sort",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "facet",
@@ -7277,14 +7910,6 @@ local function make_config()
                     "size",
                     "sort",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "videos",
-                  "search",
                 },
               },
             },
@@ -7298,83 +7923,99 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "accession",
-            ["short"] = "An accession number parsed from the title or tombstone",
+            ["title"] = "Accession",
             ["type"] = "`$ANY`",
+            ["short"] = "An accession number parsed from the title or tombstone",
           },
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "artwork_id",
-            ["short"] = "Unique identifier of the artwork with which this section is associated",
+            ["title"] = "Artwork Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the artwork with which this section is associated",
           },
           {
             ["name"] = "content",
-            ["short"] = "Content of this section in plaintext",
+            ["title"] = "Content",
             ["type"] = "`$ANY`",
+            ["short"] = "Content of this section in plaintext",
           },
           {
             ["name"] = "generic_page_id",
-            ["short"] = "Unique identifier of the page on the website that represents the publication this section belongs to",
+            ["title"] = "Generic Page Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the page on the website that represents the publication this section belongs to",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "publication_id",
-            ["short"] = "Unique identifier of the publication this section belongs to",
+            ["title"] = "Publication Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of the publication this section belongs to",
           },
           {
             ["name"] = "publication_title",
-            ["short"] = "Name of the publication this section belongs to",
+            ["title"] = "Publication Title",
             ["type"] = "`$ANY`",
+            ["short"] = "Name of the publication this section belongs to",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "web_url",
-            ["short"] = "URL to the section",
+            ["title"] = "Web Url",
             ["type"] = "`$ANY`",
+            ["short"] = "URL to the section",
           },
         },
         ["id"] = {
@@ -7388,7 +8029,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sections",
@@ -7397,14 +8037,16 @@ local function make_config()
                     ["lit"] = "sections",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "sections",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "sections",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -7413,17 +8055,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sections/{id}",
@@ -7435,18 +8066,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "sections",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "sections",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -7460,78 +8103,93 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "artwork_ids",
-            ["short"] = "Unique identifiers of the artworks this site is associated with",
+            ["title"] = "Artwork Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the artworks this site is associated with",
           },
           {
             ["name"] = "artwork_titles",
-            ["short"] = "Names of the artworks this site is associated with",
+            ["title"] = "Artwork Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "Names of the artworks this site is associated with",
           },
           {
             ["name"] = "description",
-            ["short"] = "Explanation of what this site is",
+            ["title"] = "Description",
             ["type"] = "`$STRING`",
+            ["short"] = "Explanation of what this site is",
           },
           {
             ["name"] = "exhibition_ids",
-            ["short"] = "Unique identifier of the exhibitions this site is associated with",
+            ["title"] = "Exhibition Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifier of the exhibitions this site is associated with",
           },
           {
             ["name"] = "exhibition_titles",
-            ["short"] = "Names of the exhibitions this site is associated with",
+            ["title"] = "Exhibition Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "Names of the exhibitions this site is associated with",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "web_url",
-            ["short"] = "URL to this site",
+            ["title"] = "Web Url",
             ["type"] = "`$ANY`",
+            ["short"] = "URL to this site",
           },
         },
         ["id"] = {
@@ -7545,7 +8203,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sites",
@@ -7554,14 +8211,16 @@ local function make_config()
                     ["lit"] = "sites",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "sites",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "sites",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -7570,17 +8229,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sites/{id}",
@@ -7592,18 +8240,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "sites",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "sites",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -7617,113 +8277,135 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "alt_text",
-            ["short"] = "Alternative text for the asset to describe it to people with low or no vision",
+            ["title"] = "Alt Text",
             ["type"] = "`$ANY`",
+            ["short"] = "Alternative text for the asset to describe it to people with low or no vision",
           },
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "artwork_ids",
-            ["short"] = "Unique identifiers of the artworks associated with this asset",
+            ["title"] = "Artwork Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the artworks associated with this asset",
           },
           {
             ["name"] = "artwork_titles",
-            ["short"] = "Names of the artworks associated with this asset",
+            ["title"] = "Artwork Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "Names of the artworks associated with this asset",
           },
           {
             ["name"] = "content",
-            ["short"] = "Text of or URL to the contents of this asset",
+            ["title"] = "Content",
             ["type"] = "`$ANY`",
+            ["short"] = "Text of or URL to the contents of this asset",
           },
           {
             ["name"] = "content_e_tag",
-            ["short"] = "Arbitrary unique identifier that changes when the binary file gets updated",
+            ["title"] = "Content E Tag",
             ["type"] = "`$ANY`",
+            ["short"] = "Arbitrary unique identifier that changes when the binary file gets updated",
           },
           {
             ["name"] = "credit_line",
-            ["short"] = "Asset-specific copyright information",
+            ["title"] = "Credit Line",
             ["type"] = "`$ANY`",
+            ["short"] = "Asset-specific copyright information",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "is_educational_resource",
-            ["short"] = "Whether this resource is considered to be educational",
+            ["title"] = "Is Educational Resource",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this resource is considered to be educational",
           },
           {
             ["name"] = "is_multimedia_resource",
-            ["short"] = "Whether this resource is considered to be multimedia",
+            ["title"] = "Is Multimedia Resource",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this resource is considered to be multimedia",
           },
           {
             ["name"] = "is_teacher_resource",
-            ["short"] = "Whether this resource is considered to be educational",
+            ["title"] = "Is Teacher Resource",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this resource is considered to be educational",
           },
           {
             ["name"] = "lake_guid",
-            ["short"] = "Unique UUID of this resource in LAKE, our DAMS.",
+            ["title"] = "Lake Guid",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique UUID of this resource in LAKE, our DAMS.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "Name of this mobile audio file – derived from the artwork and tour titles",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "Name of this mobile audio file – derived from the artwork and tour titles",
           },
           {
             ["name"] = "transcript",
-            ["short"] = "Text transcription of the audio file",
+            ["title"] = "Transcript",
             ["type"] = "`$ANY`",
+            ["short"] = "Text transcription of the audio file",
           },
           {
             ["name"] = "type",
-            ["short"] = "Type always takes one of the following values: image, sound, text, video",
+            ["title"] = "Type",
             ["type"] = "`$ANY`",
+            ["short"] = "Type always takes one of the following values: image, sound, text, video",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "web_url",
-            ["short"] = "URL to the audio file",
+            ["title"] = "Web Url",
             ["type"] = "`$ANY`",
+            ["short"] = "URL to the audio file",
           },
         },
         ["id"] = {
@@ -7737,7 +8419,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/mobile-sounds",
@@ -7746,17 +8427,18 @@ local function make_config()
                     ["lit"] = "mobile-sounds",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "mobile-sounds",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "mobile-sounds",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sounds",
@@ -7765,14 +8447,16 @@ local function make_config()
                     ["lit"] = "sounds",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "sounds",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "sounds",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -7781,17 +8465,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/mobile-sounds/{id}",
@@ -7803,32 +8476,33 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
+                ["parts"] = {
+                  "mobile-sounds",
+                  "{id}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "id",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "mobile-sounds",
-                  "{id}",
-                },
               },
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sounds/{id}",
@@ -7840,18 +8514,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "sounds",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "sounds",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -7865,53 +8551,63 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "web_url",
-            ["short"] = "The URL to this page on our website",
+            ["title"] = "Web Url",
             ["type"] = "`$ANY`",
+            ["short"] = "The URL to this page on our website",
           },
         },
         ["id"] = {
@@ -7925,7 +8621,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/static-pages",
@@ -7934,14 +8629,16 @@ local function make_config()
                     ["lit"] = "static-pages",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "static-pages",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "static-pages",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -7950,17 +8647,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/static-pages/{id}",
@@ -7972,18 +8658,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "static-pages",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "static-pages",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -7997,103 +8695,123 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "alt_text",
-            ["short"] = "Alternative text for the asset to describe it to people with low or no vision",
+            ["title"] = "Alt Text",
             ["type"] = "`$ANY`",
+            ["short"] = "Alternative text for the asset to describe it to people with low or no vision",
           },
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "artwork_ids",
-            ["short"] = "Unique identifiers of the artworks associated with this asset",
+            ["title"] = "Artwork Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the artworks associated with this asset",
           },
           {
             ["name"] = "artwork_titles",
-            ["short"] = "Names of the artworks associated with this asset",
+            ["title"] = "Artwork Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "Names of the artworks associated with this asset",
           },
           {
             ["name"] = "content",
-            ["short"] = "Text of or URL to the contents of this asset",
+            ["title"] = "Content",
             ["type"] = "`$ANY`",
+            ["short"] = "Text of or URL to the contents of this asset",
           },
           {
             ["name"] = "content_e_tag",
-            ["short"] = "Arbitrary unique identifier that changes when the binary file gets updated",
+            ["title"] = "Content E Tag",
             ["type"] = "`$ANY`",
+            ["short"] = "Arbitrary unique identifier that changes when the binary file gets updated",
           },
           {
             ["name"] = "credit_line",
-            ["short"] = "Asset-specific copyright information",
+            ["title"] = "Credit Line",
             ["type"] = "`$ANY`",
+            ["short"] = "Asset-specific copyright information",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "is_educational_resource",
-            ["short"] = "Whether this resource is considered to be educational",
+            ["title"] = "Is Educational Resource",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this resource is considered to be educational",
           },
           {
             ["name"] = "is_multimedia_resource",
-            ["short"] = "Whether this resource is considered to be multimedia",
+            ["title"] = "Is Multimedia Resource",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this resource is considered to be multimedia",
           },
           {
             ["name"] = "is_teacher_resource",
-            ["short"] = "Whether this resource is considered to be educational",
+            ["title"] = "Is Teacher Resource",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this resource is considered to be educational",
           },
           {
             ["name"] = "lake_guid",
-            ["short"] = "Unique UUID of this resource in LAKE, our DAMS.",
+            ["title"] = "Lake Guid",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique UUID of this resource in LAKE, our DAMS.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "type",
-            ["short"] = "Type always takes one of the following values: image, sound, text, video",
+            ["title"] = "Type",
             ["type"] = "`$ANY`",
+            ["short"] = "Type always takes one of the following values: image, sound, text, video",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
         },
         ["id"] = {
@@ -8107,7 +8825,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/texts",
@@ -8116,14 +8833,16 @@ local function make_config()
                     ["lit"] = "texts",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "texts",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "texts",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -8132,17 +8851,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/texts/{id}",
@@ -8154,18 +8862,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "texts",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "texts",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -8179,88 +8899,105 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "artist_titles",
-            ["short"] = "Names of the artists of the artworks featured in this tour's tour stops",
+            ["title"] = "Artist Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "Names of the artists of the artworks featured in this tour's tour stops",
           },
           {
             ["name"] = "artwork_titles",
-            ["short"] = "Names of the artworks featured in this tour's tour stops",
+            ["title"] = "Artwork Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "Names of the artworks featured in this tour's tour stops",
           },
           {
             ["name"] = "description",
-            ["short"] = "Explanation of what the tour is",
+            ["title"] = "Description",
             ["type"] = "`$STRING`",
+            ["short"] = "Explanation of what the tour is",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "image",
-            ["short"] = "The main image for the tour",
+            ["title"] = "Image",
             ["type"] = "`$ANY`",
+            ["short"] = "The main image for the tour",
           },
           {
             ["name"] = "intro",
-            ["short"] = "Text introducing the tour",
+            ["title"] = "Intro",
             ["type"] = "`$ANY`",
+            ["short"] = "Text introducing the tour",
           },
           {
             ["name"] = "intro_link",
-            ["short"] = "Link to the audio file of the introduction",
+            ["title"] = "Intro Link",
             ["type"] = "`$ANY`",
+            ["short"] = "Link to the audio file of the introduction",
           },
           {
             ["name"] = "intro_transcript",
-            ["short"] = "Transcript of the introduction audio to the tour",
+            ["title"] = "Intro Transcript",
             ["type"] = "`$ANY`",
+            ["short"] = "Transcript of the introduction audio to the tour",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
           {
             ["name"] = "weight",
-            ["short"] = "Number representing this tour's sort order",
+            ["title"] = "Weight",
             ["type"] = "`$NUMBER`",
+            ["short"] = "Number representing this tour's sort order",
           },
         },
         ["id"] = {
@@ -8274,7 +9011,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/tours",
@@ -8283,14 +9019,16 @@ local function make_config()
                     ["lit"] = "tours",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "tours",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "tours",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -8299,17 +9037,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/tours/{id}",
@@ -8321,18 +9048,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "tours",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "tours",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -8346,103 +9085,123 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "alt_text",
-            ["short"] = "Alternative text for the asset to describe it to people with low or no vision",
+            ["title"] = "Alt Text",
             ["type"] = "`$ANY`",
+            ["short"] = "Alternative text for the asset to describe it to people with low or no vision",
           },
           {
             ["name"] = "api_link",
-            ["short"] = "REST API link for this resource",
+            ["title"] = "Api Link",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API link for this resource",
           },
           {
             ["name"] = "api_model",
-            ["short"] = "REST API resource type or endpoint",
+            ["title"] = "Api Model",
             ["type"] = "`$ANY`",
+            ["short"] = "REST API resource type or endpoint",
           },
           {
             ["name"] = "artwork_ids",
-            ["short"] = "Unique identifiers of the artworks associated with this asset",
+            ["title"] = "Artwork Ids",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique identifiers of the artworks associated with this asset",
           },
           {
             ["name"] = "artwork_titles",
-            ["short"] = "Names of the artworks associated with this asset",
+            ["title"] = "Artwork Titles",
             ["type"] = "`$ANY`",
+            ["short"] = "Names of the artworks associated with this asset",
           },
           {
             ["name"] = "content",
-            ["short"] = "Text of or URL to the contents of this asset",
+            ["title"] = "Content",
             ["type"] = "`$ANY`",
+            ["short"] = "Text of or URL to the contents of this asset",
           },
           {
             ["name"] = "content_e_tag",
-            ["short"] = "Arbitrary unique identifier that changes when the binary file gets updated",
+            ["title"] = "Content E Tag",
             ["type"] = "`$ANY`",
+            ["short"] = "Arbitrary unique identifier that changes when the binary file gets updated",
           },
           {
             ["name"] = "credit_line",
-            ["short"] = "Asset-specific copyright information",
+            ["title"] = "Credit Line",
             ["type"] = "`$ANY`",
+            ["short"] = "Asset-specific copyright information",
           },
           {
             ["name"] = "id",
-            ["short"] = "Unique identifier of this resource.",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
+            ["short"] = "Unique identifier of this resource.",
           },
           {
             ["name"] = "is_educational_resource",
-            ["short"] = "Whether this resource is considered to be educational",
+            ["title"] = "Is Educational Resource",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this resource is considered to be educational",
           },
           {
             ["name"] = "is_multimedia_resource",
-            ["short"] = "Whether this resource is considered to be multimedia",
+            ["title"] = "Is Multimedia Resource",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this resource is considered to be multimedia",
           },
           {
             ["name"] = "is_teacher_resource",
-            ["short"] = "Whether this resource is considered to be educational",
+            ["title"] = "Is Teacher Resource",
             ["type"] = "`$BOOLEAN`",
+            ["short"] = "Whether this resource is considered to be educational",
           },
           {
             ["name"] = "lake_guid",
-            ["short"] = "Unique UUID of this resource in LAKE, our DAMS.",
+            ["title"] = "Lake Guid",
             ["type"] = "`$ANY`",
+            ["short"] = "Unique UUID of this resource in LAKE, our DAMS.",
           },
           {
             ["name"] = "source_updated_at",
-            ["short"] = "Date and time the resource was updated in the source system",
+            ["title"] = "Source Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the resource was updated in the source system",
           },
           {
             ["name"] = "suggest_autocomplete_all",
-            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
+            ["title"] = "Suggest Autocomplete All",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autosuggest` endpoint.",
           },
           {
             ["name"] = "suggest_autocomplete_boosted",
-            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
+            ["title"] = "Suggest Autocomplete Boosted",
             ["type"] = "`$ANY`",
+            ["short"] = "Internal field to power the `/autocomplete` endpoint.",
           },
           {
             ["name"] = "timestamp",
-            ["short"] = "Date and time the record was updated in the aggregator search index",
+            ["title"] = "Timestamp",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator search index",
           },
           {
             ["name"] = "title",
-            ["short"] = "The name of this resource",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this resource",
           },
           {
             ["name"] = "type",
-            ["short"] = "Type always takes one of the following values: image, sound, text, video",
+            ["title"] = "Type",
             ["type"] = "`$ANY`",
+            ["short"] = "Type always takes one of the following values: image, sound, text, video",
           },
           {
             ["name"] = "updated_at",
-            ["short"] = "Date and time the record was updated in the aggregator database",
+            ["title"] = "Updated At",
             ["type"] = "`$ANY`",
+            ["short"] = "Date and time the record was updated in the aggregator database",
           },
         },
         ["id"] = {
@@ -8456,7 +9215,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/videos",
@@ -8465,14 +9223,16 @@ local function make_config()
                     ["lit"] = "videos",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "videos",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "videos",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -8481,17 +9241,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/videos/{id}",
@@ -8503,18 +9252,30 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
+                ["parts"] = {
+                  "videos",
+                  "{id}",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "videos",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },

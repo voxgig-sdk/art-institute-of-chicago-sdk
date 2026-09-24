@@ -1,0 +1,44 @@
+# BasicGenericPageFlow
+
+main: kit: flow: BasicGenericPageFlow:
+{
+  entity: "generic_page",
+  kind: "basic",
+  name: "BasicGenericPageFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "generic_page_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "generic_page_ref01",
+        srcdatavar: "generic_page_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "generic_page01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-generic_page_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGenericPageFlow"
+}

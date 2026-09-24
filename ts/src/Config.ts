@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -241,83 +234,99 @@ class Config {
       "fields": [
         {
           "name": "alt_titles",
-          "short": "Alternate names for this agent",
-          "type": "`$ANY`"
+          "title": "Alt Titles",
+          "type": "`$ANY`",
+          "short": "Alternate names for this agent"
         },
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "birth_date",
-          "short": "The year this agent was born",
-          "type": "`$ANY`"
+          "title": "Birth Date",
+          "type": "`$ANY`",
+          "short": "The year this agent was born"
         },
         {
           "name": "death_date",
-          "short": "The year this agent died",
-          "type": "`$ANY`"
+          "title": "Death Date",
+          "type": "`$ANY`",
+          "short": "The year this agent died"
         },
         {
           "name": "description",
-          "short": "A biographical description of the agent",
-          "type": "`$STRING`"
+          "title": "Description",
+          "type": "`$STRING`",
+          "short": "A biographical description of the agent"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "is_artist",
-          "short": "Whether the agent is an artist.",
-          "type": "`$BOOLEAN`"
+          "title": "Is Artist",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the agent is an artist."
         },
         {
           "name": "sort_title",
-          "short": "Sortable name for this agent, typically with last name first.",
-          "type": "`$ANY`"
+          "title": "Sort Title",
+          "type": "`$ANY`",
+          "short": "Sortable name for this agent, typically with last name first."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "ulan_id",
-          "short": "Unique identifier of this agent in Getty's ULAN",
-          "type": "`$STRING`"
+          "title": "Ulan Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this agent in Getty's ULAN"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         }
       ],
       "id": {
@@ -331,7 +340,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/agents",
@@ -340,17 +348,18 @@ class Config {
                   "lit": "agents"
                 }
               ],
-              "select": {},
+              "parts": [
+                "agents"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "agents"
-              ]
+              "args": {},
+              "select": {}
             },
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/artists",
@@ -359,14 +368,16 @@ class Config {
                   "lit": "artists"
                 }
               ],
-              "select": {},
+              "parts": [
+                "artists"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "artists"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -375,17 +386,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/agents/{id}",
@@ -397,32 +397,33 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "agents",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "agents",
-                "{id}"
-              ]
-            },
-            {
               "args": {
                 "params": [
                   {
-                    "kind": "param",
                     "name": "id",
                     "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/artists/{id}",
@@ -434,19 +435,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "artists",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "artists",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -459,48 +472,57 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         }
       ],
       "id": {
@@ -514,7 +536,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/agent-roles",
@@ -523,14 +544,16 @@ class Config {
                   "lit": "agent-roles"
                 }
               ],
-              "select": {},
+              "parts": [
+                "agent-roles"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "agent-roles"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -539,17 +562,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/agent-roles/{id}",
@@ -561,19 +573,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "agent-roles",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "agent-roles",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -586,48 +610,57 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         }
       ],
       "id": {
@@ -641,7 +674,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/agent-types",
@@ -650,14 +682,16 @@ class Config {
                   "lit": "agent-types"
                 }
               ],
-              "select": {},
+              "parts": [
+                "agent-types"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "agent-types"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -666,17 +700,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/agent-types/{id}",
@@ -688,19 +711,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "agent-types",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "agent-types",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -713,53 +748,63 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "copy",
-          "short": "The text of the article",
-          "type": "`$ANY`"
+          "title": "Copy",
+          "type": "`$ANY`",
+          "short": "The text of the article"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         }
       ],
       "id": {
@@ -773,7 +818,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/articles",
@@ -782,14 +826,16 @@ class Config {
                   "lit": "articles"
                 }
               ],
-              "select": {},
+              "parts": [
+                "articles"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "articles"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -798,17 +844,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/articles/{id}",
@@ -820,19 +855,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "articles",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "articles",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -845,523 +892,627 @@ class Config {
       "fields": [
         {
           "name": "alt_artist_ids",
-          "short": "Unique identifiers of the non-preferred artists/cultures associated with this work",
-          "type": "`$ANY`"
+          "title": "Alt Artist Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the non-preferred artists/cultures associated with this work"
         },
         {
           "name": "alt_classification_ids",
-          "short": "Unique identifiers of all other non-preferred classification terms for this work",
-          "type": "`$ANY`"
+          "title": "Alt Classification Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of all other non-preferred classification terms for this work"
         },
         {
           "name": "alt_image_ids",
-          "short": "Unique identifiers of all non-preferred images of this work.",
-          "type": "`$ANY`"
+          "title": "Alt Image Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of all non-preferred images of this work."
         },
         {
           "name": "alt_material_ids",
-          "short": "Unique identifiers of all other non-preferred material terms for this work",
-          "type": "`$ANY`"
+          "title": "Alt Material Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of all other non-preferred material terms for this work"
         },
         {
           "name": "alt_style_ids",
-          "short": "Unique identifiers of all other non-preferred style terms for this work",
-          "type": "`$ANY`"
+          "title": "Alt Style Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of all other non-preferred style terms for this work"
         },
         {
           "name": "alt_subject_ids",
-          "short": "Unique identifiers of all other non-preferred subject terms for this work",
-          "type": "`$ANY`"
+          "title": "Alt Subject Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of all other non-preferred subject terms for this work"
         },
         {
           "name": "alt_technique_ids",
-          "short": "Unique identifiers of all other non-preferred technique terms for this work",
-          "type": "`$ANY`"
+          "title": "Alt Technique Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of all other non-preferred technique terms for this work"
         },
         {
           "name": "alt_titles",
-          "short": "Alternate names for this work",
-          "type": "`$ANY`"
+          "title": "Alt Titles",
+          "type": "`$ANY`",
+          "short": "Alternate names for this work"
         },
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "artist_display",
-          "short": "Readable description of the creator of this work.",
-          "type": "`$ANY`"
+          "title": "Artist Display",
+          "type": "`$ANY`",
+          "short": "Readable description of the creator of this work."
         },
         {
           "name": "artist_id",
-          "short": "Unique identifier of the preferred artist/culture associated with this work",
-          "type": "`$STRING`"
+          "title": "Artist Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the preferred artist/culture associated with this work"
         },
         {
           "name": "artist_ids",
-          "short": "Unique identifier of all artist/cultures associated with this work",
-          "type": "`$ANY`"
+          "title": "Artist Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifier of all artist/cultures associated with this work"
         },
         {
           "name": "artist_title",
-          "short": "Name of the preferred artist/culture associated with this work",
-          "type": "`$ANY`"
+          "title": "Artist Title",
+          "type": "`$ANY`",
+          "short": "Name of the preferred artist/culture associated with this work"
         },
         {
           "name": "artist_titles",
-          "short": "Names of all artist/cultures associated with this work",
-          "type": "`$ANY`"
+          "title": "Artist Titles",
+          "type": "`$ANY`",
+          "short": "Names of all artist/cultures associated with this work"
         },
         {
           "name": "artwork_type_id",
-          "short": "Unique identifier of the kind of object or work",
-          "type": "`$STRING`"
+          "title": "Artwork Type Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the kind of object or work"
         },
         {
           "name": "artwork_type_title",
-          "short": "The kind of object or work (e.g.",
-          "type": "`$ANY`"
+          "title": "Artwork Type Title",
+          "type": "`$ANY`",
+          "short": "The kind of object or work (e.g."
         },
         {
           "name": "boost_rank",
-          "short": "Manual indication of what rank this artwork should take in search results.",
-          "type": "`$ANY`"
+          "title": "Boost Rank",
+          "type": "`$ANY`",
+          "short": "Manual indication of what rank this artwork should take in search results."
         },
         {
           "name": "catalog_based_search_keyword_titles",
-          "short": "The keyword search values that would be catalog-based searches on this record",
-          "type": "`$ANY`"
+          "title": "Catalog Based Search Keyword Titles",
+          "type": "`$ANY`",
+          "short": "The keyword search values that would be catalog-based searches on this record"
         },
         {
           "name": "catalogue_display",
-          "short": "Brief text listing all the catalogues raisonnés which include this work.",
-          "type": "`$ANY`"
+          "title": "Catalogue Display",
+          "type": "`$ANY`",
+          "short": "Brief text listing all the catalogues raisonnés which include this work."
         },
         {
           "name": "category_ids",
-          "short": "Unique identifiers of the categories this work is a part of",
-          "type": "`$ANY`"
+          "title": "Category Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the categories this work is a part of"
         },
         {
           "name": "category_titles",
-          "short": "Names of the categories this artwork is a part of",
-          "type": "`$ANY`"
+          "title": "Category Titles",
+          "type": "`$ANY`",
+          "short": "Names of the categories this artwork is a part of"
         },
         {
           "name": "classification_id",
-          "short": "Unique identifier of the preferred classification term for this work",
-          "type": "`$STRING`"
+          "title": "Classification Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the preferred classification term for this work"
         },
         {
           "name": "classification_ids",
-          "short": "Unique identifiers of all classification terms for this work",
-          "type": "`$ANY`"
+          "title": "Classification Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of all classification terms for this work"
         },
         {
           "name": "classification_title",
-          "short": "The name of the preferred classification term for this work",
-          "type": "`$ANY`"
+          "title": "Classification Title",
+          "type": "`$ANY`",
+          "short": "The name of the preferred classification term for this work"
         },
         {
           "name": "classification_titles",
-          "short": "The names of all classification terms related to this artwork",
-          "type": "`$ANY`"
+          "title": "Classification Titles",
+          "type": "`$ANY`",
+          "short": "The names of all classification terms related to this artwork"
         },
         {
           "name": "color",
-          "short": "Dominant color of this artwork in HSL",
-          "type": "`$ANY`"
+          "title": "Color",
+          "type": "`$ANY`",
+          "short": "Dominant color of this artwork in HSL"
         },
         {
           "name": "colorfulness",
-          "short": "Unbounded positive float representing an abstract measure of colorfulness.",
-          "type": "`$ANY`"
+          "title": "Colorfulness",
+          "type": "`$ANY`",
+          "short": "Unbounded positive float representing an abstract measure of colorfulness."
         },
         {
           "name": "copyright_notice",
-          "short": "Statement notifying how the work is protected by copyright.",
-          "type": "`$ANY`"
+          "title": "Copyright Notice",
+          "type": "`$ANY`",
+          "short": "Statement notifying how the work is protected by copyright."
         },
         {
           "name": "credit_line",
-          "short": "Brief statement indicating how the work came into the collection",
-          "type": "`$ANY`"
+          "title": "Credit Line",
+          "type": "`$ANY`",
+          "short": "Brief statement indicating how the work came into the collection"
         },
         {
           "name": "date_display",
-          "short": "Readable, free-text description of the period of time associated with the creation of this work.",
-          "type": "`$ANY`"
+          "title": "Date Display",
+          "type": "`$ANY`",
+          "short": "Readable, free-text description of the period of time associated with the creation of this work."
         },
         {
           "name": "date_end",
-          "short": "The year of the period of time associated with the creation of this work",
-          "type": "`$ANY`"
+          "title": "Date End",
+          "type": "`$ANY`",
+          "short": "The year of the period of time associated with the creation of this work"
         },
         {
           "name": "date_qualifier_id",
-          "short": "Unique identifier of the qualifer to the dates provided for this record.",
-          "type": "`$STRING`"
+          "title": "Date Qualifier Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the qualifer to the dates provided for this record."
         },
         {
           "name": "date_qualifier_title",
-          "short": "Readable, text qualifer to the dates provided for this record.",
-          "type": "`$ANY`"
+          "title": "Date Qualifier Title",
+          "type": "`$ANY`",
+          "short": "Readable, text qualifer to the dates provided for this record."
         },
         {
           "name": "date_start",
-          "short": "The year of the period of time associated with the creation of this work",
-          "type": "`$ANY`"
+          "title": "Date Start",
+          "type": "`$ANY`",
+          "short": "The year of the period of time associated with the creation of this work"
         },
         {
           "name": "department_id",
-          "short": "Unique identifier of the curatorial department that this work belongs to",
-          "type": "`$STRING`"
+          "title": "Department Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the curatorial department that this work belongs to"
         },
         {
           "name": "department_title",
-          "short": "Name of the curatorial department that this work belongs to",
-          "type": "`$ANY`"
+          "title": "Department Title",
+          "type": "`$ANY`",
+          "short": "Name of the curatorial department that this work belongs to"
         },
         {
           "name": "description",
-          "short": "Longer explanation describing the work",
-          "type": "`$STRING`"
+          "title": "Description",
+          "type": "`$STRING`",
+          "short": "Longer explanation describing the work"
         },
         {
           "name": "dimensions",
-          "short": "The size, shape, scale, and dimensions of the work.",
-          "type": "`$ANY`"
+          "title": "Dimensions",
+          "type": "`$ANY`",
+          "short": "The size, shape, scale, and dimensions of the work."
         },
         {
           "name": "dimensions_detail",
-          "short": "The height, width, depth, and/or diameter of each section of the work in centimeters",
-          "type": "`$ANY`"
+          "title": "Dimensions Detail",
+          "type": "`$ANY`",
+          "short": "The height, width, depth, and/or diameter of each section of the work in centimeters"
         },
         {
           "name": "document_ids",
-          "short": "Unique identifiers of assets that serve as documentation for this artwork",
-          "type": "`$ANY`"
+          "title": "Document Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of assets that serve as documentation for this artwork"
         },
         {
           "name": "edition",
-          "short": "Edition number if the work is one of many",
-          "type": "`$ANY`"
+          "title": "Edition",
+          "type": "`$ANY`",
+          "short": "Edition number if the work is one of many"
         },
         {
           "name": "exhibition_history",
-          "short": "List of all the places this work has been exhibited",
-          "type": "`$ANY`"
+          "title": "Exhibition History",
+          "type": "`$ANY`",
+          "short": "List of all the places this work has been exhibited"
         },
         {
           "name": "fiscal_year",
-          "short": "The fiscal year in which the work was acquired.",
-          "type": "`$ANY`"
+          "title": "Fiscal Year",
+          "type": "`$ANY`",
+          "short": "The fiscal year in which the work was acquired."
         },
         {
           "name": "fiscal_year_deaccession",
-          "short": "The fiscal year in which the work was deaccessioned.",
-          "type": "`$ANY`"
+          "title": "Fiscal Year Deaccession",
+          "type": "`$ANY`",
+          "short": "The fiscal year in which the work was deaccessioned."
         },
         {
           "name": "gallery_id",
-          "short": "Unique identifier of the location of this work in our museum",
-          "type": "`$STRING`"
+          "title": "Gallery Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the location of this work in our museum"
         },
         {
           "name": "gallery_title",
-          "short": "The location of this work in our museum",
-          "type": "`$ANY`"
+          "title": "Gallery Title",
+          "type": "`$ANY`",
+          "short": "The location of this work in our museum"
         },
         {
           "name": "has_advanced_imaging",
-          "short": "Whether this artwork is enhanced with 3D models, 360 image sequences, Mirador views, etc.",
-          "type": "`$BOOLEAN`"
+          "title": "Has Advanced Imaging",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this artwork is enhanced with 3D models, 360 image sequences, Mirador views, etc."
         },
         {
           "name": "has_educational_resources",
-          "short": "Whether this artwork has any documents tagged as educational",
-          "type": "`$BOOLEAN`"
+          "title": "Has Educational Resources",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this artwork has any documents tagged as educational"
         },
         {
           "name": "has_multimedia_resources",
-          "short": "Whether this artwork has any associated microsites, digital publications, or documents tagged as multimedia",
-          "type": "`$BOOLEAN`"
+          "title": "Has Multimedia Resources",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this artwork has any associated microsites, digital publications, or documents tagged as multimedia"
         },
         {
           "name": "has_not_been_viewed_much",
-          "short": "Whether the artwork hasn't been visited on our website very much",
-          "type": "`$BOOLEAN`"
+          "title": "Has Not Been Viewed Much",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the artwork hasn't been visited on our website very much"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "image_embedding",
-          "short": "The generated embeddings describing the artwork image",
-          "type": "`$ANY`"
+          "title": "Image Embedding",
+          "type": "`$ANY`",
+          "short": "The generated embeddings describing the artwork image"
         },
         {
           "name": "image_id",
-          "short": "Unique identifier of the preferred image to use to represent this work",
-          "type": "`$STRING`"
+          "title": "Image Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the preferred image to use to represent this work"
         },
         {
           "name": "inscriptions",
-          "short": "A description of distinguishing or identifying physical markings that are on the work",
-          "type": "`$ANY`"
+          "title": "Inscriptions",
+          "type": "`$ANY`",
+          "short": "A description of distinguishing or identifying physical markings that are on the work"
         },
         {
           "name": "internal_department_id",
-          "short": "An internal department id we use for analytics.",
-          "type": "`$STRING`"
+          "title": "Internal Department Id",
+          "type": "`$STRING`",
+          "short": "An internal department id we use for analytics."
         },
         {
           "name": "is_boosted",
-          "short": "Whether this document should be boosted in search",
-          "type": "`$BOOLEAN`"
+          "title": "Is Boosted",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this document should be boosted in search"
         },
         {
           "name": "is_on_view",
-          "short": "Whether the work is on display",
-          "type": "`$BOOLEAN`"
+          "title": "Is On View",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the work is on display"
         },
         {
           "name": "is_public_domain",
-          "short": "Whether the work is in the public domain, meaning it was created before copyrights existed or has left the copyright term",
-          "type": "`$BOOLEAN`"
+          "title": "Is Public Domain",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the work is in the public domain, meaning it was created before copyrights existed or has left the copyright term"
         },
         {
           "name": "is_zoomable",
-          "short": "Whether images of the work are allowed to be displayed in a zoomable interface.",
-          "type": "`$BOOLEAN`"
+          "title": "Is Zoomable",
+          "type": "`$BOOLEAN`",
+          "short": "Whether images of the work are allowed to be displayed in a zoomable interface."
         },
         {
           "name": "latitude",
-          "short": "Latitude coordinate of the location of this work in our galleries",
-          "type": "`$NUMBER`"
+          "title": "Latitude",
+          "type": "`$NUMBER`",
+          "short": "Latitude coordinate of the location of this work in our galleries"
         },
         {
           "name": "latlon",
-          "short": "Latitude and longitude coordinates of the location of this work in our galleries",
-          "type": "`$ANY`"
+          "title": "Latlon",
+          "type": "`$ANY`",
+          "short": "Latitude and longitude coordinates of the location of this work in our galleries"
         },
         {
           "name": "longitude",
-          "short": "Longitude coordinate of the location of this work in our galleries",
-          "type": "`$NUMBER`"
+          "title": "Longitude",
+          "type": "`$NUMBER`",
+          "short": "Longitude coordinate of the location of this work in our galleries"
         },
         {
           "name": "main_reference_number",
-          "short": "Unique identifier assigned to the artwork upon acquisition",
-          "type": "`$INTEGER`"
+          "title": "Main Reference Number",
+          "type": "`$INTEGER`",
+          "short": "Unique identifier assigned to the artwork upon acquisition"
         },
         {
           "name": "material_id",
-          "short": "Unique identifier of the preferred material term for this work",
-          "type": "`$STRING`"
+          "title": "Material Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the preferred material term for this work"
         },
         {
           "name": "material_ids",
-          "short": "Unique identifiers of all material terms for this work",
-          "type": "`$ANY`"
+          "title": "Material Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of all material terms for this work"
         },
         {
           "name": "material_titles",
-          "short": "The names of all material terms related to this artwork",
-          "type": "`$ANY`"
+          "title": "Material Titles",
+          "type": "`$ANY`",
+          "short": "The names of all material terms related to this artwork"
         },
         {
           "name": "max_zoom_window_size",
-          "short": "The maximum size of the window the image is allowed to be viewed in, in pixels.",
-          "type": "`$ANY`"
+          "title": "Max Zoom Window Size",
+          "type": "`$ANY`",
+          "short": "The maximum size of the window the image is allowed to be viewed in, in pixels."
         },
         {
           "name": "medium_display",
-          "short": "The substances or materials used in the creation of a work",
-          "type": "`$ANY`"
+          "title": "Medium Display",
+          "type": "`$ANY`",
+          "short": "The substances or materials used in the creation of a work"
         },
         {
           "name": "nomisma_id",
-          "short": "Unique identifier of this work in the nomisma coin database",
-          "type": "`$STRING`"
+          "title": "Nomisma Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this work in the nomisma coin database"
         },
         {
           "name": "on_loan_display",
-          "short": "If an artwork is on loan, this contains details about the loan",
-          "type": "`$ANY`"
+          "title": "On Loan Display",
+          "type": "`$ANY`",
+          "short": "If an artwork is on loan, this contains details about the loan"
         },
         {
           "name": "pageviews",
-          "short": "Approx.",
-          "type": "`$ANY`"
+          "title": "Pageviews",
+          "type": "`$ANY`",
+          "short": "Approx."
         },
         {
           "name": "pageviews_recent",
-          "short": "Approx.",
-          "type": "`$ANY`"
+          "title": "Pageviews Recent",
+          "type": "`$ANY`",
+          "short": "Approx."
         },
         {
           "name": "place_of_origin",
-          "short": "The location where the creation, design, or production of the work took place, or the original location of the work",
-          "type": "`$ANY`"
+          "title": "Place Of Origin",
+          "type": "`$ANY`",
+          "short": "The location where the creation, design, or production of the work took place, or the original location of the work"
         },
         {
           "name": "provenance_text",
-          "short": "Ownership/collecting history of the work.",
-          "type": "`$ANY`"
+          "title": "Provenance Text",
+          "type": "`$ANY`",
+          "short": "Ownership/collecting history of the work."
         },
         {
           "name": "publication_history",
-          "short": "Bibliographic list of all the places this work has been published",
-          "type": "`$ANY`"
+          "title": "Publication History",
+          "type": "`$ANY`",
+          "short": "Bibliographic list of all the places this work has been published"
         },
         {
           "name": "publishing_verification_level",
-          "short": "Indicator of how much metadata on the work in published.",
-          "type": "`$ANY`"
+          "title": "Publishing Verification Level",
+          "type": "`$ANY`",
+          "short": "Indicator of how much metadata on the work in published."
         },
         {
           "name": "section_ids",
-          "short": "Unique identifiers of the digital publication chapters this work in included in",
-          "type": "`$ANY`"
+          "title": "Section Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the digital publication chapters this work in included in"
         },
         {
           "name": "section_titles",
-          "short": "Names of the digital publication chapters this work is included in",
-          "type": "`$ANY`"
+          "title": "Section Titles",
+          "type": "`$ANY`",
+          "short": "Names of the digital publication chapters this work is included in"
         },
         {
           "name": "short_description",
-          "short": "Short explanation describing the work",
-          "type": "`$ANY`"
+          "title": "Short Description",
+          "type": "`$ANY`",
+          "short": "Short explanation describing the work"
         },
         {
           "name": "site_ids",
-          "short": "Unique identifiers of the microsites this work is a part of",
-          "type": "`$ANY`"
+          "title": "Site Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the microsites this work is a part of"
         },
         {
           "name": "sound_ids",
-          "short": "Unique identifiers of the audio about this work",
-          "type": "`$ANY`"
+          "title": "Sound Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the audio about this work"
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "style_id",
-          "short": "Unique identifier of the preferred style term for this work",
-          "type": "`$STRING`"
+          "title": "Style Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the preferred style term for this work"
         },
         {
           "name": "style_ids",
-          "short": "Unique identifiers of all style terms for this work",
-          "type": "`$ANY`"
+          "title": "Style Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of all style terms for this work"
         },
         {
           "name": "style_title",
-          "short": "The name of the preferred style term for this work",
-          "type": "`$ANY`"
+          "title": "Style Title",
+          "type": "`$ANY`",
+          "short": "The name of the preferred style term for this work"
         },
         {
           "name": "style_titles",
-          "short": "The names of all style terms related to this artwork",
-          "type": "`$ANY`"
+          "title": "Style Titles",
+          "type": "`$ANY`",
+          "short": "The names of all style terms related to this artwork"
         },
         {
           "name": "subject_id",
-          "short": "Unique identifier of the preferred subject term for this work",
-          "type": "`$STRING`"
+          "title": "Subject Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the preferred subject term for this work"
         },
         {
           "name": "subject_ids",
-          "short": "Unique identifiers of all subject terms for this work",
-          "type": "`$ANY`"
+          "title": "Subject Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of all subject terms for this work"
         },
         {
           "name": "subject_titles",
-          "short": "The names of all subject terms related to this artwork",
-          "type": "`$ANY`"
+          "title": "Subject Titles",
+          "type": "`$ANY`",
+          "short": "The names of all subject terms related to this artwork"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "technique_id",
-          "short": "Unique identifier of the preferred technique term for this work",
-          "type": "`$STRING`"
+          "title": "Technique Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the preferred technique term for this work"
         },
         {
           "name": "technique_ids",
-          "short": "Unique identifiers of all technique terms for this work",
-          "type": "`$ANY`"
+          "title": "Technique Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of all technique terms for this work"
         },
         {
           "name": "technique_titles",
-          "short": "The names of all technique terms related to this artwork",
-          "type": "`$ANY`"
+          "title": "Technique Titles",
+          "type": "`$ANY`",
+          "short": "The names of all technique terms related to this artwork"
         },
         {
           "name": "term_titles",
-          "short": "The names of the taxonomy tags for this work",
-          "type": "`$ANY`"
+          "title": "Term Titles",
+          "type": "`$ANY`",
+          "short": "The names of the taxonomy tags for this work"
         },
         {
           "name": "text_embedding",
-          "short": "The generated embeddings of artwork text",
-          "type": "`$ANY`"
+          "title": "Text Embedding",
+          "type": "`$ANY`",
+          "short": "The generated embeddings of artwork text"
         },
         {
           "name": "text_ids",
-          "short": "Unique identifiers of the texts about this work",
-          "type": "`$ANY`"
+          "title": "Text Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the texts about this work"
         },
         {
           "name": "theme_titles",
-          "short": "The names of all thematic publish categories related to this artwork",
-          "type": "`$ANY`"
+          "title": "Theme Titles",
+          "type": "`$ANY`",
+          "short": "The names of all thematic publish categories related to this artwork"
         },
         {
           "name": "thumbnail",
-          "short": "Metadata about the image referenced by `image_id`.",
-          "type": "`$ANY`"
+          "title": "Thumbnail",
+          "type": "`$ANY`",
+          "short": "Metadata about the image referenced by `image_id`."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "video_ids",
-          "short": "Unique identifiers of the videos about this work",
-          "type": "`$ANY`"
+          "title": "Video Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the videos about this work"
         }
       ],
       "id": {
@@ -1375,7 +1526,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/artworks",
@@ -1384,14 +1534,16 @@ class Config {
                   "lit": "artworks"
                 }
               ],
-              "select": {},
+              "parts": [
+                "artworks"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "artworks"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -1400,17 +1552,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/artworks/{id}",
@@ -1422,19 +1563,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "artworks",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "artworks",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -1447,48 +1600,57 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         }
       ],
       "id": {
@@ -1502,7 +1664,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/artwork-date-qualifiers",
@@ -1511,14 +1672,16 @@ class Config {
                   "lit": "artwork-date-qualifiers"
                 }
               ],
-              "select": {},
+              "parts": [
+                "artwork-date-qualifiers"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "artwork-date-qualifiers"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -1527,17 +1690,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/artwork-date-qualifiers/{id}",
@@ -1549,19 +1701,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "artwork-date-qualifiers",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "artwork-date-qualifiers",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -1574,48 +1738,57 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         }
       ],
       "id": {
@@ -1629,7 +1802,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/artwork-place-qualifiers",
@@ -1638,14 +1810,16 @@ class Config {
                   "lit": "artwork-place-qualifiers"
                 }
               ],
-              "select": {},
+              "parts": [
+                "artwork-place-qualifiers"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "artwork-place-qualifiers"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -1654,17 +1828,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/artwork-place-qualifiers/{id}",
@@ -1676,19 +1839,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "artwork-place-qualifiers",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "artwork-place-qualifiers",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -1701,53 +1876,63 @@ class Config {
       "fields": [
         {
           "name": "aat_id",
-          "short": "Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT)",
-          "type": "`$STRING`"
+          "title": "Aat Id",
+          "type": "`$STRING`",
+          "short": "Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT)"
         },
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         }
       ],
       "id": {
@@ -1761,7 +1946,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/artwork-types",
@@ -1770,14 +1954,16 @@ class Config {
                   "lit": "artwork-types"
                 }
               ],
-              "select": {},
+              "parts": [
+                "artwork-types"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "artwork-types"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -1786,17 +1972,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/artwork-types/{id}",
@@ -1808,19 +1983,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "artwork-types",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "artwork-types",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -1833,58 +2020,69 @@ class Config {
       "fields": [
         {
           "name": "aat_id",
-          "short": "Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT)",
-          "type": "`$STRING`"
+          "title": "Aat Id",
+          "type": "`$STRING`",
+          "short": "Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT)"
         },
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "parent_id",
-          "short": "Unique identifier of this category's parent",
-          "type": "`$STRING`"
+          "title": "Parent Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this category's parent"
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "subtype",
-          "short": "Takes one of the following values: classification, material, technique, style, subject, department, theme",
-          "type": "`$ANY`"
+          "title": "Subtype",
+          "type": "`$ANY`",
+          "short": "Takes one of the following values: classification, material, technique, style, subject, department, theme"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         }
       ],
       "id": {
@@ -1898,7 +2096,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/category-terms",
@@ -1907,14 +2104,16 @@ class Config {
                   "lit": "category-terms"
                 }
               ],
-              "select": {},
+              "parts": [
+                "category-terms"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "category-terms"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -1923,17 +2122,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/category-terms/{id}",
@@ -1945,19 +2133,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "category-terms",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "category-terms",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -1970,58 +2170,69 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "copy",
-          "short": "The text of the page",
-          "type": "`$ANY`"
+          "title": "Copy",
+          "type": "`$ANY`",
+          "short": "The text of the page"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "web_url",
-          "short": "The URL to this page on our website",
-          "type": "`$ANY`"
+          "title": "Web Url",
+          "type": "`$ANY`",
+          "short": "The URL to this page on our website"
         }
       ],
       "id": {
@@ -2035,7 +2246,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/digital-publications",
@@ -2044,14 +2254,16 @@ class Config {
                   "lit": "digital-publications"
                 }
               ],
-              "select": {},
+              "parts": [
+                "digital-publications"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "digital-publications"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -2060,17 +2272,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/digital-publications/{id}",
@@ -2082,19 +2283,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "digital-publications",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "digital-publications",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -2107,68 +2320,81 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "author_display",
-          "short": "A display-friendly text of the authors of this article",
-          "type": "`$ANY`"
+          "title": "Author Display",
+          "type": "`$ANY`",
+          "short": "A display-friendly text of the authors of this article"
         },
         {
           "name": "copy",
-          "short": "The text of the article",
-          "type": "`$ANY`"
+          "title": "Copy",
+          "type": "`$ANY`",
+          "short": "The text of the article"
         },
         {
           "name": "digital_publication_id",
-          "short": "Unique identifier of the digital publication this article belongs to",
-          "type": "`$STRING`"
+          "title": "Digital Publication Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the digital publication this article belongs to"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "web_url",
-          "short": "The URL to this article on our website",
-          "type": "`$ANY`"
+          "title": "Web Url",
+          "type": "`$ANY`",
+          "short": "The URL to this article on our website"
         }
       ],
       "id": {
@@ -2182,7 +2408,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/digital-publication-articles",
@@ -2191,14 +2416,16 @@ class Config {
                   "lit": "digital-publication-articles"
                 }
               ],
-              "select": {},
+              "parts": [
+                "digital-publication-articles"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "digital-publication-articles"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -2207,17 +2434,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/digital-publication-articles/{id}",
@@ -2229,19 +2445,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "digital-publication-articles",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "digital-publication-articles",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -2254,58 +2482,69 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "copy",
-          "short": "The text of the page",
-          "type": "`$ANY`"
+          "title": "Copy",
+          "type": "`$ANY`",
+          "short": "The text of the page"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "web_url",
-          "short": "The URL to this page on our website",
-          "type": "`$ANY`"
+          "title": "Web Url",
+          "type": "`$ANY`",
+          "short": "The URL to this page on our website"
         }
       ],
       "id": {
@@ -2319,7 +2558,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/educator-resources",
@@ -2328,14 +2566,16 @@ class Config {
                   "lit": "educator-resources"
                 }
               ],
-              "select": {},
+              "parts": [
+                "educator-resources"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "educator-resources"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -2344,17 +2584,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/educator-resources/{id}",
@@ -2366,19 +2595,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "educator-resources",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "educator-resources",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -2391,268 +2632,321 @@ class Config {
       "fields": [
         {
           "name": "alt_audience_ids",
-          "short": "Unique identifiers indicating the alternate audiences for this event",
-          "type": "`$ANY`"
+          "title": "Alt Audience Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers indicating the alternate audiences for this event"
         },
         {
           "name": "alt_event_type_ids",
-          "short": "Unique identifiers indicating the alternate types of this event",
-          "type": "`$ANY`"
+          "title": "Alt Event Type Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers indicating the alternate types of this event"
         },
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "audience_id",
-          "short": "Unique identifier indicating the preferred audience for this event",
-          "type": "`$STRING`"
+          "title": "Audience Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier indicating the preferred audience for this event"
         },
         {
           "name": "buy_button_caption",
-          "short": "Additional text below the ticket/registration button",
-          "type": "`$ANY`"
+          "title": "Buy Button Caption",
+          "type": "`$ANY`",
+          "short": "Additional text below the ticket/registration button"
         },
         {
           "name": "buy_button_text",
-          "short": "The text used on the ticket/registration button",
-          "type": "`$ANY`"
+          "title": "Buy Button Text",
+          "type": "`$ANY`",
+          "short": "The text used on the ticket/registration button"
         },
         {
           "name": "date_display",
-          "short": "A readable display of the event dates",
-          "type": "`$ANY`"
+          "title": "Date Display",
+          "type": "`$ANY`",
+          "short": "A readable display of the event dates"
         },
         {
           "name": "description",
-          "short": "All copytext of the event",
-          "type": "`$STRING`"
+          "title": "Description",
+          "type": "`$STRING`",
+          "short": "All copytext of the event"
         },
         {
           "name": "door_time",
-          "short": "The time the doors open for this event",
-          "type": "`$ANY`"
+          "title": "Door Time",
+          "type": "`$ANY`",
+          "short": "The time the doors open for this event"
         },
         {
           "name": "end_date",
-          "short": "The date the event ends",
-          "type": "`$ANY`"
+          "title": "End Date",
+          "type": "`$ANY`",
+          "short": "The date the event ends"
         },
         {
           "name": "end_time",
-          "short": "The time the event ends",
-          "type": "`$ANY`"
+          "title": "End Time",
+          "type": "`$ANY`",
+          "short": "The time the event ends"
         },
         {
           "name": "entrance",
-          "short": "Which entrance to use for this event",
-          "type": "`$ANY`"
+          "title": "Entrance",
+          "type": "`$ANY`",
+          "short": "Which entrance to use for this event"
         },
         {
           "name": "event_host_id",
-          "short": "Unique identifier of the host (cf.",
-          "type": "`$STRING`"
+          "title": "Event Host Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the host (cf."
         },
         {
           "name": "event_host_title",
-          "short": "Unique identifier of the host (cf.",
-          "type": "`$ANY`"
+          "title": "Event Host Title",
+          "type": "`$ANY`",
+          "short": "Unique identifier of the host (cf."
         },
         {
           "name": "event_type_id",
-          "short": "Unique identifier indicating the preferred type of this event",
-          "type": "`$STRING`"
+          "title": "Event Type Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier indicating the preferred type of this event"
         },
         {
           "name": "header_description",
-          "short": "Brief description of the event displayed below the title",
-          "type": "`$ANY`"
+          "title": "Header Description",
+          "type": "`$ANY`",
+          "short": "Brief description of the event displayed below the title"
         },
         {
           "name": "hero_caption",
-          "short": "Text displayed with the hero image on the event",
-          "type": "`$ANY`"
+          "title": "Hero Caption",
+          "type": "`$ANY`",
+          "short": "Text displayed with the hero image on the event"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "image_url",
-          "short": "The URL of an image representing this page",
-          "type": "`$ANY`"
+          "title": "Image Url",
+          "type": "`$ANY`",
+          "short": "The URL of an image representing this page"
         },
         {
           "name": "is_admission_required",
-          "short": "Whether admission to the museum is required to attend this event",
-          "type": "`$BOOLEAN`"
+          "title": "Is Admission Required",
+          "type": "`$BOOLEAN`",
+          "short": "Whether admission to the museum is required to attend this event"
         },
         {
           "name": "is_after_hours",
-          "short": "Whether the event is to be held after the museum closes",
-          "type": "`$BOOLEAN`"
+          "title": "Is After Hours",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the event is to be held after the museum closes"
         },
         {
           "name": "is_free",
-          "short": "Whether the event is free",
-          "type": "`$BOOLEAN`"
+          "title": "Is Free",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the event is free"
         },
         {
           "name": "is_member_exclusive",
-          "short": "Whether the event is exclusive to members of the museum",
-          "type": "`$BOOLEAN`"
+          "title": "Is Member Exclusive",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the event is exclusive to members of the museum"
         },
         {
           "name": "is_private",
-          "short": "Whether the event is private",
-          "type": "`$BOOLEAN`"
+          "title": "Is Private",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the event is private"
         },
         {
           "name": "is_registration_required",
-          "short": "Whether registration is required to attend the event",
-          "type": "`$BOOLEAN`"
+          "title": "Is Registration Required",
+          "type": "`$BOOLEAN`",
+          "short": "Whether registration is required to attend the event"
         },
         {
           "name": "is_sales_button_hidden",
-          "short": "Whether the buy tickets button is hidden on the website event page",
-          "type": "`$BOOLEAN`"
+          "title": "Is Sales Button Hidden",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the buy tickets button is hidden on the website event page"
         },
         {
           "name": "is_sold_out",
-          "short": "Whether the event is sold out",
-          "type": "`$BOOLEAN`"
+          "title": "Is Sold Out",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the event is sold out"
         },
         {
           "name": "is_ticketed",
-          "short": "Whether a ticket is required to attend the event",
-          "type": "`$BOOLEAN`"
+          "title": "Is Ticketed",
+          "type": "`$BOOLEAN`",
+          "short": "Whether a ticket is required to attend the event"
         },
         {
           "name": "is_virtual_event",
-          "short": "Whether the event is being held virtually",
-          "type": "`$BOOLEAN`"
+          "title": "Is Virtual Event",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the event is being held virtually"
         },
         {
           "name": "join_url",
-          "short": "URL to the membership signup page via this event",
-          "type": "`$ANY`"
+          "title": "Join Url",
+          "type": "`$ANY`",
+          "short": "URL to the membership signup page via this event"
         },
         {
           "name": "layout_type",
-          "short": "Number indicating the type of layout this event page uses",
-          "type": "`$ANY`"
+          "title": "Layout Type",
+          "type": "`$ANY`",
+          "short": "Number indicating the type of layout this event page uses"
         },
         {
           "name": "list_description",
-          "short": "One-sentence description of the event displayed in listings",
-          "type": "`$ANY`"
+          "title": "List Description",
+          "type": "`$ANY`",
+          "short": "One-sentence description of the event displayed in listings"
         },
         {
           "name": "location",
-          "short": "Where the event takes place",
-          "type": "`$ANY`"
+          "title": "Location",
+          "type": "`$ANY`",
+          "short": "Where the event takes place"
         },
         {
           "name": "program_ids",
-          "short": "Unique identifiers indicating the programs this event is a part of",
-          "type": "`$ANY`"
+          "title": "Program Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers indicating the programs this event is a part of"
         },
         {
           "name": "program_titles",
-          "short": "Titles of the programs this event is a part of",
-          "type": "`$ANY`"
+          "title": "Program Titles",
+          "type": "`$ANY`",
+          "short": "Titles of the programs this event is a part of"
         },
         {
           "name": "rsvp_link",
-          "short": "The URL to the sales site for this event",
-          "type": "`$ANY`"
+          "title": "Rsvp Link",
+          "type": "`$ANY`",
+          "short": "The URL to the sales site for this event"
         },
         {
           "name": "search_tags",
-          "short": "Editor-specified list of tags to aid in internal search",
-          "type": "`$ANY`"
+          "title": "Search Tags",
+          "type": "`$ANY`",
+          "short": "Editor-specified list of tags to aid in internal search"
         },
         {
           "name": "short_description",
-          "short": "Brief description of the event",
-          "type": "`$ANY`"
+          "title": "Short Description",
+          "type": "`$ANY`",
+          "short": "Brief description of the event"
         },
         {
           "name": "slug",
-          "short": "A string used in the URL for this event",
-          "type": "`$STRING`"
+          "title": "Slug",
+          "type": "`$STRING`",
+          "short": "A string used in the URL for this event"
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "start_date",
-          "short": "The date the event begins",
-          "type": "`$ANY`"
+          "title": "Start Date",
+          "type": "`$ANY`",
+          "short": "The date the event begins"
         },
         {
           "name": "start_time",
-          "short": "The time the event starts",
-          "type": "`$ANY`"
+          "title": "Start Time",
+          "type": "`$ANY`",
+          "short": "The time the event starts"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "survey_url",
-          "short": "URL to the survey associated with this event",
-          "type": "`$ANY`"
+          "title": "Survey Url",
+          "type": "`$ANY`",
+          "short": "URL to the survey associated with this event"
         },
         {
           "name": "ticketed_event_id",
-          "short": "Unique identifier of the event in the ticketing system this website event is tied to",
-          "type": "`$STRING`"
+          "title": "Ticketed Event Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the event in the ticketing system this website event is tied to"
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "title_display",
-          "short": "The name of this event formatted with HTML (optional)",
-          "type": "`$ANY`"
+          "title": "Title Display",
+          "type": "`$ANY`",
+          "short": "The name of this event formatted with HTML (optional)"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "virtual_event_passcode",
-          "short": "Passcode to access the virtual event",
-          "type": "`$ANY`"
+          "title": "Virtual Event Passcode",
+          "type": "`$ANY`",
+          "short": "Passcode to access the virtual event"
         },
         {
           "name": "virtual_event_url",
-          "short": "URL to the virtual event",
-          "type": "`$ANY`"
+          "title": "Virtual Event Url",
+          "type": "`$ANY`",
+          "short": "URL to the virtual event"
         }
       ],
       "id": {
@@ -2666,7 +2960,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/events",
@@ -2675,14 +2968,16 @@ class Config {
                   "lit": "events"
                 }
               ],
-              "select": {},
+              "parts": [
+                "events"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "events"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -2691,17 +2986,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/events/{id}",
@@ -2713,19 +2997,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "events",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "events",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -2738,128 +3034,153 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "button_caption",
-          "short": "Additional text below the ticket/registration button",
-          "type": "`$ANY`"
+          "title": "Button Caption",
+          "type": "`$ANY`",
+          "short": "Additional text below the ticket/registration button"
         },
         {
           "name": "button_text",
-          "short": "The text used on the ticket/registration button",
-          "type": "`$ANY`"
+          "title": "Button Text",
+          "type": "`$ANY`",
+          "short": "The text used on the ticket/registration button"
         },
         {
           "name": "button_url",
-          "short": "The URL to the sales site or an RSVP link for this event",
-          "type": "`$ANY`"
+          "title": "Button Url",
+          "type": "`$ANY`",
+          "short": "The URL to the sales site or an RSVP link for this event"
         },
         {
           "name": "description",
-          "short": "Description of the event",
-          "type": "`$STRING`"
+          "title": "Description",
+          "type": "`$STRING`",
+          "short": "Description of the event"
         },
         {
           "name": "end_at",
-          "short": "The date the event occurrence ends",
-          "type": "`$ANY`"
+          "title": "End At",
+          "type": "`$ANY`",
+          "short": "The date the event occurrence ends"
         },
         {
           "name": "event_id",
-          "short": "Identifier of the master event of which this is an occurrence",
-          "type": "`$STRING`"
+          "title": "Event Id",
+          "type": "`$STRING`",
+          "short": "Identifier of the master event of which this is an occurrence"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "image_url",
-          "short": "The URL of an image representing this page",
-          "type": "`$ANY`"
+          "title": "Image Url",
+          "type": "`$ANY`",
+          "short": "The URL of an image representing this page"
         },
         {
           "name": "is_private",
-          "short": "Whether the event is private.",
-          "type": "`$BOOLEAN`"
+          "title": "Is Private",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the event is private."
         },
         {
           "name": "is_sales_button_hidden",
-          "short": "Whether the buy tickets button is hidden on the website event page",
-          "type": "`$BOOLEAN`"
+          "title": "Is Sales Button Hidden",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the buy tickets button is hidden on the website event page"
         },
         {
           "name": "is_ticketed",
-          "short": "Whether a ticket is required to attend the event",
-          "type": "`$BOOLEAN`"
+          "title": "Is Ticketed",
+          "type": "`$BOOLEAN`",
+          "short": "Whether a ticket is required to attend the event"
         },
         {
           "name": "location",
-          "short": "Where the event takes place",
-          "type": "`$ANY`"
+          "title": "Location",
+          "type": "`$ANY`",
+          "short": "Where the event takes place"
         },
         {
           "name": "off_sale_at",
-          "short": "Date and time the event goes off sale",
-          "type": "`$ANY`"
+          "title": "Off Sale At",
+          "type": "`$ANY`",
+          "short": "Date and time the event goes off sale"
         },
         {
           "name": "on_sale_at",
-          "short": "Date and time the event goes on sale",
-          "type": "`$ANY`"
+          "title": "On Sale At",
+          "type": "`$ANY`",
+          "short": "Date and time the event goes on sale"
         },
         {
           "name": "short_description",
-          "short": "Brief description of the event",
-          "type": "`$ANY`"
+          "title": "Short Description",
+          "type": "`$ANY`",
+          "short": "Brief description of the event"
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "start_at",
-          "short": "The date the event occurrence begins",
-          "type": "`$ANY`"
+          "title": "Start At",
+          "type": "`$ANY`",
+          "short": "The date the event occurrence begins"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "title_display",
-          "short": "The name of this event formatted with HTML (optional)",
-          "type": "`$ANY`"
+          "title": "Title Display",
+          "type": "`$ANY`",
+          "short": "The name of this event formatted with HTML (optional)"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         }
       ],
       "id": {
@@ -2873,7 +3194,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/event-occurrences",
@@ -2882,14 +3202,16 @@ class Config {
                   "lit": "event-occurrences"
                 }
               ],
-              "select": {},
+              "parts": [
+                "event-occurrences"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "event-occurrences"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -2898,17 +3220,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/event-occurrences/{id}",
@@ -2920,19 +3231,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "event-occurrences",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "event-occurrences",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -2945,58 +3268,69 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "is_affiliate_group",
-          "short": "Whether this program represents an affiliate group",
-          "type": "`$BOOLEAN`"
+          "title": "Is Affiliate Group",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this program represents an affiliate group"
         },
         {
           "name": "is_event_host",
-          "short": "Whether this program represents an event host",
-          "type": "`$BOOLEAN`"
+          "title": "Is Event Host",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this program represents an event host"
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         }
       ],
       "id": {
@@ -3010,7 +3344,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/event-programs",
@@ -3019,14 +3352,16 @@ class Config {
                   "lit": "event-programs"
                 }
               ],
-              "select": {},
+              "parts": [
+                "event-programs"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "event-programs"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -3035,17 +3370,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/event-programs/{id}",
@@ -3057,19 +3381,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "event-programs",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "event-programs",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -3082,138 +3418,165 @@ class Config {
       "fields": [
         {
           "name": "aic_end_at",
-          "short": "Date the exhibition closed at the Art Institute of Chicago",
-          "type": "`$ANY`"
+          "title": "Aic End At",
+          "type": "`$ANY`",
+          "short": "Date the exhibition closed at the Art Institute of Chicago"
         },
         {
           "name": "aic_start_at",
-          "short": "Date the exhibition opened at the Art Institute of Chicago",
-          "type": "`$ANY`"
+          "title": "Aic Start At",
+          "type": "`$ANY`",
+          "short": "Date the exhibition opened at the Art Institute of Chicago"
         },
         {
           "name": "alt_image_ids",
-          "short": "Unique identifiers of all non-preferred images of this exhibition.",
-          "type": "`$ANY`"
+          "title": "Alt Image Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of all non-preferred images of this exhibition."
         },
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "artist_ids",
-          "short": "Unique identifiers of the artist agent records representing who was shown in the exhibition",
-          "type": "`$ANY`"
+          "title": "Artist Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the artist agent records representing who was shown in the exhibition"
         },
         {
           "name": "artwork_ids",
-          "short": "Unique identifiers of the artworks that were part of the exhibition",
-          "type": "`$ANY`"
+          "title": "Artwork Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the artworks that were part of the exhibition"
         },
         {
           "name": "artwork_titles",
-          "short": "Names of the artworks that were part of the exhibition",
-          "type": "`$ANY`"
+          "title": "Artwork Titles",
+          "type": "`$ANY`",
+          "short": "Names of the artworks that were part of the exhibition"
         },
         {
           "name": "document_ids",
-          "short": "Unique identifiers of assets that serve as documentation for this exhibition",
-          "type": "`$ANY`"
+          "title": "Document Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of assets that serve as documentation for this exhibition"
         },
         {
           "name": "gallery_id",
-          "short": "Unique identifier of the gallery that mainly housed the exhibition",
-          "type": "`$STRING`"
+          "title": "Gallery Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the gallery that mainly housed the exhibition"
         },
         {
           "name": "gallery_title",
-          "short": "The name of the gallery that mainly housed the exhibition",
-          "type": "`$ANY`"
+          "title": "Gallery Title",
+          "type": "`$ANY`",
+          "short": "The name of the gallery that mainly housed the exhibition"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "image_id",
-          "short": "Unique identifier of the preferred image to use to represent this exhibition",
-          "type": "`$STRING`"
+          "title": "Image Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the preferred image to use to represent this exhibition"
         },
         {
           "name": "image_url",
-          "short": "URL to the hero image from the website",
-          "type": "`$ANY`"
+          "title": "Image Url",
+          "type": "`$ANY`",
+          "short": "URL to the hero image from the website"
         },
         {
           "name": "is_featured",
-          "short": "Is this exhibition currently featured on our website?",
-          "type": "`$BOOLEAN`"
+          "title": "Is Featured",
+          "type": "`$BOOLEAN`",
+          "short": "Is this exhibition currently featured on our website?"
         },
         {
           "name": "is_published",
-          "short": "Is this exhibition currently published on our website?",
-          "type": "`$BOOLEAN`"
+          "title": "Is Published",
+          "type": "`$BOOLEAN`",
+          "short": "Is this exhibition currently published on our website?"
         },
         {
           "name": "position",
-          "short": "Numering position represnting the order in which this exhibition is featured on the website",
-          "type": "`$ANY`"
+          "title": "Position",
+          "type": "`$ANY`",
+          "short": "Numering position represnting the order in which this exhibition is featured on the website"
         },
         {
           "name": "short_description",
-          "short": "Brief explanation of what this exhibition is",
-          "type": "`$ANY`"
+          "title": "Short Description",
+          "type": "`$ANY`",
+          "short": "Brief explanation of what this exhibition is"
         },
         {
           "name": "site_ids",
-          "short": "Unique identifiers of the microsites this exhibition is a part of",
-          "type": "`$ANY`"
+          "title": "Site Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the microsites this exhibition is a part of"
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "status",
-          "short": "Whether the exhibition is open or closed",
-          "type": "`$ANY`"
+          "title": "Status",
+          "type": "`$ANY`",
+          "short": "Whether the exhibition is open or closed"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "web_url",
-          "short": "URL to this exhibition on our website",
-          "type": "`$ANY`"
+          "title": "Web Url",
+          "type": "`$ANY`",
+          "short": "URL to this exhibition on our website"
         }
       ],
       "id": {
@@ -3227,7 +3590,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/exhibitions",
@@ -3236,14 +3598,16 @@ class Config {
                   "lit": "exhibitions"
                 }
               ],
-              "select": {},
+              "parts": [
+                "exhibitions"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "exhibitions"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -3252,17 +3616,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/exhibitions/{id}",
@@ -3274,19 +3627,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "exhibitions",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "exhibitions",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -3299,83 +3664,99 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "floor",
-          "short": "The level the gallery is on, e.g., 1, 2, 3, or LL",
-          "type": "`$ANY`"
+          "title": "Floor",
+          "type": "`$ANY`",
+          "short": "The level the gallery is on, e.g., 1, 2, 3, or LL"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "is_closed",
-          "short": "Whether the gallery is currently closed",
-          "type": "`$BOOLEAN`"
+          "title": "Is Closed",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the gallery is currently closed"
         },
         {
           "name": "latitude",
-          "short": "Latitude coordinate of the center of the room",
-          "type": "`$NUMBER`"
+          "title": "Latitude",
+          "type": "`$NUMBER`",
+          "short": "Latitude coordinate of the center of the room"
         },
         {
           "name": "latlon",
-          "short": "Latitude and longitude coordinates of the center of the room",
-          "type": "`$ANY`"
+          "title": "Latlon",
+          "type": "`$ANY`",
+          "short": "Latitude and longitude coordinates of the center of the room"
         },
         {
           "name": "longitude",
-          "short": "Longitude coordinate of the center of the room",
-          "type": "`$NUMBER`"
+          "title": "Longitude",
+          "type": "`$NUMBER`",
+          "short": "Longitude coordinate of the center of the room"
         },
         {
           "name": "number",
-          "short": "The gallery's room number.",
-          "type": "`$ANY`"
+          "title": "Number",
+          "type": "`$ANY`",
+          "short": "The gallery's room number."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "tgn_id",
-          "short": "Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN)",
-          "type": "`$STRING`"
+          "title": "Tgn Id",
+          "type": "`$STRING`",
+          "short": "Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN)"
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         }
       ],
       "id": {
@@ -3389,7 +3770,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/galleries",
@@ -3398,14 +3778,16 @@ class Config {
                   "lit": "galleries"
                 }
               ],
-              "select": {},
+              "parts": [
+                "galleries"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "galleries"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -3414,17 +3796,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/galleries/{id}",
@@ -3436,19 +3807,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "galleries",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "galleries",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -3461,63 +3844,75 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "copy",
-          "short": "The text of the page",
-          "type": "`$ANY`"
+          "title": "Copy",
+          "type": "`$ANY`",
+          "short": "The text of the page"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "search_tags",
-          "short": "Editor-specified list of tags to aid in internal search",
-          "type": "`$ANY`"
+          "title": "Search Tags",
+          "type": "`$ANY`",
+          "short": "Editor-specified list of tags to aid in internal search"
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "web_url",
-          "short": "The URL to this page on our website",
-          "type": "`$ANY`"
+          "title": "Web Url",
+          "type": "`$ANY`",
+          "short": "The URL to this page on our website"
         }
       ],
       "id": {
@@ -3531,7 +3926,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/generic-pages",
@@ -3540,14 +3934,16 @@ class Config {
                   "lit": "generic-pages"
                 }
               ],
-              "select": {},
+              "parts": [
+                "generic-pages"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "generic-pages"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -3556,17 +3952,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/generic-pages/{id}",
@@ -3578,19 +3963,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "generic-pages",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "generic-pages",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -3603,53 +4000,63 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "copy",
-          "short": "The text of the highlight description",
-          "type": "`$ANY`"
+          "title": "Copy",
+          "type": "`$ANY`",
+          "short": "The text of the highlight description"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         }
       ],
       "id": {
@@ -3663,7 +4070,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/highlights",
@@ -3672,14 +4078,16 @@ class Config {
                   "lit": "highlights"
                 }
               ],
-              "select": {},
+              "parts": [
+                "highlights"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "highlights"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -3688,17 +4096,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/highlights/{id}",
@@ -3710,19 +4107,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "highlights",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "highlights",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -3735,233 +4144,279 @@ class Config {
       "fields": [
         {
           "name": "additional_text",
-          "short": "Additional information about the hours",
-          "type": "`$ANY`"
+          "title": "Additional Text",
+          "type": "`$ANY`",
+          "short": "Additional information about the hours"
         },
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "friday_is_closed",
-          "short": "Whether the museum is closed on Fridays",
-          "type": "`$ANY`"
+          "title": "Friday Is Closed",
+          "type": "`$ANY`",
+          "short": "Whether the museum is closed on Fridays"
         },
         {
           "name": "friday_member_close",
-          "short": "The time member hours ends on Fridays",
-          "type": "`$ANY`"
+          "title": "Friday Member Close",
+          "type": "`$ANY`",
+          "short": "The time member hours ends on Fridays"
         },
         {
           "name": "friday_member_open",
-          "short": "The time member hours starts on Fridays",
-          "type": "`$ANY`"
+          "title": "Friday Member Open",
+          "type": "`$ANY`",
+          "short": "The time member hours starts on Fridays"
         },
         {
           "name": "friday_public_close",
-          "short": "The time public hours ends on Fridays",
-          "type": "`$ANY`"
+          "title": "Friday Public Close",
+          "type": "`$ANY`",
+          "short": "The time public hours ends on Fridays"
         },
         {
           "name": "friday_public_open",
-          "short": "The time public hours starts on Fridays",
-          "type": "`$ANY`"
+          "title": "Friday Public Open",
+          "type": "`$ANY`",
+          "short": "The time public hours starts on Fridays"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "monday_is_closed",
-          "short": "Whether the museum is closed on Mondays",
-          "type": "`$ANY`"
+          "title": "Monday Is Closed",
+          "type": "`$ANY`",
+          "short": "Whether the museum is closed on Mondays"
         },
         {
           "name": "monday_member_close",
-          "short": "The time member hours ends on Mondays",
-          "type": "`$ANY`"
+          "title": "Monday Member Close",
+          "type": "`$ANY`",
+          "short": "The time member hours ends on Mondays"
         },
         {
           "name": "monday_member_open",
-          "short": "The time member hours starts on Mondays",
-          "type": "`$ANY`"
+          "title": "Monday Member Open",
+          "type": "`$ANY`",
+          "short": "The time member hours starts on Mondays"
         },
         {
           "name": "monday_public_close",
-          "short": "The time public hours ends on Mondays",
-          "type": "`$ANY`"
+          "title": "Monday Public Close",
+          "type": "`$ANY`",
+          "short": "The time public hours ends on Mondays"
         },
         {
           "name": "monday_public_open",
-          "short": "The time public hours starts on Mondays",
-          "type": "`$ANY`"
+          "title": "Monday Public Open",
+          "type": "`$ANY`",
+          "short": "The time public hours starts on Mondays"
         },
         {
           "name": "saturday_is_closed",
-          "short": "Whether the museum is closed on Saturdays",
-          "type": "`$ANY`"
+          "title": "Saturday Is Closed",
+          "type": "`$ANY`",
+          "short": "Whether the museum is closed on Saturdays"
         },
         {
           "name": "saturday_member_close",
-          "short": "The time member hours ends on Saturdays",
-          "type": "`$ANY`"
+          "title": "Saturday Member Close",
+          "type": "`$ANY`",
+          "short": "The time member hours ends on Saturdays"
         },
         {
           "name": "saturday_member_open",
-          "short": "The time member hours starts on Saturdays",
-          "type": "`$ANY`"
+          "title": "Saturday Member Open",
+          "type": "`$ANY`",
+          "short": "The time member hours starts on Saturdays"
         },
         {
           "name": "saturday_public_close",
-          "short": "The time public hours ends on Saturdays",
-          "type": "`$ANY`"
+          "title": "Saturday Public Close",
+          "type": "`$ANY`",
+          "short": "The time public hours ends on Saturdays"
         },
         {
           "name": "saturday_public_open",
-          "short": "The time public hours starts on Saturdays",
-          "type": "`$ANY`"
+          "title": "Saturday Public Open",
+          "type": "`$ANY`",
+          "short": "The time public hours starts on Saturdays"
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "summary",
-          "short": "Readable summary of the hours",
-          "type": "`$ANY`"
+          "title": "Summary",
+          "type": "`$ANY`",
+          "short": "Readable summary of the hours"
         },
         {
           "name": "sunday_is_closed",
-          "short": "Whether the museum is closed on Sundays",
-          "type": "`$ANY`"
+          "title": "Sunday Is Closed",
+          "type": "`$ANY`",
+          "short": "Whether the museum is closed on Sundays"
         },
         {
           "name": "sunday_member_close",
-          "short": "The time member hours ends on Sundays",
-          "type": "`$ANY`"
+          "title": "Sunday Member Close",
+          "type": "`$ANY`",
+          "short": "The time member hours ends on Sundays"
         },
         {
           "name": "sunday_member_open",
-          "short": "The time member hours starts on Sundays",
-          "type": "`$ANY`"
+          "title": "Sunday Member Open",
+          "type": "`$ANY`",
+          "short": "The time member hours starts on Sundays"
         },
         {
           "name": "sunday_public_close",
-          "short": "The time public hours ends on Sundays",
-          "type": "`$ANY`"
+          "title": "Sunday Public Close",
+          "type": "`$ANY`",
+          "short": "The time public hours ends on Sundays"
         },
         {
           "name": "sunday_public_open",
-          "short": "The time public hours starts on Sundays",
-          "type": "`$ANY`"
+          "title": "Sunday Public Open",
+          "type": "`$ANY`",
+          "short": "The time public hours starts on Sundays"
         },
         {
           "name": "thursday_is_closed",
-          "short": "Whether the museum is closed on Thursdays",
-          "type": "`$ANY`"
+          "title": "Thursday Is Closed",
+          "type": "`$ANY`",
+          "short": "Whether the museum is closed on Thursdays"
         },
         {
           "name": "thursday_member_close",
-          "short": "The time member hours ends on Thursdays",
-          "type": "`$ANY`"
+          "title": "Thursday Member Close",
+          "type": "`$ANY`",
+          "short": "The time member hours ends on Thursdays"
         },
         {
           "name": "thursday_member_open",
-          "short": "The time member hours starts on Thursdays",
-          "type": "`$ANY`"
+          "title": "Thursday Member Open",
+          "type": "`$ANY`",
+          "short": "The time member hours starts on Thursdays"
         },
         {
           "name": "thursday_public_close",
-          "short": "The time public hours ends on Thursdays",
-          "type": "`$ANY`"
+          "title": "Thursday Public Close",
+          "type": "`$ANY`",
+          "short": "The time public hours ends on Thursdays"
         },
         {
           "name": "thursday_public_open",
-          "short": "The time public hours starts on Thursdays",
-          "type": "`$ANY`"
+          "title": "Thursday Public Open",
+          "type": "`$ANY`",
+          "short": "The time public hours starts on Thursdays"
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "tuesday_is_closed",
-          "short": "Whether the museum is closed on Tuesdays",
-          "type": "`$ANY`"
+          "title": "Tuesday Is Closed",
+          "type": "`$ANY`",
+          "short": "Whether the museum is closed on Tuesdays"
         },
         {
           "name": "tuesday_member_close",
-          "short": "The time member hours ends on Tuesdays",
-          "type": "`$ANY`"
+          "title": "Tuesday Member Close",
+          "type": "`$ANY`",
+          "short": "The time member hours ends on Tuesdays"
         },
         {
           "name": "tuesday_member_open",
-          "short": "The time member hours starts on Tuesdays",
-          "type": "`$ANY`"
+          "title": "Tuesday Member Open",
+          "type": "`$ANY`",
+          "short": "The time member hours starts on Tuesdays"
         },
         {
           "name": "tuesday_public_close",
-          "short": "The time public hours ends on Tuesdays",
-          "type": "`$ANY`"
+          "title": "Tuesday Public Close",
+          "type": "`$ANY`",
+          "short": "The time public hours ends on Tuesdays"
         },
         {
           "name": "tuesday_public_open",
-          "short": "The time public hours starts on Tuesdays",
-          "type": "`$ANY`"
+          "title": "Tuesday Public Open",
+          "type": "`$ANY`",
+          "short": "The time public hours starts on Tuesdays"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "wednesday_is_closed",
-          "short": "Whether the museum is closed on Wednesdays",
-          "type": "`$ANY`"
+          "title": "Wednesday Is Closed",
+          "type": "`$ANY`",
+          "short": "Whether the museum is closed on Wednesdays"
         },
         {
           "name": "wednesday_member_close",
-          "short": "The time member hours ends on Wednesdays",
-          "type": "`$ANY`"
+          "title": "Wednesday Member Close",
+          "type": "`$ANY`",
+          "short": "The time member hours ends on Wednesdays"
         },
         {
           "name": "wednesday_member_open",
-          "short": "The time member hours starts on Wednesdays",
-          "type": "`$ANY`"
+          "title": "Wednesday Member Open",
+          "type": "`$ANY`",
+          "short": "The time member hours starts on Wednesdays"
         },
         {
           "name": "wednesday_public_close",
-          "short": "The time public hours ends on Wednesdays",
-          "type": "`$ANY`"
+          "title": "Wednesday Public Close",
+          "type": "`$ANY`",
+          "short": "The time public hours ends on Wednesdays"
         },
         {
           "name": "wednesday_public_open",
-          "short": "The time public hours starts on Wednesdays",
-          "type": "`$ANY`"
+          "title": "Wednesday Public Open",
+          "type": "`$ANY`",
+          "short": "The time public hours starts on Wednesdays"
         }
       ],
       "id": {
@@ -3975,7 +4430,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/hours",
@@ -3984,14 +4438,16 @@ class Config {
                   "lit": "hours"
                 }
               ],
-              "select": {},
+              "parts": [
+                "hours"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "hours"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -4000,17 +4456,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/hours/{id}",
@@ -4022,19 +4467,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "hours",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "hours",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -4047,148 +4504,177 @@ class Config {
       "fields": [
         {
           "name": "ahash",
-          "short": "Image hash generated using ahash algorithm with 64 boolean subfields",
-          "type": "`$ANY`"
+          "title": "Ahash",
+          "type": "`$ANY`",
+          "short": "Image hash generated using ahash algorithm with 64 boolean subfields"
         },
         {
           "name": "alt_text",
-          "short": "Alternative text for the asset to describe it to people with low or no vision",
-          "type": "`$ANY`"
+          "title": "Alt Text",
+          "type": "`$ANY`",
+          "short": "Alternative text for the asset to describe it to people with low or no vision"
         },
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "artwork_ids",
-          "short": "Unique identifiers of the artworks associated with this asset",
-          "type": "`$ANY`"
+          "title": "Artwork Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the artworks associated with this asset"
         },
         {
           "name": "artwork_titles",
-          "short": "Names of the artworks associated with this asset",
-          "type": "`$ANY`"
+          "title": "Artwork Titles",
+          "type": "`$ANY`",
+          "short": "Names of the artworks associated with this asset"
         },
         {
           "name": "color",
-          "short": "Dominant color of this image in HSL",
-          "type": "`$ANY`"
+          "title": "Color",
+          "type": "`$ANY`",
+          "short": "Dominant color of this image in HSL"
         },
         {
           "name": "colorfulness",
-          "short": "Unbounded positive float representing an abstract measure of colorfulness.",
-          "type": "`$ANY`"
+          "title": "Colorfulness",
+          "type": "`$ANY`",
+          "short": "Unbounded positive float representing an abstract measure of colorfulness."
         },
         {
           "name": "content",
-          "short": "Text of or URL to the contents of this asset",
-          "type": "`$ANY`"
+          "title": "Content",
+          "type": "`$ANY`",
+          "short": "Text of or URL to the contents of this asset"
         },
         {
           "name": "content_e_tag",
-          "short": "Arbitrary unique identifier that changes when the binary file gets updated",
-          "type": "`$ANY`"
+          "title": "Content E Tag",
+          "type": "`$ANY`",
+          "short": "Arbitrary unique identifier that changes when the binary file gets updated"
         },
         {
           "name": "credit_line",
-          "short": "Asset-specific copyright information",
-          "type": "`$ANY`"
+          "title": "Credit Line",
+          "type": "`$ANY`",
+          "short": "Asset-specific copyright information"
         },
         {
           "name": "fingerprint",
-          "short": "Image hashes: aHash, dHash, pHash, wHash",
-          "type": "`$ANY`"
+          "title": "Fingerprint",
+          "type": "`$ANY`",
+          "short": "Image hashes: aHash, dHash, pHash, wHash"
         },
         {
           "name": "height",
-          "short": "Native height of the image",
-          "type": "`$NUMBER`"
+          "title": "Height",
+          "type": "`$NUMBER`",
+          "short": "Native height of the image"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "iiif_url",
-          "short": "IIIF URL of this image",
-          "type": "`$ANY`"
+          "title": "Iiif Url",
+          "type": "`$ANY`",
+          "short": "IIIF URL of this image"
         },
         {
           "name": "is_educational_resource",
-          "short": "Whether this resource is considered to be educational",
-          "type": "`$BOOLEAN`"
+          "title": "Is Educational Resource",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this resource is considered to be educational"
         },
         {
           "name": "is_multimedia_resource",
-          "short": "Whether this resource is considered to be multimedia",
-          "type": "`$BOOLEAN`"
+          "title": "Is Multimedia Resource",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this resource is considered to be multimedia"
         },
         {
           "name": "is_teacher_resource",
-          "short": "Whether this resource is considered to be educational",
-          "type": "`$BOOLEAN`"
+          "title": "Is Teacher Resource",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this resource is considered to be educational"
         },
         {
           "name": "lake_guid",
-          "short": "Unique UUID of this resource in LAKE, our DAMS.",
-          "type": "`$ANY`"
+          "title": "Lake Guid",
+          "type": "`$ANY`",
+          "short": "Unique UUID of this resource in LAKE, our DAMS."
         },
         {
           "name": "lqip",
-          "short": "Low-quality image placeholder (LQIP).",
-          "type": "`$ANY`"
+          "title": "Lqip",
+          "type": "`$ANY`",
+          "short": "Low-quality image placeholder (LQIP)."
         },
         {
           "name": "phash",
-          "short": "Image hash generated using phash algorithm with 64 boolean subfields",
-          "type": "`$ANY`"
+          "title": "Phash",
+          "type": "`$ANY`",
+          "short": "Image hash generated using phash algorithm with 64 boolean subfields"
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "type",
-          "short": "Type always takes one of the following values: image, sound, text, video",
-          "type": "`$ANY`"
+          "title": "Type",
+          "type": "`$ANY`",
+          "short": "Type always takes one of the following values: image, sound, text, video"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "width",
-          "short": "Native width of the image",
-          "type": "`$NUMBER`"
+          "title": "Width",
+          "type": "`$NUMBER`",
+          "short": "Native width of the image"
         }
       ],
       "id": {
@@ -4202,7 +4688,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/images",
@@ -4211,14 +4696,16 @@ class Config {
                   "lit": "images"
                 }
               ],
-              "select": {},
+              "parts": [
+                "images"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "images"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -4227,17 +4714,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/images/{id}",
@@ -4249,19 +4725,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "images",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "images",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -4274,63 +4762,75 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "copy",
-          "short": "The text of the page",
-          "type": "`$ANY`"
+          "title": "Copy",
+          "type": "`$ANY`",
+          "short": "The text of the page"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "search_tags",
-          "short": "Editor-specified list of tags to aid in internal search",
-          "type": "`$ANY`"
+          "title": "Search Tags",
+          "type": "`$ANY`",
+          "short": "Editor-specified list of tags to aid in internal search"
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "web_url",
-          "short": "The URL to this page on our website",
-          "type": "`$ANY`"
+          "title": "Web Url",
+          "type": "`$ANY`",
+          "short": "The URL to this page on our website"
         }
       ],
       "id": {
@@ -4344,7 +4844,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/landing-pages",
@@ -4353,14 +4852,16 @@ class Config {
                   "lit": "landing-pages"
                 }
               ],
-              "select": {},
+              "parts": [
+                "landing-pages"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "landing-pages"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -4369,17 +4870,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/landing-pages/{id}",
@@ -4391,19 +4881,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "landing-pages",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "landing-pages",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -4416,63 +4918,75 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "latitude",
-          "short": "Latitude coordinate of the center of the room",
-          "type": "`$NUMBER`"
+          "title": "Latitude",
+          "type": "`$NUMBER`",
+          "short": "Latitude coordinate of the center of the room"
         },
         {
           "name": "longitude",
-          "short": "Longitude coordinate of the center of the room",
-          "type": "`$NUMBER`"
+          "title": "Longitude",
+          "type": "`$NUMBER`",
+          "short": "Longitude coordinate of the center of the room"
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "tgn_id",
-          "short": "Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN)",
-          "type": "`$STRING`"
+          "title": "Tgn Id",
+          "type": "`$STRING`",
+          "short": "Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN)"
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         }
       ],
       "id": {
@@ -4486,7 +5000,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/places",
@@ -4495,14 +5008,16 @@ class Config {
                   "lit": "places"
                 }
               ],
-              "select": {},
+              "parts": [
+                "places"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "places"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -4511,17 +5026,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/places/{id}",
@@ -4533,19 +5037,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "places",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "places",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -4558,58 +5074,69 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "copy",
-          "short": "The text of the page",
-          "type": "`$ANY`"
+          "title": "Copy",
+          "type": "`$ANY`",
+          "short": "The text of the page"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "web_url",
-          "short": "The URL to this page on our website",
-          "type": "`$ANY`"
+          "title": "Web Url",
+          "type": "`$ANY`",
+          "short": "The URL to this page on our website"
         }
       ],
       "id": {
@@ -4623,7 +5150,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/press-releases",
@@ -4632,14 +5158,16 @@ class Config {
                   "lit": "press-releases"
                 }
               ],
-              "select": {},
+              "parts": [
+                "press-releases"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "press-releases"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -4648,17 +5176,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/press-releases/{id}",
@@ -4670,19 +5187,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "press-releases",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "press-releases",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -4695,58 +5224,69 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "copy",
-          "short": "The text of the page",
-          "type": "`$ANY`"
+          "title": "Copy",
+          "type": "`$ANY`",
+          "short": "The text of the page"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "web_url",
-          "short": "The URL to this page on our website",
-          "type": "`$ANY`"
+          "title": "Web Url",
+          "type": "`$ANY`",
+          "short": "The URL to this page on our website"
         }
       ],
       "id": {
@@ -4760,7 +5300,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/printed-publications",
@@ -4769,14 +5308,16 @@ class Config {
                   "lit": "printed-publications"
                 }
               ],
-              "select": {},
+              "parts": [
+                "printed-publications"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "printed-publications"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -4785,17 +5326,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/printed-publications/{id}",
@@ -4807,19 +5337,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "printed-publications",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "printed-publications",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -4832,108 +5374,129 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "artist_ids",
-          "short": "Unique identifiers of the artists associated with this product",
-          "type": "`$ANY`"
+          "title": "Artist Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the artists associated with this product"
         },
         {
           "name": "artwork_ids",
-          "short": "Unique identifiers of the artworks associated with this product",
-          "type": "`$ANY`"
+          "title": "Artwork Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the artworks associated with this product"
         },
         {
           "name": "description",
-          "short": "Explanation of what this product is",
-          "type": "`$STRING`"
+          "title": "Description",
+          "type": "`$STRING`",
+          "short": "Explanation of what this product is"
         },
         {
           "name": "exhibition_ids",
-          "short": "Unique identifiers of the exhibitions associated with this product",
-          "type": "`$ANY`"
+          "title": "Exhibition Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the exhibitions associated with this product"
         },
         {
           "name": "external_sku",
-          "short": "Numeric product identification code of a machine-readable barcode, when the customer sku differs from our internal one",
-          "type": "`$ANY`"
+          "title": "External Sku",
+          "type": "`$ANY`",
+          "short": "Numeric product identification code of a machine-readable barcode, when the customer sku differs from our internal one"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "image_url",
-          "short": "URL of an image for this product",
-          "type": "`$ANY`"
+          "title": "Image Url",
+          "type": "`$ANY`",
+          "short": "URL of an image for this product"
         },
         {
           "name": "max_compare_at_price",
-          "short": "Number indicating how much the most expensive variant of a product cost before a sale",
-          "type": "`$ANY`"
+          "title": "Max Compare At Price",
+          "type": "`$ANY`",
+          "short": "Number indicating how much the most expensive variant of a product cost before a sale"
         },
         {
           "name": "max_current_price",
-          "short": "Number indicating how much the most expensive variant of a product costs right now",
-          "type": "`$ANY`"
+          "title": "Max Current Price",
+          "type": "`$ANY`",
+          "short": "Number indicating how much the most expensive variant of a product costs right now"
         },
         {
           "name": "min_compare_at_price",
-          "short": "Number indicating how much the least expensive variant of a product cost before a sale",
-          "type": "`$ANY`"
+          "title": "Min Compare At Price",
+          "type": "`$ANY`",
+          "short": "Number indicating how much the least expensive variant of a product cost before a sale"
         },
         {
           "name": "min_current_price",
-          "short": "Number indicating how much the least expensive variant of a product costs right now",
-          "type": "`$ANY`"
+          "title": "Min Current Price",
+          "type": "`$ANY`",
+          "short": "Number indicating how much the least expensive variant of a product costs right now"
         },
         {
           "name": "price_display",
-          "short": "Explanation of what this product is",
-          "type": "`$ANY`"
+          "title": "Price Display",
+          "type": "`$ANY`",
+          "short": "Explanation of what this product is"
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "web_url",
-          "short": "URL of this product in the shop",
-          "type": "`$ANY`"
+          "title": "Web Url",
+          "type": "`$ANY`",
+          "short": "URL of this product in the shop"
         }
       ],
       "id": {
@@ -4947,7 +5510,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/products",
@@ -4956,14 +5518,16 @@ class Config {
                   "lit": "products"
                 }
               ],
-              "select": {},
+              "parts": [
+                "products"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "products"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -4972,17 +5536,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/products/{id}",
@@ -4994,19 +5547,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "products",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "products",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -5019,58 +5584,69 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "section_ids",
-          "short": "Unique identifiers of the sections of this publication",
-          "type": "`$ANY`"
+          "title": "Section Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the sections of this publication"
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "web_url",
-          "short": "URL to the publication",
-          "type": "`$ANY`"
+          "title": "Web Url",
+          "type": "`$ANY`",
+          "short": "URL to the publication"
         }
       ],
       "id": {
@@ -5084,7 +5660,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/publications",
@@ -5093,14 +5668,16 @@ class Config {
                   "lit": "publications"
                 }
               ],
-              "select": {},
+              "parts": [
+                "publications"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "publications"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -5109,17 +5686,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/publications/{id}",
@@ -5131,19 +5697,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "publications",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "publications",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -5156,48 +5734,57 @@ class Config {
       "fields": [
         {
           "name": "api_id",
-          "short": "API unique identifier",
-          "type": "`$STRING`"
+          "title": "Api Id",
+          "type": "`$STRING`",
+          "short": "API unique identifier"
         },
         {
           "name": "api_link",
-          "short": "URL to this recource in the API",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "URL to this recource in the API"
         },
         {
           "name": "api_model",
-          "short": "Name of the model the resource represents",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "Name of the model the resource represents"
         },
         {
           "name": "id",
-          "short": "Unique identifier within the search index",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier within the search index"
         },
         {
           "name": "is_boosted",
-          "short": "Whether this record has been flagged to be boosted",
-          "type": "`$BOOLEAN`"
+          "title": "Is Boosted",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this record has been flagged to be boosted"
         },
         {
           "name": "score",
-          "short": "Search index ranking of the result",
-          "type": "`$NUMBER`"
+          "title": "Score",
+          "type": "`$NUMBER`",
+          "short": "Search index ranking of the result"
         },
         {
           "name": "thumbnail",
-          "short": "Metadata on the image representing this record",
-          "type": "`$ANY`"
+          "title": "Thumbnail",
+          "type": "`$ANY`",
+          "short": "Metadata on the image representing this record"
         },
         {
           "name": "timestamp",
-          "short": "Date this record was last updated in the API",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date this record was last updated in the API"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         }
       ],
       "id": {
@@ -5211,46 +5798,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/agents/search",
@@ -5262,6 +5809,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "agents",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -5271,57 +5867,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "agents",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/articles/search",
@@ -5333,6 +5881,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "articles",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -5342,57 +5939,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "articles",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/artworks/search",
@@ -5404,6 +5953,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "artworks",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -5413,57 +6011,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "artworks",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/category-terms/search",
@@ -5475,6 +6025,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "category-terms",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -5484,57 +6083,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "category-terms",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/digital-publication-articles/search",
@@ -5546,6 +6097,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "digital-publication-articles",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -5555,57 +6155,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "digital-publication-articles",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/digital-publications/search",
@@ -5617,6 +6169,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "digital-publications",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -5626,57 +6227,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "digital-publications",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/educator-resources/search",
@@ -5688,6 +6241,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "educator-resources",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -5697,57 +6299,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "educator-resources",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/event-occurrences/search",
@@ -5759,6 +6313,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "event-occurrences",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -5768,57 +6371,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "event-occurrences",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/event-programs/search",
@@ -5830,6 +6385,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "event-programs",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -5839,57 +6443,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "event-programs",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/events/search",
@@ -5901,6 +6457,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "events",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -5910,57 +6515,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "events",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/exhibitions/search",
@@ -5972,6 +6529,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "exhibitions",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -5981,57 +6587,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "exhibitions",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/galleries/search",
@@ -6043,6 +6601,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "galleries",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -6052,57 +6659,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "galleries",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/generic-pages/search",
@@ -6114,6 +6673,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "generic-pages",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -6123,57 +6731,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "generic-pages",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/highlights/search",
@@ -6185,6 +6745,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "highlights",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -6194,57 +6803,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "highlights",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/hours/search",
@@ -6256,6 +6817,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "hours",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -6265,57 +6875,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "hours",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/images/search",
@@ -6327,6 +6889,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "images",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -6336,57 +6947,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "images",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/landing-pages/search",
@@ -6398,6 +6961,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "landing-pages",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -6407,57 +7019,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "landing-pages",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/mobile-sounds/search",
@@ -6469,6 +7033,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "mobile-sounds",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -6478,57 +7091,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "mobile-sounds",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/places/search",
@@ -6540,6 +7105,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "places",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -6549,57 +7163,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "places",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/press-releases/search",
@@ -6611,6 +7177,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "press-releases",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -6620,57 +7235,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "press-releases",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/printed-publications/search",
@@ -6682,6 +7249,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "printed-publications",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -6691,57 +7307,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "printed-publications",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/products/search",
@@ -6753,6 +7321,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "products",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -6762,57 +7379,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "products",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/publications/search",
@@ -6824,6 +7393,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "publications",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -6833,57 +7451,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "publications",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/search",
@@ -6892,6 +7462,54 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -6901,56 +7519,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/sections/search",
@@ -6962,6 +7533,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "sections",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -6971,57 +7591,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "sections",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/sites/search",
@@ -7033,6 +7605,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "sites",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -7042,57 +7663,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "sites",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/sounds/search",
@@ -7104,6 +7677,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "sounds",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -7113,57 +7735,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "sounds",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/static-pages/search",
@@ -7175,6 +7749,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "static-pages",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -7184,57 +7807,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "static-pages",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/texts/search",
@@ -7246,6 +7821,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "texts",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -7255,57 +7879,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "texts",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/tours/search",
@@ -7317,6 +7893,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "tours",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -7326,57 +7951,9 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "tours",
-                "search"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "size",
-                    "orig": "size",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/videos/search",
@@ -7388,6 +7965,55 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "videos",
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "size",
+                    "orig": "size",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "facet",
@@ -7397,15 +8023,7 @@ class Config {
                   "size",
                   "sort"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "videos",
-                "search"
-              ]
+              }
             }
           ]
         }
@@ -7418,83 +8036,99 @@ class Config {
       "fields": [
         {
           "name": "accession",
-          "short": "An accession number parsed from the title or tombstone",
-          "type": "`$ANY`"
+          "title": "Accession",
+          "type": "`$ANY`",
+          "short": "An accession number parsed from the title or tombstone"
         },
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "artwork_id",
-          "short": "Unique identifier of the artwork with which this section is associated",
-          "type": "`$STRING`"
+          "title": "Artwork Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the artwork with which this section is associated"
         },
         {
           "name": "content",
-          "short": "Content of this section in plaintext",
-          "type": "`$ANY`"
+          "title": "Content",
+          "type": "`$ANY`",
+          "short": "Content of this section in plaintext"
         },
         {
           "name": "generic_page_id",
-          "short": "Unique identifier of the page on the website that represents the publication this section belongs to",
-          "type": "`$STRING`"
+          "title": "Generic Page Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the page on the website that represents the publication this section belongs to"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "publication_id",
-          "short": "Unique identifier of the publication this section belongs to",
-          "type": "`$STRING`"
+          "title": "Publication Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of the publication this section belongs to"
         },
         {
           "name": "publication_title",
-          "short": "Name of the publication this section belongs to",
-          "type": "`$ANY`"
+          "title": "Publication Title",
+          "type": "`$ANY`",
+          "short": "Name of the publication this section belongs to"
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "web_url",
-          "short": "URL to the section",
-          "type": "`$ANY`"
+          "title": "Web Url",
+          "type": "`$ANY`",
+          "short": "URL to the section"
         }
       ],
       "id": {
@@ -7508,7 +8142,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/sections",
@@ -7517,14 +8150,16 @@ class Config {
                   "lit": "sections"
                 }
               ],
-              "select": {},
+              "parts": [
+                "sections"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "sections"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -7533,17 +8168,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/sections/{id}",
@@ -7555,19 +8179,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "sections",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "sections",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -7580,78 +8216,93 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "artwork_ids",
-          "short": "Unique identifiers of the artworks this site is associated with",
-          "type": "`$ANY`"
+          "title": "Artwork Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the artworks this site is associated with"
         },
         {
           "name": "artwork_titles",
-          "short": "Names of the artworks this site is associated with",
-          "type": "`$ANY`"
+          "title": "Artwork Titles",
+          "type": "`$ANY`",
+          "short": "Names of the artworks this site is associated with"
         },
         {
           "name": "description",
-          "short": "Explanation of what this site is",
-          "type": "`$STRING`"
+          "title": "Description",
+          "type": "`$STRING`",
+          "short": "Explanation of what this site is"
         },
         {
           "name": "exhibition_ids",
-          "short": "Unique identifier of the exhibitions this site is associated with",
-          "type": "`$ANY`"
+          "title": "Exhibition Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifier of the exhibitions this site is associated with"
         },
         {
           "name": "exhibition_titles",
-          "short": "Names of the exhibitions this site is associated with",
-          "type": "`$ANY`"
+          "title": "Exhibition Titles",
+          "type": "`$ANY`",
+          "short": "Names of the exhibitions this site is associated with"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "web_url",
-          "short": "URL to this site",
-          "type": "`$ANY`"
+          "title": "Web Url",
+          "type": "`$ANY`",
+          "short": "URL to this site"
         }
       ],
       "id": {
@@ -7665,7 +8316,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/sites",
@@ -7674,14 +8324,16 @@ class Config {
                   "lit": "sites"
                 }
               ],
-              "select": {},
+              "parts": [
+                "sites"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "sites"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -7690,17 +8342,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/sites/{id}",
@@ -7712,19 +8353,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "sites",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "sites",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -7737,113 +8390,135 @@ class Config {
       "fields": [
         {
           "name": "alt_text",
-          "short": "Alternative text for the asset to describe it to people with low or no vision",
-          "type": "`$ANY`"
+          "title": "Alt Text",
+          "type": "`$ANY`",
+          "short": "Alternative text for the asset to describe it to people with low or no vision"
         },
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "artwork_ids",
-          "short": "Unique identifiers of the artworks associated with this asset",
-          "type": "`$ANY`"
+          "title": "Artwork Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the artworks associated with this asset"
         },
         {
           "name": "artwork_titles",
-          "short": "Names of the artworks associated with this asset",
-          "type": "`$ANY`"
+          "title": "Artwork Titles",
+          "type": "`$ANY`",
+          "short": "Names of the artworks associated with this asset"
         },
         {
           "name": "content",
-          "short": "Text of or URL to the contents of this asset",
-          "type": "`$ANY`"
+          "title": "Content",
+          "type": "`$ANY`",
+          "short": "Text of or URL to the contents of this asset"
         },
         {
           "name": "content_e_tag",
-          "short": "Arbitrary unique identifier that changes when the binary file gets updated",
-          "type": "`$ANY`"
+          "title": "Content E Tag",
+          "type": "`$ANY`",
+          "short": "Arbitrary unique identifier that changes when the binary file gets updated"
         },
         {
           "name": "credit_line",
-          "short": "Asset-specific copyright information",
-          "type": "`$ANY`"
+          "title": "Credit Line",
+          "type": "`$ANY`",
+          "short": "Asset-specific copyright information"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "is_educational_resource",
-          "short": "Whether this resource is considered to be educational",
-          "type": "`$BOOLEAN`"
+          "title": "Is Educational Resource",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this resource is considered to be educational"
         },
         {
           "name": "is_multimedia_resource",
-          "short": "Whether this resource is considered to be multimedia",
-          "type": "`$BOOLEAN`"
+          "title": "Is Multimedia Resource",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this resource is considered to be multimedia"
         },
         {
           "name": "is_teacher_resource",
-          "short": "Whether this resource is considered to be educational",
-          "type": "`$BOOLEAN`"
+          "title": "Is Teacher Resource",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this resource is considered to be educational"
         },
         {
           "name": "lake_guid",
-          "short": "Unique UUID of this resource in LAKE, our DAMS.",
-          "type": "`$ANY`"
+          "title": "Lake Guid",
+          "type": "`$ANY`",
+          "short": "Unique UUID of this resource in LAKE, our DAMS."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "Name of this mobile audio file – derived from the artwork and tour titles",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "Name of this mobile audio file – derived from the artwork and tour titles"
         },
         {
           "name": "transcript",
-          "short": "Text transcription of the audio file",
-          "type": "`$ANY`"
+          "title": "Transcript",
+          "type": "`$ANY`",
+          "short": "Text transcription of the audio file"
         },
         {
           "name": "type",
-          "short": "Type always takes one of the following values: image, sound, text, video",
-          "type": "`$ANY`"
+          "title": "Type",
+          "type": "`$ANY`",
+          "short": "Type always takes one of the following values: image, sound, text, video"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "web_url",
-          "short": "URL to the audio file",
-          "type": "`$ANY`"
+          "title": "Web Url",
+          "type": "`$ANY`",
+          "short": "URL to the audio file"
         }
       ],
       "id": {
@@ -7857,7 +8532,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/mobile-sounds",
@@ -7866,17 +8540,18 @@ class Config {
                   "lit": "mobile-sounds"
                 }
               ],
-              "select": {},
+              "parts": [
+                "mobile-sounds"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "mobile-sounds"
-              ]
+              "args": {},
+              "select": {}
             },
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/sounds",
@@ -7885,14 +8560,16 @@ class Config {
                   "lit": "sounds"
                 }
               ],
-              "select": {},
+              "parts": [
+                "sounds"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "sounds"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -7901,17 +8578,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/mobile-sounds/{id}",
@@ -7923,32 +8589,33 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "mobile-sounds",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "mobile-sounds",
-                "{id}"
-              ]
-            },
-            {
               "args": {
                 "params": [
                   {
-                    "kind": "param",
                     "name": "id",
                     "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/sounds/{id}",
@@ -7960,19 +8627,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "sounds",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "sounds",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -7985,53 +8664,63 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "web_url",
-          "short": "The URL to this page on our website",
-          "type": "`$ANY`"
+          "title": "Web Url",
+          "type": "`$ANY`",
+          "short": "The URL to this page on our website"
         }
       ],
       "id": {
@@ -8045,7 +8734,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/static-pages",
@@ -8054,14 +8742,16 @@ class Config {
                   "lit": "static-pages"
                 }
               ],
-              "select": {},
+              "parts": [
+                "static-pages"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "static-pages"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -8070,17 +8760,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/static-pages/{id}",
@@ -8092,19 +8771,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "static-pages",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "static-pages",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -8117,103 +8808,123 @@ class Config {
       "fields": [
         {
           "name": "alt_text",
-          "short": "Alternative text for the asset to describe it to people with low or no vision",
-          "type": "`$ANY`"
+          "title": "Alt Text",
+          "type": "`$ANY`",
+          "short": "Alternative text for the asset to describe it to people with low or no vision"
         },
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "artwork_ids",
-          "short": "Unique identifiers of the artworks associated with this asset",
-          "type": "`$ANY`"
+          "title": "Artwork Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the artworks associated with this asset"
         },
         {
           "name": "artwork_titles",
-          "short": "Names of the artworks associated with this asset",
-          "type": "`$ANY`"
+          "title": "Artwork Titles",
+          "type": "`$ANY`",
+          "short": "Names of the artworks associated with this asset"
         },
         {
           "name": "content",
-          "short": "Text of or URL to the contents of this asset",
-          "type": "`$ANY`"
+          "title": "Content",
+          "type": "`$ANY`",
+          "short": "Text of or URL to the contents of this asset"
         },
         {
           "name": "content_e_tag",
-          "short": "Arbitrary unique identifier that changes when the binary file gets updated",
-          "type": "`$ANY`"
+          "title": "Content E Tag",
+          "type": "`$ANY`",
+          "short": "Arbitrary unique identifier that changes when the binary file gets updated"
         },
         {
           "name": "credit_line",
-          "short": "Asset-specific copyright information",
-          "type": "`$ANY`"
+          "title": "Credit Line",
+          "type": "`$ANY`",
+          "short": "Asset-specific copyright information"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "is_educational_resource",
-          "short": "Whether this resource is considered to be educational",
-          "type": "`$BOOLEAN`"
+          "title": "Is Educational Resource",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this resource is considered to be educational"
         },
         {
           "name": "is_multimedia_resource",
-          "short": "Whether this resource is considered to be multimedia",
-          "type": "`$BOOLEAN`"
+          "title": "Is Multimedia Resource",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this resource is considered to be multimedia"
         },
         {
           "name": "is_teacher_resource",
-          "short": "Whether this resource is considered to be educational",
-          "type": "`$BOOLEAN`"
+          "title": "Is Teacher Resource",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this resource is considered to be educational"
         },
         {
           "name": "lake_guid",
-          "short": "Unique UUID of this resource in LAKE, our DAMS.",
-          "type": "`$ANY`"
+          "title": "Lake Guid",
+          "type": "`$ANY`",
+          "short": "Unique UUID of this resource in LAKE, our DAMS."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "type",
-          "short": "Type always takes one of the following values: image, sound, text, video",
-          "type": "`$ANY`"
+          "title": "Type",
+          "type": "`$ANY`",
+          "short": "Type always takes one of the following values: image, sound, text, video"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         }
       ],
       "id": {
@@ -8227,7 +8938,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/texts",
@@ -8236,14 +8946,16 @@ class Config {
                   "lit": "texts"
                 }
               ],
-              "select": {},
+              "parts": [
+                "texts"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "texts"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -8252,17 +8964,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/texts/{id}",
@@ -8274,19 +8975,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "texts",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "texts",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -8299,88 +9012,105 @@ class Config {
       "fields": [
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "artist_titles",
-          "short": "Names of the artists of the artworks featured in this tour's tour stops",
-          "type": "`$ANY`"
+          "title": "Artist Titles",
+          "type": "`$ANY`",
+          "short": "Names of the artists of the artworks featured in this tour's tour stops"
         },
         {
           "name": "artwork_titles",
-          "short": "Names of the artworks featured in this tour's tour stops",
-          "type": "`$ANY`"
+          "title": "Artwork Titles",
+          "type": "`$ANY`",
+          "short": "Names of the artworks featured in this tour's tour stops"
         },
         {
           "name": "description",
-          "short": "Explanation of what the tour is",
-          "type": "`$STRING`"
+          "title": "Description",
+          "type": "`$STRING`",
+          "short": "Explanation of what the tour is"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "image",
-          "short": "The main image for the tour",
-          "type": "`$ANY`"
+          "title": "Image",
+          "type": "`$ANY`",
+          "short": "The main image for the tour"
         },
         {
           "name": "intro",
-          "short": "Text introducing the tour",
-          "type": "`$ANY`"
+          "title": "Intro",
+          "type": "`$ANY`",
+          "short": "Text introducing the tour"
         },
         {
           "name": "intro_link",
-          "short": "Link to the audio file of the introduction",
-          "type": "`$ANY`"
+          "title": "Intro Link",
+          "type": "`$ANY`",
+          "short": "Link to the audio file of the introduction"
         },
         {
           "name": "intro_transcript",
-          "short": "Transcript of the introduction audio to the tour",
-          "type": "`$ANY`"
+          "title": "Intro Transcript",
+          "type": "`$ANY`",
+          "short": "Transcript of the introduction audio to the tour"
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         },
         {
           "name": "weight",
-          "short": "Number representing this tour's sort order",
-          "type": "`$NUMBER`"
+          "title": "Weight",
+          "type": "`$NUMBER`",
+          "short": "Number representing this tour's sort order"
         }
       ],
       "id": {
@@ -8394,7 +9124,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/tours",
@@ -8403,14 +9132,16 @@ class Config {
                   "lit": "tours"
                 }
               ],
-              "select": {},
+              "parts": [
+                "tours"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "tours"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -8419,17 +9150,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/tours/{id}",
@@ -8441,19 +9161,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "tours",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "tours",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -8466,103 +9198,123 @@ class Config {
       "fields": [
         {
           "name": "alt_text",
-          "short": "Alternative text for the asset to describe it to people with low or no vision",
-          "type": "`$ANY`"
+          "title": "Alt Text",
+          "type": "`$ANY`",
+          "short": "Alternative text for the asset to describe it to people with low or no vision"
         },
         {
           "name": "api_link",
-          "short": "REST API link for this resource",
-          "type": "`$ANY`"
+          "title": "Api Link",
+          "type": "`$ANY`",
+          "short": "REST API link for this resource"
         },
         {
           "name": "api_model",
-          "short": "REST API resource type or endpoint",
-          "type": "`$ANY`"
+          "title": "Api Model",
+          "type": "`$ANY`",
+          "short": "REST API resource type or endpoint"
         },
         {
           "name": "artwork_ids",
-          "short": "Unique identifiers of the artworks associated with this asset",
-          "type": "`$ANY`"
+          "title": "Artwork Ids",
+          "type": "`$ANY`",
+          "short": "Unique identifiers of the artworks associated with this asset"
         },
         {
           "name": "artwork_titles",
-          "short": "Names of the artworks associated with this asset",
-          "type": "`$ANY`"
+          "title": "Artwork Titles",
+          "type": "`$ANY`",
+          "short": "Names of the artworks associated with this asset"
         },
         {
           "name": "content",
-          "short": "Text of or URL to the contents of this asset",
-          "type": "`$ANY`"
+          "title": "Content",
+          "type": "`$ANY`",
+          "short": "Text of or URL to the contents of this asset"
         },
         {
           "name": "content_e_tag",
-          "short": "Arbitrary unique identifier that changes when the binary file gets updated",
-          "type": "`$ANY`"
+          "title": "Content E Tag",
+          "type": "`$ANY`",
+          "short": "Arbitrary unique identifier that changes when the binary file gets updated"
         },
         {
           "name": "credit_line",
-          "short": "Asset-specific copyright information",
-          "type": "`$ANY`"
+          "title": "Credit Line",
+          "type": "`$ANY`",
+          "short": "Asset-specific copyright information"
         },
         {
           "name": "id",
-          "short": "Unique identifier of this resource.",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier of this resource."
         },
         {
           "name": "is_educational_resource",
-          "short": "Whether this resource is considered to be educational",
-          "type": "`$BOOLEAN`"
+          "title": "Is Educational Resource",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this resource is considered to be educational"
         },
         {
           "name": "is_multimedia_resource",
-          "short": "Whether this resource is considered to be multimedia",
-          "type": "`$BOOLEAN`"
+          "title": "Is Multimedia Resource",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this resource is considered to be multimedia"
         },
         {
           "name": "is_teacher_resource",
-          "short": "Whether this resource is considered to be educational",
-          "type": "`$BOOLEAN`"
+          "title": "Is Teacher Resource",
+          "type": "`$BOOLEAN`",
+          "short": "Whether this resource is considered to be educational"
         },
         {
           "name": "lake_guid",
-          "short": "Unique UUID of this resource in LAKE, our DAMS.",
-          "type": "`$ANY`"
+          "title": "Lake Guid",
+          "type": "`$ANY`",
+          "short": "Unique UUID of this resource in LAKE, our DAMS."
         },
         {
           "name": "source_updated_at",
-          "short": "Date and time the resource was updated in the source system",
-          "type": "`$ANY`"
+          "title": "Source Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the resource was updated in the source system"
         },
         {
           "name": "suggest_autocomplete_all",
-          "short": "Internal field to power the `/autosuggest` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete All",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autosuggest` endpoint."
         },
         {
           "name": "suggest_autocomplete_boosted",
-          "short": "Internal field to power the `/autocomplete` endpoint.",
-          "type": "`$ANY`"
+          "title": "Suggest Autocomplete Boosted",
+          "type": "`$ANY`",
+          "short": "Internal field to power the `/autocomplete` endpoint."
         },
         {
           "name": "timestamp",
-          "short": "Date and time the record was updated in the aggregator search index",
-          "type": "`$ANY`"
+          "title": "Timestamp",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator search index"
         },
         {
           "name": "title",
-          "short": "The name of this resource",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "The name of this resource"
         },
         {
           "name": "type",
-          "short": "Type always takes one of the following values: image, sound, text, video",
-          "type": "`$ANY`"
+          "title": "Type",
+          "type": "`$ANY`",
+          "short": "Type always takes one of the following values: image, sound, text, video"
         },
         {
           "name": "updated_at",
-          "short": "Date and time the record was updated in the aggregator database",
-          "type": "`$ANY`"
+          "title": "Updated At",
+          "type": "`$ANY`",
+          "short": "Date and time the record was updated in the aggregator database"
         }
       ],
       "id": {
@@ -8576,7 +9328,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/videos",
@@ -8585,14 +9336,16 @@ class Config {
                   "lit": "videos"
                 }
               ],
-              "select": {},
+              "parts": [
+                "videos"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "videos"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -8601,17 +9354,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/videos/{id}",
@@ -8623,19 +9365,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "videos",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "videos",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }

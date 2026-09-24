@@ -1,0 +1,191 @@
+# Entity: site
+
+main: kit: entity: site: {
+
+  alias: field: {}
+
+  fields: {
+    api_link: {
+      h: "Api Link"
+      n: "api_link"
+      r: false
+      sh: "REST API link for this resource"
+      t: "`$ANY`"
+    }
+    api_model: {
+      h: "Api Model"
+      n: "api_model"
+      r: false
+      sh: "REST API resource type or endpoint"
+      t: "`$ANY`"
+    }
+    artwork_ids: {
+      h: "Artwork Ids"
+      n: "artwork_ids"
+      r: false
+      sh: "Unique identifiers of the artworks this site is associated with"
+      t: "`$ANY`"
+    }
+    artwork_titles: {
+      h: "Artwork Titles"
+      n: "artwork_titles"
+      r: false
+      sh: "Names of the artworks this site is associated with"
+      t: "`$ANY`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Explanation of what this site is"
+      t: "`$STRING`"
+    }
+    exhibition_ids: {
+      h: "Exhibition Ids"
+      n: "exhibition_ids"
+      r: false
+      sh: "Unique identifier of the exhibitions this site is associated with"
+      t: "`$ANY`"
+    }
+    exhibition_titles: {
+      h: "Exhibition Titles"
+      n: "exhibition_titles"
+      r: false
+      sh: "Names of the exhibitions this site is associated with"
+      t: "`$ANY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier of this resource."
+      t: "`$STRING`"
+    }
+    source_updated_at: {
+      h: "Source Updated At"
+      n: "source_updated_at"
+      r: false
+      sh: "Date and time the resource was updated in the source system"
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_all: {
+      h: "Suggest Autocomplete All"
+      n: "suggest_autocomplete_all"
+      r: false
+      sh: "Internal field to power the `/autosuggest` endpoint."
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_boosted: {
+      h: "Suggest Autocomplete Boosted"
+      n: "suggest_autocomplete_boosted"
+      r: false
+      sh: "Internal field to power the `/autocomplete` endpoint."
+      t: "`$ANY`"
+    }
+    timestamp: {
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "Date and time the record was updated in the aggregator search index"
+      t: "`$ANY`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "The name of this resource"
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "Date and time the record was updated in the aggregator database"
+      t: "`$ANY`"
+    }
+    web_url: {
+      h: "Web Url"
+      n: "web_url"
+      r: false
+      sh: "URL to this site"
+      t: "`$ANY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "site"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /sites"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/sites"
+          s: [
+            {
+              lit: "sites"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /sites/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/sites/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "sites"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

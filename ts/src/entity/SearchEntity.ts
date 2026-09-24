@@ -19,7 +19,6 @@ import type {
   SearchListMatch,
 } from '../ArtInstituteOfChicagoTypes'
 
-// TODO: needs Entity superclass
 class SearchEntity extends ArtInstituteOfChicagoEntityBase<Search> {
 
   constructor(client: ArtInstituteOfChicagoSDK, entopts: any) {

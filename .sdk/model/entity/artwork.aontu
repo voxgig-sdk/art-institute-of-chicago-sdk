@@ -1,0 +1,814 @@
+# Entity: artwork
+
+main: kit: entity: artwork: {
+
+  alias: field: {}
+
+  fields: {
+    alt_artist_ids: {
+      h: "Alt Artist Ids"
+      n: "alt_artist_ids"
+      r: false
+      sh: "Unique identifiers of the non-preferred artists/cultures associated with this work"
+      t: "`$ANY`"
+    }
+    alt_classification_ids: {
+      h: "Alt Classification Ids"
+      n: "alt_classification_ids"
+      r: false
+      sh: "Unique identifiers of all other non-preferred classification terms for this work"
+      t: "`$ANY`"
+    }
+    alt_image_ids: {
+      h: "Alt Image Ids"
+      n: "alt_image_ids"
+      r: false
+      sh: "Unique identifiers of all non-preferred images of this work."
+      t: "`$ANY`"
+    }
+    alt_material_ids: {
+      h: "Alt Material Ids"
+      n: "alt_material_ids"
+      r: false
+      sh: "Unique identifiers of all other non-preferred material terms for this work"
+      t: "`$ANY`"
+    }
+    alt_style_ids: {
+      h: "Alt Style Ids"
+      n: "alt_style_ids"
+      r: false
+      sh: "Unique identifiers of all other non-preferred style terms for this work"
+      t: "`$ANY`"
+    }
+    alt_subject_ids: {
+      h: "Alt Subject Ids"
+      n: "alt_subject_ids"
+      r: false
+      sh: "Unique identifiers of all other non-preferred subject terms for this work"
+      t: "`$ANY`"
+    }
+    alt_technique_ids: {
+      h: "Alt Technique Ids"
+      n: "alt_technique_ids"
+      r: false
+      sh: "Unique identifiers of all other non-preferred technique terms for this work"
+      t: "`$ANY`"
+    }
+    alt_titles: {
+      h: "Alt Titles"
+      n: "alt_titles"
+      r: false
+      sh: "Alternate names for this work"
+      t: "`$ANY`"
+    }
+    api_link: {
+      h: "Api Link"
+      n: "api_link"
+      r: false
+      sh: "REST API link for this resource"
+      t: "`$ANY`"
+    }
+    api_model: {
+      h: "Api Model"
+      n: "api_model"
+      r: false
+      sh: "REST API resource type or endpoint"
+      t: "`$ANY`"
+    }
+    artist_display: {
+      h: "Artist Display"
+      n: "artist_display"
+      r: false
+      sh: "Readable description of the creator of this work."
+      t: "`$ANY`"
+    }
+    artist_id: {
+      h: "Artist Id"
+      n: "artist_id"
+      r: false
+      sh: "Unique identifier of the preferred artist/culture associated with this work"
+      t: "`$STRING`"
+    }
+    artist_ids: {
+      h: "Artist Ids"
+      n: "artist_ids"
+      r: false
+      sh: "Unique identifier of all artist/cultures associated with this work"
+      t: "`$ANY`"
+    }
+    artist_title: {
+      h: "Artist Title"
+      n: "artist_title"
+      r: false
+      sh: "Name of the preferred artist/culture associated with this work"
+      t: "`$ANY`"
+    }
+    artist_titles: {
+      h: "Artist Titles"
+      n: "artist_titles"
+      r: false
+      sh: "Names of all artist/cultures associated with this work"
+      t: "`$ANY`"
+    }
+    artwork_type_id: {
+      h: "Artwork Type Id"
+      n: "artwork_type_id"
+      r: false
+      sh: "Unique identifier of the kind of object or work"
+      t: "`$STRING`"
+    }
+    artwork_type_title: {
+      h: "Artwork Type Title"
+      n: "artwork_type_title"
+      r: false
+      sh: "The kind of object or work (e.g."
+      t: "`$ANY`"
+    }
+    boost_rank: {
+      h: "Boost Rank"
+      n: "boost_rank"
+      r: false
+      sh: "Manual indication of what rank this artwork should take in search results."
+      t: "`$ANY`"
+    }
+    catalog_based_search_keyword_titles: {
+      h: "Catalog Based Search Keyword Titles"
+      n: "catalog_based_search_keyword_titles"
+      r: false
+      sh: "The keyword search values that would be catalog-based searches on this record"
+      t: "`$ANY`"
+    }
+    catalogue_display: {
+      h: "Catalogue Display"
+      n: "catalogue_display"
+      r: false
+      sh: "Brief text listing all the catalogues raisonnés which include this work."
+      t: "`$ANY`"
+    }
+    category_ids: {
+      h: "Category Ids"
+      n: "category_ids"
+      r: false
+      sh: "Unique identifiers of the categories this work is a part of"
+      t: "`$ANY`"
+    }
+    category_titles: {
+      h: "Category Titles"
+      n: "category_titles"
+      r: false
+      sh: "Names of the categories this artwork is a part of"
+      t: "`$ANY`"
+    }
+    classification_id: {
+      h: "Classification Id"
+      n: "classification_id"
+      r: false
+      sh: "Unique identifier of the preferred classification term for this work"
+      t: "`$STRING`"
+    }
+    classification_ids: {
+      h: "Classification Ids"
+      n: "classification_ids"
+      r: false
+      sh: "Unique identifiers of all classification terms for this work"
+      t: "`$ANY`"
+    }
+    classification_title: {
+      h: "Classification Title"
+      n: "classification_title"
+      r: false
+      sh: "The name of the preferred classification term for this work"
+      t: "`$ANY`"
+    }
+    classification_titles: {
+      h: "Classification Titles"
+      n: "classification_titles"
+      r: false
+      sh: "The names of all classification terms related to this artwork"
+      t: "`$ANY`"
+    }
+    color: {
+      h: "Color"
+      n: "color"
+      r: false
+      sh: "Dominant color of this artwork in HSL"
+      t: "`$ANY`"
+    }
+    colorfulness: {
+      h: "Colorfulness"
+      n: "colorfulness"
+      r: false
+      sh: "Unbounded positive float representing an abstract measure of colorfulness."
+      t: "`$ANY`"
+    }
+    copyright_notice: {
+      h: "Copyright Notice"
+      n: "copyright_notice"
+      r: false
+      sh: "Statement notifying how the work is protected by copyright."
+      t: "`$ANY`"
+    }
+    credit_line: {
+      h: "Credit Line"
+      n: "credit_line"
+      r: false
+      sh: "Brief statement indicating how the work came into the collection"
+      t: "`$ANY`"
+    }
+    date_display: {
+      h: "Date Display"
+      n: "date_display"
+      r: false
+      sh: "Readable, free-text description of the period of time associated with the creation of this work."
+      t: "`$ANY`"
+    }
+    date_end: {
+      h: "Date End"
+      n: "date_end"
+      r: false
+      sh: "The year of the period of time associated with the creation of this work"
+      t: "`$ANY`"
+    }
+    date_qualifier_id: {
+      h: "Date Qualifier Id"
+      n: "date_qualifier_id"
+      r: false
+      sh: "Unique identifier of the qualifer to the dates provided for this record."
+      t: "`$STRING`"
+    }
+    date_qualifier_title: {
+      h: "Date Qualifier Title"
+      n: "date_qualifier_title"
+      r: false
+      sh: "Readable, text qualifer to the dates provided for this record."
+      t: "`$ANY`"
+    }
+    date_start: {
+      h: "Date Start"
+      n: "date_start"
+      r: false
+      sh: "The year of the period of time associated with the creation of this work"
+      t: "`$ANY`"
+    }
+    department_id: {
+      h: "Department Id"
+      n: "department_id"
+      r: false
+      sh: "Unique identifier of the curatorial department that this work belongs to"
+      t: "`$STRING`"
+    }
+    department_title: {
+      h: "Department Title"
+      n: "department_title"
+      r: false
+      sh: "Name of the curatorial department that this work belongs to"
+      t: "`$ANY`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Longer explanation describing the work"
+      t: "`$STRING`"
+    }
+    dimensions: {
+      h: "Dimensions"
+      n: "dimensions"
+      r: false
+      sh: "The size, shape, scale, and dimensions of the work."
+      t: "`$ANY`"
+    }
+    dimensions_detail: {
+      h: "Dimensions Detail"
+      n: "dimensions_detail"
+      r: false
+      sh: "The height, width, depth, and/or diameter of each section of the work in centimeters"
+      t: "`$ANY`"
+    }
+    document_ids: {
+      h: "Document Ids"
+      n: "document_ids"
+      r: false
+      sh: "Unique identifiers of assets that serve as documentation for this artwork"
+      t: "`$ANY`"
+    }
+    edition: {
+      h: "Edition"
+      n: "edition"
+      r: false
+      sh: "Edition number if the work is one of many"
+      t: "`$ANY`"
+    }
+    exhibition_history: {
+      h: "Exhibition History"
+      n: "exhibition_history"
+      r: false
+      sh: "List of all the places this work has been exhibited"
+      t: "`$ANY`"
+    }
+    fiscal_year: {
+      h: "Fiscal Year"
+      n: "fiscal_year"
+      r: false
+      sh: "The fiscal year in which the work was acquired."
+      t: "`$ANY`"
+    }
+    fiscal_year_deaccession: {
+      h: "Fiscal Year Deaccession"
+      n: "fiscal_year_deaccession"
+      r: false
+      sh: "The fiscal year in which the work was deaccessioned."
+      t: "`$ANY`"
+    }
+    gallery_id: {
+      h: "Gallery Id"
+      n: "gallery_id"
+      r: false
+      sh: "Unique identifier of the location of this work in our museum"
+      t: "`$STRING`"
+    }
+    gallery_title: {
+      h: "Gallery Title"
+      n: "gallery_title"
+      r: false
+      sh: "The location of this work in our museum"
+      t: "`$ANY`"
+    }
+    has_advanced_imaging: {
+      h: "Has Advanced Imaging"
+      n: "has_advanced_imaging"
+      r: false
+      sh: "Whether this artwork is enhanced with 3D models, 360 image sequences, Mirador views, etc."
+      t: "`$BOOLEAN`"
+    }
+    has_educational_resources: {
+      h: "Has Educational Resources"
+      n: "has_educational_resources"
+      r: false
+      sh: "Whether this artwork has any documents tagged as educational"
+      t: "`$BOOLEAN`"
+    }
+    has_multimedia_resources: {
+      h: "Has Multimedia Resources"
+      n: "has_multimedia_resources"
+      r: false
+      sh: "Whether this artwork has any associated microsites, digital publications, or documents tagged as multimedia"
+      t: "`$BOOLEAN`"
+    }
+    has_not_been_viewed_much: {
+      h: "Has Not Been Viewed Much"
+      n: "has_not_been_viewed_much"
+      r: false
+      sh: "Whether the artwork hasn't been visited on our website very much"
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier of this resource."
+      t: "`$STRING`"
+    }
+    image_embedding: {
+      h: "Image Embedding"
+      n: "image_embedding"
+      r: false
+      sh: "The generated embeddings describing the artwork image"
+      t: "`$ANY`"
+    }
+    image_id: {
+      h: "Image Id"
+      n: "image_id"
+      r: false
+      sh: "Unique identifier of the preferred image to use to represent this work"
+      t: "`$STRING`"
+    }
+    inscriptions: {
+      h: "Inscriptions"
+      n: "inscriptions"
+      r: false
+      sh: "A description of distinguishing or identifying physical markings that are on the work"
+      t: "`$ANY`"
+    }
+    internal_department_id: {
+      h: "Internal Department Id"
+      n: "internal_department_id"
+      r: false
+      sh: "An internal department id we use for analytics."
+      t: "`$STRING`"
+    }
+    is_boosted: {
+      h: "Is Boosted"
+      n: "is_boosted"
+      r: false
+      sh: "Whether this document should be boosted in search"
+      t: "`$BOOLEAN`"
+    }
+    is_on_view: {
+      h: "Is On View"
+      n: "is_on_view"
+      r: false
+      sh: "Whether the work is on display"
+      t: "`$BOOLEAN`"
+    }
+    is_public_domain: {
+      h: "Is Public Domain"
+      n: "is_public_domain"
+      r: false
+      sh: "Whether the work is in the public domain, meaning it was created before copyrights existed or has left the copyright term"
+      t: "`$BOOLEAN`"
+    }
+    is_zoomable: {
+      h: "Is Zoomable"
+      n: "is_zoomable"
+      r: false
+      sh: "Whether images of the work are allowed to be displayed in a zoomable interface."
+      t: "`$BOOLEAN`"
+    }
+    latitude: {
+      h: "Latitude"
+      n: "latitude"
+      r: false
+      sh: "Latitude coordinate of the location of this work in our galleries"
+      t: "`$NUMBER`"
+    }
+    latlon: {
+      h: "Latlon"
+      n: "latlon"
+      r: false
+      sh: "Latitude and longitude coordinates of the location of this work in our galleries"
+      t: "`$ANY`"
+    }
+    longitude: {
+      h: "Longitude"
+      n: "longitude"
+      r: false
+      sh: "Longitude coordinate of the location of this work in our galleries"
+      t: "`$NUMBER`"
+    }
+    main_reference_number: {
+      h: "Main Reference Number"
+      n: "main_reference_number"
+      r: false
+      sh: "Unique identifier assigned to the artwork upon acquisition"
+      t: "`$INTEGER`"
+    }
+    material_id: {
+      h: "Material Id"
+      n: "material_id"
+      r: false
+      sh: "Unique identifier of the preferred material term for this work"
+      t: "`$STRING`"
+    }
+    material_ids: {
+      h: "Material Ids"
+      n: "material_ids"
+      r: false
+      sh: "Unique identifiers of all material terms for this work"
+      t: "`$ANY`"
+    }
+    material_titles: {
+      h: "Material Titles"
+      n: "material_titles"
+      r: false
+      sh: "The names of all material terms related to this artwork"
+      t: "`$ANY`"
+    }
+    max_zoom_window_size: {
+      h: "Max Zoom Window Size"
+      n: "max_zoom_window_size"
+      r: false
+      sh: "The maximum size of the window the image is allowed to be viewed in, in pixels."
+      t: "`$ANY`"
+    }
+    medium_display: {
+      h: "Medium Display"
+      n: "medium_display"
+      r: false
+      sh: "The substances or materials used in the creation of a work"
+      t: "`$ANY`"
+    }
+    nomisma_id: {
+      h: "Nomisma Id"
+      n: "nomisma_id"
+      r: false
+      sh: "Unique identifier of this work in the nomisma coin database"
+      t: "`$STRING`"
+    }
+    on_loan_display: {
+      h: "On Loan Display"
+      n: "on_loan_display"
+      r: false
+      sh: "If an artwork is on loan, this contains details about the loan"
+      t: "`$ANY`"
+    }
+    pageviews: {
+      h: "Pageviews"
+      n: "pageviews"
+      r: false
+      sh: "Approx."
+      t: "`$ANY`"
+    }
+    pageviews_recent: {
+      h: "Pageviews Recent"
+      n: "pageviews_recent"
+      r: false
+      sh: "Approx."
+      t: "`$ANY`"
+    }
+    place_of_origin: {
+      h: "Place Of Origin"
+      n: "place_of_origin"
+      r: false
+      sh: "The location where the creation, design, or production of the work took place, or the original location of the work"
+      t: "`$ANY`"
+    }
+    provenance_text: {
+      h: "Provenance Text"
+      n: "provenance_text"
+      r: false
+      sh: "Ownership/collecting history of the work."
+      t: "`$ANY`"
+    }
+    publication_history: {
+      h: "Publication History"
+      n: "publication_history"
+      r: false
+      sh: "Bibliographic list of all the places this work has been published"
+      t: "`$ANY`"
+    }
+    publishing_verification_level: {
+      h: "Publishing Verification Level"
+      n: "publishing_verification_level"
+      r: false
+      sh: "Indicator of how much metadata on the work in published."
+      t: "`$ANY`"
+    }
+    section_ids: {
+      h: "Section Ids"
+      n: "section_ids"
+      r: false
+      sh: "Unique identifiers of the digital publication chapters this work in included in"
+      t: "`$ANY`"
+    }
+    section_titles: {
+      h: "Section Titles"
+      n: "section_titles"
+      r: false
+      sh: "Names of the digital publication chapters this work is included in"
+      t: "`$ANY`"
+    }
+    short_description: {
+      h: "Short Description"
+      n: "short_description"
+      r: false
+      sh: "Short explanation describing the work"
+      t: "`$ANY`"
+    }
+    site_ids: {
+      h: "Site Ids"
+      n: "site_ids"
+      r: false
+      sh: "Unique identifiers of the microsites this work is a part of"
+      t: "`$ANY`"
+    }
+    sound_ids: {
+      h: "Sound Ids"
+      n: "sound_ids"
+      r: false
+      sh: "Unique identifiers of the audio about this work"
+      t: "`$ANY`"
+    }
+    source_updated_at: {
+      h: "Source Updated At"
+      n: "source_updated_at"
+      r: false
+      sh: "Date and time the resource was updated in the source system"
+      t: "`$ANY`"
+    }
+    style_id: {
+      h: "Style Id"
+      n: "style_id"
+      r: false
+      sh: "Unique identifier of the preferred style term for this work"
+      t: "`$STRING`"
+    }
+    style_ids: {
+      h: "Style Ids"
+      n: "style_ids"
+      r: false
+      sh: "Unique identifiers of all style terms for this work"
+      t: "`$ANY`"
+    }
+    style_title: {
+      h: "Style Title"
+      n: "style_title"
+      r: false
+      sh: "The name of the preferred style term for this work"
+      t: "`$ANY`"
+    }
+    style_titles: {
+      h: "Style Titles"
+      n: "style_titles"
+      r: false
+      sh: "The names of all style terms related to this artwork"
+      t: "`$ANY`"
+    }
+    subject_id: {
+      h: "Subject Id"
+      n: "subject_id"
+      r: false
+      sh: "Unique identifier of the preferred subject term for this work"
+      t: "`$STRING`"
+    }
+    subject_ids: {
+      h: "Subject Ids"
+      n: "subject_ids"
+      r: false
+      sh: "Unique identifiers of all subject terms for this work"
+      t: "`$ANY`"
+    }
+    subject_titles: {
+      h: "Subject Titles"
+      n: "subject_titles"
+      r: false
+      sh: "The names of all subject terms related to this artwork"
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_all: {
+      h: "Suggest Autocomplete All"
+      n: "suggest_autocomplete_all"
+      r: false
+      sh: "Internal field to power the `/autosuggest` endpoint."
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_boosted: {
+      h: "Suggest Autocomplete Boosted"
+      n: "suggest_autocomplete_boosted"
+      r: false
+      sh: "Internal field to power the `/autocomplete` endpoint."
+      t: "`$ANY`"
+    }
+    technique_id: {
+      h: "Technique Id"
+      n: "technique_id"
+      r: false
+      sh: "Unique identifier of the preferred technique term for this work"
+      t: "`$STRING`"
+    }
+    technique_ids: {
+      h: "Technique Ids"
+      n: "technique_ids"
+      r: false
+      sh: "Unique identifiers of all technique terms for this work"
+      t: "`$ANY`"
+    }
+    technique_titles: {
+      h: "Technique Titles"
+      n: "technique_titles"
+      r: false
+      sh: "The names of all technique terms related to this artwork"
+      t: "`$ANY`"
+    }
+    term_titles: {
+      h: "Term Titles"
+      n: "term_titles"
+      r: false
+      sh: "The names of the taxonomy tags for this work"
+      t: "`$ANY`"
+    }
+    text_embedding: {
+      h: "Text Embedding"
+      n: "text_embedding"
+      r: false
+      sh: "The generated embeddings of artwork text"
+      t: "`$ANY`"
+    }
+    text_ids: {
+      h: "Text Ids"
+      n: "text_ids"
+      r: false
+      sh: "Unique identifiers of the texts about this work"
+      t: "`$ANY`"
+    }
+    theme_titles: {
+      h: "Theme Titles"
+      n: "theme_titles"
+      r: false
+      sh: "The names of all thematic publish categories related to this artwork"
+      t: "`$ANY`"
+    }
+    thumbnail: {
+      h: "Thumbnail"
+      n: "thumbnail"
+      r: false
+      sh: "Metadata about the image referenced by `image_id`."
+      t: "`$ANY`"
+    }
+    timestamp: {
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "Date and time the record was updated in the aggregator search index"
+      t: "`$ANY`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "The name of this resource"
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "Date and time the record was updated in the aggregator database"
+      t: "`$ANY`"
+    }
+    video_ids: {
+      h: "Video Ids"
+      n: "video_ids"
+      r: false
+      sh: "Unique identifiers of the videos about this work"
+      t: "`$ANY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "artwork"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /artworks"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/artworks"
+          s: [
+            {
+              lit: "artworks"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /artworks/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/artworks/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "artworks"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

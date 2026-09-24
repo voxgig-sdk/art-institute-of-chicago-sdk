@@ -1,0 +1,44 @@
+# BasicArtworkTypeFlow
+
+main: kit: flow: BasicArtworkTypeFlow:
+{
+  entity: "artwork_type",
+  kind: "basic",
+  name: "BasicArtworkTypeFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "artwork_type_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "artwork_type_ref01",
+        srcdatavar: "artwork_type_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "artwork_type01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-artwork_type_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicArtworkTypeFlow"
+}

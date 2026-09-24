@@ -1,0 +1,253 @@
+# Entity: agent
+
+main: kit: entity: agent: {
+
+  alias: field: {}
+
+  fields: {
+    alt_titles: {
+      h: "Alt Titles"
+      n: "alt_titles"
+      r: false
+      sh: "Alternate names for this agent"
+      t: "`$ANY`"
+    }
+    api_link: {
+      h: "Api Link"
+      n: "api_link"
+      r: false
+      sh: "REST API link for this resource"
+      t: "`$ANY`"
+    }
+    api_model: {
+      h: "Api Model"
+      n: "api_model"
+      r: false
+      sh: "REST API resource type or endpoint"
+      t: "`$ANY`"
+    }
+    birth_date: {
+      h: "Birth Date"
+      n: "birth_date"
+      r: false
+      sh: "The year this agent was born"
+      t: "`$ANY`"
+    }
+    death_date: {
+      h: "Death Date"
+      n: "death_date"
+      r: false
+      sh: "The year this agent died"
+      t: "`$ANY`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "A biographical description of the agent"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier of this resource."
+      t: "`$STRING`"
+    }
+    is_artist: {
+      h: "Is Artist"
+      n: "is_artist"
+      r: false
+      sh: "Whether the agent is an artist."
+      t: "`$BOOLEAN`"
+    }
+    sort_title: {
+      h: "Sort Title"
+      n: "sort_title"
+      r: false
+      sh: "Sortable name for this agent, typically with last name first."
+      t: "`$ANY`"
+    }
+    source_updated_at: {
+      h: "Source Updated At"
+      n: "source_updated_at"
+      r: false
+      sh: "Date and time the resource was updated in the source system"
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_all: {
+      h: "Suggest Autocomplete All"
+      n: "suggest_autocomplete_all"
+      r: false
+      sh: "Internal field to power the `/autosuggest` endpoint."
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_boosted: {
+      h: "Suggest Autocomplete Boosted"
+      n: "suggest_autocomplete_boosted"
+      r: false
+      sh: "Internal field to power the `/autocomplete` endpoint."
+      t: "`$ANY`"
+    }
+    timestamp: {
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "Date and time the record was updated in the aggregator search index"
+      t: "`$ANY`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "The name of this resource"
+      t: "`$STRING`"
+    }
+    ulan_id: {
+      h: "Ulan Id"
+      n: "ulan_id"
+      r: false
+      sh: "Unique identifier of this agent in Getty's ULAN"
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "Date and time the record was updated in the aggregator database"
+      t: "`$ANY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "agent"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /agents"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/agents"
+          s: [
+            {
+              lit: "agents"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /artists"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/artists"
+          s: [
+            {
+              lit: "artists"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /agents/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/agents/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "agents"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /artists/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/artists/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "artists"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -43,7 +43,7 @@ local agents, err = client:Agent():list()
 if err then error(err) end
 
 for _, item in ipairs(agents) do
-  print(item["id"], item["description"])
+  print(item["id"])
 end
 ```
 

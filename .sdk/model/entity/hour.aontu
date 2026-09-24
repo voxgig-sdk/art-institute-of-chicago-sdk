@@ -1,0 +1,408 @@
+# Entity: hour
+
+main: kit: entity: hour: {
+
+  alias: field: {}
+
+  fields: {
+    additional_text: {
+      h: "Additional Text"
+      n: "additional_text"
+      r: false
+      sh: "Additional information about the hours"
+      t: "`$ANY`"
+    }
+    api_link: {
+      h: "Api Link"
+      n: "api_link"
+      r: false
+      sh: "REST API link for this resource"
+      t: "`$ANY`"
+    }
+    api_model: {
+      h: "Api Model"
+      n: "api_model"
+      r: false
+      sh: "REST API resource type or endpoint"
+      t: "`$ANY`"
+    }
+    friday_is_closed: {
+      h: "Friday Is Closed"
+      n: "friday_is_closed"
+      r: false
+      sh: "Whether the museum is closed on Fridays"
+      t: "`$ANY`"
+    }
+    friday_member_close: {
+      h: "Friday Member Close"
+      n: "friday_member_close"
+      r: false
+      sh: "The time member hours ends on Fridays"
+      t: "`$ANY`"
+    }
+    friday_member_open: {
+      h: "Friday Member Open"
+      n: "friday_member_open"
+      r: false
+      sh: "The time member hours starts on Fridays"
+      t: "`$ANY`"
+    }
+    friday_public_close: {
+      h: "Friday Public Close"
+      n: "friday_public_close"
+      r: false
+      sh: "The time public hours ends on Fridays"
+      t: "`$ANY`"
+    }
+    friday_public_open: {
+      h: "Friday Public Open"
+      n: "friday_public_open"
+      r: false
+      sh: "The time public hours starts on Fridays"
+      t: "`$ANY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier of this resource."
+      t: "`$STRING`"
+    }
+    monday_is_closed: {
+      h: "Monday Is Closed"
+      n: "monday_is_closed"
+      r: false
+      sh: "Whether the museum is closed on Mondays"
+      t: "`$ANY`"
+    }
+    monday_member_close: {
+      h: "Monday Member Close"
+      n: "monday_member_close"
+      r: false
+      sh: "The time member hours ends on Mondays"
+      t: "`$ANY`"
+    }
+    monday_member_open: {
+      h: "Monday Member Open"
+      n: "monday_member_open"
+      r: false
+      sh: "The time member hours starts on Mondays"
+      t: "`$ANY`"
+    }
+    monday_public_close: {
+      h: "Monday Public Close"
+      n: "monday_public_close"
+      r: false
+      sh: "The time public hours ends on Mondays"
+      t: "`$ANY`"
+    }
+    monday_public_open: {
+      h: "Monday Public Open"
+      n: "monday_public_open"
+      r: false
+      sh: "The time public hours starts on Mondays"
+      t: "`$ANY`"
+    }
+    saturday_is_closed: {
+      h: "Saturday Is Closed"
+      n: "saturday_is_closed"
+      r: false
+      sh: "Whether the museum is closed on Saturdays"
+      t: "`$ANY`"
+    }
+    saturday_member_close: {
+      h: "Saturday Member Close"
+      n: "saturday_member_close"
+      r: false
+      sh: "The time member hours ends on Saturdays"
+      t: "`$ANY`"
+    }
+    saturday_member_open: {
+      h: "Saturday Member Open"
+      n: "saturday_member_open"
+      r: false
+      sh: "The time member hours starts on Saturdays"
+      t: "`$ANY`"
+    }
+    saturday_public_close: {
+      h: "Saturday Public Close"
+      n: "saturday_public_close"
+      r: false
+      sh: "The time public hours ends on Saturdays"
+      t: "`$ANY`"
+    }
+    saturday_public_open: {
+      h: "Saturday Public Open"
+      n: "saturday_public_open"
+      r: false
+      sh: "The time public hours starts on Saturdays"
+      t: "`$ANY`"
+    }
+    source_updated_at: {
+      h: "Source Updated At"
+      n: "source_updated_at"
+      r: false
+      sh: "Date and time the resource was updated in the source system"
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_all: {
+      h: "Suggest Autocomplete All"
+      n: "suggest_autocomplete_all"
+      r: false
+      sh: "Internal field to power the `/autosuggest` endpoint."
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_boosted: {
+      h: "Suggest Autocomplete Boosted"
+      n: "suggest_autocomplete_boosted"
+      r: false
+      sh: "Internal field to power the `/autocomplete` endpoint."
+      t: "`$ANY`"
+    }
+    summary: {
+      h: "Summary"
+      n: "summary"
+      r: false
+      sh: "Readable summary of the hours"
+      t: "`$ANY`"
+    }
+    sunday_is_closed: {
+      h: "Sunday Is Closed"
+      n: "sunday_is_closed"
+      r: false
+      sh: "Whether the museum is closed on Sundays"
+      t: "`$ANY`"
+    }
+    sunday_member_close: {
+      h: "Sunday Member Close"
+      n: "sunday_member_close"
+      r: false
+      sh: "The time member hours ends on Sundays"
+      t: "`$ANY`"
+    }
+    sunday_member_open: {
+      h: "Sunday Member Open"
+      n: "sunday_member_open"
+      r: false
+      sh: "The time member hours starts on Sundays"
+      t: "`$ANY`"
+    }
+    sunday_public_close: {
+      h: "Sunday Public Close"
+      n: "sunday_public_close"
+      r: false
+      sh: "The time public hours ends on Sundays"
+      t: "`$ANY`"
+    }
+    sunday_public_open: {
+      h: "Sunday Public Open"
+      n: "sunday_public_open"
+      r: false
+      sh: "The time public hours starts on Sundays"
+      t: "`$ANY`"
+    }
+    thursday_is_closed: {
+      h: "Thursday Is Closed"
+      n: "thursday_is_closed"
+      r: false
+      sh: "Whether the museum is closed on Thursdays"
+      t: "`$ANY`"
+    }
+    thursday_member_close: {
+      h: "Thursday Member Close"
+      n: "thursday_member_close"
+      r: false
+      sh: "The time member hours ends on Thursdays"
+      t: "`$ANY`"
+    }
+    thursday_member_open: {
+      h: "Thursday Member Open"
+      n: "thursday_member_open"
+      r: false
+      sh: "The time member hours starts on Thursdays"
+      t: "`$ANY`"
+    }
+    thursday_public_close: {
+      h: "Thursday Public Close"
+      n: "thursday_public_close"
+      r: false
+      sh: "The time public hours ends on Thursdays"
+      t: "`$ANY`"
+    }
+    thursday_public_open: {
+      h: "Thursday Public Open"
+      n: "thursday_public_open"
+      r: false
+      sh: "The time public hours starts on Thursdays"
+      t: "`$ANY`"
+    }
+    timestamp: {
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "Date and time the record was updated in the aggregator search index"
+      t: "`$ANY`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "The name of this resource"
+      t: "`$STRING`"
+    }
+    tuesday_is_closed: {
+      h: "Tuesday Is Closed"
+      n: "tuesday_is_closed"
+      r: false
+      sh: "Whether the museum is closed on Tuesdays"
+      t: "`$ANY`"
+    }
+    tuesday_member_close: {
+      h: "Tuesday Member Close"
+      n: "tuesday_member_close"
+      r: false
+      sh: "The time member hours ends on Tuesdays"
+      t: "`$ANY`"
+    }
+    tuesday_member_open: {
+      h: "Tuesday Member Open"
+      n: "tuesday_member_open"
+      r: false
+      sh: "The time member hours starts on Tuesdays"
+      t: "`$ANY`"
+    }
+    tuesday_public_close: {
+      h: "Tuesday Public Close"
+      n: "tuesday_public_close"
+      r: false
+      sh: "The time public hours ends on Tuesdays"
+      t: "`$ANY`"
+    }
+    tuesday_public_open: {
+      h: "Tuesday Public Open"
+      n: "tuesday_public_open"
+      r: false
+      sh: "The time public hours starts on Tuesdays"
+      t: "`$ANY`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "Date and time the record was updated in the aggregator database"
+      t: "`$ANY`"
+    }
+    wednesday_is_closed: {
+      h: "Wednesday Is Closed"
+      n: "wednesday_is_closed"
+      r: false
+      sh: "Whether the museum is closed on Wednesdays"
+      t: "`$ANY`"
+    }
+    wednesday_member_close: {
+      h: "Wednesday Member Close"
+      n: "wednesday_member_close"
+      r: false
+      sh: "The time member hours ends on Wednesdays"
+      t: "`$ANY`"
+    }
+    wednesday_member_open: {
+      h: "Wednesday Member Open"
+      n: "wednesday_member_open"
+      r: false
+      sh: "The time member hours starts on Wednesdays"
+      t: "`$ANY`"
+    }
+    wednesday_public_close: {
+      h: "Wednesday Public Close"
+      n: "wednesday_public_close"
+      r: false
+      sh: "The time public hours ends on Wednesdays"
+      t: "`$ANY`"
+    }
+    wednesday_public_open: {
+      h: "Wednesday Public Open"
+      n: "wednesday_public_open"
+      r: false
+      sh: "The time public hours starts on Wednesdays"
+      t: "`$ANY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "hour"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /hours"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/hours"
+          s: [
+            {
+              lit: "hours"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /hours/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/hours/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "hours"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

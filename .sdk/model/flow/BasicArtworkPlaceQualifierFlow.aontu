@@ -1,0 +1,44 @@
+# BasicArtworkPlaceQualifierFlow
+
+main: kit: flow: BasicArtworkPlaceQualifierFlow:
+{
+  entity: "artwork_place_qualifier",
+  kind: "basic",
+  name: "BasicArtworkPlaceQualifierFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "artwork_place_qualifier_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "artwork_place_qualifier_ref01",
+        srcdatavar: "artwork_place_qualifier_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "artwork_place_qualifier01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-artwork_place_qualifier_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicArtworkPlaceQualifierFlow"
+}

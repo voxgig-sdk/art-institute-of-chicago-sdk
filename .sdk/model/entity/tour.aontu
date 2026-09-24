@@ -1,0 +1,205 @@
+# Entity: tour
+
+main: kit: entity: tour: {
+
+  alias: field: {}
+
+  fields: {
+    api_link: {
+      h: "Api Link"
+      n: "api_link"
+      r: false
+      sh: "REST API link for this resource"
+      t: "`$ANY`"
+    }
+    api_model: {
+      h: "Api Model"
+      n: "api_model"
+      r: false
+      sh: "REST API resource type or endpoint"
+      t: "`$ANY`"
+    }
+    artist_titles: {
+      h: "Artist Titles"
+      n: "artist_titles"
+      r: false
+      sh: "Names of the artists of the artworks featured in this tour's tour stops"
+      t: "`$ANY`"
+    }
+    artwork_titles: {
+      h: "Artwork Titles"
+      n: "artwork_titles"
+      r: false
+      sh: "Names of the artworks featured in this tour's tour stops"
+      t: "`$ANY`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Explanation of what the tour is"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier of this resource."
+      t: "`$STRING`"
+    }
+    image: {
+      h: "Image"
+      n: "image"
+      r: false
+      sh: "The main image for the tour"
+      t: "`$ANY`"
+    }
+    intro: {
+      h: "Intro"
+      n: "intro"
+      r: false
+      sh: "Text introducing the tour"
+      t: "`$ANY`"
+    }
+    intro_link: {
+      h: "Intro Link"
+      n: "intro_link"
+      r: false
+      sh: "Link to the audio file of the introduction"
+      t: "`$ANY`"
+    }
+    intro_transcript: {
+      h: "Intro Transcript"
+      n: "intro_transcript"
+      r: false
+      sh: "Transcript of the introduction audio to the tour"
+      t: "`$ANY`"
+    }
+    source_updated_at: {
+      h: "Source Updated At"
+      n: "source_updated_at"
+      r: false
+      sh: "Date and time the resource was updated in the source system"
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_all: {
+      h: "Suggest Autocomplete All"
+      n: "suggest_autocomplete_all"
+      r: false
+      sh: "Internal field to power the `/autosuggest` endpoint."
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_boosted: {
+      h: "Suggest Autocomplete Boosted"
+      n: "suggest_autocomplete_boosted"
+      r: false
+      sh: "Internal field to power the `/autocomplete` endpoint."
+      t: "`$ANY`"
+    }
+    timestamp: {
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "Date and time the record was updated in the aggregator search index"
+      t: "`$ANY`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "The name of this resource"
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "Date and time the record was updated in the aggregator database"
+      t: "`$ANY`"
+    }
+    weight: {
+      h: "Weight"
+      n: "weight"
+      r: false
+      sh: "Number representing this tour's sort order"
+      t: "`$NUMBER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "tour"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /tours"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/tours"
+          s: [
+            {
+              lit: "tours"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /tours/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/tours/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "tours"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

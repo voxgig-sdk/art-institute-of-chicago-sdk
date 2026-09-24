@@ -1,0 +1,44 @@
+# BasicPressReleaseFlow
+
+main: kit: flow: BasicPressReleaseFlow:
+{
+  entity: "press_release",
+  kind: "basic",
+  name: "BasicPressReleaseFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "press_release_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "press_release_ref01",
+        srcdatavar: "press_release_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "press_release01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-press_release_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPressReleaseFlow"
+}

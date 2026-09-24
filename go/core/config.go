@@ -125,83 +125,99 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "alt_titles",
-						"short": "Alternate names for this agent",
+						"title": "Alt Titles",
 						"type": "`$ANY`",
+						"short": "Alternate names for this agent",
 					},
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "birth_date",
-						"short": "The year this agent was born",
+						"title": "Birth Date",
 						"type": "`$ANY`",
+						"short": "The year this agent was born",
 					},
 					map[string]any{
 						"name": "death_date",
-						"short": "The year this agent died",
+						"title": "Death Date",
 						"type": "`$ANY`",
+						"short": "The year this agent died",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "A biographical description of the agent",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "A biographical description of the agent",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "is_artist",
-						"short": "Whether the agent is an artist.",
+						"title": "Is Artist",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the agent is an artist.",
 					},
 					map[string]any{
 						"name": "sort_title",
-						"short": "Sortable name for this agent, typically with last name first.",
+						"title": "Sort Title",
 						"type": "`$ANY`",
+						"short": "Sortable name for this agent, typically with last name first.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "ulan_id",
-						"short": "Unique identifier of this agent in Getty's ULAN",
+						"title": "Ulan Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this agent in Getty's ULAN",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 				},
 				"id": map[string]any{
@@ -215,7 +231,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/agents",
@@ -224,17 +239,18 @@ func MakeConfig() map[string]any {
 										"lit": "agents",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"agents",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"agents",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/artists",
@@ -243,14 +259,16 @@ func MakeConfig() map[string]any {
 										"lit": "artists",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"artists",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"artists",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -259,17 +277,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/agents/{id}",
@@ -281,32 +288,33 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"agents",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"id",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"agents",
-									"{id}",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/artists/{id}",
@@ -318,18 +326,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"artists",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"artists",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -343,48 +363,57 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 				},
 				"id": map[string]any{
@@ -398,7 +427,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/agent-roles",
@@ -407,14 +435,16 @@ func MakeConfig() map[string]any {
 										"lit": "agent-roles",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"agent-roles",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"agent-roles",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -423,17 +453,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/agent-roles/{id}",
@@ -445,18 +464,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"agent-roles",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"agent-roles",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -470,48 +501,57 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 				},
 				"id": map[string]any{
@@ -525,7 +565,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/agent-types",
@@ -534,14 +573,16 @@ func MakeConfig() map[string]any {
 										"lit": "agent-types",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"agent-types",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"agent-types",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -550,17 +591,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/agent-types/{id}",
@@ -572,18 +602,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"agent-types",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"agent-types",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -597,53 +639,63 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "copy",
-						"short": "The text of the article",
+						"title": "Copy",
 						"type": "`$ANY`",
+						"short": "The text of the article",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 				},
 				"id": map[string]any{
@@ -657,7 +709,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/articles",
@@ -666,14 +717,16 @@ func MakeConfig() map[string]any {
 										"lit": "articles",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"articles",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"articles",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -682,17 +735,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/articles/{id}",
@@ -704,18 +746,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"articles",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"articles",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -729,523 +783,627 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "alt_artist_ids",
-						"short": "Unique identifiers of the non-preferred artists/cultures associated with this work",
+						"title": "Alt Artist Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the non-preferred artists/cultures associated with this work",
 					},
 					map[string]any{
 						"name": "alt_classification_ids",
-						"short": "Unique identifiers of all other non-preferred classification terms for this work",
+						"title": "Alt Classification Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of all other non-preferred classification terms for this work",
 					},
 					map[string]any{
 						"name": "alt_image_ids",
-						"short": "Unique identifiers of all non-preferred images of this work.",
+						"title": "Alt Image Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of all non-preferred images of this work.",
 					},
 					map[string]any{
 						"name": "alt_material_ids",
-						"short": "Unique identifiers of all other non-preferred material terms for this work",
+						"title": "Alt Material Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of all other non-preferred material terms for this work",
 					},
 					map[string]any{
 						"name": "alt_style_ids",
-						"short": "Unique identifiers of all other non-preferred style terms for this work",
+						"title": "Alt Style Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of all other non-preferred style terms for this work",
 					},
 					map[string]any{
 						"name": "alt_subject_ids",
-						"short": "Unique identifiers of all other non-preferred subject terms for this work",
+						"title": "Alt Subject Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of all other non-preferred subject terms for this work",
 					},
 					map[string]any{
 						"name": "alt_technique_ids",
-						"short": "Unique identifiers of all other non-preferred technique terms for this work",
+						"title": "Alt Technique Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of all other non-preferred technique terms for this work",
 					},
 					map[string]any{
 						"name": "alt_titles",
-						"short": "Alternate names for this work",
+						"title": "Alt Titles",
 						"type": "`$ANY`",
+						"short": "Alternate names for this work",
 					},
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "artist_display",
-						"short": "Readable description of the creator of this work.",
+						"title": "Artist Display",
 						"type": "`$ANY`",
+						"short": "Readable description of the creator of this work.",
 					},
 					map[string]any{
 						"name": "artist_id",
-						"short": "Unique identifier of the preferred artist/culture associated with this work",
+						"title": "Artist Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the preferred artist/culture associated with this work",
 					},
 					map[string]any{
 						"name": "artist_ids",
-						"short": "Unique identifier of all artist/cultures associated with this work",
+						"title": "Artist Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifier of all artist/cultures associated with this work",
 					},
 					map[string]any{
 						"name": "artist_title",
-						"short": "Name of the preferred artist/culture associated with this work",
+						"title": "Artist Title",
 						"type": "`$ANY`",
+						"short": "Name of the preferred artist/culture associated with this work",
 					},
 					map[string]any{
 						"name": "artist_titles",
-						"short": "Names of all artist/cultures associated with this work",
+						"title": "Artist Titles",
 						"type": "`$ANY`",
+						"short": "Names of all artist/cultures associated with this work",
 					},
 					map[string]any{
 						"name": "artwork_type_id",
-						"short": "Unique identifier of the kind of object or work",
+						"title": "Artwork Type Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the kind of object or work",
 					},
 					map[string]any{
 						"name": "artwork_type_title",
-						"short": "The kind of object or work (e.g.",
+						"title": "Artwork Type Title",
 						"type": "`$ANY`",
+						"short": "The kind of object or work (e.g.",
 					},
 					map[string]any{
 						"name": "boost_rank",
-						"short": "Manual indication of what rank this artwork should take in search results.",
+						"title": "Boost Rank",
 						"type": "`$ANY`",
+						"short": "Manual indication of what rank this artwork should take in search results.",
 					},
 					map[string]any{
 						"name": "catalog_based_search_keyword_titles",
-						"short": "The keyword search values that would be catalog-based searches on this record",
+						"title": "Catalog Based Search Keyword Titles",
 						"type": "`$ANY`",
+						"short": "The keyword search values that would be catalog-based searches on this record",
 					},
 					map[string]any{
 						"name": "catalogue_display",
-						"short": "Brief text listing all the catalogues raisonnés which include this work.",
+						"title": "Catalogue Display",
 						"type": "`$ANY`",
+						"short": "Brief text listing all the catalogues raisonnés which include this work.",
 					},
 					map[string]any{
 						"name": "category_ids",
-						"short": "Unique identifiers of the categories this work is a part of",
+						"title": "Category Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the categories this work is a part of",
 					},
 					map[string]any{
 						"name": "category_titles",
-						"short": "Names of the categories this artwork is a part of",
+						"title": "Category Titles",
 						"type": "`$ANY`",
+						"short": "Names of the categories this artwork is a part of",
 					},
 					map[string]any{
 						"name": "classification_id",
-						"short": "Unique identifier of the preferred classification term for this work",
+						"title": "Classification Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the preferred classification term for this work",
 					},
 					map[string]any{
 						"name": "classification_ids",
-						"short": "Unique identifiers of all classification terms for this work",
+						"title": "Classification Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of all classification terms for this work",
 					},
 					map[string]any{
 						"name": "classification_title",
-						"short": "The name of the preferred classification term for this work",
+						"title": "Classification Title",
 						"type": "`$ANY`",
+						"short": "The name of the preferred classification term for this work",
 					},
 					map[string]any{
 						"name": "classification_titles",
-						"short": "The names of all classification terms related to this artwork",
+						"title": "Classification Titles",
 						"type": "`$ANY`",
+						"short": "The names of all classification terms related to this artwork",
 					},
 					map[string]any{
 						"name": "color",
-						"short": "Dominant color of this artwork in HSL",
+						"title": "Color",
 						"type": "`$ANY`",
+						"short": "Dominant color of this artwork in HSL",
 					},
 					map[string]any{
 						"name": "colorfulness",
-						"short": "Unbounded positive float representing an abstract measure of colorfulness.",
+						"title": "Colorfulness",
 						"type": "`$ANY`",
+						"short": "Unbounded positive float representing an abstract measure of colorfulness.",
 					},
 					map[string]any{
 						"name": "copyright_notice",
-						"short": "Statement notifying how the work is protected by copyright.",
+						"title": "Copyright Notice",
 						"type": "`$ANY`",
+						"short": "Statement notifying how the work is protected by copyright.",
 					},
 					map[string]any{
 						"name": "credit_line",
-						"short": "Brief statement indicating how the work came into the collection",
+						"title": "Credit Line",
 						"type": "`$ANY`",
+						"short": "Brief statement indicating how the work came into the collection",
 					},
 					map[string]any{
 						"name": "date_display",
-						"short": "Readable, free-text description of the period of time associated with the creation of this work.",
+						"title": "Date Display",
 						"type": "`$ANY`",
+						"short": "Readable, free-text description of the period of time associated with the creation of this work.",
 					},
 					map[string]any{
 						"name": "date_end",
-						"short": "The year of the period of time associated with the creation of this work",
+						"title": "Date End",
 						"type": "`$ANY`",
+						"short": "The year of the period of time associated with the creation of this work",
 					},
 					map[string]any{
 						"name": "date_qualifier_id",
-						"short": "Unique identifier of the qualifer to the dates provided for this record.",
+						"title": "Date Qualifier Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the qualifer to the dates provided for this record.",
 					},
 					map[string]any{
 						"name": "date_qualifier_title",
-						"short": "Readable, text qualifer to the dates provided for this record.",
+						"title": "Date Qualifier Title",
 						"type": "`$ANY`",
+						"short": "Readable, text qualifer to the dates provided for this record.",
 					},
 					map[string]any{
 						"name": "date_start",
-						"short": "The year of the period of time associated with the creation of this work",
+						"title": "Date Start",
 						"type": "`$ANY`",
+						"short": "The year of the period of time associated with the creation of this work",
 					},
 					map[string]any{
 						"name": "department_id",
-						"short": "Unique identifier of the curatorial department that this work belongs to",
+						"title": "Department Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the curatorial department that this work belongs to",
 					},
 					map[string]any{
 						"name": "department_title",
-						"short": "Name of the curatorial department that this work belongs to",
+						"title": "Department Title",
 						"type": "`$ANY`",
+						"short": "Name of the curatorial department that this work belongs to",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "Longer explanation describing the work",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Longer explanation describing the work",
 					},
 					map[string]any{
 						"name": "dimensions",
-						"short": "The size, shape, scale, and dimensions of the work.",
+						"title": "Dimensions",
 						"type": "`$ANY`",
+						"short": "The size, shape, scale, and dimensions of the work.",
 					},
 					map[string]any{
 						"name": "dimensions_detail",
-						"short": "The height, width, depth, and/or diameter of each section of the work in centimeters",
+						"title": "Dimensions Detail",
 						"type": "`$ANY`",
+						"short": "The height, width, depth, and/or diameter of each section of the work in centimeters",
 					},
 					map[string]any{
 						"name": "document_ids",
-						"short": "Unique identifiers of assets that serve as documentation for this artwork",
+						"title": "Document Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of assets that serve as documentation for this artwork",
 					},
 					map[string]any{
 						"name": "edition",
-						"short": "Edition number if the work is one of many",
+						"title": "Edition",
 						"type": "`$ANY`",
+						"short": "Edition number if the work is one of many",
 					},
 					map[string]any{
 						"name": "exhibition_history",
-						"short": "List of all the places this work has been exhibited",
+						"title": "Exhibition History",
 						"type": "`$ANY`",
+						"short": "List of all the places this work has been exhibited",
 					},
 					map[string]any{
 						"name": "fiscal_year",
-						"short": "The fiscal year in which the work was acquired.",
+						"title": "Fiscal Year",
 						"type": "`$ANY`",
+						"short": "The fiscal year in which the work was acquired.",
 					},
 					map[string]any{
 						"name": "fiscal_year_deaccession",
-						"short": "The fiscal year in which the work was deaccessioned.",
+						"title": "Fiscal Year Deaccession",
 						"type": "`$ANY`",
+						"short": "The fiscal year in which the work was deaccessioned.",
 					},
 					map[string]any{
 						"name": "gallery_id",
-						"short": "Unique identifier of the location of this work in our museum",
+						"title": "Gallery Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the location of this work in our museum",
 					},
 					map[string]any{
 						"name": "gallery_title",
-						"short": "The location of this work in our museum",
+						"title": "Gallery Title",
 						"type": "`$ANY`",
+						"short": "The location of this work in our museum",
 					},
 					map[string]any{
 						"name": "has_advanced_imaging",
-						"short": "Whether this artwork is enhanced with 3D models, 360 image sequences, Mirador views, etc.",
+						"title": "Has Advanced Imaging",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this artwork is enhanced with 3D models, 360 image sequences, Mirador views, etc.",
 					},
 					map[string]any{
 						"name": "has_educational_resources",
-						"short": "Whether this artwork has any documents tagged as educational",
+						"title": "Has Educational Resources",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this artwork has any documents tagged as educational",
 					},
 					map[string]any{
 						"name": "has_multimedia_resources",
-						"short": "Whether this artwork has any associated microsites, digital publications, or documents tagged as multimedia",
+						"title": "Has Multimedia Resources",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this artwork has any associated microsites, digital publications, or documents tagged as multimedia",
 					},
 					map[string]any{
 						"name": "has_not_been_viewed_much",
-						"short": "Whether the artwork hasn't been visited on our website very much",
+						"title": "Has Not Been Viewed Much",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the artwork hasn't been visited on our website very much",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "image_embedding",
-						"short": "The generated embeddings describing the artwork image",
+						"title": "Image Embedding",
 						"type": "`$ANY`",
+						"short": "The generated embeddings describing the artwork image",
 					},
 					map[string]any{
 						"name": "image_id",
-						"short": "Unique identifier of the preferred image to use to represent this work",
+						"title": "Image Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the preferred image to use to represent this work",
 					},
 					map[string]any{
 						"name": "inscriptions",
-						"short": "A description of distinguishing or identifying physical markings that are on the work",
+						"title": "Inscriptions",
 						"type": "`$ANY`",
+						"short": "A description of distinguishing or identifying physical markings that are on the work",
 					},
 					map[string]any{
 						"name": "internal_department_id",
-						"short": "An internal department id we use for analytics.",
+						"title": "Internal Department Id",
 						"type": "`$STRING`",
+						"short": "An internal department id we use for analytics.",
 					},
 					map[string]any{
 						"name": "is_boosted",
-						"short": "Whether this document should be boosted in search",
+						"title": "Is Boosted",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this document should be boosted in search",
 					},
 					map[string]any{
 						"name": "is_on_view",
-						"short": "Whether the work is on display",
+						"title": "Is On View",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the work is on display",
 					},
 					map[string]any{
 						"name": "is_public_domain",
-						"short": "Whether the work is in the public domain, meaning it was created before copyrights existed or has left the copyright term",
+						"title": "Is Public Domain",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the work is in the public domain, meaning it was created before copyrights existed or has left the copyright term",
 					},
 					map[string]any{
 						"name": "is_zoomable",
-						"short": "Whether images of the work are allowed to be displayed in a zoomable interface.",
+						"title": "Is Zoomable",
 						"type": "`$BOOLEAN`",
+						"short": "Whether images of the work are allowed to be displayed in a zoomable interface.",
 					},
 					map[string]any{
 						"name": "latitude",
-						"short": "Latitude coordinate of the location of this work in our galleries",
+						"title": "Latitude",
 						"type": "`$NUMBER`",
+						"short": "Latitude coordinate of the location of this work in our galleries",
 					},
 					map[string]any{
 						"name": "latlon",
-						"short": "Latitude and longitude coordinates of the location of this work in our galleries",
+						"title": "Latlon",
 						"type": "`$ANY`",
+						"short": "Latitude and longitude coordinates of the location of this work in our galleries",
 					},
 					map[string]any{
 						"name": "longitude",
-						"short": "Longitude coordinate of the location of this work in our galleries",
+						"title": "Longitude",
 						"type": "`$NUMBER`",
+						"short": "Longitude coordinate of the location of this work in our galleries",
 					},
 					map[string]any{
 						"name": "main_reference_number",
-						"short": "Unique identifier assigned to the artwork upon acquisition",
+						"title": "Main Reference Number",
 						"type": "`$INTEGER`",
+						"short": "Unique identifier assigned to the artwork upon acquisition",
 					},
 					map[string]any{
 						"name": "material_id",
-						"short": "Unique identifier of the preferred material term for this work",
+						"title": "Material Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the preferred material term for this work",
 					},
 					map[string]any{
 						"name": "material_ids",
-						"short": "Unique identifiers of all material terms for this work",
+						"title": "Material Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of all material terms for this work",
 					},
 					map[string]any{
 						"name": "material_titles",
-						"short": "The names of all material terms related to this artwork",
+						"title": "Material Titles",
 						"type": "`$ANY`",
+						"short": "The names of all material terms related to this artwork",
 					},
 					map[string]any{
 						"name": "max_zoom_window_size",
-						"short": "The maximum size of the window the image is allowed to be viewed in, in pixels.",
+						"title": "Max Zoom Window Size",
 						"type": "`$ANY`",
+						"short": "The maximum size of the window the image is allowed to be viewed in, in pixels.",
 					},
 					map[string]any{
 						"name": "medium_display",
-						"short": "The substances or materials used in the creation of a work",
+						"title": "Medium Display",
 						"type": "`$ANY`",
+						"short": "The substances or materials used in the creation of a work",
 					},
 					map[string]any{
 						"name": "nomisma_id",
-						"short": "Unique identifier of this work in the nomisma coin database",
+						"title": "Nomisma Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this work in the nomisma coin database",
 					},
 					map[string]any{
 						"name": "on_loan_display",
-						"short": "If an artwork is on loan, this contains details about the loan",
+						"title": "On Loan Display",
 						"type": "`$ANY`",
+						"short": "If an artwork is on loan, this contains details about the loan",
 					},
 					map[string]any{
 						"name": "pageviews",
-						"short": "Approx.",
+						"title": "Pageviews",
 						"type": "`$ANY`",
+						"short": "Approx.",
 					},
 					map[string]any{
 						"name": "pageviews_recent",
-						"short": "Approx.",
+						"title": "Pageviews Recent",
 						"type": "`$ANY`",
+						"short": "Approx.",
 					},
 					map[string]any{
 						"name": "place_of_origin",
-						"short": "The location where the creation, design, or production of the work took place, or the original location of the work",
+						"title": "Place Of Origin",
 						"type": "`$ANY`",
+						"short": "The location where the creation, design, or production of the work took place, or the original location of the work",
 					},
 					map[string]any{
 						"name": "provenance_text",
-						"short": "Ownership/collecting history of the work.",
+						"title": "Provenance Text",
 						"type": "`$ANY`",
+						"short": "Ownership/collecting history of the work.",
 					},
 					map[string]any{
 						"name": "publication_history",
-						"short": "Bibliographic list of all the places this work has been published",
+						"title": "Publication History",
 						"type": "`$ANY`",
+						"short": "Bibliographic list of all the places this work has been published",
 					},
 					map[string]any{
 						"name": "publishing_verification_level",
-						"short": "Indicator of how much metadata on the work in published.",
+						"title": "Publishing Verification Level",
 						"type": "`$ANY`",
+						"short": "Indicator of how much metadata on the work in published.",
 					},
 					map[string]any{
 						"name": "section_ids",
-						"short": "Unique identifiers of the digital publication chapters this work in included in",
+						"title": "Section Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the digital publication chapters this work in included in",
 					},
 					map[string]any{
 						"name": "section_titles",
-						"short": "Names of the digital publication chapters this work is included in",
+						"title": "Section Titles",
 						"type": "`$ANY`",
+						"short": "Names of the digital publication chapters this work is included in",
 					},
 					map[string]any{
 						"name": "short_description",
-						"short": "Short explanation describing the work",
+						"title": "Short Description",
 						"type": "`$ANY`",
+						"short": "Short explanation describing the work",
 					},
 					map[string]any{
 						"name": "site_ids",
-						"short": "Unique identifiers of the microsites this work is a part of",
+						"title": "Site Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the microsites this work is a part of",
 					},
 					map[string]any{
 						"name": "sound_ids",
-						"short": "Unique identifiers of the audio about this work",
+						"title": "Sound Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the audio about this work",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "style_id",
-						"short": "Unique identifier of the preferred style term for this work",
+						"title": "Style Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the preferred style term for this work",
 					},
 					map[string]any{
 						"name": "style_ids",
-						"short": "Unique identifiers of all style terms for this work",
+						"title": "Style Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of all style terms for this work",
 					},
 					map[string]any{
 						"name": "style_title",
-						"short": "The name of the preferred style term for this work",
+						"title": "Style Title",
 						"type": "`$ANY`",
+						"short": "The name of the preferred style term for this work",
 					},
 					map[string]any{
 						"name": "style_titles",
-						"short": "The names of all style terms related to this artwork",
+						"title": "Style Titles",
 						"type": "`$ANY`",
+						"short": "The names of all style terms related to this artwork",
 					},
 					map[string]any{
 						"name": "subject_id",
-						"short": "Unique identifier of the preferred subject term for this work",
+						"title": "Subject Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the preferred subject term for this work",
 					},
 					map[string]any{
 						"name": "subject_ids",
-						"short": "Unique identifiers of all subject terms for this work",
+						"title": "Subject Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of all subject terms for this work",
 					},
 					map[string]any{
 						"name": "subject_titles",
-						"short": "The names of all subject terms related to this artwork",
+						"title": "Subject Titles",
 						"type": "`$ANY`",
+						"short": "The names of all subject terms related to this artwork",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "technique_id",
-						"short": "Unique identifier of the preferred technique term for this work",
+						"title": "Technique Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the preferred technique term for this work",
 					},
 					map[string]any{
 						"name": "technique_ids",
-						"short": "Unique identifiers of all technique terms for this work",
+						"title": "Technique Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of all technique terms for this work",
 					},
 					map[string]any{
 						"name": "technique_titles",
-						"short": "The names of all technique terms related to this artwork",
+						"title": "Technique Titles",
 						"type": "`$ANY`",
+						"short": "The names of all technique terms related to this artwork",
 					},
 					map[string]any{
 						"name": "term_titles",
-						"short": "The names of the taxonomy tags for this work",
+						"title": "Term Titles",
 						"type": "`$ANY`",
+						"short": "The names of the taxonomy tags for this work",
 					},
 					map[string]any{
 						"name": "text_embedding",
-						"short": "The generated embeddings of artwork text",
+						"title": "Text Embedding",
 						"type": "`$ANY`",
+						"short": "The generated embeddings of artwork text",
 					},
 					map[string]any{
 						"name": "text_ids",
-						"short": "Unique identifiers of the texts about this work",
+						"title": "Text Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the texts about this work",
 					},
 					map[string]any{
 						"name": "theme_titles",
-						"short": "The names of all thematic publish categories related to this artwork",
+						"title": "Theme Titles",
 						"type": "`$ANY`",
+						"short": "The names of all thematic publish categories related to this artwork",
 					},
 					map[string]any{
 						"name": "thumbnail",
-						"short": "Metadata about the image referenced by `image_id`.",
+						"title": "Thumbnail",
 						"type": "`$ANY`",
+						"short": "Metadata about the image referenced by `image_id`.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "video_ids",
-						"short": "Unique identifiers of the videos about this work",
+						"title": "Video Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the videos about this work",
 					},
 				},
 				"id": map[string]any{
@@ -1259,7 +1417,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/artworks",
@@ -1268,14 +1425,16 @@ func MakeConfig() map[string]any {
 										"lit": "artworks",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"artworks",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"artworks",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -1284,17 +1443,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/artworks/{id}",
@@ -1306,18 +1454,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"artworks",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"artworks",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -1331,48 +1491,57 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 				},
 				"id": map[string]any{
@@ -1386,7 +1555,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/artwork-date-qualifiers",
@@ -1395,14 +1563,16 @@ func MakeConfig() map[string]any {
 										"lit": "artwork-date-qualifiers",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"artwork-date-qualifiers",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"artwork-date-qualifiers",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -1411,17 +1581,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/artwork-date-qualifiers/{id}",
@@ -1433,18 +1592,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"artwork-date-qualifiers",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"artwork-date-qualifiers",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -1458,48 +1629,57 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 				},
 				"id": map[string]any{
@@ -1513,7 +1693,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/artwork-place-qualifiers",
@@ -1522,14 +1701,16 @@ func MakeConfig() map[string]any {
 										"lit": "artwork-place-qualifiers",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"artwork-place-qualifiers",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"artwork-place-qualifiers",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -1538,17 +1719,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/artwork-place-qualifiers/{id}",
@@ -1560,18 +1730,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"artwork-place-qualifiers",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"artwork-place-qualifiers",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -1585,53 +1767,63 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "aat_id",
-						"short": "Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT)",
+						"title": "Aat Id",
 						"type": "`$STRING`",
+						"short": "Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT)",
 					},
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 				},
 				"id": map[string]any{
@@ -1645,7 +1837,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/artwork-types",
@@ -1654,14 +1845,16 @@ func MakeConfig() map[string]any {
 										"lit": "artwork-types",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"artwork-types",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"artwork-types",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -1670,17 +1863,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/artwork-types/{id}",
@@ -1692,18 +1874,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"artwork-types",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"artwork-types",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -1717,58 +1911,69 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "aat_id",
-						"short": "Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT)",
+						"title": "Aat Id",
 						"type": "`$STRING`",
+						"short": "Identifier of reconciled (most similar) term in the Getty's Art and Architecture Thesaurus (AAT)",
 					},
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "parent_id",
-						"short": "Unique identifier of this category's parent",
+						"title": "Parent Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this category's parent",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "subtype",
-						"short": "Takes one of the following values: classification, material, technique, style, subject, department, theme",
+						"title": "Subtype",
 						"type": "`$ANY`",
+						"short": "Takes one of the following values: classification, material, technique, style, subject, department, theme",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 				},
 				"id": map[string]any{
@@ -1782,7 +1987,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/category-terms",
@@ -1791,14 +1995,16 @@ func MakeConfig() map[string]any {
 										"lit": "category-terms",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"category-terms",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"category-terms",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -1807,17 +2013,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/category-terms/{id}",
@@ -1829,18 +2024,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"category-terms",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"category-terms",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -1854,58 +2061,69 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "copy",
-						"short": "The text of the page",
+						"title": "Copy",
 						"type": "`$ANY`",
+						"short": "The text of the page",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "web_url",
-						"short": "The URL to this page on our website",
+						"title": "Web Url",
 						"type": "`$ANY`",
+						"short": "The URL to this page on our website",
 					},
 				},
 				"id": map[string]any{
@@ -1919,7 +2137,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/digital-publications",
@@ -1928,14 +2145,16 @@ func MakeConfig() map[string]any {
 										"lit": "digital-publications",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"digital-publications",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"digital-publications",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -1944,17 +2163,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/digital-publications/{id}",
@@ -1966,18 +2174,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"digital-publications",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"digital-publications",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -1991,68 +2211,81 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "author_display",
-						"short": "A display-friendly text of the authors of this article",
+						"title": "Author Display",
 						"type": "`$ANY`",
+						"short": "A display-friendly text of the authors of this article",
 					},
 					map[string]any{
 						"name": "copy",
-						"short": "The text of the article",
+						"title": "Copy",
 						"type": "`$ANY`",
+						"short": "The text of the article",
 					},
 					map[string]any{
 						"name": "digital_publication_id",
-						"short": "Unique identifier of the digital publication this article belongs to",
+						"title": "Digital Publication Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the digital publication this article belongs to",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "web_url",
-						"short": "The URL to this article on our website",
+						"title": "Web Url",
 						"type": "`$ANY`",
+						"short": "The URL to this article on our website",
 					},
 				},
 				"id": map[string]any{
@@ -2066,7 +2299,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/digital-publication-articles",
@@ -2075,14 +2307,16 @@ func MakeConfig() map[string]any {
 										"lit": "digital-publication-articles",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"digital-publication-articles",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"digital-publication-articles",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -2091,17 +2325,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/digital-publication-articles/{id}",
@@ -2113,18 +2336,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"digital-publication-articles",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"digital-publication-articles",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -2138,58 +2373,69 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "copy",
-						"short": "The text of the page",
+						"title": "Copy",
 						"type": "`$ANY`",
+						"short": "The text of the page",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "web_url",
-						"short": "The URL to this page on our website",
+						"title": "Web Url",
 						"type": "`$ANY`",
+						"short": "The URL to this page on our website",
 					},
 				},
 				"id": map[string]any{
@@ -2203,7 +2449,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/educator-resources",
@@ -2212,14 +2457,16 @@ func MakeConfig() map[string]any {
 										"lit": "educator-resources",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"educator-resources",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"educator-resources",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -2228,17 +2475,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/educator-resources/{id}",
@@ -2250,18 +2486,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"educator-resources",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"educator-resources",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -2275,268 +2523,321 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "alt_audience_ids",
-						"short": "Unique identifiers indicating the alternate audiences for this event",
+						"title": "Alt Audience Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers indicating the alternate audiences for this event",
 					},
 					map[string]any{
 						"name": "alt_event_type_ids",
-						"short": "Unique identifiers indicating the alternate types of this event",
+						"title": "Alt Event Type Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers indicating the alternate types of this event",
 					},
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "audience_id",
-						"short": "Unique identifier indicating the preferred audience for this event",
+						"title": "Audience Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier indicating the preferred audience for this event",
 					},
 					map[string]any{
 						"name": "buy_button_caption",
-						"short": "Additional text below the ticket/registration button",
+						"title": "Buy Button Caption",
 						"type": "`$ANY`",
+						"short": "Additional text below the ticket/registration button",
 					},
 					map[string]any{
 						"name": "buy_button_text",
-						"short": "The text used on the ticket/registration button",
+						"title": "Buy Button Text",
 						"type": "`$ANY`",
+						"short": "The text used on the ticket/registration button",
 					},
 					map[string]any{
 						"name": "date_display",
-						"short": "A readable display of the event dates",
+						"title": "Date Display",
 						"type": "`$ANY`",
+						"short": "A readable display of the event dates",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "All copytext of the event",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "All copytext of the event",
 					},
 					map[string]any{
 						"name": "door_time",
-						"short": "The time the doors open for this event",
+						"title": "Door Time",
 						"type": "`$ANY`",
+						"short": "The time the doors open for this event",
 					},
 					map[string]any{
 						"name": "end_date",
-						"short": "The date the event ends",
+						"title": "End Date",
 						"type": "`$ANY`",
+						"short": "The date the event ends",
 					},
 					map[string]any{
 						"name": "end_time",
-						"short": "The time the event ends",
+						"title": "End Time",
 						"type": "`$ANY`",
+						"short": "The time the event ends",
 					},
 					map[string]any{
 						"name": "entrance",
-						"short": "Which entrance to use for this event",
+						"title": "Entrance",
 						"type": "`$ANY`",
+						"short": "Which entrance to use for this event",
 					},
 					map[string]any{
 						"name": "event_host_id",
-						"short": "Unique identifier of the host (cf.",
+						"title": "Event Host Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the host (cf.",
 					},
 					map[string]any{
 						"name": "event_host_title",
-						"short": "Unique identifier of the host (cf.",
+						"title": "Event Host Title",
 						"type": "`$ANY`",
+						"short": "Unique identifier of the host (cf.",
 					},
 					map[string]any{
 						"name": "event_type_id",
-						"short": "Unique identifier indicating the preferred type of this event",
+						"title": "Event Type Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier indicating the preferred type of this event",
 					},
 					map[string]any{
 						"name": "header_description",
-						"short": "Brief description of the event displayed below the title",
+						"title": "Header Description",
 						"type": "`$ANY`",
+						"short": "Brief description of the event displayed below the title",
 					},
 					map[string]any{
 						"name": "hero_caption",
-						"short": "Text displayed with the hero image on the event",
+						"title": "Hero Caption",
 						"type": "`$ANY`",
+						"short": "Text displayed with the hero image on the event",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "image_url",
-						"short": "The URL of an image representing this page",
+						"title": "Image Url",
 						"type": "`$ANY`",
+						"short": "The URL of an image representing this page",
 					},
 					map[string]any{
 						"name": "is_admission_required",
-						"short": "Whether admission to the museum is required to attend this event",
+						"title": "Is Admission Required",
 						"type": "`$BOOLEAN`",
+						"short": "Whether admission to the museum is required to attend this event",
 					},
 					map[string]any{
 						"name": "is_after_hours",
-						"short": "Whether the event is to be held after the museum closes",
+						"title": "Is After Hours",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the event is to be held after the museum closes",
 					},
 					map[string]any{
 						"name": "is_free",
-						"short": "Whether the event is free",
+						"title": "Is Free",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the event is free",
 					},
 					map[string]any{
 						"name": "is_member_exclusive",
-						"short": "Whether the event is exclusive to members of the museum",
+						"title": "Is Member Exclusive",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the event is exclusive to members of the museum",
 					},
 					map[string]any{
 						"name": "is_private",
-						"short": "Whether the event is private",
+						"title": "Is Private",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the event is private",
 					},
 					map[string]any{
 						"name": "is_registration_required",
-						"short": "Whether registration is required to attend the event",
+						"title": "Is Registration Required",
 						"type": "`$BOOLEAN`",
+						"short": "Whether registration is required to attend the event",
 					},
 					map[string]any{
 						"name": "is_sales_button_hidden",
-						"short": "Whether the buy tickets button is hidden on the website event page",
+						"title": "Is Sales Button Hidden",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the buy tickets button is hidden on the website event page",
 					},
 					map[string]any{
 						"name": "is_sold_out",
-						"short": "Whether the event is sold out",
+						"title": "Is Sold Out",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the event is sold out",
 					},
 					map[string]any{
 						"name": "is_ticketed",
-						"short": "Whether a ticket is required to attend the event",
+						"title": "Is Ticketed",
 						"type": "`$BOOLEAN`",
+						"short": "Whether a ticket is required to attend the event",
 					},
 					map[string]any{
 						"name": "is_virtual_event",
-						"short": "Whether the event is being held virtually",
+						"title": "Is Virtual Event",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the event is being held virtually",
 					},
 					map[string]any{
 						"name": "join_url",
-						"short": "URL to the membership signup page via this event",
+						"title": "Join Url",
 						"type": "`$ANY`",
+						"short": "URL to the membership signup page via this event",
 					},
 					map[string]any{
 						"name": "layout_type",
-						"short": "Number indicating the type of layout this event page uses",
+						"title": "Layout Type",
 						"type": "`$ANY`",
+						"short": "Number indicating the type of layout this event page uses",
 					},
 					map[string]any{
 						"name": "list_description",
-						"short": "One-sentence description of the event displayed in listings",
+						"title": "List Description",
 						"type": "`$ANY`",
+						"short": "One-sentence description of the event displayed in listings",
 					},
 					map[string]any{
 						"name": "location",
-						"short": "Where the event takes place",
+						"title": "Location",
 						"type": "`$ANY`",
+						"short": "Where the event takes place",
 					},
 					map[string]any{
 						"name": "program_ids",
-						"short": "Unique identifiers indicating the programs this event is a part of",
+						"title": "Program Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers indicating the programs this event is a part of",
 					},
 					map[string]any{
 						"name": "program_titles",
-						"short": "Titles of the programs this event is a part of",
+						"title": "Program Titles",
 						"type": "`$ANY`",
+						"short": "Titles of the programs this event is a part of",
 					},
 					map[string]any{
 						"name": "rsvp_link",
-						"short": "The URL to the sales site for this event",
+						"title": "Rsvp Link",
 						"type": "`$ANY`",
+						"short": "The URL to the sales site for this event",
 					},
 					map[string]any{
 						"name": "search_tags",
-						"short": "Editor-specified list of tags to aid in internal search",
+						"title": "Search Tags",
 						"type": "`$ANY`",
+						"short": "Editor-specified list of tags to aid in internal search",
 					},
 					map[string]any{
 						"name": "short_description",
-						"short": "Brief description of the event",
+						"title": "Short Description",
 						"type": "`$ANY`",
+						"short": "Brief description of the event",
 					},
 					map[string]any{
 						"name": "slug",
-						"short": "A string used in the URL for this event",
+						"title": "Slug",
 						"type": "`$STRING`",
+						"short": "A string used in the URL for this event",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "start_date",
-						"short": "The date the event begins",
+						"title": "Start Date",
 						"type": "`$ANY`",
+						"short": "The date the event begins",
 					},
 					map[string]any{
 						"name": "start_time",
-						"short": "The time the event starts",
+						"title": "Start Time",
 						"type": "`$ANY`",
+						"short": "The time the event starts",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "survey_url",
-						"short": "URL to the survey associated with this event",
+						"title": "Survey Url",
 						"type": "`$ANY`",
+						"short": "URL to the survey associated with this event",
 					},
 					map[string]any{
 						"name": "ticketed_event_id",
-						"short": "Unique identifier of the event in the ticketing system this website event is tied to",
+						"title": "Ticketed Event Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the event in the ticketing system this website event is tied to",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "title_display",
-						"short": "The name of this event formatted with HTML (optional)",
+						"title": "Title Display",
 						"type": "`$ANY`",
+						"short": "The name of this event formatted with HTML (optional)",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "virtual_event_passcode",
-						"short": "Passcode to access the virtual event",
+						"title": "Virtual Event Passcode",
 						"type": "`$ANY`",
+						"short": "Passcode to access the virtual event",
 					},
 					map[string]any{
 						"name": "virtual_event_url",
-						"short": "URL to the virtual event",
+						"title": "Virtual Event Url",
 						"type": "`$ANY`",
+						"short": "URL to the virtual event",
 					},
 				},
 				"id": map[string]any{
@@ -2550,7 +2851,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/events",
@@ -2559,14 +2859,16 @@ func MakeConfig() map[string]any {
 										"lit": "events",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"events",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"events",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -2575,17 +2877,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/events/{id}",
@@ -2597,18 +2888,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"events",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"events",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -2622,128 +2925,153 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "button_caption",
-						"short": "Additional text below the ticket/registration button",
+						"title": "Button Caption",
 						"type": "`$ANY`",
+						"short": "Additional text below the ticket/registration button",
 					},
 					map[string]any{
 						"name": "button_text",
-						"short": "The text used on the ticket/registration button",
+						"title": "Button Text",
 						"type": "`$ANY`",
+						"short": "The text used on the ticket/registration button",
 					},
 					map[string]any{
 						"name": "button_url",
-						"short": "The URL to the sales site or an RSVP link for this event",
+						"title": "Button Url",
 						"type": "`$ANY`",
+						"short": "The URL to the sales site or an RSVP link for this event",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "Description of the event",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Description of the event",
 					},
 					map[string]any{
 						"name": "end_at",
-						"short": "The date the event occurrence ends",
+						"title": "End At",
 						"type": "`$ANY`",
+						"short": "The date the event occurrence ends",
 					},
 					map[string]any{
 						"name": "event_id",
-						"short": "Identifier of the master event of which this is an occurrence",
+						"title": "Event Id",
 						"type": "`$STRING`",
+						"short": "Identifier of the master event of which this is an occurrence",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "image_url",
-						"short": "The URL of an image representing this page",
+						"title": "Image Url",
 						"type": "`$ANY`",
+						"short": "The URL of an image representing this page",
 					},
 					map[string]any{
 						"name": "is_private",
-						"short": "Whether the event is private.",
+						"title": "Is Private",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the event is private.",
 					},
 					map[string]any{
 						"name": "is_sales_button_hidden",
-						"short": "Whether the buy tickets button is hidden on the website event page",
+						"title": "Is Sales Button Hidden",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the buy tickets button is hidden on the website event page",
 					},
 					map[string]any{
 						"name": "is_ticketed",
-						"short": "Whether a ticket is required to attend the event",
+						"title": "Is Ticketed",
 						"type": "`$BOOLEAN`",
+						"short": "Whether a ticket is required to attend the event",
 					},
 					map[string]any{
 						"name": "location",
-						"short": "Where the event takes place",
+						"title": "Location",
 						"type": "`$ANY`",
+						"short": "Where the event takes place",
 					},
 					map[string]any{
 						"name": "off_sale_at",
-						"short": "Date and time the event goes off sale",
+						"title": "Off Sale At",
 						"type": "`$ANY`",
+						"short": "Date and time the event goes off sale",
 					},
 					map[string]any{
 						"name": "on_sale_at",
-						"short": "Date and time the event goes on sale",
+						"title": "On Sale At",
 						"type": "`$ANY`",
+						"short": "Date and time the event goes on sale",
 					},
 					map[string]any{
 						"name": "short_description",
-						"short": "Brief description of the event",
+						"title": "Short Description",
 						"type": "`$ANY`",
+						"short": "Brief description of the event",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "start_at",
-						"short": "The date the event occurrence begins",
+						"title": "Start At",
 						"type": "`$ANY`",
+						"short": "The date the event occurrence begins",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "title_display",
-						"short": "The name of this event formatted with HTML (optional)",
+						"title": "Title Display",
 						"type": "`$ANY`",
+						"short": "The name of this event formatted with HTML (optional)",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 				},
 				"id": map[string]any{
@@ -2757,7 +3085,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/event-occurrences",
@@ -2766,14 +3093,16 @@ func MakeConfig() map[string]any {
 										"lit": "event-occurrences",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"event-occurrences",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"event-occurrences",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -2782,17 +3111,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/event-occurrences/{id}",
@@ -2804,18 +3122,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"event-occurrences",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"event-occurrences",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -2829,58 +3159,69 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "is_affiliate_group",
-						"short": "Whether this program represents an affiliate group",
+						"title": "Is Affiliate Group",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this program represents an affiliate group",
 					},
 					map[string]any{
 						"name": "is_event_host",
-						"short": "Whether this program represents an event host",
+						"title": "Is Event Host",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this program represents an event host",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 				},
 				"id": map[string]any{
@@ -2894,7 +3235,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/event-programs",
@@ -2903,14 +3243,16 @@ func MakeConfig() map[string]any {
 										"lit": "event-programs",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"event-programs",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"event-programs",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -2919,17 +3261,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/event-programs/{id}",
@@ -2941,18 +3272,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"event-programs",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"event-programs",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -2966,138 +3309,165 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "aic_end_at",
-						"short": "Date the exhibition closed at the Art Institute of Chicago",
+						"title": "Aic End At",
 						"type": "`$ANY`",
+						"short": "Date the exhibition closed at the Art Institute of Chicago",
 					},
 					map[string]any{
 						"name": "aic_start_at",
-						"short": "Date the exhibition opened at the Art Institute of Chicago",
+						"title": "Aic Start At",
 						"type": "`$ANY`",
+						"short": "Date the exhibition opened at the Art Institute of Chicago",
 					},
 					map[string]any{
 						"name": "alt_image_ids",
-						"short": "Unique identifiers of all non-preferred images of this exhibition.",
+						"title": "Alt Image Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of all non-preferred images of this exhibition.",
 					},
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "artist_ids",
-						"short": "Unique identifiers of the artist agent records representing who was shown in the exhibition",
+						"title": "Artist Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the artist agent records representing who was shown in the exhibition",
 					},
 					map[string]any{
 						"name": "artwork_ids",
-						"short": "Unique identifiers of the artworks that were part of the exhibition",
+						"title": "Artwork Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the artworks that were part of the exhibition",
 					},
 					map[string]any{
 						"name": "artwork_titles",
-						"short": "Names of the artworks that were part of the exhibition",
+						"title": "Artwork Titles",
 						"type": "`$ANY`",
+						"short": "Names of the artworks that were part of the exhibition",
 					},
 					map[string]any{
 						"name": "document_ids",
-						"short": "Unique identifiers of assets that serve as documentation for this exhibition",
+						"title": "Document Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of assets that serve as documentation for this exhibition",
 					},
 					map[string]any{
 						"name": "gallery_id",
-						"short": "Unique identifier of the gallery that mainly housed the exhibition",
+						"title": "Gallery Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the gallery that mainly housed the exhibition",
 					},
 					map[string]any{
 						"name": "gallery_title",
-						"short": "The name of the gallery that mainly housed the exhibition",
+						"title": "Gallery Title",
 						"type": "`$ANY`",
+						"short": "The name of the gallery that mainly housed the exhibition",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "image_id",
-						"short": "Unique identifier of the preferred image to use to represent this exhibition",
+						"title": "Image Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the preferred image to use to represent this exhibition",
 					},
 					map[string]any{
 						"name": "image_url",
-						"short": "URL to the hero image from the website",
+						"title": "Image Url",
 						"type": "`$ANY`",
+						"short": "URL to the hero image from the website",
 					},
 					map[string]any{
 						"name": "is_featured",
-						"short": "Is this exhibition currently featured on our website?",
+						"title": "Is Featured",
 						"type": "`$BOOLEAN`",
+						"short": "Is this exhibition currently featured on our website?",
 					},
 					map[string]any{
 						"name": "is_published",
-						"short": "Is this exhibition currently published on our website?",
+						"title": "Is Published",
 						"type": "`$BOOLEAN`",
+						"short": "Is this exhibition currently published on our website?",
 					},
 					map[string]any{
 						"name": "position",
-						"short": "Numering position represnting the order in which this exhibition is featured on the website",
+						"title": "Position",
 						"type": "`$ANY`",
+						"short": "Numering position represnting the order in which this exhibition is featured on the website",
 					},
 					map[string]any{
 						"name": "short_description",
-						"short": "Brief explanation of what this exhibition is",
+						"title": "Short Description",
 						"type": "`$ANY`",
+						"short": "Brief explanation of what this exhibition is",
 					},
 					map[string]any{
 						"name": "site_ids",
-						"short": "Unique identifiers of the microsites this exhibition is a part of",
+						"title": "Site Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the microsites this exhibition is a part of",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "status",
-						"short": "Whether the exhibition is open or closed",
+						"title": "Status",
 						"type": "`$ANY`",
+						"short": "Whether the exhibition is open or closed",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "web_url",
-						"short": "URL to this exhibition on our website",
+						"title": "Web Url",
 						"type": "`$ANY`",
+						"short": "URL to this exhibition on our website",
 					},
 				},
 				"id": map[string]any{
@@ -3111,7 +3481,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/exhibitions",
@@ -3120,14 +3489,16 @@ func MakeConfig() map[string]any {
 										"lit": "exhibitions",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"exhibitions",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"exhibitions",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -3136,17 +3507,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/exhibitions/{id}",
@@ -3158,18 +3518,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"exhibitions",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"exhibitions",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -3183,83 +3555,99 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "floor",
-						"short": "The level the gallery is on, e.g., 1, 2, 3, or LL",
+						"title": "Floor",
 						"type": "`$ANY`",
+						"short": "The level the gallery is on, e.g., 1, 2, 3, or LL",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "is_closed",
-						"short": "Whether the gallery is currently closed",
+						"title": "Is Closed",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the gallery is currently closed",
 					},
 					map[string]any{
 						"name": "latitude",
-						"short": "Latitude coordinate of the center of the room",
+						"title": "Latitude",
 						"type": "`$NUMBER`",
+						"short": "Latitude coordinate of the center of the room",
 					},
 					map[string]any{
 						"name": "latlon",
-						"short": "Latitude and longitude coordinates of the center of the room",
+						"title": "Latlon",
 						"type": "`$ANY`",
+						"short": "Latitude and longitude coordinates of the center of the room",
 					},
 					map[string]any{
 						"name": "longitude",
-						"short": "Longitude coordinate of the center of the room",
+						"title": "Longitude",
 						"type": "`$NUMBER`",
+						"short": "Longitude coordinate of the center of the room",
 					},
 					map[string]any{
 						"name": "number",
-						"short": "The gallery's room number.",
+						"title": "Number",
 						"type": "`$ANY`",
+						"short": "The gallery's room number.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "tgn_id",
-						"short": "Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN)",
+						"title": "Tgn Id",
 						"type": "`$STRING`",
+						"short": "Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN)",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 				},
 				"id": map[string]any{
@@ -3273,7 +3661,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/galleries",
@@ -3282,14 +3669,16 @@ func MakeConfig() map[string]any {
 										"lit": "galleries",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"galleries",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"galleries",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -3298,17 +3687,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/galleries/{id}",
@@ -3320,18 +3698,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"galleries",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"galleries",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -3345,63 +3735,75 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "copy",
-						"short": "The text of the page",
+						"title": "Copy",
 						"type": "`$ANY`",
+						"short": "The text of the page",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "search_tags",
-						"short": "Editor-specified list of tags to aid in internal search",
+						"title": "Search Tags",
 						"type": "`$ANY`",
+						"short": "Editor-specified list of tags to aid in internal search",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "web_url",
-						"short": "The URL to this page on our website",
+						"title": "Web Url",
 						"type": "`$ANY`",
+						"short": "The URL to this page on our website",
 					},
 				},
 				"id": map[string]any{
@@ -3415,7 +3817,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/generic-pages",
@@ -3424,14 +3825,16 @@ func MakeConfig() map[string]any {
 										"lit": "generic-pages",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"generic-pages",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"generic-pages",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -3440,17 +3843,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/generic-pages/{id}",
@@ -3462,18 +3854,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"generic-pages",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"generic-pages",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -3487,53 +3891,63 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "copy",
-						"short": "The text of the highlight description",
+						"title": "Copy",
 						"type": "`$ANY`",
+						"short": "The text of the highlight description",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 				},
 				"id": map[string]any{
@@ -3547,7 +3961,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/highlights",
@@ -3556,14 +3969,16 @@ func MakeConfig() map[string]any {
 										"lit": "highlights",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"highlights",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"highlights",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -3572,17 +3987,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/highlights/{id}",
@@ -3594,18 +3998,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"highlights",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"highlights",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -3619,233 +4035,279 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "additional_text",
-						"short": "Additional information about the hours",
+						"title": "Additional Text",
 						"type": "`$ANY`",
+						"short": "Additional information about the hours",
 					},
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "friday_is_closed",
-						"short": "Whether the museum is closed on Fridays",
+						"title": "Friday Is Closed",
 						"type": "`$ANY`",
+						"short": "Whether the museum is closed on Fridays",
 					},
 					map[string]any{
 						"name": "friday_member_close",
-						"short": "The time member hours ends on Fridays",
+						"title": "Friday Member Close",
 						"type": "`$ANY`",
+						"short": "The time member hours ends on Fridays",
 					},
 					map[string]any{
 						"name": "friday_member_open",
-						"short": "The time member hours starts on Fridays",
+						"title": "Friday Member Open",
 						"type": "`$ANY`",
+						"short": "The time member hours starts on Fridays",
 					},
 					map[string]any{
 						"name": "friday_public_close",
-						"short": "The time public hours ends on Fridays",
+						"title": "Friday Public Close",
 						"type": "`$ANY`",
+						"short": "The time public hours ends on Fridays",
 					},
 					map[string]any{
 						"name": "friday_public_open",
-						"short": "The time public hours starts on Fridays",
+						"title": "Friday Public Open",
 						"type": "`$ANY`",
+						"short": "The time public hours starts on Fridays",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "monday_is_closed",
-						"short": "Whether the museum is closed on Mondays",
+						"title": "Monday Is Closed",
 						"type": "`$ANY`",
+						"short": "Whether the museum is closed on Mondays",
 					},
 					map[string]any{
 						"name": "monday_member_close",
-						"short": "The time member hours ends on Mondays",
+						"title": "Monday Member Close",
 						"type": "`$ANY`",
+						"short": "The time member hours ends on Mondays",
 					},
 					map[string]any{
 						"name": "monday_member_open",
-						"short": "The time member hours starts on Mondays",
+						"title": "Monday Member Open",
 						"type": "`$ANY`",
+						"short": "The time member hours starts on Mondays",
 					},
 					map[string]any{
 						"name": "monday_public_close",
-						"short": "The time public hours ends on Mondays",
+						"title": "Monday Public Close",
 						"type": "`$ANY`",
+						"short": "The time public hours ends on Mondays",
 					},
 					map[string]any{
 						"name": "monday_public_open",
-						"short": "The time public hours starts on Mondays",
+						"title": "Monday Public Open",
 						"type": "`$ANY`",
+						"short": "The time public hours starts on Mondays",
 					},
 					map[string]any{
 						"name": "saturday_is_closed",
-						"short": "Whether the museum is closed on Saturdays",
+						"title": "Saturday Is Closed",
 						"type": "`$ANY`",
+						"short": "Whether the museum is closed on Saturdays",
 					},
 					map[string]any{
 						"name": "saturday_member_close",
-						"short": "The time member hours ends on Saturdays",
+						"title": "Saturday Member Close",
 						"type": "`$ANY`",
+						"short": "The time member hours ends on Saturdays",
 					},
 					map[string]any{
 						"name": "saturday_member_open",
-						"short": "The time member hours starts on Saturdays",
+						"title": "Saturday Member Open",
 						"type": "`$ANY`",
+						"short": "The time member hours starts on Saturdays",
 					},
 					map[string]any{
 						"name": "saturday_public_close",
-						"short": "The time public hours ends on Saturdays",
+						"title": "Saturday Public Close",
 						"type": "`$ANY`",
+						"short": "The time public hours ends on Saturdays",
 					},
 					map[string]any{
 						"name": "saturday_public_open",
-						"short": "The time public hours starts on Saturdays",
+						"title": "Saturday Public Open",
 						"type": "`$ANY`",
+						"short": "The time public hours starts on Saturdays",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "summary",
-						"short": "Readable summary of the hours",
+						"title": "Summary",
 						"type": "`$ANY`",
+						"short": "Readable summary of the hours",
 					},
 					map[string]any{
 						"name": "sunday_is_closed",
-						"short": "Whether the museum is closed on Sundays",
+						"title": "Sunday Is Closed",
 						"type": "`$ANY`",
+						"short": "Whether the museum is closed on Sundays",
 					},
 					map[string]any{
 						"name": "sunday_member_close",
-						"short": "The time member hours ends on Sundays",
+						"title": "Sunday Member Close",
 						"type": "`$ANY`",
+						"short": "The time member hours ends on Sundays",
 					},
 					map[string]any{
 						"name": "sunday_member_open",
-						"short": "The time member hours starts on Sundays",
+						"title": "Sunday Member Open",
 						"type": "`$ANY`",
+						"short": "The time member hours starts on Sundays",
 					},
 					map[string]any{
 						"name": "sunday_public_close",
-						"short": "The time public hours ends on Sundays",
+						"title": "Sunday Public Close",
 						"type": "`$ANY`",
+						"short": "The time public hours ends on Sundays",
 					},
 					map[string]any{
 						"name": "sunday_public_open",
-						"short": "The time public hours starts on Sundays",
+						"title": "Sunday Public Open",
 						"type": "`$ANY`",
+						"short": "The time public hours starts on Sundays",
 					},
 					map[string]any{
 						"name": "thursday_is_closed",
-						"short": "Whether the museum is closed on Thursdays",
+						"title": "Thursday Is Closed",
 						"type": "`$ANY`",
+						"short": "Whether the museum is closed on Thursdays",
 					},
 					map[string]any{
 						"name": "thursday_member_close",
-						"short": "The time member hours ends on Thursdays",
+						"title": "Thursday Member Close",
 						"type": "`$ANY`",
+						"short": "The time member hours ends on Thursdays",
 					},
 					map[string]any{
 						"name": "thursday_member_open",
-						"short": "The time member hours starts on Thursdays",
+						"title": "Thursday Member Open",
 						"type": "`$ANY`",
+						"short": "The time member hours starts on Thursdays",
 					},
 					map[string]any{
 						"name": "thursday_public_close",
-						"short": "The time public hours ends on Thursdays",
+						"title": "Thursday Public Close",
 						"type": "`$ANY`",
+						"short": "The time public hours ends on Thursdays",
 					},
 					map[string]any{
 						"name": "thursday_public_open",
-						"short": "The time public hours starts on Thursdays",
+						"title": "Thursday Public Open",
 						"type": "`$ANY`",
+						"short": "The time public hours starts on Thursdays",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "tuesday_is_closed",
-						"short": "Whether the museum is closed on Tuesdays",
+						"title": "Tuesday Is Closed",
 						"type": "`$ANY`",
+						"short": "Whether the museum is closed on Tuesdays",
 					},
 					map[string]any{
 						"name": "tuesday_member_close",
-						"short": "The time member hours ends on Tuesdays",
+						"title": "Tuesday Member Close",
 						"type": "`$ANY`",
+						"short": "The time member hours ends on Tuesdays",
 					},
 					map[string]any{
 						"name": "tuesday_member_open",
-						"short": "The time member hours starts on Tuesdays",
+						"title": "Tuesday Member Open",
 						"type": "`$ANY`",
+						"short": "The time member hours starts on Tuesdays",
 					},
 					map[string]any{
 						"name": "tuesday_public_close",
-						"short": "The time public hours ends on Tuesdays",
+						"title": "Tuesday Public Close",
 						"type": "`$ANY`",
+						"short": "The time public hours ends on Tuesdays",
 					},
 					map[string]any{
 						"name": "tuesday_public_open",
-						"short": "The time public hours starts on Tuesdays",
+						"title": "Tuesday Public Open",
 						"type": "`$ANY`",
+						"short": "The time public hours starts on Tuesdays",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "wednesday_is_closed",
-						"short": "Whether the museum is closed on Wednesdays",
+						"title": "Wednesday Is Closed",
 						"type": "`$ANY`",
+						"short": "Whether the museum is closed on Wednesdays",
 					},
 					map[string]any{
 						"name": "wednesday_member_close",
-						"short": "The time member hours ends on Wednesdays",
+						"title": "Wednesday Member Close",
 						"type": "`$ANY`",
+						"short": "The time member hours ends on Wednesdays",
 					},
 					map[string]any{
 						"name": "wednesday_member_open",
-						"short": "The time member hours starts on Wednesdays",
+						"title": "Wednesday Member Open",
 						"type": "`$ANY`",
+						"short": "The time member hours starts on Wednesdays",
 					},
 					map[string]any{
 						"name": "wednesday_public_close",
-						"short": "The time public hours ends on Wednesdays",
+						"title": "Wednesday Public Close",
 						"type": "`$ANY`",
+						"short": "The time public hours ends on Wednesdays",
 					},
 					map[string]any{
 						"name": "wednesday_public_open",
-						"short": "The time public hours starts on Wednesdays",
+						"title": "Wednesday Public Open",
 						"type": "`$ANY`",
+						"short": "The time public hours starts on Wednesdays",
 					},
 				},
 				"id": map[string]any{
@@ -3859,7 +4321,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/hours",
@@ -3868,14 +4329,16 @@ func MakeConfig() map[string]any {
 										"lit": "hours",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"hours",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"hours",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -3884,17 +4347,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/hours/{id}",
@@ -3906,18 +4358,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"hours",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"hours",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -3931,148 +4395,177 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ahash",
-						"short": "Image hash generated using ahash algorithm with 64 boolean subfields",
+						"title": "Ahash",
 						"type": "`$ANY`",
+						"short": "Image hash generated using ahash algorithm with 64 boolean subfields",
 					},
 					map[string]any{
 						"name": "alt_text",
-						"short": "Alternative text for the asset to describe it to people with low or no vision",
+						"title": "Alt Text",
 						"type": "`$ANY`",
+						"short": "Alternative text for the asset to describe it to people with low or no vision",
 					},
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "artwork_ids",
-						"short": "Unique identifiers of the artworks associated with this asset",
+						"title": "Artwork Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the artworks associated with this asset",
 					},
 					map[string]any{
 						"name": "artwork_titles",
-						"short": "Names of the artworks associated with this asset",
+						"title": "Artwork Titles",
 						"type": "`$ANY`",
+						"short": "Names of the artworks associated with this asset",
 					},
 					map[string]any{
 						"name": "color",
-						"short": "Dominant color of this image in HSL",
+						"title": "Color",
 						"type": "`$ANY`",
+						"short": "Dominant color of this image in HSL",
 					},
 					map[string]any{
 						"name": "colorfulness",
-						"short": "Unbounded positive float representing an abstract measure of colorfulness.",
+						"title": "Colorfulness",
 						"type": "`$ANY`",
+						"short": "Unbounded positive float representing an abstract measure of colorfulness.",
 					},
 					map[string]any{
 						"name": "content",
-						"short": "Text of or URL to the contents of this asset",
+						"title": "Content",
 						"type": "`$ANY`",
+						"short": "Text of or URL to the contents of this asset",
 					},
 					map[string]any{
 						"name": "content_e_tag",
-						"short": "Arbitrary unique identifier that changes when the binary file gets updated",
+						"title": "Content E Tag",
 						"type": "`$ANY`",
+						"short": "Arbitrary unique identifier that changes when the binary file gets updated",
 					},
 					map[string]any{
 						"name": "credit_line",
-						"short": "Asset-specific copyright information",
+						"title": "Credit Line",
 						"type": "`$ANY`",
+						"short": "Asset-specific copyright information",
 					},
 					map[string]any{
 						"name": "fingerprint",
-						"short": "Image hashes: aHash, dHash, pHash, wHash",
+						"title": "Fingerprint",
 						"type": "`$ANY`",
+						"short": "Image hashes: aHash, dHash, pHash, wHash",
 					},
 					map[string]any{
 						"name": "height",
-						"short": "Native height of the image",
+						"title": "Height",
 						"type": "`$NUMBER`",
+						"short": "Native height of the image",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "iiif_url",
-						"short": "IIIF URL of this image",
+						"title": "Iiif Url",
 						"type": "`$ANY`",
+						"short": "IIIF URL of this image",
 					},
 					map[string]any{
 						"name": "is_educational_resource",
-						"short": "Whether this resource is considered to be educational",
+						"title": "Is Educational Resource",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this resource is considered to be educational",
 					},
 					map[string]any{
 						"name": "is_multimedia_resource",
-						"short": "Whether this resource is considered to be multimedia",
+						"title": "Is Multimedia Resource",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this resource is considered to be multimedia",
 					},
 					map[string]any{
 						"name": "is_teacher_resource",
-						"short": "Whether this resource is considered to be educational",
+						"title": "Is Teacher Resource",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this resource is considered to be educational",
 					},
 					map[string]any{
 						"name": "lake_guid",
-						"short": "Unique UUID of this resource in LAKE, our DAMS.",
+						"title": "Lake Guid",
 						"type": "`$ANY`",
+						"short": "Unique UUID of this resource in LAKE, our DAMS.",
 					},
 					map[string]any{
 						"name": "lqip",
-						"short": "Low-quality image placeholder (LQIP).",
+						"title": "Lqip",
 						"type": "`$ANY`",
+						"short": "Low-quality image placeholder (LQIP).",
 					},
 					map[string]any{
 						"name": "phash",
-						"short": "Image hash generated using phash algorithm with 64 boolean subfields",
+						"title": "Phash",
 						"type": "`$ANY`",
+						"short": "Image hash generated using phash algorithm with 64 boolean subfields",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "type",
-						"short": "Type always takes one of the following values: image, sound, text, video",
+						"title": "Type",
 						"type": "`$ANY`",
+						"short": "Type always takes one of the following values: image, sound, text, video",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "width",
-						"short": "Native width of the image",
+						"title": "Width",
 						"type": "`$NUMBER`",
+						"short": "Native width of the image",
 					},
 				},
 				"id": map[string]any{
@@ -4086,7 +4579,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/images",
@@ -4095,14 +4587,16 @@ func MakeConfig() map[string]any {
 										"lit": "images",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"images",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"images",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -4111,17 +4605,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/images/{id}",
@@ -4133,18 +4616,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"images",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"images",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -4158,63 +4653,75 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "copy",
-						"short": "The text of the page",
+						"title": "Copy",
 						"type": "`$ANY`",
+						"short": "The text of the page",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "search_tags",
-						"short": "Editor-specified list of tags to aid in internal search",
+						"title": "Search Tags",
 						"type": "`$ANY`",
+						"short": "Editor-specified list of tags to aid in internal search",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "web_url",
-						"short": "The URL to this page on our website",
+						"title": "Web Url",
 						"type": "`$ANY`",
+						"short": "The URL to this page on our website",
 					},
 				},
 				"id": map[string]any{
@@ -4228,7 +4735,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/landing-pages",
@@ -4237,14 +4743,16 @@ func MakeConfig() map[string]any {
 										"lit": "landing-pages",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"landing-pages",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"landing-pages",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -4253,17 +4761,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/landing-pages/{id}",
@@ -4275,18 +4772,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"landing-pages",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"landing-pages",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -4300,63 +4809,75 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "latitude",
-						"short": "Latitude coordinate of the center of the room",
+						"title": "Latitude",
 						"type": "`$NUMBER`",
+						"short": "Latitude coordinate of the center of the room",
 					},
 					map[string]any{
 						"name": "longitude",
-						"short": "Longitude coordinate of the center of the room",
+						"title": "Longitude",
 						"type": "`$NUMBER`",
+						"short": "Longitude coordinate of the center of the room",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "tgn_id",
-						"short": "Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN)",
+						"title": "Tgn Id",
 						"type": "`$STRING`",
+						"short": "Reconciled identifier of this object in the Getty's Thesauraus of Geographic Names (TGN)",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 				},
 				"id": map[string]any{
@@ -4370,7 +4891,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/places",
@@ -4379,14 +4899,16 @@ func MakeConfig() map[string]any {
 										"lit": "places",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"places",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"places",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -4395,17 +4917,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/places/{id}",
@@ -4417,18 +4928,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"places",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"places",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -4442,58 +4965,69 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "copy",
-						"short": "The text of the page",
+						"title": "Copy",
 						"type": "`$ANY`",
+						"short": "The text of the page",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "web_url",
-						"short": "The URL to this page on our website",
+						"title": "Web Url",
 						"type": "`$ANY`",
+						"short": "The URL to this page on our website",
 					},
 				},
 				"id": map[string]any{
@@ -4507,7 +5041,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/press-releases",
@@ -4516,14 +5049,16 @@ func MakeConfig() map[string]any {
 										"lit": "press-releases",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"press-releases",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"press-releases",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -4532,17 +5067,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/press-releases/{id}",
@@ -4554,18 +5078,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"press-releases",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"press-releases",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -4579,58 +5115,69 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "copy",
-						"short": "The text of the page",
+						"title": "Copy",
 						"type": "`$ANY`",
+						"short": "The text of the page",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "web_url",
-						"short": "The URL to this page on our website",
+						"title": "Web Url",
 						"type": "`$ANY`",
+						"short": "The URL to this page on our website",
 					},
 				},
 				"id": map[string]any{
@@ -4644,7 +5191,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/printed-publications",
@@ -4653,14 +5199,16 @@ func MakeConfig() map[string]any {
 										"lit": "printed-publications",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"printed-publications",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"printed-publications",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -4669,17 +5217,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/printed-publications/{id}",
@@ -4691,18 +5228,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"printed-publications",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"printed-publications",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -4716,108 +5265,129 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "artist_ids",
-						"short": "Unique identifiers of the artists associated with this product",
+						"title": "Artist Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the artists associated with this product",
 					},
 					map[string]any{
 						"name": "artwork_ids",
-						"short": "Unique identifiers of the artworks associated with this product",
+						"title": "Artwork Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the artworks associated with this product",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "Explanation of what this product is",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Explanation of what this product is",
 					},
 					map[string]any{
 						"name": "exhibition_ids",
-						"short": "Unique identifiers of the exhibitions associated with this product",
+						"title": "Exhibition Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the exhibitions associated with this product",
 					},
 					map[string]any{
 						"name": "external_sku",
-						"short": "Numeric product identification code of a machine-readable barcode, when the customer sku differs from our internal one",
+						"title": "External Sku",
 						"type": "`$ANY`",
+						"short": "Numeric product identification code of a machine-readable barcode, when the customer sku differs from our internal one",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "image_url",
-						"short": "URL of an image for this product",
+						"title": "Image Url",
 						"type": "`$ANY`",
+						"short": "URL of an image for this product",
 					},
 					map[string]any{
 						"name": "max_compare_at_price",
-						"short": "Number indicating how much the most expensive variant of a product cost before a sale",
+						"title": "Max Compare At Price",
 						"type": "`$ANY`",
+						"short": "Number indicating how much the most expensive variant of a product cost before a sale",
 					},
 					map[string]any{
 						"name": "max_current_price",
-						"short": "Number indicating how much the most expensive variant of a product costs right now",
+						"title": "Max Current Price",
 						"type": "`$ANY`",
+						"short": "Number indicating how much the most expensive variant of a product costs right now",
 					},
 					map[string]any{
 						"name": "min_compare_at_price",
-						"short": "Number indicating how much the least expensive variant of a product cost before a sale",
+						"title": "Min Compare At Price",
 						"type": "`$ANY`",
+						"short": "Number indicating how much the least expensive variant of a product cost before a sale",
 					},
 					map[string]any{
 						"name": "min_current_price",
-						"short": "Number indicating how much the least expensive variant of a product costs right now",
+						"title": "Min Current Price",
 						"type": "`$ANY`",
+						"short": "Number indicating how much the least expensive variant of a product costs right now",
 					},
 					map[string]any{
 						"name": "price_display",
-						"short": "Explanation of what this product is",
+						"title": "Price Display",
 						"type": "`$ANY`",
+						"short": "Explanation of what this product is",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "web_url",
-						"short": "URL of this product in the shop",
+						"title": "Web Url",
 						"type": "`$ANY`",
+						"short": "URL of this product in the shop",
 					},
 				},
 				"id": map[string]any{
@@ -4831,7 +5401,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/products",
@@ -4840,14 +5409,16 @@ func MakeConfig() map[string]any {
 										"lit": "products",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"products",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"products",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -4856,17 +5427,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/products/{id}",
@@ -4878,18 +5438,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"products",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"products",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -4903,58 +5475,69 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "section_ids",
-						"short": "Unique identifiers of the sections of this publication",
+						"title": "Section Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the sections of this publication",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "web_url",
-						"short": "URL to the publication",
+						"title": "Web Url",
 						"type": "`$ANY`",
+						"short": "URL to the publication",
 					},
 				},
 				"id": map[string]any{
@@ -4968,7 +5551,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/publications",
@@ -4977,14 +5559,16 @@ func MakeConfig() map[string]any {
 										"lit": "publications",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"publications",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"publications",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -4993,17 +5577,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/publications/{id}",
@@ -5015,18 +5588,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"publications",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"publications",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -5040,48 +5625,57 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_id",
-						"short": "API unique identifier",
+						"title": "Api Id",
 						"type": "`$STRING`",
+						"short": "API unique identifier",
 					},
 					map[string]any{
 						"name": "api_link",
-						"short": "URL to this recource in the API",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "URL to this recource in the API",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "Name of the model the resource represents",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "Name of the model the resource represents",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier within the search index",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier within the search index",
 					},
 					map[string]any{
 						"name": "is_boosted",
-						"short": "Whether this record has been flagged to be boosted",
+						"title": "Is Boosted",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this record has been flagged to be boosted",
 					},
 					map[string]any{
 						"name": "score",
-						"short": "Search index ranking of the result",
+						"title": "Score",
 						"type": "`$NUMBER`",
+						"short": "Search index ranking of the result",
 					},
 					map[string]any{
 						"name": "thumbnail",
-						"short": "Metadata on the image representing this record",
+						"title": "Thumbnail",
 						"type": "`$ANY`",
+						"short": "Metadata on the image representing this record",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date this record was last updated in the API",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date this record was last updated in the API",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 				},
 				"id": map[string]any{
@@ -5095,46 +5689,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/agents/search",
@@ -5146,6 +5700,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"agents",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -5156,56 +5759,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"agents",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/articles/search",
@@ -5217,6 +5772,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"articles",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -5227,56 +5831,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"articles",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/artworks/search",
@@ -5288,6 +5844,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"artworks",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -5298,56 +5903,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"artworks",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/category-terms/search",
@@ -5359,6 +5916,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"category-terms",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -5369,56 +5975,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"category-terms",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/digital-publication-articles/search",
@@ -5430,6 +5988,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"digital-publication-articles",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -5440,56 +6047,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"digital-publication-articles",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/digital-publications/search",
@@ -5501,6 +6060,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"digital-publications",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -5511,56 +6119,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"digital-publications",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/educator-resources/search",
@@ -5572,6 +6132,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"educator-resources",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -5582,56 +6191,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"educator-resources",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/event-occurrences/search",
@@ -5643,6 +6204,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"event-occurrences",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -5653,56 +6263,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"event-occurrences",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/event-programs/search",
@@ -5714,6 +6276,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"event-programs",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -5724,56 +6335,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"event-programs",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/events/search",
@@ -5785,6 +6348,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"events",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -5795,56 +6407,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"events",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/exhibitions/search",
@@ -5856,6 +6420,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"exhibitions",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -5866,56 +6479,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"exhibitions",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/galleries/search",
@@ -5927,6 +6492,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"galleries",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -5937,56 +6551,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"galleries",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/generic-pages/search",
@@ -5998,6 +6564,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"generic-pages",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -6008,56 +6623,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"generic-pages",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/highlights/search",
@@ -6069,6 +6636,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"highlights",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -6079,56 +6695,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"highlights",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/hours/search",
@@ -6140,6 +6708,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"hours",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -6150,56 +6767,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"hours",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/images/search",
@@ -6211,6 +6780,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"images",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -6221,56 +6839,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"images",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/landing-pages/search",
@@ -6282,6 +6852,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"landing-pages",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -6292,56 +6911,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"landing-pages",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/mobile-sounds/search",
@@ -6353,6 +6924,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"mobile-sounds",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -6363,56 +6983,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"mobile-sounds",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/places/search",
@@ -6424,6 +6996,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"places",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -6434,56 +7055,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"places",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/press-releases/search",
@@ -6495,6 +7068,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"press-releases",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -6505,56 +7127,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"press-releases",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/printed-publications/search",
@@ -6566,6 +7140,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"printed-publications",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -6576,56 +7199,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"printed-publications",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/products/search",
@@ -6637,6 +7212,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"products",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -6647,56 +7271,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"products",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/publications/search",
@@ -6708,6 +7284,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"publications",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -6718,56 +7343,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"publications",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/search",
@@ -6776,6 +7353,54 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -6786,55 +7411,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/sections/search",
@@ -6846,6 +7424,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"sections",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -6856,56 +7483,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"sections",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/sites/search",
@@ -6917,6 +7496,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"sites",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -6927,56 +7555,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"sites",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/sounds/search",
@@ -6988,6 +7568,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"sounds",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -6998,56 +7627,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"sounds",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/static-pages/search",
@@ -7059,6 +7640,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"static-pages",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -7069,56 +7699,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"static-pages",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/texts/search",
@@ -7130,6 +7712,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"texts",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -7140,56 +7771,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"texts",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/tours/search",
@@ -7201,6 +7784,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"tours",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -7211,56 +7843,8 @@ func MakeConfig() map[string]any {
 										"sort",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"tours",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/videos/search",
@@ -7272,6 +7856,55 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"videos",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"facet",
@@ -7281,14 +7914,6 @@ func MakeConfig() map[string]any {
 										"size",
 										"sort",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"videos",
-									"search",
 								},
 							},
 						},
@@ -7302,83 +7927,99 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "accession",
-						"short": "An accession number parsed from the title or tombstone",
+						"title": "Accession",
 						"type": "`$ANY`",
+						"short": "An accession number parsed from the title or tombstone",
 					},
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "artwork_id",
-						"short": "Unique identifier of the artwork with which this section is associated",
+						"title": "Artwork Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the artwork with which this section is associated",
 					},
 					map[string]any{
 						"name": "content",
-						"short": "Content of this section in plaintext",
+						"title": "Content",
 						"type": "`$ANY`",
+						"short": "Content of this section in plaintext",
 					},
 					map[string]any{
 						"name": "generic_page_id",
-						"short": "Unique identifier of the page on the website that represents the publication this section belongs to",
+						"title": "Generic Page Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the page on the website that represents the publication this section belongs to",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "publication_id",
-						"short": "Unique identifier of the publication this section belongs to",
+						"title": "Publication Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of the publication this section belongs to",
 					},
 					map[string]any{
 						"name": "publication_title",
-						"short": "Name of the publication this section belongs to",
+						"title": "Publication Title",
 						"type": "`$ANY`",
+						"short": "Name of the publication this section belongs to",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "web_url",
-						"short": "URL to the section",
+						"title": "Web Url",
 						"type": "`$ANY`",
+						"short": "URL to the section",
 					},
 				},
 				"id": map[string]any{
@@ -7392,7 +8033,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/sections",
@@ -7401,14 +8041,16 @@ func MakeConfig() map[string]any {
 										"lit": "sections",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"sections",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"sections",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -7417,17 +8059,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/sections/{id}",
@@ -7439,18 +8070,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"sections",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"sections",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -7464,78 +8107,93 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "artwork_ids",
-						"short": "Unique identifiers of the artworks this site is associated with",
+						"title": "Artwork Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the artworks this site is associated with",
 					},
 					map[string]any{
 						"name": "artwork_titles",
-						"short": "Names of the artworks this site is associated with",
+						"title": "Artwork Titles",
 						"type": "`$ANY`",
+						"short": "Names of the artworks this site is associated with",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "Explanation of what this site is",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Explanation of what this site is",
 					},
 					map[string]any{
 						"name": "exhibition_ids",
-						"short": "Unique identifier of the exhibitions this site is associated with",
+						"title": "Exhibition Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifier of the exhibitions this site is associated with",
 					},
 					map[string]any{
 						"name": "exhibition_titles",
-						"short": "Names of the exhibitions this site is associated with",
+						"title": "Exhibition Titles",
 						"type": "`$ANY`",
+						"short": "Names of the exhibitions this site is associated with",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "web_url",
-						"short": "URL to this site",
+						"title": "Web Url",
 						"type": "`$ANY`",
+						"short": "URL to this site",
 					},
 				},
 				"id": map[string]any{
@@ -7549,7 +8207,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/sites",
@@ -7558,14 +8215,16 @@ func MakeConfig() map[string]any {
 										"lit": "sites",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"sites",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"sites",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -7574,17 +8233,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/sites/{id}",
@@ -7596,18 +8244,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"sites",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"sites",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -7621,113 +8281,135 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "alt_text",
-						"short": "Alternative text for the asset to describe it to people with low or no vision",
+						"title": "Alt Text",
 						"type": "`$ANY`",
+						"short": "Alternative text for the asset to describe it to people with low or no vision",
 					},
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "artwork_ids",
-						"short": "Unique identifiers of the artworks associated with this asset",
+						"title": "Artwork Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the artworks associated with this asset",
 					},
 					map[string]any{
 						"name": "artwork_titles",
-						"short": "Names of the artworks associated with this asset",
+						"title": "Artwork Titles",
 						"type": "`$ANY`",
+						"short": "Names of the artworks associated with this asset",
 					},
 					map[string]any{
 						"name": "content",
-						"short": "Text of or URL to the contents of this asset",
+						"title": "Content",
 						"type": "`$ANY`",
+						"short": "Text of or URL to the contents of this asset",
 					},
 					map[string]any{
 						"name": "content_e_tag",
-						"short": "Arbitrary unique identifier that changes when the binary file gets updated",
+						"title": "Content E Tag",
 						"type": "`$ANY`",
+						"short": "Arbitrary unique identifier that changes when the binary file gets updated",
 					},
 					map[string]any{
 						"name": "credit_line",
-						"short": "Asset-specific copyright information",
+						"title": "Credit Line",
 						"type": "`$ANY`",
+						"short": "Asset-specific copyright information",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "is_educational_resource",
-						"short": "Whether this resource is considered to be educational",
+						"title": "Is Educational Resource",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this resource is considered to be educational",
 					},
 					map[string]any{
 						"name": "is_multimedia_resource",
-						"short": "Whether this resource is considered to be multimedia",
+						"title": "Is Multimedia Resource",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this resource is considered to be multimedia",
 					},
 					map[string]any{
 						"name": "is_teacher_resource",
-						"short": "Whether this resource is considered to be educational",
+						"title": "Is Teacher Resource",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this resource is considered to be educational",
 					},
 					map[string]any{
 						"name": "lake_guid",
-						"short": "Unique UUID of this resource in LAKE, our DAMS.",
+						"title": "Lake Guid",
 						"type": "`$ANY`",
+						"short": "Unique UUID of this resource in LAKE, our DAMS.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "Name of this mobile audio file – derived from the artwork and tour titles",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "Name of this mobile audio file – derived from the artwork and tour titles",
 					},
 					map[string]any{
 						"name": "transcript",
-						"short": "Text transcription of the audio file",
+						"title": "Transcript",
 						"type": "`$ANY`",
+						"short": "Text transcription of the audio file",
 					},
 					map[string]any{
 						"name": "type",
-						"short": "Type always takes one of the following values: image, sound, text, video",
+						"title": "Type",
 						"type": "`$ANY`",
+						"short": "Type always takes one of the following values: image, sound, text, video",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "web_url",
-						"short": "URL to the audio file",
+						"title": "Web Url",
 						"type": "`$ANY`",
+						"short": "URL to the audio file",
 					},
 				},
 				"id": map[string]any{
@@ -7741,7 +8423,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/mobile-sounds",
@@ -7750,17 +8431,18 @@ func MakeConfig() map[string]any {
 										"lit": "mobile-sounds",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"mobile-sounds",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"mobile-sounds",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/sounds",
@@ -7769,14 +8451,16 @@ func MakeConfig() map[string]any {
 										"lit": "sounds",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"sounds",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"sounds",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -7785,17 +8469,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/mobile-sounds/{id}",
@@ -7807,32 +8480,33 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
+								"parts": []any{
+									"mobile-sounds",
+									"{id}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"id",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"mobile-sounds",
-									"{id}",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/sounds/{id}",
@@ -7844,18 +8518,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"sounds",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"sounds",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -7869,53 +8555,63 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "web_url",
-						"short": "The URL to this page on our website",
+						"title": "Web Url",
 						"type": "`$ANY`",
+						"short": "The URL to this page on our website",
 					},
 				},
 				"id": map[string]any{
@@ -7929,7 +8625,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/static-pages",
@@ -7938,14 +8633,16 @@ func MakeConfig() map[string]any {
 										"lit": "static-pages",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"static-pages",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"static-pages",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -7954,17 +8651,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/static-pages/{id}",
@@ -7976,18 +8662,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"static-pages",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"static-pages",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -8001,103 +8699,123 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "alt_text",
-						"short": "Alternative text for the asset to describe it to people with low or no vision",
+						"title": "Alt Text",
 						"type": "`$ANY`",
+						"short": "Alternative text for the asset to describe it to people with low or no vision",
 					},
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "artwork_ids",
-						"short": "Unique identifiers of the artworks associated with this asset",
+						"title": "Artwork Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the artworks associated with this asset",
 					},
 					map[string]any{
 						"name": "artwork_titles",
-						"short": "Names of the artworks associated with this asset",
+						"title": "Artwork Titles",
 						"type": "`$ANY`",
+						"short": "Names of the artworks associated with this asset",
 					},
 					map[string]any{
 						"name": "content",
-						"short": "Text of or URL to the contents of this asset",
+						"title": "Content",
 						"type": "`$ANY`",
+						"short": "Text of or URL to the contents of this asset",
 					},
 					map[string]any{
 						"name": "content_e_tag",
-						"short": "Arbitrary unique identifier that changes when the binary file gets updated",
+						"title": "Content E Tag",
 						"type": "`$ANY`",
+						"short": "Arbitrary unique identifier that changes when the binary file gets updated",
 					},
 					map[string]any{
 						"name": "credit_line",
-						"short": "Asset-specific copyright information",
+						"title": "Credit Line",
 						"type": "`$ANY`",
+						"short": "Asset-specific copyright information",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "is_educational_resource",
-						"short": "Whether this resource is considered to be educational",
+						"title": "Is Educational Resource",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this resource is considered to be educational",
 					},
 					map[string]any{
 						"name": "is_multimedia_resource",
-						"short": "Whether this resource is considered to be multimedia",
+						"title": "Is Multimedia Resource",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this resource is considered to be multimedia",
 					},
 					map[string]any{
 						"name": "is_teacher_resource",
-						"short": "Whether this resource is considered to be educational",
+						"title": "Is Teacher Resource",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this resource is considered to be educational",
 					},
 					map[string]any{
 						"name": "lake_guid",
-						"short": "Unique UUID of this resource in LAKE, our DAMS.",
+						"title": "Lake Guid",
 						"type": "`$ANY`",
+						"short": "Unique UUID of this resource in LAKE, our DAMS.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "type",
-						"short": "Type always takes one of the following values: image, sound, text, video",
+						"title": "Type",
 						"type": "`$ANY`",
+						"short": "Type always takes one of the following values: image, sound, text, video",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 				},
 				"id": map[string]any{
@@ -8111,7 +8829,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/texts",
@@ -8120,14 +8837,16 @@ func MakeConfig() map[string]any {
 										"lit": "texts",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"texts",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"texts",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -8136,17 +8855,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/texts/{id}",
@@ -8158,18 +8866,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"texts",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"texts",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -8183,88 +8903,105 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "artist_titles",
-						"short": "Names of the artists of the artworks featured in this tour's tour stops",
+						"title": "Artist Titles",
 						"type": "`$ANY`",
+						"short": "Names of the artists of the artworks featured in this tour's tour stops",
 					},
 					map[string]any{
 						"name": "artwork_titles",
-						"short": "Names of the artworks featured in this tour's tour stops",
+						"title": "Artwork Titles",
 						"type": "`$ANY`",
+						"short": "Names of the artworks featured in this tour's tour stops",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "Explanation of what the tour is",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Explanation of what the tour is",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "image",
-						"short": "The main image for the tour",
+						"title": "Image",
 						"type": "`$ANY`",
+						"short": "The main image for the tour",
 					},
 					map[string]any{
 						"name": "intro",
-						"short": "Text introducing the tour",
+						"title": "Intro",
 						"type": "`$ANY`",
+						"short": "Text introducing the tour",
 					},
 					map[string]any{
 						"name": "intro_link",
-						"short": "Link to the audio file of the introduction",
+						"title": "Intro Link",
 						"type": "`$ANY`",
+						"short": "Link to the audio file of the introduction",
 					},
 					map[string]any{
 						"name": "intro_transcript",
-						"short": "Transcript of the introduction audio to the tour",
+						"title": "Intro Transcript",
 						"type": "`$ANY`",
+						"short": "Transcript of the introduction audio to the tour",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 					map[string]any{
 						"name": "weight",
-						"short": "Number representing this tour's sort order",
+						"title": "Weight",
 						"type": "`$NUMBER`",
+						"short": "Number representing this tour's sort order",
 					},
 				},
 				"id": map[string]any{
@@ -8278,7 +9015,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/tours",
@@ -8287,14 +9023,16 @@ func MakeConfig() map[string]any {
 										"lit": "tours",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"tours",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"tours",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -8303,17 +9041,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/tours/{id}",
@@ -8325,18 +9052,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"tours",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"tours",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -8350,103 +9089,123 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "alt_text",
-						"short": "Alternative text for the asset to describe it to people with low or no vision",
+						"title": "Alt Text",
 						"type": "`$ANY`",
+						"short": "Alternative text for the asset to describe it to people with low or no vision",
 					},
 					map[string]any{
 						"name": "api_link",
-						"short": "REST API link for this resource",
+						"title": "Api Link",
 						"type": "`$ANY`",
+						"short": "REST API link for this resource",
 					},
 					map[string]any{
 						"name": "api_model",
-						"short": "REST API resource type or endpoint",
+						"title": "Api Model",
 						"type": "`$ANY`",
+						"short": "REST API resource type or endpoint",
 					},
 					map[string]any{
 						"name": "artwork_ids",
-						"short": "Unique identifiers of the artworks associated with this asset",
+						"title": "Artwork Ids",
 						"type": "`$ANY`",
+						"short": "Unique identifiers of the artworks associated with this asset",
 					},
 					map[string]any{
 						"name": "artwork_titles",
-						"short": "Names of the artworks associated with this asset",
+						"title": "Artwork Titles",
 						"type": "`$ANY`",
+						"short": "Names of the artworks associated with this asset",
 					},
 					map[string]any{
 						"name": "content",
-						"short": "Text of or URL to the contents of this asset",
+						"title": "Content",
 						"type": "`$ANY`",
+						"short": "Text of or URL to the contents of this asset",
 					},
 					map[string]any{
 						"name": "content_e_tag",
-						"short": "Arbitrary unique identifier that changes when the binary file gets updated",
+						"title": "Content E Tag",
 						"type": "`$ANY`",
+						"short": "Arbitrary unique identifier that changes when the binary file gets updated",
 					},
 					map[string]any{
 						"name": "credit_line",
-						"short": "Asset-specific copyright information",
+						"title": "Credit Line",
 						"type": "`$ANY`",
+						"short": "Asset-specific copyright information",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier of this resource.",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier of this resource.",
 					},
 					map[string]any{
 						"name": "is_educational_resource",
-						"short": "Whether this resource is considered to be educational",
+						"title": "Is Educational Resource",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this resource is considered to be educational",
 					},
 					map[string]any{
 						"name": "is_multimedia_resource",
-						"short": "Whether this resource is considered to be multimedia",
+						"title": "Is Multimedia Resource",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this resource is considered to be multimedia",
 					},
 					map[string]any{
 						"name": "is_teacher_resource",
-						"short": "Whether this resource is considered to be educational",
+						"title": "Is Teacher Resource",
 						"type": "`$BOOLEAN`",
+						"short": "Whether this resource is considered to be educational",
 					},
 					map[string]any{
 						"name": "lake_guid",
-						"short": "Unique UUID of this resource in LAKE, our DAMS.",
+						"title": "Lake Guid",
 						"type": "`$ANY`",
+						"short": "Unique UUID of this resource in LAKE, our DAMS.",
 					},
 					map[string]any{
 						"name": "source_updated_at",
-						"short": "Date and time the resource was updated in the source system",
+						"title": "Source Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the resource was updated in the source system",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_all",
-						"short": "Internal field to power the `/autosuggest` endpoint.",
+						"title": "Suggest Autocomplete All",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autosuggest` endpoint.",
 					},
 					map[string]any{
 						"name": "suggest_autocomplete_boosted",
-						"short": "Internal field to power the `/autocomplete` endpoint.",
+						"title": "Suggest Autocomplete Boosted",
 						"type": "`$ANY`",
+						"short": "Internal field to power the `/autocomplete` endpoint.",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Date and time the record was updated in the aggregator search index",
+						"title": "Timestamp",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator search index",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The name of this resource",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The name of this resource",
 					},
 					map[string]any{
 						"name": "type",
-						"short": "Type always takes one of the following values: image, sound, text, video",
+						"title": "Type",
 						"type": "`$ANY`",
+						"short": "Type always takes one of the following values: image, sound, text, video",
 					},
 					map[string]any{
 						"name": "updated_at",
-						"short": "Date and time the record was updated in the aggregator database",
+						"title": "Updated At",
 						"type": "`$ANY`",
+						"short": "Date and time the record was updated in the aggregator database",
 					},
 				},
 				"id": map[string]any{
@@ -8460,7 +9219,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/videos",
@@ -8469,14 +9227,16 @@ func MakeConfig() map[string]any {
 										"lit": "videos",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"videos",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"videos",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -8485,17 +9245,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/videos/{id}",
@@ -8507,18 +9256,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"videos",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"videos",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},

@@ -1,0 +1,233 @@
+# Entity: product
+
+main: kit: entity: product: {
+
+  alias: field: {}
+
+  fields: {
+    api_link: {
+      h: "Api Link"
+      n: "api_link"
+      r: false
+      sh: "REST API link for this resource"
+      t: "`$ANY`"
+    }
+    api_model: {
+      h: "Api Model"
+      n: "api_model"
+      r: false
+      sh: "REST API resource type or endpoint"
+      t: "`$ANY`"
+    }
+    artist_ids: {
+      h: "Artist Ids"
+      n: "artist_ids"
+      r: false
+      sh: "Unique identifiers of the artists associated with this product"
+      t: "`$ANY`"
+    }
+    artwork_ids: {
+      h: "Artwork Ids"
+      n: "artwork_ids"
+      r: false
+      sh: "Unique identifiers of the artworks associated with this product"
+      t: "`$ANY`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Explanation of what this product is"
+      t: "`$STRING`"
+    }
+    exhibition_ids: {
+      h: "Exhibition Ids"
+      n: "exhibition_ids"
+      r: false
+      sh: "Unique identifiers of the exhibitions associated with this product"
+      t: "`$ANY`"
+    }
+    external_sku: {
+      h: "External Sku"
+      n: "external_sku"
+      r: false
+      sh: "Numeric product identification code of a machine-readable barcode, when the customer sku differs from our internal one"
+      t: "`$ANY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier of this resource."
+      t: "`$STRING`"
+    }
+    image_url: {
+      h: "Image Url"
+      n: "image_url"
+      r: false
+      sh: "URL of an image for this product"
+      t: "`$ANY`"
+    }
+    max_compare_at_price: {
+      h: "Max Compare At Price"
+      n: "max_compare_at_price"
+      r: false
+      sh: "Number indicating how much the most expensive variant of a product cost before a sale"
+      t: "`$ANY`"
+    }
+    max_current_price: {
+      h: "Max Current Price"
+      n: "max_current_price"
+      r: false
+      sh: "Number indicating how much the most expensive variant of a product costs right now"
+      t: "`$ANY`"
+    }
+    min_compare_at_price: {
+      h: "Min Compare At Price"
+      n: "min_compare_at_price"
+      r: false
+      sh: "Number indicating how much the least expensive variant of a product cost before a sale"
+      t: "`$ANY`"
+    }
+    min_current_price: {
+      h: "Min Current Price"
+      n: "min_current_price"
+      r: false
+      sh: "Number indicating how much the least expensive variant of a product costs right now"
+      t: "`$ANY`"
+    }
+    price_display: {
+      h: "Price Display"
+      n: "price_display"
+      r: false
+      sh: "Explanation of what this product is"
+      t: "`$ANY`"
+    }
+    source_updated_at: {
+      h: "Source Updated At"
+      n: "source_updated_at"
+      r: false
+      sh: "Date and time the resource was updated in the source system"
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_all: {
+      h: "Suggest Autocomplete All"
+      n: "suggest_autocomplete_all"
+      r: false
+      sh: "Internal field to power the `/autosuggest` endpoint."
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_boosted: {
+      h: "Suggest Autocomplete Boosted"
+      n: "suggest_autocomplete_boosted"
+      r: false
+      sh: "Internal field to power the `/autocomplete` endpoint."
+      t: "`$ANY`"
+    }
+    timestamp: {
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "Date and time the record was updated in the aggregator search index"
+      t: "`$ANY`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "The name of this resource"
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "Date and time the record was updated in the aggregator database"
+      t: "`$ANY`"
+    }
+    web_url: {
+      h: "Web Url"
+      n: "web_url"
+      r: false
+      sh: "URL of this product in the shop"
+      t: "`$ANY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "product"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /products"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/products"
+          s: [
+            {
+              lit: "products"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /products/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/products/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "products"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

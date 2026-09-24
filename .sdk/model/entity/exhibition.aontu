@@ -1,0 +1,275 @@
+# Entity: exhibition
+
+main: kit: entity: exhibition: {
+
+  alias: field: {}
+
+  fields: {
+    aic_end_at: {
+      h: "Aic End At"
+      n: "aic_end_at"
+      r: false
+      sh: "Date the exhibition closed at the Art Institute of Chicago"
+      t: "`$ANY`"
+    }
+    aic_start_at: {
+      h: "Aic Start At"
+      n: "aic_start_at"
+      r: false
+      sh: "Date the exhibition opened at the Art Institute of Chicago"
+      t: "`$ANY`"
+    }
+    alt_image_ids: {
+      h: "Alt Image Ids"
+      n: "alt_image_ids"
+      r: false
+      sh: "Unique identifiers of all non-preferred images of this exhibition."
+      t: "`$ANY`"
+    }
+    api_link: {
+      h: "Api Link"
+      n: "api_link"
+      r: false
+      sh: "REST API link for this resource"
+      t: "`$ANY`"
+    }
+    api_model: {
+      h: "Api Model"
+      n: "api_model"
+      r: false
+      sh: "REST API resource type or endpoint"
+      t: "`$ANY`"
+    }
+    artist_ids: {
+      h: "Artist Ids"
+      n: "artist_ids"
+      r: false
+      sh: "Unique identifiers of the artist agent records representing who was shown in the exhibition"
+      t: "`$ANY`"
+    }
+    artwork_ids: {
+      h: "Artwork Ids"
+      n: "artwork_ids"
+      r: false
+      sh: "Unique identifiers of the artworks that were part of the exhibition"
+      t: "`$ANY`"
+    }
+    artwork_titles: {
+      h: "Artwork Titles"
+      n: "artwork_titles"
+      r: false
+      sh: "Names of the artworks that were part of the exhibition"
+      t: "`$ANY`"
+    }
+    document_ids: {
+      h: "Document Ids"
+      n: "document_ids"
+      r: false
+      sh: "Unique identifiers of assets that serve as documentation for this exhibition"
+      t: "`$ANY`"
+    }
+    gallery_id: {
+      h: "Gallery Id"
+      n: "gallery_id"
+      r: false
+      sh: "Unique identifier of the gallery that mainly housed the exhibition"
+      t: "`$STRING`"
+    }
+    gallery_title: {
+      h: "Gallery Title"
+      n: "gallery_title"
+      r: false
+      sh: "The name of the gallery that mainly housed the exhibition"
+      t: "`$ANY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier of this resource."
+      t: "`$STRING`"
+    }
+    image_id: {
+      h: "Image Id"
+      n: "image_id"
+      r: false
+      sh: "Unique identifier of the preferred image to use to represent this exhibition"
+      t: "`$STRING`"
+    }
+    image_url: {
+      h: "Image Url"
+      n: "image_url"
+      r: false
+      sh: "URL to the hero image from the website"
+      t: "`$ANY`"
+    }
+    is_featured: {
+      h: "Is Featured"
+      n: "is_featured"
+      r: false
+      sh: "Is this exhibition currently featured on our website?"
+      t: "`$BOOLEAN`"
+    }
+    is_published: {
+      h: "Is Published"
+      n: "is_published"
+      r: false
+      sh: "Is this exhibition currently published on our website?"
+      t: "`$BOOLEAN`"
+    }
+    position: {
+      h: "Position"
+      n: "position"
+      r: false
+      sh: "Numering position represnting the order in which this exhibition is featured on the website"
+      t: "`$ANY`"
+    }
+    short_description: {
+      h: "Short Description"
+      n: "short_description"
+      r: false
+      sh: "Brief explanation of what this exhibition is"
+      t: "`$ANY`"
+    }
+    site_ids: {
+      h: "Site Ids"
+      n: "site_ids"
+      r: false
+      sh: "Unique identifiers of the microsites this exhibition is a part of"
+      t: "`$ANY`"
+    }
+    source_updated_at: {
+      h: "Source Updated At"
+      n: "source_updated_at"
+      r: false
+      sh: "Date and time the resource was updated in the source system"
+      t: "`$ANY`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "Whether the exhibition is open or closed"
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_all: {
+      h: "Suggest Autocomplete All"
+      n: "suggest_autocomplete_all"
+      r: false
+      sh: "Internal field to power the `/autosuggest` endpoint."
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_boosted: {
+      h: "Suggest Autocomplete Boosted"
+      n: "suggest_autocomplete_boosted"
+      r: false
+      sh: "Internal field to power the `/autocomplete` endpoint."
+      t: "`$ANY`"
+    }
+    timestamp: {
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "Date and time the record was updated in the aggregator search index"
+      t: "`$ANY`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "The name of this resource"
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "Date and time the record was updated in the aggregator database"
+      t: "`$ANY`"
+    }
+    web_url: {
+      h: "Web Url"
+      n: "web_url"
+      r: false
+      sh: "URL to this exhibition on our website"
+      t: "`$ANY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "exhibition"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /exhibitions"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/exhibitions"
+          s: [
+            {
+              lit: "exhibitions"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /exhibitions/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/exhibitions/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "exhibitions"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

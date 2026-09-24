@@ -1,0 +1,44 @@
+# BasicSectionFlow
+
+main: kit: flow: BasicSectionFlow:
+{
+  entity: "section",
+  kind: "basic",
+  name: "BasicSectionFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "section_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "section_ref01",
+        srcdatavar: "section_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "section01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-section_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSectionFlow"
+}

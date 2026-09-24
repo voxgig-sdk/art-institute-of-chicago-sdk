@@ -1,0 +1,226 @@
+# Entity: video
+
+main: kit: entity: video: {
+
+  alias: field: {}
+
+  fields: {
+    alt_text: {
+      h: "Alt Text"
+      n: "alt_text"
+      r: false
+      sh: "Alternative text for the asset to describe it to people with low or no vision"
+      t: "`$ANY`"
+    }
+    api_link: {
+      h: "Api Link"
+      n: "api_link"
+      r: false
+      sh: "REST API link for this resource"
+      t: "`$ANY`"
+    }
+    api_model: {
+      h: "Api Model"
+      n: "api_model"
+      r: false
+      sh: "REST API resource type or endpoint"
+      t: "`$ANY`"
+    }
+    artwork_ids: {
+      h: "Artwork Ids"
+      n: "artwork_ids"
+      r: false
+      sh: "Unique identifiers of the artworks associated with this asset"
+      t: "`$ANY`"
+    }
+    artwork_titles: {
+      h: "Artwork Titles"
+      n: "artwork_titles"
+      r: false
+      sh: "Names of the artworks associated with this asset"
+      t: "`$ANY`"
+    }
+    content: {
+      h: "Content"
+      n: "content"
+      r: false
+      sh: "Text of or URL to the contents of this asset"
+      t: "`$ANY`"
+    }
+    content_e_tag: {
+      h: "Content E Tag"
+      n: "content_e_tag"
+      r: false
+      sh: "Arbitrary unique identifier that changes when the binary file gets updated"
+      t: "`$ANY`"
+    }
+    credit_line: {
+      h: "Credit Line"
+      n: "credit_line"
+      r: false
+      sh: "Asset-specific copyright information"
+      t: "`$ANY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier of this resource."
+      t: "`$STRING`"
+    }
+    is_educational_resource: {
+      h: "Is Educational Resource"
+      n: "is_educational_resource"
+      r: false
+      sh: "Whether this resource is considered to be educational"
+      t: "`$BOOLEAN`"
+    }
+    is_multimedia_resource: {
+      h: "Is Multimedia Resource"
+      n: "is_multimedia_resource"
+      r: false
+      sh: "Whether this resource is considered to be multimedia"
+      t: "`$BOOLEAN`"
+    }
+    is_teacher_resource: {
+      h: "Is Teacher Resource"
+      n: "is_teacher_resource"
+      r: false
+      sh: "Whether this resource is considered to be educational"
+      t: "`$BOOLEAN`"
+    }
+    lake_guid: {
+      h: "Lake Guid"
+      n: "lake_guid"
+      r: false
+      sh: "Unique UUID of this resource in LAKE, our DAMS."
+      t: "`$ANY`"
+    }
+    source_updated_at: {
+      h: "Source Updated At"
+      n: "source_updated_at"
+      r: false
+      sh: "Date and time the resource was updated in the source system"
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_all: {
+      h: "Suggest Autocomplete All"
+      n: "suggest_autocomplete_all"
+      r: false
+      sh: "Internal field to power the `/autosuggest` endpoint."
+      t: "`$ANY`"
+    }
+    suggest_autocomplete_boosted: {
+      h: "Suggest Autocomplete Boosted"
+      n: "suggest_autocomplete_boosted"
+      r: false
+      sh: "Internal field to power the `/autocomplete` endpoint."
+      t: "`$ANY`"
+    }
+    timestamp: {
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "Date and time the record was updated in the aggregator search index"
+      t: "`$ANY`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "The name of this resource"
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Type always takes one of the following values: image, sound, text, video"
+      t: "`$ANY`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "Date and time the record was updated in the aggregator database"
+      t: "`$ANY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "video"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /videos"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/videos"
+          s: [
+            {
+              lit: "videos"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /videos/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/videos/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "videos"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
