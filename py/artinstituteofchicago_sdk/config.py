@@ -5738,7 +5738,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -5810,7 +5810,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -5882,7 +5882,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -5954,7 +5954,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -6026,7 +6026,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -6098,7 +6098,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -6170,7 +6170,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -6242,7 +6242,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -6314,7 +6314,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -6386,7 +6386,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -6458,7 +6458,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -6530,7 +6530,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -6602,7 +6602,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -6674,7 +6674,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -6746,7 +6746,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -6818,7 +6818,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -6890,7 +6890,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -6962,7 +6962,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -7034,7 +7034,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -7106,7 +7106,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -7178,7 +7178,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -7250,7 +7250,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -7322,7 +7322,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -7390,7 +7390,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -7462,7 +7462,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -7534,7 +7534,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -7606,7 +7606,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -7678,7 +7678,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -7750,7 +7750,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -7822,7 +7822,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
@@ -7894,7 +7894,7 @@ def make_config():
                   "query": [
                     {
                       "name": "facet",
-                      "orig": "facet",
+                      "orig": "facets",
                       "type": "`$STRING`",
                       "kind": "query",
                     },

@@ -5735,7 +5735,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -5807,7 +5807,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -5879,7 +5879,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -5951,7 +5951,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -6023,7 +6023,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -6095,7 +6095,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -6167,7 +6167,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -6239,7 +6239,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -6311,7 +6311,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -6383,7 +6383,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -6455,7 +6455,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -6527,7 +6527,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -6599,7 +6599,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -6671,7 +6671,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -6743,7 +6743,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -6815,7 +6815,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -6887,7 +6887,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -6959,7 +6959,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -7031,7 +7031,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -7103,7 +7103,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -7175,7 +7175,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -7247,7 +7247,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -7319,7 +7319,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -7387,7 +7387,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -7459,7 +7459,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -7531,7 +7531,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -7603,7 +7603,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -7675,7 +7675,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -7747,7 +7747,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -7819,7 +7819,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],
@@ -7891,7 +7891,7 @@ class ArtInstituteOfChicagoConfig
                     'query' => [
                       [
                         'name' => 'facet',
-                        'orig' => 'facet',
+                        'orig' => 'facets',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                       ],

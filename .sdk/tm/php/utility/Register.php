@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 ArtInstituteOfChicagoUtility::setRegistrar(function (ArtInstituteOfChicagoUtility $u): void {
     $u->clean = [ArtInstituteOfChicagoClean::class, 'call'];
+    $u->clean_add = [ArtInstituteOfChicagoClean::class, 'add'];
+    $u->clean_explain = [ArtInstituteOfChicagoDone::class, 'clean_explain'];
     $u->done = [ArtInstituteOfChicagoDone::class, 'call'];
     $u->make_error = [ArtInstituteOfChicagoMakeError::class, 'call'];
     $u->feature_add = [ArtInstituteOfChicagoFeatureAdd::class, 'call'];

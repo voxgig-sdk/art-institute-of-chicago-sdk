@@ -5713,7 +5713,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -5785,7 +5785,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -5857,7 +5857,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -5929,7 +5929,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -6001,7 +6001,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -6073,7 +6073,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -6145,7 +6145,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -6217,7 +6217,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -6289,7 +6289,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -6361,7 +6361,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -6433,7 +6433,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -6505,7 +6505,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -6577,7 +6577,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -6649,7 +6649,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -6721,7 +6721,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -6793,7 +6793,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -6865,7 +6865,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -6937,7 +6937,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -7009,7 +7009,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -7081,7 +7081,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -7153,7 +7153,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -7225,7 +7225,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -7297,7 +7297,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -7365,7 +7365,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -7437,7 +7437,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -7509,7 +7509,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -7581,7 +7581,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -7653,7 +7653,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -7725,7 +7725,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -7797,7 +7797,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -7869,7 +7869,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "facet",
-											"orig": "facet",
+											"orig": "facets",
 											"type": "`$STRING`",
 											"kind": "query",
 										},

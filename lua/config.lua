@@ -5709,7 +5709,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -5781,7 +5781,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -5853,7 +5853,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -5925,7 +5925,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -5997,7 +5997,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6069,7 +6069,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6141,7 +6141,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6213,7 +6213,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6285,7 +6285,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6357,7 +6357,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6429,7 +6429,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6501,7 +6501,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6573,7 +6573,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6645,7 +6645,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6717,7 +6717,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6789,7 +6789,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6861,7 +6861,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -6933,7 +6933,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7005,7 +7005,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7077,7 +7077,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7149,7 +7149,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7221,7 +7221,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7293,7 +7293,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7361,7 +7361,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7433,7 +7433,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7505,7 +7505,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7577,7 +7577,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7649,7 +7649,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7721,7 +7721,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7793,7 +7793,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },
@@ -7865,7 +7865,7 @@ local function make_config()
                   ["query"] = {
                     {
                       ["name"] = "facet",
-                      ["orig"] = "facet",
+                      ["orig"] = "facets",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },

@@ -5721,7 +5721,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -5793,7 +5793,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -5865,7 +5865,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -5937,7 +5937,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -6009,7 +6009,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -6081,7 +6081,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -6153,7 +6153,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -6225,7 +6225,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -6297,7 +6297,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -6369,7 +6369,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -6441,7 +6441,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -6513,7 +6513,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -6585,7 +6585,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -6657,7 +6657,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -6729,7 +6729,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -6801,7 +6801,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -6873,7 +6873,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -6945,7 +6945,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -7017,7 +7017,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -7089,7 +7089,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -7161,7 +7161,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -7233,7 +7233,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -7305,7 +7305,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -7373,7 +7373,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -7445,7 +7445,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -7517,7 +7517,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -7589,7 +7589,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -7661,7 +7661,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -7733,7 +7733,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -7805,7 +7805,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -7877,7 +7877,7 @@ module ArtInstituteOfChicagoConfig
                     "query" => [
                       {
                         "name" => "facet",
-                        "orig" => "facet",
+                        "orig" => "facets",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },

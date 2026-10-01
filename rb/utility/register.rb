@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 ArtInstituteOfChicagoUtility.registrar = ->(u) {
   u.clean = ArtInstituteOfChicagoUtilities::Clean
+  u.clean_add = ArtInstituteOfChicagoUtilities::CleanAdd
+  u.clean_explain = ArtInstituteOfChicagoUtilities::CleanExplain
   u.done = ArtInstituteOfChicagoUtilities::Done
   u.make_error = ArtInstituteOfChicagoUtilities::MakeError
   u.feature_add = ArtInstituteOfChicagoUtilities::FeatureAdd
