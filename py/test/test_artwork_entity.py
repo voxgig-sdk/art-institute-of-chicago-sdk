@@ -9,9 +9,35 @@ import pytest
 from artinstituteofchicago_sdk.utility.voxgig_struct import voxgig_struct as vs
 from artinstituteofchicago_sdk import ArtInstituteOfChicagoSDK
 from artinstituteofchicago_sdk.core import helpers
+from artinstituteofchicago_sdk.config import shared_config
+from artinstituteofchicago_sdk.feature.base_feature import ArtInstituteOfChicagoBaseFeature
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
+
+
+class _FailHook(ArtInstituteOfChicagoBaseFeature):
+    def __init__(self):
+        super().__init__()
+        self.name = "failhook"
+        self.unexpected = 0
+
+    def init(self, ctx, options):
+        pass
+
+    def PreSpec(self, ctx):
+        raise RuntimeError("artwork hook failed")
+
+    def PreUnexpected(self, ctx):
+        self.unexpected += 1
+
+
+
+# main.kit.test.live.strict is true (the default is true): a live
+# request that fails, or a live test missing an input it needs,
+# fails the test.
+# An account with no record for a test to read skips it either way.
+LIVE_STRICT = True
 
 
 class TestArtworkEntity:
@@ -55,6 +81,58 @@ class TestArtworkEntity:
                     got.append(item)
             assert len(got) == 3
 
+    def test_should_report_a_failed_stream(self):
+        offline = {"net": {"offline": True}}
+        with pytest.raises(Exception, match="offline"):
+            list(ArtInstituteOfChicagoSDK.test(offline, None).Artwork(None).stream("list", None, None))
+
+        quiet = {"ctrl": {"throw": False}}
+        list(ArtInstituteOfChicagoSDK.test(offline, None).Artwork(None).stream("list", None, quiet))
+
+        if "rbac" in (shared_config().get("feature") or {}):
+            denied = ArtInstituteOfChicagoSDK.test(
+                None, {"feature": {"rbac": {"active": True, "deny": True}}})
+            with pytest.raises(Exception) as err:
+                list(denied.Artwork(None).stream("list", None, None))
+            assert "rbac_denied" == getattr(err.value, "code", None)
+
+    def test_should_leave_the_callers_ctrl(self):
+        explain = {}
+        ctrl = {"explain": explain}
+        list(ArtInstituteOfChicagoSDK.test(None, None).Artwork(None).stream("list", None, {"ctrl": ctrl}))
+        assert ["explain"] == list(ctrl.keys())
+        assert explain is ctrl["explain"] and 0 < len(explain)
+
+    def test_should_fire_pre_unexpected(self):
+        hook = _FailHook()
+        client = ArtInstituteOfChicagoSDK({"feature": {"test": {"active": True}}, "extend": [hook]})
+        with pytest.raises(Exception, match="hook failed"):
+            client.Artwork(None).list(None, None)
+        assert 0 < hook.unexpected
+
+        fired = hook.unexpected
+        assert client.Artwork(None).list(None, {"throw": False}) is None
+        assert fired < hook.unexpected
+
+    def test_should_validate_each_listed_record(self):
+        if "validate" not in (shared_config().get("feature") or {}):
+            pytest.skip("feature not present in this SDK: validate")
+        opts = {"feature": {"validate": {"active": True, "request": False, "response": True}}}
+        listed = ArtInstituteOfChicagoSDK.test({"entity": {"artwork": {"v1": {"alt_artist_ids": "x", "alt_classification_ids": "x", "alt_image_ids": "x", "alt_material_ids": "x", "alt_style_ids": "x", "alt_subject_ids": "x", "alt_technique_ids": "x", "alt_titles": "x", "api_link": "x", "api_model": "x", "artist_display": "x", "artist_ids": "x", "artist_title": "x", "artist_titles": "x", "artwork_type_title": "x", "boost_rank": "x", "catalog_based_search_keyword_titles": "x", "catalogue_display": "x", "category_ids": "x", "category_titles": "x", "classification_ids": "x", "classification_title": "x", "classification_titles": "x", "color": "x", "colorfulness": "x", "copyright_notice": "x", "credit_line": "x", "date_display": "x", "date_end": "x", "date_qualifier_title": "x", "date_start": "x", "department_title": "x", "dimensions": "x", "dimensions_detail": "x", "document_ids": "x", "edition": "x", "exhibition_history": "x", "fiscal_year": "x", "fiscal_year_deaccession": "x", "gallery_title": "x", "image_embedding": "x", "inscriptions": "x", "latlon": "x", "material_ids": "x", "material_titles": "x", "max_zoom_window_size": "x", "medium_display": "x", "on_loan_display": "x", "pageviews": "x", "pageviews_recent": "x", "place_of_origin": "x", "provenance_text": "x", "publication_history": "x", "publishing_verification_level": "x", "section_ids": "x", "section_titles": "x", "short_description": "x", "site_ids": "x", "sound_ids": "x", "source_updated_at": "x", "style_ids": "x", "style_title": "x", "style_titles": "x", "subject_ids": "x", "subject_titles": "x", "suggest_autocomplete_all": "x", "suggest_autocomplete_boosted": "x", "technique_ids": "x", "technique_titles": "x", "term_titles": "x", "text_embedding": "x", "text_ids": "x", "theme_titles": "x", "thumbnail": "x", "timestamp": "x", "updated_at": "x", "video_ids": "x"}}}}, opts).Artwork(None).list(None, None)
+        assert ["v1"] == [ent.data_get().get("id") for ent in listed]
+        with pytest.raises(Exception) as err:
+            ArtInstituteOfChicagoSDK.test({"entity": {"artwork": {"v1": {"alt_artist_ids": "x", "alt_classification_ids": "x", "alt_image_ids": "x", "alt_material_ids": "x", "alt_style_ids": "x", "alt_subject_ids": "x", "alt_technique_ids": "x", "alt_titles": "x", "api_link": "x", "api_model": "x", "artist_display": "x", "artist_ids": "x", "artist_title": "x", "artist_titles": "x", "artwork_type_title": "x", "boost_rank": "x", "catalog_based_search_keyword_titles": "x", "catalogue_display": "x", "category_ids": "x", "category_titles": "x", "classification_ids": "x", "classification_title": "x", "classification_titles": "x", "color": "x", "colorfulness": "x", "copyright_notice": "x", "credit_line": "x", "date_display": "x", "date_end": "x", "date_qualifier_title": "x", "date_start": "x", "department_title": "x", "dimensions": "x", "dimensions_detail": "x", "document_ids": "x", "edition": "x", "exhibition_history": "x", "fiscal_year": "x", "fiscal_year_deaccession": "x", "gallery_title": "x", "image_embedding": "x", "inscriptions": "x", "latlon": "x", "material_ids": "x", "material_titles": "x", "max_zoom_window_size": "x", "medium_display": "x", "on_loan_display": "x", "pageviews": "x", "pageviews_recent": "x", "place_of_origin": "x", "provenance_text": "x", "publication_history": "x", "publishing_verification_level": "x", "section_ids": "x", "section_titles": "x", "short_description": "x", "site_ids": "x", "sound_ids": "x", "source_updated_at": "x", "style_ids": "x", "style_title": "x", "style_titles": "x", "subject_ids": "x", "subject_titles": "x", "suggest_autocomplete_all": "x", "suggest_autocomplete_boosted": "x", "technique_ids": "x", "technique_titles": "x", "term_titles": "x", "text_embedding": "x", "text_ids": "x", "theme_titles": "x", "thumbnail": "x", "timestamp": "x", "updated_at": "x", "video_ids": "x", "artist_id": 1}}}}, opts).Artwork(None).list(None, None)
+        assert "validate_failed" == getattr(err.value, "code", None)
+
+    def test_should_refuse_an_invalid_request(self):
+        if "validate" not in (shared_config().get("feature") or {}):
+            pytest.skip("feature not present in this SDK: validate")
+        client = ArtInstituteOfChicagoSDK.test(
+            None, {"feature": {"validate": {"active": True}}})
+        with pytest.raises(Exception) as err:
+            client.Artwork(None).list({"artist_id": 1}, None)
+        assert "validate_failed" == getattr(err.value, "code", None)
+
     def test_should_run_basic_flow(self):
         setup = _artwork_basic_setup(None)
         # Per-op sdk-test-control.json skip — basic test exercises a flow with
@@ -66,12 +144,10 @@ class TestArtworkEntity:
             if _skip:
                 pytest.skip(_reason or "skipped via sdk-test-control.json")
                 return
-        # The basic flow consumes synthetic IDs from the fixture. In live mode
-        # without an *_ENTID env override, those IDs hit the live API and 4xx.
-        if setup.get("synthetic_only"):
-            pytest.skip("live entity test uses synthetic IDs from fixture — "
-                        "set ART_INSTITUTE_OF_CHICAGO_TEST_ARTWORK_ENTID JSON to run live")
         client = setup["client"]
+        if setup["live"]:
+            runner.live_existing(setup, LIVE_STRICT, "artwork",
+                                 lambda: client.Artwork(None).list({}, None))
 
         # Bootstrap entity data from existing test data.
         artwork_ref01_data_raw = vs.items(helpers.to_map(
@@ -102,7 +178,7 @@ def _artwork_basic_setup(extra):
     runner.load_env_local()
 
     entity_data_file = os.path.join(_TEST_DIR, "../../.sdk/test/entity/artwork/ArtworkTestData.json")
-    with open(entity_data_file, "r") as f:
+    with open(entity_data_file, "r", encoding="utf-8") as f:
         entity_data_source = f.read()
 
     entity_data = json.loads(entity_data_source)
@@ -123,9 +199,8 @@ def _artwork_basic_setup(extra):
         }
     )
 
-    # Detect ENTID env override before envOverride consumes it. When live
-    # mode is on without a real override, the basic test runs against synthetic
-    # IDs from the fixture and 4xx's. We surface this so the test can skip.
+    # Whether *_ENTID supplied the idmap, read before env_override consumes
+    # it: without it, the ids a live flow binds are the fixture's synthetic ones.
     _entid_env_raw = os.environ.get(
         "ART_INSTITUTE_OF_CHICAGO_TEST_ARTWORK_ENTID")
     _idmap_overridden = _entid_env_raw is not None and _entid_env_raw.strip().startswith("{")

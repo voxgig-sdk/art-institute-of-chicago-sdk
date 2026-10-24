@@ -7076,16 +7076,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/agents/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -7162,16 +7153,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/articles/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -7248,16 +7230,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/artworks/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -7334,16 +7307,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/category-terms/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -7420,16 +7384,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/digital-publication-articles/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -7506,16 +7461,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/digital-publications/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -7592,16 +7538,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/educator-resources/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -7678,16 +7615,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/event-occurrences/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -7764,16 +7692,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/event-programs/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -7850,16 +7769,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/events/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -7936,16 +7846,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/exhibitions/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -8022,16 +7923,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/galleries/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -8108,16 +8000,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/generic-pages/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -8194,16 +8077,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/highlights/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -8280,16 +8154,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/hours/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -8366,16 +8231,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/images/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -8452,16 +8308,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/landing-pages/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -8538,16 +8385,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/mobile-sounds/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -8624,16 +8462,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/places/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -8710,16 +8539,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/press-releases/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -8796,16 +8616,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/printed-publications/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -8882,16 +8693,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/products/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -8968,16 +8770,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/publications/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -9054,16 +8847,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -9137,16 +8921,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/sections/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -9223,16 +8998,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/sites/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -9309,16 +9075,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/sounds/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -9395,16 +9152,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/static-pages/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -9481,16 +9229,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/texts/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -9567,16 +9306,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/tours/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -9653,16 +9383,7 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/videos/search",
-                  "q": {
-                    "exist": [
-                      "facet",
-                      "from",
-                      "q",
-                      "query",
-                      "size",
-                      "sort"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
                   "s": [
                     {
@@ -11689,6 +11410,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -13459,7 +13181,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -13512,6 +13234,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -13742,7 +13469,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -14119,6 +13849,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

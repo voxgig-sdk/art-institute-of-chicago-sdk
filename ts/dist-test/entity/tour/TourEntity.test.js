@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Tour();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('tour hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.ArtInstituteOfChicagoSDK.test(offline).Tour().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.ArtInstituteOfChicagoSDK.test(offline).Tour()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.ArtInstituteOfChicagoSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Tour().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.ArtInstituteOfChicagoSDK.test().Tour().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.ArtInstituteOfChicagoSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Tour().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Tour().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.ArtInstituteOfChicagoSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Tour().list({ "description": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.ART_INSTITUTE_OF_CHICAGO_TEST_LIVE;
         for (const op of ['list', 'load']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "api_link": { "a": true, "h": "Api Link", "n": "api_link", "r": false, "sh": "REST API link for this resource", "t": "`$ANY`", "key$": "api_link", "index$": 0 }, "api_model": { "a": true, "h": "Api Model", "n": "api_model", "r": false, "sh": "REST API resource type or endpoint", "t": "`$ANY`", "key$": "api_model", "index$": 1 }, "artist_titles": { "a": true, "h": "Artist Titles", "n": "artist_titles", "r": false, "sh": "Names of the artists of the artworks featured in this tour's tour stops", "t": "`$ANY`", "key$": "artist_titles", "index$": 2 }, "artwork_titles": { "a": true, "h": "Artwork Titles", "n": "artwork_titles", "r": false, "sh": "Names of the artworks featured in this tour's tour stops", "t": "`$ANY`", "key$": "artwork_titles", "index$": 3 }, "description": { "a": true, "h": "Description", "n": "description", "r": false, "sh": "Explanation of what the tour is", "t": "`$STRING`", "key$": "description", "index$": 4 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "sh": "Unique identifier of this resource.", "t": "`$STRING`", "key$": "id", "index$": 5 }, "image": { "a": true, "h": "Image", "n": "image", "r": false, "sh": "The main image for the tour", "t": "`$ANY`", "key$": "image", "index$": 6 }, "intro": { "a": true, "h": "Intro", "n": "intro", "r": false, "sh": "Text introducing the tour", "t": "`$ANY`", "key$": "intro", "index$": 7 }, "intro_link": { "a": true, "h": "Intro Link", "n": "intro_link", "r": false, "sh": "Link to the audio file of the introduction", "t": "`$ANY`", "key$": "intro_link", "index$": 8 }, "intro_transcript": { "a": true, "h": "Intro Transcript", "n": "intro_transcript", "r": false, "sh": "Transcript of the introduction audio to the tour", "t": "`$ANY`", "key$": "intro_transcript", "index$": 9 }, "source_updated_at": { "a": true, "h": "Source Updated At", "n": "source_updated_at", "r": false, "sh": "Date and time the resource was updated in the source system", "t": "`$ANY`", "key$": "source_updated_at", "index$": 10 }, "suggest_autocomplete_all": { "a": true, "h": "Suggest Autocomplete All", "n": "suggest_autocomplete_all", "r": false, "sh": "Internal field to power the `/autosuggest` endpoint.", "t": "`$ANY`", "key$": "suggest_autocomplete_all", "index$": 11 }, "suggest_autocomplete_boosted": { "a": true, "h": "Suggest Autocomplete Boosted", "n": "suggest_autocomplete_boosted", "r": false, "sh": "Internal field to power the `/autocomplete` endpoint.", "t": "`$ANY`", "key$": "suggest_autocomplete_boosted", "index$": 12 }, "timestamp": { "a": true, "h": "Timestamp", "n": "timestamp", "r": false, "sh": "Date and time the record was updated in the aggregator search index", "t": "`$ANY`", "key$": "timestamp", "index$": 13 }, "title": { "a": true, "h": "Title", "n": "title", "r": false, "sh": "The name of this resource", "t": "`$STRING`", "key$": "title", "index$": 14 }, "updated_at": { "a": true, "h": "Updated At", "n": "updated_at", "r": false, "sh": "Date and time the record was updated in the aggregator database", "t": "`$ANY`", "key$": "updated_at", "index$": 15 }, "weight": { "a": true, "h": "Weight", "n": "weight", "r": false, "sh": "Number representing this tour's sort order", "t": "`$NUMBER`", "key$": "weight", "index$": 16 } }, "id": { "field": "id", "name": "id" }, "name": "tour", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /tours", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/tours", "q": {}, "r": {}, "s": [{ "lit": "tours" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /tours/{id}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "id", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/tours/{id}", "q": { "exist": ["id"] }, "r": {}, "s": [{ "lit": "tours" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "tour", "name__orig": "tour", "Name": "Tour", "name_": "tour", "name-": "tour", "NAME": "TOUR", "index$": 33 }, { "active": true, "entity": "tour", "key$": "BasicTourFlow", "kind": "basic", "name": "BasicTourFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "tour_ref01" } }], "index$": 0 }, { "a": true, "d": {}, "i": { "ref": "tour_ref01", "srcdatavar": "tour_ref01_data", "suffix": "_dt0" }, "m": { "id": "tour01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-tour_ref01" } }], "index$": 1 }] }, 'Tour', { "GET /tours": { "protocol": "http", "parameters": [] }, "GET /tours/{id}": { "protocol": "http", "parameters": [{ "name": "id", "in": "path", "type": "string", "required": true, "x-ref": "#/parameters/id", "index$": 0 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "api_link": { "a": true, "h": "Api Link", "n": "api_link", "r": false, "sh": "REST API link for this resource", "t": "`$ANY`", "key$": "api_link", "index$": 0 }, "api_model": { "a": true, "h": "Api Model", "n": "api_model", "r": false, "sh": "REST API resource type or endpoint", "t": "`$ANY`", "key$": "api_model", "index$": 1 }, "artist_titles": { "a": true, "h": "Artist Titles", "n": "artist_titles", "r": false, "sh": "Names of the artists of the artworks featured in this tour's tour stops", "t": "`$ANY`", "key$": "artist_titles", "index$": 2 }, "artwork_titles": { "a": true, "h": "Artwork Titles", "n": "artwork_titles", "r": false, "sh": "Names of the artworks featured in this tour's tour stops", "t": "`$ANY`", "key$": "artwork_titles", "index$": 3 }, "description": { "a": true, "h": "Description", "n": "description", "r": false, "sh": "Explanation of what the tour is", "t": "`$STRING`", "key$": "description", "index$": 4 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "sh": "Unique identifier of this resource.", "t": "`$STRING`", "key$": "id", "index$": 5 }, "image": { "a": true, "h": "Image", "n": "image", "r": false, "sh": "The main image for the tour", "t": "`$ANY`", "key$": "image", "index$": 6 }, "intro": { "a": true, "h": "Intro", "n": "intro", "r": false, "sh": "Text introducing the tour", "t": "`$ANY`", "key$": "intro", "index$": 7 }, "intro_link": { "a": true, "h": "Intro Link", "n": "intro_link", "r": false, "sh": "Link to the audio file of the introduction", "t": "`$ANY`", "key$": "intro_link", "index$": 8 }, "intro_transcript": { "a": true, "h": "Intro Transcript", "n": "intro_transcript", "r": false, "sh": "Transcript of the introduction audio to the tour", "t": "`$ANY`", "key$": "intro_transcript", "index$": 9 }, "source_updated_at": { "a": true, "h": "Source Updated At", "n": "source_updated_at", "r": false, "sh": "Date and time the resource was updated in the source system", "t": "`$ANY`", "key$": "source_updated_at", "index$": 10 }, "suggest_autocomplete_all": { "a": true, "h": "Suggest Autocomplete All", "n": "suggest_autocomplete_all", "r": false, "sh": "Internal field to power the `/autosuggest` endpoint.", "t": "`$ANY`", "key$": "suggest_autocomplete_all", "index$": 11 }, "suggest_autocomplete_boosted": { "a": true, "h": "Suggest Autocomplete Boosted", "n": "suggest_autocomplete_boosted", "r": false, "sh": "Internal field to power the `/autocomplete` endpoint.", "t": "`$ANY`", "key$": "suggest_autocomplete_boosted", "index$": 12 }, "timestamp": { "a": true, "h": "Timestamp", "n": "timestamp", "r": false, "sh": "Date and time the record was updated in the aggregator search index", "t": "`$ANY`", "key$": "timestamp", "index$": 13 }, "title": { "a": true, "h": "Title", "n": "title", "r": false, "sh": "The name of this resource", "t": "`$STRING`", "key$": "title", "index$": 14 }, "updated_at": { "a": true, "h": "Updated At", "n": "updated_at", "r": false, "sh": "Date and time the record was updated in the aggregator database", "t": "`$ANY`", "key$": "updated_at", "index$": 15 }, "weight": { "a": true, "h": "Weight", "n": "weight", "r": false, "sh": "Number representing this tour's sort order", "t": "`$NUMBER`", "key$": "weight", "index$": 16 } }, "id": { "field": "id", "name": "id" }, "name": "tour", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /tours", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/tours", "q": {}, "r": {}, "s": [{ "lit": "tours" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /tours/{id}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "id", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/tours/{id}", "q": { "exist": ["id"] }, "r": {}, "s": [{ "lit": "tours" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "tour", "name__orig": "tour", "Name": "Tour", "name_": "tour", "name-": "tour", "NAME": "TOUR", "index$": 33 }, { "active": true, "entity": "tour", "key$": "BasicTourFlow", "kind": "basic", "name": "BasicTourFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "tour_ref01" } }], "index$": 0 }, { "a": true, "d": {}, "i": { "ref": "tour_ref01", "srcdatavar": "tour_ref01_data", "suffix": "_dt0" }, "m": { "id": "tour01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-tour_ref01" } }], "index$": 1 }] }, 'Tour', { "GET /tours": { "protocol": "http", "parameters": [] }, "GET /tours/{id}": { "protocol": "http", "parameters": [{ "name": "id", "in": "path", "type": "string", "required": true, "x-ref": "#/parameters/id", "index$": 0 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -80,6 +127,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(tour_ref01_data_dt0.id === tour_ref01_data.id);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

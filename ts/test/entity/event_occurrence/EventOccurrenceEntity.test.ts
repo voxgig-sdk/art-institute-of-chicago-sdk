@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { ArtInstituteOfChicagoSDK, BaseFeature, stdutil } from '../../..'
+import { ArtInstituteOfChicagoSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('EventOccurrenceEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('event_occurrence hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of ArtInstituteOfChicagoSDK.test(offline).EventOccurrence().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of ArtInstituteOfChicagoSDK.test(offline).EventOccurrence()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = ArtInstituteOfChicagoSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.EventOccurrence().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of ArtInstituteOfChicagoSDK.test().EventOccurrence().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new ArtInstituteOfChicagoSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.EventOccurrence().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.EventOccurrence().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = ArtInstituteOfChicagoSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.EventOccurrence().list({"description":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.ART_INSTITUTE_OF_CHICAGO_TEST_LIVE
@@ -51,7 +109,7 @@ describe('EventOccurrenceEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"api_link":{"a":true,"h":"Api Link","n":"api_link","r":false,"sh":"REST API link for this resource","t":"`$ANY`","key$":"api_link","index$":0},"api_model":{"a":true,"h":"Api Model","n":"api_model","r":false,"sh":"REST API resource type or endpoint","t":"`$ANY`","key$":"api_model","index$":1},"button_caption":{"a":true,"h":"Button Caption","n":"button_caption","r":false,"sh":"Additional text below the ticket/registration button","t":"`$ANY`","key$":"button_caption","index$":2},"button_text":{"a":true,"h":"Button Text","n":"button_text","r":false,"sh":"The text used on the ticket/registration button","t":"`$ANY`","key$":"button_text","index$":3},"button_url":{"a":true,"h":"Button Url","n":"button_url","r":false,"sh":"The URL to the sales site or an RSVP link for this event","t":"`$ANY`","key$":"button_url","index$":4},"description":{"a":true,"h":"Description","n":"description","r":false,"sh":"Description of the event","t":"`$STRING`","key$":"description","index$":5},"end_at":{"a":true,"h":"End At","n":"end_at","r":false,"sh":"The date the event occurrence ends","t":"`$ANY`","key$":"end_at","index$":6},"event_id":{"a":true,"h":"Event Id","n":"event_id","r":false,"sh":"Identifier of the master event of which this is an occurrence","t":"`$STRING`","key$":"event_id","index$":7},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Unique identifier of this resource.","t":"`$STRING`","key$":"id","index$":8},"image_url":{"a":true,"h":"Image Url","n":"image_url","r":false,"sh":"The URL of an image representing this page","t":"`$ANY`","key$":"image_url","index$":9},"is_private":{"a":true,"h":"Is Private","n":"is_private","r":false,"sh":"Whether the event is private.","t":"`$BOOLEAN`","key$":"is_private","index$":10},"is_sales_button_hidden":{"a":true,"h":"Is Sales Button Hidden","n":"is_sales_button_hidden","r":false,"sh":"Whether the buy tickets button is hidden on the website event page","t":"`$BOOLEAN`","key$":"is_sales_button_hidden","index$":11},"is_ticketed":{"a":true,"h":"Is Ticketed","n":"is_ticketed","r":false,"sh":"Whether a ticket is required to attend the event","t":"`$BOOLEAN`","key$":"is_ticketed","index$":12},"location":{"a":true,"h":"Location","n":"location","r":false,"sh":"Where the event takes place","t":"`$ANY`","key$":"location","index$":13},"off_sale_at":{"a":true,"h":"Off Sale At","n":"off_sale_at","r":false,"sh":"Date and time the event goes off sale","t":"`$ANY`","key$":"off_sale_at","index$":14},"on_sale_at":{"a":true,"h":"On Sale At","n":"on_sale_at","r":false,"sh":"Date and time the event goes on sale","t":"`$ANY`","key$":"on_sale_at","index$":15},"short_description":{"a":true,"h":"Short Description","n":"short_description","r":false,"sh":"Brief description of the event","t":"`$ANY`","key$":"short_description","index$":16},"source_updated_at":{"a":true,"h":"Source Updated At","n":"source_updated_at","r":false,"sh":"Date and time the resource was updated in the source system","t":"`$ANY`","key$":"source_updated_at","index$":17},"start_at":{"a":true,"h":"Start At","n":"start_at","r":false,"sh":"The date the event occurrence begins","t":"`$ANY`","key$":"start_at","index$":18},"suggest_autocomplete_all":{"a":true,"h":"Suggest Autocomplete All","n":"suggest_autocomplete_all","r":false,"sh":"Internal field to power the `/autosuggest` endpoint.","t":"`$ANY`","key$":"suggest_autocomplete_all","index$":19},"suggest_autocomplete_boosted":{"a":true,"h":"Suggest Autocomplete Boosted","n":"suggest_autocomplete_boosted","r":false,"sh":"Internal field to power the `/autocomplete` endpoint.","t":"`$ANY`","key$":"suggest_autocomplete_boosted","index$":20},"timestamp":{"a":true,"h":"Timestamp","n":"timestamp","r":false,"sh":"Date and time the record was updated in the aggregator search index","t":"`$ANY`","key$":"timestamp","index$":21},"title":{"a":true,"h":"Title","n":"title","r":false,"sh":"The name of this resource","t":"`$STRING`","key$":"title","index$":22},"title_display":{"a":true,"h":"Title Display","n":"title_display","r":false,"sh":"The name of this event formatted with HTML (optional)","t":"`$ANY`","key$":"title_display","index$":23},"updated_at":{"a":true,"h":"Updated At","n":"updated_at","r":false,"sh":"Date and time the record was updated in the aggregator database","t":"`$ANY`","key$":"updated_at","index$":24}},"id":{"field":"id","name":"id"},"name":"event_occurrence","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /event-occurrences","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/event-occurrences","q":{},"r":{},"s":[{"lit":"event-occurrences"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /event-occurrences/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/event-occurrences/{id}","q":{"exist":["id"]},"r":{},"s":[{"lit":"event-occurrences"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"event_occurrence","name__orig":"event_occurrence","Name":"EventOccurrence","name_":"event_occurrence","name-":"event-occurrence","NAME":"EVENT_OCCURRENCE","index$":13}, {"active":true,"entity":"event_occurrence","key$":"BasicEventOccurrenceFlow","kind":"basic","name":"BasicEventOccurrenceFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"event_occurrence_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"event_occurrence_ref01","srcdatavar":"event_occurrence_ref01_data","suffix":"_dt0"},"m":{"id":"event_occurrence01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-event_occurrence_ref01"}}],"index$":1}]}, 'EventOccurrence', {"GET /event-occurrences":{"protocol":"http","parameters":[]},"GET /event-occurrences/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","type":"string","required":true,"x-ref":"#/parameters/id","index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"api_link":{"a":true,"h":"Api Link","n":"api_link","r":false,"sh":"REST API link for this resource","t":"`$ANY`","key$":"api_link","index$":0},"api_model":{"a":true,"h":"Api Model","n":"api_model","r":false,"sh":"REST API resource type or endpoint","t":"`$ANY`","key$":"api_model","index$":1},"button_caption":{"a":true,"h":"Button Caption","n":"button_caption","r":false,"sh":"Additional text below the ticket/registration button","t":"`$ANY`","key$":"button_caption","index$":2},"button_text":{"a":true,"h":"Button Text","n":"button_text","r":false,"sh":"The text used on the ticket/registration button","t":"`$ANY`","key$":"button_text","index$":3},"button_url":{"a":true,"h":"Button Url","n":"button_url","r":false,"sh":"The URL to the sales site or an RSVP link for this event","t":"`$ANY`","key$":"button_url","index$":4},"description":{"a":true,"h":"Description","n":"description","r":false,"sh":"Description of the event","t":"`$STRING`","key$":"description","index$":5},"end_at":{"a":true,"h":"End At","n":"end_at","r":false,"sh":"The date the event occurrence ends","t":"`$ANY`","key$":"end_at","index$":6},"event_id":{"a":true,"h":"Event Id","n":"event_id","r":false,"sh":"Identifier of the master event of which this is an occurrence","t":"`$STRING`","key$":"event_id","index$":7},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Unique identifier of this resource.","t":"`$STRING`","key$":"id","index$":8},"image_url":{"a":true,"h":"Image Url","n":"image_url","r":false,"sh":"The URL of an image representing this page","t":"`$ANY`","key$":"image_url","index$":9},"is_private":{"a":true,"h":"Is Private","n":"is_private","r":false,"sh":"Whether the event is private.","t":"`$BOOLEAN`","key$":"is_private","index$":10},"is_sales_button_hidden":{"a":true,"h":"Is Sales Button Hidden","n":"is_sales_button_hidden","r":false,"sh":"Whether the buy tickets button is hidden on the website event page","t":"`$BOOLEAN`","key$":"is_sales_button_hidden","index$":11},"is_ticketed":{"a":true,"h":"Is Ticketed","n":"is_ticketed","r":false,"sh":"Whether a ticket is required to attend the event","t":"`$BOOLEAN`","key$":"is_ticketed","index$":12},"location":{"a":true,"h":"Location","n":"location","r":false,"sh":"Where the event takes place","t":"`$ANY`","key$":"location","index$":13},"off_sale_at":{"a":true,"h":"Off Sale At","n":"off_sale_at","r":false,"sh":"Date and time the event goes off sale","t":"`$ANY`","key$":"off_sale_at","index$":14},"on_sale_at":{"a":true,"h":"On Sale At","n":"on_sale_at","r":false,"sh":"Date and time the event goes on sale","t":"`$ANY`","key$":"on_sale_at","index$":15},"short_description":{"a":true,"h":"Short Description","n":"short_description","r":false,"sh":"Brief description of the event","t":"`$ANY`","key$":"short_description","index$":16},"source_updated_at":{"a":true,"h":"Source Updated At","n":"source_updated_at","r":false,"sh":"Date and time the resource was updated in the source system","t":"`$ANY`","key$":"source_updated_at","index$":17},"start_at":{"a":true,"h":"Start At","n":"start_at","r":false,"sh":"The date the event occurrence begins","t":"`$ANY`","key$":"start_at","index$":18},"suggest_autocomplete_all":{"a":true,"h":"Suggest Autocomplete All","n":"suggest_autocomplete_all","r":false,"sh":"Internal field to power the `/autosuggest` endpoint.","t":"`$ANY`","key$":"suggest_autocomplete_all","index$":19},"suggest_autocomplete_boosted":{"a":true,"h":"Suggest Autocomplete Boosted","n":"suggest_autocomplete_boosted","r":false,"sh":"Internal field to power the `/autocomplete` endpoint.","t":"`$ANY`","key$":"suggest_autocomplete_boosted","index$":20},"timestamp":{"a":true,"h":"Timestamp","n":"timestamp","r":false,"sh":"Date and time the record was updated in the aggregator search index","t":"`$ANY`","key$":"timestamp","index$":21},"title":{"a":true,"h":"Title","n":"title","r":false,"sh":"The name of this resource","t":"`$STRING`","key$":"title","index$":22},"title_display":{"a":true,"h":"Title Display","n":"title_display","r":false,"sh":"The name of this event formatted with HTML (optional)","t":"`$ANY`","key$":"title_display","index$":23},"updated_at":{"a":true,"h":"Updated At","n":"updated_at","r":false,"sh":"Date and time the record was updated in the aggregator database","t":"`$ANY`","key$":"updated_at","index$":24}},"id":{"field":"id","name":"id"},"name":"event_occurrence","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /event-occurrences","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/event-occurrences","q":{},"r":{},"s":[{"lit":"event-occurrences"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /event-occurrences/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/event-occurrences/{id}","q":{"exist":["id"]},"r":{},"s":[{"lit":"event-occurrences"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"event_occurrence","name__orig":"event_occurrence","Name":"EventOccurrence","name_":"event_occurrence","name-":"event-occurrence","NAME":"EVENT_OCCURRENCE","index$":13}, {"active":true,"entity":"event_occurrence","key$":"BasicEventOccurrenceFlow","kind":"basic","name":"BasicEventOccurrenceFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"event_occurrence_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"event_occurrence_ref01","srcdatavar":"event_occurrence_ref01_data","suffix":"_dt0"},"m":{"id":"event_occurrence01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-event_occurrence_ref01"}}],"index$":1}]}, 'EventOccurrence', {"GET /event-occurrences":{"protocol":"http","parameters":[]},"GET /event-occurrences/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","type":"string","required":true,"x-ref":"#/parameters/id","index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -79,6 +137,12 @@ describe('EventOccurrenceEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

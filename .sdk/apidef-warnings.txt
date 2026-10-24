@@ -1,0 +1,92 @@
+{
+  point: "warning"
+  note: "Points GET /agents and GET /artists on entity=agent op=list have the same selector (exist: none), so only GET /agents is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "agent"
+  op: "list"
+  points: [
+    "GET /agents"
+    "GET /artists"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points GET /agents/{id} and GET /artists/{id} on entity=agent op=load have the same selector (exist: id), so only GET /agents/{id} is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "agent"
+  op: "load"
+  points: [
+    "GET /agents/{id}"
+    "GET /artists/{id}"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points GET /agents/search, GET /articles/search, GET /artworks/search, GET /category-terms/search, GET /digital-publication-articles/search, GET /digital-publications/search, GET /educator-resources/search, GET /event-occurrences/search, GET /event-programs/search, GET /events/search, GET /exhibitions/search, GET /galleries/search, GET /generic-pages/search, GET /highlights/search, GET /hours/search, GET /images/search, GET /landing-pages/search, GET /mobile-sounds/search, GET /places/search, GET /press-releases/search, GET /printed-publications/search, GET /products/search, GET /publications/search, GET /search, GET /sections/search, GET /sites/search, GET /sounds/search, GET /static-pages/search, GET /texts/search, GET /tours/search and GET /videos/search on entity=search op=list have the same selector (exist: none), so only GET /agents/search is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "search"
+  op: "list"
+  points: [
+    "GET /agents/search"
+    "GET /articles/search"
+    "GET /artworks/search"
+    "GET /category-terms/search"
+    "GET /digital-publication-articles/search"
+    "GET /digital-publications/search"
+    "GET /educator-resources/search"
+    "GET /event-occurrences/search"
+    "GET /event-programs/search"
+    "GET /events/search"
+    "GET /exhibitions/search"
+    "GET /galleries/search"
+    "GET /generic-pages/search"
+    "GET /highlights/search"
+    "GET /hours/search"
+    "GET /images/search"
+    "GET /landing-pages/search"
+    "GET /mobile-sounds/search"
+    "GET /places/search"
+    "GET /press-releases/search"
+    "GET /printed-publications/search"
+    "GET /products/search"
+    "GET /publications/search"
+    "GET /search"
+    "GET /sections/search"
+    "GET /sites/search"
+    "GET /sounds/search"
+    "GET /static-pages/search"
+    "GET /texts/search"
+    "GET /tours/search"
+    "GET /videos/search"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points GET /mobile-sounds and GET /sounds on entity=sound op=list have the same selector (exist: none), so only GET /mobile-sounds is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "sound"
+  op: "list"
+  points: [
+    "GET /mobile-sounds"
+    "GET /sounds"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points GET /mobile-sounds/{id} and GET /sounds/{id} on entity=sound op=load have the same selector (exist: id), so only GET /mobile-sounds/{id} is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "sound"
+  op: "load"
+  points: [
+    "GET /mobile-sounds/{id}"
+    "GET /sounds/{id}"
+  ]
+
+}

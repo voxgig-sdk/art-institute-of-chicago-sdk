@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { ArtInstituteOfChicagoSDK, BaseFeature, stdutil } from '../../..'
+import { ArtInstituteOfChicagoSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('ProductEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('product hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of ArtInstituteOfChicagoSDK.test(offline).Product().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of ArtInstituteOfChicagoSDK.test(offline).Product()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = ArtInstituteOfChicagoSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Product().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of ArtInstituteOfChicagoSDK.test().Product().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new ArtInstituteOfChicagoSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Product().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Product().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = ArtInstituteOfChicagoSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Product().list({"description":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.ART_INSTITUTE_OF_CHICAGO_TEST_LIVE
@@ -51,7 +109,7 @@ describe('ProductEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"api_link":{"a":true,"h":"Api Link","n":"api_link","r":false,"sh":"REST API link for this resource","t":"`$ANY`","key$":"api_link","index$":0},"api_model":{"a":true,"h":"Api Model","n":"api_model","r":false,"sh":"REST API resource type or endpoint","t":"`$ANY`","key$":"api_model","index$":1},"artist_ids":{"a":true,"h":"Artist Ids","n":"artist_ids","r":false,"sh":"Unique identifiers of the artists associated with this product","t":"`$ANY`","key$":"artist_ids","index$":2},"artwork_ids":{"a":true,"h":"Artwork Ids","n":"artwork_ids","r":false,"sh":"Unique identifiers of the artworks associated with this product","t":"`$ANY`","key$":"artwork_ids","index$":3},"description":{"a":true,"h":"Description","n":"description","r":false,"sh":"Explanation of what this product is","t":"`$STRING`","key$":"description","index$":4},"exhibition_ids":{"a":true,"h":"Exhibition Ids","n":"exhibition_ids","r":false,"sh":"Unique identifiers of the exhibitions associated with this product","t":"`$ANY`","key$":"exhibition_ids","index$":5},"external_sku":{"a":true,"h":"External Sku","n":"external_sku","r":false,"sh":"Numeric product identification code of a machine-readable barcode, when the customer sku differs from our internal one","t":"`$ANY`","key$":"external_sku","index$":6},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Unique identifier of this resource.","t":"`$STRING`","key$":"id","index$":7},"image_url":{"a":true,"h":"Image Url","n":"image_url","r":false,"sh":"URL of an image for this product","t":"`$ANY`","key$":"image_url","index$":8},"max_compare_at_price":{"a":true,"h":"Max Compare At Price","n":"max_compare_at_price","r":false,"sh":"Number indicating how much the most expensive variant of a product cost before a sale","t":"`$ANY`","key$":"max_compare_at_price","index$":9},"max_current_price":{"a":true,"h":"Max Current Price","n":"max_current_price","r":false,"sh":"Number indicating how much the most expensive variant of a product costs right now","t":"`$ANY`","key$":"max_current_price","index$":10},"min_compare_at_price":{"a":true,"h":"Min Compare At Price","n":"min_compare_at_price","r":false,"sh":"Number indicating how much the least expensive variant of a product cost before a sale","t":"`$ANY`","key$":"min_compare_at_price","index$":11},"min_current_price":{"a":true,"h":"Min Current Price","n":"min_current_price","r":false,"sh":"Number indicating how much the least expensive variant of a product costs right now","t":"`$ANY`","key$":"min_current_price","index$":12},"price_display":{"a":true,"h":"Price Display","n":"price_display","r":false,"sh":"Explanation of what this product is","t":"`$ANY`","key$":"price_display","index$":13},"source_updated_at":{"a":true,"h":"Source Updated At","n":"source_updated_at","r":false,"sh":"Date and time the resource was updated in the source system","t":"`$ANY`","key$":"source_updated_at","index$":14},"suggest_autocomplete_all":{"a":true,"h":"Suggest Autocomplete All","n":"suggest_autocomplete_all","r":false,"sh":"Internal field to power the `/autosuggest` endpoint.","t":"`$ANY`","key$":"suggest_autocomplete_all","index$":15},"suggest_autocomplete_boosted":{"a":true,"h":"Suggest Autocomplete Boosted","n":"suggest_autocomplete_boosted","r":false,"sh":"Internal field to power the `/autocomplete` endpoint.","t":"`$ANY`","key$":"suggest_autocomplete_boosted","index$":16},"timestamp":{"a":true,"h":"Timestamp","n":"timestamp","r":false,"sh":"Date and time the record was updated in the aggregator search index","t":"`$ANY`","key$":"timestamp","index$":17},"title":{"a":true,"h":"Title","n":"title","r":false,"sh":"The name of this resource","t":"`$STRING`","key$":"title","index$":18},"updated_at":{"a":true,"h":"Updated At","n":"updated_at","r":false,"sh":"Date and time the record was updated in the aggregator database","t":"`$ANY`","key$":"updated_at","index$":19},"web_url":{"a":true,"h":"Web Url","n":"web_url","r":false,"sh":"URL of this product in the shop","t":"`$ANY`","key$":"web_url","index$":20}},"id":{"field":"id","name":"id"},"name":"product","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /products","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/products","q":{},"r":{},"s":[{"lit":"products"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /products/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/products/{id}","q":{"exist":["id"]},"r":{},"s":[{"lit":"products"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"product","name__orig":"product","Name":"Product","name_":"product","name-":"product","NAME":"PRODUCT","index$":25}, {"active":true,"entity":"product","key$":"BasicProductFlow","kind":"basic","name":"BasicProductFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"product_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"product_ref01","srcdatavar":"product_ref01_data","suffix":"_dt0"},"m":{"id":"product01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-product_ref01"}}],"index$":1}]}, 'Product', {"GET /products":{"protocol":"http","parameters":[]},"GET /products/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","type":"string","required":true,"x-ref":"#/parameters/id","index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"api_link":{"a":true,"h":"Api Link","n":"api_link","r":false,"sh":"REST API link for this resource","t":"`$ANY`","key$":"api_link","index$":0},"api_model":{"a":true,"h":"Api Model","n":"api_model","r":false,"sh":"REST API resource type or endpoint","t":"`$ANY`","key$":"api_model","index$":1},"artist_ids":{"a":true,"h":"Artist Ids","n":"artist_ids","r":false,"sh":"Unique identifiers of the artists associated with this product","t":"`$ANY`","key$":"artist_ids","index$":2},"artwork_ids":{"a":true,"h":"Artwork Ids","n":"artwork_ids","r":false,"sh":"Unique identifiers of the artworks associated with this product","t":"`$ANY`","key$":"artwork_ids","index$":3},"description":{"a":true,"h":"Description","n":"description","r":false,"sh":"Explanation of what this product is","t":"`$STRING`","key$":"description","index$":4},"exhibition_ids":{"a":true,"h":"Exhibition Ids","n":"exhibition_ids","r":false,"sh":"Unique identifiers of the exhibitions associated with this product","t":"`$ANY`","key$":"exhibition_ids","index$":5},"external_sku":{"a":true,"h":"External Sku","n":"external_sku","r":false,"sh":"Numeric product identification code of a machine-readable barcode, when the customer sku differs from our internal one","t":"`$ANY`","key$":"external_sku","index$":6},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Unique identifier of this resource.","t":"`$STRING`","key$":"id","index$":7},"image_url":{"a":true,"h":"Image Url","n":"image_url","r":false,"sh":"URL of an image for this product","t":"`$ANY`","key$":"image_url","index$":8},"max_compare_at_price":{"a":true,"h":"Max Compare At Price","n":"max_compare_at_price","r":false,"sh":"Number indicating how much the most expensive variant of a product cost before a sale","t":"`$ANY`","key$":"max_compare_at_price","index$":9},"max_current_price":{"a":true,"h":"Max Current Price","n":"max_current_price","r":false,"sh":"Number indicating how much the most expensive variant of a product costs right now","t":"`$ANY`","key$":"max_current_price","index$":10},"min_compare_at_price":{"a":true,"h":"Min Compare At Price","n":"min_compare_at_price","r":false,"sh":"Number indicating how much the least expensive variant of a product cost before a sale","t":"`$ANY`","key$":"min_compare_at_price","index$":11},"min_current_price":{"a":true,"h":"Min Current Price","n":"min_current_price","r":false,"sh":"Number indicating how much the least expensive variant of a product costs right now","t":"`$ANY`","key$":"min_current_price","index$":12},"price_display":{"a":true,"h":"Price Display","n":"price_display","r":false,"sh":"Explanation of what this product is","t":"`$ANY`","key$":"price_display","index$":13},"source_updated_at":{"a":true,"h":"Source Updated At","n":"source_updated_at","r":false,"sh":"Date and time the resource was updated in the source system","t":"`$ANY`","key$":"source_updated_at","index$":14},"suggest_autocomplete_all":{"a":true,"h":"Suggest Autocomplete All","n":"suggest_autocomplete_all","r":false,"sh":"Internal field to power the `/autosuggest` endpoint.","t":"`$ANY`","key$":"suggest_autocomplete_all","index$":15},"suggest_autocomplete_boosted":{"a":true,"h":"Suggest Autocomplete Boosted","n":"suggest_autocomplete_boosted","r":false,"sh":"Internal field to power the `/autocomplete` endpoint.","t":"`$ANY`","key$":"suggest_autocomplete_boosted","index$":16},"timestamp":{"a":true,"h":"Timestamp","n":"timestamp","r":false,"sh":"Date and time the record was updated in the aggregator search index","t":"`$ANY`","key$":"timestamp","index$":17},"title":{"a":true,"h":"Title","n":"title","r":false,"sh":"The name of this resource","t":"`$STRING`","key$":"title","index$":18},"updated_at":{"a":true,"h":"Updated At","n":"updated_at","r":false,"sh":"Date and time the record was updated in the aggregator database","t":"`$ANY`","key$":"updated_at","index$":19},"web_url":{"a":true,"h":"Web Url","n":"web_url","r":false,"sh":"URL of this product in the shop","t":"`$ANY`","key$":"web_url","index$":20}},"id":{"field":"id","name":"id"},"name":"product","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /products","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/products","q":{},"r":{},"s":[{"lit":"products"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /products/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/products/{id}","q":{"exist":["id"]},"r":{},"s":[{"lit":"products"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"product","name__orig":"product","Name":"Product","name_":"product","name-":"product","NAME":"PRODUCT","index$":25}, {"active":true,"entity":"product","key$":"BasicProductFlow","kind":"basic","name":"BasicProductFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"product_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"product_ref01","srcdatavar":"product_ref01_data","suffix":"_dt0"},"m":{"id":"product01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-product_ref01"}}],"index$":1}]}, 'Product', {"GET /products":{"protocol":"http","parameters":[]},"GET /products/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","type":"string","required":true,"x-ref":"#/parameters/id","index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -79,6 +137,12 @@ describe('ProductEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

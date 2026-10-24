@@ -67,6 +67,7 @@ local function make_config()
         },
         ["optspec"] = {
           ["clearTimer"] = "`$FUNCTION`",
+          ["now"] = "`$FUNCTION`",
           ["setTimer"] = "`$FUNCTION`",
         },
         ["strict"] = false,
@@ -5745,16 +5746,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -5817,16 +5809,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -5889,16 +5872,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -5961,16 +5935,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -6033,16 +5998,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -6105,16 +6061,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -6177,16 +6124,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -6249,16 +6187,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -6321,16 +6250,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -6393,16 +6313,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -6465,16 +6376,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -6537,16 +6439,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -6609,16 +6502,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -6681,16 +6565,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -6753,16 +6628,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -6825,16 +6691,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -6897,16 +6754,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -6969,16 +6817,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -7041,16 +6880,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -7113,16 +6943,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -7185,16 +7006,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -7257,16 +7069,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -7329,16 +7132,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -7397,16 +7191,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -7469,16 +7254,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -7541,16 +7317,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -7613,16 +7380,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -7685,16 +7443,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -7757,16 +7506,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -7829,16 +7569,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
               {
                 ["kind"] = "http",
@@ -7901,16 +7632,7 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "facet",
-                    "from",
-                    "q",
-                    "query",
-                    "size",
-                    "sort",
-                  },
-                },
+                ["select"] = {},
               },
             },
           },

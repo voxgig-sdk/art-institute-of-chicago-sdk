@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -5749,16 +5750,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -5821,16 +5813,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -5893,16 +5876,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -5965,16 +5939,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -6037,16 +6002,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -6109,16 +6065,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -6181,16 +6128,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -6253,16 +6191,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -6325,16 +6254,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -6397,16 +6317,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -6469,16 +6380,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -6541,16 +6443,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -6613,16 +6506,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -6685,16 +6569,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -6757,16 +6632,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -6829,16 +6695,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -6901,16 +6758,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -6973,16 +6821,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -7045,16 +6884,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -7117,16 +6947,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -7189,16 +7010,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -7261,16 +7073,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -7333,16 +7136,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -7401,16 +7195,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -7473,16 +7258,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -7545,16 +7321,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -7617,16 +7384,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -7689,16 +7447,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -7761,16 +7510,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -7833,16 +7573,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 							map[string]any{
 								"kind": "http",
@@ -7905,16 +7636,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"facet",
-										"from",
-										"q",
-										"query",
-										"size",
-										"sort",
-									},
-								},
+								"select": map[string]any{},
 							},
 						},
 					},

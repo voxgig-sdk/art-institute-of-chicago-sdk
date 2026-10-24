@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases)), or
+GitHub release tag (`php/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/tags)), or
 from a clone as a Composer path repository:
 
 ```bash
@@ -270,8 +270,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
+| `load` | `($reqmatch, $ctrl): mixed` | Load a single entity by match criteria, and return it. |
+| `list` | `(?array $reqmatch = null, $ctrl): mixed` | List entities matching the criteria (call with no argument to list all), one per record. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -281,9 +281,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
-ops, a `list` for `list`) and throw on error. Wrap calls in
-`try`/`catch` to handle failures.
+Entity operations return the entity, and `list` an `array` of entities, one
+per record; an entity's `data_get()` reads its record (an `array`). They
+throw on error, so wrap calls in `try`/`catch` to handle failures.
 
 The `direct()` escape hatch never throws — it returns a result `array`
 you branch on via `$result["ok"]`:
@@ -1319,7 +1319,7 @@ $agent = $client->Agent()->load(["id" => "agent_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Agent records (throws on error).
+// list() returns an array of Agent entities, one per record (throws on error).
 $agents = $client->Agent()->list();
 ```
 
@@ -1359,7 +1359,7 @@ $agent_role = $client->AgentRole()->load(["id" => "agent_role_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of AgentRole records (throws on error).
+// list() returns an array of AgentRole entities, one per record (throws on error).
 $agent_roles = $client->AgentRole()->list();
 ```
 
@@ -1399,7 +1399,7 @@ $agent_type = $client->AgentType()->load(["id" => "agent_type_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of AgentType records (throws on error).
+// list() returns an array of AgentType entities, one per record (throws on error).
 $agent_types = $client->AgentType()->list();
 ```
 
@@ -1440,7 +1440,7 @@ $article = $client->Article()->load(["id" => "article_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Article records (throws on error).
+// list() returns an array of Article entities, one per record (throws on error).
 $articles = $client->Article()->list();
 ```
 
@@ -1575,7 +1575,7 @@ $artwork = $client->Artwork()->load(["id" => "artwork_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Artwork records (throws on error).
+// list() returns an array of Artwork entities, one per record (throws on error).
 $artworks = $client->Artwork()->list();
 ```
 
@@ -1615,7 +1615,7 @@ $artwork_date_qualifier = $client->ArtworkDateQualifier()->load(["id" => "artwor
 #### Example: List
 
 ```php
-// list() returns an array of ArtworkDateQualifier records (throws on error).
+// list() returns an array of ArtworkDateQualifier entities, one per record (throws on error).
 $artwork_date_qualifiers = $client->ArtworkDateQualifier()->list();
 ```
 
@@ -1655,7 +1655,7 @@ $artwork_place_qualifier = $client->ArtworkPlaceQualifier()->load(["id" => "artw
 #### Example: List
 
 ```php
-// list() returns an array of ArtworkPlaceQualifier records (throws on error).
+// list() returns an array of ArtworkPlaceQualifier entities, one per record (throws on error).
 $artwork_place_qualifiers = $client->ArtworkPlaceQualifier()->list();
 ```
 
@@ -1696,7 +1696,7 @@ $artwork_type = $client->ArtworkType()->load(["id" => "artwork_type_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of ArtworkType records (throws on error).
+// list() returns an array of ArtworkType entities, one per record (throws on error).
 $artwork_types = $client->ArtworkType()->list();
 ```
 
@@ -1738,7 +1738,7 @@ $category_term = $client->CategoryTerm()->load(["id" => "category_term_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of CategoryTerm records (throws on error).
+// list() returns an array of CategoryTerm entities, one per record (throws on error).
 $category_terms = $client->CategoryTerm()->list();
 ```
 
@@ -1780,7 +1780,7 @@ $digital_publication = $client->DigitalPublication()->load(["id" => "digital_pub
 #### Example: List
 
 ```php
-// list() returns an array of DigitalPublication records (throws on error).
+// list() returns an array of DigitalPublication entities, one per record (throws on error).
 $digital_publications = $client->DigitalPublication()->list();
 ```
 
@@ -1824,7 +1824,7 @@ $digital_publication_article = $client->DigitalPublicationArticle()->load(["id" 
 #### Example: List
 
 ```php
-// list() returns an array of DigitalPublicationArticle records (throws on error).
+// list() returns an array of DigitalPublicationArticle entities, one per record (throws on error).
 $digital_publication_articles = $client->DigitalPublicationArticle()->list();
 ```
 
@@ -1866,7 +1866,7 @@ $educator_resource = $client->EducatorResource()->load(["id" => "educator_resour
 #### Example: List
 
 ```php
-// list() returns an array of EducatorResource records (throws on error).
+// list() returns an array of EducatorResource entities, one per record (throws on error).
 $educator_resources = $client->EducatorResource()->list();
 ```
 
@@ -1950,7 +1950,7 @@ $event = $client->Event()->load(["id" => "event_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Event records (throws on error).
+// list() returns an array of Event entities, one per record (throws on error).
 $events = $client->Event()->list();
 ```
 
@@ -2006,7 +2006,7 @@ $event_occurrence = $client->EventOccurrence()->load(["id" => "event_occurrence_
 #### Example: List
 
 ```php
-// list() returns an array of EventOccurrence records (throws on error).
+// list() returns an array of EventOccurrence entities, one per record (throws on error).
 $event_occurrences = $client->EventOccurrence()->list();
 ```
 
@@ -2048,7 +2048,7 @@ $event_program = $client->EventProgram()->load(["id" => "event_program_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of EventProgram records (throws on error).
+// list() returns an array of EventProgram entities, one per record (throws on error).
 $event_programs = $client->EventProgram()->list();
 ```
 
@@ -2106,7 +2106,7 @@ $exhibition = $client->Exhibition()->load(["id" => "exhibition_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Exhibition records (throws on error).
+// list() returns an array of Exhibition entities, one per record (throws on error).
 $exhibitions = $client->Exhibition()->list();
 ```
 
@@ -2153,7 +2153,7 @@ $gallery = $client->Gallery()->load(["id" => "gallery_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Gallery records (throws on error).
+// list() returns an array of Gallery entities, one per record (throws on error).
 $gallerys = $client->Gallery()->list();
 ```
 
@@ -2196,7 +2196,7 @@ $generic_page = $client->GenericPage()->load(["id" => "generic_page_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of GenericPage records (throws on error).
+// list() returns an array of GenericPage entities, one per record (throws on error).
 $generic_pages = $client->GenericPage()->list();
 ```
 
@@ -2237,7 +2237,7 @@ $highlight = $client->Highlight()->load(["id" => "highlight_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Highlight records (throws on error).
+// list() returns an array of Highlight entities, one per record (throws on error).
 $highlights = $client->Highlight()->list();
 ```
 
@@ -2314,7 +2314,7 @@ $hour = $client->Hour()->load(["id" => "hour_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Hour records (throws on error).
+// list() returns an array of Hour entities, one per record (throws on error).
 $hours = $client->Hour()->list();
 ```
 
@@ -2374,7 +2374,7 @@ $image = $client->Image()->load(["id" => "image_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Image records (throws on error).
+// list() returns an array of Image entities, one per record (throws on error).
 $images = $client->Image()->list();
 ```
 
@@ -2417,7 +2417,7 @@ $landing_page = $client->LandingPage()->load(["id" => "landing_page_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of LandingPage records (throws on error).
+// list() returns an array of LandingPage entities, one per record (throws on error).
 $landing_pages = $client->LandingPage()->list();
 ```
 
@@ -2460,7 +2460,7 @@ $place = $client->Place()->load(["id" => "place_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Place records (throws on error).
+// list() returns an array of Place entities, one per record (throws on error).
 $places = $client->Place()->list();
 ```
 
@@ -2502,7 +2502,7 @@ $press_release = $client->PressRelease()->load(["id" => "press_release_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of PressRelease records (throws on error).
+// list() returns an array of PressRelease entities, one per record (throws on error).
 $press_releases = $client->PressRelease()->list();
 ```
 
@@ -2544,7 +2544,7 @@ $printed_publication = $client->PrintedPublication()->load(["id" => "printed_pub
 #### Example: List
 
 ```php
-// list() returns an array of PrintedPublication records (throws on error).
+// list() returns an array of PrintedPublication entities, one per record (throws on error).
 $printed_publications = $client->PrintedPublication()->list();
 ```
 
@@ -2596,7 +2596,7 @@ $product = $client->Product()->load(["id" => "product_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Product records (throws on error).
+// list() returns an array of Product entities, one per record (throws on error).
 $products = $client->Product()->list();
 ```
 
@@ -2638,7 +2638,7 @@ $publication = $client->Publication()->load(["id" => "publication_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Publication records (throws on error).
+// list() returns an array of Publication entities, one per record (throws on error).
 $publications = $client->Publication()->list();
 ```
 
@@ -2670,7 +2670,7 @@ Create an instance: `$search = $client->Search();`
 #### Example: List
 
 ```php
-// list() returns an array of Search records (throws on error).
+// list() returns an array of Search entities, one per record (throws on error).
 $searchs = $client->Search()->list();
 ```
 
@@ -2717,7 +2717,7 @@ $section = $client->Section()->load(["id" => "section_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Section records (throws on error).
+// list() returns an array of Section entities, one per record (throws on error).
 $sections = $client->Section()->list();
 ```
 
@@ -2763,7 +2763,7 @@ $site = $client->Site()->load(["id" => "site_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Site records (throws on error).
+// list() returns an array of Site entities, one per record (throws on error).
 $sites = $client->Site()->list();
 ```
 
@@ -2816,7 +2816,7 @@ $sound = $client->Sound()->load(["id" => "sound_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Sound records (throws on error).
+// list() returns an array of Sound entities, one per record (throws on error).
 $sounds = $client->Sound()->list();
 ```
 
@@ -2857,7 +2857,7 @@ $static_page = $client->StaticPage()->load(["id" => "static_page_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of StaticPage records (throws on error).
+// list() returns an array of StaticPage entities, one per record (throws on error).
 $static_pages = $client->StaticPage()->list();
 ```
 
@@ -2908,7 +2908,7 @@ $text = $client->Text()->load(["id" => "text_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Text records (throws on error).
+// list() returns an array of Text entities, one per record (throws on error).
 $texts = $client->Text()->list();
 ```
 
@@ -2956,7 +2956,7 @@ $tour = $client->Tour()->load(["id" => "tour_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Tour records (throws on error).
+// list() returns an array of Tour entities, one per record (throws on error).
 $tours = $client->Tour()->list();
 ```
 
@@ -3007,7 +3007,7 @@ $video = $client->Video()->load(["id" => "video_id"]);
 #### Example: List
 
 ```php
-// list() returns an array of Video records (throws on error).
+// list() returns an array of Video entities, one per record (throws on error).
 $videos = $client->Video()->list();
 ```
 

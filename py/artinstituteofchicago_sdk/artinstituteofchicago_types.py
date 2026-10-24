@@ -1356,12 +1356,14 @@ class Search(TypedDict, total=False):
     title: str
 
 
-class SearchListMatch(TypedDict, total=False):
-    facet: str
-    q: str
-    query: str
-    size: str
-    sort: str
+SearchListMatch = TypedDict('SearchListMatch', {
+    "facet": str,
+    "from": str,
+    "q": str,
+    "query": str,
+    "size": str,
+    "sort": str,
+}, total=False)
 
 
 class Section(TypedDict, total=False):

@@ -495,8 +495,10 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs.headers` | `object` | Request headers (merged with defaults). |
 | `fetchargs.body` | `any` | Request body (objects are JSON-serialized). |
 | `fetchargs.ctrl` | `object` | Control options (e.g. `{ explain: true }`). |
+| `fetchargs.ctrl.signal` | `AbortSignal` | Aborts the request in flight: `ok` is then `false` and `err.code` is `request_aborted`. |
 
-**Returns:** `Promise<{ ok, status, headers, data } | Error>`
+**Returns:** `Promise<{ ok, status, headers, data }>`. On a failure
+`ok` is `false` and `err` holds the error.
 
 #### `prepare(fetchargs?: object)`
 
@@ -510,6 +512,15 @@ same parameters as `direct()`.
 Alias for `ArtInstituteOfChicagoSDK.test()`.
 
 **Returns:** `ArtInstituteOfChicagoSDK` instance in test mode.
+
+#### Cancelling a call
+
+Every entity operation takes an optional `ctrl` object after its match or
+data, and an `AbortSignal` in `ctrl.signal` cancels the request in flight.
+The operation then rejects with an error whose `code` is
+`request_aborted` and whose `cause` is the signal's reason. A request
+whose signal has already aborted is not sent. `stream()` takes the signal
+as `callopts.signal`, and ends when it aborts.
 
 
 ---
@@ -545,7 +556,7 @@ const agent = client.Agent()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Agent().list()
@@ -553,7 +564,7 @@ const results = await client.Agent().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Agent().load({ id: 'agent_id' })
@@ -611,7 +622,7 @@ const agent_role = client.AgentRole()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.AgentRole().list()
@@ -619,7 +630,7 @@ const results = await client.AgentRole().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.AgentRole().load({ id: 'agent_role_id' })
@@ -677,7 +688,7 @@ const agent_type = client.AgentType()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.AgentType().list()
@@ -685,7 +696,7 @@ const results = await client.AgentType().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.AgentType().load({ id: 'agent_type_id' })
@@ -744,7 +755,7 @@ const article = client.Article()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Article().list()
@@ -752,7 +763,7 @@ const results = await client.Article().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Article().load({ id: 'article_id' })
@@ -905,7 +916,7 @@ const artwork = client.Artwork()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Artwork().list()
@@ -913,7 +924,7 @@ const results = await client.Artwork().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Artwork().load({ id: 'artwork_id' })
@@ -971,7 +982,7 @@ const artwork_date_qualifier = client.ArtworkDateQualifier()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.ArtworkDateQualifier().list()
@@ -979,7 +990,7 @@ const results = await client.ArtworkDateQualifier().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.ArtworkDateQualifier().load({ id: 'artwork_date_qualifier_id' })
@@ -1037,7 +1048,7 @@ const artwork_place_qualifier = client.ArtworkPlaceQualifier()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.ArtworkPlaceQualifier().list()
@@ -1045,7 +1056,7 @@ const results = await client.ArtworkPlaceQualifier().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.ArtworkPlaceQualifier().load({ id: 'artwork_place_qualifier_id' })
@@ -1104,7 +1115,7 @@ const artwork_type = client.ArtworkType()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.ArtworkType().list()
@@ -1112,7 +1123,7 @@ const results = await client.ArtworkType().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.ArtworkType().load({ id: 'artwork_type_id' })
@@ -1172,7 +1183,7 @@ const category_term = client.CategoryTerm()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.CategoryTerm().list()
@@ -1180,7 +1191,7 @@ const results = await client.CategoryTerm().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.CategoryTerm().load({ id: 'category_term_id' })
@@ -1240,7 +1251,7 @@ const digital_publication = client.DigitalPublication()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.DigitalPublication().list()
@@ -1248,7 +1259,7 @@ const results = await client.DigitalPublication().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.DigitalPublication().load({ id: 'digital_publication_id' })
@@ -1310,7 +1321,7 @@ const digital_publication_article = client.DigitalPublicationArticle()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.DigitalPublicationArticle().list()
@@ -1318,7 +1329,7 @@ const results = await client.DigitalPublicationArticle().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.DigitalPublicationArticle().load({ id: 'digital_publication_article_id' })
@@ -1378,7 +1389,7 @@ const educator_resource = client.EducatorResource()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.EducatorResource().list()
@@ -1386,7 +1397,7 @@ const results = await client.EducatorResource().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.EducatorResource().load({ id: 'educator_resource_id' })
@@ -1488,7 +1499,7 @@ const event = client.Event()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Event().list()
@@ -1496,7 +1507,7 @@ const results = await client.Event().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Event().load({ id: 'event_id' })
@@ -1570,7 +1581,7 @@ const event_occurrence = client.EventOccurrence()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.EventOccurrence().list()
@@ -1578,7 +1589,7 @@ const results = await client.EventOccurrence().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.EventOccurrence().load({ id: 'event_occurrence_id' })
@@ -1638,7 +1649,7 @@ const event_program = client.EventProgram()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.EventProgram().list()
@@ -1646,7 +1657,7 @@ const results = await client.EventProgram().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.EventProgram().load({ id: 'event_program_id' })
@@ -1722,7 +1733,7 @@ const exhibition = client.Exhibition()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Exhibition().list()
@@ -1730,7 +1741,7 @@ const results = await client.Exhibition().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Exhibition().load({ id: 'exhibition_id' })
@@ -1795,7 +1806,7 @@ const gallery = client.Gallery()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Gallery().list()
@@ -1803,7 +1814,7 @@ const results = await client.Gallery().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Gallery().load({ id: 'gallery_id' })
@@ -1864,7 +1875,7 @@ const generic_page = client.GenericPage()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.GenericPage().list()
@@ -1872,7 +1883,7 @@ const results = await client.GenericPage().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.GenericPage().load({ id: 'generic_page_id' })
@@ -1931,7 +1942,7 @@ const highlight = client.Highlight()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Highlight().list()
@@ -1939,7 +1950,7 @@ const results = await client.Highlight().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Highlight().load({ id: 'highlight_id' })
@@ -2034,7 +2045,7 @@ const hour = client.Hour()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Hour().list()
@@ -2042,7 +2053,7 @@ const results = await client.Hour().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Hour().load({ id: 'hour_id' })
@@ -2120,7 +2131,7 @@ const image = client.Image()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Image().list()
@@ -2128,7 +2139,7 @@ const results = await client.Image().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Image().load({ id: 'image_id' })
@@ -2189,7 +2200,7 @@ const landing_page = client.LandingPage()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.LandingPage().list()
@@ -2197,7 +2208,7 @@ const results = await client.LandingPage().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.LandingPage().load({ id: 'landing_page_id' })
@@ -2258,7 +2269,7 @@ const place = client.Place()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Place().list()
@@ -2266,7 +2277,7 @@ const results = await client.Place().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Place().load({ id: 'place_id' })
@@ -2326,7 +2337,7 @@ const press_release = client.PressRelease()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.PressRelease().list()
@@ -2334,7 +2345,7 @@ const results = await client.PressRelease().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.PressRelease().load({ id: 'press_release_id' })
@@ -2394,7 +2405,7 @@ const printed_publication = client.PrintedPublication()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.PrintedPublication().list()
@@ -2402,7 +2413,7 @@ const results = await client.PrintedPublication().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.PrintedPublication().load({ id: 'printed_publication_id' })
@@ -2472,7 +2483,7 @@ const product = client.Product()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Product().list()
@@ -2480,7 +2491,7 @@ const results = await client.Product().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Product().load({ id: 'product_id' })
@@ -2540,7 +2551,7 @@ const publication = client.Publication()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Publication().list()
@@ -2548,7 +2559,7 @@ const results = await client.Publication().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Publication().load({ id: 'publication_id' })
@@ -2606,7 +2617,7 @@ const search = client.Search()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Search().list()
@@ -2671,7 +2682,7 @@ const section = client.Section()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Section().list()
@@ -2679,7 +2690,7 @@ const results = await client.Section().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Section().load({ id: 'section_id' })
@@ -2743,7 +2754,7 @@ const site = client.Site()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Site().list()
@@ -2751,7 +2762,7 @@ const results = await client.Site().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Site().load({ id: 'site_id' })
@@ -2822,7 +2833,7 @@ const sound = client.Sound()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Sound().list()
@@ -2830,7 +2841,7 @@ const results = await client.Sound().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Sound().load({ id: 'sound_id' })
@@ -2889,7 +2900,7 @@ const static_page = client.StaticPage()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.StaticPage().list()
@@ -2897,7 +2908,7 @@ const results = await client.StaticPage().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.StaticPage().load({ id: 'static_page_id' })
@@ -2966,7 +2977,7 @@ const text = client.Text()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Text().list()
@@ -2974,7 +2985,7 @@ const results = await client.Text().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Text().load({ id: 'text_id' })
@@ -3040,7 +3051,7 @@ const tour = client.Tour()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Tour().list()
@@ -3048,7 +3059,7 @@ const results = await client.Tour().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Tour().load({ id: 'tour_id' })
@@ -3117,7 +3128,7 @@ const video = client.Video()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Video().list()
@@ -3125,7 +3136,7 @@ const results = await client.Video().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Video().load({ id: 'video_id' })
@@ -3316,6 +3327,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

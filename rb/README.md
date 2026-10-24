@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -43,10 +43,11 @@ client = ArtInstituteOfChicagoSDK.new
 
 ```ruby
 begin
-  # list returns an Array of Agent records — iterate directly.
+  # list returns an Array of Agent entities, one per record; data_get reads the record.
   agents = client.Agent.list
   agents.each do |item|
-    puts "#{item["id"]} #{item["alt_titles"]}"
+    record = item.data_get
+    puts "#{record["id"]} #{record["alt_titles"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -59,7 +60,7 @@ end
 begin
   # load returns the ENTITY — call data_get for the Agent record (raises on error).
   agent = client.Agent.load({ "id" => "example_id" })
-  puts agent
+  puts agent.data_get
 rescue => err
   warn "load failed: #{err}"
 end
@@ -143,10 +144,10 @@ client = ArtInstituteOfChicagoSDK.test({
   "entity" => { "publication" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
-publication = client.Publication.list()
-puts publication
+# list returns an Array of Publication entities, one per mock record (raises on
+# error); data_get reads each record.
+publications = client.Publication.list()
+publications.each { |item| puts item.data_get }
 ```
 
 ### Use a custom fetch function
@@ -264,8 +265,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -275,9 +276,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `ArtInstituteOfChicagoError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`ArtInstituteOfChicagoError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -1312,8 +1314,9 @@ agent = client.Agent.load({ "id" => "agent_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Agent records (raises on error).
+# list returns an Array of Agent entities, one per record (raises on error).
 agents = client.Agent.list
+agents.each { |item| puts item.data_get }
 ```
 
 
@@ -1352,8 +1355,9 @@ agent_role = client.AgentRole.load({ "id" => "agent_role_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of AgentRole records (raises on error).
+# list returns an Array of AgentRole entities, one per record (raises on error).
 agent_roles = client.AgentRole.list
+agent_roles.each { |item| puts item.data_get }
 ```
 
 
@@ -1392,8 +1396,9 @@ agent_type = client.AgentType.load({ "id" => "agent_type_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of AgentType records (raises on error).
+# list returns an Array of AgentType entities, one per record (raises on error).
 agent_types = client.AgentType.list
+agent_types.each { |item| puts item.data_get }
 ```
 
 
@@ -1433,8 +1438,9 @@ article = client.Article.load({ "id" => "article_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Article records (raises on error).
+# list returns an Array of Article entities, one per record (raises on error).
 articles = client.Article.list
+articles.each { |item| puts item.data_get }
 ```
 
 
@@ -1568,8 +1574,9 @@ artwork = client.Artwork.load({ "id" => "artwork_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Artwork records (raises on error).
+# list returns an Array of Artwork entities, one per record (raises on error).
 artworks = client.Artwork.list
+artworks.each { |item| puts item.data_get }
 ```
 
 
@@ -1608,8 +1615,9 @@ artwork_date_qualifier = client.ArtworkDateQualifier.load({ "id" => "artwork_dat
 #### Example: List
 
 ```ruby
-# list returns an Array of ArtworkDateQualifier records (raises on error).
+# list returns an Array of ArtworkDateQualifier entities, one per record (raises on error).
 artwork_date_qualifiers = client.ArtworkDateQualifier.list
+artwork_date_qualifiers.each { |item| puts item.data_get }
 ```
 
 
@@ -1648,8 +1656,9 @@ artwork_place_qualifier = client.ArtworkPlaceQualifier.load({ "id" => "artwork_p
 #### Example: List
 
 ```ruby
-# list returns an Array of ArtworkPlaceQualifier records (raises on error).
+# list returns an Array of ArtworkPlaceQualifier entities, one per record (raises on error).
 artwork_place_qualifiers = client.ArtworkPlaceQualifier.list
+artwork_place_qualifiers.each { |item| puts item.data_get }
 ```
 
 
@@ -1689,8 +1698,9 @@ artwork_type = client.ArtworkType.load({ "id" => "artwork_type_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of ArtworkType records (raises on error).
+# list returns an Array of ArtworkType entities, one per record (raises on error).
 artwork_types = client.ArtworkType.list
+artwork_types.each { |item| puts item.data_get }
 ```
 
 
@@ -1731,8 +1741,9 @@ category_term = client.CategoryTerm.load({ "id" => "category_term_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of CategoryTerm records (raises on error).
+# list returns an Array of CategoryTerm entities, one per record (raises on error).
 category_terms = client.CategoryTerm.list
+category_terms.each { |item| puts item.data_get }
 ```
 
 
@@ -1773,8 +1784,9 @@ digital_publication = client.DigitalPublication.load({ "id" => "digital_publicat
 #### Example: List
 
 ```ruby
-# list returns an Array of DigitalPublication records (raises on error).
+# list returns an Array of DigitalPublication entities, one per record (raises on error).
 digital_publications = client.DigitalPublication.list
+digital_publications.each { |item| puts item.data_get }
 ```
 
 
@@ -1817,8 +1829,9 @@ digital_publication_article = client.DigitalPublicationArticle.load({ "id" => "d
 #### Example: List
 
 ```ruby
-# list returns an Array of DigitalPublicationArticle records (raises on error).
+# list returns an Array of DigitalPublicationArticle entities, one per record (raises on error).
 digital_publication_articles = client.DigitalPublicationArticle.list
+digital_publication_articles.each { |item| puts item.data_get }
 ```
 
 
@@ -1859,8 +1872,9 @@ educator_resource = client.EducatorResource.load({ "id" => "educator_resource_id
 #### Example: List
 
 ```ruby
-# list returns an Array of EducatorResource records (raises on error).
+# list returns an Array of EducatorResource entities, one per record (raises on error).
 educator_resources = client.EducatorResource.list
+educator_resources.each { |item| puts item.data_get }
 ```
 
 
@@ -1943,8 +1957,9 @@ event = client.Event.load({ "id" => "event_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Event records (raises on error).
+# list returns an Array of Event entities, one per record (raises on error).
 events = client.Event.list
+events.each { |item| puts item.data_get }
 ```
 
 
@@ -1999,8 +2014,9 @@ event_occurrence = client.EventOccurrence.load({ "id" => "event_occurrence_id" }
 #### Example: List
 
 ```ruby
-# list returns an Array of EventOccurrence records (raises on error).
+# list returns an Array of EventOccurrence entities, one per record (raises on error).
 event_occurrences = client.EventOccurrence.list
+event_occurrences.each { |item| puts item.data_get }
 ```
 
 
@@ -2041,8 +2057,9 @@ event_program = client.EventProgram.load({ "id" => "event_program_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of EventProgram records (raises on error).
+# list returns an Array of EventProgram entities, one per record (raises on error).
 event_programs = client.EventProgram.list
+event_programs.each { |item| puts item.data_get }
 ```
 
 
@@ -2099,8 +2116,9 @@ exhibition = client.Exhibition.load({ "id" => "exhibition_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Exhibition records (raises on error).
+# list returns an Array of Exhibition entities, one per record (raises on error).
 exhibitions = client.Exhibition.list
+exhibitions.each { |item| puts item.data_get }
 ```
 
 
@@ -2146,8 +2164,9 @@ gallery = client.Gallery.load({ "id" => "gallery_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Gallery records (raises on error).
+# list returns an Array of Gallery entities, one per record (raises on error).
 gallerys = client.Gallery.list
+gallerys.each { |item| puts item.data_get }
 ```
 
 
@@ -2189,8 +2208,9 @@ generic_page = client.GenericPage.load({ "id" => "generic_page_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of GenericPage records (raises on error).
+# list returns an Array of GenericPage entities, one per record (raises on error).
 generic_pages = client.GenericPage.list
+generic_pages.each { |item| puts item.data_get }
 ```
 
 
@@ -2230,8 +2250,9 @@ highlight = client.Highlight.load({ "id" => "highlight_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Highlight records (raises on error).
+# list returns an Array of Highlight entities, one per record (raises on error).
 highlights = client.Highlight.list
+highlights.each { |item| puts item.data_get }
 ```
 
 
@@ -2307,8 +2328,9 @@ hour = client.Hour.load({ "id" => "hour_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Hour records (raises on error).
+# list returns an Array of Hour entities, one per record (raises on error).
 hours = client.Hour.list
+hours.each { |item| puts item.data_get }
 ```
 
 
@@ -2367,8 +2389,9 @@ image = client.Image.load({ "id" => "image_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Image records (raises on error).
+# list returns an Array of Image entities, one per record (raises on error).
 images = client.Image.list
+images.each { |item| puts item.data_get }
 ```
 
 
@@ -2410,8 +2433,9 @@ landing_page = client.LandingPage.load({ "id" => "landing_page_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of LandingPage records (raises on error).
+# list returns an Array of LandingPage entities, one per record (raises on error).
 landing_pages = client.LandingPage.list
+landing_pages.each { |item| puts item.data_get }
 ```
 
 
@@ -2453,8 +2477,9 @@ place = client.Place.load({ "id" => "place_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Place records (raises on error).
+# list returns an Array of Place entities, one per record (raises on error).
 places = client.Place.list
+places.each { |item| puts item.data_get }
 ```
 
 
@@ -2495,8 +2520,9 @@ press_release = client.PressRelease.load({ "id" => "press_release_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of PressRelease records (raises on error).
+# list returns an Array of PressRelease entities, one per record (raises on error).
 press_releases = client.PressRelease.list
+press_releases.each { |item| puts item.data_get }
 ```
 
 
@@ -2537,8 +2563,9 @@ printed_publication = client.PrintedPublication.load({ "id" => "printed_publicat
 #### Example: List
 
 ```ruby
-# list returns an Array of PrintedPublication records (raises on error).
+# list returns an Array of PrintedPublication entities, one per record (raises on error).
 printed_publications = client.PrintedPublication.list
+printed_publications.each { |item| puts item.data_get }
 ```
 
 
@@ -2589,8 +2616,9 @@ product = client.Product.load({ "id" => "product_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Product records (raises on error).
+# list returns an Array of Product entities, one per record (raises on error).
 products = client.Product.list
+products.each { |item| puts item.data_get }
 ```
 
 
@@ -2631,8 +2659,9 @@ publication = client.Publication.load({ "id" => "publication_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Publication records (raises on error).
+# list returns an Array of Publication entities, one per record (raises on error).
 publications = client.Publication.list
+publications.each { |item| puts item.data_get }
 ```
 
 
@@ -2663,8 +2692,9 @@ Create an instance: `search = client.Search`
 #### Example: List
 
 ```ruby
-# list returns an Array of Search records (raises on error).
+# list returns an Array of Search entities, one per record (raises on error).
 searchs = client.Search.list
+searchs.each { |item| puts item.data_get }
 ```
 
 
@@ -2710,8 +2740,9 @@ section = client.Section.load({ "id" => "section_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Section records (raises on error).
+# list returns an Array of Section entities, one per record (raises on error).
 sections = client.Section.list
+sections.each { |item| puts item.data_get }
 ```
 
 
@@ -2756,8 +2787,9 @@ site = client.Site.load({ "id" => "site_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Site records (raises on error).
+# list returns an Array of Site entities, one per record (raises on error).
 sites = client.Site.list
+sites.each { |item| puts item.data_get }
 ```
 
 
@@ -2809,8 +2841,9 @@ sound = client.Sound.load({ "id" => "sound_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Sound records (raises on error).
+# list returns an Array of Sound entities, one per record (raises on error).
 sounds = client.Sound.list
+sounds.each { |item| puts item.data_get }
 ```
 
 
@@ -2850,8 +2883,9 @@ static_page = client.StaticPage.load({ "id" => "static_page_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of StaticPage records (raises on error).
+# list returns an Array of StaticPage entities, one per record (raises on error).
 static_pages = client.StaticPage.list
+static_pages.each { |item| puts item.data_get }
 ```
 
 
@@ -2901,8 +2935,9 @@ text = client.Text.load({ "id" => "text_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Text records (raises on error).
+# list returns an Array of Text entities, one per record (raises on error).
 texts = client.Text.list
+texts.each { |item| puts item.data_get }
 ```
 
 
@@ -2949,8 +2984,9 @@ tour = client.Tour.load({ "id" => "tour_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Tour records (raises on error).
+# list returns an Array of Tour entities, one per record (raises on error).
 tours = client.Tour.list
+tours.each { |item| puts item.data_get }
 ```
 
 
@@ -3000,8 +3036,9 @@ video = client.Video.load({ "id" => "video_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Video records (raises on error).
+# list returns an Array of Video entities, one per record (raises on error).
 videos = client.Video.list
+videos.each { |item| puts item.data_get }
 ```
 
 ## Features

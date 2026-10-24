@@ -6,10 +6,34 @@ require_relative "../ArtInstituteOfChicago_sdk"
 require_relative "runner"
 
 class ArtworkEntityTest < Minitest::Test
+  # main.kit.test.live.strict is true (the default is true): a live
+  # request that fails, or a live test missing an input it needs,
+  # fails the test.
+  # An account with no record for a test to read skips it either way.
+  LIVE_STRICT = true
+
   def test_create_instance
     testsdk = ArtInstituteOfChicagoSDK.test(nil, nil)
     ent = testsdk.Artwork(nil)
     assert !ent.nil?
+  end
+
+  def test_list_entities
+    seed = {
+      "entity" => {
+        "artwork" => {
+          "l1" => { "id" => "l1" },
+          "l2" => { "id" => "l2" },
+        },
+      },
+    }
+    items = ArtInstituteOfChicagoSDK.test(seed, nil).Artwork(nil).list(nil, nil)
+    # list resolves to one entity per record; data_get reads the record.
+    assert_equal 2, items.length
+    items.each do |item|
+      assert item.respond_to?(:data_get)
+      assert item.data_get.is_a?(Hash)
+    end
   end
 
   # Feature #4: the entity stream(action, ...) method runs the op pipeline and
@@ -48,6 +72,94 @@ class ArtworkEntityTest < Minitest::Test
     end
   end
 
+  class FailHook < ArtInstituteOfChicagoBaseFeature
+    attr_reader :unexpected
+
+    def initialize
+      super()
+      @name = "failhook"
+      @unexpected = 0
+    end
+
+    def PreSpec(ctx)
+      raise "artwork hook failed"
+    end
+
+    def PreUnexpected(ctx)
+      @unexpected += 1
+    end
+  end
+
+  def test_stream_error
+    offline = { "net" => { "offline" => true } }
+    err = assert_raises(StandardError) do
+      ArtInstituteOfChicagoSDK.test(offline, nil).Artwork(nil).stream("list", nil, nil).to_a
+    end
+    assert_match(/offline/, err.message)
+
+    ArtInstituteOfChicagoSDK.test(offline, nil).Artwork(nil)
+      .stream("list", nil, { "ctrl" => { "throw" => false } }).to_a
+
+    cfg = ArtInstituteOfChicagoConfig.shared_config
+    if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("rbac")
+      denied = ArtInstituteOfChicagoSDK.test(nil, { "feature" => { "rbac" => { "active" => true, "deny" => true } } })
+      err = assert_raises(StandardError) do
+        denied.Artwork(nil).stream("list", nil, nil).to_a
+      end
+      assert_equal "rbac_denied", err.code
+    end
+  end
+
+  def test_stream_ctrl
+    explain = {}
+    ctrl = { "explain" => explain }
+    ArtInstituteOfChicagoSDK.test(nil, nil).Artwork(nil).stream("list", nil, { "ctrl" => ctrl }).to_a
+    assert_equal ["explain"], ctrl.keys
+    assert_same explain, ctrl["explain"]
+    refute_empty explain
+  end
+
+  def test_unexpected
+    hook = FailHook.new
+    client = ArtInstituteOfChicagoSDK.new({ "feature" => { "test" => { "active" => true } }, "extend" => [hook] })
+
+    err = assert_raises(StandardError) do
+      client.Artwork(nil).list(nil, nil)
+    end
+    assert_match(/hook failed/, err.message)
+    assert_operator hook.unexpected, :>, 0
+
+    fired = hook.unexpected
+    assert_nil client.Artwork(nil).list(nil, { "throw" => false })
+    assert_operator hook.unexpected, :>, fired
+  end
+
+  def test_validate_list_response
+    cfg = ArtInstituteOfChicagoConfig.shared_config
+    unless cfg["feature"].is_a?(Hash) && cfg["feature"].key?("validate")
+      skip("feature not present in this SDK: validate")
+    end
+    opts = { "feature" => { "validate" => { "active" => true, "request" => false, "response" => true } } }
+    listed = ArtInstituteOfChicagoSDK.test({ "entity" => { "artwork" => { "v1" => { "alt_artist_ids" => "x", "alt_classification_ids" => "x", "alt_image_ids" => "x", "alt_material_ids" => "x", "alt_style_ids" => "x", "alt_subject_ids" => "x", "alt_technique_ids" => "x", "alt_titles" => "x", "api_link" => "x", "api_model" => "x", "artist_display" => "x", "artist_ids" => "x", "artist_title" => "x", "artist_titles" => "x", "artwork_type_title" => "x", "boost_rank" => "x", "catalog_based_search_keyword_titles" => "x", "catalogue_display" => "x", "category_ids" => "x", "category_titles" => "x", "classification_ids" => "x", "classification_title" => "x", "classification_titles" => "x", "color" => "x", "colorfulness" => "x", "copyright_notice" => "x", "credit_line" => "x", "date_display" => "x", "date_end" => "x", "date_qualifier_title" => "x", "date_start" => "x", "department_title" => "x", "dimensions" => "x", "dimensions_detail" => "x", "document_ids" => "x", "edition" => "x", "exhibition_history" => "x", "fiscal_year" => "x", "fiscal_year_deaccession" => "x", "gallery_title" => "x", "image_embedding" => "x", "inscriptions" => "x", "latlon" => "x", "material_ids" => "x", "material_titles" => "x", "max_zoom_window_size" => "x", "medium_display" => "x", "on_loan_display" => "x", "pageviews" => "x", "pageviews_recent" => "x", "place_of_origin" => "x", "provenance_text" => "x", "publication_history" => "x", "publishing_verification_level" => "x", "section_ids" => "x", "section_titles" => "x", "short_description" => "x", "site_ids" => "x", "sound_ids" => "x", "source_updated_at" => "x", "style_ids" => "x", "style_title" => "x", "style_titles" => "x", "subject_ids" => "x", "subject_titles" => "x", "suggest_autocomplete_all" => "x", "suggest_autocomplete_boosted" => "x", "technique_ids" => "x", "technique_titles" => "x", "term_titles" => "x", "text_embedding" => "x", "text_ids" => "x", "theme_titles" => "x", "thumbnail" => "x", "timestamp" => "x", "updated_at" => "x", "video_ids" => "x" } } } }, opts).Artwork(nil).list(nil, nil)
+    assert_equal ["v1"], listed.map { |ent| ent.data_get["id"] }
+    err = assert_raises(StandardError) do
+      ArtInstituteOfChicagoSDK.test({ "entity" => { "artwork" => { "v1" => { "alt_artist_ids" => "x", "alt_classification_ids" => "x", "alt_image_ids" => "x", "alt_material_ids" => "x", "alt_style_ids" => "x", "alt_subject_ids" => "x", "alt_technique_ids" => "x", "alt_titles" => "x", "api_link" => "x", "api_model" => "x", "artist_display" => "x", "artist_ids" => "x", "artist_title" => "x", "artist_titles" => "x", "artwork_type_title" => "x", "boost_rank" => "x", "catalog_based_search_keyword_titles" => "x", "catalogue_display" => "x", "category_ids" => "x", "category_titles" => "x", "classification_ids" => "x", "classification_title" => "x", "classification_titles" => "x", "color" => "x", "colorfulness" => "x", "copyright_notice" => "x", "credit_line" => "x", "date_display" => "x", "date_end" => "x", "date_qualifier_title" => "x", "date_start" => "x", "department_title" => "x", "dimensions" => "x", "dimensions_detail" => "x", "document_ids" => "x", "edition" => "x", "exhibition_history" => "x", "fiscal_year" => "x", "fiscal_year_deaccession" => "x", "gallery_title" => "x", "image_embedding" => "x", "inscriptions" => "x", "latlon" => "x", "material_ids" => "x", "material_titles" => "x", "max_zoom_window_size" => "x", "medium_display" => "x", "on_loan_display" => "x", "pageviews" => "x", "pageviews_recent" => "x", "place_of_origin" => "x", "provenance_text" => "x", "publication_history" => "x", "publishing_verification_level" => "x", "section_ids" => "x", "section_titles" => "x", "short_description" => "x", "site_ids" => "x", "sound_ids" => "x", "source_updated_at" => "x", "style_ids" => "x", "style_title" => "x", "style_titles" => "x", "subject_ids" => "x", "subject_titles" => "x", "suggest_autocomplete_all" => "x", "suggest_autocomplete_boosted" => "x", "technique_ids" => "x", "technique_titles" => "x", "term_titles" => "x", "text_embedding" => "x", "text_ids" => "x", "theme_titles" => "x", "thumbnail" => "x", "timestamp" => "x", "updated_at" => "x", "video_ids" => "x", "artist_id" => 1 } } } }, opts).Artwork(nil).list(nil, nil)
+    end
+    assert_equal "validate_failed", err.code
+  end
+
+  def test_validate
+    cfg = ArtInstituteOfChicagoConfig.shared_config
+    unless cfg["feature"].is_a?(Hash) && cfg["feature"].key?("validate")
+      skip("feature not present in this SDK: validate")
+    end
+    client = ArtInstituteOfChicagoSDK.test(nil, { "feature" => { "validate" => { "active" => true } } })
+    err = assert_raises(StandardError) do
+      client.Artwork(nil).list({ "artist_id" => 1 }, nil)
+    end
+    assert_equal "validate_failed", err.code
+  end
+
   def test_basic_flow
     setup = artwork_basic_setup(nil)
     # Per-op sdk-test-control.json skip.
@@ -59,13 +171,12 @@ class ArtworkEntityTest < Minitest::Test
         return
       end
     end
-    # The basic flow consumes synthetic IDs from the fixture. In live mode
-    # without an *_ENTID env override, those IDs hit the live API and 4xx.
-    if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set ART_INSTITUTE_OF_CHICAGO_TEST_ARTWORK_ENTID JSON to run live"
-      return
-    end
     client = setup[:client]
+    if setup[:live]
+      Runner.live_existing(setup, LIVE_STRICT, "artwork") do
+        client.Artwork(nil).list({}, nil)
+      end
+    end
 
     # Bootstrap entity data from existing test data.
     artwork_ref01_data_raw = Vs.items(Helpers.to_map(
@@ -98,7 +209,7 @@ def artwork_basic_setup(extra)
   Runner.load_env_local
 
   entity_data_file = File.join(__dir__, "..", "..", ".sdk", "test", "entity", "artwork", "ArtworkTestData.json")
-  entity_data_source = File.read(entity_data_file)
+  entity_data_source = File.read(entity_data_file, encoding: "UTF-8")
   entity_data = JSON.parse(entity_data_source)
 
   options = {}
@@ -117,9 +228,8 @@ def artwork_basic_setup(extra)
     }
   )
 
-  # Detect ENTID env override before envOverride consumes it. When live
-  # mode is on without a real override, the basic test runs against synthetic
-  # IDs from the fixture and 4xx's. Surface this so the test can skip.
+  # Whether *_ENTID supplied the idmap, read before env_override consumes
+  # it: without it, the ids a live flow binds are the fixture's synthetic ones.
   entid_env_raw = ENV["ART_INSTITUTE_OF_CHICAGO_TEST_ARTWORK_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 

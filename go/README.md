@@ -16,7 +16,7 @@ go get github.com/voxgig-sdk/art-institute-of-chicago-sdk/go@latest
 ```
 
 The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
-release tag — see [Releases](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/releases) for the available versions.
+release tag — see [Tags](https://github.com/voxgig-sdk/art-institute-of-chicago-sdk/tags) for the available versions.
 
 To vendor from a local checkout instead, clone this repo alongside your
 project and add a `replace` directive pointing at the checked-out
@@ -35,9 +35,10 @@ loading a specific record.
 ### Quickstart
 
 A complete program: create a client, then call the entity operations.
-Each operation returns `(value, error)` — the value is the data itself
-(there is no `{ok, data}` wrapper), so check `err` and use the value
-directly.
+Each operation returns `(value, error)` — the value is the entity, and for
+`List` a `[]any` of entities, one per record (there is no `{ok, data}`
+wrapper), so check `err` and read a record through the entity's
+`Data()`.
 
 ```go
 package main
@@ -50,21 +51,21 @@ import (
 func main() {
     client := sdk.New()
 
-    // List agent records — the value is the array of records itself.
+    // List agent records — the value is a []any of entities, one per record.
     agents, err := client.Agent(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
     for _, item := range agents.([]any) {
-        fmt.Println(item)
+        fmt.Println(item.(sdk.Entity).Data())
     }
 
-    // Load a single agent — the value is the loaded record.
+    // Load a single agent — the value is the entity; Data() reads its record.
     agent, err := client.Agent(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(agent)
+    fmt.Println(agent.(sdk.Entity).Data())
 }
 ```
 
@@ -144,13 +145,16 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-publication, err := client.Publication(nil).List(
+publications, err := client.Publication(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(publication) // the returned mock data
+// A []any of entities, one per mock record.
+for _, item := range publications.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ### Use a custom fetch function
@@ -269,8 +273,8 @@ All entities implement the `ArtInstituteOfChicagoEntity` interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
-| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
+| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria, and return it. |
+| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria, one per record. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -278,21 +282,21 @@ All entities implement the `ArtInstituteOfChicagoEntity` interface.
 
 ### Result shape
 
-Entity operations return `(value, error)`. The `value` is the
-operation's data **directly** — there is no wrapper:
+Entity operations return `(value, error)`. The `value` is the entity
+itself — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` | the entity record (`map[string]any`) |
-| `List` | a `[]any` of entity records |
+| `Load` | the entity, whose `Data()` reads its record (`map[string]any`) |
+| `List` | a `[]any` of entities, one per record |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    agent, err := client.Agent(nil).List(map[string]any{/* fields */}, nil)
+    agent, err := client.Agent(nil).List(nil, nil)
     if err != nil { /* handle */ }
-    // agent is the returned record
+    // agent is a []any of entities, one per record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -1316,7 +1320,7 @@ agent, err := client.Agent(nil).Load(map[string]any{"id": "agent_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(agent) // the loaded record
+fmt.Println(agent.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1326,7 +1330,10 @@ agents, err := client.Agent(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(agents) // the array of records
+// A []any of entities, one per record.
+for _, item := range agents.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -1362,7 +1369,7 @@ agentRole, err := client.AgentRole(nil).Load(map[string]any{"id": "agent_role_id
 if err != nil {
     panic(err)
 }
-fmt.Println(agentRole) // the loaded record
+fmt.Println(agentRole.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1372,7 +1379,10 @@ agentRoles, err := client.AgentRole(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(agentRoles) // the array of records
+// A []any of entities, one per record.
+for _, item := range agentRoles.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -1408,7 +1418,7 @@ agentType, err := client.AgentType(nil).Load(map[string]any{"id": "agent_type_id
 if err != nil {
     panic(err)
 }
-fmt.Println(agentType) // the loaded record
+fmt.Println(agentType.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1418,7 +1428,10 @@ agentTypes, err := client.AgentType(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(agentTypes) // the array of records
+// A []any of entities, one per record.
+for _, item := range agentTypes.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -1455,7 +1468,7 @@ article, err := client.Article(nil).Load(map[string]any{"id": "article_id"}, nil
 if err != nil {
     panic(err)
 }
-fmt.Println(article) // the loaded record
+fmt.Println(article.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1465,7 +1478,10 @@ articles, err := client.Article(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(articles) // the array of records
+// A []any of entities, one per record.
+for _, item := range articles.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -1596,7 +1612,7 @@ artwork, err := client.Artwork(nil).Load(map[string]any{"id": "artwork_id"}, nil
 if err != nil {
     panic(err)
 }
-fmt.Println(artwork) // the loaded record
+fmt.Println(artwork.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1606,7 +1622,10 @@ artworks, err := client.Artwork(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(artworks) // the array of records
+// A []any of entities, one per record.
+for _, item := range artworks.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -1642,7 +1661,7 @@ artworkDateQualifier, err := client.ArtworkDateQualifier(nil).Load(map[string]an
 if err != nil {
     panic(err)
 }
-fmt.Println(artworkDateQualifier) // the loaded record
+fmt.Println(artworkDateQualifier.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1652,7 +1671,10 @@ artworkDateQualifiers, err := client.ArtworkDateQualifier(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(artworkDateQualifiers) // the array of records
+// A []any of entities, one per record.
+for _, item := range artworkDateQualifiers.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -1688,7 +1710,7 @@ artworkPlaceQualifier, err := client.ArtworkPlaceQualifier(nil).Load(map[string]
 if err != nil {
     panic(err)
 }
-fmt.Println(artworkPlaceQualifier) // the loaded record
+fmt.Println(artworkPlaceQualifier.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1698,7 +1720,10 @@ artworkPlaceQualifiers, err := client.ArtworkPlaceQualifier(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(artworkPlaceQualifiers) // the array of records
+// A []any of entities, one per record.
+for _, item := range artworkPlaceQualifiers.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -1735,7 +1760,7 @@ artworkType, err := client.ArtworkType(nil).Load(map[string]any{"id": "artwork_t
 if err != nil {
     panic(err)
 }
-fmt.Println(artworkType) // the loaded record
+fmt.Println(artworkType.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1745,7 +1770,10 @@ artworkTypes, err := client.ArtworkType(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(artworkTypes) // the array of records
+// A []any of entities, one per record.
+for _, item := range artworkTypes.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -1783,7 +1811,7 @@ categoryTerm, err := client.CategoryTerm(nil).Load(map[string]any{"id": "categor
 if err != nil {
     panic(err)
 }
-fmt.Println(categoryTerm) // the loaded record
+fmt.Println(categoryTerm.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1793,7 +1821,10 @@ categoryTerms, err := client.CategoryTerm(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(categoryTerms) // the array of records
+// A []any of entities, one per record.
+for _, item := range categoryTerms.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -1831,7 +1862,7 @@ digitalPublication, err := client.DigitalPublication(nil).Load(map[string]any{"i
 if err != nil {
     panic(err)
 }
-fmt.Println(digitalPublication) // the loaded record
+fmt.Println(digitalPublication.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1841,7 +1872,10 @@ digitalPublications, err := client.DigitalPublication(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(digitalPublications) // the array of records
+// A []any of entities, one per record.
+for _, item := range digitalPublications.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -1881,7 +1915,7 @@ digitalPublicationArticle, err := client.DigitalPublicationArticle(nil).Load(map
 if err != nil {
     panic(err)
 }
-fmt.Println(digitalPublicationArticle) // the loaded record
+fmt.Println(digitalPublicationArticle.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1891,7 +1925,10 @@ digitalPublicationArticles, err := client.DigitalPublicationArticle(nil).List(ni
 if err != nil {
     panic(err)
 }
-fmt.Println(digitalPublicationArticles) // the array of records
+// A []any of entities, one per record.
+for _, item := range digitalPublicationArticles.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -1929,7 +1966,7 @@ educatorResource, err := client.EducatorResource(nil).Load(map[string]any{"id": 
 if err != nil {
     panic(err)
 }
-fmt.Println(educatorResource) // the loaded record
+fmt.Println(educatorResource.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -1939,7 +1976,10 @@ educatorResources, err := client.EducatorResource(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(educatorResources) // the array of records
+// A []any of entities, one per record.
+for _, item := range educatorResources.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2019,7 +2059,7 @@ event, err := client.Event(nil).Load(map[string]any{"id": "event_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(event) // the loaded record
+fmt.Println(event.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2029,7 +2069,10 @@ events, err := client.Event(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(events) // the array of records
+// A []any of entities, one per record.
+for _, item := range events.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2081,7 +2124,7 @@ eventOccurrence, err := client.EventOccurrence(nil).Load(map[string]any{"id": "e
 if err != nil {
     panic(err)
 }
-fmt.Println(eventOccurrence) // the loaded record
+fmt.Println(eventOccurrence.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2091,7 +2134,10 @@ eventOccurrences, err := client.EventOccurrence(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(eventOccurrences) // the array of records
+// A []any of entities, one per record.
+for _, item := range eventOccurrences.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2129,7 +2175,7 @@ eventProgram, err := client.EventProgram(nil).Load(map[string]any{"id": "event_p
 if err != nil {
     panic(err)
 }
-fmt.Println(eventProgram) // the loaded record
+fmt.Println(eventProgram.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2139,7 +2185,10 @@ eventPrograms, err := client.EventProgram(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(eventPrograms) // the array of records
+// A []any of entities, one per record.
+for _, item := range eventPrograms.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2193,7 +2242,7 @@ exhibition, err := client.Exhibition(nil).Load(map[string]any{"id": "exhibition_
 if err != nil {
     panic(err)
 }
-fmt.Println(exhibition) // the loaded record
+fmt.Println(exhibition.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2203,7 +2252,10 @@ exhibitions, err := client.Exhibition(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(exhibitions) // the array of records
+// A []any of entities, one per record.
+for _, item := range exhibitions.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2246,7 +2298,7 @@ gallery, err := client.Gallery(nil).Load(map[string]any{"id": "gallery_id"}, nil
 if err != nil {
     panic(err)
 }
-fmt.Println(gallery) // the loaded record
+fmt.Println(gallery.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2256,7 +2308,10 @@ gallerys, err := client.Gallery(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(gallerys) // the array of records
+// A []any of entities, one per record.
+for _, item := range gallerys.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2295,7 +2350,7 @@ genericPage, err := client.GenericPage(nil).Load(map[string]any{"id": "generic_p
 if err != nil {
     panic(err)
 }
-fmt.Println(genericPage) // the loaded record
+fmt.Println(genericPage.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2305,7 +2360,10 @@ genericPages, err := client.GenericPage(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(genericPages) // the array of records
+// A []any of entities, one per record.
+for _, item := range genericPages.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2342,7 +2400,7 @@ highlight, err := client.Highlight(nil).Load(map[string]any{"id": "highlight_id"
 if err != nil {
     panic(err)
 }
-fmt.Println(highlight) // the loaded record
+fmt.Println(highlight.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2352,7 +2410,10 @@ highlights, err := client.Highlight(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(highlights) // the array of records
+// A []any of entities, one per record.
+for _, item := range highlights.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2425,7 +2486,7 @@ hour, err := client.Hour(nil).Load(map[string]any{"id": "hour_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(hour) // the loaded record
+fmt.Println(hour.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2435,7 +2496,10 @@ hours, err := client.Hour(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(hours) // the array of records
+// A []any of entities, one per record.
+for _, item := range hours.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2491,7 +2555,7 @@ image, err := client.Image(nil).Load(map[string]any{"id": "image_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(image) // the loaded record
+fmt.Println(image.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2501,7 +2565,10 @@ images, err := client.Image(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(images) // the array of records
+// A []any of entities, one per record.
+for _, item := range images.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2540,7 +2607,7 @@ landingPage, err := client.LandingPage(nil).Load(map[string]any{"id": "landing_p
 if err != nil {
     panic(err)
 }
-fmt.Println(landingPage) // the loaded record
+fmt.Println(landingPage.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2550,7 +2617,10 @@ landingPages, err := client.LandingPage(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(landingPages) // the array of records
+// A []any of entities, one per record.
+for _, item := range landingPages.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2589,7 +2659,7 @@ place, err := client.Place(nil).Load(map[string]any{"id": "place_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(place) // the loaded record
+fmt.Println(place.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2599,7 +2669,10 @@ places, err := client.Place(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(places) // the array of records
+// A []any of entities, one per record.
+for _, item := range places.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2637,7 +2710,7 @@ pressRelease, err := client.PressRelease(nil).Load(map[string]any{"id": "press_r
 if err != nil {
     panic(err)
 }
-fmt.Println(pressRelease) // the loaded record
+fmt.Println(pressRelease.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2647,7 +2720,10 @@ pressReleases, err := client.PressRelease(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(pressReleases) // the array of records
+// A []any of entities, one per record.
+for _, item := range pressReleases.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2685,7 +2761,7 @@ printedPublication, err := client.PrintedPublication(nil).Load(map[string]any{"i
 if err != nil {
     panic(err)
 }
-fmt.Println(printedPublication) // the loaded record
+fmt.Println(printedPublication.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2695,7 +2771,10 @@ printedPublications, err := client.PrintedPublication(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(printedPublications) // the array of records
+// A []any of entities, one per record.
+for _, item := range printedPublications.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2743,7 +2822,7 @@ product, err := client.Product(nil).Load(map[string]any{"id": "product_id"}, nil
 if err != nil {
     panic(err)
 }
-fmt.Println(product) // the loaded record
+fmt.Println(product.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2753,7 +2832,10 @@ products, err := client.Product(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(products) // the array of records
+// A []any of entities, one per record.
+for _, item := range products.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2791,7 +2873,7 @@ publication, err := client.Publication(nil).Load(map[string]any{"id": "publicati
 if err != nil {
     panic(err)
 }
-fmt.Println(publication) // the loaded record
+fmt.Println(publication.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2801,7 +2883,10 @@ publications, err := client.Publication(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(publications) // the array of records
+// A []any of entities, one per record.
+for _, item := range publications.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2836,7 +2921,10 @@ searchs, err := client.Search(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(searchs) // the array of records
+// A []any of entities, one per record.
+for _, item := range searchs.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2879,7 +2967,7 @@ section, err := client.Section(nil).Load(map[string]any{"id": "section_id"}, nil
 if err != nil {
     panic(err)
 }
-fmt.Println(section) // the loaded record
+fmt.Println(section.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2889,7 +2977,10 @@ sections, err := client.Section(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(sections) // the array of records
+// A []any of entities, one per record.
+for _, item := range sections.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2931,7 +3022,7 @@ site, err := client.Site(nil).Load(map[string]any{"id": "site_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(site) // the loaded record
+fmt.Println(site.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -2941,7 +3032,10 @@ sites, err := client.Site(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(sites) // the array of records
+// A []any of entities, one per record.
+for _, item := range sites.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2990,7 +3084,7 @@ sound, err := client.Sound(nil).Load(map[string]any{"id": "sound_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(sound) // the loaded record
+fmt.Println(sound.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -3000,7 +3094,10 @@ sounds, err := client.Sound(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(sounds) // the array of records
+// A []any of entities, one per record.
+for _, item := range sounds.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -3037,7 +3134,7 @@ staticPage, err := client.StaticPage(nil).Load(map[string]any{"id": "static_page
 if err != nil {
     panic(err)
 }
-fmt.Println(staticPage) // the loaded record
+fmt.Println(staticPage.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -3047,7 +3144,10 @@ staticPages, err := client.StaticPage(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(staticPages) // the array of records
+// A []any of entities, one per record.
+for _, item := range staticPages.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -3094,7 +3194,7 @@ text, err := client.Text(nil).Load(map[string]any{"id": "text_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(text) // the loaded record
+fmt.Println(text.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -3104,7 +3204,10 @@ texts, err := client.Text(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(texts) // the array of records
+// A []any of entities, one per record.
+for _, item := range texts.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -3148,7 +3251,7 @@ tour, err := client.Tour(nil).Load(map[string]any{"id": "tour_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(tour) // the loaded record
+fmt.Println(tour.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -3158,7 +3261,10 @@ tours, err := client.Tour(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(tours) // the array of records
+// A []any of entities, one per record.
+for _, item := range tours.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -3205,7 +3311,7 @@ video, err := client.Video(nil).Load(map[string]any{"id": "video_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(video) // the loaded record
+fmt.Println(video.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -3215,7 +3321,10 @@ videos, err := client.Video(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(videos) // the array of records
+// A []any of entities, one per record.
+for _, item := range videos.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ## Features
@@ -3352,7 +3461,9 @@ The Go SDK uses `map[string]any` throughout rather than typed structs.
 This mirrors the dynamic nature of the API and keeps the SDK
 flexible — no code generation is needed when the API schema changes.
 
-Use `core.ToMapAny()` to safely cast results and nested data.
+An operation returns the entity, and its `Data()` returns the record. Use
+`core.ToMapAny()` to safely cast that record, or data nested in it, to
+`map[string]any`: it returns `nil` for anything else, an entity included.
 
 ### Package structure
 

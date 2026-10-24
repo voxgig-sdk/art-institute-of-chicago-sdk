@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { ArtInstituteOfChicagoSDK, BaseFeature, stdutil } from '../../..'
+import { ArtInstituteOfChicagoSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('VideoEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('video hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of ArtInstituteOfChicagoSDK.test(offline).Video().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of ArtInstituteOfChicagoSDK.test(offline).Video()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = ArtInstituteOfChicagoSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Video().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of ArtInstituteOfChicagoSDK.test().Video().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new ArtInstituteOfChicagoSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Video().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Video().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = ArtInstituteOfChicagoSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Video().list({"id":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.ART_INSTITUTE_OF_CHICAGO_TEST_LIVE
@@ -51,7 +109,7 @@ describe('VideoEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"alt_text":{"a":true,"h":"Alt Text","n":"alt_text","r":false,"sh":"Alternative text for the asset to describe it to people with low or no vision","t":"`$ANY`","key$":"alt_text","index$":0},"api_link":{"a":true,"h":"Api Link","n":"api_link","r":false,"sh":"REST API link for this resource","t":"`$ANY`","key$":"api_link","index$":1},"api_model":{"a":true,"h":"Api Model","n":"api_model","r":false,"sh":"REST API resource type or endpoint","t":"`$ANY`","key$":"api_model","index$":2},"artwork_ids":{"a":true,"h":"Artwork Ids","n":"artwork_ids","r":false,"sh":"Unique identifiers of the artworks associated with this asset","t":"`$ANY`","key$":"artwork_ids","index$":3},"artwork_titles":{"a":true,"h":"Artwork Titles","n":"artwork_titles","r":false,"sh":"Names of the artworks associated with this asset","t":"`$ANY`","key$":"artwork_titles","index$":4},"content":{"a":true,"h":"Content","n":"content","r":false,"sh":"Text of or URL to the contents of this asset","t":"`$ANY`","key$":"content","index$":5},"content_e_tag":{"a":true,"h":"Content E Tag","n":"content_e_tag","r":false,"sh":"Arbitrary unique identifier that changes when the binary file gets updated","t":"`$ANY`","key$":"content_e_tag","index$":6},"credit_line":{"a":true,"h":"Credit Line","n":"credit_line","r":false,"sh":"Asset-specific copyright information","t":"`$ANY`","key$":"credit_line","index$":7},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Unique identifier of this resource.","t":"`$STRING`","key$":"id","index$":8},"is_educational_resource":{"a":true,"h":"Is Educational Resource","n":"is_educational_resource","r":false,"sh":"Whether this resource is considered to be educational","t":"`$BOOLEAN`","key$":"is_educational_resource","index$":9},"is_multimedia_resource":{"a":true,"h":"Is Multimedia Resource","n":"is_multimedia_resource","r":false,"sh":"Whether this resource is considered to be multimedia","t":"`$BOOLEAN`","key$":"is_multimedia_resource","index$":10},"is_teacher_resource":{"a":true,"h":"Is Teacher Resource","n":"is_teacher_resource","r":false,"sh":"Whether this resource is considered to be educational","t":"`$BOOLEAN`","key$":"is_teacher_resource","index$":11},"lake_guid":{"a":true,"h":"Lake Guid","n":"lake_guid","r":false,"sh":"Unique UUID of this resource in LAKE, our DAMS.","t":"`$ANY`","key$":"lake_guid","index$":12},"source_updated_at":{"a":true,"h":"Source Updated At","n":"source_updated_at","r":false,"sh":"Date and time the resource was updated in the source system","t":"`$ANY`","key$":"source_updated_at","index$":13},"suggest_autocomplete_all":{"a":true,"h":"Suggest Autocomplete All","n":"suggest_autocomplete_all","r":false,"sh":"Internal field to power the `/autosuggest` endpoint.","t":"`$ANY`","key$":"suggest_autocomplete_all","index$":14},"suggest_autocomplete_boosted":{"a":true,"h":"Suggest Autocomplete Boosted","n":"suggest_autocomplete_boosted","r":false,"sh":"Internal field to power the `/autocomplete` endpoint.","t":"`$ANY`","key$":"suggest_autocomplete_boosted","index$":15},"timestamp":{"a":true,"h":"Timestamp","n":"timestamp","r":false,"sh":"Date and time the record was updated in the aggregator search index","t":"`$ANY`","key$":"timestamp","index$":16},"title":{"a":true,"h":"Title","n":"title","r":false,"sh":"The name of this resource","t":"`$STRING`","key$":"title","index$":17},"type":{"a":true,"h":"Type","n":"type","r":false,"sh":"Type always takes one of the following values: image, sound, text, video","t":"`$ANY`","key$":"type","index$":18},"updated_at":{"a":true,"h":"Updated At","n":"updated_at","r":false,"sh":"Date and time the record was updated in the aggregator database","t":"`$ANY`","key$":"updated_at","index$":19}},"id":{"field":"id","name":"id"},"name":"video","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /videos","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/videos","q":{},"r":{},"s":[{"lit":"videos"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /videos/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/videos/{id}","q":{"exist":["id"]},"r":{},"s":[{"lit":"videos"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"video","name__orig":"video","Name":"Video","name_":"video","name-":"video","NAME":"VIDEO","index$":34}, {"active":true,"entity":"video","key$":"BasicVideoFlow","kind":"basic","name":"BasicVideoFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"video_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"video_ref01","srcdatavar":"video_ref01_data","suffix":"_dt0"},"m":{"id":"video01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-video_ref01"}}],"index$":1}]}, 'Video', {"GET /videos":{"protocol":"http","parameters":[]},"GET /videos/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","type":"string","required":true,"x-ref":"#/parameters/id","index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"alt_text":{"a":true,"h":"Alt Text","n":"alt_text","r":false,"sh":"Alternative text for the asset to describe it to people with low or no vision","t":"`$ANY`","key$":"alt_text","index$":0},"api_link":{"a":true,"h":"Api Link","n":"api_link","r":false,"sh":"REST API link for this resource","t":"`$ANY`","key$":"api_link","index$":1},"api_model":{"a":true,"h":"Api Model","n":"api_model","r":false,"sh":"REST API resource type or endpoint","t":"`$ANY`","key$":"api_model","index$":2},"artwork_ids":{"a":true,"h":"Artwork Ids","n":"artwork_ids","r":false,"sh":"Unique identifiers of the artworks associated with this asset","t":"`$ANY`","key$":"artwork_ids","index$":3},"artwork_titles":{"a":true,"h":"Artwork Titles","n":"artwork_titles","r":false,"sh":"Names of the artworks associated with this asset","t":"`$ANY`","key$":"artwork_titles","index$":4},"content":{"a":true,"h":"Content","n":"content","r":false,"sh":"Text of or URL to the contents of this asset","t":"`$ANY`","key$":"content","index$":5},"content_e_tag":{"a":true,"h":"Content E Tag","n":"content_e_tag","r":false,"sh":"Arbitrary unique identifier that changes when the binary file gets updated","t":"`$ANY`","key$":"content_e_tag","index$":6},"credit_line":{"a":true,"h":"Credit Line","n":"credit_line","r":false,"sh":"Asset-specific copyright information","t":"`$ANY`","key$":"credit_line","index$":7},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Unique identifier of this resource.","t":"`$STRING`","key$":"id","index$":8},"is_educational_resource":{"a":true,"h":"Is Educational Resource","n":"is_educational_resource","r":false,"sh":"Whether this resource is considered to be educational","t":"`$BOOLEAN`","key$":"is_educational_resource","index$":9},"is_multimedia_resource":{"a":true,"h":"Is Multimedia Resource","n":"is_multimedia_resource","r":false,"sh":"Whether this resource is considered to be multimedia","t":"`$BOOLEAN`","key$":"is_multimedia_resource","index$":10},"is_teacher_resource":{"a":true,"h":"Is Teacher Resource","n":"is_teacher_resource","r":false,"sh":"Whether this resource is considered to be educational","t":"`$BOOLEAN`","key$":"is_teacher_resource","index$":11},"lake_guid":{"a":true,"h":"Lake Guid","n":"lake_guid","r":false,"sh":"Unique UUID of this resource in LAKE, our DAMS.","t":"`$ANY`","key$":"lake_guid","index$":12},"source_updated_at":{"a":true,"h":"Source Updated At","n":"source_updated_at","r":false,"sh":"Date and time the resource was updated in the source system","t":"`$ANY`","key$":"source_updated_at","index$":13},"suggest_autocomplete_all":{"a":true,"h":"Suggest Autocomplete All","n":"suggest_autocomplete_all","r":false,"sh":"Internal field to power the `/autosuggest` endpoint.","t":"`$ANY`","key$":"suggest_autocomplete_all","index$":14},"suggest_autocomplete_boosted":{"a":true,"h":"Suggest Autocomplete Boosted","n":"suggest_autocomplete_boosted","r":false,"sh":"Internal field to power the `/autocomplete` endpoint.","t":"`$ANY`","key$":"suggest_autocomplete_boosted","index$":15},"timestamp":{"a":true,"h":"Timestamp","n":"timestamp","r":false,"sh":"Date and time the record was updated in the aggregator search index","t":"`$ANY`","key$":"timestamp","index$":16},"title":{"a":true,"h":"Title","n":"title","r":false,"sh":"The name of this resource","t":"`$STRING`","key$":"title","index$":17},"type":{"a":true,"h":"Type","n":"type","r":false,"sh":"Type always takes one of the following values: image, sound, text, video","t":"`$ANY`","key$":"type","index$":18},"updated_at":{"a":true,"h":"Updated At","n":"updated_at","r":false,"sh":"Date and time the record was updated in the aggregator database","t":"`$ANY`","key$":"updated_at","index$":19}},"id":{"field":"id","name":"id"},"name":"video","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /videos","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/videos","q":{},"r":{},"s":[{"lit":"videos"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /videos/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/videos/{id}","q":{"exist":["id"]},"r":{},"s":[{"lit":"videos"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"video","name__orig":"video","Name":"Video","name_":"video","name-":"video","NAME":"VIDEO","index$":34}, {"active":true,"entity":"video","key$":"BasicVideoFlow","kind":"basic","name":"BasicVideoFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"video_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"video_ref01","srcdatavar":"video_ref01_data","suffix":"_dt0"},"m":{"id":"video01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-video_ref01"}}],"index$":1}]}, 'Video', {"GET /videos":{"protocol":"http","parameters":[]},"GET /videos/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","type":"string","required":true,"x-ref":"#/parameters/id","index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -79,6 +137,12 @@ describe('VideoEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

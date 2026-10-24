@@ -134,16 +134,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/agents/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "agents"
@@ -211,16 +201,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/articles/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "articles"
@@ -288,16 +268,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/artworks/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "artworks"
@@ -365,16 +335,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/category-terms/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "category-terms"
@@ -442,16 +402,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/digital-publication-articles/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "digital-publication-articles"
@@ -519,16 +469,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/digital-publications/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "digital-publications"
@@ -596,16 +536,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/educator-resources/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "educator-resources"
@@ -673,16 +603,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/event-occurrences/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "event-occurrences"
@@ -750,16 +670,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/event-programs/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "event-programs"
@@ -827,16 +737,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/events/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "events"
@@ -904,16 +804,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/exhibitions/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "exhibitions"
@@ -981,16 +871,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/galleries/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "galleries"
@@ -1058,16 +938,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/generic-pages/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "generic-pages"
@@ -1135,16 +1005,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/highlights/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "highlights"
@@ -1212,16 +1072,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/hours/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "hours"
@@ -1289,16 +1139,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/images/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "images"
@@ -1366,16 +1206,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/landing-pages/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "landing-pages"
@@ -1443,16 +1273,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/mobile-sounds/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "mobile-sounds"
@@ -1520,16 +1340,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/places/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "places"
@@ -1597,16 +1407,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/press-releases/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "press-releases"
@@ -1674,16 +1474,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/printed-publications/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "printed-publications"
@@ -1751,16 +1541,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/products/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "products"
@@ -1828,16 +1608,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/publications/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "publications"
@@ -1905,16 +1675,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "search"
@@ -1979,16 +1739,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/sections/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "sections"
@@ -2056,16 +1806,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/sites/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "sites"
@@ -2133,16 +1873,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/sounds/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "sounds"
@@ -2210,16 +1940,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/static-pages/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "static-pages"
@@ -2287,16 +2007,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/texts/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "texts"
@@ -2364,16 +2074,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/tours/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "tours"
@@ -2441,16 +2141,6 @@ main: kit: entity: search: {
           }
           m: "GET"
           o: "/videos/search"
-          q: {
-            exist: [
-              "facet"
-              "from"
-              "q"
-              "query"
-              "size"
-              "sort"
-            ]
-          }
           s: [
             {
               lit: "videos"

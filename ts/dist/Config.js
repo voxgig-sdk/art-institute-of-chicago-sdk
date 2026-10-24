@@ -87,6 +87,7 @@ class Config {
             },
             "optspec": {
                 "clearTimer": "`$FUNCTION`",
+                "now": "`$FUNCTION`",
                 "setTimer": "`$FUNCTION`"
             },
             "strict": false,
@@ -5765,16 +5766,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -5837,16 +5829,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -5909,16 +5892,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -5981,16 +5955,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -6053,16 +6018,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -6125,16 +6081,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -6197,16 +6144,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -6269,16 +6207,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -6341,16 +6270,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -6413,16 +6333,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -6485,16 +6396,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -6557,16 +6459,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -6629,16 +6522,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -6701,16 +6585,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -6773,16 +6648,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -6845,16 +6711,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -6917,16 +6774,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -6989,16 +6837,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -7061,16 +6900,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -7133,16 +6963,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -7205,16 +7026,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -7277,16 +7089,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -7349,16 +7152,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -7417,16 +7211,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -7489,16 +7274,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -7561,16 +7337,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -7633,16 +7400,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -7705,16 +7463,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -7777,16 +7526,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -7849,16 +7589,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         },
                         {
                             "kind": "http",
@@ -7921,16 +7652,7 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "facet",
-                                    "from",
-                                    "q",
-                                    "query",
-                                    "size",
-                                    "sort"
-                                ]
-                            }
+                            "select": {}
                         }
                     ]
                 }
